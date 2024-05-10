@@ -1,0 +1,4 @@
+# Logs
+node_modules
+!/docs/.vuepress/theme/node_modules
+dist
