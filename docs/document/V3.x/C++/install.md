@@ -10,11 +10,11 @@ Linux系统: [TESSNG V3.1 二次开发包](https://www.jidatraffic.com/#/simulat
 
 **第一步：下载TESSNG Python二次开发包** [TESSNG V3.1 二次开发包](https://www.jidatraffic.com/#/simulation)**并解压**
 
-![开发包内文件列表](/img/开发包内文件列表.png)
+![开发包内文件列表](/img/p27.png)
 
 开发包位于软件根目录下，主要文件截图如下：
 
-![开发包主要文件截图_C++](/img/图1开发包主要文件截图_C++.png)
+![开发包主要文件截图_C++](/img/p7.png)
 
 **第二步：TESS NG的C++ API运行环境配置**
 
@@ -32,7 +32,7 @@ TESS NG的API可以在VS环境下编译，同时也可以在QT Creator环境下�
 
 用户在仅安装QT 5.15.9的情况下，也可以在QT环境实现编译，用户可以根据自己实现的环境，选择平台进行编译测试，QT平台的编译状态如下：
 
-![QT平台的编译状态](/img/图2_QT平台的编译状态.png)
+![QT平台的编译状态](/img/p9.png)
 
 第三步：启动TESSNG
 
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 
 结果如下：
 
-![打开窗体结果](/img/图3_打开窗体结果.png)
+![打开窗体结果](/img/p12.png)
 
 如果打开TESSNG时自动加载指定路网文件，可以将代码换成：
 
@@ -77,7 +77,7 @@ QMainWindow *pWindow = tessng(netFilePath);
 
 结果如下：
 
-![API打开文件](/img/图4_API打开文件.png)
+![API打开文件](/img/p17.png)
 
 API打开文件
 
@@ -95,7 +95,7 @@ API打开文件
 
 第五步： 激活后关闭弹窗，重新运行项目即可运行范例
 
-![范例运行界面](/img/范例运行界面.png)
+![范例运行界面](/img/p31.png)
 
 
 

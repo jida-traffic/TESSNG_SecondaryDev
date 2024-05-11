@@ -4,7 +4,7 @@
 
 用户在首次使用Python环境运行范例或开发文件时，也需要激活，具体激活界面如下：
 
-![Python开发环境激活界面](/img/图2Python开发环境激活界面.jpg)
+![Python开发环境激活界面](/img/p10.jpg)
 
 ​    试用用户与首次激活软件流程相同，采用安装包的Cert文件夹下的JidaTraffic_key激活即可。
 

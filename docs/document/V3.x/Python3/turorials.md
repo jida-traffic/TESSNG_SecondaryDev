@@ -78,17 +78,17 @@ class MyPlugin(TessPlugin):
 
 结果如下：
 
-![创建范例菜单](/img/创建范例菜单.png)
+![创建范例菜单](/img/p3.png)
 
 点击菜单项“范例菜单项”弹出对话框：
-![范例菜单点击效果](/img/图11范例菜单点击效果.png)
+![范例菜单点击效果](/img/p23.png)
 
 
 ### 1.2. 自定义车辆显示内容
 
 下图展示自动驾驶车辆，雷达探测范围100米。
 
-![增加车辆显示内容](/img/图12增加车辆显示内容.png)
+![增加车辆显示内容](/img/p24.png)
 
 为了增添车辆展示的内容，可以实现接口PyCustomerSimulator的如下方法
 
@@ -517,7 +517,7 @@ def double_ring_signal_control(self, current_simuTime):
 
 1-新建发车点，设置发车流量时间间隔；设置发车分布；设置车辆组成，车辆类型（发车点已创建后无法修改车辆组成和车辆类型，可以创建车辆组成和车辆类型后设置发车点）；
 
-![创建车辆组成，指定车型](/img/创建车辆组成，指定车型.png)
+![创建车辆组成，指定车型](/img/p4.png)
 
 <video width="100%" controls="controls" src="https://www.jidatraffic.com/newWebsite/video/流量加载/20231110_122009_流量加载_创建车辆组成和发车点.mp4"></video>
 
@@ -917,7 +917,7 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
 
 在实现自动泊车的仿真及调度时需要展示车辆倒车入库的过程，这个过程可让车辆顺向前移，将车辆旋转180度，展现的便是倒着行驶状态。
 
-![车辆倒车入库场景](/img/图13车辆倒车入库场景.png)
+![车辆倒车入库场景](/img/p25.png)
 
  为了实现倒着行驶效果，可以实现PyCustomerSimulator的如下方法
 

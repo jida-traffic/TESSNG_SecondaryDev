@@ -4096,7 +4096,7 @@ simuiface.pauseSimu()
 
 预期仿真时长，即仿真设置窗口设置的仿真时间
 
-![仿真参数配置](仿真参数配置.png)
+![仿真参数配置](p2.png)
 
 Ø **def setSimuIntervalScheming(self, interval:int) -> None: ...**
 
@@ -5536,7 +5536,7 @@ def ref_reSetAcce(self, vehi, inOutAcce):
 
 车辆运行信息。在仿真过程中如果某辆车被单选，按ctrl+i 会弹出被单选车辆运行状态，文本框中的“其它信息”就是当前方法返回的字符串，开发者可以借此对实现的业务逻辑进行了解，用户可以了解仿真过程中具体车辆的一些特殊信息。
 
-![车辆运行过程属性窗口](/img/图9车辆运行过程属性窗口.png)
+![车辆运行过程属性窗口](/img/p22.png)
 
 
 

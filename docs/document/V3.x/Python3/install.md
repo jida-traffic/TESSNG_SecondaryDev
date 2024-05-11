@@ -10,25 +10,25 @@ Linux系统： [TESSNG V3.1 二次开发包](https://www.jidatraffic.com/#/simul
 
 第一步：下载TESSNG Python二次开发包 [TESSNG V3.1 二次开发包](https://www.jidatraffic.com/#/simulation)并解压
 
-![开发包内文件列表](/img/开发包内文件列表.png)
+![开发包内文件列表](/img/p27.png)
 
 TESS NG python 接口开发包有两个关键文件（Windows环境）：Tessng.pyd，以及附加动态库shiboken2.abi3.dll。另外Tessng.pyi是文本形式的描述文件，在开发时提供方便，但不是必须的。
 
 开发包主要文件截图如下：
 
-![开发包主要文件截图](/img/图1开发包主要文件截图-1701432099995-18.png)
+![开发包主要文件截图](/img/p8.png)
 
 第二步：安装python3.6环境和IDE（建议使用pycharm）
 
 第三步：pycharm打开下载的二次开发包中的范例工程TESS_PythonAPI_EXAMPLE
 
-![pycharm打开范例文件](/img/pycharm打开范例文件.png)
+![pycharm打开范例文件](/img/p1.png)
 
 第四步：激活TESSNG软件license
 
 用户在首次使用二次开发包时需要激活软件；激活方式：运行main.py函数，弹出激活弹窗，选择激活license文件。具体激活界面如下：
 
-![Python开发环境激活界面](/img/图2Python开发环境激活界面.jpg)
+![Python开发环境激活界面](/img/p10.jpg)
 
 试用用户与首次激活软件流程相同，采用安装包的Cert文件夹下的JidaTraffic_key激活即可。
 
@@ -38,7 +38,7 @@ TESS NG python 接口开发包有两个关键文件（Windows环境）：Tessng.
 
 第五步： 激活后关闭弹窗，重新运行main.py即可运行范例
 
-![范例运行界面](/img/范例运行界面.png)
+![范例运行界面](/img/p31.png)
 
 
 

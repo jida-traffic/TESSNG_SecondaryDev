@@ -65,11 +65,11 @@ QMainWindow *pWindow = tessng();
 
 结果如下：
 
-![创建范例菜单](/img/高频接口实战_图1创建范例菜单.png)
+![创建范例菜单](/img/p35.png)
 
 点击菜单项“范例菜单项”弹出对话框：
 
-![范例菜单点击效果](/img/高频接口实战_图2范例菜单点击效果.png)
+![范例菜单点击效果](/img/p36.png)
 
 如果希望增加菜单的功能放到插件的动态库中，让TESS NG加载插件时创建菜单，则上述代码需要移至插件接口的实现代码中，如范例；将上述代码放到TessPlugin的initGui()方法中。
 
@@ -115,7 +115,7 @@ QMainWindow *pWindow = tessng();
 
 下图展示自动驾驶车辆，雷达探测范围100米。
 
-![自动驾驶车辆雷达展示](/img/高频接口实战_增加车辆显示内容.png)
+![自动驾驶车辆雷达展示](/img/p37.png)
 
 为了增添车辆展示的内容，可以实现接口CustomerSimulator的如下方法：
 
@@ -599,7 +599,7 @@ void SecondaryDevCases::doubleRingSignalControl(long currentSimuTime) {
 
 1-新建发车点，设置发车流量时间间隔；设置发车分布；设置车辆组成，车辆类型（发车点已创建后无法修改车辆组成和车辆类型，可以创建车辆组成和车辆类型后设置发车点）；
 
-![创建车辆组成，指定车型](/img/创建车辆组成，指定车型.png)
+![创建车辆组成，指定车型](/img/p4.png)
 
 <video style="width: 100%" controls="controls" src="https://www.jidatraffic.com/newWebsite/video/流量加载/20231110_122009_流量加载_创建车辆组成和发车点.mp4"></video>
 
@@ -975,7 +975,7 @@ QList<Online::DecipointFlowRatioByInterval> MySimulator::calcDynaFlowRatioParame
 
 在实现自动泊车的仿真及调度时需要展示车辆倒车入库的过程，这个过程可让车辆顺向前移，将车辆旋转180度，展现的便是倒着行驶状态。
 
-![车辆倒车入库场景](/img/图13车辆倒车入库场景.png)
+![车辆倒车入库场景](/img/p25.png)
 
  为了实现倒着行驶效果，可以实现CustomerSimulator的如下方法
 
