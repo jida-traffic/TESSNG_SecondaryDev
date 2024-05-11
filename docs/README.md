@@ -1,6 +1,6 @@
   # 简介
 
-  ## 1. 二次开发能做什么
+  ## 1. 二次开发能做什么?
 
   <div align=center>
     <img src="/homePage2.png"/>
