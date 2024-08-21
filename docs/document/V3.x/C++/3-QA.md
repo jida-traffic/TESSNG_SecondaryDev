@@ -1,5 +1,9 @@
 # 二次开发用户问答
 
+## 二次开发用户交流群
+
+![二次开发用户交流群](https://jidatraffic.com/public/qrcodeSecondly.jpg)
+
 ### 1. 打开TESSNG时出现以下错误如何解决？
 
 ![Untitled](/img/Untitled.png)
