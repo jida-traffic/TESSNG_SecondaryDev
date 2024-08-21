@@ -19,14 +19,41 @@ TESS NG python 接口开发包有两个关键文件（Windows环境）：Tessng.
 ![开发包主要文件截图](/img/p8.png)
 
 第二步：安装python3.6环境和IDE（建议使用pycharm）
+step1: 安装python3.6.6, 下载网址为：https://www.python.org/ftp/python/3.6.6/python-3.6.6-amd64.exe
+![python安装界面](/img/python.png)
+
+step2: 安装pycharm, 下载网址为：https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC
+![python安装界面](/img/pycharm1.png)
+![python安装界面](/img/pycharm2.png)
+![python安装界面](/img/pycharm3.png)
+![python安装界面](/img/pycharm4.png)
+![python安装界面](/img/pycharm5.png)
 
 第三步：pycharm打开下载的二次开发包中的范例工程TESS_PythonAPI_EXAMPLE
 
 ![pycharm打开范例文件](/img/p1.png)
+* 双击main.py， 使用pycharm打开，选择在项目中打开当前文件；
+![python安装界面](/img/pycharm6.png)
+* 选择右下角的<无解释器>选择添加新的解释器；
+![python安装界面](/img/pycharm7.png)
+
+* 选择Virtualenv 环境-新建，基础解释器选择刚安装的Python3.6.6目录下的python.exe， 然后点击确定；
+![python安装界面](/img/pycharm8.png)
+* 点击左下角的终端，出现(venv)表示环境配置成功，如果没有出现就把终端关掉重新打开；
+![python安装界面](/img/pycharm9.png)
+* 下载第三方库Pyside2,在终端位置输入以下命令：
+pip install PySide2 -i https://pypi.tuna.tsinghua.edu.cn/simple/
+出现“Successfully installed PySide2-5.15.2.1 shiboken2-5.15.2.1”表示安装成功；
+![python安装界面](/img/pycharm10.png)
+![python安装界面](/img/pycharm11.png)
+* 在界面任意位置右击，选择运行main, 出现激活界面表示代码启动成功
+![python安装界面](/img/pycharm12.png)
+![python安装界面](/img/pycharm13.png)
 
 第四步：激活TESSNG软件license
 
-用户在首次使用二次开发包时需要激活软件；激活方式：运行main.py函数，弹出激活弹窗，选择激活license文件。具体激活界面如下：
+用户在首次使用二次开发包时需要激活软件；
+激活方式：双击运行main.py函数，弹出激活弹窗，选择激活license文件。具体激活界面如下：
 
 ![Python开发环境激活界面](/img/p10.jpg)
 
