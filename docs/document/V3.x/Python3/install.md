@@ -23,6 +23,7 @@ step1: 安装python3.6.6, 下载网址为：https://www.python.org/ftp/python/3.
 ![python安装界面](/img/python.png)
 
 step2: 安装pycharm, 下载网址为：https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC
+
 ![python安装界面](/img/pycharm1.png)
 ![python安装界面](/img/pycharm2.png)
 ![python安装界面](/img/pycharm3.png)

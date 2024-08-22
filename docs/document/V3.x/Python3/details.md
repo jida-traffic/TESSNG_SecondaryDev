@@ -388,7 +388,7 @@ laneObject中心线上一点到起点的距离，像素单位，附加条件是�
 
  **def v3z(self) -> float: ...**
 
-获取路段高程，过载ISection的方法， 和上边的z(self)有啥区别？
+获取路段高程，过载ISection的方法， 等同于上边的z(self)
 
  **def name(self) -> str: ...**
 
@@ -400,7 +400,7 @@ laneObject中心线上一点到起点的距离，像素单位，附加条件是�
 
  **def linkType(self) -> str: ...**
 
-获取路段类型，出参为字符串枚举：城市主干道、城市次干道、人行道， 还有别的吗？ 
+获取路段类型，出参为字符串枚举：城市主干道、城市次干道、人行道。
 
  **def setType(self, type:str) -> None: ...**
 
@@ -481,11 +481,19 @@ link.setLimitSpeed(30)
 
  **def fromSection(self, id:int=...) -> Tessng.ISection: ...**
 
-？？？？
+根据ID获取上游Section。如果当前是路段,且id 为 0则 返回空，否则返回上游指定ID的连接段；
+
+如果当前是连接段且id 为 0 返回上游路段，否则返回空。 
+
+因为连接段的上游一定只有一个路段，所以不需要额外指定id； 但如果是路段，则其上游有可能存在多个连接段，因此需要传入连接段ID来返回指定的ID
 
  **def toSection(self, id:int=...) -> Tessng.ISection: ...**
 
-????
+根据ID获取下游Section。如果当前是路段,且id 为 0则 返回空，否则返回下游指定ID的连接段；
+
+如果当前是连接段且id 为 0 返回下游路段，否则返回空。 
+
+因为连接段的下游一定只有一个路段，所以不需要额外指定id； 但如果是路段，则其下游有可能存在多个连接段，因此需要传入连接段ID来返回指定的ID
 
  **def setOtherAttr(self, otherAttr:typing.Dict) -> None: ...**
 
@@ -559,15 +567,19 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
  **def actionType(self) -> str: ...**
 
-获取车道的行为类型，返回的为行为类型常量字符串，包括： ？？？
+获取车道的行为类型，返回的为行为类型常量字符串，包括："机动车道"、“非机动车道”、“公交专用道”
 
  **def fromLaneObject(self, id:int=...) -> Tessng.ILaneObject: ...**
 
-根据ID获取上游 LaneObject。id 为 0 返回空，否则返回上游指定ID的“车道连接 ？？？
+根据ID获取上游LaneObject。如果当前是车道,且id 为 0则 返回空，否则返回上游指定ID的车道连接段；
+
+如果当前是车道连接段且id 为 0 返回上游车道，否则返回空。 
+
+因为车道连接段的上游一定只有一个车道，所以不需要额外指定id； 但如果是车道，则其上游有可能存在多个车道连接段，因此需要传入车道连接段ID来返回指定ID的车道连接器对象
 
  **def toLaneObject(self, id:int=...) -> Tessng.ILaneObject: ...**
 
-根据ID获取下游 LaneObject。id 为 0 返回空，否则返回下游指定ID的“车道连接” ？？？
+根据ID获取下游 LaneObject 同fromLaneObject用法
 
  **def centerBreakPoints(self) -> typing.List: ...**
 
@@ -706,11 +718,19 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
  **def fromSection(self, id:int=...) -> Tessng.ISection: ...**
 
-???
+根据ID获取上游Section。如果当前是路段,且id 为 0则 返回空，否则返回上游指定ID的连接段；
+
+如果当前是连接段且id 为 0 返回上游路段，否则返回空。 
+
+因为连接段的上游一定只有一个路段，所以不需要额外指定id； 但如果是路段，则其上游有可能存在多个连接段，因此需要传入连接段ID来返回指定的ID
 
  **def toSection(self, id:int=...) -> Tessng.ISection: ...**
 
-？？？
+根据ID获取下游Section。如果当前是路段,且id 为 0则 返回空，否则返回下游指定ID的连接段；
+
+如果当前是连接段且id 为 0 返回下游路段，否则返回空。 
+
+因为连接段的下游一定只有一个路段，所以不需要额外指定id； 但如果是路段，则其下游有可能存在多个连接段，因此需要传入连接段ID来返回指定的ID
 
  **def limitSpeed(self) -> float: ...**
 
@@ -748,7 +768,7 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
  **def gtype(self) -> int: ...**
 
-类型，GLaneType或GLaneConnectorType，车道连接段为GLaneConnectorType ？？？  为什么返回GLaneType ？？？
+类型，GLaneType或GLaneConnectorType，车道连接段为GLaneConnectorType ，这里的返回值只可能是GLaneConnectorType
 
  **def id(self) -> int: ...**
 
@@ -772,11 +792,19 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
  **def fromLaneObject(self, id:int=...) -> Tessng.ILaneObject: ...**
 
-？？？
+根据ID获取上游LaneObject。如果当前是车道,且id 为 0则 返回空，否则返回上游指定ID的车道连接段；
+
+如果当前是车道连接段且id 为 0 返回上游车道，否则返回空。 
+
+因为连接段的上游一定只有一个路段，所以不需要额外指定id； 但如果是路段，则其上游有可能存在多个连接段，因此需要传入连接段ID来返回指定的ID
 
  **def toLaneObject(self, id:int=...) -> Tessng.ILaneObject: ...**
 
-？？？
+根据ID获取下游LaneObject。如果当前是车道,且id 为 0则 返回空，否则返回下游指定ID的车道连接段；
+
+如果当前是车道连接段且id 为 0 返回下游车道，否则返回空。 
+
+因为连接段的下游一定只有一个路段，所以不需要额外指定id； 但如果是路段，则其上游有可能存在多个连接段，因此需要传入连接段ID来返回指定的ID
 
  **def length(self) -> float: ...**
 
@@ -927,6 +955,7 @@ if link1:
 
 设置是否被动态修改，若需要仿真过程中动态修改发车点信息，则需要先将此函数设置为True，否则不能修改发车点信息
 说明：发车信息被动态修改后，整个文件不支持保存，以免破坏原有发车设置
+已废弃
 
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
@@ -966,10 +995,11 @@ if link1:
 
 设置是否被动态修改，若需要仿真过程中动态修改决策点信息，则需要先将此函数设置为True，否则不能修改
 说明：发车信息被动态修改后，整个文件不能保存，以免破坏原有发车设置
+该函数已废弃
 
 参数：
 
-\[in\] bModified：是否被动态修改，True为被动态修改，False为未被动态修改 ？？？ 啥意思 支持动态修改与否， 还是仅仅是修改与否的状态标签？？？
+\[in\] bModified：是否被动态修改，True为被动态修改，False为未被动态修改 
 
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
@@ -1204,7 +1234,7 @@ if method_number == 3:
 
  **def stationLines(self) -> typing.List: ...**
 
-公交站点线路，当前线路相关站点的上下客等参数 ？？？？
+公交站点线路，当前线路相关站点的上下客等参数 ， 所有参数的列表
 
  **def setName(self, name:str) -> None: ...**
 
@@ -1465,7 +1495,7 @@ if collector is not None:
 设置工作起始时间(秒)
 
  **def setToTime(self, time:int) -> None: ...**
- 
+
 设置工作结束时间(秒)
 
  **def setAggregateInterval(self, interval:int) -> None: ...**
@@ -1774,7 +1804,7 @@ print(zone.roadType())
 
  **def needRescue(self) -> int: ...**
 
-是否需要救援，如果为-1，由事故等级决定，重大事故需要求援，如为0不需救援，如果为1需要救援 ？？？ 是不是要删除
+是否需要救援，如果为-1，由事故等级决定，重大事故需要求援，如为0不需救援，如果为1需要救援 , 已废弃
 
  **def waitTimeBeforeRescue(self) -> int: ...**
 
@@ -2072,59 +2102,59 @@ if tmpId == 1:
 
  **def vehiDistFront(self) -> float: ...**
 
-前车间距，单位：像素; 若无前车，则范围固定的常量 如10000 单位像素  ？？？？
+前车间距，单位：像素; 若无前车，则范围固定的常量 ， 单位像素  
 
  **def vehiSpeedFront(self) -> float: ...**
 
-前车速度，单位：像素/秒  若无前车，则范围固定的常量 如10000 单位像素  ？？？？
+前车速度，单位：像素/秒  若无前车，则范围固定的常量 单位像素 
 
  **def vehiHeadwayFront(self) -> float: ...**
 
-距前车时距, 若无前车，则范围固定的常量 如10000 单位像素  ？？？？
+距前车时距, 若无前车，则范围固定的常量  单位像素 
 
  **def vehiDistRear(self) -> float: ...**
 
-后车间距，单位：像素, 若无后车，则范围固定的常量 如10000 单位像素  ？？？？
+后车间距，单位：像素, 若无后车，则范围固定的常量  单位像素 
 
  **def vehiSpeedRear(self) -> float: ...**
 
-后车速度，单位：像素/秒  若无后车，则范围固定的常量 如10000 单位像素  ？？？？
+后车速度，单位：像素/秒  若无后车，则范围固定的常量  单位像素  
 
  **def vehiHeadwaytoRear(self) -> float: ...**
 
-距后车时距，  若无前后车，则范围固定的常量 如10000 单位像素  ？？？？
+距后车时距，  若无前后车，则范围固定的常量  单位像素  
 
  **def vehiDistLLaneFront(self) -> float: ...**
 
-相邻左车道前车间距，单位：像素； 若无目标车，则返回固定的常量 10000 单位像素？？？
+相邻左车道前车间距，单位：像素； 若无目标车，则返回固定的常量  单位像素
 
  **def vehiSpeedLLaneFront(self) -> float: ...**
 
-相邻左车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量 10000 单位像素？？？
+相邻左车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素
 
  **def vehiDistLLaneRear(self) -> float: ...**
 
-相邻左车道后车间距，单位：像素;  若无目标车，则返回固定的常量 10000 单位像素？？？
+相邻左车道后车间距，单位：像素;  若无目标车，则返回固定的常量  单位像素
 
  **def vehiSpeedLLaneRear(self) -> float: ...**
 
-相邻左车道后车速度，单位：像素/秒;  若无目标车，则返回固定的常量 10000 单位像素？？？
+相邻左车道后车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素
 
  **def vehiDistRLaneFront(self) -> float: ...**
 
-相邻右车道前车间距，单位：像素;  若无目标车，则返回固定的常量 10000 单位像素？？？
+相邻右车道前车间距，单位：像素;  若无目标车，则返回固定的常量  单位像素
 
  **def vehiSpeedRLaneFront(self) -> float: ...**
 
-相邻右车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量 10000 单位像素？？？
+相邻右车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素
 
  **def vehiDistRLaneRear(self) -> float: ...**
 
-相邻右车道后车间距，单位：像素; 若无目标车，则返回固定的常量 10000 单位像素？？？
+相邻右车道后车间距，单位：像素; 若无目标车，则返回固定的常量  单位像素
 
  **def vehiSpeedRLaneRear(self) -> float: ...**
 
-相邻右车道后车速度，单位：像素/秒；  若无目标车，则返回固定的常量 10000 单位像素？？？
+相邻右车道后车速度，单位：像素/秒；  若无目标车，则返回固定的常量  单位像素
 
  **def setIsPermitForVehicleDraw(self, bDraw:bool) -> None: ...**
 
@@ -2554,7 +2584,7 @@ for vehi in allVehiStarted_lst:
 
  **def moveToLane(self, pLane:Tessng.ILane, dist:float) -> bool: ...**
 
-将车辆移到另一条车道上； 车辆会瞬间从当前车道移动到目标车道及指定的距离出，后续TESSNG结果车辆继续行驶 ？？？
+将车辆移到另一条车道上； 车辆会瞬间从当前车道移动到目标车道及指定的距离出，后续TESSNG接管车辆继续行驶 
 
 参数：
 
@@ -2564,7 +2594,7 @@ for vehi in allVehiStarted_lst:
 
  **def moveToLaneConnector(self, pLaneConnector:Tessng.ILaneConnector, dist:float) -> bool: ...**
 
-将车辆移到另一条车道连接上; 车辆会瞬间从当前位置移动到目标车道连接及指定的距离出，后续TESSNG结果车辆继续行驶 ？？？
+将车辆移到另一条车道连接上; 车辆会瞬间从当前位置移动到目标车道连接及指定的距离出，后续TESSNG接管车辆继续行驶 
 
 参数：
 
@@ -2638,8 +2668,6 @@ if simuTime == 10 * 1000:
 \[in\] type：轨迹类型 0：跟驰，1：左变道，2：右变道，3：左虚拟変道, 4：右虚拟变道，5：左转待转，6：右转待转, 7：入湾，8：出湾
 
 
-
-？？？缺失 V3.1版本的冲突参数修改，优先级修改API ？？
 
 ------
 
