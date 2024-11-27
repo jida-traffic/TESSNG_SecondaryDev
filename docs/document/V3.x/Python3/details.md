@@ -1091,19 +1091,19 @@ if link1:
 
  **def number(self) -> int: ...**
 
-获取一个灯组中的相位序号，从1开始
+获取一个灯组中的相位序号，从1开始，对应TESSNG相位列表中的相位编号，表示相位从上到下的序号。
 
  **def phaseName(self) -> str: ...**
 
-相位名称
+获取当前相位的相位名称
 
  **def signalGroup(self) -> Tessng.ISignalGroup: ...**
 
-相位所在信号灯组对象
+获取相位所在信号灯组对象
 
  **def signalLamps(self) -> typing.List: ...**
 
-本相位下的信号灯列表
+获取本相位下的信号灯列表
 
  **def listColor(self) -> typing.List: ...**
 
@@ -1202,23 +1202,23 @@ if method_number == 3:
 
  **def length(self) -> float: ...**
 
-获取当前长度,单位：像素
+获取当前公交线路长度，单位：像素
 
  **def dispatchFreq(self) -> int: ...**
 
-获取当前公交线路的发车间隔(秒)
+获取当前公交线路的发车间隔，单位：秒
 
  **def dispatchStartTime(self) -> int: ...**
 
-获取当前公交线路的发车开始时间(秒)
+获取当前公交线路的发车开始时间，单位：秒
 
  **def dispatchEndTime(self) -> int: ...**
 
-获取当前公交线路的发车结束时间(秒)， 即当前线路的公交调度表的结束时刻
+获取当前公交线路的发车结束时间，单位：秒， 即当前线路的公交调度表的结束时刻
 
  **def desirSpeed(self) -> float: ...**
 
-获取当前公交线路的期望速度(km/h)
+获取当前公交线路的期望速度，单位：km/h
 
  **def passCountAtStartTime(self) -> int: ...**
 
