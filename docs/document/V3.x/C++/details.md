@@ -190,7 +190,7 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 
 Ø **QList< ILaneObject\*> laneObjects()**
 
-车道与"车道连接"的父类接口列表
+车道与“车道连接”的父类接口列表
 
 举例：
 
@@ -289,11 +289,11 @@ Worker节点标识，在分布式环境可用
 
 Ø **long id()**
 
-获取ID，如果是Lane，id是Lane的ID， 如果是车道连接，id是"车道连接"ID
+获取ID，如果是Lane，id是Lane的ID， 如果是车道连接，id是“车道连接”ID
 
 Ø **qreal length()**
 
-获取车道或"车道连接"长度，默认单位：像素
+获取车道或“车道连接”长度，默认单位：像素
 
 Ø **ISection\* section()**
 
@@ -301,39 +301,39 @@ Worker节点标识，在分布式环境可用
 
 Ø **ILaneObject\* fromLaneObject(long id)**
 
-根据ID获取上游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回上游指定ID的"车道连接"；如果当前是连接段，id 为 0 返回上游车道，否则返回空指针。
+根据ID获取上游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回上游指定ID的“车道连接”；如果当前是连接段，id 为 0 返回上游车道，否则返回空指针。
 
 Ø **ILaneObject\* toLaneObject(long id)**
 
-根据ID获取下游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回下游指定ID的"车道连接"；如果当前是连接段，id 为 0 返回下游车道，否则返回空指针。
+根据ID获取下游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回下游指定ID的“车道连接”；如果当前是连接段，id 为 0 返回下游车道，否则返回空指针。
 
 Ø **QList< QPointF> centerBreakPoints()**
 
-车道或"车道连接"中心线断点集
+车道或“车道连接”中心线断点集
 
 Ø **QList< QPointF> leftBreakPoints()**
 
-车道或"车道连接"左侧线断点集
+车道或“车道连接”左侧线断点集
 
 Ø **QList< QPointF> rightBreakPoints()**
 
-车道或"车道连接"右侧线断点集
+车道或“车道连接”右侧线断点集
 
 Ø **QList< QVector3D> centerBreakPoint3Ds()**
 
-车道或"车道连接"中心线断点(三维)集
+车道或“车道连接”中心线断点(三维)集
 
 Ø **QList< QVector3D> leftBreakPoint3Ds()**
 
-车道或"车道连接"左侧线断点(三维)集
+车道或“车道连接”左侧线断点(三维)集
 
 Ø **QList< QVector3D> rightBreakPoint3Ds()**
 
-车道或"车道连接"右侧线断点(三维)集
+车道或“车道连接”右侧线断点(三维)集
 
 Ø **QList< QVector3D> leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
 
-车道或"车道连接"左侧部分断点(三维)集
+车道或“车道连接”左侧部分断点(三维)集
 
 参数：
 
@@ -343,7 +343,7 @@ Worker节点标识，在分布式环境可用
 
 Ø **QList< QVector3D> rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
 
-车道或"车道连接"右侧部分断点(三维)集
+车道或“车道连接”右侧部分断点(三维)集
 
 参数：
 
@@ -399,11 +399,11 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 
 Ø **void setOtherAttr(QJsonObject attr)**
 
-设置车道或"车道连接"其它属性
+设置车道或“车道连接”其它属性
 
 Ø **ILane\* castToLane()**
 
-将ILaneObject转换为ILane，如果当前ILaneObject是"车道连接"则返回空指针
+将ILaneObject转换为ILane，如果当前ILaneObject是“车道连接”则返回空指针
 
 Ø **ILaneConnector\* castToLaneConnector()**
 
@@ -503,7 +503,7 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 Ø **QList< ILaneObject\*> laneObjects()**
 
-车道及"车道连接"的接口列表
+车道及“车道连接”的接口列表
 
 Ø **QList< QPointF> centerBreakPoints()**
 
@@ -623,11 +623,11 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 Ø **ILaneObject\* fromLaneObject(long id)**
 
-根据ID获取上游 LaneObject。id 为 0 返回空指针，否则返回上游指定ID的"车道连接
+根据ID获取上游 LaneObject。id 为 0 返回空指针，否则返回上游指定ID的“车道连接
 
 Ø **ILaneObject\* toLaneObject(long id)**
 
-根据ID获取下游 LaneObject。id 为 0 返回空指针，否则返回下游指定ID的"车道连接"
+根据ID获取下游 LaneObject。id 为 0 返回空指针，否则返回下游指定ID的“车道连接”
 
 Ø **QList< QPointF> centerBreakPoints()**
 
@@ -787,7 +787,7 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 Ø **QList< ILaneObject\*> laneObjects()**
 
-车道及"车道连接"的接口列表
+车道及“车道连接”的接口列表
 
 举例：
 
@@ -804,7 +804,7 @@ if (pConn) {
 
 Ø **void setLaneConnectorOtherAtrrs(QList< QJsonObject> lAttrs)**
 
-设置包含的"车道连接"其它属性
+设置包含的“车道连接”其它属性
 
 Ø **void setOtherAttr(QJsonObject otherAttr)**
 
@@ -816,7 +816,7 @@ if (pConn) {
 
 ### 2.7 ILaneConnector
 
-"车道连接"接口
+“车道连接”接口
 
 接口文件：ILaneConnector.h
 
@@ -848,7 +848,7 @@ if (pConn) {
 
 Ø **ILaneObject\* fromLaneObject(long id)**
 
-根据ID获取上游 LaneObject。id 为 0 返回空指针，否则返回上游指定ID的"车道连接
+根据ID获取上游 LaneObject。id 为 0 返回空指针，否则返回上游指定ID的“车道连接
 
 举例：
 
@@ -865,7 +865,7 @@ if (pConn) {
 
 Ø **ILaneObject\* toLaneObject(long id)**
 
-根据ID获取下游 LaneObject。id 为 0 返回空指针，否则返回下游指定ID的"车道连接"
+根据ID获取下游 LaneObject。id 为 0 返回空指针，否则返回下游指定ID的“车道连接”
 
 举例：
 
@@ -877,39 +877,39 @@ for (ILaneObject*& pLaneObj : lConnLaneObjs) {
 
 Ø **qreal length()**
 
-"车道连接"长度
+“车道连接”长度
 
 Ø **QList< QPointF> centerBreakPoints()**
 
-获取"车道连接"中心线断点集，断点坐标用像素表示
+获取“车道连接”中心线断点集，断点坐标用像素表示
 
 Ø **QList< QPointF> leftBreakPoints()**
 
-"车道连接"左侧线断点集
+“车道连接”左侧线断点集
 
 Ø **QList< QPointF> rightBreakPoints()**
 
-"车道连接"右侧线断点集
+“车道连接”右侧线断点集
 
 Ø **QList< QVector3D> centerBreakPoint3Ds()**
 
-"车道连接"中心线断点(三维)集
+“车道连接”中心线断点(三维)集
 
 Ø **QList< QVector3D> leftBreakPoint3Ds()**
 
-"车道连接"左侧线断点(三维)集
+“车道连接”左侧线断点(三维)集
 
 Ø **QList< QVector3D> rightBreakPoint3Ds()**
 
-"车道连接"右侧线断点(三维)集
+“车道连接”右侧线断点(三维)集
 
 Ø **QList< QVector3D> leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
 
-"车道连接"左侧部分断点(三维)集
+“车道连接”左侧部分断点(三维)集
 
 Ø **QList< QVector3D> rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
 
-"车道连接"右侧部分断点(三维)集
+“车道连接”右侧部分断点(三维)集
 
 Ø **qreal distToStartPoint(const QPointF p)**
 
@@ -1142,7 +1142,7 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 Ø **void setDistToStart(qreal dist)**
 
-设置信号灯距车道起点（或"车道连接"起点）距离，默认单位：像素
+设置信号灯距车道起点（或“车道连接”起点）距离，默认单位：像素
 
 Ø **QPolygonF polygon()**
 
@@ -1430,7 +1430,7 @@ if (pBusLine) {
 
 Ø **long id()**
 
-获取公交"站点-线路"ID
+获取公交“站点-线路”ID
 
 Ø **long stationId()**
 
@@ -1519,7 +1519,7 @@ QList< IBusStationLine*> lStationLine = pBusLine->stationLines();
 
 Ø **ILaneConnector\* laneConnector()**
 
-如果采集器在连接段上则laneConnector返回"车道连接",lane()返回nullptr
+如果采集器在连接段上则laneConnector返回“车道连接”,lane()返回nullptr
 
 Ø **qreal distToStart()**
 
@@ -1547,11 +1547,11 @@ QList< IBusStationLine*> lStationLine = pBusLine->stationLines();
 
 Ø **void setDistToStart(qreal dist)**
 
-设置采集器距车道起点（或"车道连接"起点）距离
+设置采集器距车道起点（或“车道连接”起点）距离
 
 参数：
 
-[in] dist：采集器距离车道起点（或"车道连接"起点）的距离，默认单位：像素
+[in] dist：采集器距离车道起点（或“车道连接”起点）的距离，默认单位：像素
 
 举例：
 
@@ -1611,7 +1611,7 @@ pCollector->setDistToStart(m2p(400));
 
 Ø **ILaneConnector\* laneConnector()**
 
-如果计数器在连接段上则laneConnector返回"车道连接",lane()返回nullptr
+如果计数器在连接段上则laneConnector返回“车道连接”,lane()返回nullptr
 
 Ø **qreal distToStart()**
 
@@ -1647,11 +1647,11 @@ qDebug() << "计数器所在点坐标为：(" << pCounter->point().x() <<","<< p
 
 Ø **void setDistToStart(qreal dist)**
 
-设置计数器距车道起点（或"车道连接"起点）距离
+设置计数器距车道起点（或“车道连接”起点）距离
 
 参数：
 
-[in] dist：计数器距离车道起点（或"车道连接"起点）的距离，默认单位：像素
+[in] dist：计数器距离车道起点（或“车道连接”起点）的距离，默认单位：像素
 
 Ø **void setFromTime(long time)**
 
@@ -1703,7 +1703,7 @@ qDebug() << "计数器所在点坐标为：(" << pCounter->point().x() <<","<< p
 
 Ø **ILaneConnector\* laneConnector_startDetector()**
 
-如果检测器起点在连接段上则laneConnector_startDetector()返回起点"车道连接",link_startDetector()返回nullptr
+如果检测器起点在连接段上则laneConnector_startDetector()返回起点“车道连接”,link_startDetector()返回nullptr
 
 Ø **ILink\* link_endDetector()**
 
@@ -1711,15 +1711,15 @@ qDebug() << "计数器所在点坐标为：(" << pCounter->point().x() <<","<< p
 
 Ø **ILaneConnector\* laneConnector_endDetector()**
 
-如果检测器终点在连接段上则laneConnector_endDetector()返回终点"车道连接",link_endDetector()返回nullptr
+如果检测器终点在连接段上则laneConnector_endDetector()返回终点“车道连接”,link_endDetector()返回nullptr
 
 Ø **qreal distance_startDetector()**
 
-检测器起点距离所在车道起点或"车道连接"起点距离，默认单位：像素
+检测器起点距离所在车道起点或“车道连接”起点距离，默认单位：像素
 
 Ø **qreal distance_endDetector()**
 
-检测器终点距离所在车道起点或"车道连接"起点距离，默认单位：像素
+检测器终点距离所在车道起点或“车道连接”起点距离，默认单位：像素
 
 Ø **QPointF point_startDetector()**
 
@@ -1747,11 +1747,11 @@ qDebug() << "计数器所在点坐标为：(" << pCounter->point().x() <<","<< p
 
 Ø **void setDistance_startDetector(qreal dist)**
 
-设置检测器起点距车道起点（或"车道连接"起点）距离，默认单位：像素
+设置检测器起点距车道起点（或“车道连接”起点）距离，默认单位：像素
 
 Ø **void setDistance_endDetector(qreal dist)**
 
-设置检测器终点距车道起点（或"车道连接"起点）距离，默认单位：像素
+设置检测器终点距车道起点（或“车道连接”起点）距离，默认单位：像素
 
 Ø **void setFromTime(long time)**
 
@@ -1948,1005 +1948,6 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 施工持续时间，单位：秒。自仿真过程创建后，持续时间大于此值，则移除
 
-### 2.24 ILimitedZone
-
-限制区域接口
-
-接口文件：ILimitedZone.h
-
-接口方法：
-
-Ø **long id()**
-
-获取限制区ID
-
-Ø **QString name()**
-
-获取限制区名称
-
-Ø **qreal location()**
-
-获取距起点距离，单位：米
-
-Ø **qreal zoneLength()**
-
-获取限制区长度，单位：米
-
-Ø **qreal limitSpeed()**
-
-获取限制区限速（最大车速），单位：千米/小时
-
-Ø **long sectionId()**
-
-获取路段或连接段ID
-
-Ø **QString sectionName()**
-
-获取Section名称
-
-Ø **QString sectionType()**
-
-获取道路类型，"link"表示路段，"connector"表示连接段
-
-Ø **QList<ILaneObject*> laneObjects()**
-
-获取相关车道对象列表
-
-Ø **long duration()**
-
-获取限行持续时间，单位：秒。自仿真过程创建后，持续时间大于此值则删除
-
-### 2.25 IReconstruction
-
-改扩建接口
-
-接口文件：IReconstruction.h
-
-接口方法：
-
-Ø **long id()**
-
-获取改扩建ID
-
-Ø **long roadWorkZoneId()**
-
-获取改扩建起始施工区ID
-
-Ø **long limitedZoneId()**
-
-获取被借道限行区ID
-
-Ø **qreal passagewayLength()**
-
-获取保通长度，单位：米
-
-Ø **long duration()**
-
-获取改扩建持续时间
-
-Ø **int borrowedNum()**
-
-获取借道数量
-
-Ø **qreal passagewayLimitedSpeed()**
-
-获取保通开口限速，单位：米/秒
-
-Ø **Online::DynaReconstructionParam dynaReconstructionParam()**
-
-获取改扩建动态参数，返回参数为米制
-
-### 2.26 IReduceSpeedArea
-
-限速区接口
-
-接口文件：IReduceSpeedArea.h
-
-接口方法：
-
-Ø **long id()**
-
-获取限速区ID
-
-Ø **QString name()**
-
-获取限速区名称
-
-Ø **qreal location()**
-
-获取距起点距离，单位：米
-
-Ø **qreal areaLength()**
-
-获取限速区长度，单位：米
-
-Ø **long sectionId()**
-
-获取路段或连接段ID
-
-Ø **int laneNumber()**
-
-获取车道序号
-
-Ø **int toLaneNumber()**
-
-获取目标车道序号
-
-Ø **QPolygonF polygon()**
-
-获取多边型轮廓
-
-### 2.27 ISignalPlan
-
-信号控制方案接口
-
-接口文件：ISignalPlan.h
-
-接口方法：
-
-Ø **long id()**
-
-获取ID
-
-Ø **QString Name()**
-
-获取灯组名
-
-Ø **QString trafficName()**
-
-获取信号机名称
-
-Ø **int periodTime()**
-
-获取信号周期，单位：秒
-
-Ø **long fromTime()**
-
-获取起始时间，单位：秒
-
-Ø **long toTime()**
-
-获取结束时间，单位：秒
-
-Ø **QList<ISignalPhase*> Iphases()**
-
-获取相位列表
-
-Ø **void setName(QString name)**
-
-设置信号灯组/信控方案名称
-
-Ø **void setPeriodTime(int period)**
-
-设置信号周期，单位：秒
-
-Ø **void setFromTime(long time)**
-
-设置起始时间，单位：秒
-
-Ø **void setToTime(long time)**
-
-设置结束时间，单位：秒
-
-### 2.28 ITrafficLight
-
-信号机接口
-
-接口文件：ITrafficLight.h
-
-接口方法：
-
-Ø **long id()**
-
-获取信号机ID
-
-Ø **QString name()**
-
-获取信号机名称
-
-Ø **void setName(const QString& name)**
-
-设置信号机名称
-
-参数：
-[in] name：新名称
-
-Ø **void IaddPlan(ISignalPlan* plan)**
-
-添加信控方案
-
-参数：
-[in] plan：信控方案
-
-Ø **void IremovePlan(ISignalPlan* plan)**
-
-移除信控方案
-
-参数：
-[in] plan：要移除的信控方案
-
-Ø **QList<ISignalPlan*> Iplans()**
-
-获取所有信控方案
-
-Ø **bool isValid()**
-
-检查信号机的有效性
-
-### 2.29 ITollLane
-
-收费车道接口
-
-接口文件：ITollLane.h
-
-接口方法：
-
-Ø **qlonglong id() const**
-
-获取收费车道ID
-
-Ø **QString name() const**
-
-获取收费车道名称
-
-Ø **qreal distance() const**
-
-获取距路段起始位置，单位：米
-
-Ø **void setName(const QString& name)**
-
-设置收费车道名称
-
-参数：
-[in] name：收费车道新名称
-
-Ø **void setWorkTime(qlonglong startTime, qlonglong endTime)**
-
-设置工作时间，工作时间与仿真时间对应
-
-参数：
-[in] startTime：开始时间(秒)
-[in] endTime：结束时间(秒)
-
-Ø **QVector<ITollPoint*> tollPoints() const**
-
-获取收费车道所有收费点
-
-### 2.30 ITollDecisionPoint
-
-收费决策点接口
-
-接口文件：ITollDecisionPoint.h
-
-接口方法：
-
-Ø **long id()**
-
-获取收费决策点ID
-
-Ø **QString name()**
-
-获取收费决策点名称
-
-Ø **ILink* link()**
-
-获取收费决策点所在路段
-
-Ø **qreal distance()**
-
-获取距路段起点距离，单位：米
-
-Ø **QList<ITollRouting*> routings()**
-
-获取相关收费路径
-
-Ø **QList< TollDisInfo > tollDisInfoList()**
-
-获取收费分配信息列表
-
-Ø **QPolygonF polygon()**
-
-获取收费决策点多边型轮廓
-
-### 2.31 ITollRouting
-
-收费路径接口
-
-接口文件：ITollRouting.h
-
-接口方法：
-
-Ø **long id()**
-
-获取路径ID
-
-Ø **long tollDeciPointId()**
-
-获取所属收费决策点ID
-
-Ø **qreal calcuLength()**
-
-计算路径长度
-
-Ø **bool contain(ISection* pRoad)**
-
-根据所给道路判断是否在当前路径上
-
-参数：
-[in] pRoad：路段或连接段
-
-Ø **ISection* nextRoad(ISection* pRoad)**
-
-根据所给道路求下一条道路
-
-参数：
-[in] pRoad：路段或连接段
-
-Ø **QList<ILink*> getLinks()**
-
-获取路段序列
-
-### 2.32 ITollPoint
-
-收费点接口
-
-接口文件：ITollPoint.h
-
-接口方法：
-
-Ø **long id()**
-
-获取收费点ID
-
-Ø **qreal distance() const**
-
-获取距路段起始位置，单位：米
-
-Ø **long tollLaneId()**
-
-获取所属收费车道ID
-
-Ø **bool setEnabled(bool enabled)**
-
-设置启用状态
-
-参数：
-[in] enabled：是否启用
-
-### 2.33 IParkingStall
-
-停车位接口
-
-接口文件：IParkingStall.h
-
-接口方法：
-
-Ø **long id()**
-
-获取停车位ID
-
-Ø **long parkingRegionId()**
-
-获取所属停车区域ID
-
-### 2.34 IParkingRegion
-
-停车区域接口
-
-接口文件：IParkingRegion.h
-
-接口方法：
-
-Ø **long id() const**
-
-获取停车区域ID
-
-Ø **QString name() const**
-
-获取停车区域名称
-
-Ø **void setName(const QString& name)**
-
-设置停车区域名称
-
-参数：
-[in] name：新名称
-
-Ø **QVector<IParkingStall*> parkingStalls() const**
-
-获取所有停车位
-
-### 2.35 IParkingDecisionPoint
-
-停车决策点接口
-
-接口文件：IParkingDecisionPoint.h
-
-接口方法：
-
-Ø **long id()**
-
-获取停车决策点ID
-
-Ø **QString name()**
-
-获取停车决策点名称
-
-Ø **ILink* link()**
-
-获取停车决策点所在路段
-
-Ø **qreal distance()**
-
-获取停车决策点距路段起点距离，单位：米
-
-Ø **QList<IParkingRouting*> routings()**
-
-获取相关停车路径
-
-Ø **QPolygonF polygon()**
-
-获取停车决策点多边型轮廓
-
-### 2.36 IParkingRouting
-
-停车决策路径接口
-
-接口文件：IParkingRouting.h
-
-接口方法：
-
-Ø **long id()**
-
-获取路径ID
-
-Ø **long parkingDeciPointId()**
-
-获取所属决策点ID
-
-Ø **qreal calcuLength()**
-
-计算路径长度
-
-Ø **bool contain(ISection* pRoad)**
-
-根据所给道路判断是否在当前路径上
-
-参数：
-[in] pRoad：路段或连接段
-
-Ø **ISection* nextRoad(ISection* pRoad)**
-
-根据所给道路求下一条道路
-
-参数：
-[in] pRoad：路段或连接段
-
-Ø **QList<ILink*> getLinks()**
-
-获取路段序列
-
-### 2.37 IJunction
-
-节点接口
-
-接口文件：IJunction.h
-
-接口方法：
-
-Ø **long getId() const**
-
-获取节点ID
-
-Ø **QString name() const**
-
-获取节点名称
-
-Ø **void setName(const QString& strName)**
-
-设置节点名称
-
-参数：
-[in] strName：新名称
-
-### 2.38 IPedestrian
-
-行人接口
-
-接口文件：IPedestrian.h
-
-接口方法：
-
-Ø **long getId() const**
-
-获取行人ID
-
-Ø **qreal getRadius() const**
-
-获取行人半径，单位：米
-
-Ø **qreal getWeight() const**
-
-获取行人质量，单位：千克
-
-Ø **QString getColor() const**
-
-获取行人颜色，RGB格式，如："#EE0000"
-
-Ø **QPointF getPos() const**
-
-获取行人当前位置，单位：米
-
-Ø **qreal getAngle() const**
-
-获取行人当前角度，Qt坐标系下，x轴正方向为0，逆时针为正
-
-Ø **QVector2D getDirection() const**
-
-获取行人当前二维方向向量
-
-Ø **qreal getElevation() const**
-
-获取行人当前高程，单位：米
-
-Ø **QVector2D getSpeed() const**
-
-获取行人当前速度，单位：米/秒
-
-Ø **qreal getDesiredSpeed() const**
-
-获取行人期望速度，单位：米/秒
-
-Ø **qreal getMaxSpeed() const**
-
-获取行人最大速度限制，单位：米/秒
-
-Ø **QVector2D getAcce() const**
-
-获取行人当前加速度，单位：米/秒²
-
-Ø **qreal getMaxAcce() const**
-
-获取行人最大加速度限制，单位：米/秒²
-
-Ø **QVector3D getEuler() const**
-
-获取行人欧拉角
-
-Ø **QVector3D getSpeedEuler() const**
-
-获取行人速度欧拉角
-
-Ø **QVector2D getWallFDirection() const**
-
-获取墙壁方向单位向量
-
-Ø **IPedestrianRegion* getRegion() const**
-
-获取行人当前所在面域
-
-Ø **long getPedestrianTypeId() const**
-
-获取行人类型ID
-
-### 2.39 IPedestrianCrossWalkRegion
-
-人行横道区域接口
-
-接口文件：IPedestrianCrossWalkRegion.h
-
-接口方法：
-
-Ø **qreal getWidth() const**
-
-获取人行横道宽度，单位：米
-
-Ø **void setWidth(qreal width)**
-
-设置人行横道宽度，单位：米
-
-Ø **QLineF getSceneLine() const**
-
-获取人行横道起点到终点的线段，场景坐标系下
-
-Ø **qreal getAngle() const**
-
-获取人行横道倾斜角度
-
-Ø **void setAngle(qreal angle)**
-
-设置人行横道倾斜角度
-
-Ø **qreal getRedLightSpeedFactor() const**
-
-获取红灯清尾速度系数
-
-Ø **void setRedLightSpeedFactor(qreal factor)**
-
-设置红灯清尾速度系数
-
-Ø **QVector2D getUnitDirectionFromStartToEnd() const**
-
-获取场景坐标系下从起点到终点的单位方向向量
-
-Ø **QVector2D getLocalUnitDirectionFromStartToEnd() const**
-
-获取人行横道本身坐标系下从起点到终点的单位方向
-
-Ø **QGraphicsEllipseItem* getStartControlPoint() const**
-
-获取起点控制点
-
-Ø **QGraphicsEllipseItem* getEndControlPoint() const**
-
-获取终点控制点
-
-Ø **QGraphicsEllipseItem* getLeftControlPoint() const**
-
-获取左侧控制点
-
-Ø **QGraphicsEllipseItem* getRightControlPoint() const**
-
-获取右侧控制点
-
-Ø **ICrosswalkSignalLamp* getPositiveDirectionSignalLamp() const**
-
-获取管控正向通行的信号灯
-
-Ø **ICrosswalkSignalLamp* getNegativeDirectionSignalLamp() const**
-
-获取管控反向通行的信号灯
-
-Ø **bool isPositiveTrafficLightAdded() const**
-
-判断是否添加了管控正向通行的信号灯
-
-Ø **bool isReverseTrafficLightAdded() const**
-
-判断是否添加了管控反向通行的信号灯
-
-### 2.40 IPedestrianFanShapeRegion
-
-扇形区域接口
-
-接口文件：IPedestrianFanShapeRegion.h
-
-接口方法：
-
-Ø **qreal getInnerRadius() const**
-
-获取内半径，单位：米
-
-Ø **qreal getOuterRadius() const**
-
-获取外半径，单位：米
-
-Ø **qreal getStartAngle() const**
-
-获取起始角度，单位：度
-
-Ø **qreal getSweepAngle() const**
-
-获取扫过角度，单位：度
-
-### 2.41 IPedestrianPath
-
-行人路径接口
-
-接口文件：IPedestrianPath.h
-
-接口方法：
-
-Ø **long getId() const**
-
-获取行人路径ID
-
-Ø **IPedestrianPathPoint* getPathStartPoint() const**
-
-获取行人路径起始点
-
-Ø **IPedestrianPathPoint* getPathEndPoint() const**
-
-获取行人路径终点
-
-Ø **QList<IPedestrianPathPoint*> getPathMiddlePoints() const**
-
-获取行人路径中间点
-
-Ø **bool isLocalPath() const**
-
-判断是否是局部路径
-
-### 2.42 IPedestrianPathPoint
-
-行人路径点接口
-
-接口文件：IPedestrianPathPoint.h
-
-接口方法：
-
-Ø **long getId() const**
-
-获取行人路径点ID
-
-Ø **QPointF getScenePos() const**
-
-获取行人路径点场景坐标系下的位置
-
-Ø **qreal getRadius() const**
-
-获取行人路径点的半径，单位：米
-
-### 2.43 IPedestrianRegion
-
-行人区域接口
-
-接口文件：IPedestrianRegion.h
-
-接口方法：
-
-Ø **bool isObstacle() const**
-
-获取面域是否为障碍物
-
-Ø **void setObstacle(bool b)**
-
-设置面域是否为障碍物
-
-Ø **bool isBoardingArea() const**
-
-获取面域是否为上客区域
-
-Ø **void setIsBoardingArea(bool b)**
-
-设置面域是否为上客区域
-
-Ø **bool isAlightingArea() const**
-
-获取面域是否为下客区域
-
-Ø **void setIsAlightingArea(bool b)**
-
-设置面域是否为下客区域
-
-Ø **long getId() const**
-
-获取面域ID
-
-Ø **QString getName() const**
-
-获取面域名称
-
-Ø **void setName(QString name)**
-
-设置面域名称
-
-Ø **QColor getRegionColor() const**
-
-获取面域颜色
-
-Ø **void setRegionColor(QColor color)**
-
-设置面域颜色
-
-Ø **QPointF getPosition() const**
-
-获取面域位置
-
-Ø **void setPosition(QPointF scenePos)**
-
-设置面域位置
-
-Ø **int getGType() const**
-
-获取面域类型
-
-Ø **qreal getExpectSpeedFactor() const**
-
-获取期望速度系数
-
-Ø **void setExpectSpeedFactor(qreal val)**
-
-设置期望速度系数
-
-Ø **qreal getElevation() const**
-
-获取面域高程
-
-Ø **void setElevation(qreal elevation)**
-
-设置面域高程
-
-Ø **QPolygonF getPolygon() const**
-
-获取面域多边形
-
-Ø **long getLayerId() const**
-
-获取面域所在图层ID
-
-Ø **void setLayerId(long id)**
-
-设置面域所在图层，如果图层ID非法，则不做任何改变
-
-### 2.44 IPedestrianSideWalkRegion
-
-人行道区域接口
-
-接口文件：IPedestrianSideWalkRegion.h
-
-接口方法：
-
-Ø **qreal getWidth() const**
-
-获取人行道宽度
-
-Ø **void setWidth(qreal width)**
-
-设置人行道宽度
-
-Ø **QList<QGraphicsEllipseItem*> getVetexs() const**
-
-获取人行道顶点，即初始折线顶点
-
-Ø **QList<QGraphicsEllipseItem*> getControl1Vetexs() const**
-
-获取人行道贝塞尔曲线控制点P1
-
-Ø **QList<QGraphicsEllipseItem*> getControl2Vetexs() const**
-
-获取人行道贝塞尔曲线控制点P2
-
-Ø **QList<QGraphicsEllipseItem*> getCandidateVetexs() const**
-
-获取候选顶点
-
-Ø **void removeVetex(int index)**
-
-删除第index个顶点
-
-Ø **void insertVetex(QPointF pos, int index)**
-
-在第index个位置插入顶点，初始位置为pos
-
-### 2.45 IPedestrianStairRegion
-
-楼梯区域接口
-
-接口文件：IPedestrianStairRegion.h
-
-接口方法：
-
-Ø **qreal getWidth() const**
-
-获取楼梯宽度，单位：米
-
-Ø **void setWidth(qreal width)**
-
-设置楼梯宽度，单位：米
-
-Ø **QPointF getStartPoint() const**
-
-获取起始点，场景坐标系下
-
-Ø **QPointF getEndPoint() const**
-
-获取终止点，场景坐标系下
-
-Ø **qreal getStartConnectionAreaLength() const**
-
-获取起始衔接区域长度，单位：米
-
-Ø **qreal getEndConnectionAreaLength() const**
-
-获取终止衔接区域长度，单位：米
-
-Ø **QPointF getStartRegionCenterPoint() const**
-
-获取起始衔接区域中心，场景坐标系下
-
-Ø **QPointF getEndRegionCenterPoint() const**
-
-获取终止衔接区域中心，场景坐标系下
-
-Ø **QPainterPath getStartSceneRegion() const**
-
-获取起始衔接区域形状，场景坐标系下
-
-Ø **QPainterPath getEndSceneRegion() const**
-
-获取终止衔接区域形状，场景坐标系下
-
-Ø **QPainterPath getMainQueueRegion() const**
-
-获取楼梯主体形状，场景坐标系下
-
-Ø **QPainterPath getFullQueueregion() const**
-
-获取楼梯整体形状，场景坐标系下
-
-Ø **QPolygonF getMainQueuePolygon() const**
-
-获取楼梯主体多边形，场景坐标系下
-
-Ø **StairType getStairType() const**
-
-获取楼梯类型
-
-Ø **void setStairType(StairType type)**
-
-设置楼梯类型
-
-Ø **long getStartLayerId() const**
-
-获取起始层级
-
-Ø **void setStartLayerId(long id)**
-
-设置起始层级
-
-Ø **long getEndLayerId() const**
-
-获取终止层级
-
-Ø **void setEndLayerId(long id)**
-
-设置终止层级
-
-Ø **qreal getTransmissionSpeed() const**
-
-获取传送速度，单位：米/秒
-
-Ø **void setTransmissionSpeed(qreal speed)**
-
-设置传送速度，单位：米/秒
-
-Ø **qreal getHeadroom() const**
-
-获取楼梯净高
-
-Ø **void setHeadroom(qreal headroom)**
-
-设置楼梯净高
-
-Ø **QGraphicsEllipseItem* getStartControlPoint() const**
-
-获取起点控制点
-
-Ø **QGraphicsEllipseItem* getEndControlPoint() const**
-
-获取终点控制点
-
-Ø **QGraphicsEllipseItem* getLeftControlPoint() const**
-
-获取左侧控制点
-
-Ø **QGraphicsEllipseItem* getRightControlPoint() const**
-
-获取右侧控制点
-
-Ø **QGraphicsEllipseItem* getStartConnectionAreaControlPoint() const**
-
-获取起始衔接区域长度控制点
-
-Ø **QGraphicsEllipseItem* getEndConnectionAreaControlPoint() const**
-
-获取终止衔接区域长度控制点
-
-### 2.46 ICrosswalkSignalLamp
-
-人行横道信号灯接口
-
-接口文件：ICrosswalkSignalLamp.h
-
-接口方法：
-
-Ø **IPedestrianCrossWalkRegion* getICrossWalk() const**
-
-获取所属人行横道
-
-
-
 ## 3   车辆及驾驶行为
 
 ### 2.1 IVehicle
@@ -2983,7 +1984,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 Ø **ILaneObject\* laneObj()**
 
-Ø 车辆所在的车道或"车道连接"**int segmIndex()**
+Ø 车辆所在的车道或“车道连接”**int segmIndex()**
 
 车辆在当前LaneObject上分段序号
 
@@ -3027,7 +2028,7 @@ if (tmpId == 1) {
 
 Ø **void initLaneConnector(int laneNumber, int toLaneNumber, qreal dist = -1, qreal speed = -1)**
 
-初始化车辆, laneNumber: "车道连接"起始车道在所在路段的序号，从0开始自右往左；**toLaneNumber**:车道连接"目标车道在所在路段的序号，从0开始自右往左， dist，距起点距离，单位像素；speed：车速，像素/秒
+初始化车辆, laneNumber: “车道连接”起始车道在所在路段的序号，从0开始自右往左；**toLaneNumber**:“车道连接”目标车道在所在路段的序号，从0开始自右往左， dist，距起点距离，单位像素；speed：车速，像素/秒
 
 参数：
 
@@ -3069,7 +2070,7 @@ if (tmpId == 1) {
 
 Ø **long laneId()**
 
-如果toLaneId() 小于等于0，那么laneId()获取的是当前所在车道ID，如果toLaneId()大于0，则车辆在"车道连接"上，laneId()获取的是上游车道ID
+如果toLaneId() 小于等于0，那么laneId()获取的是当前所在车道ID，如果toLaneId()大于0，则车辆在“车道连接”上，laneId()获取的是上游车道ID
 
 Ø **long toLaneId()**
 
@@ -3077,15 +2078,15 @@ if (tmpId == 1) {
 
 Ø **ILane \*lane()**
 
-获取当前车道，如果车辆在"车道连接"上，获取的是"车道连接"的上游车道
+获取当前车道，如果车辆在“车道连接”上，获取的是“车道连接”的上游车道
 
 Ø **ILane \*toLane()**
 
-如果车辆在"车道连接"上，返回"车道连接"的下游车道，如果当前不在"车道连接"上，返回空指针
+如果车辆在“车道连接”上，返回“车道连接”的下游车道，如果当前不在“车道连接”上，返回空指针
 
 Ø **ILaneConnector\* laneConnector()**
 
-获取当前"车道连接"，如果在车道上，返回空指针
+获取当前“车道连接”，如果在车道上，返回空指针
 
 Ø **long currBatchNumber()**
 
@@ -3105,11 +2106,11 @@ if (tmpId == 1) {
 
 Ø **long vehicleTypeCode()**
 
-车辆类型编码。打开TESSNG，通过菜单"车辆"->"车辆类型"打开车辆类型编辑窗体，可以看到不同类型车辆的编码
+车辆类型编码。打开TESSNG，通过菜单“车辆”->“车辆类型”打开车辆类型编辑窗体，可以看到不同类型车辆的编码
 
 Ø **QString vehicleTypeName()**
 
-获取车辆类型名，如"小客车"
+获取车辆类型名，如“小客车”
 
 Ø **QString name()**
 
@@ -3502,7 +2503,7 @@ if (tmpId == 1) {
 
 Ø **QList< QPointF> changingTrace()**
 
-变轨点集，车辆不在车道中心线或"车道连接"中心线上时的轨迹，如变道过程的轨迹点集
+变轨点集，车辆不在车道中心线或“车道连接”中心线上时的轨迹，如变道过程的轨迹点集
 
 Ø **qreal changingTraceLength()**
 
@@ -3520,7 +2521,7 @@ if (tmpId == 1) {
 
 Ø **qreal distToEndpoint(bool fromVehiHead = false)**
 
-在车道或"车道连接"上车辆到终端距离
+在车道或“车道连接”上车辆到终端距离
 
 参数：
 
@@ -3603,11 +2604,11 @@ if (simuTime == 20 * 1000) {
 
 Ø **bool move(ILaneObject\* pILaneObject, const qreal dist)**
 
-移动车辆到到另一条车道或"车道连接"
+移动车辆到到另一条车道或“车道连接”
 
 参数：
 
-[in] pILaneObject：目标车道或"车道连接"
+[in] pILaneObject：目标车道或“车道连接”
 
 [in] dist：到目标车道起点距离，单位：像素
 
@@ -3720,7 +2721,7 @@ openNetFile(QString::fromLocal8Bit("C:/TESSNG/Example/杭州武林门区域路�
 
 [in] centerPoint:中心点坐标所在路网，默认为(0,0)，用户也可以将中心点坐标保存到otherAttrsJson字段里
 
-[in] sourceType:数据来源分类，默认为 "TESSNG"，表示路网由TESSNG软件直接创建。取值"OPENDRIVE"，表示路网是经过opendrive路网导入而来
+[in] sourceType:数据来源分类，默认为 “TESSNG”，表示路网由TESSNG软件直接创建。取值“OPENDRIVE”，表示路网是经过opendrive路网导入而来
 
 [in] backgroundUrl：底图路径
 
@@ -3791,7 +2792,7 @@ openNetFile(QString::fromLocal8Bit("C:/TESSNG/Example/杭州武林门区域路�
 
 Ø **ILaneConnector\* findLaneConnector(long id)**
 
-根据"车道连接"ID查找"车道连接" 
+根据“车道连接”ID查找“车道连接” 
 
 Ø **QList< long> connectorIds()**
 
@@ -3819,7 +2820,7 @@ openNetFile(QString::fromLocal8Bit("C:/TESSNG/Example/杭州武林门区域路�
 
 Ø **ILaneConnector \* findLaneConnector(long fromLaneId, long toLaneId)**
 
-根据起始车道ID及目标车道ID查找"车道连接"
+根据起始车道ID及目标车道ID查找“车道连接”
 
 Ø **int guidArrowCount()**
 
@@ -4042,7 +3043,7 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 [in] lCenterLineV3：路段中心点集(对应TESSNG路段中心点)，每个[in\点都是三维空间的
 
-[in] lanesWithPoints：车道数据集合，每个成员是QMap<QString, QList< QVector3D>>类型数据，有三个key，分别是"left"、"center"、"right"、分别表示一条车道左、中、右侧断点序列。
+[in] lanesWithPoints：车道数据集合，每个成员是QMap<QString, QList< QVector3D>>类型数据，有三个key，分别是“left”、“center”、“right”、分别表示一条车道左、中、右侧断点序列。
 
 [in] linkName：路段名，默认为路段ID
 
@@ -4081,7 +3082,7 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 Ø **IConnector\* createConnector3DWithPoints(long fromLinkId, long toLinkId, QList< int> lFromLaneNumber, QList< int> lToLaneNumber, QList< QMap<QString, QList< QVector3D>>> laneConnectorWithPoints, QString connName = QString(), bool bAddToScene = true);**
 
-创建连接段，创建连接段后将"车道连接"中自动计算的断点集用参数laneConnectorWithPoints断点替换
+创建连接段，创建连接段后将“车道连接”中自动计算的断点集用参数laneConnectorWithPoints断点替换
 
 参数：
 
@@ -4093,9 +3094,9 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 [in] lToLaneNumber：目标路段参于连接的车道序号
 
-[in] laneConnectorWithPoints："车道连接"数据列表，成员是QMap<QString, QList< QVector3D>>类型数据，有三种key，分别是"left"、"center"、"right"，表示一条"车道连接"左、中、右侧断点序列
+[in] laneConnectorWithPoints：“车道连接”数据列表，成员是QMap<QString, QList< QVector3D>>类型数据，有三种key，分别是“left”、“center”、“right”，表示一条“车道连接”左、中、右侧断点序列
 
-[in] connName：连接段名，默认将起始路段ID和目标路段ID用"_"连接表示连接段名，如"100_101"。
+[in] connName：连接段名，默认将起始路段ID和目标路段ID用“_”连接表示连接段名，如“100_101”。
 
 [in] bAddToScene：是否加入到场景，默认为true
 
@@ -4241,22 +3242,22 @@ if (pLink1) {
 
 Ø **QList< Online::CrossPoint> crossPoints(ILaneConnector\* pLaneConnector)**
 
-当前"车道连接"穿过其它"车道连接"形成的交叉点列表
+当前“车道连接”穿过其它“车道连接”形成的交叉点列表
 
 参数：
 
-[in] pLaneConnector："车道连接"对象
+[in] pLaneConnector：“车道连接”对象
 
 返回：交叉点列表
 
 举例：
 
 ```cpp
-//当前"车道连接"穿过其它"车道连接"形成的交叉点列表
+//当前“车道连接”穿过其它“车道连接”形成的交叉点列表
 ILaneConnector* pLaneConnector = gpTessInterface->netInterface()->findConnector(6)->laneConnectors()[2];
 	QList< Online::CrossPoint> crossPoints = gpTessInterface->netInterface()->crossPoints(pLaneConnector);
 	for (Online::CrossPoint crossPoint : crossPoints) {
-		qDebug() << "主车道连接，即被交叉的"车道连接"：" << crossPoint.mpLaneConnector->id();
+		qDebug() << "主车道连接，即被交叉的“车道连接”：" << crossPoint.mpLaneConnector->id();
 	qDebug() << "交叉点坐标为：(" << crossPoint.mCrossPoint.x() << "," << crossPoint.mCrossPoint.y() << ")"<<endl;
 	}
 ```
@@ -4526,13 +3527,13 @@ ILink* pLink = gpTessInterface->netInterface()->findLink(9);
 
 Ø **IVehicleDrivInfoCollector\* createVehiCollectorOnConnector(ILaneConnector\* pLaneConnector, qreal dist)**
 
-在连接段的"车道连接"上创建采集器
+在连接段的“车道连接”上创建采集器
 
 参数：
 
-[in] pLaneConnector："车道连接"对象
+[in] pLaneConnector：“车道连接”对象
 
-[in] dist：距"车道连接"起点距离，单位像素
+[in] dist：距“车道连接”起点距离，单位像素
 
 Ø **bool removeVehiCollector(IVehicleDrivInfoCollector\* pCollector)**
 
@@ -4571,9 +3572,9 @@ if (pLink) {
 
 参数：
 
-[in] pLaneConnector："车道连接"对象
+[in] pLaneConnector：“车道连接”对象
 
-[in] dist：距"车道连接"起点距离，默认单位：像素
+[in] dist：距“车道连接”起点距离，默认单位：像素
 
 返回：排队计数器对象
 
@@ -4598,31 +3599,31 @@ QList< IVehicleTravelDetector*> pDetector = gpTessInterface->netInterface()->cre
 
 Ø **QList< IVehicleTravelDetector\*> createVehicleTravelDetector_link2conn(ILink\* pStartLink, ILaneConnector\* pEndLaneConnector, qreal dist1, qreal dist2)**
 
-创建行程时间检测器，起点在路段上，终点都在连接段的"车道连接"上
+创建行程时间检测器，起点在路段上，终点都在连接段的“车道连接”上
 
 参数：
 
 [in] pStartLink：检测器起点所在路段对象
 
-[in] pEndLaneConnector：检测器终点所在"车道连接"对象
+[in] pEndLaneConnector：检测器终点所在“车道连接”对象
 
 [in] dist1：检测器起点距所在路段起始点距离，默认单位：像素
 
-[in] dist2：检测器终点距所在"车道连接"起始点距离，默认单位：像素
+[in] dist2：检测器终点距所在“车道连接”起始点距离，默认单位：像素
 
 返回：行程时间检测器对象
 
 Ø **QList< IVehicleTravelDetector\*> createVehicleTravelDetector_conn2link(ILaneConnector\* pStartLaneConnector, ILink\* pEndLink, qreal dist1, qreal dist2)**
 
-创建行程时间检测器，起点在连接段的"车道连接"上，终点在路段上
+创建行程时间检测器，起点在连接段的“车道连接”上，终点在路段上
 
 参数：
 
-[in] pStartLaneConnector：检测器起点所在"车道连接"对象
+[in] pStartLaneConnector：检测器起点所在“车道连接”对象
 
 [in] pEndLink：检测器终点所在路段对象
 
-[in] dist1：检测器起点距所在"车道连接"起始点距离，默认单位：像素
+[in] dist1：检测器起点距所在"车道连接”起始点距离，默认单位：像素
 
 [in] dist2：检测器终点距所在路段起始点距离，默认单位：像素
 
@@ -4630,17 +3631,17 @@ QList< IVehicleTravelDetector*> pDetector = gpTessInterface->netInterface()->cre
 
 Ø **QList< IVehicleTravelDetector\*> createVehicleTravelDetector_conn2conn(ILaneConnector\* pStartLaneConnector, ILaneConnector\* pEndLaneConnector, qreal dist1, qreal dist2)**
 
-创建行程时间检测器，起点和终点都在连接段的"车道连接"上
+创建行程时间检测器，起点和终点都在连接段的“车道连接”上
 
 参数：
 
-[in] pStartLaneConnector：检测器起点所在"车道连接"对象
+[in] pStartLaneConnector：检测器起点所在“车道连接”对象
 
-[in] pEndLaneConnector：检测器终点所在"车道连接"对象
+[in] pEndLaneConnector：检测器终点所在“车道连接”对象
 
-[in] dist1：检测器起点距所在"车道连接"起始点距离，默认单位：像素
+[in] dist1：检测器起点距所在"车道连接”起始点距离，默认单位：像素
 
-[in] dist2：检测器终点距所在"车道连接"起始点距离，默认单位：像素
+[in] dist2：检测器终点距所在“车道连接”起始点距离，默认单位：像素
 
 返回：行程时间检测器对象
 
@@ -4709,11 +3710,11 @@ QList< IVehicleTravelDetector*> pDetector = gpTessInterface->netInterface()->cre
 
 [in] name：信号灯名称
 
-[in] laneId：信号灯所在车道ID，或所在"车道连接"上游车道ID
+[in] laneId：信号灯所在车道ID，或所在“车道连接”上游车道ID
 
-[in] toLaneId：信号灯所在"车道连接"下游车道ID
+[in] toLaneId：信号灯所在“车道连接”下游车道ID
 
-[in] distance：信号灯距车道或"车道连接"起点距离，默认单位：像素
+[in] distance：信号灯距车道或“车道连接”起点距离，默认单位：像素
 
 返回：信号灯对象
 
@@ -4722,7 +3723,7 @@ QList< IVehicleTravelDetector*> pDetector = gpTessInterface->netInterface()->cre
 ```cpp
 //创建信号灯
 	for (int i = 0, size = lConnLaneObjs.size(); i < size; ++i) {
-			ISignalLamp* pSignalLamp = gpTessInterface->netInterface()->createSignalLamp(pSignalPhase, QObject::tr("信号灯%1").arg(i + 1), lConnLaneObjs[i]->fromLaneObject()->id(),  lConnLaneObjs[i]->toLaneObject()->id(), m2p(2.0));
+		ISignalLamp* pSignalLamp = gpTessInterface->netInterface()->createSignalLamp(pSignalPhase, QObject::tr("信号灯%1").arg(i + 1), lConnLaneObjs[i]->fromLaneObject()->id(),  lConnLaneObjs[i]->toLaneObject()->id(), m2p(2.0));
 	}
 ```
 
@@ -4905,7 +3906,7 @@ QList< ISection*> lSections = gpTessInterface->netInterface()->sections();
 	QPointF point(0, 0);
 	QList< Online::Location> locations = gpTessInterface->netInterface()->locateOnSections(point, lSections);
 	for (Online::Location& location : locations) {
-		qDebug() << "相关车道或"车道连接"为：" << location.pLaneObject->id();
+		qDebug() << "相关车道或“车道连接”为：" << location.pLaneObject->id();
 	qDebug() << "pLaneObject上的最近点为：(" << location.point.x() << "," << location.point.y() << ")";
 		qDebug() << "到最近点的最短距离为：" << location.leastDist;
 		qDebug() << "最近点到起点的里程：" << location.distToStart;
@@ -5020,1019 +4021,6 @@ Online::DynaAccidentZoneParam accidentZone;
 参数：
 
 [in] accidentZoneId：事故区ID
-
-
-
-**-----------下述为v4系列------------**
-
-Ø **ILimitedZone* createLimitedZone(Online::DynaLimitedZoneParam param);**
-
-创建限行区
-
-参数：
-
-[in] param：动态限行区信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-举例：
-
-```c++
-//例：限行区使用，距离、速度等单位为米制而非像素
-Online::DynaLimitedZoneParam dynaLimitedZoneParam;
-dynaLimitedZoneParam.name = "限行区测试"; //名称
-dynaLimitedZoneParam.roadId = 1; //道路ID
-dynaLimitedZoneParam.location = 50; // 限行区位置
-dynaLimitedZoneParam.length = 100; // 限行区长度
-dynaLimitedZoneParam.limitSpeed = 40; // 限行区限速，KM/H
-dynaLimitedZoneParam.mlFromLaneNumber << 0 << 1; // 限行车道序号，本例限行右侧两车道
-dynaLimitedZoneParam.duration = 3600; // 限行持续时间
-
-gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
-```
-
-Ø **bool updateLimitedZone(Online::DynaLimitedZoneParam param);**
-
-更新限行区
-
-参数：
-
-[in] param：动态限行区信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-Ø **void removeLimitedZone(ILimitedZone* pILimitedZone)**
-
-移除限行区
-
-参数：
-
-[in] pILimitedZone：将要移除的限行区对象
-
-Ø **QList<ILimitedZone*> limitedZones()**
-
-获取所有限行区
-
-Ø **ILimitedZone* findLimitedZone(long limitedZoneId)**
-
-根据ID查询限行区
-
-参数：
-
-[in] limitedZoneId：限行区ID
-
-Ø **void moveLinks(QList<ILink*> lLink, QPointF offset)**
-
-移动路段及相关连接段
-
-参数：
-
-[in] lLink：要移动的路段列表
-[in] offset：移动的偏移量
-
-Ø **IReconstruction* createReconstruction(Online::DynaReconstructionParam param)**
-
-创建改扩建
-
-参数：
-
-[in] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-Ø **bool updateReconStruction(Online::DynaReconstructionParam param)**
-
-更新改扩建
-
-参数：
-
-[in] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-Ø **void removeReconstruction(IReconstruction* pIReconstruction)**
-
-移除改扩建
-
-参数：
-
-[in] pIReconstruction：将要移除的改扩建对象
-
-Ø **QList<IReconstruction*> reconstructions()**
-
-获取所有改扩建
-
-Ø **IReconstruction* findReconstruction(long reconstructionId)**
-
-根据ID查询改扩建
-
-参数：
-
-[in] reconstructionId：改扩建ID
-
-Ø **qreal reCalcPassagewayLength(Online::DynaReconstructionParam param)**
-
-重新计算保通开口长度
-
-参数：
-
-[in] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-返回：保通开口长度
-
-Ø **int trafficLightCount()**
-
-信号机数量
-
-Ø **QList< long > trafficLightIds()**
-
-信号机ID集
-
-Ø **QList<ITrafficLight*> trafficLights()**
-
-信号机集
-
-Ø **ITrafficLight* findTrafficLight(long id)**
-
-根据id查询信号机
-
-参数：
-[in] id：信号机ID
-
-Ø **ITrafficLight* findTrafficLightName(QString name)**
-
-根据名称查询信号机(如果同名返回第一个)
-
-参数：
-[in] name：信号机名称
-
-Ø **int signalPlanCount()**
-
-信控方案组数
-
-Ø **QList< long > signalPlanIds()**
-
-信控方案ID集
-
-Ø **QList<ISignalPlan*> signalPlans()**
-
-信控方案集
-
-Ø **ISignalPlan* findSignalPlan(long id)**
-
-根据信控方案ID查找信控方案
-
-参数：
-[in] id：信控方案ID
-
-Ø **ISignalPlan* findSignalPlan(QString name)**
-
-根据信控方案名称查找信控方案
-
-参数：
-[in] name：信控方案名称
-
-Ø **ITrafficLight* creatTrafficLight(QString name)**
-
-创建信号机
-
-参数：
-[in] name：信号机名称
-
-Ø **ISignalPlan* creatSignalPlan(ITrafficLight* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
-
-创建信控方案
-
-参数：
-[in] pITrafficLight：信号机对象
-[in] name：方案名称
-[in] cycle：周期时长
-[in] phasedifference：相位差
-[in] startTime：起始时间
-[in] endTime：结束时间
-
-Ø **void removeSignalPhaseFromLamp(int *SignalPhaseId*, ISignalLamp* *signalLamp*)**
-
-信号灯移除某个绑定的相位(如果相位列表只存在一个相位则将关联的相位设置为null)
-
-参数：
-[in] SignalPhaseId：信号相位ID
-[in] signalLamp：信号灯对象
-
-Ø **void addSignalPhaseToLamp(int *SignalPhaseId*, ISignalLamp* *signalLamp*)**
-
-信号灯添加绑定的相位
-
-参数：
-[in] SignalPhaseId：信号相位ID
-[in] signalLamp：信号灯对象
-
-Ø **void transferSignalPhase(ISignalPhase* *pFromISignalPhase*, ISignalPhase* *pToISignalPhase*, ISignalLamp* *signalLamp*)**
-
-信号灯更换绑定的相位(不允许跨越信号机)
-
-参数：
-[in] pFromISignalPhase：原相位
-[in] pToISignalPhase：目标相位
-[in] signalLamp：信号灯对象
-
-Ø **IReduceSpeedArea* createReduceSpeedArea(QString name, qreal location, qreal areaLength, long roadId, int laneNumber, int toLaneNumber, long fromTime, long toTime, QList< Online::ReduceSpeedVehicleType > lSpeedVehiType)**
-
-创建限速区
-
-参数：
-[in] name：限速区名称
-[in] location：距起点距离,单位像素
-[in] areaLength：限速区长度,单位像素
-[in] roadId：路段或连接段ID
-[in] laneNumber：车道序号,从0开始
-[in] toLaneNumber：目标车道序号,如果大于等于0,roadID是连接段ID,否则是路段ID
-[in] fromTime：起始时间
-[in] toTime：结束时间
-[in] lSpeedVehiType：限速车型列表
-
-Ø **void removeReduceSpeedArea(IReduceSpeedArea* pIReduceSpeedArea)**
-
-移除限速区
-
-参数：
-[in] pIReduceSpeedArea：限速区对象
-
-Ø **QList<IReduceSpeedArea*> reduceSpeedAreas()**
-
-获取所有限速区
-
-Ø **IReduceSpeedArea* findReduceSpeedArea(long id)**
-
-查询指定ID的限速区
-
-参数：
-[in] id：限速区ID
-
-返回：限速区对象
-
-Ø **QList<ITollLane*> tollLanes()**
-
-获取所有收费车道列表
-
-Ø **QList<ITollDecisionPoint*> tollDecisionPoints()**
-
-获取所有收费决策点列表
-
-Ø **QList<IParkingRegion*> parkingRegions()**
-
-获取所有停车区列表
-
-Ø **QList<IParkingDecisionPoint*> parkingDecisionPoints()**
-
-获取所有停车决策点列表
-
-Ø **ITollLane* findTollLane(long id);**
-
-通过id查询收费车道
-
-Ø **ITollDecisionPoint* findTollDecisionPoint(long id)***
-
-通过id查询收费决策点
-
-Ø **IParkingRegion* findParkingRegion(long id)**
-
-通过id查询停车区域
-
-Ø **IParkingDecisionPoint* findParkingDecisionPoint(long id)**
-
-通过id查询停车决策点
-
-Ø **void removeTollLane(ITollLane* pITollLane)**
-
-移除收费车道
-
-Ø **void removeTollDecisionPoint(ITollDecisionPoint* pITollDecisionPoint)**
-
-移除收费决策点
-
-Ø **void removeParkingRegion(IParkingRegion* pIParkingRegion)**
-
-移除停车区
-
-Ø **void removeParkingDecisionPoint(IParkingDecisionPoint* pIParkingDecisionPoint)**
-
-移除停车决策点
-
-Ø **void removeTollRouting(ITollRouting* pITollRouting)**
-
-移除收费路径
-
-Ø **void removeParkingRouting(IParkingRouting* pIParkingRouting)**
-
-移除停车路径
-
-Ø **ITollLane* createTollLane(const Online::TollStation::DynaTollLane& param)**
-
-创建收费车道
-
-参数：
-
-[in] param：动态收费车道信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-Ø **IParkingRegion* createParkingRegion(const Online::ParkingLot::DynaParkingRegion& param)**
-
-创建停车区
-
-参数：
-
-[in] param：动态停车区信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-Ø **ITollLane* updateTollLane(const Online::TollStation::DynaTollLane& param)**
-
-更新收费车道
-
-参数：
-
-[in] param：动态收费车道信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-Ø **IParkingRegion* updateParkingRegion(const Online::ParkingLot::DynaParkingRegion& param)**
-
-更新停车区
-
-参数：
-
-[in] param：动态停车区信息，数据类型在文件 Plugin/_datastruct.h中定义
-
-Ø **ITollDecisionPoint* createTollDecisionPoint(ILink* pLink, qreal distance, QString name = QString())**
-
-创建收费决策点
-
-参数：
-
-[in] pLink：决策点所在的路段
-[in] distance：决策点距离路段起点的距离，默认单位：像素
-[in] name：决策点的名称
-
-Ø **ITollRouting* createTollRouting(ITollDecisionPoint* pDeciPoint, ITollLane* pITollLane)**
-
-创建收费路径
-
-参数：
-
-[in] pDeciPoint：收费决策点
-[in] pITollLane：收费车道
-
-Ø **IParkingDecisionPoint* createParkingDecisionPoint(ILink* pLink, qreal distance, QString name = QString())**
-
-创建停车决策点
-
-参数：
-
-[in] pLink：决策点所在的路tollDisInfoList段
-[in] distance：决策点距离路段起点的距离，默认单位：像素
-[in] name：决策点的名称
-
-Ø **IParkingRouting* createParkingRouting(IParkingDecisionPoint* pDeciPoint, IParkingRegion* pIParkingRegion)**
-
-创建停车路径
-
-参数：
-
-[in] pDeciPoint：停车决策点
-[in] pIParkingRegion：停车区
-
-Ø **QList< Online::TollStation::DynaTollParkingTimeDis > tollParkingTimeDis()**
-
-获取收费站停车时距分布列表
-
-Ø **Online::TollStation::DynaTollParkingTimeDis createTollParkingTimeDis(const Online::TollStation::DynaTollParkingTimeDis& param)**
-
-创建收费站停车时距分布
-
-参数：
-[in] param：停车时距分布参数
-
-Ø **void removeTollParkingTimeDis(long id)**
-
-移除收费站停车时距分布
-
-参数：
-[in] id：停车时距分布ID
-
-Ø **Online::TollStation::DynaTollParkingTimeDis updateTollParkingTimeDis(const Online::TollStation::DynaTollParkingTimeDis& param)**
-
-更新收费站停车时距分布
-
-参数：
-[in] param：停车时距分布参数
-
-Ø **QList< Online::ParkingLot::DynaParkingTimeDis > parkingTimeDis()**
-
-获取停车场停车时距分布列表
-
-Ø **Online::ParkingLot::DynaParkingTimeDis createParkingTimeDis(const Online::ParkingLot::DynaParkingTimeDis& param)**
-
-创建停车场停车时距分布
-
-参数：
-[in] param：停车时距分布参数
-
-Ø **void removeParkingTimeDis(long id)**
-
-移除停车场停车时距分布
-
-参数：
-[in] id：停车时距分布ID
-
-Ø **Online::ParkingLot::DynaParkingTimeDis updateParkingTimeDis(const Online::ParkingLot::DynaParkingTimeDis& param)**
-
-更新停车场停车时距分布
-
-参数：
-[in] param：停车时距分布参数
-
-Ø **IJunction* createGJunction(QPointF startPoint, QPointF endPoint, QString name)**
-
-创建节点
-
-参数：
-
-[in] startPoint：左上角起始点坐标
-[in] endPoint：右下角起始点坐标
-[in] name：节点名字
-
-Ø **IJunction* findGJunction(long id)**
-
-根据路径ID查找节点
-
-参数：
-
-[in] id：节点ID
-
-Ø **QMap<long, IJunction*> getAllGJunction()**
-
-获得所有节点
-
-Ø **void removeGJunction(long id)**
-
-删除节点
-
-参数：
-
-[in] id：节点ID
-
-Ø **void updateGJunctionName(long id, QString name)**
-
-更新节点名字
-
-参数：
-
-[in] id：节点ID
-[in] name：节点名字
-
-Ø **void updateGJunctionBuildPathParam(bool bDeciPointPosFlag, bool bLaneConnectorFlag, long InputLineMinPathNum = 3)**
-
-更新静态路径构建参数
-
-参数：
-
-[in] bDeciPointPosFlag：决策点位置是否需要优化
-[in] bLaneConnectorFlag：连接段是否需要优化
-[in] InputLineMinPathNum：两点间最短路径数(默认为3)
-
-Ø **QMap<QPair<long, long>, QVector<QList<ILink*>>> buildPathAndApply()**
-
-计算并应用并返回路网决策路径
-
-返回：路网决策路径映射表
-
-Ø **QHash<long, QHash<long, Online::Junction::FlowTurning>> NetInterface::getJunctionTurnningInfoByID(long id)**
-
-获得节点流向信息
-
-返回：节点流向信息
-
-Ø ********QList< Online::Junction::FlowTimeInterval > getJunctionFlowTimeInfo()******
-
-获得节点流向时间信息
-
-返回：节点流向时间信息
-
-Ø **long addFlowTimeInterval()**
-
-添加流量时间段
-
-返回：新增时间段ID
-
-Ø **bool deleteFlowTimeInterval(long timeId)**
-
-删除流量时间段
-
-参数：
-
-[in] timeId：时间段ID
-
-返回：是否删除成功
-
-Ø **bool updateFlowTimeInterval(const Online::Junction::FlowTimeInterval& interval)**
-
-更新流量时间段信息
-
-参数：
-
-[in] interval：时间段信息
-
-返回：是否更新成功
-
-Ø **bool updateJunctionFlowInfo(long timeId, long junctionId, long turningId, long inputFlowValue)**
-
-更新节点流向信息
-
-参数：
-
-[in] timeId：时间段ID
-[in] junctionId：节点ID
-[in] turningId：转向ID
-[in] inputFlowValue：输入流量值
-
-返回：是否更新成功
-
-Ø **void updateJunctionFlowPFEIteraParam(double theta, double bpra, double bprb, long maxIterateNum, bool bUseNewPath)**
-
-更新节点流量算法参数
-
-参数：
-
-[in] theta：参数θ
-[in] bpra：BPR路阻参数A
-[in] bprb：BPR路阻参数B
-[in] maxIterateNum：迭代参数，最大迭代次数
-[in] bUseNewPath：是否重新构建静态路径
-
-Ø **QHash<long, QList< Online::Junction::FlowTurning >> applyJunctionFlowResult()**
-
-计算并应用流量算法结果
-
-返回：节点流向结果映射表
-
-Ø **QList< IPedestrianType > pedestrianTypes()**
-
-获取所有行人类型
-
-Ø **QList< IPedestrianComposition > pedestrianCompositions()**
-
-获取所有行人组成
-
-Ø **QList< Online::Pedestrian::LayerInfo > layerInfos()**
-
-获取所有层级信息
-
-Ø **QList<IPedestrianRegion*> pedestrianRegions()**
-
-获取所有行人面域
-
-Ø **QList<IPedestrianRectRegion*> pedestrianRectRegions()**
-
-获取所有矩形面域
-
-Ø **QList<IPedestrianEllipseRegion*> pedestrianEllipseRegions()**
-
-获取所有椭圆形面域
-
-Ø **QList<IPedestrianTriangleRegion*> pedestrianTriangleRegions()**
-
-获取所有三角形面域
-
-Ø **QList<IPedestrianFanShapeRegion*> pedestrianFanShapeRegions()**
-
-获取所有扇形面域
-
-Ø **QList<IPedestrianPolygonRegion*> pedestrianPolygonRegions()**
-
-获取所有多边形面域
-
-Ø **QList<IPedestrianSideWalkRegion*> pedestrianSideWalkRegions()**
-
-获取所有人行道
-
-Ø **QList<IPedestrianCrossWalkRegion*> pedestrianCrossWalkRegions()**
-
-获取所有人行横道
-
-Ø **QList<IPedestrianPathPoint*> pedestrianPathStartPoints()**
-
-获取所有行人发生点
-
-Ø **QList<IPedestrianPathPoint*> pedestrianPathEndPoints()**
-
-获取所有行人结束点
-
-Ø **QList<IPedestrianPathPoint*> pedestrianPathDecisionPoints()**
-
-获取所有行人决策点
-
-Ø **QList<IPedestrianPath*> pedestrianPaths()**
-
-获取所有行人路径，包括局部路径
-
-Ø **QList<ICrosswalkSignalLamp*> crosswalkSignalLamps()**
-
-获取所有人行横道红绿灯
-
-Ø **IPedestrianRegion* findPedestrianRegion(long id)**
-
-根据id获取行人面域
-
-Ø **IPedestrianRectRegion* findPedestrianRectRegion(long id)**
-
-根据id获取矩形面域
-
-Ø **IPedestrianEllipseRegion* findPedestrianEllipseRegion(long id)**
-
-根据id获取椭圆形面域
-
-Ø **IPedestrianTriangleRegion* findPedestrianTriangleRegion(long id)**
-
-根据id获取三角形面域
-
-Ø **IPedestrianFanShapeRegion* findPedestrianFanShapeRegion(long id)**
-
-根据id获取扇形面域
-
-Ø **IPedestrianPolygonRegion* findPedestrianPolygonRegion(long id)**
-
-根据id获取多边形面域
-
-Ø **IPedestrianSideWalkRegion* findPedestrianSideWalkRegion(long id)**
-
-根据id获取人行道
-
-Ø **IPedestrianCrossWalkRegion* findPedestrianCrossWalkRegion(long id)**
-
-根据id获取人行横道
-
-Ø **IPedestrianPathPoint* findPedestrianPathStartPoint(long id)**
-
-根据id获取行人发生点
-
-Ø **IPedestrianPathPoint* findPedestrianPathEndPoint(long id)**
-
-根据id获取行人结束点
-
-Ø **IPedestrianPathPoint* findPedestrianDecisionPoint(long id)**
-
-根据id获取行人决策点
-
-Ø **IPedestrianPath* findPedestrianPath(long id)**
-
-根据id获取行人路径，包括局部路径
-
-Ø **ICrosswalkSignalLamp* findCrosswalkSignalLamp(long id)**
-
-根据id获取人行横道红绿灯
-
-Ø **Online::Pedestrian::PedestrianPathStartPointConfigInfo findPedestrianStartPointConfigInfo(long id)**
-
-根据id获取行人发生点配置信息，id为行人发生点ID
-
-Ø **Online::Pedestrian::PedestrianDecisionPointConfigInfo findPedestrianDecisionPointConfigInfo(long id)**
-
-根据id获取行人决策点配置信息，id为行人决策点ID
-
-Ø **long createPedestrianComposition(QString name, QList< PedestrianCompositionDetail > lCompositionDetail)**
-
-创建行人组成
-
-参数：
-[in] name：组成名称
-[in] lCompositionDetail：组成明细
-
-返回：组成ID，如果创建失败返回-1
-
-Ø **bool updatePedestrianComposition(long compositionId, QList< PedestrianCompositionDetail > lCompositionDetail)**
-
-更新行人组成
-
-参数：
-[in] compositionId：组成ID
-[in] lCompositionDetail：组成明细
-
-返回：是否更新成功
-
-Ø **bool removePedestrianComposition(long compositionId)**
-
-移除行人组成
-
-参数：
-[in] compositionId：组成ID
-
-Ø **Online::Pedestrian::LayerInfo addLayerInfo(QString name, qreal height, bool visible, bool locked)**
-
-新增层级，返回新增的层级信息
-
-参数：
-
-[in] name：层级名称
-
-[in] height：层级高度
-
-[in] visible：是否可见
-
-[in] locked：是否锁定，锁定后面域不可以修改
-
-Ø **void removeLayerInfo(long layerId)**
-
-删除某个层级，会删除层级当中的所有元素
-
-参数：
-
-[in] layerId：层级ID
-
-Ø **bool updateLayerInfo(long layerId, QString name, qreal height, bool visible, bool locked)**
-
-更新层级信息
-
-参数：
-
-[in] layerId：层级ID
-
-[in] name：层级名称
-
-[in] height：层级高度
-
-[in] visible：是否可见
-
-[in] locked：是否锁定，锁定后面域不可以修改
-
-返回：是否更新成功
-
-Ø **bool updatePedestrianStartPointConfigInfo(Online::Pedestrian::PedestrianPathStartPointConfigInfo info)**
-
-更新行人发生点配置信息
-
-参数：
-
-[in] info：行人发生点配置信息
-
-返回：是否更新成功
-
-Ø **bool updatePedestrianDecisionPointConfigInfo(Online::Pedestrian::PedestrianDecisionPointConfigInfo info)**
-
-更新行人决策点配置信息
-
-参数：
-
-[in] info：行人决策点配置信息
-
-返回：是否更新成功
-
-Ø **IPedestrianRectRegion* createPedestrianRectRegion(QPointF startPoint, QPointF endPoint)**
-
-创建矩形行人面域
-
-参数：
-
-[in] startPoint：左上角
-
-[in] endPoint：右下角
-
-返回：矩形行人面域对象
-
-Ø **void removePedestrianRectRegion(IPedestrianRectRegion* pIPedestrianRectRegion)**
-
-删除矩形行人面域
-
-参数：
-
-[in] pIPedestrianRectRegion：矩形行人面域对象
-
-Ø **IPedestrianEllipseRegion* createPedestrianEllipseRegion(QPointF startPoint, QPointF endPoint)**
-
-创建椭圆行人面域
-
-参数：
-
-[in] startPoint：左上角
-
-[in] endPoint：右下角
-
-返回：椭圆行人面域对象
-
-Ø **void removePedestrianEllipseRegion(IPedestrianEllipseRegion* pIPedestrianEllipseRegion)**
-
-删除椭圆行人面域
-
-参数：
-
-[in] pIPedestrianEllipseRegion：椭圆行人面域对象
-
-Ø **IPedestrianTriangleRegion* createPedestrianTriangleRegion(QPointF startPoint, QPointF endPoint)**
-
-创建三角形行人面域
-
-参数：
-
-[in] startPoint：左上角
-
-[in] endPoint：右下角
-
-返回：三角形行人面域对象
-
-Ø **void removePedestrianTriangleRegion(IPedestrianTriangleRegion* pIPedestrianTriangleRegion)**
-
-删除三角形行人面域
-
-参数：
-
-[in] pIPedestrianTriangleRegion：三角形行人面域对象
-
-Ø **IPedestrianFanShapeRegion* createPedestrianFanShapeRegion(QPointF startPoint, QPointF endPoint)**
-
-创建扇形行人面域
-
-参数：
-
-[in] startPoint：圆心
-
-[in] endPoint：外半径终点
-
-返回：扇形行人面域对象
-
-Ø **void removePedestrianFanShapeRegion(IPedestrianFanShapeRegion* pIPedestrianFanShapeRegion)**
-
-删除扇形行人面域
-
-参数：
-
-[in] pIPedestrianFanShapeRegion：扇形行人面域对象
-
-Ø **IPedestrianPolygonRegion* createPedestrianPolygonRegion(QPolygonF polygon)**
-
-创建多边形行人面域
-
-参数：
-
-[in] polygon：多边形顶点
-
-返回：多边形行人面域对象
-
-Ø **void removePedestrianPolygonRegion(IPedestrianPolygonRegion* pIPedestrianPolygonRegion)**
-
-删除多边形行人面域
-
-参数：
-
-[in] pIPedestrianPolygonRegion：多边形行人面域对象
-
-Ø **IPedestrianSideWalkRegion* createPedestrianSideWalkRegion(QList< QPointF > vertexs)**
-
-创建人行道
-
-参数：
-
-[in] vertexs：顶点列表
-
-返回：人行道对象
-
-Ø **void removePedestrianSideWalkRegion(IPedestrianSideWalkRegion* pIPedestrianSideWalkRegion)**
-
-删除人行道
-
-参数：
-
-[in] pIPedestrianSideWalkRegion：人行道对象
-
-Ø **IPedestrianCrossWalkRegion* createPedestrianCrossWalkRegion(QPointF startPoint, QPointF endPoint)**
-
-创建人行横道
-
-参数：
-
-[in] startPoint：左上角
-
-[in] endPoint：右下角
-
-返回：人行横道对象
-
-Ø **void removePedestrianCrossWalkRegion(IPedestrianCrossWalkRegion* pIPedestrianCrossWalkRegion)**
-
-删除人行横道
-
-参数：
-
-[in] pIPedestrianCrossWalkRegion：人行横道对象
-
-Ø **IPedestrianStairRegion* createPedestrianStairRegion(QPointF startPoint, QPointF endPoint)**
-
-创建楼梯
-
-参数：
-
-[in] startPoint：起点
-
-[in] endPoint：终点
-
-返回：楼梯对象
-
-Ø **void removePedestrianStairRegion(IPedestrianStairRegion* pIPedestrianStairRegion)**
-
-删除楼梯
-
-参数：
-
-[in] pIPedestrianStairRegion：楼梯对象
-
-Ø **IPedestrianPathPoint* createPedestrianPathStartPoint(QPointF scenePos)**
-
-创建行人发生点
-
-参数：
-
-[in] scenePos：场景坐标
-
-返回：行人发生点对象
-
-Ø **void removePedestrianPathStartPoint(IPedestrianPathPoint* pIPedestrianPathStartPoint)**
-
-删除行人发生点
-
-参数：
-
-[in] pIPedestrianPathStartPoint：行人发生点对象
-
-Ø **IPedestrianPathPoint* createPedestrianPathEndPoint(QPointF scenePos)**
-
-创建行人结束点
-
-参数：
-
-[in] scenePos：场景坐标
-
-返回：行人结束点对象
-
-Ø **void removePedestrianPathEndPoint(IPedestrianPathPoint* pIPedestrianPathEndPoint)**
-
-删除行人结束点
-
-参数：
-
-[in] pIPedestrianPathEndPoint：行人结束点对象
-
-Ø **IPedestrianPathPoint* createPedestrianDecisionPoint(QPointF scenePos)**
-
-创建行人决策点
-
-参数：
-
-[in] scenePos：场景坐标
-
-返回：行人决策点对象
-
-Ø **void removePedestrianDecisionPoint(IPedestrianPathPoint* pIPedestrianDecisionPoint)**
-
-删除行人决策点
-
-参数：
-
-[in] pIPedestrianDecisionPoint：行人决策点对象
-
-Ø **IPedestrianPath* createPedestrianPath(IPedestrianPathPoint* pStartPoint, IPedestrianPathPoint* pEndPoint, QList< QPointF > middlePoints)**
-
-创建行人路径（或行人局部路径）
-
-参数：
-
-[in] pStartPoint：行人发生点（或行人决策点）
-
-[in] pEndPoint：行人结束点
-
-[in] middlePoints：一组中间必经点
-
-返回：行人路径对象
-
-Ø **void removePedestrianPath(IPedestrianPath* pIPedestrianPath)**
-
-删除行人路径
-
-参数：
-
-[in] pIPedestrianPath：行人路径对象
-
-Ø **ICrosswalkSignalLamp* createCrossWalkSignalLamp(ITrafficLight* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
-
-创建人行横道信号灯
-
-参数：
-
-[in] pTrafficLight：信号机
-
-[in] name：名称
-
-[in] crosswalkId：人行横道ID
-
-[in] scenePos：位于人行横道内的场景坐标
-
-[in] isPositive：信号灯管控方向是否为正向
-
-返回：人行横道信号灯对象
-
-Ø **void removeCrossWalkSignalLamp(ICrosswalkSignalLamp* pICrosswalkSignalLamp)**
-
-删除人行横道信号灯
-
-参数：
-
-[in] pICrosswalkSignalLamp：人行横道信号灯对象
-
-
 
 ### 4.2 SimuInterface
 
@@ -6253,7 +4241,7 @@ if (planNumber == float(2.1)) {
 
 获取所有正在运行的车辆状态，包括轨迹
 
-返回：车辆状态列表，包括轨迹。数据结构"Online::VehicleStatus"在文件 Plugin/_datastruct.h中定义
+返回：车辆状态列表，包括轨迹。数据结构“Online::VehicleStatus”在文件 Plugin/_datastruct.h中定义
 
 举例： 
 
@@ -6484,7 +4472,7 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 
 Ø **QList< IVehicle\*> vehisInLaneConnector(long connectorId, long fromLaneId, long toLaneId)**
 
-指定连接段ID及上游车道ID和下游车道ID相关"车道连接"上的车辆
+指定连接段ID及上游车道ID和下游车道ID相关“车道连接”上的车辆
 
 参数：
 
@@ -6495,36 +4483,6 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 [in] toLaneId：下游车道ID
 
 返回：车辆列表
-
-Ø **bool queueRecently(long queueCounterId, qreal& queueLength, int& vehiCount)**
-
-获取排队计数器最近一次排队信息
-
-参数：
-
-[in] queueCounterId：排队计数器ID
-
-[out] queueLength：排队长度
-
-[out] vehiCount：排队车辆数
-
-返回：是否获取成功
-
-Ø **QList< Online::Pedestrian::PedestrianStatus > getPedestriansStatusByRegionId(long regionId)**
-
-根据行人面域id获取当前时间面域上所有行人的状态信息
-
-参数：
-
-[in] regionId：面域ID
-
-返回：行人状态信息列表
-
-Ø **QList<IPedestrian*> allPedestrianStarted()**
-
-获取所有正在运行的行人
-
-返回：行人对象列表
 
 ### 4.3 GuiInterface
 
@@ -7304,7 +5262,7 @@ bool MySimulator::reSetSpeed(IVehicle* pIVehicle, qreal& inOutSpeed) {
 
 Ø **void beforeMergingToLane(IVehicle \*pIVehicle, bool &keepOn)**
 
-在"车道连接"上汇入车道前的计算，可以让TESS NG放弃汇入计算，以便于用户实现自己的汇入逻辑。
+在“车道连接”上汇入车道前的计算，可以让TESS NG放弃汇入计算，以便于用户实现自己的汇入逻辑。
 
 参数：
 
@@ -7354,13 +5312,13 @@ void MySimulator:: afterOneStep () {
 
 Ø **QList< ILaneConnector\*> candidateLaneConnectors(IVehicle\* pIVehicle, QList< ILaneConnector\*> lInLC)**
 
-计算当车辆离开路段时后续可经过的"车道连接", lLaneConnector是已计算出的当前车道可达的所有"车道连接"，用户可以从中筛选或重新计算。如果车辆有路径，则忽略
+计算当车辆离开路段时后续可经过的“车道连接”, lLaneConnector是已计算出的当前车道可达的所有“车道连接”，用户可以从中筛选或重新计算。如果车辆有路径，则忽略
 
-返回：后续可达的"车道连接"列表
+返回：后续可达的“车道连接”列表
 
 Ø **ILaneConnector\* candidateLaneConnector(IVehicle\* pIVehicle, ILaneConnector\* pCurrLaneConnector)**
 
-计算车辆后续"车道连接"，此时车辆正跨出当前路段，将驶到pCurrLaneConnector。此方法可以改变后续"车道连接"。如果返回的"车道连接"为空，TESSNG会忽略此方法的调用。如果返回的"车道连接"不在原有路径上，或者此方法设置了新路径且新路径不经过返回的"车道连接"，TESSNG调用此方法后会将路径设为空。
+计算车辆后续“车道连接”，此时车辆正跨出当前路段，将驶到pCurrLaneConnector。此方法可以改变后续“车道连接”。如果返回的“车道连接”为空，TESSNG会忽略此方法的调用。如果返回的“车道连接”不在原有路径上，或者此方法设置了新路径且新路径不经过返回的“车道连接”，TESSNG调用此方法后会将路径设为空。
 
 Ø **void beforeNextPoint(IVehicle \*pIVehicle, bool &keepOn)**
 
@@ -7469,7 +5427,7 @@ bool MySimulator::calcMaxLimitedSpeed(IVehicle *pIVehicle, qreal &inOutLimitedSp
 
 Ø **void afterStep (IVehicle \*pIVehicle)**
 
-完成车辆pIVehicle"一个批次计算"后的处理。可以在此获取车辆当前信息，如当前道路、位置、方向角、速度、期望速度、前后左右车辆等。
+完成车辆pIVehicle“一个批次计算”后的处理。可以在此获取车辆当前信息，如当前道路、位置、方向角、速度、期望速度、前后左右车辆等。
 
 参数：
 
@@ -7672,9 +5630,10 @@ bool MySimulator::reSetAcce(IVehicle *pIVehicle, qreal &inOutAcce) {
 
 Ø **QString vehiRunInfo(IVehicle\* pIVehicle)**
 
-车辆运行信息。在仿真过程中如果某辆车被单选，按ctrl+i 会弹出被单选车辆运行状态，其中文本框中的"其它信息"就是当前方法返回的，开发者可以借此对实现的业务逻辑进行了解，用户可以了解仿真过程中具体车辆的一些特殊信息。
+车辆运行信息。在仿真过程中如果某辆车被单选，按ctrl+i 会弹出被单选车辆运行状态，其中文本框中的“其它信息”就是当前方法返回的，开发者可以借此对实现的业务逻辑进行了解，用户可以了解仿真过程中具体车辆的一些特殊信息。
 
 ![车辆运行过程属性窗口](/img/p30.png)
+
 
 
 
