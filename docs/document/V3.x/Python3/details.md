@@ -4,13 +4,13 @@
 
 ### 1.1. main.py文件中config属性说明
 在创建TESS NG工厂类实例前创建字典config，config配置了一些重要信息，说明如下：
-```
+```python
 {
-   "__workspace"xxxxxx",
-	"__netfilepath":"xxx.tess",
-	"__simuafterload":False,
+    "__workspace":"xxxxxx", # 当前工作路径
+	"__netfilepath":"xxx.tess", # TESSNG启动后加载的路网文件
+	"__simuafterload":False, # 是否加载路网后立即开始仿真
 	"__timebycpu":False,
-	"__custsimubysteps":False
+	"__custsimubysteps":False # 设置是否启用TESSNG对插件方法调用频次限制
 }
 
 ```
@@ -95,27 +95,27 @@ TESSNG调用插件方法的频次是指对插件实现的PyCustomerSimulator接�
 
 **def id(self) -> int: ...**
 
-路网ID，即路网编辑弹窗中的编号
+获取路网ID，即路网编辑弹窗中的编号
 
  **def netName(self) -> str: ...**
 
-路网名称
+获取路网名称
 
  **def url(self) -> str: ..**
 
-源数据路径，可以是本地文件，可以是网络地址
+获取源数据路径，可以是本地文件，可以是网络地址
 
  **def type(self) -> str: ...**
 
-来源分类："TESSNG"表示TESSNG自建；"OpenDrive"表示由OpenDrive数据导入；"GeoJson"表示由geojson数据导入
+获取来源分类："TESSNG"表示TESSNG自建；"OpenDrive"表示由OpenDrive数据导入；"GeoJson"表示由geojson数据导入
 
  **def bkgUrl(self) -> str: ...**
 
-背景路径
+获取背景路径
 
  **def otherAttrs(self) -> typing.Dict: ...**
 
-其它属性字曲数据
+获取其它属性数据
 
  **def explain(self) -> str: ...**
 
@@ -133,7 +133,7 @@ TESSNG调用插件方法的频次是指对插件实现的PyCustomerSimulator接�
 
  **def gtype(self) -> int: ...**
 
-类型，GLinkType 或 GConnectorType。在Tessng.pyi / NetItemType类中定义了一批常量，每一个数值代表路网上一种元素类型。如：GLinkType代表路段、GConnectorType代表连接段。
+获取Section类型，GLinkType 或 GConnectorType。在Tessng.pyi / NetItemType类中定义了一批枚举，每一个数值代表路网上一种元素类型。如：GLinkType代表路段、GConnectorType代表连接段。
 
  **def isLink(self) -> bool: ...**
 
@@ -973,19 +973,19 @@ if link1:
 
  **def id(self) -> int: ...**
 
-决策点ID
+获取决策点ID
 
  **def name(self) -> str: ...**
 
-决策点名称
+获取决策点名称
 
  **def link(self) -> Tessng.ILink: ...**
 
-决策点所在路段
+获取决策点所在路段
 
  **def distance(self) -> float: ...**
 
-距路段起点距离，默认单位：像素
+获取距路段起点距离，默认单位：像素
 
  **def routings(self) -> typing.List: ...**
 
@@ -1003,7 +1003,7 @@ if link1:
 
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
-决策点多边型轮廓
+获取决策点多边型轮廓
 
 ------
 
@@ -1015,7 +1015,7 @@ if link1:
 
  **def id(self) -> int: ...**
 
-路径ID
+获取路径ID
 
  **def calcuLength(self) -> float: ...**
 
