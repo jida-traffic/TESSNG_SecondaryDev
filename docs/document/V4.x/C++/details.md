@@ -2151,21 +2151,21 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [in] name：新名称
 
-Ø **void IaddPlan(ISignalPlan* plan)**
+Ø **void addPlan(ISignalPlan* plan)**
 
 添加信控方案
 
 参数：
 [in] plan：信控方案
 
-Ø **void IremovePlan(ISignalPlan* plan)**
+Ø **void removePlan(ISignalPlan* plan)**
 
 移除信控方案
 
 参数：
 [in] plan：要移除的信控方案
 
-Ø **QList<ISignalPlan*> Iplans()**
+Ø **QList<ISignalPlan*> IPlans()**
 
 获取所有信控方案
 
