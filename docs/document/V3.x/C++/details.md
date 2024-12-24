@@ -2240,6 +2240,10 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取相关收费路径
 
+Ø **QList< TollDisInfo > tollDisInfoList()**
+
+获取收费分配信息列表
+
 Ø **QPolygonF polygon()**
 
 获取收费决策点多边型轮廓
@@ -5372,7 +5376,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 参数：
 
-[in] pLink：决策点所在的路段
+[in] pLink：决策点所在的路tollDisInfoList段
 [in] distance：决策点距离路段起点的距离，默认单位：像素
 [in] name：决策点的名称
 
@@ -5453,6 +5457,10 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [in] id：节点ID
 
+Ø **QMap<long, IJunction*> getAllGJunction()**
+
+获得所有节点
+
 Ø **void removeGJunction(long id)**
 
 删除节点
@@ -5486,7 +5494,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：路网决策路径映射表
 
-Ø ********QList< Online::Junction::FlowTurning > getJunctionTurnningInfoByID(long id)******
+Ø **QHash<long, QHash<long, Online::Junction::FlowTurning>> NetInterface::getJunctionTurnningInfoByID(long id)**
 
 获得节点流向信息
 
