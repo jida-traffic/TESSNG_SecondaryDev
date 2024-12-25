@@ -2240,9 +2240,16 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取相关收费路径
 
-Ø **QList< TollDisInfo > tollDisInfoList()**
+Ø **QList< Online::TollStation::DynaTollDisInfo > tollDisInfoList()**
 
 获取收费分配信息列表
+
+Ø **void updateTollDisInfoList(const QList< Online::TollStation::DynaTollDisInfo >&)**
+
+更新收费分配信息列表
+
+参数：
+[in] Online::TollStation::DynaTollDisInfo：收费分配信息列表
 
 Ø **QPolygonF polygon()**
 
@@ -2383,6 +2390,17 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 Ø **QList<IParkingRouting*> routings()**
 
 获取相关停车路径
+
+Ø **bool updateParkDisInfo(const QList< Online::ParkingLot::DynaParkDisInfo >& tollDisInfoList)**
+
+更新停车分配信息
+
+参数：
+[in] tollDisInfoList：停车分配信息列表
+
+Ø **QList< Online::ParkingLot::DynaParkDisInfo > parkDisInfoList()**
+
+获取停车分配信息列表
 
 Ø **QPolygonF polygon()**
 
@@ -2528,6 +2546,10 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 Ø **long getPedestrianTypeId() const**
 
 获取行人类型ID
+
+Ø **void stop()**
+
+停止仿真，会在下一个仿真批次移除当前行人，释放资源
 
 ### 2.39 IPedestrianCrossWalkRegion
 
@@ -5435,129 +5457,109 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数：
 [in] param：停车时距分布参数
 
-Ø **IJunction* createGJunction(QPointF startPoint, QPointF endPoint, QString name)**
+Ø **IJunction* createJunction(QPointF startPoint, QPointF endPoint, QString name)**
 
 创建节点
 
 参数：
-
 [in] startPoint：左上角起始点坐标
-[in] endPoint：右下角起始点坐标
-[in] name：节点名字
+[in] endPoint：右下角终点坐标
+[in] name：节点名称
 
-Ø **IJunction* findGJunction(long id)**
+Ø **IJunction* findJunction(long junctionId)**
 
-根据路径ID查找节点
+查找节点
 
 参数：
+[in] junctionId：节点ID
 
-[in] id：节点ID
+Ø **QMap<long, IJunction*> getAllJunctions()**
 
-Ø **QMap<long, IJunction*> getAllGJunction()**
+获取所有节点
 
-获得所有节点
-
-Ø **void removeGJunction(long id)**
+Ø **bool removeJunction(long junctionId)**
 
 删除节点
 
 参数：
+[in] junctionId：节点ID
 
-[in] id：节点ID
+Ø **bool updateJunctionName(long junctionId, QString name)**
 
-Ø **void updateGJunctionName(long id, QString name)**
-
-更新节点名字
-
-参数：
-
-[in] id：节点ID
-[in] name：节点名字
-
-Ø **void updateGJunctionBuildPathParam(bool bDeciPointPosFlag, bool bLaneConnectorFlag, long InputLineMinPathNum = 3)**
-
-更新静态路径构建参数
+更新节点名称
 
 参数：
+[in] junctionId：节点ID
+[in] name：新的节点名称
 
-[in] bDeciPointPosFlag：决策点位置是否需要优化
-[in] bLaneConnectorFlag：连接段是否需要优化
-[in] InputLineMinPathNum：两点间最短路径数(默认为3)
+Ø **QList< Online::Junction::FlowTimeInterval > getFlowTimeIntervals()**
 
-Ø **QMap<QPair<long, long>, QVector<QList<ILink*>>> buildPathAndApply()**
-
-计算并应用并返回路网决策路径
-
-返回：路网决策路径映射表
-
-Ø **QHash<long, QHash<long, Online::Junction::FlowTurning>> NetInterface::getJunctionTurnningInfoByID(long id)**
-
-获得节点流向信息
-
-返回：节点流向信息
-
-Ø ********QList< Online::Junction::FlowTimeInterval > getJunctionFlowTimeInfo()******
-
-获得节点流向时间信息
-
-返回：节点流向时间信息
+获取所有时间段
 
 Ø **long addFlowTimeInterval()**
 
-添加流量时间段
-
-返回：新增时间段ID
+添加时间段，返回新时间段ID，失败返回-1
 
 Ø **bool deleteFlowTimeInterval(long timeId)**
 
-删除流量时间段
+删除时间段
 
 参数：
-
 [in] timeId：时间段ID
 
-返回：是否删除成功
+Ø **bool updateFlowTimeInterval(long timeId, long startTime, long endTime)**
 
-Ø **bool updateFlowTimeInterval(const Online::Junction::FlowTimeInterval& interval)**
-
-更新流量时间段信息
+更新时间段
 
 参数：
+[in] timeId：时间段ID
+[in] startTime：开始时间(秒)
+[in] endTime：结束时间(秒)
 
-[in] interval：时间段信息
+Ø **QHash<long, QHash<long, Online::Junction::FlowTurning>> getJunctionFlows(long junctionId)**
 
-返回：是否更新成功
-
-Ø **bool updateJunctionFlowInfo(long timeId, long junctionId, long turningId, long inputFlowValue)**
-
-更新节点流向信息
+获取节点流向信息
 
 参数：
+[in] junctionId：节点ID
 
+Ø **bool updateFlow(long timeId, long junctionId, long turningId, long inputFlowValue)**
+
+更新流向流量
+
+参数：
 [in] timeId：时间段ID
 [in] junctionId：节点ID
 [in] turningId：转向ID
-[in] inputFlowValue：输入流量值
+[in] inputFlowValue：输入流量值(辆/小时)
 
-返回：是否更新成功
+Ø **bool updateFlowAlgorithmParams(double theta, double bpra, double bprb, long maxIterateNum, bool useNewPath)**
 
-Ø **void updateJunctionFlowPFEIteraParam(double theta, double bpra, double bprb, long maxIterateNum, bool bUseNewPath)**
-
-更新节点流量算法参数
+更新流量算法参数
 
 参数：
+[in] theta：参数θ(0.01-1)
+[in] bpra：BPR路阻参数A(0.05-0.5)
+[in] bprb：BPR路阻参数B(1-10)
+[in] maxIterateNum：最大迭代次数(1-1000)
+[in] useNewPath：是否重新构建静态路径
 
-[in] theta：参数θ
-[in] bpra：BPR路阻参数A
-[in] bprb：BPR路阻参数B
-[in] maxIterateNum：迭代参数，最大迭代次数
-[in] bUseNewPath：是否重新构建静态路径
+Ø **bool updatePathBuildParams(bool deciPointPosFlag, bool laneConnectorFlag, long minPathNum = 3)**
 
-Ø **QHash<long, QList< Online::Junction::FlowTurning >> applyJunctionFlowResult()**
+更新路径构建参数
 
-计算并应用流量算法结果
+参数：
+[in] deciPointPosFlag：是否考虑决策点位置
+[in] laneConnectorFlag：是否考虑车道连接
+[in] minPathNum：最小路径数量(默认3)
 
-返回：节点流向结果映射表
+Ø **QMap<QPair<long, long>, QVector<QList<ILink*>>> buildAndApplyPaths()**
+
+构建并应用路径，返回路径结果映射:<起始路段ID,终点路段ID> -> 可行路径列表
+
+Ø **QHash<long, QList< Online::Junction::FlowTurning >> calculateFlows()**
+
+计算并应用流量结果，返回时间段ID到流量计算结果的映射
 
 Ø **QList< IPedestrianType > pedestrianTypes()**
 
