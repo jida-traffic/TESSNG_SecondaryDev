@@ -2181,26 +2181,26 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 接口方法：
 
-Ø **qlonglong id() const**
+Ø **long id()**
 
 获取收费车道ID
 
-Ø **QString name() const**
+Ø **QString name()**
 
 获取收费车道名称
 
-Ø **qreal distance() const**
+Ø **qreal distance()**
 
 获取距路段起始位置，单位：米
 
-Ø **void setName(const QString& name)**
+Ø **void setName(QString name)**
 
 设置收费车道名称
 
 参数：
 [in] name：收费车道新名称
 
-Ø **void setWorkTime(qlonglong startTime, qlonglong endTime)**
+Ø **void setWorkTime(long startTime, long endTime)**
 
 设置工作时间，工作时间与仿真时间对应
 
@@ -2208,7 +2208,11 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 [in] startTime：开始时间(秒)
 [in] endTime：结束时间(秒)
 
-Ø **QVector<ITollPoint*> tollPoints() const**
+Ø **Online::TollStation::DynaTollLane dynaTollLane()**
+
+获取动态收费车道信息
+
+Ø **QVector<ITollPoint*> tollPoints()**
 
 获取收费车道所有收费点
 
@@ -2305,7 +2309,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取收费点ID
 
-Ø **qreal distance() const**
+Ø **qreal distance()**
 
 获取距路段起始位置，单位：米
 
@@ -2313,12 +2317,38 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取所属收费车道ID
 
+Ø **bool isEnabled()**
+
+获取是否启用
+
 Ø **bool setEnabled(bool enabled)**
 
 设置启用状态
 
 参数：
 [in] enabled：是否启用
+
+Ø **int tollType()**
+
+获取收费类型
+
+Ø **bool setTollType(int tollType)**
+
+设置收费类型
+
+参数：
+[in] tollType：收费类型
+
+Ø **int timeDisId()**
+
+获取停车时间分布ID
+
+Ø **bool setTimeDisId(int timeDisId)**
+
+设置停车时间分布ID
+
+参数：
+[in] timeDisId：时间分布ID
 
 ### 2.33 IParkingStall
 
@@ -2336,6 +2366,14 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取所属停车区域ID
 
+Ø **qreal distance()**
+
+获取距路段起始位置，单位：米
+
+Ø **int stallType()**
+
+获取车位类型，与车辆类型编码一致
+
 ### 2.34 IParkingRegion
 
 停车区域接口
@@ -2344,24 +2382,28 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 接口方法：
 
-Ø **long id() const**
+Ø **long id()**
 
 获取停车区域ID
 
-Ø **QString name() const**
+Ø **QString name()**
 
 获取停车区域名称
 
-Ø **void setName(const QString& name)**
+Ø **void setName(QString name)**
 
 设置停车区域名称
 
 参数：
 [in] name：新名称
 
-Ø **QVector<IParkingStall*> parkingStalls() const**
+Ø **QVector<IParkingStall*> parkingStalls()**
 
 获取所有停车位
+
+Ø **Online::ParkingLot::DynaParkingRegion dynaParkingRegion()**
+
+获取动态停车区域信息
 
 ### 2.35 IParkingDecisionPoint
 
