@@ -2108,7 +2108,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取结束时间，单位：秒
 
-Ø QList< ISignalPhase* > Iphases()
+Ø **QList< ISignalPhase* > Iphases()**
 
 获取相位列表
 
@@ -2293,7 +2293,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] pRoad：路段或连接段
 
-Ø **QList< ILink* > getLinks()**
+Ø **QList< ILink\* > getLinks()**
 
 获取路段序列
 
