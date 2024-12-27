@@ -1988,7 +1988,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取道路类型，"link"表示路段，"connector"表示连接段
 
-Ø **QList< ILaneObject* > laneObjects()**
+Ø **QList< ILaneObject\* > laneObjects()**
 
 获取相关车道对象列表
 
@@ -2108,7 +2108,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取结束时间，单位：秒
 
-Ø **QList< ISignalPhase* > Iphases()**
+Ø QList< ISignalPhase* > Iphases()
 
 获取相位列表
 
@@ -2151,21 +2151,21 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] name：新名称
 
-Ø **void addPlan(ISignalPlan* plan)**
+Ø **void addPlan(ISignalPlan\* plan)**
 
 添加信控方案
 
 参数：
 [ in ] plan：信控方案
 
-Ø **void removePlan(ISignalPlan* plan)**
+Ø **void removePlan(ISignalPlan\* plan)**
 
 移除信控方案
 
 参数：
 [ in ] plan：要移除的信控方案
 
-Ø **QList< ISignalPlan* > IPlans()**
+Ø **QList< ISignalPlan\* > IPlans()**
 
 获取所有信控方案
 
@@ -2212,7 +2212,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取动态收费车道信息
 
-Ø **QVector< ITollPoint* > tollPoints()**
+Ø **QVector< ITollPoint\* > tollPoints()**
 
 获取收费车道所有收费点
 
@@ -2232,7 +2232,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取收费决策点名称
 
-Ø **ILink* link()**
+Ø **ILink\* link()**
 
 获取收费决策点所在路段
 
@@ -2240,7 +2240,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取距路段起点距离，单位：米
 
-Ø **QList< ITollRouting* > routings()**
+Ø **QList< ITollRouting\* > routings()**
 
 获取相关收费路径
 
@@ -2279,14 +2279,14 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 计算路径长度
 
-Ø **bool contain(ISection* pRoad)**
+Ø **bool contain(ISection\* pRoad)**
 
 根据所给道路判断是否在当前路径上
 
 参数：
 [ in ] pRoad：路段或连接段
 
-Ø **ISection* nextRoad(ISection* pRoad)**
+Ø **ISection\* nextRoad(ISection\* pRoad)**
 
 根据所给道路求下一条道路
 
@@ -2397,7 +2397,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] name：新名称
 
-Ø **QVector< IParkingStall* > parkingStalls()**
+Ø **QVector< IParkingStall\* > parkingStalls()**
 
 获取所有停车位
 
@@ -2421,7 +2421,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取停车决策点名称
 
-Ø **ILink* link()**
+Ø **ILink\* link()**
 
 获取停车决策点所在路段
 
@@ -2429,7 +2429,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取停车决策点距路段起点距离，单位：米
 
-Ø **QList< IParkingRouting* > routings()**
+Ø **QList< IParkingRouting\* > routings()**
 
 获取相关停车路径
 
@@ -2468,21 +2468,21 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 计算路径长度
 
-Ø **bool contain(ISection* pRoad)**
+Ø **bool contain(ISection\* pRoad)**
 
 根据所给道路判断是否在当前路径上
 
 参数：
 [ in ] pRoad：路段或连接段
 
-Ø **ISection* nextRoad(ISection* pRoad)**
+Ø **ISection\* nextRoad(ISection\* pRoad)**
 
 根据所给道路求下一条道路
 
 参数：
 [ in ] pRoad：路段或连接段
 
-Ø **QList< ILink* > getLinks()**
+Ø **QList< ILink\* > getLinks()**
 
 获取路段序列
 
@@ -2581,7 +2581,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取墙壁方向单位向量
 
-Ø **IPedestrianRegion* getRegion() const**
+Ø **IPedestrianRegion\* getRegion() const**
 
 获取行人当前所在面域
 
@@ -2637,27 +2637,27 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取人行横道本身坐标系下从起点到终点的单位方向
 
-Ø **QGraphicsEllipseItem* getStartControlPoint() const**
+Ø **QGraphicsEllipseItem\* getStartControlPoint() const**
 
 获取起点控制点
 
-Ø **QGraphicsEllipseItem* getEndControlPoint() const**
+Ø **QGraphicsEllipseItem\* getEndControlPoint() const**
 
 获取终点控制点
 
-Ø **QGraphicsEllipseItem* getLeftControlPoint() const**
+Ø **QGraphicsEllipseItem\* getLeftControlPoint() const**
 
 获取左侧控制点
 
-Ø **QGraphicsEllipseItem* getRightControlPoint() const**
+Ø **QGraphicsEllipseItem\* getRightControlPoint() const**
 
 获取右侧控制点
 
-Ø **ICrosswalkSignalLamp* getPositiveDirectionSignalLamp() const**
+Ø **ICrosswalkSignalLamp\* getPositiveDirectionSignalLamp() const**
 
 获取管控正向通行的信号灯
 
-Ø **ICrosswalkSignalLamp* getNegativeDirectionSignalLamp() const**
+Ø **ICrosswalkSignalLamp\* getNegativeDirectionSignalLamp() const**
 
 获取管控反向通行的信号灯
 
@@ -2705,15 +2705,15 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取行人路径ID
 
-Ø **IPedestrianPathPoint* getPathStartPoint() const**
+Ø **IPedestrianPathPoint\* getPathStartPoint() const**
 
 获取行人路径起始点
 
-Ø **IPedestrianPathPoint* getPathEndPoint() const**
+Ø **IPedestrianPathPoint\* getPathEndPoint() const**
 
 获取行人路径终点
 
-Ø **QList< IPedestrianPathPoint* > getPathMiddlePoints() const**
+Ø **QList< IPedestrianPathPoint\* > getPathMiddlePoints() const**
 
 获取行人路径中间点
 
@@ -2849,19 +2849,19 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置人行道宽度
 
-Ø **QList< QGraphicsEllipseItem* > getVetexs() const**
+Ø **QList< QGraphicsEllipseItem\* > getVetexs() const**
 
 获取人行道顶点，即初始折线顶点
 
-Ø **QList< QGraphicsEllipseItem* > getControl1Vetexs() const**
+Ø **QList< QGraphicsEllipseItem\* > getControl1Vetexs() const**
 
 获取人行道贝塞尔曲线控制点P1
 
-Ø **QList< QGraphicsEllipseItem* > getControl2Vetexs() const**
+Ø **QList< QGraphicsEllipseItem\* > getControl2Vetexs() const**
 
 获取人行道贝塞尔曲线控制点P2
 
-Ø **QList< QGraphicsEllipseItem* > getCandidateVetexs() const**
+Ø **QList< QGraphicsEllipseItem\* > getCandidateVetexs() const**
 
 获取候选顶点
 
@@ -2973,27 +2973,27 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置楼梯净高
 
-Ø **QGraphicsEllipseItem* getStartControlPoint() const**
+Ø **QGraphicsEllipseItem\* getStartControlPoint() const**
 
 获取起点控制点
 
-Ø **QGraphicsEllipseItem* getEndControlPoint() const**
+Ø **QGraphicsEllipseItem\* getEndControlPoint() const**
 
 获取终点控制点
 
-Ø **QGraphicsEllipseItem* getLeftControlPoint() const**
+Ø **QGraphicsEllipseItem\* getLeftControlPoint() const**
 
 获取左侧控制点
 
-Ø **QGraphicsEllipseItem* getRightControlPoint() const**
+Ø **QGraphicsEllipseItem\* getRightControlPoint() const**
 
 获取右侧控制点
 
-Ø **QGraphicsEllipseItem* getStartConnectionAreaControlPoint() const**
+Ø **QGraphicsEllipseItem\* getStartConnectionAreaControlPoint() const**
 
 获取起始衔接区域长度控制点
 
-Ø **QGraphicsEllipseItem* getEndConnectionAreaControlPoint() const**
+Ø **QGraphicsEllipseItem\* getEndConnectionAreaControlPoint() const**
 
 获取终止衔接区域长度控制点
 
@@ -3005,7 +3005,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 接口方法：
 
-Ø **IPedestrianCrossWalkRegion* getICrossWalk() const**
+Ø **IPedestrianCrossWalkRegion\* getICrossWalk() const**
 
 获取所属人行横道
 
@@ -3438,7 +3438,7 @@ if (tmpId == 1) {
 
 与目标车道序号的差值，不等于0表示有强制变道意图，大于0有左变道意图，小于0有右变道意图，绝对值大于0表示需要强制变道次数
 
-Ø **void toLeftLane(****bool** **bFource** **=** **false****)**
+Ø **void toLeftLane(bool bFource = false)**
 
 左变道
 
@@ -3446,7 +3446,7 @@ if (tmpId == 1) {
 
 [ in ] bFource：是否强制変道，默认为false
 
-Ø **void toRightLane(****bool** **bFource** **=** **false****)**
+Ø **void toRightLane(bool bFource = false)**
 
 右变道
 
@@ -5085,7 +5085,7 @@ Online::DynaAccidentZoneParam accidentZone;
 
 [ in ] accidentZoneId：事故区ID
 
-Ø **ILimitedZone* createLimitedZone(Online::DynaLimitedZoneParam param);**
+Ø **ILimitedZone\* createLimitedZone(Online::DynaLimitedZoneParam param);**
 
 创建限行区
 
@@ -5117,7 +5117,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] param：动态限行区信息，数据类型在文件 Plugin/_datastruct.h中定义
 
-Ø **void removeLimitedZone(ILimitedZone* pILimitedZone)**
+Ø **void removeLimitedZone(ILimitedZone\* pILimitedZone)**
 
 移除限行区
 
@@ -5125,11 +5125,11 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pILimitedZone：将要移除的限行区对象
 
-Ø **QList< ILimitedZone* > limitedZones()**
+Ø **QList< ILimitedZone\* > limitedZones()**
 
 获取所有限行区
 
-Ø **ILimitedZone* findLimitedZone(long limitedZoneId)**
+Ø **ILimitedZone\* findLimitedZone(long limitedZoneId)**
 
 根据ID查询限行区
 
@@ -5137,7 +5137,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] limitedZoneId：限行区ID
 
-Ø **void moveLinks(QList< ILink* > lLink, QPointF offset)**
+Ø **void moveLinks(QList< ILink\* > lLink, QPointF offset)**
 
 移动路段及相关连接段
 
@@ -5146,7 +5146,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] lLink：要移动的路段列表
 [ in ] offset：移动的偏移量
 
-Ø **IReconstruction* createReconstruction(Online::DynaReconstructionParam param)**
+Ø **IReconstruction\* createReconstruction(Online::DynaReconstructionParam param)**
 
 创建改扩建
 
@@ -5162,7 +5162,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义
 
-Ø **void removeReconstruction(IReconstruction* pIReconstruction)**
+Ø **void removeReconstruction(IReconstruction\* pIReconstruction)**
 
 移除改扩建
 
@@ -5170,11 +5170,11 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIReconstruction：将要移除的改扩建对象
 
-Ø **QList< IReconstruction* > reconstructions()**
+Ø **QList< IReconstruction\* > reconstructions()**
 
 获取所有改扩建
 
-Ø **IReconstruction* findReconstruction(long reconstructionId)**
+Ø **IReconstruction\* findReconstruction(long reconstructionId)**
 
 根据ID查询改扩建
 
@@ -5200,18 +5200,18 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 信号机ID集
 
-Ø **QList< ITrafficLight* > trafficLights()**
+Ø **QList< ITrafficLight\* > trafficLights()**
 
 信号机集
 
-Ø **ITrafficLight* findTrafficLight(long id)**
+Ø **ITrafficLight\* findTrafficLight(long id)**
 
 根据id查询信号机
 
 参数：
 [ in ] id：信号机ID
 
-Ø **ITrafficLight* findTrafficLightName(QString name)**
+Ø **ITrafficLight\* findTrafficLightName(QString name)**
 
 根据名称查询信号机(如果同名返回第一个)
 
@@ -5226,32 +5226,32 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 信控方案ID集
 
-Ø **QList< ISignalPlan* > signalPlans()**
+Ø **QList< ISignalPlan\* > signalPlans()**
 
 信控方案集
 
-Ø **ISignalPlan* findSignalPlan(long id)**
+Ø **ISignalPlan\* findSignalPlan(long id)**
 
 根据信控方案ID查找信控方案
 
 参数：
 [ in ] id：信控方案ID
 
-Ø **ISignalPlan* findSignalPlan(QString name)**
+Ø **ISignalPlan\* findSignalPlan(QString name)**
 
 根据信控方案名称查找信控方案
 
 参数：
 [ in ] name：信控方案名称
 
-Ø **ITrafficLight* creatTrafficLight(QString name)**
+Ø **ITrafficLight\* creatTrafficLight(QString name)**
 
 创建信号机
 
 参数：
 [ in ] name：信号机名称
 
-Ø **ISignalPlan* creatSignalPlan(ITrafficLight* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
+Ø **ISignalPlan\* creatSignalPlan(ITrafficLight\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
 
 创建信控方案
 
@@ -5263,7 +5263,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] startTime：起始时间
 [ in ] endTime：结束时间
 
-Ø **void removeSignalPhaseFromLamp(int *SignalPhaseId*, ISignalLamp* *signalLamp*)**
+Ø **void removeSignalPhaseFromLamp(int SignalPhaseId, ISignalLamp\* signalLamp)**
 
 信号灯移除某个绑定的相位(如果相位列表只存在一个相位则将关联的相位设置为null)
 
@@ -5271,7 +5271,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] SignalPhaseId：信号相位ID
 [ in ] signalLamp：信号灯对象
 
-Ø **void addSignalPhaseToLamp(int *SignalPhaseId*, ISignalLamp* *signalLamp*)**
+Ø **void addSignalPhaseToLamp(int SignalPhaseId, ISignalLamp\* signalLamp)**
 
 信号灯添加绑定的相位
 
@@ -5279,7 +5279,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] SignalPhaseId：信号相位ID
 [ in ] signalLamp：信号灯对象
 
-Ø **void transferSignalPhase(ISignalPhase* *pFromISignalPhase*, ISignalPhase* *pToISignalPhase*, ISignalLamp* *signalLamp*)**
+Ø **void transferSignalPhase(ISignalPhase\* pFromISignalPhase, ISignalPhase\* pToISignalPhase, ISignalLamp\* signalLamp)**
 
 信号灯更换绑定的相位(不允许跨越信号机)
 
@@ -5288,7 +5288,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] pToISignalPhase：目标相位
 [ in ] signalLamp：信号灯对象
 
-Ø **IReduceSpeedArea* createReduceSpeedArea(QString name, qreal location, qreal areaLength, long roadId, int laneNumber, int toLaneNumber, long fromTime, long toTime, QList< Online::ReduceSpeedVehicleType > lSpeedVehiType)**
+Ø **IReduceSpeedArea\* createReduceSpeedArea(QString name, qreal location, qreal areaLength, long roadId, int laneNumber, int toLaneNumber, long fromTime, long toTime, QList< Online::ReduceSpeedVehicleType > lSpeedVehiType)**
 
 创建限速区
 
@@ -5303,18 +5303,18 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] toTime：结束时间
 [ in ] lSpeedVehiType：限速车型列表
 
-Ø **void removeReduceSpeedArea(IReduceSpeedArea* pIReduceSpeedArea)**
+Ø **void removeReduceSpeedArea(IReduceSpeedArea\* pIReduceSpeedArea)**
 
 移除限速区
 
 参数：
 [ in ] pIReduceSpeedArea：限速区对象
 
-Ø **QList< IReduceSpeedArea* > reduceSpeedAreas()**
+Ø **QList< IReduceSpeedArea\* > reduceSpeedAreas()**
 
 获取所有限速区
 
-Ø **IReduceSpeedArea* findReduceSpeedArea(long id)**
+Ø **IReduceSpeedArea\* findReduceSpeedArea(long id)**
 
 查询指定ID的限速区
 
@@ -5323,63 +5323,63 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：限速区对象
 
-Ø **QList< ITollLane* > tollLanes()**
+Ø **QList< ITollLane\* > tollLanes()**
 
 获取所有收费车道列表
 
-Ø **QList< ITollDecisionPoint* > tollDecisionPoints()**
+Ø **QList< ITollDecisionPoint\* > tollDecisionPoints()**
 
 获取所有收费决策点列表
 
-Ø **QList< IParkingRegion* > parkingRegions()**
+Ø **QList< IParkingRegion\* > parkingRegions()**
 
 获取所有停车区列表
 
-Ø **QList< IParkingDecisionPoint* > parkingDecisionPoints()**
+Ø **QList< IParkingDecisionPoint\* > parkingDecisionPoints()**
 
 获取所有停车决策点列表
 
-Ø **ITollLane* findTollLane(long id);**
+Ø **ITollLane\* findTollLane(long id);**
 
 通过id查询收费车道
 
-Ø **ITollDecisionPoint* findTollDecisionPoint(long id)***
+Ø **ITollDecisionPoint\* findTollDecisionPoint(long id)***
 
 通过id查询收费决策点
 
-Ø **IParkingRegion* findParkingRegion(long id)**
+Ø **IParkingRegion\* findParkingRegion(long id)**
 
 通过id查询停车区域
 
-Ø **IParkingDecisionPoint* findParkingDecisionPoint(long id)**
+Ø **IParkingDecisionPoint\* findParkingDecisionPoint(long id)**
 
 通过id查询停车决策点
 
-Ø **void removeTollLane(ITollLane* pITollLane)**
+Ø **void removeTollLane(ITollLane\* pITollLane)**
 
 移除收费车道
 
-Ø **void removeTollDecisionPoint(ITollDecisionPoint* pITollDecisionPoint)**
+Ø **void removeTollDecisionPoint(ITollDecisionPoint\* pITollDecisionPoint)**
 
 移除收费决策点
 
-Ø **void removeParkingRegion(IParkingRegion* pIParkingRegion)**
+Ø **void removeParkingRegion(IParkingRegion\* pIParkingRegion)**
 
 移除停车区
 
-Ø **void removeParkingDecisionPoint(IParkingDecisionPoint* pIParkingDecisionPoint)**
+Ø **void removeParkingDecisionPoint(IParkingDecisionPoint\* pIParkingDecisionPoint)**
 
 移除停车决策点
 
-Ø **void removeTollRouting(ITollRouting* pITollRouting)**
+Ø **void removeTollRouting(ITollRouting\* pITollRouting)**
 
 移除收费路径
 
-Ø **void removeParkingRouting(IParkingRouting* pIParkingRouting)**
+Ø **void removeParkingRouting(IParkingRouting\* pIParkingRouting)**
 
 移除停车路径
 
-Ø **ITollLane* createTollLane(const Online::TollStation::DynaTollLane& param)**
+Ø **ITollLane\* createTollLane(const Online::TollStation::DynaTollLane& param)**
 
 创建收费车道
 
@@ -5387,7 +5387,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] param：动态收费车道信息，数据类型在文件 Plugin/_datastruct.h中定义
 
-Ø **IParkingRegion* createParkingRegion(const Online::ParkingLot::DynaParkingRegion& param)**
+Ø **IParkingRegion\* createParkingRegion(const Online::ParkingLot::DynaParkingRegion& param)**
 
 创建停车区
 
@@ -5395,7 +5395,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] param：动态停车区信息，数据类型在文件 Plugin/_datastruct.h中定义
 
-Ø **ITollLane* updateTollLane(const Online::TollStation::DynaTollLane& param)**
+Ø **ITollLane\* updateTollLane(const Online::TollStation::DynaTollLane& param)**
 
 更新收费车道
 
@@ -5403,7 +5403,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] param：动态收费车道信息，数据类型在文件 Plugin/_datastruct.h中定义
 
-Ø **IParkingRegion* updateParkingRegion(const Online::ParkingLot::DynaParkingRegion& param)**
+Ø **IParkingRegion\* updateParkingRegion(const Online::ParkingLot::DynaParkingRegion& param)**
 
 更新停车区
 
@@ -5411,7 +5411,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] param：动态停车区信息，数据类型在文件 Plugin/_datastruct.h中定义
 
-Ø **ITollDecisionPoint* createTollDecisionPoint(ILink* pLink, qreal distance, QString name = QString())**
+Ø **ITollDecisionPoint\* createTollDecisionPoint(ILink\* pLink, qreal distance, QString name = QString())**
 
 创建收费决策点
 
@@ -5421,7 +5421,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] distance：决策点距离路段起点的距离，默认单位：像素
 [ in ] name：决策点的名称
 
-Ø **ITollRouting* createTollRouting(ITollDecisionPoint* pDeciPoint, ITollLane* pITollLane)**
+Ø **ITollRouting\* createTollRouting(ITollDecisionPoint\* pDeciPoint, ITollLane\* pITollLane)**
 
 创建收费路径
 
@@ -5430,7 +5430,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] pDeciPoint：收费决策点
 [ in ] pITollLane：收费车道
 
-Ø **IParkingDecisionPoint* createParkingDecisionPoint(ILink* pLink, qreal distance, QString name = QString())**
+Ø **IParkingDecisionPoint\* createParkingDecisionPoint(ILink\* pLink, qreal distance, QString name = QString())**
 
 创建停车决策点
 
@@ -5440,7 +5440,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] distance：决策点距离路段起点的距离，默认单位：像素
 [ in ] name：决策点的名称
 
-Ø **IParkingRouting* createParkingRouting(IParkingDecisionPoint* pDeciPoint, IParkingRegion* pIParkingRegion)**
+Ø **IParkingRouting\* createParkingRouting(IParkingDecisionPoint\* pDeciPoint, IParkingRegion\* pIParkingRegion)**
 
 创建停车路径
 
@@ -5499,7 +5499,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数：
 [ in ] param：停车时距分布参数
 
-Ø **IJunction* createJunction(QPointF startPoint, QPointF endPoint, QString name)**
+Ø **IJunction\ createJunction(QPointF startPoint, QPointF endPoint, QString name)**
 
 创建节点
 
@@ -5508,14 +5508,14 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] endPoint：右下角终点坐标
 [ in ] name：节点名称
 
-Ø **IJunction* findJunction(long junctionId)**
+Ø **IJunction\* findJunction(long junctionId)**
 
 查找节点
 
 参数：
 [ in ] junctionId：节点ID
 
-Ø **QMap< long, IJunction* > getAllJunctions()**
+Ø **QMap< long, IJunction\* > getAllJunctions()**
 
 获取所有节点
 
@@ -5595,7 +5595,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] laneConnectorFlag：是否考虑车道连接
 [ in ] minPathNum：最小路径数量(默认3)
 
-Ø **QMap< QPair< long, long >, QVector< QList< ILink* > > > buildAndApplyPaths()**
+Ø **QMap< QPair< long, long >, QVector< QList< ILink\* > > > buildAndApplyPaths()**
 
 构建并应用路径，返回路径结果映射:< 起始路段ID,终点路段ID > - > 可行路径列表
 
@@ -5615,107 +5615,107 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 获取所有层级信息
 
-Ø **QList< IPedestrianRegion* > pedestrianRegions()**
+Ø **QList< IPedestrianRegion\* > pedestrianRegions()**
 
 获取所有行人面域
 
-Ø **QList< IPedestrianRectRegion* > pedestrianRectRegions()**
+Ø **QList< IPedestrianRectRegion\* > pedestrianRectRegions()**
 
 获取所有矩形面域
 
-Ø **QList< IPedestrianEllipseRegion* > pedestrianEllipseRegions()**
+Ø **QList< IPedestrianEllipseRegion\* > pedestrianEllipseRegions()**
 
 获取所有椭圆形面域
 
-Ø **QList< IPedestrianTriangleRegion* > pedestrianTriangleRegions()**
+Ø **QList< IPedestrianTriangleRegion\* > pedestrianTriangleRegions()**
 
 获取所有三角形面域
 
-Ø **QList< IPedestrianFanShapeRegion* > pedestrianFanShapeRegions()**
+Ø **QList< IPedestrianFanShapeRegion\* > pedestrianFanShapeRegions()**
 
 获取所有扇形面域
 
-Ø **QList< IPedestrianPolygonRegion* > pedestrianPolygonRegions()**
+Ø **QList< IPedestrianPolygonRegion\* > pedestrianPolygonRegions()**
 
 获取所有多边形面域
 
-Ø **QList< IPedestrianSideWalkRegion* > pedestrianSideWalkRegions()**
+Ø **QList< IPedestrianSideWalkRegion\* > pedestrianSideWalkRegions()**
 
 获取所有人行道
 
-Ø **QList< IPedestrianCrossWalkRegion* > pedestrianCrossWalkRegions()**
+Ø **QList< IPedestrianCrossWalkRegion\* > pedestrianCrossWalkRegions()**
 
 获取所有人行横道
 
-Ø **QList< IPedestrianPathPoint* > pedestrianPathStartPoints()**
+Ø **QList< IPedestrianPathPoint\* > pedestrianPathStartPoints()**
 
 获取所有行人发生点
 
-Ø **QList< IPedestrianPathPoint* > pedestrianPathEndPoints()**
+Ø **QList< IPedestrianPathPoint\* > pedestrianPathEndPoints()**
 
 获取所有行人结束点
 
-Ø **QList< IPedestrianPathPoint* > pedestrianPathDecisionPoints()**
+Ø **QList< IPedestrianPathPoint\* > pedestrianPathDecisionPoints()**
 
 获取所有行人决策点
 
-Ø **QList< IPedestrianPath* > pedestrianPaths()**
+Ø **QList< IPedestrianPath\* > pedestrianPaths()**
 
 获取所有行人路径，包括局部路径
 
-Ø **QList< ICrosswalkSignalLamp* > crosswalkSignalLamps()**
+Ø **QList< ICrosswalkSignalLamp\* > crosswalkSignalLamps()**
 
 获取所有人行横道红绿灯
 
-Ø **IPedestrianRegion* findPedestrianRegion(long id)**
+Ø **IPedestrianRegion\* findPedestrianRegion(long id)**
 
 根据id获取行人面域
 
-Ø **IPedestrianRectRegion* findPedestrianRectRegion(long id)**
+Ø **IPedestrianRectRegion\* findPedestrianRectRegion(long id)**
 
 根据id获取矩形面域
 
-Ø **IPedestrianEllipseRegion* findPedestrianEllipseRegion(long id)**
+Ø **IPedestrianEllipseRegion\* findPedestrianEllipseRegion(long id)**
 
 根据id获取椭圆形面域
 
-Ø **IPedestrianTriangleRegion* findPedestrianTriangleRegion(long id)**
+Ø **IPedestrianTriangleRegion\* findPedestrianTriangleRegion(long id)**
 
 根据id获取三角形面域
 
-Ø **IPedestrianFanShapeRegion* findPedestrianFanShapeRegion(long id)**
+Ø **IPedestrianFanShapeRegion\* findPedestrianFanShapeRegion(long id)**
 
 根据id获取扇形面域
 
-Ø **IPedestrianPolygonRegion* findPedestrianPolygonRegion(long id)**
+Ø **IPedestrianPolygonRegion\* findPedestrianPolygonRegion(long id)**
 
 根据id获取多边形面域
 
-Ø **IPedestrianSideWalkRegion* findPedestrianSideWalkRegion(long id)**
+Ø **IPedestrianSideWalkRegion\* findPedestrianSideWalkRegion(long id)**
 
 根据id获取人行道
 
-Ø **IPedestrianCrossWalkRegion* findPedestrianCrossWalkRegion(long id)**
+Ø **IPedestrianCrossWalkRegion\* findPedestrianCrossWalkRegion(long id)**
 
 根据id获取人行横道
 
-Ø **IPedestrianPathPoint* findPedestrianPathStartPoint(long id)**
+Ø **IPedestrianPathPoint\* findPedestrianPathStartPoint(long id)**
 
 根据id获取行人发生点
 
-Ø **IPedestrianPathPoint* findPedestrianPathEndPoint(long id)**
+Ø **IPedestrianPathPoint\* findPedestrianPathEndPoint(long id)**
 
 根据id获取行人结束点
 
-Ø **IPedestrianPathPoint* findPedestrianDecisionPoint(long id)**
+Ø **IPedestrianPathPoint\* findPedestrianDecisionPoint(long id)**
 
 根据id获取行人决策点
 
-Ø **IPedestrianPath* findPedestrianPath(long id)**
+Ø **IPedestrianPath\* findPedestrianPath(long id)**
 
 根据id获取行人路径，包括局部路径
 
-Ø **ICrosswalkSignalLamp* findCrosswalkSignalLamp(long id)**
+Ø **ICrosswalkSignalLamp\* findCrosswalkSignalLamp(long id)**
 
 根据id获取人行横道红绿灯
 
@@ -5814,7 +5814,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：是否更新成功
 
-Ø **IPedestrianRectRegion* createPedestrianRectRegion(QPointF startPoint, QPointF endPoint)**
+Ø **IPedestrianRectRegion\* createPedestrianRectRegion(QPointF startPoint, QPointF endPoint)**
 
 创建矩形行人面域
 
@@ -5826,7 +5826,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：矩形行人面域对象
 
-Ø **void removePedestrianRectRegion(IPedestrianRectRegion* pIPedestrianRectRegion)**
+Ø **void removePedestrianRectRegion(IPedestrianRectRegion\* pIPedestrianRectRegion)**
 
 删除矩形行人面域
 
@@ -5834,7 +5834,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianRectRegion：矩形行人面域对象
 
-Ø **IPedestrianEllipseRegion* createPedestrianEllipseRegion(QPointF startPoint, QPointF endPoint)**
+Ø **IPedestrianEllipseRegion\* createPedestrianEllipseRegion(QPointF startPoint, QPointF endPoint)**
 
 创建椭圆行人面域
 
@@ -5846,7 +5846,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：椭圆行人面域对象
 
-Ø **void removePedestrianEllipseRegion(IPedestrianEllipseRegion* pIPedestrianEllipseRegion)**
+Ø **void removePedestrianEllipseRegion(IPedestrianEllipseRegion\* pIPedestrianEllipseRegion)**
 
 删除椭圆行人面域
 
@@ -5854,7 +5854,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianEllipseRegion：椭圆行人面域对象
 
-Ø **IPedestrianTriangleRegion* createPedestrianTriangleRegion(QPointF startPoint, QPointF endPoint)**
+Ø **IPedestrianTriangleRegion\* createPedestrianTriangleRegion(QPointF startPoint, QPointF endPoint)**
 
 创建三角形行人面域
 
@@ -5866,7 +5866,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：三角形行人面域对象
 
-Ø **void removePedestrianTriangleRegion(IPedestrianTriangleRegion* pIPedestrianTriangleRegion)**
+Ø **void removePedestrianTriangleRegion(IPedestrianTriangleRegion\* pIPedestrianTriangleRegion)**
 
 删除三角形行人面域
 
@@ -5874,7 +5874,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianTriangleRegion：三角形行人面域对象
 
-Ø **IPedestrianFanShapeRegion* createPedestrianFanShapeRegion(QPointF startPoint, QPointF endPoint)**
+Ø **IPedestrianFanShapeRegion\* createPedestrianFanShapeRegion(QPointF startPoint, QPointF endPoint)**
 
 创建扇形行人面域
 
@@ -5886,7 +5886,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：扇形行人面域对象
 
-Ø **void removePedestrianFanShapeRegion(IPedestrianFanShapeRegion* pIPedestrianFanShapeRegion)**
+Ø **void removePedestrianFanShapeRegion(IPedestrianFanShapeRegion\* pIPedestrianFanShapeRegion)**
 
 删除扇形行人面域
 
@@ -5894,7 +5894,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianFanShapeRegion：扇形行人面域对象
 
-Ø **IPedestrianPolygonRegion* createPedestrianPolygonRegion(QPolygonF polygon)**
+Ø **IPedestrianPolygonRegion\* createPedestrianPolygonRegion(QPolygonF polygon)**
 
 创建多边形行人面域
 
@@ -5904,7 +5904,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：多边形行人面域对象
 
-Ø **void removePedestrianPolygonRegion(IPedestrianPolygonRegion* pIPedestrianPolygonRegion)**
+Ø **void removePedestrianPolygonRegion(IPedestrianPolygonRegion\* pIPedestrianPolygonRegion)**
 
 删除多边形行人面域
 
@@ -5912,7 +5912,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianPolygonRegion：多边形行人面域对象
 
-Ø **IPedestrianSideWalkRegion* createPedestrianSideWalkRegion(QList< QPointF > vertexs)**
+Ø **IPedestrianSideWalkRegion\* createPedestrianSideWalkRegion(QList< QPointF > vertexs)**
 
 创建人行道
 
@@ -5922,7 +5922,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：人行道对象
 
-Ø **void removePedestrianSideWalkRegion(IPedestrianSideWalkRegion* pIPedestrianSideWalkRegion)**
+Ø **void removePedestrianSideWalkRegion(IPedestrianSideWalkRegion\* pIPedestrianSideWalkRegion)**
 
 删除人行道
 
@@ -5930,7 +5930,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianSideWalkRegion：人行道对象
 
-Ø **IPedestrianCrossWalkRegion* createPedestrianCrossWalkRegion(QPointF startPoint, QPointF endPoint)**
+Ø **IPedestrianCrossWalkRegion\* createPedestrianCrossWalkRegion(QPointF startPoint, QPointF endPoint)**
 
 创建人行横道
 
@@ -5942,7 +5942,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：人行横道对象
 
-Ø **void removePedestrianCrossWalkRegion(IPedestrianCrossWalkRegion* pIPedestrianCrossWalkRegion)**
+Ø **void removePedestrianCrossWalkRegion(IPedestrianCrossWalkRegion\* pIPedestrianCrossWalkRegion)**
 
 删除人行横道
 
@@ -5950,7 +5950,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianCrossWalkRegion：人行横道对象
 
-Ø **IPedestrianStairRegion* createPedestrianStairRegion(QPointF startPoint, QPointF endPoint)**
+Ø **IPedestrianStairRegion\* createPedestrianStairRegion(QPointF startPoint, QPointF endPoint)**
 
 创建楼梯
 
@@ -5962,7 +5962,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：楼梯对象
 
-Ø **void removePedestrianStairRegion(IPedestrianStairRegion* pIPedestrianStairRegion)**
+Ø **void removePedestrianStairRegion(IPedestrianStairRegion\* pIPedestrianStairRegion)**
 
 删除楼梯
 
@@ -5970,7 +5970,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianStairRegion：楼梯对象
 
-Ø **IPedestrianPathPoint* createPedestrianPathStartPoint(QPointF scenePos)**
+Ø **IPedestrianPathPoint\* createPedestrianPathStartPoint(QPointF scenePos)**
 
 创建行人发生点
 
@@ -5980,7 +5980,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：行人发生点对象
 
-Ø **void removePedestrianPathStartPoint(IPedestrianPathPoint* pIPedestrianPathStartPoint)**
+Ø **void removePedestrianPathStartPoint(IPedestrianPathPoint\* pIPedestrianPathStartPoint)**
 
 删除行人发生点
 
@@ -5988,7 +5988,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianPathStartPoint：行人发生点对象
 
-Ø **IPedestrianPathPoint* createPedestrianPathEndPoint(QPointF scenePos)**
+Ø **IPedestrianPathPoint\* createPedestrianPathEndPoint(QPointF scenePos)**
 
 创建行人结束点
 
@@ -5998,7 +5998,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：行人结束点对象
 
-Ø **void removePedestrianPathEndPoint(IPedestrianPathPoint* pIPedestrianPathEndPoint)**
+Ø **void removePedestrianPathEndPoint(IPedestrianPathPoint\* pIPedestrianPathEndPoint)**
 
 删除行人结束点
 
@@ -6006,7 +6006,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianPathEndPoint：行人结束点对象
 
-Ø **IPedestrianPathPoint* createPedestrianDecisionPoint(QPointF scenePos)**
+Ø **IPedestrianPathPoint\* createPedestrianDecisionPoint(QPointF scenePos)**
 
 创建行人决策点
 
@@ -6016,7 +6016,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：行人决策点对象
 
-Ø **void removePedestrianDecisionPoint(IPedestrianPathPoint* pIPedestrianDecisionPoint)**
+Ø **void removePedestrianDecisionPoint(IPedestrianPathPoint\* pIPedestrianDecisionPoint)**
 
 删除行人决策点
 
@@ -6024,7 +6024,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianDecisionPoint：行人决策点对象
 
-Ø **IPedestrianPath* createPedestrianPath(IPedestrianPathPoint* pStartPoint, IPedestrianPathPoint* pEndPoint, QList< QPointF > middlePoints)**
+Ø **IPedestrianPath\* createPedestrianPath(IPedestrianPathPoint\* pStartPoint, IPedestrianPathPoint\* pEndPoint, QList< QPointF > middlePoints)**
 
 创建行人路径（或行人局部路径）
 
@@ -6038,7 +6038,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：行人路径对象
 
-Ø **void removePedestrianPath(IPedestrianPath* pIPedestrianPath)**
+Ø **void removePedestrianPath(IPedestrianPath\* pIPedestrianPath)**
 
 删除行人路径
 
@@ -6046,7 +6046,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianPath：行人路径对象
 
-Ø **ICrosswalkSignalLamp* createCrossWalkSignalLamp(ITrafficLight* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
+Ø **ICrosswalkSignalLamp\* createCrossWalkSignalLamp(ITrafficLight\* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
 
 创建人行横道信号灯
 
@@ -6064,7 +6064,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：人行横道信号灯对象
 
-Ø **void removeCrossWalkSignalLamp(ICrosswalkSignalLamp* pICrosswalkSignalLamp)**
+Ø **void removeCrossWalkSignalLamp(ICrosswalkSignalLamp\* pICrosswalkSignalLamp)**
 
 删除人行横道信号灯
 
@@ -6560,7 +6560,7 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 
 返回：行人状态信息列表
 
-Ø **QList< IPedestrian* > allPedestrianStarted()**
+Ø **QList< IPedestrian\* > allPedestrianStarted()**
 
 获取所有正在运行的行人
 
