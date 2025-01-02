@@ -3289,7 +3289,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 [ in ] speed：初始速度值，单位：像素/秒或米/秒(取决于unit参数)
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
-Ø **void initLane(int laneNumber, qreal dist, qreal speed, UnitOfMeasure unit)**
+Ø **void initLane(int laneNumber, qreal dist = -1, qreal speed = -1, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
 在路段上初始化车辆，默认单位：像素，可通过unit参数设置单位
 
@@ -3298,6 +3298,8 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 [ in ] dist：距起点距离，单位：像素或米(取决于unit参数)
 [ in ] speed：初始速度，单位：像素/秒或米/秒(取决于unit参数)
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+注：如传入米制参数，请勿遗忘传入dist与speed参数。
 
 举例：
 
@@ -3309,7 +3311,7 @@ if (tmpId == 1) {
 		}
 ```
 
-Ø **void initLaneConnector(int laneNumber, int toLaneNumber, qreal dist, qreal speed, UnitOfMeasure unit)**
+Ø **void initLaneConnector(int laneNumber, int toLaneNumber, qreal dist = -1, qreal speed = -1, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
 在连接段上初始化车辆，默认单位：像素，可通过unit参数设置单位
 
@@ -3319,6 +3321,8 @@ if (tmpId == 1) {
 [ in ] dist：距起点距离，单位：像素或米(取决于unit参数)
 [ in ] speed：初始速度，单位：像素/秒或米/秒(取决于unit参数)
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+注：如传入米制参数，请勿遗忘传入dist与speed参数。
 
 Ø **void setVehiType(int code)**
 
@@ -3872,7 +3876,7 @@ if (tmpId == 1) {
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal distToStartPoint(bool fromVehiHead = false, bool bOnCentLine = true, UnitOfMeasure unit)**
+Ø **qreal distToStartPoint(bool fromVehiHead = false, bool bOnCentLine = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
 获取在车道或车道连接上到起点距离，默认单位：像素，可通过unit参数设置单位
 
@@ -3881,7 +3885,9 @@ if (tmpId == 1) {
 [ in ] bOnCentLine：当前是否在中心线上
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal distToEndpoint(bool fromVehiHead = false, bool bOnCentLine = true, UnitOfMeasure unit)**
+注：如传入米制参数，请勿遗忘传入fromVehiHead与bOnCentLine参数。
+
+Ø **qreal distToEndpoint(bool fromVehiHead = false, bool bOnCentLine = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
 获取在车道或车道连接上到终端距离，默认单位：像素，可通过unit参数设置单位
 
@@ -3889,6 +3895,8 @@ if (tmpId == 1) {
 [ in ] fromVehiHead：是否从车头计算
 [ in ] bOnCentLine：当前是否在中心线上
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+注：如传入米制参数，请勿遗忘传入fromVehiHead与bOnCentLine参数。
 
 Ø **bool setRouting(IRouting \*pRouting)**
 
