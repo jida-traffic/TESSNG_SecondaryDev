@@ -3267,7 +3267,9 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 Ø **ILaneObject\* laneObj()**
 
-Ø 车辆所在的车道或"车道连接"**int segmIndex()**
+车辆所在的车道或"车道连接"
+
+Ø **int segmIndex()**
 
 车辆在当前LaneObject上分段序号
 
@@ -3279,25 +3281,23 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 道路名
 
-Ø **qreal initSpeed(qreal speed = -1)**
+Ø **qreal initSpeed(qreal speed, UnitOfMeasure unit)**
 
-初始化车速
-
-参数：
-
-[ in ] speed：车速，如果大于0，车辆以指定的速度从发车点出发，单位：像素/秒
-
-Ø **void initLane(int laneNumber, qreal dist = -1, qreal speed = -1)**
-
-初始化车辆, laneNumber:车道序号，从0开始；dist，距起点距离，单位像素；speed：车速，像素/秒
+初始化车速，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
+[ in ] speed：初始速度值，单位：像素/秒或米/秒(取决于unit参数)
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
-[ in ] laneNumber：车道序号，从0开始
+Ø **void initLane(int laneNumber, qreal dist, qreal speed, UnitOfMeasure unit)**
 
-[ in ] dist：距离路段起点距离，单位：像素
+在路段上初始化车辆，默认单位：像素，可通过unit参数设置单位
 
-[ in ] speed：起动时的速度，单位：像素/秒
+参数：
+[ in ] laneNumber：车道序号
+[ in ] dist：距起点距离，单位：像素或米(取决于unit参数)
+[ in ] speed：初始速度，单位：像素/秒或米/秒(取决于unit参数)
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -3309,19 +3309,18 @@ if (tmpId == 1) {
 		}
 ```
 
-Ø **void initLaneConnector(int laneNumber, int toLaneNumber, qreal dist = -1, qreal speed = -1)**
+Ø **void initLaneConnector(int laneNumber, int toLaneNumber, qreal dist, qreal speed, UnitOfMeasure unit)**
 
-初始化车辆, laneNumber: "车道连接"起始车道在所在路段的序号，从0开始自右往左；**toLaneNumber**:车道连接"目标车道在所在路段的序号，从0开始自右往左， dist，距起点距离，单位像素；speed：车速，像素/秒
+在连接段上初始化车辆，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] laneNumber：起始车道序号
+[ in ] toLaneNumber：目标车道序号
+[ in ] dist：距起点距离，单位：像素或米(取决于unit参数)
+[ in ] speed：初始速度，单位：像素/秒或米/秒(取决于unit参数)
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] laneNumber：车道序号，从0开始自右侧至左侧
-
-[ in ] toLaneNumber：车道序号，从0开始自右侧至左侧
-
-[ in ] dist：距离路段起点距离，单位：像素
-
-Ø [ in ] speed：起动时的速度，单位：像素/秒**void setVehiType(int code)**
+Ø **void setVehiType(int code)**
 
 设置车辆类型，车辆被创建时已确定了类型，通过此方法可以改变车辆类型
 
@@ -3337,19 +3336,21 @@ if (tmpId == 1) {
 
 [ in ] color：颜色RGB，如："#EE0000"
 
-Ø **qreal length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-车辆长度，单位：像素
-
-Ø **void setLength(qreal len , bool bRestWidth = false)**
-
-设置车辆长度
+获取车辆长度，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] len：车辆长度，单位：像素
+Ø **void setLength(qreal len, bool bRestWidth, UnitOfMeasure unit)**
 
-[ in ] bRestWidth：是否同比例约束宽度，默认为false
+设置车辆长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] len：长度值，单位：像素或米(取决于unit参数)
+[ in ] bRestWidth：是否同比例约束宽度
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **long laneId()**
 
@@ -3379,13 +3380,19 @@ if (tmpId == 1) {
 
 车辆所在道路类型。在文件Plugin/_netitemtype.h中定义了一批常量，每一个数值代表路网上一种元素类型。如：GLinkType代表路段、GConnectorType代表连接段。
 
-Ø **qreal limitMaxSpeed()**
+Ø **qreal limitMaxSpeed(UnitOfMeasure unit)**
 
-车辆所在路段或连接段最大限速，兼顾到车辆的期望速度，单位：像素/秒
+获取最大限速，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal limitMinSpeed()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
-车辆所在路段或连接段最小限速，兼顾到车辆的期望速度，单位：像素/秒
+Ø **qreal limitMinSpeed(UnitOfMeasure unit)**
+
+获取最小限速，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
 Ø **long vehicleTypeCode()**
 
@@ -3407,21 +3414,33 @@ if (tmpId == 1) {
 
 驱动车辆。在每个运算周期，每个在运行的车辆被调用一次该方法
 
-Ø **QPointF pos()**
+Ø **QPointF pos(UnitOfMeasure unit)**
 
-当前位置，横纵坐标单位：像素
+获取当前位置，默认单位：像素，可通过unit参数设置单位
 
-Ø **float zValue()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-当前高程，单位：像素
+Ø **qreal zValue(UnitOfMeasure unit)**
 
-Ø **qreal acce()**
+获取当前高程，默认单位：像素，可通过unit参数设置单位
 
-当前加速度，单位：像素/秒^2
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal currSpeed()**
+Ø **qreal acce(UnitOfMeasure unit)**
 
-当前速度，单位：像素/秒
+获取当前加速度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s²)，Default表示无单位限制
+
+Ø **qreal currSpeed(UnitOfMeasure unit)**
+
+获取当前速度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
 Ø **qreal angle()**
 
@@ -3439,7 +3458,7 @@ if (tmpId == 1) {
 
 后车
 
-Ø **IVehicle \*vehicleLFront(**
+Ø **IVehicle \*vehicleLFront()**
 
 左前车
 
@@ -3455,61 +3474,103 @@ if (tmpId == 1) {
 
 右后车
 
-Ø **qreal vehiDistFront()**
+Ø **qreal vehiDistFront(UnitOfMeasure unit)**
 
-前车间距，单位：像素
+获取与前车距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal vehiSpeedFront()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-前车速度，单位：像素/秒
+Ø **qreal vehiSpeedFront(UnitOfMeasure unit)**
 
-Ø **qreal vehiHeadwayFront()**
+获取前车速度，默认单位：像素/秒，可通过unit参数设置单位
 
-距前车时距
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
-Ø **qreal vehiDistRear()**
+Ø **qreal vehiHeadwayFront(UnitOfMeasure unit)**
 
-后车间距，单位：像素
+获取与前车时距，默认单位：秒，可通过unit参数设置单位
 
-Ø **qreal vehiSpeedRear()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(s)，Default表示无单位限制
 
-后车速度，单位：像素/秒
+Ø **qreal vehiDistRear(UnitOfMeasure unit)**
 
-Ø **qreal vehiHeadwaytoRear()**
+获取与后车距离，默认单位：像素，可通过unit参数设置单位
 
-距后车时距
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal vehiDistLLaneFront()**
+Ø **qreal vehiSpeedRear(UnitOfMeasure unit)**
 
-相邻左车道前车间距，单位：像素
+获取后车速度，默认单位：像素/秒，可通过unit参数设置单位
 
-Ø **qreal vehiSpeedLLaneFront()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
-相邻左车道前车速度，单位：像素/秒
+Ø **qreal vehiHeadwaytoRear(UnitOfMeasure unit)**
 
-Ø **qreal vehiDistLLaneRear()**
+获取与后车时距，默认单位：秒，可通过unit参数设置单位
 
-相邻左车道后车间距，单位：像素
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(s)，Default表示无单位限制
 
-Ø **qreal vehiSpeedLLaneRear(**
+Ø **qreal vehiDistLLaneFront(UnitOfMeasure unit)**
 
-相邻左车道后车速度，单位：像素/秒
+获取与左前车距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal vehiDistRLaneFront()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-相邻右车道前车间距，单位：像素
+Ø **qreal vehiSpeedLLaneFront(UnitOfMeasure unit)**
 
-Ø **qreal vehiSpeedRLaneFront()**
+获取左前车速度，默认单位：像素，可通过unit参数设置单位
 
-相邻右车道前车速度，单位：像素/秒
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
-Ø **qreal vehiDistRLaneRear()**
+Ø **qreal vehiDistLLaneRear(UnitOfMeasure unit)**
 
-相邻右车道后车间距，单位：像素
+获取与左后车距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal vehiSpeedRLaneRear()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-相邻右车道后车速度，单位：像素/秒
+Ø **qreal vehiSpeedLLaneRear(UnitOfMeasure unit)**
+
+获取左后车速度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
+
+Ø **qreal vehiDistRLaneFront(UnitOfMeasure unit)**
+
+获取与右前车距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal vehiSpeedRLaneFront(UnitOfMeasure unit)**
+
+获取右前车速度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
+
+Ø **qreal vehiDistRLaneRear(UnitOfMeasure unit)**
+
+获取与右后车距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal vehiSpeedRLaneRear(UnitOfMeasure unit)**
+
+获取右后车速度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
 Ø **void setDynaInfo(void \*pDynaInfo)**
 
@@ -3519,9 +3580,12 @@ if (tmpId == 1) {
 
 获取动态信息
 
-Ø **QList< QPointF > lLaneObjectVertex()**
+Ø **QList< QPointF > lLaneObjectVertex(UnitOfMeasure unit)**
 
-车道或车道连接中心线内点集
+获取车道或车道连接中心线内点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **IRouting \*routing()**
 
