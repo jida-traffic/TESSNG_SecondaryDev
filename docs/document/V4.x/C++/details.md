@@ -3706,7 +3706,7 @@ if (tmpId == 1) {
 
 [ in ] bPositive：车头方向是否正向计算，如果bPosiDire为false则反向计算
 
-Ø **qreal desirSpeed(UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **qreal desirSpeed(UnitOfMeasure unit)**
 
 获取期望速度，默认单位：像素/秒，可通过unit参数设置单位
 
@@ -3749,7 +3749,7 @@ if (tmpId == 1) {
 
 初始化轨迹
 
-Ø **void setTrace(QList< QPointF >& lPoint, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **void setTrace(QList< QPointF >& lPoint, UnitOfMeasure unit)**
 
 设置轨迹点集，默认单位：像素，可通过unit参数设置单位
 
@@ -3777,14 +3777,14 @@ if (tmpId == 1) {
 
 [ in ] number：车道序号
 
-Ø **qreal currDistanceInRoad(UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **qreal currDistanceInRoad(UnitOfMeasure unit)**
 
 获取当前路段或连接段已行驶距离，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **void setCurrDistanceInRoad(qreal dist, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **void setCurrDistanceInRoad(qreal dist, UnitOfMeasure unit)**
 
 设置当前路段或连接段已行驶距离，默认单位：像素，可通过unit参数设置单位
 
@@ -3792,7 +3792,7 @@ if (tmpId == 1) {
 [ in ] dist：距离
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **void setVehiDrivDistance(qreal dist, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **void setVehiDrivDistance(qreal dist, UnitOfMeasure unit)**
 
 设置已行驶总里程，默认单位：像素，可通过unit参数设置单位
 
@@ -3800,21 +3800,21 @@ if (tmpId == 1) {
 [ in ] dist：总里程
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal getVehiDrivDistance(UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **qreal getVehiDrivDistance(UnitOfMeasure unit)**
 
 获取已行驶总里程，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal currDistanceInSegment(UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **qreal currDistanceInSegment(UnitOfMeasure unit)**
 
 获取当前分段已行驶距离，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **void setCurrDistanceInSegment(qreal dist, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **void setCurrDistanceInSegment(qreal dist, UnitOfMeasure unit)**
 
 设置当前分段已行驶距离，默认单位：像素，可通过unit参数设置单位
 
@@ -3826,7 +3826,7 @@ if (tmpId == 1) {
 
 设置分段序号
 
-Ø **void setCurrDistanceInTrace(qreal dist, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **void setCurrDistanceInTrace(qreal dist, UnitOfMeasure unit)**
 
 设置曲化轨迹上行驶的距离，默认单位：像素，可通过unit参数设置单位
 
@@ -3834,7 +3834,7 @@ if (tmpId == 1) {
 [ in ] dist：距离
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **void setX(qreal posX, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **void setX(qreal posX, UnitOfMeasure unit)**
 
 设置横坐标，默认单位：像素，可通过unit参数设置单位
 
@@ -3842,7 +3842,7 @@ if (tmpId == 1) {
 [ in ] posX：横坐标
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **void setY(qreal posY, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **void setY(qreal posY, UnitOfMeasure unit)**
 
 设置纵坐标，默认单位：像素，可通过unit参数设置单位
 
@@ -3850,7 +3850,7 @@ if (tmpId == 1) {
 [ in ] posY：纵坐标
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **void setV3z(qreal v3z, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **void setV3z(qreal v3z, UnitOfMeasure unit)**
 
 设置高程坐标，默认单位：像素，可通过unit参数设置单位
 
@@ -3858,21 +3858,21 @@ if (tmpId == 1) {
 [ in ] v3z：高程坐标
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **QList< QPointF > changingTrace(UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **QList< QPointF > changingTrace(UnitOfMeasure unit)**
 
 获取变轨点集，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal changingTraceLength(UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **qreal changingTraceLength(UnitOfMeasure unit)**
 
 获取变轨长度，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal distToStartPoint(bool fromVehiHead = false, bool bOnCentLine = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **qreal distToStartPoint(bool fromVehiHead = false, bool bOnCentLine = true, UnitOfMeasure unit)**
 
 获取在车道或车道连接上到起点距离，默认单位：像素，可通过unit参数设置单位
 
@@ -3881,7 +3881,7 @@ if (tmpId == 1) {
 [ in ] bOnCentLine：当前是否在中心线上
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal distToEndpoint(bool fromVehiHead = false, bool bOnCentLine = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **qreal distToEndpoint(bool fromVehiHead = false, bool bOnCentLine = true, UnitOfMeasure unit)**
 
 获取在车道或车道连接上到终端距离，默认单位：像素，可通过unit参数设置单位
 
@@ -3930,7 +3930,7 @@ if (tmpId == 1) {
 
 当前路径
 
-Ø **bool moveToLane(ILane* pLane, qreal dist, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **bool moveToLane(ILane* pLane, qreal dist, UnitOfMeasure unit)**
 
 将车辆移到另一条车道上，默认单位：像素，可通过unit参数设置单位
 
@@ -3939,7 +3939,7 @@ if (tmpId == 1) {
 [ in ] dist：到目标车道起点距离
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **bool moveToLaneConnector(ILaneConnector* pLaneConnector, qreal dist, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **bool moveToLaneConnector(ILaneConnector* pLaneConnector, qreal dist, UnitOfMeasure unit)**
 
 将车辆移到另一条车道连接上，默认单位：像素，可通过unit参数设置单位
 
@@ -3963,7 +3963,7 @@ if (simuTime == 20 * 1000) {
 
 ```
 
-Ø **bool move(ILaneObject* pILaneObject, qreal dist, UnitOfMeasure unit = UnitOfMeasure::Default)**
+Ø **bool move(ILaneObject* pILaneObject, qreal dist, UnitOfMeasure unit)**
 
 移动车辆到另一条车道或车道连接上，默认单位：像素，可通过unit参数设置单位
 
