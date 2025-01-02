@@ -144,9 +144,11 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 
 获取路网说明
 
-Ø **QPointF centerPoint()**
+Ø **QPointF centerPoint(UnitOfMeasure unit)**
 
-获取路网中心点位置
+获取路网中心点位置，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 ### 2.2 ISection
 
@@ -180,13 +182,17 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 
 设置Section名称
 
-Ø **qreal v3z()**
+Ø **qreal v3z(UnitOfMeasure unit)**
 
-获取Section高程
+获取Section高程，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-获取Section长度，默认单位：像素
+获取Section长度，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
 Ø **QList< ILaneObject\* > laneObjects()**
 
@@ -291,9 +297,11 @@ Worker节点标识，在分布式环境可用
 
 获取ID，如果是Lane，id是Lane的ID， 如果是车道连接，id是"车道连接"ID
 
-Ø **qreal length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-获取车道或"车道连接"长度，默认单位：像素
+获取长度，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
 Ø **ISection\* section()**
 
@@ -307,77 +315,86 @@ Worker节点标识，在分布式环境可用
 
 根据ID获取下游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回下游指定ID的"车道连接"；如果当前是连接段，id 为 0 返回下游车道，否则返回空指针。
 
-Ø **QList< QPointF > centerBreakPoints()**
+Ø **QList< QPointF > centerBreakPoints(UnitOfMeasure unit)**
 
-车道或"车道连接"中心线断点集
-
-Ø **QList< QPointF > leftBreakPoints()**
-
-车道或"车道连接"左侧线断点集
-
-Ø **QList< QPointF > rightBreakPoints()**
-
-车道或"车道连接"右侧线断点集
-
-Ø **QList< QVector3D > centerBreakPoint3Ds()**
-
-车道或"车道连接"中心线断点(三维)集
-
-Ø **QList< QVector3D > leftBreakPoint3Ds()**
-
-车道或"车道连接"左侧线断点(三维)集
-
-Ø **QList< QVector3D > rightBreakPoint3Ds()**
-
-车道或"车道连接"右侧线断点(三维)集
-
-Ø **QList< QVector3D > leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
-
-车道或"车道连接"左侧部分断点(三维)集
-
+获取中心线断点集，默认单位：像素，可通过unit参数设置单位
 参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+Ø **QList< QPointF > leftBreakPoints(UnitOfMeasure unit)**
+
+获取左侧线断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QPointF > rightBreakPoints(UnitOfMeasure unit)**
+
+获取右侧线断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > centerBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取中心线三维断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > leftBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取左侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > rightBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
+
+获取左侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
+参数：
 [ in ] fromPoint：中心线上某一点作为起点
-
 [ in ] toPoint：中心线上某一点作为终点
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
-Ø **QList< QVector3D > rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
+Ø **QList< QVector3D > rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
 
-车道或"车道连接"右侧部分断点(三维)集
-
+获取右侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
 参数：
-
 [ in ] fromPoint：中心线上某一点作为起点
-
 [ in ] toPoint：中心线上某一点作为终点
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal distToStartPoint(const QPointF p)**
+Ø **qreal distToStartPoint(const QPointF p, UnitOfMeasure unit)**
 
-中心线上一点到起点距离
-
-Ø **qreal distToStartPointWithSegmIndex(const QPointF p, int segmIndex, bool bOnCentLine)**
-
-中心线上一点到起点距离，附加条件是该点所在车道上的分段序号
+中心线上一点到起点距离，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] p：当前点坐标
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
-[ in ] p：当前中心线上点或附近点的坐标
+Ø **qreal distToStartPointWithSegmIndex(const QPointF p, int segmIndex = 0, bool bOnCentLine = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-[ in ] segmIndex：参数p点所在车道上的分段序号
-
-[ in ] bOnCentLine：参数p点是否在中心线上
-
-Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex)**
-
-求中心线起点向前延伸dist距离后所在点及分段序号, 如果目标点不在中心线上返回false，否则返回true
+中心线上一点到起点距离，附加条件是该点所在车道上的分段序号，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] p：当前点坐标
+[ in ] segmIndex：该点所在车道上的分段序号
+[ in ] bOnCentLine：是否在中心线上
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+注：如传入米制参数，请勿遗忘传入segmIndex与bOnCentLine参数。
+
+Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex, UnitOfMeasure unit)**
+
+求中心线起点向前延伸dist距离后所在点及分段序号,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
+参数：
 [ in ] dist：中心线起点向前延伸的距离
-
 [ out ] outPoint：中心线起点向前延伸dist距离后所在点
-
 [ out ] outIndex：中心线起点向前延伸dist距离后所在分段序号
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -393,9 +410,14 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 	}
 ```
 
-Ø **bool getPointByDist(qreal dist, QPointF& outPoint)**
+Ø **bool getPointByDist(qreal dist, QPointF& outPoint, UnitOfMeasure unit)**
 
-求中心线起点向前延伸dist距离后所在点, 如果目标点不在中心线上返回false，否则返回true
+求中心线起点向前延伸dist距离后所在点,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] dist：中心线起点向前延伸的距离
+[ out ] outPoint：中心线起点向前延伸dist距离后所在点
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
 Ø **void setOtherAttr(QJsonObject attr)**
 
@@ -425,21 +447,29 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 
 获取路段ID
 
-Ø **qreal length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-获取路段长度，默认单位：像素
+获取路段长度，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal width()**
+Ø **qreal width(UnitOfMeasure unit)**
 
-获取路段宽度，默认单位：像素
+获取路段宽度，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal z()**
+Ø **qreal z(UnitOfMeasure unit)**
 
-获取路段高程
+获取路段高程，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal v3z()**
+Ø **qreal v3z(UnitOfMeasure unit)**
 
-获取路段高程，过载ISection的方法
+获取路段高程,过载ISection的方法，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QString name()**
 
@@ -461,17 +491,18 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 
 获取车道数
 
-Ø **double limitSpeed()**
+Ø **double limitSpeed(UnitOfMeasure unit)**
 
-获取路段最高限速，单位：千米/小时
-
-Ø **void setLimitSpeed(qreal speed)**
-
-设置最高限速
-
+获取路段最高限速，默认单位：千米/小时
 参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] speed：最高限速，单位：千米/小时
+Ø **void setLimitSpeed(qreal speed, UnitOfMeasure unit)**
+
+设置路段最高限速，默认单位：千米/小时
+参数：
+[ in ] speed：限速值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
   举例：
 
@@ -487,9 +518,11 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 
 ```
 
-Ø **qreal minSpeed()**
+Ø **qreal minSpeed(UnitOfMeasure unit)**
 
-最低限速，单位：千米/小时
+获取路段最低限速，默认单位：千米/小时
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -505,37 +538,49 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 车道及"车道连接"的接口列表
 
-Ø **QList< QPointF > centerBreakPoints()**
+Ø **QList< QPointF > centerBreakPoints(UnitOfMeasure unit)**
 
-路段中心线断点集
+获取路段中心线断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **QList< QPointF > leftBreakPoints()**
+Ø **QList< QPointF > leftBreakPoints(UnitOfMeasure unit)**
 
-路段左侧线断点集
+获取路段左侧线断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **QList< QPointF > rightBreakPoints()**
+Ø **QList< QPointF > rightBreakPoints(UnitOfMeasure unit)**
 
-路段右侧线断点集
+获取路段右侧线断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **QList< QVector3D > centerBreakPoint3Ds()**
+Ø **QList< QVector3D > centerBreakPoint3Ds(UnitOfMeasure unit)**
 
-路段中心线断点(三维)集
+获取路段中心线三维断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **QList< QVector3D > leftBreakPoint3Ds()**
+Ø **QList< QVector3D > leftBreakPoint3Ds(UnitOfMeasure unit)**
 
-路段左侧线断点(三维)集
+获取路段左侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **QList< QVector3D > rightBreakPoint3Ds()**
+Ø **QList< QVector3D > rightBreakPoint3Ds(UnitOfMeasure unit)**
 
-路段右侧线断点(三维)集
+获取路段右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QList< IConnector\* > fromConnectors()**
 
-上游连接段列表
+获取上游连接段列表
 
 Ø **QList< IConnector\* > toConnectors()**
 
-下游连接段列表
+获取下游连接段列表
 
 Ø **ISection\* fromSection(long id)**
 
@@ -557,25 +602,29 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 设置车道其它属性
 
-Ø **qreal distToStartPoint(const QPointF p)**
+Ø **qreal distToStartPoint(const QPointF p, UnitOfMeasure unit)**
 
-中心线上一点到起点距离
-
-Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex)**
-
-求中心线起点向前延伸dist距离后所在点及分段序号, 如果目标点不在中心线上返回false，否则返回true
-
+中心线上一点到起点距离，默认单位：像素，可通过unit参数设置单位
 参数：
+[ in ] p：当前点坐标
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex, UnitOfMeasure unit)**
+
+求中心线起点向前延伸dist距离后所在点及分段序号,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
+参数：
 [ in ] dist：中心线起点向前延伸的距离
-
 [ out ] outPoint：中心线起点向前延伸dist距离后所在点
-
 [ out ] outIndex：中心线起点向前延伸dist距离后所在分段序号
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **bool getPointByDist(qreal dist, QPointF& outPoint)**
+Ø **bool getPointByDist(qreal dist, QPointF& outPoint, UnitOfMeasure unit)**
 
-求中心线起点向前延伸dist距离后所在点, 如果目标点不在中心线上返回false，否则返回true
+求中心线起点向前延伸dist距离后所在点,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] dist：中心线起点向前延伸的距离
+[ out ] outPoint：中心线起点向前延伸dist距离后所在点
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QPolygonF polygon()**
 
@@ -605,13 +654,17 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 获取车道所属Section
 
-Ø **qreal length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-获取车道长度，默认单位：像素
+获取车道长度，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal width()**
+Ø **qreal width(UnitOfMeasure unit)**
 
-获取车道宽度，默认单位：像素
+获取车道宽度，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **int number()**
 
@@ -629,81 +682,103 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 根据ID获取下游 LaneObject。id 为 0 返回空指针，否则返回下游指定ID的"车道连接"
 
-Ø **QList< QPointF > centerBreakPoints()**
+Ø **QList< QPointF > centerBreakPoints(UnitOfMeasure unit)**
 
-获取车道中心点断点集，断点坐标用像素表示
-
-Ø **QList< QPointF > leftBreakPoints()**
-
-车道左侧线断点集
-
-Ø **QList< QPointF > rightBreakPoints()**
-
-车道右侧线断点集
-
-Ø **QList< QVector3D > centerBreakPoint3Ds()**
-
-车道中心线断点(三维)集
-
-Ø **QList< QVector3D > leftBreakPoint3Ds()**
-
-车道左侧线断点(三维)集
-
-Ø **QList< QVector3D > rightBreakPoint3Ds()**
-
-车道右侧线断点(三维)集
-
-Ø **QList< QVector3D > leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
-
-车道左侧部分断点(三维)集
+获取车道中心线断点集，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+Ø **QList< QPointF > leftBreakPoints(UnitOfMeasure unit)**
+
+获取车道左侧线断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QPointF > rightBreakPoints(UnitOfMeasure unit)**
+
+获取车道右侧线断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > centerBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取车道中心线三维断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > leftBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取车道左侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > rightBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取车道右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
+
+获取左侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
 [ in ] fromPoint：中心线上某一点作为起点
-
 [ in ] toPoint：中心线上某一点作为终点
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
-Ø **QList< QVector3D > rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
+Ø **QList< QVector3D > rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
 
-车道右侧部分断点(三维)集
-
+获取右侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
 参数：
-
 [ in ] fromPoint：中心线上某一点作为起点
-
 [ in ] toPoint：中心线上某一点作为终点
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal distToStartPoint(const QPointF p)**
+Ø **qreal distToStartPoint(const QPointF p, UnitOfMeasure unit)**
 
-中心线上一点到起点距离
-
-Ø **qreal distToStartPointWithSegmIndex(const QPointF p, int segmIndex = 0, bool bOnCentLine = true)**
-
-中心线上一点到起点距离，附加条件是该点所在车道上的分段序号
+中心线上一点到起点距离，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] p：当前点坐标
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+Ø **qreal distToStartPointWithSegmIndex(const QPointF p, int segmIndex = 0, bool bOnCentLine = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
+
+中心线上一点到起点距离，附加条件是该点所在车道上的分段序号，默认单位：像素，可通过unit参数设置单位
+
+参数：
 [ in ] p：当前中心线上该点坐标
-
 [ in ] segmIndex：该点所在车道上的分段序号
-
 [ in ] bOnCentLine：是否在中心线上
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex)**
+注：如传入米制参数，请勿遗忘传入segmIndex与bOnCentLine参数。
 
-求中心线起点向前延伸dist距离后所在点及分段序号, 如果目标点不在中心线上返回false，否则返回true
+Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex, UnitOfMeasure unit)**
+
+求中心线起点向前延伸dist距离后所在点及分段序号,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 [ in ] dist：中心线起点向前延伸的距离
-
 [ out ] outPoint：中心线起点向前延伸dist距离后所在点
-
 [ out ] outIndex：中心线起点向前延伸dist距离后所在分段序号
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **bool getPointByDist(qreal dist, QPointF& outPoint)**
+Ø **bool getPointByDist(qreal dist, QPointF& outPoint, UnitOfMeasure unit)**
 
-求中心线起点向前延伸dist距离后所在点, 如果目标点不在中心线上返回false，否则返回true
+求中心线起点向前延伸dist距离后所在点,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] dist：中心线起点向前延伸的距离
+[ out ] outPoint：中心线起点向前延伸dist距离后所在点
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **void setOtherAttr(QJsonObject attr)**
 
@@ -737,17 +812,26 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 获取连接段ID
 
-Ø **qreal length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-获取连接段长度
+获取连接段长度，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal z()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-获取连接段高程
+Ø **qreal z(UnitOfMeasure unit)**
 
-Ø **qreal v3z()**
+获取连接段高程，默认单位：像素，可通过unit参数设置单位
 
-获取连接段高程，继承自ISection的方法
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal v3z(UnitOfMeasure unit)**
+
+获取连接段高程，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QString name()**
 
@@ -773,13 +857,18 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 根据ID获取下游 Sction。如果当前是路段, id 为 0 返回空指针，否则返回下游指定ID的连接段；如果当前是连接段，id 为 0 返回下游路段，否则返回空指针。
 
-Ø **qreal limitSpeed()**
+Ø **qreal limitSpeed(UnitOfMeasure unit)**
 
-获取最高限速，以起始路段的最高限速作为连接段的最高限速
+获取连接段最高限速，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal minSpeed()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-获取最低限速，以起始路段的最低限速作为连接段的最低限速
+Ø **qreal minSpeed(UnitOfMeasure unit)**
+
+获取连接段最低限速，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QList< ILaneConnector\* > laneConnectors()**
 
@@ -875,73 +964,111 @@ for (ILaneObject*& pLaneObj : lConnLaneObjs) {
 			}
 ```
 
-Ø **qreal length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-"车道连接"长度
-
-Ø **QList< QPointF > centerBreakPoints()**
-
-获取"车道连接"中心线断点集，断点坐标用像素表示
-
-Ø **QList< QPointF > leftBreakPoints()**
-
-"车道连接"左侧线断点集
-
-Ø **QList< QPointF > rightBreakPoints()**
-
-"车道连接"右侧线断点集
-
-Ø **QList< QVector3D > centerBreakPoint3Ds()**
-
-"车道连接"中心线断点(三维)集
-
-Ø **QList< QVector3D > leftBreakPoint3Ds()**
-
-"车道连接"左侧线断点(三维)集
-
-Ø **QList< QVector3D > rightBreakPoint3Ds()**
-
-"车道连接"右侧线断点(三维)集
-
-Ø **QList< QVector3D > leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
-
-"车道连接"左侧部分断点(三维)集
-
-Ø **QList< QVector3D > rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint)**
-
-"车道连接"右侧部分断点(三维)集
-
-Ø **qreal distToStartPoint(const QPointF p)**
-
-中心线上一点到起点距离
-
-Ø **qreal distToStartPointWithSegmIndex(const QPointF p, int segmIndex = 0, bool bOnCentLine = true)**
-
-中心线上一点到起点距离，附加条件是该点所在车道上的分段序号
+获取车道连接长度，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] p：当前中心线上该点坐标
+Ø **QList< QPointF > centerBreakPoints(UnitOfMeasure unit)**
 
-[ in ] segmIndex：该点所在车道上的分段序号
+获取车道连接中心线断点集，默认单位：像素，可通过unit参数设置单位
 
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QPointF > leftBreakPoints(UnitOfMeasure unit)**
+
+获取车道连接左侧线断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QPointF > rightBreakPoints(UnitOfMeasure unit)**
+
+获取车道连接右侧线断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > centerBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取车道连接中心线三维断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > leftBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取车道连接左侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > rightBreakPoint3Ds(UnitOfMeasure unit)**
+
+获取车道连接右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
+
+获取车道连接左侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
+	
+参数：
+[ in ] fromPoint：中心线上某一点作为起点
+[ in ] toPoint：中心线上某一点作为终点
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< QVector3D > rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
+
+获取车道连接右侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] fromPoint：中心线上某一点作为起点
+[ in ] toPoint：中心线上某一点作为终点
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal distToStartPoint(const QPointF p, UnitOfMeasure unit)**
+
+中心线上一点到起点距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] p：当前点坐标
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal distToStartPointWithSegmIndex(const QPointF p, int segmIndex, bool bOnCentLine, UnitOfMeasure unit = UnitOfMeasure::Default)**
+
+中心线上一点到起点距离，附加条件是该点所在车道上的分段序号，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] p：当前点坐标
+[ in ] segmIndex：分段序号
 [ in ] bOnCentLine：是否在中心线上
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex)**
+注：如传入米制参数，请勿遗忘传入segmIndex与bOnCentLine参数。
 
-求中心线起始point向前延伸dist距离后所在点及分段序号, 如果目标点不在中心线上返回false，否则返回true
+Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex, UnitOfMeasure unit)**
+
+求中心线起点向前延伸dist距离后所在点及分段序号,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 [ in ] dist：中心线起点向前延伸的距离
-
 [ out ] outPoint：中心线起点向前延伸dist距离后所在点
-
 [ out ] outIndex：中心线起点向前延伸dist距离后所在分段序号
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **bool getPointByDist(qreal dist, QPointF& outPoint)**
+Ø **bool getPointByDist(qreal dist, QPointF& outPoint, UnitOfMeasure unit)**
 
-求中心线起始point向前延伸dist距离后所在点, 如果目标点不在中心线上返回false，否则返回true
+求中心线起点向前延伸dist距离后所在点,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] dist：中心线起点向前延伸的距离
+[ out ] outPoint：中心线起点向前延伸dist距离后所在点
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **void setOtherAttr(QJsonObject attr)**
 
@@ -963,9 +1090,12 @@ for (ILaneObject*& pLaneObj : lConnLaneObjs) {
 
 面域相关所有连接段
 
-Ø **QPointF centerPoint()**
+Ø **QPointF centerPoint(UnitOfMeasure unit)**
 
-面域中心点
+获取面域中心点位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **int workerKey()**
 
@@ -1052,9 +1182,12 @@ if (pLink1) {
 
 决策点所在路段
 
-Ø **qreal distance()**
+Ø **qreal distance(UnitOfMeasure unit)**
 
-距路段起点距离，默认单位：像素
+获取距路段起点距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QList< IRouting\* > routings()**
 
@@ -1084,9 +1217,12 @@ if (pLink1) {
 
 路径ID
 
-Ø **qreal calcuLength()**
+Ø **qreal calcuLength(UnitOfMeasure unit)**
 
-计算路径长度
+计算路径长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QList< ILink\* > getLinks()**
 
@@ -1140,9 +1276,13 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 获取相位
 
-Ø **void setDistToStart(qreal dist)**
+Ø **void setDistToStart(qreal dist, UnitOfMeasure unit)**
 
-设置信号灯距车道起点（或"车道连接"起点）距离，默认单位：像素
+设置信号灯距路段起点距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] dist：距离值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QPolygonF polygon()**
 
@@ -1273,9 +1413,12 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 线路名称
 
-Ø **double length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-长度,单位：像素
+获取公交线路长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **int dispatchFreq()**
 
@@ -1289,9 +1432,12 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 发车结束时间(秒)
 
-Ø **qreal desirSpeed()**
+Ø **qreal desirSpeed(UnitOfMeasure unit)**
 
-期望速度(km/h)
+获取公交线路期望速度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **int passCountAtStartTime()**
 
@@ -1325,9 +1471,13 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 设置结束发车时间
 
-Ø **void setDesirSpeed(qreal desirSpeed)**
+Ø **void setDesirSpeed(qreal speed, UnitOfMeasure unit)**
 
-设置线路的期望速度
+设置公交线路期望速度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] speed：速度值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -1364,17 +1514,26 @@ if (pBusLine) {
 
 公交站点所在车道序号
 
-Ø **qreal x()**
+Ø **qreal x(UnitOfMeasure unit)**
 
-位置X
+获取站点X坐标，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal y()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-位置Y
+Ø **qreal y(UnitOfMeasure unit)**
 
-Ø **qreal length()**
+获取站点Y坐标，默认单位：像素，可通过unit参数设置单位
 
-长度
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal length(UnitOfMeasure unit)**
+
+获取站点长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **int stationType()**
 
@@ -1388,25 +1547,32 @@ if (pBusLine) {
 
 公交站点所在车道
 
-Ø **qreal distance()**
+Ø **qreal distance(UnitOfMeasure unit)**
 
-公交站点的起始位置距路段起点距离，默认单位：像素
+获取站点距路段起点距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **void setName(QString name)**
 
 设置站点名称
 
-Ø **void setDistToStart(qreal dist)**
+Ø **void setDistToStart(qreal dist, UnitOfMeasure unit)**
 
-设置站点起始点距车道起点距离，默认单位：像素
+设置站点距路段起点距离，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] dist：距离值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] dist：距车道起点距离
+Ø **void setLength(qreal length, UnitOfMeasure unit)**
 
-Ø **void setLength(qreal length)**
+设置站点长度，默认单位：像素，可通过unit参数设置单位
 
-设置长度，默认单位：像素
+参数：
+[ in ] length：长度值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **void setType(int type)**
 
@@ -1521,13 +1687,18 @@ QList< IBusStationLine* > lStationLine = pBusLine->stationLines();
 
 如果采集器在连接段上则laneConnector返回"车道连接",lane()返回nullptr
 
-Ø **qreal distToStart()**
+Ø **qreal distToStart(UnitOfMeasure unit)**
 
-采集器距离起点距离，默认单位：像素
+获取采集器距路段起点距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **QPointF point()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-采集器所在点
+Ø **QPointF point(UnitOfMeasure unit)**
+
+获取采集器位置坐标，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **long fromTime()**
 
@@ -1545,13 +1716,13 @@ QList< IBusStationLine* > lStationLine = pBusLine->stationLines();
 
 设置采集器名称
 
-Ø **void setDistToStart(qreal dist)**
+Ø **void setDistToStart(qreal dist, UnitOfMeasure unit)**
 
-设置采集器距车道起点（或"车道连接"起点）距离
+设置采集器距路段起点距离，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] dist：采集器距离车道起点（或"车道连接"起点）的距离，默认单位：像素
+[ in ] dist：距离值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -1613,13 +1784,19 @@ pCollector->setDistToStart(m2p(400));
 
 如果计数器在连接段上则laneConnector返回"车道连接",lane()返回nullptr
 
-Ø **qreal distToStart()**
+Ø **qreal distToStart(UnitOfMeasure unit)**
 
-计数器距离起点距离，默认单位：像素
+获取计数器距路段起点距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **QPointF point()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-计数器所在点
+Ø **QPointF point(UnitOfMeasure unit)**
+
+获取计数器位置坐标，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -1645,13 +1822,13 @@ qDebug() << "计数器所在点坐标为：(" << pCounter->point().x() <<","<< p
 
 设置计数器名称
 
-Ø **void setDistToStart(qreal dist)**
+Ø **void setDistToStart(qreal dist, UnitOfMeasure unit)**
 
-设置计数器距车道起点（或"车道连接"起点）距离
+设置计数器距路段起点距离，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] dist：计数器距离车道起点（或"车道连接"起点）的距离，默认单位：像素
+[ in ] dist：距离值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **void setFromTime(long time)**
 
@@ -1713,21 +1890,33 @@ qDebug() << "计数器所在点坐标为：(" << pCounter->point().x() <<","<< p
 
 如果检测器终点在连接段上则laneConnector_endDetector()返回终点"车道连接",link_endDetector()返回nullptr
 
-Ø **qreal distance_startDetector()**
+Ø **qreal distance_startDetector(UnitOfMeasure unit)**
 
-检测器起点距离所在车道起点或"车道连接"起点距离，默认单位：像素
+获取起点检测器距路段起点距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal distance_endDetector()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-检测器终点距离所在车道起点或"车道连接"起点距离，默认单位：像素
+Ø **qreal distance_endDetector(UnitOfMeasure unit)**
 
-Ø **QPointF point_startDetector()**
+获取终点检测器距路段起点距离，默认单位：像素，可通过unit参数设置单位
 
-检测器起点位置
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-Ø **QPointF point_endDetector()**
+Ø **QPointF point_startDetector(UnitOfMeasure unit)**
 
-检测器终点位置
+获取起点检测器位置坐标，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QPointF point_endDetector(UnitOfMeasure unit)**
+
+获取终点检测器位置坐标，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **long fromTime()**
 
@@ -1745,13 +1934,21 @@ qDebug() << "计数器所在点坐标为：(" << pCounter->point().x() <<","<< p
 
 设置检测器名称
 
-Ø **void setDistance_startDetector(qreal dist)**
+Ø **void setDistance_startDetector(qreal dist, UnitOfMeasure unit)**
 
-设置检测器起点距车道起点（或"车道连接"起点）距离，默认单位：像素
+设置起点检测器距路段起点距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **void setDistance_endDetector(qreal dist)**
+参数：
+[ in ] dist：距离值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-设置检测器终点距车道起点（或"车道连接"起点）距离，默认单位：像素
+Ø **void setDistance_endDetector(qreal dist, UnitOfMeasure unit)**
+
+设置终点检测器距路段起点距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] dist：距离值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **void setFromTime(long time)**
 
@@ -1801,13 +1998,19 @@ QList< IVehicleTravelDetector* > lVehicleTravelDetector = gpTessInterface->netIn
 
 获取导向箭头所在的车道
 
-Ø **qreal length()**
+Ø **qreal length(UnitOfMeasure unit)**
 
-获取导向箭头的长度，默认单位：像素
+获取导向箭头长度，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal distToTerminal()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-获取导向箭头到的终点距离，默认单位：像素
+Ø **qreal distToTerminal(UnitOfMeasure unit)**
+
+获取导向箭头到终点距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **Online::GuideArrowType arrowType()**
 
@@ -1840,13 +2043,26 @@ IGuidArrow* pGuideArrow = gpTessInterface->netInterface()->createGuidArrow(pRigh
 
 获取事故区名称
 
-Ø **qreal location()**
+Ø **qreal location(UnitOfMeasure unit)**
 
-获取事故区距所在路段起点的距离，默认单位：像素
+获取事故区距所在路段起点的距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal zoneLength()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-获取事故区长度，默认单位：像素
+Ø **qreal zoneLength(UnitOfMeasure unit)**
+
+获取事故区长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal limitedSpeed(UnitOfMeasure unit)**
+
+获取事故区限速，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **ISection\* section()**
 
@@ -1872,26 +2088,6 @@ qDebug() << pAccidentZone-> roadType() << endl;
 
 获取事故区占用的车道列表
 
-Ø **int level()**
-
-事故等级，分4级，默认为未定等级(0级)持续时间未定，事故区不会自动移除，一般事故(1级)持续时间10分钟，普通事故(2)级持续时间1小时，重大事故(3级)持续时间3小时
-
-Ø **long duration()**
-
-事故持续时间，单位：秒。如果值为0，事故持续时间由事故等级决定，大于0则由此值决定
-
-Ø **int needRescue()**
-
-是否需要救援，如果为-1，由事故等级决定，重大事故需要求援，如为0不需救援，如果为1需要救援
-
-Ø **long waitTimeBeforeRescue()**
-
-救援车辆发车时间距事故产生的时间，默认单位：秒，默认60秒
-
-Ø **int rescueTime()**
-
-救援时间，默认60秒，即救援车辆停靠在事故区旁的时间，单位秒
-
 ### 2.23 IRoadWorkZone
 
 施工区接口
@@ -1908,17 +2104,26 @@ qDebug() << pAccidentZone-> roadType() << endl;
 
 获取施工区名称
 
-Ø **qreal location()**
+Ø **qreal location(UnitOfMeasure unit)**
 
-获取施工区距所在路段起点的距离，默认单位：像素
+获取施工区距所在路段起点的距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal zoneLength()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-获取施工区长度，默认单位：像素
+Ø **qreal zoneLength(UnitOfMeasure unit)**
 
-Ø **qreal limitSpeed()**
+获取施工区长度，默认单位：像素，可通过unit参数设置单位
 
-施工区限速（最大车速:像素/秒）
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal limitSpeed(UnitOfMeasure unit)**
+
+获取施工区限速，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **long sectionId()**
 
@@ -1950,7 +2155,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 ### 2.24 ILimitedZone
 
-限制区域接口
+限行区域接口
 
 接口文件：ILimitedZone.h
 
@@ -1958,23 +2163,32 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 Ø **long id()**
 
-获取限制区ID
+获取限行区ID
 
 Ø **QString name()**
 
-获取限制区名称
+获取限行区名称
 
-Ø **qreal location()**
+Ø **qreal location(UnitOfMeasure unit)**
 
-获取距起点距离，单位：米
+获取限行区距所在路段起点的距离，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal zoneLength()**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-获取限制区长度，单位：米
+Ø **qreal zoneLength(UnitOfMeasure unit)**
 
-Ø **qreal limitSpeed()**
+获取限行区长度，默认单位：像素，可通过unit参数设置单位
 
-获取限制区限速（最大车速），单位：千米/小时
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal limitSpeed(UnitOfMeasure unit)**
+
+获取限行区限速，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **long sectionId()**
 
@@ -2016,9 +2230,12 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取被借道限行区ID
 
-Ø **qreal passagewayLength()**
+Ø **qreal passagewayLength(UnitOfMeasure unit)**
 
-获取保通长度，单位：米
+获取保通长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **long duration()**
 
@@ -2028,9 +2245,12 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取借道数量
 
-Ø **qreal passagewayLimitedSpeed()**
+Ø **qreal passagewayLimitedSpeed(UnitOfMeasure unit)**
 
-获取保通开口限速，单位：米/秒
+获取保通开口限速，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **Online::DynaReconstructionParam dynaReconstructionParam()**
 
