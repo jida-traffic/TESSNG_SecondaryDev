@@ -1091,7 +1091,8 @@ if link1:
 
  **def number(self) -> int: ...**
 
-获取一个灯组中的相位序号，从1开始，对应TESSNG相位列表中的相位编号，表示相位从上到下的序号。
+获取一个灯组中的相位序号，从1开始，对应TESSNG相位列表中的相位编号，表示相位从上到下的序号。？？？
+获取一个信号方案中的相位序号，从1开始对应TESSNG相位列表中的相位编号，表示相位从上到下的序号。
 
  **def phaseName(self) -> str: ...**
 
@@ -1099,7 +1100,7 @@ if link1:
 
  **def signalGroup(self) -> Tessng.ISignalGroup: ...**
 
-获取相位所在信号灯组对象
+获取相位所在信号灯组对象？？？即信控方案
 
  **def signalLamps(self) -> typing.List: ...**
 
@@ -1144,15 +1145,15 @@ if method_number == 3:
 
  **def id(self) -> int: ...**
 
-获取当前信号灯组ID
+获取当前信号灯组ID（信控方案）
 
  **def groupName(self) -> str: ..**
 
-获取当前信号灯组名称
+获取当前信号灯组名称（信控方案）
 
  **def periodTime(self) -> int: ...**
 
-获取当前信号灯组信控方案的信号周期：单位秒
+获取当前信号灯组（信控方案）的信号周期：单位秒
 
  **def fromTime(self) -> int: ...**
 
@@ -1761,11 +1762,11 @@ lVehicleTravelDetector = tessngIFace().netInterface().createVehicleTravelDetecto
 
  **def location(self) -> float: ...**
 
-获取事故区距所在路段起点的距离，默认单位：像素
+获取事故区距所在路段起点的距离，默认单位：米
 
  **def zoneLength(self) -> float: ...**
 
-获取事故区长度，默认单位：像素
+获取事故区长度，默认单位：米
 
  **def section(self) -> Tessng.ISection: ...**
 
@@ -1787,8 +1788,6 @@ zone = tessngIFace().netInterface().createAccidentZone(accidentZone)
 print(zone.roadType())
 
 ```
-
- 
 
  **def laneObjects(self) -> typing.List: ...**
 
@@ -1830,15 +1829,15 @@ print(zone.roadType())
 
  **def location(self) -> float: ...**
 
-获取施工区距所在路段起点的距离，默认单位：像素
+获取施工区距所在路段起点的距离，默认单位：米
 
  **def zoneLength(self) -> float: ...**
 
-获取施工区长度，默认单位：像素
+获取施工区长度，默认单位：米
 
  **def limitSpeed(self) -> float: ...**
 
-施工区限速（最大车速:像素/秒）
+施工区限速（最大车速:米/秒）
 
  **def sectionId(self) -> int: ...**
 
@@ -1872,7 +1871,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 
 ### 2.24. ILimitedZone
 
-限制区接口，方法如下：
+限制区接口（借道施工的被借车道，限制对向车辆行走的区域？），方法如下：
 
  **def id(self) -> int: ...**
 
@@ -2031,15 +2030,15 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 设置信控方案（V3版本的信号灯组）的信号周期， 单位：秒 ？？？
 
 
- **def setFromTime(time: float) -> None: ...**
+ **def setFromTime(time: int) -> None: ...**
 
-设置信控方案（V3版本的信号灯组）起作用时段的起始时间， 单位：秒 ， 支持小数？？？？
+设置信控方案（V3版本的信号灯组）起作用时段的起始时间， 单位：秒 ，
 
 
 
- **def setToTime(time: float) -> None: ...**
+ **def setToTime(time: int) -> None: ...**
 
-设置信控方案（V3版本的信号灯组）起作用时段的结束时间， 单位：秒 ， 支持小数？？？？
+设置信控方案（V3版本的信号灯组）起作用时段的结束时间， 单位：秒 ，
 
 
 
@@ -2074,7 +2073,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 
 
  **def idValid(self) -> boolen: ...**
-检查信号机的有效性， 检查哪些内容需要补充？？？
+检查信号机的有效性， 检查哪些内容 需要补充？？？
 
 
 
@@ -2094,14 +2093,14 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取收费车道起点距当前所在路段起始位置的距离。单位：米 
 
 
- **def setName(name: str) -> None: ...**
+ **def setName(self,name: str) -> None: ...**
 设置收费车道名称
 \[in\] name ：信控方案
 
 
 
 
- **def setWorkTime(startTime: int, endTime: int) -> None: ...**
+ **def setWorkTime(self, startTime: int, endTime: int) -> None: ...**
 设置收费车道的工作时间，不设置时，默认与仿真时间对应 ？？？
 \[in\] startTime 开始时间（秒）
 \[in\] endTime 结束时间（秒）
@@ -2135,7 +2134,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取收费决策点的所有收费路径
 
  **def tollDisInfoList(self) ->Type.List<TollDisInfo>: ...**
-获取收费决策点收费路径分配信息列表， 如何设置这些信息列表？？？
+获取收费决策点收费路径分配信息列表
 返回值是 TollDisInfo 不是 ITollDisInfo？？？
 
  **def polygon(self) -> QPolygonF: ...**
@@ -2156,11 +2155,11 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取收费决策路径长度，单位：米； 收费路径长度是指：收费决策点到收费车道
 
 
- **def contain(pRoad: Tessng.ISection) -> boolen: ...**
+ **def contain(self, pRoad: Tessng.ISection) -> boolen: ...**
 判断输入的路段是否在当前路径上
 \[in\] pRoad ：路段或连接段
 
- **def nextRoad(pRoad: Tessng.ISection) -> Tessng.ISection: ...**
+ **def nextRoad(self,pRoad: Tessng.ISection) -> Tessng.ISection: ...**
 获取输入路段的紧邻下游道路
 \[in\] pRoad ：路段或连接段
 
@@ -2171,7 +2170,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 ### 2.32. ITollPoint
 
 收费站停车点接口
-
+ 
  **def id(self) -> int: ...**
 获取收费站停车点位ID 
 
@@ -2182,7 +2181,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取收费站停车点所在的车道ID，注意不是车辆从左到右的序号
 
 
- **def setEnabled(enabled: bool) -> bool: ...**
+ **def setEnabled(self,enabled: bool) -> bool: ...**
 设置当前收费站停车点是否启用， 返回是否设置成功的标签
 \[in\] enabled ：默认为True表示启用， 若传入False则表明禁用该收费站点
 
@@ -2211,7 +2210,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取所属停车区域名称
 
 
- **def setName(name: str) -> None: ...**
+ **def setName(self,name: str) -> None: ...**
 设置停车区域名称
 \[in\] name ：停车区域名称
 
@@ -2258,12 +2257,12 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取停车决策路径的长度，单位：米
 
 
- **def contain(pRoad: ISection) -> boolen: ...**
+ **def contain(self,pRoad: ISection) -> boolen: ...**
 判断输入的道路（ 路段或连接段）是否在当前停车决策路径上
 \[in\] pRoad ：道路对象，类型为Tessng.ISection
 
 
- **def nextRoad(pRoad: ISection) -> Tessng.ISection: ...**
+ **def nextRoad(self,pRoad: ISection) -> Tessng.ISection: ...**
 获取输入道路的紧邻下游道路
 \[in\] pRoad ：道路对象，类型为Tessng.ISection
 
@@ -2283,8 +2282,6 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
  **def setName(strName: str) -> int: ...**
 设置节点名称
 \[in\] strName ：节点名称
-
-？？？ 节点包含的路段连接段等内部信息呢
 
 
 ### 2.38. IPedestrian
@@ -2482,18 +2479,18 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取行人区域(面域)名称
 
 
- **def setName(name：str) -> None: ...**
+ **def setName(self，name：str) -> None: ...**
 设置行人区域(面域)名称
 
 
- **def setRegionColor(color:QColor) -> None: ...**
+ **def setRegionColor(self，color:QColor) -> None: ...**
 设置行人区域(面域)的颜色
 
  **def getPosition(self) -> QPointF: ...**
 获取行人区域(面域)的位置， 这里范围的面域中心点的位置，相对场景坐标系 or QT像素坐标系？？？？
 
 
- **def setPosition(scenePos: QPoint) ->  None: ...**
+ **def setPosition(self，scenePos: QPoint) ->  None: ...**
 设置行人区域(面域)的位置， 这里范围的面域中心点的位置，相对场景坐标系 or QT像素坐标系？？？？
 
  **def getGType(self) -> int: ...**
@@ -2503,14 +2500,14 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取行人区域(面域)的期望速度系数
 
 
- **def setExpectSpeedFactor(factor: float) -> None: ...**
+ **def setExpectSpeedFactor(self，factor: float) -> None: ...**
 设置行人区域(面域)的期望速度系数
 
 
  **def getElevation(self) -> None: ...**
 获取面域高程， 单位：米
 
- **def setElevation(elevation: float) -> None: ...**
+ **def setElevation(self，elevation: float) -> None: ...**
 设置面域高程， 单位：米
 
  **def getPolygon(self) -> None: ...**
@@ -2519,7 +2516,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
  **def getLayerId(self) -> int: ...**
 获取面域所在图层ID
 
- **def setLayerId(id:int) -> None: ...**
+ **def setLayerId(self，id:int) -> None: ...**
 将面域图层设置为图层id， 如果图层id非法，则不做任何改变
 
  **def isObstacle(self) -> boolen: ...**
@@ -2527,7 +2524,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
  
 
 
- **def setObstacle(b: bool) -> None: ...**
+ **def setObstacle(self，b: bool) -> None: ...**
 设置行人区域(面域)为障碍物，or 为非障碍物
 \[in\] b : 若b为True，则将行人区域设置为障碍物，若b为False，则将行人区域设置为非障碍物（行人区域原本为障碍物）
 
@@ -2535,7 +2532,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
  **def idBoardingArea(self) -> boolen: ...**
 判断行人区域(面域)是否为上客区域
 
- **def setIsBoardingArea(b: bool) -> boolen: ...**
+ **def setIsBoardingArea(self，b: bool) -> boolen: ...**
 设置行人区域(面域)为上客面域，or 为非上客面域
 \[in\] b : 若b为True，则将行人区域设置为上客面域，若b为False，则将行人区域设置为非上客面域
 
@@ -2544,7 +2541,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
  **def idAlightingArea(self) -> boolen: ...**
 判断行人区域(面域)是否为下客区域
 
- **def setIsAlightingArea(b: bool) -> boolen: ...**
+ **def setIsAlightingArea(self，b: bool) -> boolen: ...**
 设置行人区域(面域)为下客面域，or 为非下客面域
 \[in\] b : 若b为True，则将行人区域设置为下客面域，若b为False，则将行人区域设置为非下客面域
 
@@ -2559,7 +2556,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取人行道(面域)宽度， 单位：米
 
 
- **def setWidth(width:float) -> None: ...**
+ **def setWidth(self，width:float) -> None: ...**
 设置人行道(面域)宽度， 单位：米
 
 
@@ -2577,11 +2574,11 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取人行道(面域)候选顶点
 
 
- **def removeVetex(index: int) ->None: ...**
+ **def removeVetex(self，index: int) ->None: ...**
 删除人行道(面域)的第index个顶点： 顺序： 按照人行横道的绘制顺序排列
 
 
- **def insertVetex(pos: QPointF, index:int) ->None: ...**
+ **def insertVetex(self，pos: QPointF, index:int) ->None: ...**
 在人行道(面域)的第index的位置插入顶点，初始位置为pos： 顺序： 按照人行横道的绘制顺序排列
 
 
@@ -2604,7 +2601,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
  **def getWidth(self) -> int: ...**
 获取楼梯宽度， 单位：米
 
- **def setWidth(width:float) -> None: ...**
+ **def setWidth(self，width:float) -> None: ...**
 设置楼梯(面域)宽度， 单位：米
 
 
@@ -2707,7 +2704,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 获取行人信号灯所属人行横道
 没有获取信号灯id，关联信号机或者信控方案的get, set接口吗？？？
 
-创建新人信号灯的方法有吗？？？
+创建行人信号灯的方法有吗？？？
 
 
 
@@ -3724,11 +3721,7 @@ openNetFile("C:/TESSNG/Example/杭州武林门区域路网公交优先方案.tes
 
  **def findSignalPhase(self, id:int) -> Tessng.ISignalPhase: ...**
 
-根据信号相位ID查找信号相位
-
- **def findSignalPhase(self, id:int) -> Tessng.ISignalPhase: ...**
-
-信号灯组数
+根据信号相位ID查找信号相位??? 目前的接口有点问题，返回的是none
 
  **def signalGroupIds(self) -> typing.List: ...**
 
@@ -4470,7 +4463,7 @@ detector.setToTime(60)
 
  **def createSignalGroup(self, name:str, period:int, fromTime:int, toTime:int) -> Tessng.ISignalGroup: ...**
 
-创建信号灯组
+创建信号灯组（创建信控方案）
 
 参数：
 
@@ -5094,7 +5087,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
  **def addSignalPhaseToLamp(signalPhaseId:int, signalLamp:Tessng.ISignalLamp) ->None: ...**
 
-信号灯添加绑定的相位
+信号灯添加绑定的相位; 绑定行人信号灯ICrosswalkSignalLamp也是此函数，ICrosswalkSignalLamp 继承于 signalLamp
 参数：
 \[in\]  SignalPhaseId：信号相位ID
 \[in\] signalLamp：信号灯对象
@@ -5115,7 +5108,6 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 创建限速区
 参数：
-\[in\] pITrafficLight：信号机对象
 \[in\] name：限速区名称
 \[in\] location：距起点距离,单位像素
 \[in\] areaLength：限速区长度,单位像素
@@ -5347,16 +5339,16 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 
  **def getJunctionFlowTimeInfo() ->Type.List<Online.Junction.FlowTimeInterval > : ...**
-获得节点流向信息 ??? 这个又没有入参了？？
+获得节点流向时间段信息（所有节点共用一套流向时间段信息）
 参数
-\[out\]  节点流向时间信息， 外层字典key为，value为  ； 内层字典key为， value为
+\[out\]  节点流向时间信息
 
 
  **def addFlowTimeInterval() ->int : ...**
-添加流量时间段 ？？？ 没入参？？
+添加流量时间段 
 
  **def deleteFlowTimeInterval(timeId:int) ->bool : ...**
-删除流量时间段？？？ 没入参？？
+删除流量时间段
 参数
 \[in\] timeId：时间段ID
 \[out\] 是否删除成功
@@ -5966,7 +5958,7 @@ vehis = simuiface.allVehiStarted()
 
  **def getSignalPhasesColor(self) -> typing.List: ...**
 
-获取当前所有信号灯组相位颜色
+获取当前所有信号灯组相位颜色？？？？ 闪退
 
 返回:当前相位颜色Online.SignalPhaseColo列表，包括各相位当前颜色设置的时间和已持续时间。 
 
