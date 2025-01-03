@@ -4107,17 +4107,28 @@ openNetFile(QString::fromLocal8Bit("C:/TESSNG/Example/杭州武林门区域路�
 
 场景中的像素比，单位：米/像素
 
-Ø **void setSceneSize(qreal w, qreal h)**
+Ø **void setSceneSize(qreal w, qreal h, UnitOfMeasure unit)**
 
-设置场景大小，参数w及h分别是场景宽度和高度，单位：米
+设置场景大小，默认单位：像素，可通过unit参数设置单位
 
-Ø **qreal sceneWidth()**
+参数：
+[ in ] w：场景宽度
+[ in ] h：场景高度
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-场景宽度，单位：米
+Ø **qreal sceneWidth(UnitOfMeasure unit)**
 
-Ø **qreal sceneHeigth()**
+获取场景宽度，默认单位：像素，可通过unit参数设置单位
 
-场景高度，单位：米
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal sceneHeigth(UnitOfMeasure unit)**
+
+获取场景高度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **QByteArray backgroundMap()**
 
@@ -4296,21 +4307,21 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 面域集
 
-Ø **QList< QPointF > laneCenterPoints(long laneId)**
+Ø **QList< QPointF > laneCenterPoints(long laneId, UnitOfMeasure unit)**
 
-**指定车道中心线断点集**
-
-参数：­
-
-[ in ]laneId：指定车道ID
-
-Ø **QList< QPointF > linkCenterPoints(long linkId)**
-
-指定路段中心线断点集
+获取指定车道中心线断点集，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] laneId：指定车道ID
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ]linkId：指定路段ID
+Ø **QList< QPointF > linkCenterPoints(long linkId, UnitOfMeasure unit)**
+
+获取指定路段中心线断点集，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] linkId：指定路段ID
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **bool judgeLinkToCross(long linkId)**
 
@@ -4324,19 +4335,18 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 [ in ] name：路网元素名。路网元素名的定义在文件plugin/_netitem.h中定义
 
-Ø **ILink\* createLink(QList< QPointF > lCenterPoint, int laneCount, QString linkName = QString(), bool bAddToScene = true)**
+Ø **ILink* createLink(QList< QPointF > lCenterPoint, int laneCount, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-创建路段
+创建路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 [ in ] lCenterPoint：路段中心线断点集
-
 [ in ] laneCount：车道数
+[ in ] linkName：路段名称
+[ in ] bAddToScene：是否添加到场景
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] linkName：路段名，默认为空，将以路段ID作为路段名
-
-[ in ] bAddToScene：创建后是否放入路网场景，默认为true
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
   举例：
 
@@ -4357,65 +4367,63 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 返回：路段对象指针。
 
-Ø **ILink\* createLink3D(QList< QVector3D > lCenterV3, int laneCount, QString linkName = QString(), bool bAddToScene = true)**
+Ø **ILink\* createLink3D(QList< QVector3D > lCenterV3, int laneCount, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit)**
 
-创建路段
+创建3D路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] lCenterV3：路段中心线断点序列，每个断点都是三维空间的点
-
+[ in ] lCenterV3：路段中心线三维断点集
 [ in ] laneCount：车道数
+[ in ] linkName：路段名称
+[ in ] bAddToScene：是否添加到场景
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] linkName：路段名
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
 返回：路段对象指针。
 
-Ø **ILink\* createLinkWithLaneWidth(QList< QPointF > lCenterPoint, QList< qreal > lLaneWidth, QString linkName = QString(), bool bAddToScene = true)**
+Ø **ILink\* createLinkWithLaneWidth(QList< QPointF > lCenterPoint, QList< qreal > lLaneWidth, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-创建路段
+创建指定车道宽度的路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] lCenterPoint：路段中心线断点序列
-
+[ in ] lCenterPoint：路段中心线断点集
 [ in ] lLaneWidth：车道宽度列表
+[ in ] linkName：路段名称
+[ in ] bAddToScene：是否添加到场景
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] linkName：路段名
-
-[ in ] bAddToScene：是否加入场景，默认为true
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
 返回：路段对象指针。
 
-Ø **ILink\* createLink3DWithLaneWidth(QList< QVector3D > lCenterV3, QList< qreal > lLaneWidth, QString linkName = QString(), bool bAddToScene = true)**
+Ø **ILink* createLink3DWithLaneWidth(QList< QVector3D > lCenterV3, QList< qreal > lLaneWidth, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-创建路段
+创建指定车道宽度的3D路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] lCenterV3：路段中心线断点序列，每个断点都是三维空间的点
-
+[ in ] lCenterV3：路段中心线三维断点集
 [ in ] lLaneWidth：车道宽度列表
+[ in ] linkName：路段名称
+[ in ] bAddToScene：是否添加到场景
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] linkName：路段名
-
-[ in ] bAddToScene：是否加入场景，默认为true
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
 返回：路段对象指针。
 
-Ø **ILink\* createLink3DWithLanePoints(QList< QVector3D > lCenterLineV3, QList< QMap< QString, QList< QVector3D > > > lanesWithPoints, QString linkName = QString(), bool bAddToScene = true)**
+Ø **ILink* createLink3DWithLanePoints(QList< QVector3D > lCenterLineV3, QList< QMap< QString, QList< QVector3D > > > lanesWithPoints, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-创建路段
+创建指定车道断点的3D路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] lCenterLineV3：路段中心线三维断点集
+[ in ] lanesWithPoints：车道点集的集合
+[ in ] linkName：路段名称
+[ in ] bAddToScene：是否添加到场景
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] lCenterLineV3：路段中心点集(对应TESSNG路段中心点)，每个[in\点都是三维空间的
-
-[ in ] lanesWithPoints：车道数据集合，每个成员是QMap< QString, QList< QVector3D > >类型数据，有三个key，分别是"left"、"center"、"right"、分别表示一条车道左、中、右侧断点序列。
-
-[ in ] linkName：路段名，默认为路段ID
-
-[ in ] bAddToScene：是否加入路网，默认true表示加入
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
 返回：路段对象指针
 
@@ -4448,25 +4456,21 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 }
 ```
 
-Ø **IConnector\* createConnector3DWithPoints(long fromLinkId, long toLinkId, QList< int > lFromLaneNumber, QList< int > lToLaneNumber, QList< QMap< QString, QList< QVector3D > > > laneConnectorWithPoints, QString connName = QString(), bool bAddToScene = true);**
+Ø **IConnector* createConnector3DWithPoints(long fromLinkId, long toLinkId, QList< int > lFromLaneNumber, QList< int > lToLaneNumber, QList< QMap< QString, QList< QVector3D > > > laneConnectorWithPoints, QString connName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-创建连接段，创建连接段后将"车道连接"中自动计算的断点集用参数laneConnectorWithPoints断点替换
+创建指定断点的3D连接段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 [ in ] fromLinkId：起始路段ID
-
 [ in ] toLinkId：目标路段ID
+[ in ] lFromLaneNumber：起始路段车道序号列表
+[ in ] lToLaneNumber：目标路段车道序号列表
+[ in ] laneConnectorWithPoints：车道连接点集的集合
+[ in ] connName：连接段名称
+[ in ] bAddToScene：是否添加到场景
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] lFromLaneNumber：起始路段参于连接的车道序号
-
-[ in ] lToLaneNumber：目标路段参于连接的车道序号
-
-[ in ] laneConnectorWithPoints："车道连接"数据列表，成员是QMap< QString, QList< QVector3D > >类型数据，有三种key，分别是"left"、"center"、"right"，表示一条"车道连接"左、中、右侧断点序列
-
-[ in ] connName：连接段名，默认将起始路段ID和目标路段ID用"_"连接表示连接段名，如"100_101"。
-
-[ in ] bAddToScene：是否加入到场景，默认为true
+注：如传入米制参数，请勿遗忘传入connName与bAddToScene参数。
 
 返回：连接段对象指针
 
@@ -4640,23 +4644,20 @@ ILaneConnector* pLaneConnector = gpTessInterface->netInterface()->findConnector(
 
 [ in ] dbver:：数据库版本
 
-Ø **ILink\* createLink3DWithLanePointsAndAttrs(QList< QVector3D > lCenterLineV3, QList< QMap< QString, QList< QVector3D > > > lanesWithPoints, QList< QString > lLaneType, QList< QJsonObject > lAttr = QList< QJsonObject >(), QString linkName = QString(), bool bAddToScene = true)**
+Ø **ILink* createLink3DWithLanePointsAndAttrs(QList< QVector3D > lCenterLineV3, QList< QMap< QString, QList< QVector3D > > > lanesWithPoints, QList< QString > lLaneType, QList< QJsonObject > lAttr, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-创建路段
+创建指定车道断点和属性的3D路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] lCenterLineV3：路段中心点集(对应TESSNG路段中心点)
-
+[ in ] lCenterLineV3：路段中心线三维断点集
 [ in ] lanesWithPoints：车道点集的集合
+[ in ] lLaneType：车道类型集
+[ in ] lAttr：车道附加属性集
+[ in ] linkName：路段名称
+[ in ] bAddToScene：是否添加到场景
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] lLaneType:车道类型集
-
-[ in ] lAttr:车道附加属性集
-
-[ in ] linkName：路段名，默认为路段ID,
-
-[ in ] bAddToScene：是否加入路网，默认true表示加入
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
 返回：路段对象
 
@@ -4668,17 +4669,17 @@ ILaneConnector* pLaneConnector = gpTessInterface->netInterface()->findConnector(
 
 [ in ] pLink：将要移除的路段
 
-Ø **ILink\* updateLink(_Link link, QList< _Lane > lLane = QList< _Lane >(), QList< QPointF > lPoint = QList< QPointF >())**
+Ø **ILink* updateLink(_Link link, QList< _Lane > lLane = QList< _Lane >(), QList< QPointF > lPoint = QList< QPointF >(), UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-更新路段，更新后返回路段对象
+更新路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] link：路段基本信息
+[ in ] lLane：车道列表
+[ in ] lPoint：断点列表
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] link：更新的路段数据
-
-[ in ] lLink：更新的车道列表数据
-
-[ in ] lPoint：更新的断点集合
+注：如传入米制参数，请勿遗忘传入lLane与lPoint参数。
 
 返回：更新后的路段对象
 
@@ -4690,29 +4691,25 @@ ILaneConnector* pLaneConnector = gpTessInterface->netInterface()->findConnector(
 
 [ in ] pConnector：连接段对象
 
-Ø **IConnector\* updateConnector(_Connector connector)**
+Ø **IConnector* updateConnector(_Connector connector)**
 
-更新连接段，更新后返回连接段对象
+更新连接段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] connector：连接段数据
+[ in ] connector：连接段基本信息
 
 返回：更新后的连接段对象
 
-Ø **IGuidArrow\* createGuidArrow(ILane\* pLane, qreal length, qreal distToTerminal, Online::GuideArrowType arrowType)**
+Ø **IGuidArrow* createGuidArrow(ILane* pLane, qreal length, qreal distToTerminal, Online::GuideArrowType arrowType, UnitOfMeasure unit)**
 
-创建导向箭头
+创建导向箭头，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] pLane:车道
-
-[ in ] length:长度，默认单位：像素
-
-[ in ] distToTerminal：到车道终点距离，默认单位：像素
-
+[ in ] pLane：车道
+[ in ] length：长度
+[ in ] distToTerminal：到车道终点距离
 [ in ] arrowType：箭头类型
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：导向箭头对象
 
@@ -4765,17 +4762,20 @@ IGuidArrow* pGuideArrow = gpTessInterface->netInterface()->createGuidArrow(pRigh
 
 [ in ] vehiCompId：车型组成ID
 
-Ø **IDecisionPoint\* createDecisionPoint(ILink\* pLink, qreal distance, QString name = QString())**
+Ø **IDecisionPoint\* createDecisionPoint(ILink\* pLink, qreal distance, QString name = QString(), UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-创建决策点
+创建决策点，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 [ in ] pLink：决策点所在的路段
 
 [ in ] distance：决策点距离路段起点的距离，默认单位：像素
 
 [ in ] name：决策点的名称
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+注：如传入米制参数，请勿遗忘传入name参数。
 
 返回：决策点对象
 
@@ -4826,13 +4826,13 @@ if (gpTessInterface->netInterface()->removeDeciRouting(mpDecisionPoint, mpDecisi
 
 Ø **IDecisionPoint\* updateDecipointPoint(_DecisionPoint deciPoint, QList< _RoutingFLowRatio > lFlowRatio = QList< _RoutingFLowRatio >())**
 
-更新决策点及其各路径不同时间段流量比
+更新决策点及其各路径不同时间段流量比，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 [ in ] deciPoint：决策点数据
-
 [ in ] lFlowRatio：各路径按时间段流量比的数据集合
+
 
 返回：更新后的决策点
 
@@ -4870,15 +4870,14 @@ if (gpTessInterface->netInterface()->removeDeciRouting(mpDecisionPoint, mpDecisi
 		mpDecisionPoint = gpTessInterface->netInterface()->updateDecipointPoint(_decisionPointData, QList< _RoutingFLowRatio >() << _flowRatioLeft << _flowRatioStraight << _flowRatioRight);
 ```
 
-Ø **IVehicleDrivInfoCollector\* createVehiCollectorOnLink(ILane\* pLane, qreal dist)**
+Ø **IVehicleDrivInfoCollector* createVehiCollectorOnLink(ILane* pLane, qreal dist, UnitOfMeasure unit)**
 
-在路段的车道上创建车辆采集器
+在路段的车道上创建车辆采集器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] pLane：车道对象
-
-[ in ] dist：路车道起点距离，默认单位：像素
+[ in ] pLane：车道
+[ in ] dist：距车道起点距离
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：车辆采集器
 
@@ -4893,15 +4892,14 @@ ILink* pLink = gpTessInterface->netInterface()->findLink(9);
 		IVehicleDrivInfoCollector* pCollector = gpTessInterface->netInterface()->createVehiCollectorOnLink(pLeftLane, dist);}
 ```
 
-Ø **IVehicleDrivInfoCollector\* createVehiCollectorOnConnector(ILaneConnector\* pLaneConnector, qreal dist)**
+Ø **IVehicleDrivInfoCollector* createVehiCollectorOnConnector(ILaneConnector* pLaneConnector, qreal dist, UnitOfMeasure unit)**
 
-在连接段的"车道连接"上创建采集器
+在连接段的车道连接上创建车辆采集器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] pLaneConnector："车道连接"对象
-
-[ in ] dist：距"车道连接"起点距离，单位像素
+[ in ] pLaneConnector：车道连接
+[ in ] dist：距车道连接起点距离
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **bool removeVehiCollector(IVehicleDrivInfoCollector\* pCollector)**
 
@@ -4911,15 +4909,14 @@ ILink* pLink = gpTessInterface->netInterface()->findLink(9);
 
 [ in ] pCollector：车辆信息采集器
 
-Ø **IVehicleQueueCounter\* createVehiQueueCounterOnLink(ILane\* pLane, qreal dist)**
+Ø **IVehicleQueueCounter* createVehiQueueCounterOnLink(ILane* pLane, qreal dist, UnitOfMeasure unit)**
 
-在路段的车道上创建车辆排队计数器
+在路段的车道上创建车辆排队计数器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] pLane：车道对象
-
-[ in ] dist：默认单位：像素
+[ in ] pLane：车道
+[ in ] dist：距车道起点距离
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：排队计数器对象
 
@@ -4934,27 +4931,27 @@ if (pLink) {
 		IVehicleQueueCounter* pCounter = gpTessInterface->netInterface()->createVehiQueueCounterOnLink(pLeftLane, dist);}
 ```
 
-Ø **IVehicleQueueCounter\* createVehiQueueCounterOnConnector(ILaneConnector\* pLaneConnector, qreal dist)**
+Ø **IVehicleQueueCounter* createVehiQueueCounterOnConnector(ILaneConnector* pLaneConnector, qreal dist, UnitOfMeasure unit)**
 
-在连接段的车道连接上创建车辆排队计数器
+在连接段的车道连接上创建车辆排队计数器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] pLaneConnector："车道连接"对象
-
-[ in ] dist：距"车道连接"起点距离，默认单位：像素
+[ in ] pLaneConnector：车道连接
+[ in ] dist：距车道连接起点距离
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：排队计数器对象
 
-Ø **QList< IVehicleTravelDetector\* > createVehicleTravelDetector_link2link(ILink\* pStartLink, ILink\* pEndLink, qreal dist1, qreal dist2)**
+Ø **QList< IVehicleTravelDetector* > createVehicleTravelDetector_link2link(ILink* pStartLink, ILink* pEndLink, qreal dist1, qreal dist2, UnitOfMeasure unit)**
 
-创建行程时间检测器，起点和终点都在路段上
+创建路段到路段的行程时间检测器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] dist1：检测器起点距所在路段起始点距离，默认单位：像素
-
-[ in ] dist2：检测器终点距所在路段起始点距离，默认单位：像素
+[ in ] pStartLink：起始路段
+[ in ] pEndLink：终止路段
+[ in ] dist1：检测器起点距路段起始点距离
+[ in ] dist2：检测器终点距路段起始点距离
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -4965,51 +4962,42 @@ if (pLink) {
 QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->createVehicleTravelDetector_link2link(pLink, pLink, m2p(50), m2p(550));}
 ```
 
-Ø **QList< IVehicleTravelDetector\* > createVehicleTravelDetector_link2conn(ILink\* pStartLink, ILaneConnector\* pEndLaneConnector, qreal dist1, qreal dist2)**
+Ø **QList< IVehicleTravelDetector* > createVehicleTravelDetector_link2conn(ILink* pStartLink, ILaneConnector* pEndLaneConnector, qreal dist1, qreal dist2, UnitOfMeasure unit)**
 
-创建行程时间检测器，起点在路段上，终点都在连接段的"车道连接"上
+创建路段到连接段的行程时间检测器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] pStartLink：检测器起点所在路段对象
-
-[ in ] pEndLaneConnector：检测器终点所在"车道连接"对象
-
-[ in ] dist1：检测器起点距所在路段起始点距离，默认单位：像素
-
-[ in ] dist2：检测器终点距所在"车道连接"起始点距离，默认单位：像素
+[ in ] pStartLink：起始路段
+[ in ] pEndLaneConnector：终止车道连接
+[ in ] dist1：检测器起点距路段起始点距离
+[ in ] dist2：检测器终点距车道连接起始点距离
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：行程时间检测器对象
 
-Ø **QList< IVehicleTravelDetector\* > createVehicleTravelDetector_conn2link(ILaneConnector\* pStartLaneConnector, ILink\* pEndLink, qreal dist1, qreal dist2)**
+Ø **QList< IVehicleTravelDetector* > createVehicleTravelDetector_conn2link(ILaneConnector* pStartLaneConnector, ILink* pEndLink, qreal dist1, qreal dist2, UnitOfMeasure unit)**
 
-创建行程时间检测器，起点在连接段的"车道连接"上，终点在路段上
+创建连接段到路段的行程时间检测器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] pStartLaneConnector：检测器起点所在"车道连接"对象
-
-[ in ] pEndLink：检测器终点所在路段对象
-
-[ in ] dist1：检测器起点距所在"车道连接"起始点距离，默认单位：像素
-
-[ in ] dist2：检测器终点距所在路段起始点距离，默认单位：像素
+[ in ] pStartLaneConnector：起始车道连接
+[ in ] pEndLink：终止路段
+[ in ] dist1：检测器起点距车道连接起始点距离
+[ in ] dist2：检测器终点距路段起始点距离
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：行程时间检测器对象
 
-Ø **QList< IVehicleTravelDetector\* > createVehicleTravelDetector_conn2conn(ILaneConnector\* pStartLaneConnector, ILaneConnector\* pEndLaneConnector, qreal dist1, qreal dist2)**
+Ø **QList< IVehicleTravelDetector* > createVehicleTravelDetector_conn2conn(ILaneConnector* pStartLaneConnector, ILaneConnector* pEndLaneConnector, qreal dist1, qreal dist2, UnitOfMeasure unit)**
 
-创建行程时间检测器，起点和终点都在连接段的"车道连接"上
+创建连接段到连接段的行程时间检测器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] pStartLaneConnector：检测器起点所在"车道连接"对象
-
-[ in ] pEndLaneConnector：检测器终点所在"车道连接"对象
-
-[ in ] dist1：检测器起点距所在"车道连接"起始点距离，默认单位：像素
-
-[ in ] dist2：检测器终点距所在"车道连接"起始点距离，默认单位：像素
+[ in ] pStartLaneConnector：起始车道连接
+[ in ] pEndLaneConnector：终止车道连接
+[ in ] dist1：检测器起点距车道连接起始点距离
+[ in ] dist2：检测器终点距车道连接起始点距离
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：行程时间检测器对象
 
@@ -5123,17 +5111,18 @@ if (pBusLine) {
 
 [ in ] pBusLine：将要移除的公交线路对象
 
-Ø **IBusStation\* createBusStation(ILane\* pLane, qreal length, qreal dist, QString name = QString())**
+Ø **IBusStation* createBusStation(ILane* pLane, qreal length, qreal dist,  QString name = QString(), UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-创建公交站点
+创建公交站点，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 [ in ] pLane：车道
+[ in ] length：站点长度
+[ in ] dist：站点起始点距车道起点距离
+[ in ] name：站点名称
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] length:站点长度(单位像素)
-
-[ in ] dist:站点起始点距车道起点距离(单位像素)
+注：如传入米制参数，请勿遗忘传入name参数。
 
 返回：公交站点对象
 
@@ -5214,55 +5203,55 @@ if (pBusStation2 && gpTessInterface->netInterface()->addBusStationToLine(pBusLin
 
 [ in ] pCustObj：将要移除的路网元素
 
-Ø **void buildNetGrid(qreal width = 25)**
+Ø **void buildNetGrid(qreal width, UnitOfMeasure unit)**
 
-路网的网格化
-
-参数：
-
-[ in ] width：单元格宽度，默认单位：米
-
-Ø **QList< ISection\* > findSectionOn1Cell(QPointF point)**
-
-根据point查询所在单元格所有经过的ISection
+路网网格化，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] width：单元格宽度
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] point：路网场景中的点
+Ø **QList< ISection* > findSectionOn1Cell(QPointF point, UnitOfMeasure unit)**
+
+根据point查询所在单元格所有Section，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] point：查询点
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：ISection列表
 
-Ø **QList< ISection\* > findSectionOn4Cell(QPointF point)**
+Ø **QList< ISection* > findSectionOn4Cell(QPointF point, UnitOfMeasure unit)**
 
-根据point查询最近4个单元格所有经过的ISection
+根据point查询最近4个单元格所有Section，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] point：路网场景中的一个点
+[ in ] point：查询点
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：ISection列表
 
-Ø **QList< ISection\* > findSectionOn9Cell(QPointF point)**
+Ø **QList< ISection* > findSectionOn9Cell(QPointF point, UnitOfMeasure unit)**
 
-根据point查询最近9个单元格所有经过的ISection
+根据point查询最近9个单元格所有Section，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] point：路网场景中的一个点
+[ in ] point：查询点
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：ISection列表
 
-Ø **QList< Online::Location > locateOnSections(QPointF point, QList< ISection\* > lSection, qreal referDistance = 0)**
+Ø **QList< Online::Location > locateOnSections(QPointF point, QList< ISection* > lSection, qreal referDistance = 0, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-根据point对lSection列表中每一个Section所有LaneObject求最短距离，返回Location列表，列表按最短距离排序，从小到大
+根据point对lSection列表中每一个Section所有LaneObject求最短距离，返回Location列表，列表按最短距离排序，从小到大，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] point：查询点
+[ in ] lSection：Section列表
+[ in ] referDistance：LaneObject上与point最近的点到LaneObject起点距离，只为提高计算效率，默认值为0
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] point：路网场景中的一个点
-
-[ in ] lSection：section列表
-
-[ in ] referDistance：LaneObject上与point最近的点到LaneObject起点距离，默认单位：像素，是大约数，只为提高计算效率，默认值为0
+注：如传入米制参数，请勿遗忘传入referDistance参数。
 
 返回：Online::Location列表
 
@@ -5282,15 +5271,16 @@ QList< ISection* > lSections = gpTessInterface->netInterface()->sections();
 	}
 ```
 
-Ø **QList< Online::Location > locateOnCrid(QPointF point, int cellCount = 1)**
+Ø **QList< Online::Location > locateOnCrid(QPointF point, int cellCount = 1, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
-point周围若干个单元格里查询LaneObject
+point周围若干个单元格里查询LaneObject，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] point：路网场景中的一个点
-
+[ in ] point：查询点
 [ in ] cellCount：单元格数，小于1时默认为1，大于1小于4时默认为4，大于4时默认为9
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+注：如传入米制参数，请勿遗忘传入cellCount参数。
 
 返回：Online::Location列表
 
@@ -5298,13 +5288,13 @@ point周围若干个单元格里查询LaneObject
 
 路网外围Rect，用以获取路网边界
 
-Ø **IRoadWorkZone\* createRoadWorkZone(Online::DynaRoadWorkZoneParam param)**
+Ø **IRoadWorkZone* createRoadWorkZone(Online::DynaRoadWorkZoneParam param, UnitOfMeasure unit)**
 
-创建施工区
+创建施工区，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] param：动态施工区信息，数据类型在文件 Plugin/_datastruct.h中定义
+[ in ] param：施工区参数
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -5334,9 +5324,21 @@ IRoadWorkZone* pZone = gpTessInterface->netInterface()->createRoadWorkZone(workZ
 
 参数：
 
-Ø [ in ] pIRoadWorkZone：将要移除的施工区对象**QList< IRoadWorkZone\* > roadWorkZones()**
+[ in ] pIRoadWorkZone：将要移除的施工区对象
 
-Ø 获取所有施工区**IRoadWorkZone\* findRoadWorkZone(long roadWorkZoneId)**
+Ø **bool updateRoadWorkZone(Online::DynaRoadWorkZoneParam param, UnitOfMeasure unit)**
+
+更新施工区，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] param：施工区参数
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< IRoadWorkZone\* > roadWorkZones()**
+
+获取所有施工区
+
+Ø **IRoadWorkZone\* findRoadWorkZone(long roadWorkZoneId)**
 
 根据ID查询施工区
 
@@ -5390,13 +5392,13 @@ Online::DynaAccidentZoneParam accidentZone;
 
 [ in ] accidentZoneId：事故区ID
 
-Ø **ILimitedZone\* createLimitedZone(Online::DynaLimitedZoneParam param);**
+Ø **ILimitedZone* createLimitedZone(Online::DynaLimitedZoneParam param, UnitOfMeasure unit)**
 
-创建限行区
+创建限行区，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] param：动态限行区信息，数据类型在文件 Plugin/_datastruct.h中定义
+[ in ] param：限行区参数
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -5414,13 +5416,13 @@ dynaLimitedZoneParam.duration = 3600; // 限行持续时间
 gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 ```
 
-Ø **bool updateLimitedZone(Online::DynaLimitedZoneParam param);**
+Ø **bool updateLimitedZone(Online::DynaLimitedZoneParam param, UnitOfMeasure unit)**
 
-更新限行区
+更新限行区，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] param：动态限行区信息，数据类型在文件 Plugin/_datastruct.h中定义
+[ in ] param：限行区参数
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **void removeLimitedZone(ILimitedZone\* pILimitedZone)**
 
@@ -5442,30 +5444,30 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] limitedZoneId：限行区ID
 
-Ø **void moveLinks(QList< ILink\* > lLink, QPointF offset)**
+Ø **void moveLinks(QList< ILink* > lLink, QPointF offset, UnitOfMeasure unit)**
 
-移动路段及相关连接段
-
-参数：
-
-[ in ] lLink：要移动的路段列表
-[ in ] offset：移动的偏移量
-
-Ø **IReconstruction\* createReconstruction(Online::DynaReconstructionParam param)**
-
-创建改扩建
+移动路段及相关连接段，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] lLink：路段列表
+[ in ] offset：偏移量
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义
+Ø **IReconstruction* createReconstruction(Online::DynaReconstructionParam param, UnitOfMeasure unit)**
 
-Ø **bool updateReconStruction(Online::DynaReconstructionParam param)**
-
-更新改扩建
+创建改扩建，默认单位：像素，可通过unit参数设置单位
 
 参数：
+[ in ] param：改扩建参数
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-[ in ] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义
+Ø **bool updateReconStruction(Online::DynaReconstructionParam param, UnitOfMeasure unit)**
+
+更新改扩建，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] param：改扩建参数
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **void removeReconstruction(IReconstruction\* pIReconstruction)**
 
@@ -5487,13 +5489,13 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] reconstructionId：改扩建ID
 
-Ø **qreal reCalcPassagewayLength(Online::DynaReconstructionParam param)**
+Ø **qreal reCalcPassagewayLength(Online::DynaReconstructionParam param, UnitOfMeasure unit)**
 
-重新计算保通开口长度
+重新计算保通开口长度，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
-[ in ] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义
+[ in ] param：改扩建参数
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：保通开口长度
 
