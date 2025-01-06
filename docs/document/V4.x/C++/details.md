@@ -5904,7 +5904,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 Ø **QMap< QPair< long, long >, QVector< QList< ILink\* > > > buildAndApplyPaths()**
 
-构建并应用路径，返回路径结果映射:< 起始路段ID,终点路段ID > - > 可行路径列表
+构建并应用路径，返回路径结果映射:< 起始路段ID,终点路段ID > > 可行路径列表
 
 Ø **QHash< long, QList< Online::Junction::FlowTurning > > calculateFlows()**
 
@@ -6601,8 +6601,8 @@ if (planNumber == float(2.1)) {
 获取所有正在运行的车辆状态，包括轨迹
 
 参数:
-- [ in ] batchNumber: 批次号
-- [ in ] unit: 单位制
+[ in ] batchNumber: 批次号
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 注：如使用米制单位，请勿遗忘传入unit参数
 
@@ -6619,8 +6619,8 @@ QList< Online::VehicleStatus > lVehiStatus =  gpTessInterface->simuInterface()->
 获取指定车辆运行轨迹，默认单位：像素，可通过unit参数设置单位
 
 参数:
-- [ in ] vehiId: 车辆ID
-- [ in ] unit: 单位制
+[ in ] vehiId: 车辆ID
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回: 车辆轨迹点位列表，数据结构Online::VehiclePosition在文件Plugin/ _datastruct.h中定义
 
@@ -6861,7 +6861,7 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 
 [ out ] vehiCount：排队车辆数
 
-[ in ] unit: 单位制
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：是否获取成功
 
@@ -7554,6 +7554,18 @@ bool MySimulator::reCalcdesirSpeed(IVehicle *pIVehicle, qreal &inOutDesirSpeed) 
 }
 ```
 
+Ø **bool reCalcdesirSpeed(IVehicle \*pIVehicle, qreal &inOutDesirSpeed, UnitOfMeasure& unit)**
+
+重新计算期望速度(支持单位参数)，TESS NG调用此方法时将车辆当前期望速度赋给inOutDesirSpeed，如果需要，用户可在此方法重新计算期望速度，并赋给inOutDesirSpeed。
+
+参数：
+
+[ in ] pIVehicle：车辆对象；
+
+[ in、out ] inOutDesirSpeed：重新设置前后的车辆期望速度，单位：像素/秒；
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
 Ø **bool reSetFollowingType(IVehicle\* pIVehicle, int& outTypeValue)**
 
 重新设置跟驰类型，在计算加速度的过程中被调用
@@ -7594,6 +7606,22 @@ bool MySimulator::reSetFollowingParams(IVehicle *pIVehicle, qreal &inOutSi, qrea
 }
 ```
 
+Ø **bool reSetFollowingParam(IVehicle \*pIVehicle, qreal &inOutSafeInterval, qreal &inOutSafeDistance, UnitOfMeasure& unit)**
+
+重新设置跟驰模型的安全间距和安全时距(支持单位参数)。
+
+参数：
+
+[ in ] pIVehicle：车辆对象；
+
+[ in、out ] inOutSafeInterval：安全时距，单位：秒；
+
+[ in、out ] inOutSafeDistance：安全间距：单位：像素；
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+返回：false：忽略，true：用inOutSafeInterval设置安全时距，用inOutSafeDistance设置安全间距
+
 Ø **QList< Online::FollowingModelParam > reSetFollowingParams()**
 
 重新设置跟驰模型参数，影响所有车辆。此方法被TESSNG调用，用得到跟驰模型数据取代当前仿真正在采用的跟驰模型。
@@ -7611,6 +7639,22 @@ bool MySimulator::reSetFollowingParams(IVehicle *pIVehicle, qreal &inOutSi, qrea
 [ in、out ] distance：当前车辆与前车的距离，默认单位：像素
 
 [ in、out ] s0：安全跟车距离，默认单位：像素
+
+返回：false：忽略，true：用distance设置前车距，用s0设置安全跟车距离
+
+Ø **bool reSetDistanceFront(IVehicle\* pIVehicle, qreal& distance, qreal& s0, UnitOfMeasure& unit)**
+
+重新设置前车距及安全跟车距离(支持单位参数)。
+
+参数：
+
+[ in ] pIVehicle：车辆对象
+
+[ in、out ] distance：当前车辆与前车的距离，默认单位：像素
+
+[ in、out ] s0：安全跟车距离，默认单位：像素
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：false：忽略，true：用distance设置前车距，用s0设置安全跟车距离
 
@@ -7656,6 +7700,20 @@ bool MySimulator::reSetSpeed(IVehicle* pIVehicle, qreal& inOutSpeed) {
 	return false;
 }
 ```
+
+Ø **bool reSetSpeed(IVehicle \*pIVehicle, qreal &inOutSpeed, UnitOfMeasure& unit)**
+
+重新设置车速(支持单位参数)。TESS NG调用此方法时将当前计算所得车速赋给inOutSpeed，如果需要，用户可以在此方法重新计算车速并赋给inOutSpeed。
+
+参数：
+
+[ in ] pIVehicle：车辆对象；
+
+[ in、out ] inOutSpeed：重新计算前后的车速，单位：像素/秒。
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+返回：false：忽略，true：用inOutSpeed设置车辆当前速度
 
 Ø **void beforeMergingToLane(IVehicle \*pIVehicle, bool &keepOn)**
 
@@ -7751,6 +7809,22 @@ void MySimulator:: afterOneStep () {
 
 返回：false：忽略，true：用outSpeed限制指定车道速度
 
+Ø **bool calcSpeedLimitByLane(ILink\* pILink, int laneNumber, qreal& outSpeed, UnitOfMeasure& unit)**
+
+由车道确定的限制车速（最高速度, 公里/小时）
+
+参数：
+
+[ in ] pILink：路段
+
+[ in ] laneNumber：,laneNumber:车道序号，最右侧编号为0
+
+[ in、out ] outSpeed：限制速度，公里/小时
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+返回：false：忽略，true：用outSpeed限制指定车道速度
+
 Ø **bool calcMaxLimitedSpeed(IVehicle \*pIVehicle, qreal &inOutLimitedSpeed)**
 
 重新计算车辆当前最大限速，不受道路限速的影响。在没有插件干预的情况下，车辆速度大于道路限度时按道路最大限速行驶，在此方法的干预下，可以提高限速，让车辆大于道路限速行驶。
@@ -7780,6 +7854,24 @@ bool MySimulator::calcMaxLimitedSpeed(IVehicle *pIVehicle, qreal &inOutLimitedSp
 }
 ```
 
+Ø **bool calcMaxLimitedSpeed(IVehicle \*pIVehicle, qreal &inOutLimitedSpeed, UnitOfMeasure& unit)**
+
+重新计算车辆当前最大限速，不受道路限速的影响。在没有插件干预的情况下，车辆速度大于道路限度时按道路最大限速行驶，在此方法的干预下，可以提高限速，让车辆大于道路限速行驶。
+
+TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed，如果需要，用户可以在方法里重新设置inOutLimitedSpeed值。
+
+参数：
+
+[ in ] pIVehicle：车辆对象；
+
+[ in、out ] inOutLimitedSpeed：计算前后的最大限速，单位：像素/秒。
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+返回结果：
+
+​    如果返回false则忽略，否则取inOutLimitedSpeed为当前道路最大限速：
+
 Ø **bool calcDistToEventObj(IVehicle\* pIVehicle, qreal& dist)**
 
 计算到事件对象距离，如到事故区、施工区的距离
@@ -7792,6 +7884,20 @@ bool MySimulator::calcMaxLimitedSpeed(IVehicle *pIVehicle, qreal &inOutLimitedSp
 
 返回：false：忽略，true：用dist计算安全变道距离等
 
+Ø **bool calcDistToEventObj(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure& unit)**
+
+计算到事件对象距离(支持单位参数)，如到事故区、施工区的距离
+
+参数：
+
+[ in ] pIVehicle：车辆
+
+[ in、out ] dist：车辆中心点距事件对象距离，单位像素
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+返回：false：忽略，true：用dist计算安全变道距离等
+
 Ø **bool calcChangeLaneSafeDist(IVehicle\* pIVehicle, qreal& dist)**
 
 计算安全变道距离。
@@ -7801,6 +7907,20 @@ bool MySimulator::calcMaxLimitedSpeed(IVehicle *pIVehicle, qreal &inOutLimitedSp
 [ in ] pIVehicle：车辆，计算该车辆安全变道距离。
 
 [ in、out ] dist：安全变道距离，保存了TESSNG已算得的值，用户可以在此方法重新计算。
+
+返回：false 忽略，true TESSNG取dist作为安全变道距离
+
+Ø **bool calcChangeLaneSafeDist(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure& unit)**
+
+计算安全变道距离(支持单位参数)。
+
+参数：
+
+[ in ] pIVehicle：车辆，计算该车辆安全变道距离。
+
+[ in、out ] dist：安全变道距离，保存了TESSNG已算得的值，用户可以在此方法重新计算。
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：false 忽略，true TESSNG取dist作为安全变道距离
 
@@ -7837,6 +7957,18 @@ bool MySimulator::calcMaxLimitedSpeed(IVehicle *pIVehicle, qreal &inOutLimitedSp
 [ in ] pIVehicle：待计算加速度的车辆
 
 [ out ] acce：计算结果
+
+返回：false 忽略，true 则TESNG用调用此方法后所得acce作为当前车辆的加速度。
+
+Ø **bool calcAcce(IVehicle \*pIVehicle, qreal &acce, UnitOfMeasure& unit)**
+
+计算加速度(支持单位参数)
+
+[ in ] pIVehicle：待计算加速度的车辆
+
+[ out ] acce：计算结果
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 返回：false 忽略，true 则TESNG用调用此方法后所得acce作为当前车辆的加速度。
 
@@ -7889,6 +8021,22 @@ bool MySimulator::reSetAcce(IVehicle *pIVehicle, qreal &inOutAcce) {
 	return false;
 }
 ```
+
+Ø **bool reSetAcce(IVehicle \*pIVehicle, qreal &inOutAcce, UnitOfMeasure& unit)**
+
+重新计算加速度(支持单位参数)。TESS NG调用此方法时将当前计算所得加速度赋给inOutAcce，如果需要，用户可以在此方法中重新计算加速度并赋给inOutAcce。
+
+参数：
+
+[ in ] pIVehicle：车辆对象；
+
+[ in、out ] inOutAcce：重新计算前后的加速度，单位：像素/秒^2；
+
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+返回结果：
+
+如果返回false则忽略，如果返回true，则将inOutAcce作为当前加速度。
 
 Ø **void afterCalcTracingType(IVehicle\* pIVehicle)**
 
