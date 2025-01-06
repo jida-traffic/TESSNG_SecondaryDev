@@ -5845,7 +5845,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 获取所有时间段
 
-Ø **long addFlowTimeInterval()**
+Ø **Online::Junction::FlowTimeInterval addFlowTimeInterval()**
 
 添加时间段，返回新时间段ID，失败返回-1
 
@@ -5856,7 +5856,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数：
 [ in ] timeId：时间段ID
 
-Ø **bool updateFlowTimeInterval(long timeId, long startTime, long endTime)**
+Ø **Online::Junction::FlowTimeInterval updateFlowTimeInterval(long timeId, long startTime, long endTime)**
 
 更新时间段
 
