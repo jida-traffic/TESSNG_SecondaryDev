@@ -121,10 +121,19 @@ TESSNG调用插件方法的频次是指对插件实现的PyCustomerSimulator接�
 
 获取路网说明
 
- **def centerPoint(self) -> PySide2.QtCore.QPointF: ...**
+ **def centerPoint(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
-获取路网中心点位置，返回的是仿真像素坐标，用户根据需求通过m2p转成米制单位坐标，并注意y轴的正负号
+获取路网中心点位置，默认单位：像素，可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+```python
+pILink = netiface.findLink(1)
+if pILink:
+    m = UnitOfMeasure.Metric()
+    print("路段长度，像素："，pILink.length())
+    print("路段长度，米制："，pILink.length(m))
 
+```
 
 
 ### 2.2. ISection
@@ -156,13 +165,16 @@ TESSNG调用插件方法的频次是指对插件实现的PyCustomerSimulator接�
 
 设置Section名称
 
- **def v3z(self) -> float: ...**
+ **def v3z(self，unit:Tess.UnitOfMeasure) -> float: ...**
+获取Section高程，默认单位：米，可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）？？？
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
-获取Section高程： 在section路段上的车辆高程关联此属性； 返回的是米制单位，米m
+ **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
- **def length(self) -> float: ...**
-
-获取Section长度，默认单位：像素
+获取Section长度，默认单位：像素，可通过unit参数设置单位
+参数：
+\[in\]  unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
  **def laneObjects(self) -> typing.List: ...**
 
@@ -241,9 +253,11 @@ Worker节点标识，在分布式环境可用
 
 获取ID，如果当前self对象是Lane则id是Lane的ID， 如果是车道连接，则id是“车道连接”ID
 
- **def length(self) -> float: ...**
+ **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取车道或“车道连接”长度，默认单位：像素
+获取车道或“车道连接”长度，默认单位：像素;可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def section(self) -> Tessng.ISection: ...**
 
@@ -258,82 +272,77 @@ Worker节点标识，在分布式环境可用
 
 根据ID获取下游 LaneObject。如果当前是车道, id 为 0 返回空，否则返回下游指定ID的“车道连接”；如果当前是连接段，id 为 0 返回下游车道，否则返回空。
 
- **def centerBreakPoints(self) -> typing.List: ...**
+ **def centerBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的中心线断点列表；即车道或“车道连接”中心线断点集； 断点都是像素坐标下的点
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def leftBreakPoints(self) -> typing.List: ...**
+ **def leftBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的左侧边线断点列表； 即车道或“车道连接”左侧线断点集; 断点都是像素坐标下的点
-
- **def rightBreakPoints(self) -> typing.List: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def rightBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的右侧边线断点列表；车道或“车道连接”右侧线断点集; 断点都是像素坐标下的点
-
- **def centerBreakPoint3Ds(self) -> typing.List: ...**
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def centerBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取laneObject的右侧边线断点列表；车道或“车道连接”中心线断点(三维)集（包含高程v3z属性的点）除高程是米制单位，x/y均为像素坐标，像素单位
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def leftBreakPoint3Ds(self) -> typing.List: ...**
-
+ **def leftBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取laneObject的左侧边线断点列表；车道或“车道连接”左侧线断点(三维)集；（包含高程v3z属性的点）除高程是米制单位，x/y均为像素坐标，像素单位
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def rightBreakPoint3Ds(self) -> typing.List: ...**
-
+ **def rightBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取laneObject的右侧边线断点列表；车道或“车道连接”右侧线断点(三维)集；（包含高程v3z属性的点）除高程是米制单位，x/y均为像素坐标，像素单位
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF) -> typing.List: ...**
-
+ **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 通过起终止断点，获取该范围内laneObject的左侧边线断点集；即车道或“车道连接”左侧部分断点(三维)集；入参出参都是像素单位，高程除外为米制单位 
-
 参数：
-
 \[in\] fromPoint：中心线上某一点作为起点
-
 \[in\] toPoint：中心线上某一点作为终点
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF) -> typing.List: ...**
-
+ **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 车道或“车道连接”右侧部分断点(三维)集， 同上
-
 参数：
-
 \[in\] fromPoint：中心线上某一点作为起点；QPointF类型，且是像素坐标
-
 \[in\] toPoint：中心线上某一点作为终点；QPointF类型，且是像素坐标
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def distToStartPoint(self, p:PySide2.QtCore.QPointF) -> float: ...**
+ **def distToStartPoint(self, p:PySide2.QtCore.QPointF,unit:Tess.UnitOfMeasure) -> float: ...**
 
-中心线上一点到laneObject对象起点的距离； 像素单位
+中心线上一点到laneObject对象起点的距离； 默认单位：像素
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=...) -> float: ...**
-
+ **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=...,unit:Tess.UnitOfMeasure) -> float: ...**
 laneObject中心线上一点到起点的距离，像素单位，附加条件是该点所在车道上的分段序号；其中分段是指两个断点之间的部分。
-
 参数：
-
 \[in\] p：当前中心线上点或附近点的坐标; QPointF类型，且是像素坐标
-
 \[in\] segmIndex：参数p点所在车道上的分段序号; 两个断点组成一个分段，分段序号从0开始，沿着道路方向递增
-
 \[in\] bOnCentLine：参数p点是否在中心线上
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int) -> bool: ...**
-
+ **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int,unit:Tess.UnitOfMeasure) -> bool: ...**
 获取沿着行驶方向，距laneObject起点dist距离处的点和该点所属的分段序号； 如果目标点不在中心线上返回False，否则返回True
-
 参数：
-
 \[in\] dist：中心线起点向下游延伸的距离， 像素单位
-
-[out] outPoint：中心线起点向下游延伸dist距离后所在点， 像素单位
-
-[out] outIndex：中心线起点向下游延伸dist距离后所在分段序号， 像素单位
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+\[out\] outPoint：中心线起点向下游延伸dist距离后所在点， 默认单位：像素单位，具体返回单位受unit参数控制
+\[out\] outIndex：中心线起点向下游延伸dist距离后所在分段序号，默认单位：像素单位，具体返回单位受unit参数控制
 
 举例：
 
 ```python
-# 路段5最左侧车道向前延伸140米后所在点及分段序号
+# 路段5最左侧车道向前延伸140米后所在点及分段序号， 返回像素
         link = tessngIFace().netInterface().findLink(5)
         laneObjLeft = link.laneObjects()[-1] 
         outPoint = QPointF()
@@ -342,13 +351,24 @@ laneObject中心线上一点到起点的距离，像素单位，附加条件是�
         if laneObjLeft.getPointAndIndexByDist(dist, outPoint, outIndex) is not None:
     print("路段5最左侧车道向前延伸140米后所在点坐标为：({}, {})，分段序号为：{}".format(outPoint.x(), outPoint.y(), outIndex))
 
+# 路段5最左侧车道向前延伸140米后所在点及分段序号， 返回米制
+        link = tessngIFace().netInterface().findLink(5)
+        laneObjLeft = link.laneObjects()[-1] 
+        outPoint = QPointF()
+        outIndex = 0
+        dist = 140
+        if laneObjLeft.getPointAndIndexByDist(dist, outPoint, outIndex,unit=UnitOfMeasure.Metric()) is not None:
+    print("路段5最左侧车道向前延伸140米后所在点坐标为：({}, {})，分段序号为：{}".format(outPoint.x(), outPoint.y(), outIndex))
+
+
 ```
 
  
 
- **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF) -> bool: ...**
-
-获取距离中心线起点向下游延伸dist处的点, 如果目标点不在中心线上返回False，否则返回True
+ **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF,unit:Tess.UnitOfMeasure) -> bool: ...**
+获取距离中心线起点向下游延伸dist处的点, 如果目标点不在中心线上返回False，否则返回True;默认单位：像素，可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def setOtherAttr(self, attr:typing.Dict) -> None: ...**
 
@@ -374,24 +394,26 @@ laneObject中心线上一点到起点的距离，像素单位，附加条件是�
 
 获取路段ID
 
- **def length(self) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
+获取路段长度，默认单位：像素，可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
-获取路段长度，默认单位：像素
+ **def width(self, unit:Tess.UnitOfMeasure) -> float: ...**
+获取路段宽度，单位像素;可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def width(self) -> float: ...**
-
-获取路段宽度，单位像素
-
- **def z(self) -> float: ...**
-
-获取路段高程， 单位 米
-
- **def v3z(self) -> float: ...**
-
+ **def z(self, unit:Tess.UnitOfMeasure) -> float: ...**
+获取路段高程， 单位 米 ??？ 高程都确认一下，我印象中默认就只有米制单位，没有像素
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def v3z(self, unit:Tess.UnitOfMeasure) -> float: ...**
 获取路段高程，过载ISection的方法， 等同于上边的z(self)
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def name(self) -> str: ...**
-
 获取路段名称
 
  **def setName(self, name:str) -> None: ...**
@@ -410,17 +432,17 @@ laneObject中心线上一点到起点的距离，像素单位，附加条件是�
 
 获取车道数
 
- **def limitSpeed(self) -> float: ...**
+ **def limitSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取路段最高限速，单位：千米/小时
-
- **def setLimitSpeed(self, speed:float) -> None: ...**
-
-设置最高限速， 单位km/h
-
+获取路段最高限速，默认单位：千米/小时
 参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+ **def setLimitSpeed(self, speed:float, unit:Tess.UnitOfMeasure) -> None: ...**
+设置最高限速， 单位km/h
+参数：
 \[in\] speed：最高限速，单位：千米/小时
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 举例：
 
@@ -435,9 +457,10 @@ link.setLimitSpeed(30)
 
  
 
- **def minSpeed(self) -> float: ...**
-
+ **def minSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 获取最低限速，单位：千米/小时； 暂不支持用户设置最低限速的API
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
  **def lanes(self) -> typing.List: ...**
 
@@ -447,32 +470,38 @@ link.setLimitSpeed(30)
 
 获取ILink下所有LaneObject对象，列表类型，LaneObject可以是车道，也可以是“车道连接”的父对象
 
- **def centerBreakPoints(self) -> typing.List: ...**
+ **def centerBreakPoints(self，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取路段中心线断点集， 像素坐标
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def leftBreakPoints(self) -> typing.List: ...**
-
+ **def leftBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取路段左侧线断点集， 像素坐标
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def rightBreakPoints(self) -> typing.List: ...**
-
+ **def rightBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取路段右侧线断点集， 像素坐标
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def centerBreakPoint3Ds(self) -> typing.List: ...**
-
+ **def centerBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取路段中心线断点(三维)集， 像素坐标，但高程z的单位为米
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def leftBreakPoint3Ds(self) -> typing.List: ...**
-
+ **def leftBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取路段左侧线断点(三维)集, 像素坐标，但高程z的单位为米
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def rightBreakPoint3Ds(self) -> typing.List: ...**
-
+ **def rightBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取路段右侧线断点(三维)集， 像素坐标，但高程z的单位为米
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
  **def fromConnectors(self) -> typing.List: ...**
-
 获取ILink的上游连接段， 其可能有多个，所以返回类型为列表，列表元素为IConnector对象
 
  **def toConnectors(self) -> typing.List: ...**
@@ -507,26 +536,23 @@ link.setLimitSpeed(30)
 
 依次为ILink下所有车道设置车道其它属性
 
- **def distToStartPoint(self, p:PySide2.QtCore.QPointF) -> float: ...**
-
+ **def distToStartPoint(self, p:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> float: ...**
 ILink中心线上任意一点到ILink起点的距离， 像素单位
-
- **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int) -> bool: ...**
-
-获取ILink中心线起点下游dist距离处的点及其所属分段序号, 如果目标点不在中心线上返回False，否则返回True
-
 参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+ **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int, unit:Tess.UnitOfMeasure) -> bool: ...**
+获取ILink中心线起点下游dist距离处的点及其所属分段序号, 如果目标点不在中心线上返回False，否则返回True
+参数：
 \[in\] dist：中心线起点向下游延伸的距离
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 [out] outPoint：中心线起点向下游延伸dist距离后所在点
-
 [out] outIndex：中心线起点向下游延伸dist处的点所属分段序号
 
- **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF) -> bool: ...**
-
+ **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> bool: ...**
 求ILink中心线起点向前延伸dist距离后所在点, 如果目标点不在中心线上返回False，否则返回True
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取路段的多边型轮廓， 返回值类型QPolygonF， 像素坐标
@@ -553,14 +579,16 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
 获取车道所属Section，返回Section对象，其为ILink的父对象
 
- **def length(self) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取车道长度，默认单位：像素
-
- **def width(self) -> float: ...**
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def width(self, unit:Tess.UnitOfMeasure) -> float: ...**
+ 
 获取车道宽度，默认单位：像素
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
  **def number(self) -> int: ...**
 
 获取车道序号，从0开始（自外侧往内侧，即自左向右依次编号）
@@ -581,82 +609,85 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
 根据ID获取下游 LaneObject 同fromLaneObject用法
 
- **def centerBreakPoints(self) -> typing.List: ...**
-
+ **def centerBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 获取车道中心点断点集，断点坐标用像素表示
-
- **def leftBreakPoints(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def leftBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道左侧线断点集,断点坐标用像素表示
-
- **def rightBreakPoints(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def rightBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道右侧线断点集,断点坐标用像素表示
-
- **def centerBreakPoint3Ds(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def centerBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道中心线断点(三维)集， 断点坐标用像素表示，其中高程z用单位米表示
-
- **def leftBreakPoint3Ds(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def leftBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道左侧线断点(三维)集， 断点坐标用像素表示，其中高程z用单位米表示
-
- **def rightBreakPoint3Ds(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def rightBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道右侧线断点(三维)集， 断点坐标用像素表示，其中高程z用单位米表示
-
- **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 根据指定起终点断点，获取车道左侧部分断点(三维)集，  断点坐标用像素表示，其中高程z用单位米表示
 
 参数：
-
 \[in\] fromPoint：中心线上某一点作为起点， 像素坐标，其中高程z用单位米表示
 \[in\] toPoint：中心线上某一点作为终点， 像素坐标，其中高程z用单位米表示
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF) -> typing.List: ...**
+ **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 根据指定起终点断点，获取车道右侧部分断点(三维)集,  断点坐标用像素表示，其中高程z用单位米表示
 
 参数：
-
 \[in\] fromPoint：中心线上某一点作为起点，像素坐标，其中高程z用单位米表示
-
 \[in\] toPoint：中心线上某一点作为终点，像素坐标，其中高程z用单位米表示
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def distToStartPoint(self, p:PySide2.QtCore.QPointF) -> float: ...**
+ **def distToStartPoint(self, p:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取中心线上一点到起点的距离， 单位像素
-
- **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=...) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=..., unit:Tess.UnitOfMeasure) -> float: ...**
 
 根据中心线上任意点所处的车道分段号和该点本身信息，计算该点到车道起点的距离
 
 参数：
-
 \[in\] p：当前中心线上的点坐标，像素单位
-
 \[in\] segmIndex：该点所在车道上的分段序号
-
 \[in\] bOnCentLine：该点是否在中心线上
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int) -> bool: ...**
+ **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int, unit:Tess.UnitOfMeasure) -> bool: ...**
 
 获取车道中心线起点下游dist距离处的点及其所属分段序号；
 如果目标点不在中心线上返回False，否则返回True
 
 参数：
-
 \[in\] dist：中心线起点向前延伸的距离
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+\[out\] outPoint：中心线起点向前延伸dist距离后所在点
+\[out\] outIndex：中心线起点向前延伸dist距离后所在分段序号
 
-[out] outPoint：中心线起点向前延伸dist距离后所在点
-
-[out] outIndex：中心线起点向前延伸dist距离后所在分段序号
-
- **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF) -> bool: ...**
+ **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> bool: ...**
 
 获取车道中心线起点下游dist距离处的点；
 如果目标点不在中心线上返回False，否则返回True
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
  **def setOtherAttr(self, attr:typing.Dict) -> None: ...**
 
@@ -688,17 +719,18 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
 获取连接段ID； 因为连接段ID和路段ID是相互独立的，所以可能两者的ID之间会有重复
 
- **def length(self) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
+获取连接段长度，像素单位；可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-获取连接段长度，像素单位
+ **def z(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
- **def z(self) -> float: ...**
+获取连接段高程，单位：米； ，默认单位：像素，可通过unit参数设置单位
 
-获取连接段高程，单位：米
+ **def v3z(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
- **def v3z(self) -> float: ...**
-
-获取连接段高程，过载自ISection的方法， 单位，米；其效果等同于z()函数
+获取连接段高程，过载自ISection的方法， 单位，米；其效果等同于z()函数 ，默认单位：像素，可通过unit参数设置单位
 
  **def name(self) -> str: ...**
 
@@ -732,14 +764,17 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
 因为连接段的下游一定只有一个路段，所以不需要额外指定id； 但如果是路段，则其下游有可能存在多个连接段，因此需要传入连接段ID来返回指定的ID
 
- **def limitSpeed(self) -> float: ...**
+ **def limitSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取连接器的最高限速，因为连接器没有最高限速这一属性，因此该函数返回连接器的起始路段最高限速作为连接段的最高限速, 单位 km/h
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制 ？？？ 这个本身返回的就是km/h把，
 
- **def minSpeed(self) -> float: ...**
+ **def minSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取连接器的最低限速，因为连接器没有最低限速这一属性，因此返回连接器起始路段的最低限速作为连接段的最低限速， 单位 km/h
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制 ？？？ 这个本身返回的就是km/h把，
  **def laneConnectors(self) -> typing.List: ...**
 
 获取连接器下的所有“车道连接”对象， 列表形式，列表元素为ILaneConnector对象
@@ -806,74 +841,85 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
 因为连接段的下游一定只有一个路段，所以不需要额外指定id； 但如果是路段，则其上游有可能存在多个连接段，因此需要传入连接段ID来返回指定的ID
 
- **def length(self) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取“车道连接”的长度，单位：像素， 是指中心线的长度
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def centerBreakPoints(self) -> typing.List: ...**
+ **def centerBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”的中心线断点集，断点坐标用像素表示
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def leftBreakPoints(self) -> typing.List: ...**
+ **def leftBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”左侧线断点集，断点坐标用像素表示
-
- **def rightBreakPoints(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def rightBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”右侧线断点集，断点坐标用像素表示
-
- **def centerBreakPoint3Ds(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def centerBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”中心线断点(三维)集，断点坐标用像素表示， 高程Z单位米
-
- **def leftBreakPoint3Ds(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def leftBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”左侧线断点(三维)集，断点坐标用像素表示， 高程Z单位米
-
- **def rightBreakPoint3Ds(self) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def rightBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”右侧线断点(三维)集，断点坐标用像素表示， 高程Z单位米
-
- **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 根据指定的起终止点获取“车道连接”左侧部分断点(三维)集，断点坐标用像素表示， 高程Z单位米
-
- **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF) -> typing.List: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 根据指定的起终止点获取“车道连接”右侧部分断点(三维)集，断点坐标用像素表示， 高程Z单位米
-
- **def distToStartPoint(self, p:PySide2.QtCore.QPointF) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def distToStartPoint(self, p:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> float: ...**
 
 计算车道链接中心线上任意点到起点的距离， 单位像素
-
- **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=...) -> float: ...**
-
-计算中心线上任意点到起点的距离，附加条件是该点所在车道上的分段序号
-
 参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+ **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=..., unit:Tess.UnitOfMeasure) -> float: ...**
 
+计算中心线上任意点到起点的距离，附加条件是该点所在车道上的分段序号，默认单位为像素;可通过unit参数设置单位
+参数：
 \[in\] p：当前中心线上该点坐标，像素坐标
-
 \[in\] segmIndex：该点所在车道上的分段序号
-
 \[in\] bOnCentLine：是否在中心线上
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+注：如传入米制参数，请勿遗忘传入segmIndex与bOnCentLine参数。
 
- **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int) -> bool: ...**
+
+
+ **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int, unit:Tess.UnitOfMeasure) -> bool: ...**
 
 求中心线起点下游dist距离处的点及分段序号, 如果目标点不在中心线上返回False，否则返回True
 
 参数：
-
 \[in\] dist：中心线起点向前延伸的距离，像素单位
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+\[out\] outPoint：中心线起点向前延伸dist距离后所在点， 像素坐标
+\[out\] outIndex：中心线起点向前延伸dist距离后所在分段序号
 
-[out] outPoint：中心线起点向前延伸dist距离后所在点， 像素坐标
-
-[out] outIndex：中心线起点向前延伸dist距离后所在分段序号
-
- **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF) -> bool: ...**
+ **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> bool: ...**
 
 求中心线起始点下游dist距离处的点, 如果目标点不在中心线上返回False，否则返回True
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
  **def setOtherAttr(self, attr:typing.Dict) -> None: ...**
 
 设置车道连接其它属性，方便二次开发过程中使用
@@ -886,15 +932,17 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 
  **def id(self) -> int: ...**
 
-获取面域ID； 面域是指：若干Connector重叠形成的区域
+获取面域ID； 面域是指：若干Connector重叠形成的区域;
 
  **def allConnector(self) -> typing.List: ...**
 
 获取当前面域包含的所有连接段， 返回类型列表，元素为IConnector对象
 
- **def centerPoint(self) -> PySide2.QtCore.QPointF: ...**
+ **def centerPoint(self, unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
-获取面域中心点， 像素坐标
+获取面域中心点， 像素坐标; 可通过unit参数设置单位
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
  **def workerKey(self) -> int: ...**
 
@@ -983,9 +1031,11 @@ if link1:
 
 获取决策点所在路段
 
- **def distance(self) -> float: ...**
+ **def distance(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取距路段起点距离，默认单位：像素
+获取距路段起点距离，默认单位：像素，可通过unit参数设置单位
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def routings(self) -> typing.List: ...**
 
@@ -1019,7 +1069,9 @@ if link1:
 
  **def calcuLength(self) -> float: ...**
 
-计算路径长度, 单位像素
+计算路径长度，默认单位：像素，可通过unit参数设置单位
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def getLinks(self) -> typing.List: ...**
 
@@ -1071,9 +1123,12 @@ if link1:
 
 获取当前信号灯所在的灯组， 这里灯组类似于一个组信号灯控制的路口  ?? ????  改为：获取当前信号灯所在的灯组， 这里灯组类似于一个信号机种的某个信控方案
 
- **def setDistToStart(self, dist:float) -> None: ...**
+ **def setDistToStart(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
-设置当前信号灯在车道|车道连接器上的位置； 位置描述为：信号灯距离起点的距离，单位：像素
+设置信号灯距路段起点距离，默认单位：像素，可通过unit参数设置单位
+参数：
+\[in\] dist：距离值
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
@@ -1201,13 +1256,15 @@ if method_number == 3:
 
 获取当前公交线路的名称
 
- **def length(self) -> float: ...**
+ **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交线路长度，单位：像素
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def dispatchFreq(self) -> int: ...**
 
-获取当前公交线路的发车间隔，单位：秒
+获取当前公交线路的发车间隔，单位：秒  
 
  **def dispatchStartTime(self) -> int: ...**
 
@@ -1217,9 +1274,11 @@ if method_number == 3:
 
 获取当前公交线路的发车结束时间，单位：秒， 即当前线路的公交调度表的结束时刻
 
- **def desirSpeed(self) -> float: ...**
+ **def desirSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取当前公交线路的期望速度，单位：km/h
+获取当前公交线路的期望速度，单位：km/h    ????
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def passCountAtStartTime(self) -> int: ...**
 
@@ -1253,9 +1312,11 @@ if method_number == 3:
 
 设置当前公交线路上的公交末班车的发车时间
 
- **def setDesirSpeed(self, desirSpeed:float) -> None: ...**
+ **def setDesirSpeed(self, desirSpeed:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
-设置当前公交线路的期望速度
+设置当前公交线路的期望速度,默认输入是像素，可通过unit参数设置单位
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位 
 
 举例：
 
@@ -1290,18 +1351,21 @@ if busLine is not None:
 
 获取当前公交站点所在车道序号
 
- **def x(self) -> float: ...**
+ **def x(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的中心点的位置， X坐标
-
- **def y(self) -> float: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def y(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的中心点的位置， Y坐标
-
- **def length(self) -> float: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的长度，单位：像素
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def stationType(self) -> int: ...**
 
 获取当前公交站点的类型：站点类型 1：路边式、2：港湾式
@@ -1314,10 +1378,11 @@ if busLine is not None:
 
 获取当前公交站点所在车道
 
- **def distance(self) -> float: ...**
+ **def distance(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的起始位置距路段起点的距离，默认单位：像素
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setName(self, name:str) -> None: ...**
 
 设置站点名称
@@ -1325,15 +1390,14 @@ if busLine is not None:
  **def setDistToStart(self, dist:float) -> None: ...**
 
 设置站点起始点距车道起点距离，默认单位：像素
-
 参数：
-
 \[in\] dist：距车道起点距离，单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setLength(self, length:float) -> None: ...**
 
 设置当前公交站点的长度，默认单位：像素
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setType(self, type:int) -> None: ...**
 
 设置当前公交站点类型
@@ -1449,14 +1513,16 @@ stationLine.setBusParkingTime(20)
 
 如果采集器在连接段上，则返回laneConnector“车道连接”对象，否则返回None
 
- **def distToStart(self) -> float: ...**
+ **def distToStart(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取采集器距离路段|连接段起点的距离，默认单位：像素
-
- **def point(self) -> PySide2.QtCore.QPointF: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def point(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 采集器所在点，像素坐标
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def fromTime(self) -> int: ...**
 
 获取采集器的工作起始时间，单位：秒
@@ -1473,14 +1539,13 @@ stationLine.setBusParkingTime(20)
 
 设置采集器名称
 
- **def setDistToStart(self, dist:float) -> None: ...**
+ **def setDistToStart(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置采集器距车道起点（或“车道连接”起点）的距离， 单位：像素
 
 参数：
-
 \[in\] dist：采集器距离车道起点（或“车道连接”起点）的距离，默认单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 举例：
 
 ```python
@@ -1543,14 +1608,16 @@ if collector is not None:
 
 如果计数器在连接段上则laneConnector返回“车道连接”,lane()返回None
 
- **def distToStart(self) -> float: ...**
+ **def distToStart(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 计数器距离起点距离，默认单位：像素
-
- **def point(self) -> PySide2.QtCore.QPointF: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def point(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 计数器所在点，像素坐标
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 举例：
 
 ```python
@@ -1577,14 +1644,13 @@ if counter is not None:
 
 设置计数器名称
 
- **def setDistToStart(self, dist:float) -> None: ...**
+ **def setDistToStart(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置当前计数器距车道起点（或“车道连接”起点）距离
 
 参数：
-
 \[in\] dist：计数器距离车道起点（或“车道连接”起点）的距离，默认单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setFromTime(self, time:int) -> None: ...**
 
 设置工作起始时间(秒)
@@ -1645,22 +1711,26 @@ if counter is not None:
 
 如果检测器终点在连接段上则laneConnector_endDetector()返回终点“车道连接”,link_endDetector()返回None
 
- **def distance_startDetector(self) -> float: ...**
+ **def distance_startDetector(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 检测器起点距离所在车道起点或“车道连接”起点距离，默认单位：像素
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def distance_endDetector(self) -> float: ...**
+ **def distance_endDetector(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 检测器终点距离所在车道起点或“车道连接”起点距离，默认单位：像素
 
- **def point_startDetector(self) -> PySide2.QtCore.QPointF: ...**
+ **def point_startDetector(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
-检测器起点位置
+检测器起点位置,默认单位：像素，可通过可选参数：unit设置单位，
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def point_endDetector(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
- **def point_endDetector(self) -> PySide2.QtCore.QPointF: ...**
-
-检测器终点位置
-
+检测器终点位置,默认单位：像素，可通过可选参数：unit设置单位，
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def fromTime(self) -> int: ...**
 
 检测器工作起始时间，单位：秒
@@ -1680,11 +1750,13 @@ if counter is not None:
  **def setDistance_startDetector(self, dist:float) -> None: ...**
 
 设置检测器起点距车道起点（或“车道连接”起点）距离，默认单位：像素
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setDistance_endDetector(self, dist:float) -> None: ...**
 
 设置检测器终点距车道起点（或“车道连接”起点）距离，默认单位：像素
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setFromTime(self, time:int) -> None: ...**
 
 设置工作起始时间，单位：秒
@@ -1734,14 +1806,17 @@ lVehicleTravelDetector = tessngIFace().netInterface().createVehicleTravelDetecto
 
 获取导向箭头所在的车道
 
- **def length(self) -> float: ...**
+ **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取导向箭头的长度，默认单位：像素
+获取导向箭头的长度，默认单位：像素，可通过可选参数：unit设置单位，
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def distToTerminal(self) -> float: ...**
+ **def distToTerminal(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取导向箭头到的终点距离，默认单位：像素
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取导向箭头的多边型轮廓的顶点
@@ -1760,14 +1835,16 @@ lVehicleTravelDetector = tessngIFace().netInterface().createVehicleTravelDetecto
 
 获取事故区名称
 
- **def location(self) -> float: ...**
+ **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取事故区距所在路段起点的距离，默认单位：米
+获取事故区距所在路段起点的距离，默认单位：米   ？？？
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
- **def zoneLength(self) -> float: ...**
-
-获取事故区长度，默认单位：米
-
+获取事故区长度，默认单位：米 ？？？
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def section(self) -> Tessng.ISection: ...**
 
 获取事故区所在的路段或连接段
@@ -1793,26 +1870,6 @@ print(zone.roadType())
 
 获取事故区占用的车道列表
 
- **def level(self) -> int: ...**
-
-事故等级，分4级，默认为未定等级(0级)持续时间未定，事故区不会自动移除，一般事故(1级)持续时间10分钟，普通事故(2)级持续时间1小时，重大事故(3级)持续时间3小时
-
- **def duration(self) -> int: ...**
-
-事故持续时间，单位：秒。如果值为0，事故持续时间由事故等级决定，大于0则由此值决定
-
- **def needRescue(self) -> int: ...**
-
-是否需要救援，如果为-1，由事故等级决定，重大事故需要求援，如为0不需救援，如果为1需要救援 , 已废弃
-
- **def waitTimeBeforeRescue(self) -> int: ...**
-
-救援车辆发车时间距事故产生的时间，默认单位：秒，默认60秒
-
- **def rescueTime(self) -> int: ...**
-
-救援时间，默认60秒，即救援车辆停靠在事故区旁的时间，单位秒
-
 ------
 
 ### 2.23. IRoadWorkZone
@@ -1827,18 +1884,21 @@ print(zone.roadType())
 
 获取施工区名称
 
- **def location(self) -> float: ...**
+ **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取施工区距所在路段起点的距离，默认单位：米
-
- **def zoneLength(self) -> float: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取施工区长度，默认单位：米
-
- **def limitSpeed(self) -> float: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def limitSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 施工区限速（最大车速:米/秒）
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def sectionId(self) -> int: ...**
 
 获取施工区所在路段或连接段的ID
@@ -1881,18 +1941,21 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 
 获取限制区名称
 
- **def location(self) -> float: ...**
+ **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取距起点距离，单位：米
-
- **def zoneLength(self) -> float: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取限制区长度，单位：米
-
- **def limitSpeed(self) -> float: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def limitSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取限制区限速（最大限速），单位：千米/小时
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def sectionId(self) -> int: ...**
 
 获取限制区所在路段或连接段ID
@@ -1931,10 +1994,11 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 
 获取改扩建对象的被借道限速区ID
 
- **def passagewayLength(self) -> float: ...**
+ **def passagewayLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取改扩建对象的保通长度，单位：米
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def duration(self) -> int: ...**
 
 获取改扩建的持续时间，单位：秒
@@ -2128,7 +2192,7 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 
 
  **def distance(self) ->float: ...**
-获取收费决策点距离所在路段起点的距离，单位：米
+获取收费决策点距离所在路段起点的距离，默认单位为像素
 
  **def routings(self) ->Type.List<ITollRouting>: ...**
 获取收费决策点的所有收费路径
@@ -2154,7 +2218,6 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
  **def calcuLength(self) -> float: ...**
 获取收费决策路径长度，单位：米； 收费路径长度是指：收费决策点到收费车道
 
-
  **def contain(self, pRoad: Tessng.ISection) -> boolen: ...**
 判断输入的路段是否在当前路径上
 \[in\] pRoad ：路段或连接段
@@ -2176,7 +2239,6 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 
  **def distance(self) -> float: ...**
 获取收费站停车点距离路段起始位置的距离，单位：米；
-
  **def tollLaneId(self) -> int: ...**
 获取收费站停车点所在的车道ID，注意不是车辆从左到右的序号
 
@@ -2765,28 +2827,24 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 
 道路名
 
- **def initSpeed(self, speed:float=...) -> float: ...**
+ **def initSpeed(self, speed:float=...，unit:Tess.UnitOfMeasure) -> float: ...**
 
 初始化车速
 
 参数：
-
 \[in\] speed：车速，如果大于0，车辆以指定的速度从发车点出发，单位：像素/秒
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：初始化车速，单位：像素/秒
 
- **def initLane(self, laneNumber:int, dist:float=..., speed:float=...) -> None: ...**
+ **def initLane(self, laneNumber:int, dist:float=..., speed:float=...，unit:Tess.UnitOfMeasure) -> None: ...**
 
-初始化车辆, laneNumber:车道序号，从0开始；dist，距起点距离，单位像素；speed：车速，像素/秒
+初始化车辆, laneNumber:车道序号，从0开始；dist，距起点距离，单位像素；speed：车速，像素/秒 初始化车速，可通过unit参数设置单位
 
 参数：
-
 \[in\] laneNumber：车道序号，从0开始
-
 \[in\] dist：距离路段起点距离，单位：像素
-
 \[in\] speed：起动时的速度，单位：像素/秒
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 举例：
 
 ```python
@@ -2799,20 +2857,17 @@ if tmpId == 1:
 
  
 
- **def initLaneConnector(self, laneNumber:int, toLaneNumber:int, dist:float=..., speed:float=...) -> None: ...**
+ **def initLaneConnector(self, laneNumber:int, toLaneNumber:int, dist:float=..., speed:float=...，unit:Tess.UnitOfMeasure) -> None: ...**
 
 初始化车辆, laneNumber: “车道连接”起始车道在所在路段的序号，从0开始自右往左；toLaneNumber:“车道连接”目标车道在所在路段的序号，从0开始自右往左， dist，距起点距离，单位像素；speed：车速，像素/秒
-
+默认单位：像素，可通过unit参数设置单位
 参数：
 
 \[in\] laneNumber：车道序号，从0开始自右侧至左侧
-
 \[in\] toLaneNumber：车道序号，从0开始自右侧至左侧
-
-\[in\] dist：距离路段起点距离，单位：像素
-
-\[in\] speed：起动时的速度，单位：像素/秒
-
+\[in\] dist：距离路段起点距离，单位：：像素或米(取决于unit参数)
+\[in\] speed：起动时的速度，单位：像素/秒或米/秒(取决于unit参数)
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setVehiType(self, code:int) -> None: ...**
 
 设置车辆类型，车辆被创建时已确定了类型，通过此方法可以改变车辆类型
@@ -2821,20 +2876,26 @@ if tmpId == 1:
 
 \[in\] code：车辆类型编码
 
- **def length(self) -> float: ...**
+
+ **def setColor(self, color:str) -> None: ...**
+设置车辆颜色
+参数：
+\[in\] color：颜色RGB，如："#EE0000"
+
+
+ **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 路段或连接段长度，单位：像素
-
- **def setLength(self, len:float, bRestWidth:bool=...) -> None: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def setLength(self, len:float, bRestWidth:bool=...，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置车辆长度
 
 参数：
-
 \[in\] len：车辆长度，单位：像素
-
 \[in\] bRestWidth：是否同比例约束宽度，默认为False
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def laneId(self) -> int: ...**
 
 如果toLaneId() 小于等于0，那么laneId()获取的是当前所在车道ID，如果toLaneId()大于0，则车辆在“车道连接”上，laneId()获取的是上游车道ID
@@ -2863,14 +2924,16 @@ if tmpId == 1:
 
 车辆所在道路类型。包NetItemType中定义了一批常量，每一个数值代表路网上一种元素类型。如：GLinkType代表路段、GConnectorType代表连接段。
 
- **def limitMaxSpeed(self) -> float: ...**
+ **def limitMaxSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 车辆所在路段或连接段最大限速，兼顾到车辆的期望速度，单位：像素/秒
-
- **def limitMinSpeed(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def limitMinSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 车辆所在路段或连接段最小限速，兼顾到车辆的期望速度，单位：像素/秒
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def vehicleTypeCode(self) -> int: ...**
 
 车辆类型编码。打开TESSNG，通过菜单“车辆”->“车辆类型”打开车辆类型编辑窗体，可以看到不同类型车辆的编码
@@ -2892,22 +2955,26 @@ if tmpId == 1:
 驱动车辆。在每个运算周期，每个在运行的车辆被调用一次该方法;
 如果用户使用该函数驱动车辆，那后续整个仿真声明周期都需要用户控制该辆车。即TESSNG将此车辆的控制权移交给用户。
 
- **def pos(self) -> PySide2.QtCore.QPointF: ...**
+ **def pos(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 当前位置，横纵坐标单位：像素
-
- **def zValue(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def zValue(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前高程，单位：像素
-
- **def acce(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def acce(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前加速度，单位：像素/秒^2
-
- **def currSpeed(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def currSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前速度，单位：像素/秒
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def angle(self) -> float: ...**
 
 当前角度，北向0度顺时针
@@ -2943,67 +3010,82 @@ if tmpId == 1:
  **def vehiDistFront(self) -> float: ...**
 
 前车间距，单位：像素; 若无前车，则范围固定的常量 ， 单位像素  
-
- **def vehiSpeedFront(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiSpeedFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 前车速度，单位：像素/秒  若无前车，则范围固定的常量 单位像素 
-
- **def vehiHeadwayFront(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiHeadwayFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 距前车时距, 若无前车，则范围固定的常量  单位像素 
-
- **def vehiDistRear(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiDistRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 后车间距，单位：像素, 若无后车，则范围固定的常量  单位像素 
-
- **def vehiSpeedRear(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiSpeedRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 后车速度，单位：像素/秒  若无后车，则范围固定的常量  单位像素  
-
- **def vehiHeadwaytoRear(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiHeadwaytoRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 距后车时距，  若无前后车，则范围固定的常量  单位像素  
-
- **def vehiDistLLaneFront(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiDistLLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道前车间距，单位：像素； 若无目标车，则返回固定的常量  单位像素
-
- **def vehiSpeedLLaneFront(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiSpeedLLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素
-
- **def vehiDistLLaneRear(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiDistLLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道后车间距，单位：像素;  若无目标车，则返回固定的常量  单位像素
-
- **def vehiSpeedLLaneRear(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiSpeedLLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道后车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素
-
- **def vehiDistRLaneFront(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiDistRLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道前车间距，单位：像素;  若无目标车，则返回固定的常量  单位像素
-
- **def vehiSpeedRLaneFront(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiSpeedRLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素
-
- **def vehiDistRLaneRear(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiDistRLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道后车间距，单位：像素; 若无目标车，则返回固定的常量  单位像素
-
- **def vehiSpeedRLaneRear(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def vehiSpeedRLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道后车速度，单位：像素/秒；  若无目标车，则返回固定的常量  单位像素
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setIsPermitForVehicleDraw(self, bDraw:bool) -> None: ...**
 
 设置是否允许插件绘制车辆
 
- **def lLaneObjectVertex(self) -> typing.List: ...**
+ **def lLaneObjectVertex(self，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 车道或车道连接中心线内点集
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def routing(self) -> Tessng.IRouting: ...**
 
 获取车辆当前路径； 返回的是当前车辆的全局路径，包括已经行驶过大的路段序列
@@ -3203,10 +3285,11 @@ if  vehi.roadId() == 5:
 
 \[in\] bPositive：车头方向是否正向计算，如果bPosiDire为False则反向计算
 
- **def desirSpeed(self) -> float: ...**
+ **def desirSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前期望速度，与车辆自身期望速度和道路限速有关，不大于道路限速，单位：像素/秒
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def getCurrRoad(self) -> Tessng.ISection: ...**
 
 返回当前所在路段或连接段
@@ -3235,18 +3318,18 @@ if  vehi.roadId() == 5:
 
 初始化轨迹
 
- **def setTrace(self, lPoint:typing.Sequence) -> None: ...**
+ **def setTrace(self, lPoint:typing.Sequence，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置轨迹
 
 参数：
-
 \[in\] lPoint：轨迹点坐标集合
-
- **def calcTraceLength(self) -> None: ...**
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def calcTraceLength(self，unit:Tess.UnitOfMeasure) -> None: ...**
 
 计算轨迹长度； 前提是：TESSNG开启车辆轨迹记录|输出 功能
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def tracingType(self) -> int: ...**
 
 返回轨迹类型，分为：0：跟驰，1：左变道，2：右变道，3：左虚拟変道，4：右虚拟变道，5：左转待转，6：右转待转，7：入湾，8：出湾
@@ -3263,50 +3346,56 @@ if  vehi.roadId() == 5:
 
 \[in\] number：车道序号
 
- **def currDistance(self) -> float: ...**
+ **def currDistance(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前计算周期移动距离，单位：像素
-
- **def currDistanceInRoad(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def currDistanceInRoad(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前路段或连接上已行驶距离，单位：像素
-
- **def setCurrDistanceInRoad(self, dist:float) -> None: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def setCurrDistanceInRoad(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置当前路段已行驶距离
 
 参数：
 
 \[in\] dist：距离，单位：像素
-
- **def setVehiDrivDistance(self, dist:float) -> None: ...**
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def setVehiDrivDistance(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置当前已行驶总里程
 
 参数：
 
 \[in\] dist：总里程，单位：像素
-
- **def getVehiDrivDistance(self) -> float: ...**
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def getVehiDrivDistance(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 已行驶总里程
-
- **def currDistanceInSegment(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def currDistanceInSegment(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前分段已行驶距离
-
- **def setCurrDistanceInSegment(self, dist:float) -> None: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def setCurrDistanceInSegment(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置当前分段已行驶的距离
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setSegmentIndex(self, index:int) -> None: ...**
 
 设置分段序号
 
- **def setCurrDistanceInTrace(self, dist:float) -> None: ...**
+ **def setCurrDistanceInTrace(self, dist:float)，unit:Tess.UnitOfMeasure -> None: ...**
 
 设置曲化轨迹上行驶的距离
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setIndexOfSegmInTrace(self, index:int) -> None: ...**
 
 设置曲化轨迹上的分段序号
@@ -3315,10 +3404,11 @@ if  vehi.roadId() == 5:
 
 设置是否改变轨迹，当设为True时会对轨迹初始化，如设轨迹分段序号为0，等
 
- **def currDistance(self) -> float: ...**
+ **def currDistance(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前时间段移动距离
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setRouting(self, pRouting:Tessng.IRouting) -> bool: ...**
 
 设置路径，外界设置的路径不一定有决策点，可能是临时创建的，如果车辆不在此路径上则设置不成功并返回False
@@ -3356,31 +3446,32 @@ for vehi in allVehiStarted_lst:
 
 \[in\] index：分段序号
 
- **def currDistanceInSegment(self) -> float: ...**
+ **def currDistanceInSegment(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前在分段上已行驶距离
-
- **def setCurrDistanceInSegment(self, dist:float) -> None: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def setCurrDistanceInSegment(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置在分段上已行驶距离
 
- **def setX(self, posX:float) -> None: ...**
+ **def setX(self, posX:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置横坐标
 
 参数：
 
 \[in\] posX：横坐标：单位：像素
-
- **def setY(self, posY:float) -> None: ...**
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def setY(self, posY:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置纵坐标
 
 参数：
 
 \[in\] posY：纵坐标：单位：像素
-
- **def setV3z(self, v3z:float) -> None: ...**
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def setV3z(self, v3z:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置高程坐标
 
@@ -3391,29 +3482,29 @@ for vehi in allVehiStarted_lst:
  **def changingTrace(self) -> typing.List: ...**
 
 变轨点集，车辆不在车道中心线或“车道连接”中心线上时的轨迹，如变道过程的轨迹点集
-
- **def changingTraceLength(self) -> float: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def changingTraceLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 变轨长度
 
- **def distToStartPoint(self, fromVehiHead:bool=..., bOnCentLine:bool=...) -> float: ...**
+ **def distToStartPoint(self, fromVehiHead:bool=..., bOnCentLine:bool=...，unit:Tess.UnitOfMeasure) -> float: ...**
 
 在车道或车道连接上到起点距离
 
 参数：
 
 \[in\] fromVehiHead：是否从车头计算，如果为False，从车辆中心点计算，默认值为False
-
 \[in\] bOnCentLine：当前是否在中心线上
-
- **def distToEndpoint(self, fromVehiHead:bool=...) -> float: ...**
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def distToEndpoint(self, fromVehiHead:bool=...，unit:Tess.UnitOfMeasure) -> float: ...**
 
 在车道或“车道连接”上车辆到终端距离
 
 参数：
-
 \[in\] fromVehiHead：是否从车头计算，如果为False，从车辆中心点计算，默认值为False
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setRouting(self, pRouting:Tessng.IRouting) -> bool: ...**
 
 设置路径，外界设置的路径不一定有决策点，可能是临时创建的，如果车辆不在此路径上则设置不成功并返回False
@@ -3422,26 +3513,23 @@ for vehi in allVehiStarted_lst:
 
 当前路径
 
- **def moveToLane(self, pLane:Tessng.ILane, dist:float) -> bool: ...**
+ **def moveToLane(self, pLane:Tessng.ILane, dist:float，unit:Tess.UnitOfMeasure) -> bool: ...**
 
 将车辆移到另一条车道上； 车辆会瞬间从当前车道移动到目标车道及指定的距离出，后续TESSNG接管车辆继续行驶 
 
 参数：
-
 \[in\] pLane：目标车道
-
 \[in\] dist：到目标车道起点距离，单位：像素
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def moveToLaneConnector(self, pLaneConnector:Tessng.ILaneConnector, dist:float) -> bool: ...**
+ **def moveToLaneConnector(self, pLaneConnector:Tessng.ILaneConnector, dist:float，unit:Tess.UnitOfMeasure) -> bool: ...**
 
 将车辆移到另一条车道连接上; 车辆会瞬间从当前位置移动到目标车道连接及指定的距离出，后续TESSNG接管车辆继续行驶 
 
 参数：
-
 \[in\] pLaneConnector：目标车道
-
 \[in\] dist：到目标车道起点距离，单位：像素
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 举例：
 
 ```python
@@ -3457,16 +3545,15 @@ if simuTime == 20 * 1000:
 
  
 
- **def move(self, pILaneObject:Tessng.ILaneObject, dist:float) -> bool: ...**
+ **def move(self, pILaneObject:Tessng.ILaneObject, dist:float，unit:Tess.UnitOfMeasure) -> bool: ...**
 
 移动车辆到到另一条车道或“车道连接”； 使用该函数后，车辆脱离TESSNG管控，需要用户维护后期车辆运动
 
 参数：
 
 \[in\] pILaneObject：目标车道或“车道连接”
-
 \[in\] dist：到目标车道起点距离，单位：像素
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 举例：
 
 ```python
@@ -3489,18 +3576,21 @@ if simuTime == 10 * 1000:
 
 变轨点集，如变道轨迹、公交车进入港湾式站点轨迹。
 
- **def changingTraceLength(self) -> float: ...**
+ **def changingTraceLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 变轨长度，如变道轨迹长度、公交车进入港湾式站点轨迹长度，单位：像素。
-
- **def calcTraceLength(self) -> None: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def calcTraceLength(self，unit:Tess.UnitOfMeasure) -> None: ...**
 
 计算变轨长度，如计算变道轨迹长度等。
-
- **def setTrace(self, lPoint:typing.Sequence) -> None: ...**
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def setTrace(self, lPoint:typing.Sequence，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置变轨轨迹； 车辆后续会沿着当前设置的轨迹运动，运动速度默认是当前车辆瞬时速度；该函数一旦使用就需要用户在后续仿真过程中全称控制当前车辆的运动，包括速度，加速度，与其他车辆的交互
-
+参数：
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def setTracingType(self, type:int) -> None: ...**
 
 设置轨迹类型
@@ -3623,18 +3713,21 @@ openNetFile("C:/TESSNG/Example/杭州武林门区域路网公交优先方案.tes
 
 场景中的像素比，单位：米/像素
 
- **def setSceneSize(self, w:float, h:float) -> None: ...**
+ **def setSceneSize(self, w:float, h:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置场景大小，参数w及h分别是场景宽度和高度，单位：米
-
- **def sceneWidth(self) -> float: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def sceneWidth(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 场景宽度，单位：米
-
- **def sceneHeight(self) -> float: ...**
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+ **def sceneHeight(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 场景高度，单位：米
-
+参数：
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def backgroundMap(self) -> PySide2.QtCore.QByteArray: ...**
 
 背景图
@@ -3783,21 +3876,21 @@ openNetFile("C:/TESSNG/Example/杭州武林门区域路网公交优先方案.tes
 
 面域集
 
- **def laneCenterPoints(self, laneId:int) -> typing.List: ...**
+ **def laneCenterPoints(self, laneId:int，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 **指定车道中心线断点集**
 
 参数：­
+\[in\] laneId：指定车道ID
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
-\[in\]laneId：指定车道ID
-
- **def linkCenterPoints(self, linkId:int) -> typing.List: ...**
+ **def linkCenterPoints(self, linkId:int，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 指定路段中心线断点集
 
 参数：
-
 \[in\]linkId：指定路段ID
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def judgeLinkToCross(self, linkId:int) -> bool: ...**
 
@@ -3811,19 +3904,17 @@ openNetFile("C:/TESSNG/Example/杭州武林门区域路网公交优先方案.tes
 
 \[in\] name：路网元素名。路网元素名的定义在文件plugin/_netitem.h中定义
 
- **def createLink(self, lCenterPoint:typing.Sequence, laneCount:int, linkName:str=..., bAddToScene:bool=...) -> Tessng.ILink: ...**
+ **def createLink(self, lCenterPoint:typing.Sequence, laneCount:int, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
 创建路段
 
 参数：
-
 \[in\] lCenterPoint：路段中心线断点集
-
 \[in\] laneCount：车道数
-
 \[in\] linkName：路段名，默认为空，将以路段ID作为路段名
-
 \[in\] bAddToScene：创建后是否放入路网场景，默认为True
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
 举例：
 
@@ -3841,68 +3932,54 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 
 返回：路段对象。
 
- **def createLink3D(self, lCenterV3:typing.Sequence, laneCount:int, linkName:str=..., bAddToScene:bool=...) -> Tessng.ILink: ...**
+ **def createLink3D(self, lCenterV3:typing.Sequence, laneCount:int, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
-创建路段
+创建路段,默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] lCenterV3：路段中心线断点序列，每个断点都是三维空间的点
-
 \[in\] laneCount：车道数
-
 \[in\] linkName：路段名
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：路段对象。
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
+ **def createLinkWithLaneWidth(self, lCenterPoint:typing.Sequence, lLaneWidth:typing.Sequence, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
- **def createLinkWithLaneWidth(self, lCenterPoint:typing.Sequence, lLaneWidth:typing.Sequence, linkName:str=..., bAddToScene:bool=...) -> Tessng.ILink: ...**
-
-创建路段
+创建路段,默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] lCenterPoint：路段中心线断点序列
-
 \[in\] lLaneWidth：车道宽度列表
-
 \[in\] linkName：路段名
-
 \[in\] bAddToScene：是否加入场景，默认为True
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：路段对象。
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
+ **def createLink3DWithLaneWidth(self, lCenterV3:typing.Sequence, lLaneWidth:typing.Sequence, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
- **def createLink3DWithLaneWidth(self, lCenterV3:typing.Sequence, lLaneWidth:typing.Sequence, linkName:str=..., bAddToScene:bool=...) -> Tessng.ILink: ...**
-
-创建路段
+创建指定车道宽度的3D路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] lCenterV3：路段中心线断点序列，每个断点都是三维空间的点
-
 \[in\] lLaneWidth：车道宽度列表
-
 \[in\] linkName：路段名
-
 \[in\] bAddToScene：是否加入场景，默认为True
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：路段对象。
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
+ **def createLink3DWithLanePoints(self, lCenterLineV3:typing.Sequence, lanesWithPoints:typing.Sequence, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
- **def createLink3DWithLanePoints(self, lCenterLineV3:typing.Sequence, lanesWithPoints:typing.Sequence, linkName:str=..., bAddToScene:bool=...) -> Tessng.ILink: ...**
-
-创建路段
+创建指定车道断点的3D路段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] lCenterLineV3：路段中心点集(对应TESSNG路段中心点)，每个点都是三维空间的
-
 \[in\] lanesWithPoints：车道数据集合，每个成员是QMap< QString, QList< QVector3D>>类型数据，有三个key，分别是“left”、“center”、“right”、分别表示一条车道左、中、右侧断点序列。
-
 \[in\] linkName：路段名，默认为路段ID
-
 \[in\] bAddToScene：是否加入路网，默认True表示加入
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：路段对象
-
+注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
  **def createConnector(self, fromLinkId:int, toLinkId:int, lFromLaneNumber:typing.Sequence, lToLaneNumber:typing.Sequence, connName:str=..., bAddToScene:bool=...) -> Tessng.IConnector: ...**
 
 创建连接段
@@ -3910,51 +3987,36 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 参数：
 
 \[in\] fromLinkId：起始路段ID
-
 \[in\] toLinkId：目标路段ID
-
 \[in\] lFromLaneNumber：连接段起始车道序号集
-
 \[in\] LToLaneNumber：连接段目标车道序号集
-
 \[in\] connName：连接段名，默认为空，以两条路段的ID连接起来作为名称
-
 \[in\] bAddToScene：创建后是否放入路网场景，默认为True
 
  
 
- **def createConnector3DWithPoints(self, fromLinkId:int, toLinkId:int, lFromLaneNumber:typing.Sequence, lToLaneNumber:typing.Sequence, laneConnectorWithPoints:typing.Sequence, connName:str=..., bAddToScene:bool=...) -> Tessng.IConnector: ...**
+ **def createConnector3DWithPoints(self, fromLinkId:int, toLinkId:int, lFromLaneNumber:typing.Sequence, lToLaneNumber:typing.Sequence, laneConnectorWithPoints:typing.Sequence, connName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.IConnector: ...**
 
-创建连接段，创建连接段后将“车道连接”中自动计算的断点集用参数laneConnectorWithPoints断点替换
+创建连接段，创建连接段后将“车道连接”中自动计算的断点集用参数laneConnectorWithPoints断点替换;  即创建指定断点的3D连接段，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] fromLinkId：起始路段ID
-
 \[in\] toLinkId：目标路段ID
-
 \[in\] lFromLaneNumber：起始路段参于连接的车道序号
-
 \[in\] lToLaneNumber：目标路段参于连接的车道序号
-
 \[in\] laneConnectorWithPoints：“车道连接”数据列表，成员是QMap< QString, QList< QVector3D>>类型数据，有三种key，分别是“left”、“center”、“right”，表示一条“车道连接”左、中、右侧断点序列
-
 \[in\] connName：连接段名，默认将起始路段ID和目标路段ID用“_”连接表示连接段名，如“100_101”。
-
 \[in\] bAddToScene：是否加入到场景，默认为True
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：连接段对象
-
+注：如传入米制参数，请勿遗忘传入connName与bAddToScene参数。
  **def createDispatchPoint(self, pLink:Tessng.ILink, dpName:str=..., bAddToScene:bool=...) -> Tessng.IDispatchPoint: ...**
 
 创建发车点
 
 参数：
-
 \[in\] pLink：路段，在其上创建发车点
-
 \[in\] dpName：发车点名称，默认为空，将以发车点ID作为名称
-
 \[in\] bAddToScene：创建后是否放入路网场景，默认为True
 
  **def createVehicleComposition(self, name:str, lVehiComp:typing.Sequence) -> int: ...**
@@ -3962,9 +4024,7 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 创建车型组成，如果车型组成名已存在或相关车型编码不存在或相关车型占比小于0则返回-1，否则新建车型组成，并返回车型组成编码
 
 参数：
-
 \[in\] name：车型组成名
-
 \[in\] lVehiComp：不同车型占比列表
 
 举例：
@@ -3988,11 +4048,8 @@ vehiCompositionID = netiface.createVehicleComposition("动态创建车型组成"
 计算最短路径
 
 参数：
-
 \[in\] pFromLink：起始路段
-
 \[in\] pToLink：目标路段
-
 返回：最短路径对象，包含经过的路段对象序列
 
  **def createRouting(self, lILink:typing.Sequence) -> Tessng.IRouting: ...**
@@ -4000,9 +4057,7 @@ vehiCompositionID = netiface.createVehicleComposition("动态创建车型组成"
 用连续通达的路段序列创建路径
 
 参数：
-
 \[in\] lILink：路段对象序列
-
 返回：路径对象
 
  **def decisionPoints(self) -> typing.List: ...**
@@ -4065,7 +4120,7 @@ vehiCompositionID = netiface.createVehicleComposition("动态创建车型组成"
 
  **def crossPoints(self, pLaneConnector:Tessng.ILaneConnector) -> typing.List: ...**
 
-当前“车道连接”穿过其它“车道连接”形成的交叉点列表
+当前“车道连接”穿过其它“车道连接”形成的交叉点列表； ？？？？？？？？？？？可否纳入统一单位管理
 
 参数：
 
@@ -4098,47 +4153,37 @@ for laneConnector in laneConnectors:
 
 \[in\] dbver:：数据库版本
 
- **def createLink3DWithLanePointsAndAttrs(self, lCenterLineV3:typing.Sequence, lanesWithPoints:typing.Sequence, lLaneType:typing.Sequence, lAttr:typing.Sequence=..., linkName:str=..., bAddToScene:bool=...) -> Tessng.ILink: ...**
+ **def createLink3DWithLanePointsAndAttrs(self, lCenterLineV3:typing.Sequence, lanesWithPoints:typing.Sequence, lLaneType:typing.Sequence, lAttr:typing.Sequence=..., linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
 创建路段
 
 参数：
-
 \[in\] lCenterLineV3：路段中心点集(对应TESSNG路段中心点)
-
 \[in\] lanesWithPoints：车道点集的集合
-
 \[in\] lLaneType:车道类型集
-
 \[in\] lAttr:车道附加属性集
-
 \[in\] linkName：路段名，默认为路段ID,
-
 \[in\] bAddToScene：是否加入路网，默认True表示加入
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：路段对象
+注：如传入米制参数，请勿遗忘传入connName与bAddToScene参数。
 
  **def removeLink(self, pLink:Tessng.ILink) -> None: ...**
 
 移除路段，从场景中移除pLink，但不从文件中删除，保存路网后才会从路网文件中删除
-
 参数：
-
 \[in\] pLink：将要移除的路段
 
- **def updateLink(self, link:Tessng._Link, lLane:typing.Sequence=..., lPoint:typing.Sequence=...) -> Tessng.ILink: ...**
+ **def updateLink(self, link:Tessng._Link, lLane:typing.Sequence=..., lPoint:typing.Sequence=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
 更新路段，更新后返回路段对象
-
 参数：
-
 \[in\] link：更新的路段数据
-
 \[in\] lLink：更新的车道列表数据
-
 \[in\] lPoint：更新的断点集合
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：更新后的路段对象
+注：如传入米制参数，请勿遗忘传入lLane与lPoint参数。
 
  **def removeConnector(self, pConnector:Tessng.IConnector) -> None: ...**
 
@@ -4157,6 +4202,44 @@ for laneConnector in laneConnectors:
 \[in\] connector：连接段数据
 
 返回：更新后的连接段对象
+
+
+ **def createGuidArrow(self, ref_pLane:Tessng.ILane, length:float, distToTerminal:float, arrowType:Online.GuideArrowType，unit:Tess.UnitOfMeasure) -> :Online.GuideArrowType: ...**
+
+创建导向箭头，默认单位：像素，可通过unit参数设置单位
+
+参数：
+\[in\] pLane：车道
+\[in\] length：长度，默认单位像素，可通过制定unit更改为米制
+\[in\] distToTerminal：到车道终点距离，默认单位像素，可通过制定unit更改为米制
+\[in\] arrowType：箭头类型，Online.GuideArrowType 枚举值
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+返回：创建车道箭头
+```python
+//在路段4的最右侧车道上添加直行或右转箭头,导向箭头距离路段起终点不能小于9米
+	ILink* pLink = gpTessInterface->netInterface()->findLink(4);
+	if (pLink) {
+		ILane* pRightLane = pLink->lanes().front();
+		qreal length = m2p(4.0);
+		qreal distToTerminal = m2p(50);
+		Online::GuideArrowType arrowType = Online::GuideArrowType::StraightRight;
+		if (pRightLane) {
+IGuidArrow* pGuideArrow = gpTessInterface->netInterface()->createGuidArrow(pRightLane, length, distToTerminal, arrowType);
+			qDebug() << "创建箭头成功，箭头所在车道为：" << pGuideArrow->lane()->id() << endl;
+		}
+}
+
+```
+
+
+ **def removeGuidArrow(self, pArrow:Online.GuideArrowType) -> None: ...**
+移除导向箭头
+
+参数：
+\[in\] pArrow：导向箭头对象
+
+
+
 
  **def removeDispatchPoint(self, pDispPoint:Tessng.IDispatchPoint) -> bool: ...**
 
@@ -4182,25 +4265,23 @@ for laneConnector in laneConnectors:
 
 \[in\] vehiCompId：车型组成ID
 
- **def createDecisionPoint(self, pLink:Tessng.ILink, distance:float, name:str=...) -> Tessng.IDecisionPoint: ...**
+ **def createDecisionPoint(self, pLink:Tessng.ILink, distance:float, name:str=...，unit:Tess.UnitOfMeasure) -> Tessng.IDecisionPoint: ...**
 
-创建决策点
+创建决策点，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] pLink：决策点所在的路段
-
 \[in\] distance：决策点距离路段起点的距离，默认单位：像素
-
 \[in\] name：决策点的名称
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：决策点对象
-
+注：如传入米制参数，请勿遗忘传入name参数。
 举例：
 
 ```python
 # 创建决策点
-decisionPoint = netiface.createDecisionPoint(link3, m2p(30))
+decisionPoint = netiface.createDecisionPoint(link3, 30，Tess.UnitOfMeasure.Metric)
 
 ```
 
@@ -4302,16 +4383,14 @@ updated_decision_point = netiface.updateDecipointPoint(
 
  
 
- **def createVehiCollectorOnLink(self, pLane:Tessng.ILane, dist:float) -> Tessng.IVehicleDrivInfoCollector: ...**
+ **def createVehiCollectorOnLink(self, pLane:Tessng.ILane, dist:float，unit:Tess.UnitOfMeasure) -> Tessng.IVehicleDrivInfoCollector: ...**
 
-在路段的车道上创建车辆采集器
+在路段的车道上创建车辆采集器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] pLane：车道对象
-
 \[in\] dist：路车道起点距离，默认单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：车辆采集器
 
 举例：
@@ -4331,16 +4410,14 @@ if link is not None:
 
  
 
- **def createVehiCollectorOnConnector(self, pLaneConnector:Tessng.ILaneConnector, dist:float) -> Tessng.IVehicleDrivInfoCollector: ...**
+ **def createVehiCollectorOnConnector(self, pLaneConnector:Tessng.ILaneConnector, dist:float，unit:Tess.UnitOfMeasure) -> Tessng.IVehicleDrivInfoCollector: ...**
 
 在连接段的“车道连接”上创建采集器
 
 参数：
-
 \[in\] pLaneConnector：“车道连接”对象
-
 \[in\] dist：距“车道连接”起点距离，单位像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
  **def removeVehiCollector(self, pCollector:Tessng.IVehicleDrivInfoCollector) -> bool: ...**
 
 移除车辆信息采集器
@@ -4349,16 +4426,14 @@ if link is not None:
 
 \[in\] pCollector：车辆信息采集器
 
- **def createVehiQueueCounterOnLink(self, pLane:Tessng.ILane, dist:float) -> Tessng.IVehicleQueueCounter: ...**
+ **def createVehiQueueCounterOnLink(self, pLane:Tessng.ILane, dist:float，unit:Tess.UnitOfMeasure) -> Tessng.IVehicleQueueCounter: ...**
 
 在路段的车道上创建车辆排队计数器
 
 参数：
-
 \[in\] pLane：车道对象
-
 \[in\] dist：默认单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：排队计数器对象
 
 举例：
@@ -4377,28 +4452,24 @@ if link is not None:
 
  
 
- **def createVehiQueueCounterOnConnector(self, pLaneConnector:Tessng.ILaneConnector, dist:float) -> Tessng.IVehicleQueueCounter: ...**
+ **def createVehiQueueCounterOnConnector(self, pLaneConnector:Tessng.ILaneConnector, dist:float，unit:Tess.UnitOfMeasure) -> Tessng.IVehicleQueueCounter: ...**
 
-在连接段的车道连接上创建车辆排队计数器
+在连接段的车道连接上创建车辆排队计数器，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] pLaneConnector：“车道连接”对象
-
 \[in\] dist：距“车道连接”起点距离，默认单位：像素
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：排队计数器对象
 
- **def createVehicleTravelDetector_link2link(self, pStartLink:Tessng.ILink, pEndLink:Tessng.ILink, dist1:float, dist2:float) -> typing.List: ...**
+ **def createVehicleTravelDetector_link2link(self, pStartLink:Tessng.ILink, pEndLink:Tessng.ILink, dist1:float, dist2:float，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-创建行程时间检测器，起点和终点都在路段上
+创建行程时间检测器，起点和终点都在路段上；默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] dist1：检测器起点距所在路段起始点距离，默认单位：像素
-
 \[in\] dist2：检测器终点距所在路段起始点距离，默认单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 举例：
 
 ```python
@@ -4413,52 +4484,42 @@ detector.setToTime(60)
 
  
 
- **def createVehicleTravelDetector_link2conn(self, pStartLink:Tessng.ILink, pEndLaneConnector:Tessng.ILaneConnector, dist1:float, dist2:float) -> typing.List: ...**
+ **def createVehicleTravelDetector_link2conn(self, pStartLink:Tessng.ILink, pEndLaneConnector:Tessng.ILaneConnector, dist1:float, dist2:float，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-创建行程时间检测器，起点在路段上，终点都在连接段的“车道连接”上
+创建路段到连接段的行程时间检测器，起点在路段上，终点都在连接段的“车道连接”上； 默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] pStartLink：检测器起点所在路段对象
-
 \[in\] pEndLaneConnector：检测器终点所在“车道连接”对象
-
 \[in\] dist1：检测器起点距所在路段起始点距离，默认单位：像素
-
 \[in\] dist2：检测器终点距所在“车道连接”起始点距离，默认单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：行程时间检测器对象
 
- **def createVehicleTravelDetector_conn2link(self, pStartLaneConnector:Tessng.ILaneConnector, pEndLink:Tessng.ILink, dist1:float, dist2:float) -> typing.List: ...**
+ **def createVehicleTravelDetector_conn2link(self, pStartLaneConnector:Tessng.ILaneConnector, pEndLink:Tessng.ILink, dist1:float, dist2:float，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-创建行程时间检测器，起点在连接段的“车道连接”上，终点在路段上
+创建连接段到路段的行程时间检测器，起点在连接段的“车道连接”上，终点在路段上
 
 参数：
-
 \[in\] pStartLaneConnector：检测器起点所在“车道连接”对象
-
 \[in\] pEndLink：检测器终点所在路段对象
-
 \[in\] dist1：检测器起点距所在"车道连接”起始点距离，默认单位：像素
-
 \[in\] dist2：检测器终点距所在路段起始点距离，默认单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：行程时间检测器对象
 
- **def createVehicleTravelDetector_conn2conn(self, pStartLaneConnector:Tessng.ILaneConnector, pEndLaneConnector:Tessng.ILaneConnector, dist1:float, dist2:float) -> typing.List: ...**
+ **def createVehicleTravelDetector_conn2conn(self, pStartLaneConnector:Tessng.ILaneConnector, pEndLaneConnector:Tessng.ILaneConnector, dist1:float, dist2:float，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-创建行程时间检测器，起点和终点都在连接段的“车道连接”上
+创建连接段到连接段的行程时间检测器，，起点和终点都在连接段的“车道连接”上；默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] pStartLaneConnector：检测器起点所在“车道连接”对象
-
 \[in\] pEndLaneConnector：检测器终点所在“车道连接”对象
-
 \[in\] dist1：检测器起点距所在"车道连接”起始点距离，默认单位：像素
-
 \[in\] dist2：检测器终点距所在“车道连接”起始点距离，默认单位：像素
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：行程时间检测器对象
 
  **def createSignalGroup(self, name:str, period:int, fromTime:int, toTime:int) -> Tessng.ISignalGroup: ...**
@@ -4468,11 +4529,8 @@ detector.setToTime(60)
 参数：
 
 \[in\] name：灯组名称
-
 \[in\] period：周期，默认单位：秒
-
 \[in\] fromTime：起始时间，默认单位：秒
-
 \[in\] toTime:结束时间,默认单位：秒
 
 返回：信号灯组对象
@@ -4493,9 +4551,7 @@ signalGroup = netiface.createSignalGroup("信号灯组1", 60, 1, 3600)
 参数：
 
 \[in\] pGroup：信号灯组
-
 \[in\] name：相位名称
-
 \[in\] lColor：相位灯色序列，新建相位排在已有相位序列的最后
 
 返回：信号相位对象
@@ -4531,13 +4587,9 @@ signalPhase = netiface.createSignalPhase(signalGroup, "信号灯组1相位1",
 参数：
 
 \[in\] pPhase：相位对象
-
 \[in\] name：信号灯名称
-
 \[in\] laneId：信号灯所在车道ID，或所在“车道连接”上游车道ID
-
 \[in\] toLaneId：信号灯所在“车道连接”下游车道ID
-
 \[in\] distance：信号灯距车道或“车道连接”起点距离，默认单位：像素
 
 返回：信号灯对象
@@ -4583,18 +4635,16 @@ if busLine is not None:
 
 \[in\] pBusLine：将要移除的公交线路对象
 
- **def createBusStation(self, pLane:Tessng.ILane, length:float, dist:float, name:str=...) -> Tessng.IBusStation: ...**
+ **def createBusStation(self, pLane:Tessng.ILane, length:float, dist:float, name:str=...，unit:Tess.UnitOfMeasure) -> Tessng.IBusStation: ...**
 
-创建公交站点
+创建公交站点，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] pLane：车道
-
 \[in\] length:站点长度(单位像素)
-
 \[in\] dist:站点起始点距车道起点距离(单位像素)
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：公交站点对象
 
 举例：
@@ -4661,56 +4711,53 @@ if busStation2 and tessngIFace().netInterface().addBusStationToLine(busLine, bus
 
 \[in\] schemaName：数据库的schema名称
 
- **def buildNetGrid(self, width:float=...) -> None: ...**
-
-路网的网格化
+ **def buildNetGrid(self, width:float=...，unit:Tess.UnitOfMeasure) -> None: ...**
+路网网格化，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] width：单元格宽度，默认单位：米
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def findSectionOn1Cell(self, point:PySide2.QtCore.QPointF) -> typing.List: ...**
 
-根据point查询所在单元格所有经过的ISection
+ **def findSectionOn1Cell(self, point:PySide2.QtCore.QPointF，unit:Tess.UnitOfMeasure) -> typing.List: ...**
+
+根据point查询所在单元格所有Section，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] point：路网场景中的点
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：ISection列表
 
- **def findSectionOn4Cell(self, point:PySide2.QtCore.QPointF) -> typing.List: ...**
+ **def findSectionOn4Cell(self, point:PySide2.QtCore.QPointF，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-根据point查询最近4个单元格所有经过的ISection
+根据point查询最近4个单元格所有经过的ISection，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] point：路网场景中的一个点
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：ISection列表
 
- **def findSectionOn9Cell(self, point:PySide2.QtCore.QPointF) -> typing.List: ...**
+ **def findSectionOn9Cell(self, point:PySide2.QtCore.QPointF，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-根据point查询最近9个单元格所有经过的ISection
+根据point查询最近9个单元格所有经过的ISection，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] point：路网场景中的一个点
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：ISection列表
 
- **def locateOnSections(self, point:PySide2.QtCore.QPointF, lSection:typing.Sequence, referDistance:float=...) -> typing.List: ...**
+ **def locateOnSections(self, point:PySide2.QtCore.QPointF, lSection:typing.Sequence, referDistance:float=...，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-根据point对lSection列表中每一个Section所有LaneObject求最短距离，返回Location列表，列表按最短距离排序，从小到大
+根据point对lSection列表中每一个Section所有LaneObject求最短距离，返回Location列表，列表按最短距离排序，从小到大，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] point：路网场景中的一个点
-
 \[in\] lSection：section列表
-
 \[in\] referDistance：LaneObject上与point最近的点到LaneObject起点距离，默认单位：像素，是大约数，只为提高计算效率，默认值为0
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：Online::Location列表
 
 举例：
@@ -4740,30 +4787,27 @@ for location in locations:
 
  
 
- **def locateOnCrid(self, point:PySide2.QtCore.QPointF, cellCount:int=...) -> typing.List: ...**
+ **def locateOnCrid(self, point:PySide2.QtCore.QPointF, cellCount:int=...，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-point周围若干个单元格里查询LaneObject
+point周围若干个单元格里查询LaneObject，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] point：路网场景中的一个点
-
 \[in\] cellCount：单元格数，小于1时默认为1，大于1小于4时默认为4，大于4时默认为9
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：Online::Location列表
 
  **def boundingRect(self, pIVehicle:Tessng.IVehicle, outRect:PySide2.QtCore.QRectF) -> bool: ...**
 
 路网外围Rect，用以获取路网边界
 
- **def createRoadWorkZone(self, param:Tessng.Online.DynaRoadWorkZoneParam) -> Tessng.IRoadWorkZone: ...**
+ **def createRoadWorkZone(self, param:Tessng.Online.DynaRoadWorkZoneParam，unit:Tess.UnitOfMeasure) -> Tessng.Online.IRoadWorkZone: ...**
 
-创建施工区
+创建施工区，默认单位：像素，可通过unit参数设置单位
 
 参数：
-
 \[in\] param：动态施工区信息，数据类型在文件 Plugin/_datastruct.h中定义
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 举例：
 
 ```python
@@ -4796,9 +4840,19 @@ def createworkZone(self):
 
  
 
- **def removeRoadWorkZone(self, pIRoadWorkZone:Tessng.IRoadWorkZone) -> None: ...**
+ **def removeRoadWorkZone(self, pIRoadWorkZone:Tessng.Online.IRoadWorkZone) -> None: ...**
 
 移除施工区
+
+参数：
+
+\[in\] pIRoadWorkZone：将要移除的施工区对象
+
+
+
+ **def updateRoadWorkZone(self, pIRoadWorkZone:Tessng.Online.IRoadWorkZone，unit:Tess.UnitOfMeasure) -> None: ...**
+
+更新施工区，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
@@ -4808,7 +4862,7 @@ def createworkZone(self):
 
 获取所有施工区
 
- **def findRoadWorkZone(self, roadWorkZoneId:int) -> Tessng.IRoadWorkZone: ...**
+ **def findRoadWorkZone(self, roadWorkZoneId:int) -> Tessng.Online.IRoadWorkZone: ...**
 
 根据ID查询施工区
 
@@ -4869,17 +4923,17 @@ zone = tessngIFace().netInterface().createAccidentZone(accidentZone)
 
 
 
- **def createLimitedZone(param: Online.DynaLimitedZoneParam) -> Tessng.ILimitedZone: ...**
+ **def createLimitedZone(param: Online.DynaLimitedZoneParam，unit:Tess.UnitOfMeasure) -> Tessng.ILimitedZone: ...**
 
-创建限行区
+创建限行区，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] param：动态限行区信息，数据类型在文件 Plugin/_datastruct.h中定义, python 构造限行区参数 Online.DynaLimitedZoneParam的案例如下： 改为python的？？？？
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
 
-
-```c++
+```python
 
 //例：限行区使用，距离、速度等单位为米制而非像素
 
@@ -4941,24 +4995,24 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 
 
- **def moveLinks(links:Type.List<Tessng.ILink>, offset:QPointF) -> None: ...**
+ **def moveLinks(links:Type.List<Tessng.ILink>, offset:QPointF，unit:Tess.UnitOfMeasure) -> None: ...**
 
-移动路段及相关连接段
+移动路段及相关连接段，默认单位：像素，可通过unit参数设置单位
 
 参数：
 \[in\] lLink：要移动的路段列表
 \[in\] offset：移动的偏移量, ？？？？ 这是指移动到指定点吗？？？
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
 
 
+ **def createReconstruction(param: Online.DynaReconstructionParam，unit:Tess.UnitOfMeasure) -> None: ...**
 
- **def createReconstruction(param: Online.DynaReconstructionParam) -> None: ...**
-
-创建改扩建
+创建改扩建，默认单位：像素，可通过unit参数设置单位
 
 参数：
 \[in\] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义, python构造该数据类型的示例代码如下：
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 ```python
 
 //例：改扩建对象初始化案例
@@ -4966,17 +5020,17 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 ```
 
- **def updateReconStruction(param: Online.DynaReconstructionParam) -> None: ...**
+ **def updateReconStruction(param: Online.DynaReconstructionParam，unit:Tess.UnitOfMeasure) -> None: ...**
 
 更新改扩建
 
 参数：
 \[in\] param：动态改扩建信息，数据类型在文件 Plugin/_datastruct.h中定义, python构造该数据类型的示例代码见createReconstruction
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def removeReconstruction(pIReconstruction: Online.DynaReconstructionParam*) -> None: ...**
+ **def removeReconstruction(ref_pIReconstruction: Online.DynaReconstructionParam) -> None: ...**
 
 移除改扩建，， python里这个是传引用对象？？ 为啥不加一个根据唯一ID删除的接口
-
 参数：
 \[in\] pIReconstruction：将要移除的改扩建对象引用, python构造该数据类型的示例代码见 createReconstruction
 
@@ -4994,14 +5048,14 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 \[in\] reconstructionId：改扩建ID
 
 
- **def reCalcPassagewayLength(reconstruction:Online::DynaReconstructionParam) -> float: ...**
+ **def reCalcPassagewayLength(reconstruction:Online::DynaReconstructionParam ，unit:Tess.UnitOfMeasure) -> float: ...**
 
 
-重新计算保通开口长度，单位：米; 这个改完后如果仿真要生效是不是还得更新改扩建对象（调用updateReconstruction）？？？
+重新计算保通开口长度，默认单位：像素，可通过unit参数设置单位; 这个改完后如果仿真要生效是不是还得更新改扩建对象（调用updateReconstruction）？？？
 
 参数：
 \[in\] reconstruction：改扩建对象，数据类型在文件 Plugin/_datastruct.h中定义，具体案例参见createReconstruction
-
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
 
  **def trafficLightCount(self) -> int: ...**
@@ -5285,108 +5339,91 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 移除停车场停车时距分布
 \[in\]  param：停车时距分布ID
 
- **def DynaParkingTimeDis (param:Online.ParkingLot.DynaParkingTimeDis) ->Online.ParkingLot.DynaParkingTimeDis: ...**
+ **def updateParkingTimeDis (param:Online.ParkingLot.DynaParkingTimeDis) ->Online.ParkingLot.DynaParkingTimeDis: ...**
 更新停车场停车时距分布
 \[in\]  param：停车时距分布参数
 
 
- **def createGJunction (startPoint:QPointF, endPoint:QPointF, name:str) ->Tessng.IJunction: ...**
+ **def createJunction (startPoint:QPointF, endPoint:QPointF, name:str) ->Tessng.IJunction: ...**
 创建节点
 \[in\] startPoint：左上角起始点坐标
 \[in\] endPoint：右下角起始点坐标
 \[in\] name：节点名字
 
- **def findGJunction (id:int) ->Tessng.IJunction: ...**
+ **def findJunction (id:int) ->Tessng.IJunction: ...**
 根据路径ID查找节点
 \[in\] id：节点ID
 
 
- **def getAllGJunction () ->Type.Dict<int,Tessng.IJunction>: ...**
+ **def getAllJunctions () ->Type.Dict<int,Tessng.IJunction>: ...**
 获得所有节点, 返回类型为字典
 
- **def removeGJunction(id:int) ->None: ...**
+ **def removeJunction(id:int) ->None: ...**
 删除节点
 \[in\] id：节点ID
 
-
- **def removeGJunction(id:int) ->None: ...**
-删除节点
-\[in\] id：节点ID
-
- **def updateGJunctionName(id:int, name:str) ->None: ...**
+ **def updateJunctionName(id:int, name:str) ->None: ...**
 更新节点名字
 \[in\] id：节点ID
 \[in\] name：节点名字
 
+ **def getFlowTimeIntervals(self) ->Type.List<Tess.Online.Junction.FlowTimeInterval>: ...**
+获取所有时间段
 
- **def updateGJunctionBuildPathParam(bDeciPointPosFlag:bool, bLaneConnectorFlag:bool，InputLineMinPathNum：long(defulat=3)) ->None: ...**
+ **def addFlowTimeInterval(self) ->int: ...**
+添加时间段，返回新时间段ID，失败返回-1
+
+
+
+ **def deleteFlowTimeInterval(timeId:int) ->bool: ...**
+删除时间段(节点的流量时间段)
+\[in\]timeId：时间段ID
+
+
+ **def updateFlowTimeInterval(timeId:int，startTime:int, endTime:int) ->bool: ...**
+更新时间段(节点的流量时间段)
+\[in\]timeId：时间段ID
+\[in\]startTime：开始时间(秒)
+\[in\]endTime：结束时间(秒)
+
+
+ **def getJunctionFlows(self, junctionId:int) ->Type.Dict(int, Type.Dict(int, Tess.Online.Junction.FlowTurning)): ...**
+获取节点流向信息
+\[in\]junctionId：节点ID
+
+
+
+ **def updateFlow(self, timeId:int， junctionId:int, turningId:int, inputFlowValue:int) ->bool: ...**
+
+更新节点流向流量
+\[in\]timeId：时间段ID
+\[in\]junctionId：节点ID
+\[in\]turningId：转向ID
+\[in\]inputFlowValue：输入流量值（辆/小时）
+
+
+ **def updateFlowAlgorithmParams(self, theta:float， bpra:float, bprb:float, maxIterateNum:int，useNewPath:bool) ->bool: ...**
+
+更新流量算法参数
+\[in\]theta：参数θ(0.01-1)
+\[in\]BPR路阻参数A(0.05-0.5) 
+\[in\]bprb：BPR路阻参数B(1-10)
+\[in\]maxIterateNum：最大迭代次数(1-1000)
+\[in\]useNewPath：是否重新构建静态路径
+
+
+ **def updatePathBuildParams(self,bDeciPointPosFlag:bool, bLaneConnectorFlag:bool，InputLineMinPathNum：long(defulat=3)) ->None: ...**
 更新静态路径构建参数
-\[in\]  bDeciPointPosFlag：决策点位置是否需要优化
-\[in\]  bLaneConnectorFlag：连接段是否需要优化
-\[in\]  InputLineMinPathNum：两点间最短路径数(默认为3)
+\[in\]  bDeciPointPosFlag：是否考虑决策点位置
+\[in\]  bLaneConnectorFlag：是否考虑车道连接
+\[in\]  InputLineMinPathNum：最小路径数量(默认3)
 
 
- **def buildPathAndApply(self) ->Type.Tuple(Type.List<Tuple(int,int)>, Type.List<Type.List<Tessng.ILink>>): ...**
-计算并应用并返回路网决策路径 ????? 这个函数签名有点奇怪
+ **def buildAndApplyPaths(self) ->Type.Dict(Type.Tuple(int,int),Type.List<Type.List<Tess.ILink>>): ...**
+构建并应用路径，返回路径结果映射:< 起始路段ID,终点路段ID > - > 可行路径列表
 
-
- **def getJunctionTurnningInfoByID(id:int) ->Type.Dict(int, Type.Dict(int, Online.Junction.FlowTurning)): ...**
-获得节点流向信息
-参数
-\[in\]  id: 节点ID
-\[out\]  返回节点流向信息， 外层字典key为，value为  ； 内层字典key为， value为
-
-
-
- **def getJunctionFlowTimeInfo() ->Type.List<Online.Junction.FlowTimeInterval > : ...**
-获得节点流向时间段信息（所有节点共用一套流向时间段信息）
-参数
-\[out\]  节点流向时间信息
-
-
- **def addFlowTimeInterval() ->int : ...**
-添加流量时间段 
-
- **def deleteFlowTimeInterval(timeId:int) ->bool : ...**
-删除流量时间段
-参数
-\[in\] timeId：时间段ID
-\[out\] 是否删除成功
-
-
-
- **def updateFlowTimeInterval(interval:Online.Junction.FlowTimeInterval) ->bool : ...**
-更新流量时间段信息
-参数
-\[in\]  interval：时间段信息
-\[out\] 是否成功
-
-
- **def updateJunctionFlowInfo(timeId:long, junctionId:int, turningId:int, inputFlowValue:int) ->bool : ...**
-更新节点流向信息
-参数
-\[in\]  timeId：时间段ID
-\[in\]  junctionId：节点ID
-\[in\]  turningId：转向ID
-\[in\]  inputFlowValue：输入流量值
-\[out\] 是否成功
-
-
-
- **def updateJunctionFlowPFEIteraParam(theta:double, bpra:double, bprb:double, maxIterateNum:int, bUseNewPath:bool) ->None : ...**
-更新节点流量算法参数
-参数
-\[in\] theta：参数θ
-\[in\] bpra：BPR路阻参数A
-\[in\] bprb：BPR路阻参数B
-\[in\] maxIterateNum：迭代参数，最大迭代次数
-\[out\] bUseNewPath：是否重新构建静态路径
-
-
- **def applyJunctionFlowResult() ->Type.Dict(int, Type.List<Online.Junction.FlowTurning>): ...**
-计算并应用流量算法结果
-参数
-\[out\] 节点流向结果映射表
+ **def calculateFlows(self) ->Type.Dict(int,Type.List<Tess.Online.Junction.FlowTurning>): ...**
+计算并应用流量结果，返回时间段ID到流量计算结果的映射
 
 
  **def pedestrianTypes() ->Type.List<Tessng.IPedestrianType>: ...**
@@ -5924,12 +5961,14 @@ simuiface.pauseSimu()
 
 所有车辆，包括已创建尚未进入路网的车辆、正在运行的车辆、已驶出路网的车辆
 
- **def getVehisStatus(self) -> typing.List: ...**
+ **def getVehisStatus(self, batchNumber:int，unit:Tess.UnitOfMeasure) -> typing.List<Tess.Online.VehicleStatus>: ...**
 
 获取所有正在运行的车辆状态，包括轨迹
-
+参数：
+\[in\] batchNumber: 批次号
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：车辆状态（包括轨迹）Online.VehicleStatus列表
-
+注：如使用米制单位，请勿遗忘传入unit参数
 举例：
 
 ```python
@@ -5946,14 +5985,14 @@ vehis = simuiface.allVehiStarted()
 
  
 
- **def getVehiTrace(self, vehiId:int) -> typing.List: ...**
+ **def getVehiTrace(self, vehiId:int，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
-获取指定车辆运行轨迹
+获取指定车辆运行轨迹，默认单位：像素，可通过unit参数设置单位
 
 参数：
 
 \[in\] vehiId：车辆ID
-
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 返回：车辆运行轨迹，即Online.VehiclePosition列表
 
  **def getSignalPhasesColor(self) -> typing.List: ...**
@@ -6170,13 +6209,14 @@ class IVehicle():
 
 
 
- **def queueRecently(queueCounterId:int, ref_queueLength:float, ref_vehiCount:int) -> bool: ...**
+ **def queueRecently(queueCounterId:int, ref_queueLength:float, ref_vehiCount:int，unit:Tess.UnitOfMeasure) -> bool: ...**
 获取排队计数器最近一次排队信息, 返回值为是否成功的标签，具体的排队和流量信息见入参ref_queueLength，ref_vehiCount。
 该函数的入参为引用，函数直接修改入参数据
 参数：
 \[in\] queueCounterId：排队计数器ID
-\[in & out\] queueLength：排队长度
-\[in & out\] vehiCount：排队车辆数
+\[in & out\] queueLength：排队长度，默认单位：像素，可通过unit参数设置单位
+\[in & out\] vehiCount：排队车辆数，默认单位：像素，可通过unit参数设置单位
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 \[out\] 是否获取成功
 
 
