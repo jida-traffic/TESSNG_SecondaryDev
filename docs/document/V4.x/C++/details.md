@@ -6596,9 +6596,15 @@ if (planNumber == float(2.1)) {
 
 所有车辆
 
-Ø **QList< Online::VehicleStatus > getVehisStatus()**
+Ø **QList< Online::VehicleStatus > getVehisStatus(long batchNumber = 0, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
 获取所有正在运行的车辆状态，包括轨迹
+
+参数:
+- [ in ] batchNumber: 批次号
+- [ in ] unit: 单位制
+
+注：如使用米制单位，请勿遗忘传入unit参数
 
 返回：车辆状态列表，包括轨迹。数据结构"Online::VehicleStatus"在文件 Plugin/_datastruct.h中定义
 
@@ -6608,15 +6614,15 @@ if (planNumber == float(2.1)) {
 QList< Online::VehicleStatus > lVehiStatus =  gpTessInterface->simuInterface()->getVehisStatus (); 
 ```
 
-Ø **QList< Online::VehiclePosition > getVehiTrace(long vehiId)**
+Ø **QList< Online::VehiclePosition > getVehiTrace(long vehiId, UnitOfMeasure unit)**
 
-获取指定车辆运行轨迹
+获取指定车辆运行轨迹，默认单位：像素，可通过unit参数设置单位
 
-参数：
+参数:
+- [ in ] vehiId: 车辆ID
+- [ in ] unit: 单位制
 
-[ in ] vehiId：车辆ID
-
-返回：车辆运行轨迹。数据结构Online::VehiclePosition在文件Plugin/ _datastruct.h中定义
+返回: 车辆轨迹点位列表，数据结构Online::VehiclePosition在文件Plugin/ _datastruct.h中定义
 
 举例：
 
@@ -6696,7 +6702,7 @@ QList< Online::VehiQueueAggregated > lVqa =  gpTessInterface->simuInterface()->g
 QList< Online::VehiTravelDetected > lVTravel =  gpTessInterface->simuInterface()->getVehisTravelDetected();  
 ```
 
-Ø **QList< Online::VehiInfoAggregated > getVehisInfoAggregated()**
+Ø **QList< Online::VehiTravelAggregated > getVehisTravelAggregated()**
 
 获取最近集计时间段内行程时间检测器集计数据
 
@@ -6843,7 +6849,7 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 
 返回：车辆列表
 
-Ø **bool queueRecently(long queueCounterId, qreal& queueLength, int& vehiCount)**
+Ø **bool queueRecently(long queueCounterId, qreal& queueLength, int& vehiCount, UnitOfMeasure unit)**
 
 获取排队计数器最近一次排队信息
 
@@ -6854,6 +6860,8 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 [ out ] queueLength：排队长度
 
 [ out ] vehiCount：排队车辆数
+
+[ in ] unit: 单位制
 
 返回：是否获取成功
 
