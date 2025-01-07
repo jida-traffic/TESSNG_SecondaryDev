@@ -2045,21 +2045,21 @@ IGuidArrow* pGuideArrow = gpTessInterface->netInterface()->createGuidArrow(pRigh
 
 Ø **qreal location(UnitOfMeasure unit)**
 
-获取事故区距所在路段起点的距离，默认单位：像素，可通过unit参数设置单位
+获取事故区当前时段距所在路段起点的距离，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **qreal zoneLength(UnitOfMeasure unit)**
 
-获取事故区长度，默认单位：像素，可通过unit参数设置单位
+获取事故区当前时段长度，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **qreal limitedSpeed(UnitOfMeasure unit)**
 
-获取事故区限速，默认单位：像素，可通过unit参数设置单位
+获取事故区当前时段限速，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
@@ -2086,9 +2086,111 @@ qDebug() << pAccidentZone-> roadType() << endl;
 
 Ø **QList< ILaneObject\* > laneObjects()**
 
-获取事故区占用的车道列表
+获取事故区当前时段占用的车道列表
 
-### 2.23 IRoadWorkZone
+Ø **qreal controlLength(UnitOfMeasure unit)**
+
+获取事故区当前时段控制距离（车辆距离事故区起点该距离内，强制变道），默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **IAccidentZoneInterval\* addAccidentZoneInterval(Online::DynaAccidentZoneIntervalParam param)**
+
+添加事故时段
+
+参数：
+[ in ] param：事故时段参数，数据类型在文件 Plugin/_datastruct.h中定义
+
+Ø **void removeAccidentZoneInterval(long accidentZoneIntervalId)**
+
+移除事故时段
+
+参数：
+[ in ] accidentZoneIntervalId：事故时段ID
+
+Ø **bool updateAccidentZoneInterval(Online::DynaAccidentZoneIntervalParam param)**
+
+更新事故时段
+
+参数：
+[ in ] param：事故时段参数，数据类型在文件 Plugin/_datastruct.h中定义
+
+Ø **QList< IAccidentZoneInterval\* > accidentZoneIntervals()**
+
+获取所有事故时段
+
+Ø **IAccidentZoneInterval\* findAccidentZoneIntervalById(long accidentZoneIntervalId)**
+
+根据ID查询事故时段
+
+参数：
+[ in ] accidentZoneIntervalId：事故时段ID
+
+Ø **IAccidentZoneInterval\* findAccidentZoneIntervalByStartTime(long startTime)**
+
+根据开始时间查询事故时段
+
+参数：
+[ in ] startTime：事故时段开始时间
+
+### 2.23 IAccidentZoneInterval
+
+事故时段接口
+
+接口文件：IAccidentZoneInterval.h
+
+接口方法：
+
+Ø **long id()**
+
+获取事故时段ID
+
+Ø **long accidentZoneId()**
+
+获取所属事故区ID
+
+Ø **long startTime()**
+
+获取事故时段开始时间
+
+Ø **long endTime()**
+
+获取事故时段结束时间
+
+Ø **qreal length(UnitOfMeasure unit)**
+
+获取事故区在该时段的长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal location(UnitOfMeasure unit)**
+
+获取事故区在该时段的距起点距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal limitedSpeed(UnitOfMeasure unit)**
+
+获取事故区在该时段的限速，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位(km/h)，Default表示无单位限制
+
+Ø **qreal controlLength(UnitOfMeasure unit)**
+
+获取事故区在该时段的控制距离（车辆距离事故区起点该距离内，强制变道），默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **QList< int > laneNumbers()**
+
+获取事故区在该时段的占用车道序号
+
+### 2.24 IRoadWorkZone
 
 施工区接口
 
@@ -2153,7 +2255,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 施工持续时间，单位：秒。自仿真过程创建后，持续时间大于此值，则移除
 
-### 2.24 ILimitedZone
+### 2.25 ILimitedZone
 
 限行区域接口
 
@@ -2210,7 +2312,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取限行持续时间，单位：秒。自仿真过程创建后，持续时间大于此值则删除
 
-### 2.25 IReconstruction
+### 2.26 IReconstruction
 
 改扩建接口
 
@@ -2256,7 +2358,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取改扩建动态参数，返回参数为米制
 
-### 2.26 IReduceSpeedArea
+### 2.27 IReduceSpeedArea
 
 限速区接口
 
@@ -2296,7 +2398,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取多边型轮廓
 
-### 2.27 ISignalPlan
+### 2.28 ISignalPlan
 
 信号控制方案接口
 
@@ -2348,7 +2450,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置结束时间，单位：秒
 
-### 2.28 ITrafficLight
+### 2.29 ITrafficLight
 
 信号机接口
 
@@ -2393,7 +2495,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 检查信号机的有效性
 
-### 2.29 ITollLane
+### 2.30 ITollLane
 
 收费车道接口
 
@@ -2436,7 +2538,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取收费车道所有收费点
 
-### 2.30 ITollDecisionPoint
+### 2.31 ITollDecisionPoint
 
 收费决策点接口
 
@@ -2479,7 +2581,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取收费决策点多边型轮廓
 
-### 2.31 ITollRouting
+### 2.32 ITollRouting
 
 收费路径接口
 
@@ -2517,7 +2619,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取路段序列
 
-### 2.32 ITollPoint
+### 2.33 ITollPoint
 
 收费点接口
 
@@ -2570,7 +2672,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] timeDisId：时间分布ID
 
-### 2.33 IParkingStall
+### 2.34 IParkingStall
 
 停车位接口
 
@@ -2594,7 +2696,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取车位类型，与车辆类型编码一致
 
-### 2.34 IParkingRegion
+### 2.35 IParkingRegion
 
 停车区域接口
 
@@ -2625,7 +2727,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取动态停车区域信息
 
-### 2.35 IParkingDecisionPoint
+### 2.36 IParkingDecisionPoint
 
 停车决策点接口
 
@@ -2668,7 +2770,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取停车决策点多边型轮廓
 
-### 2.36 IParkingRouting
+### 2.37 IParkingRouting
 
 停车决策路径接口
 
@@ -2706,7 +2808,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取路段序列
 
-### 2.37 IJunction
+### 2.38 IJunction
 
 节点接口
 
@@ -2729,7 +2831,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] strName：新名称
 
-### 2.38 IPedestrian
+### 2.39 IPedestrian
 
 行人接口
 
@@ -2813,7 +2915,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 停止仿真，会在下一个仿真批次移除当前行人，释放资源
 
-### 2.39 IPedestrianCrossWalkRegion
+### 2.40 IPedestrianCrossWalkRegion
 
 人行横道区域接口
 
@@ -2889,7 +2991,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 判断是否添加了管控反向通行的信号灯
 
-### 2.40 IPedestrianFanShapeRegion
+### 2.41 IPedestrianFanShapeRegion
 
 扇形区域接口
 
@@ -2913,7 +3015,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取扫过角度，单位：度
 
-### 2.41 IPedestrianPath
+### 2.42 IPedestrianPath
 
 行人路径接口
 
@@ -2941,7 +3043,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 判断是否是局部路径
 
-### 2.42 IPedestrianPathPoint
+### 2.43 IPedestrianPathPoint
 
 行人路径点接口
 
@@ -2953,15 +3055,18 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取行人路径点ID
 
-Ø **QPointF getScenePos() const**
+Ø **QPointF getScenePos(UnitOfMeasure unit) const**
 
-获取行人路径点场景坐标系下的位置
+获取行人路径点场景坐标系下的位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **qreal getRadius() const**
 
 获取行人路径点的半径，单位：米
 
-### 2.43 IPedestrianRegion
+### 2.44 IPedestrianRegion
 
 行人区域接口
 
@@ -3013,13 +3118,20 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置面域颜色
 
-Ø **QPointF getPosition() const**
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
 
-获取面域位置
+获取面域位置，默认单位：像素，可通过unit参数设置单位
 
-Ø **void setPosition(QPointF scenePos)**
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
-设置面域位置
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **int getGType() const**
 
@@ -3053,7 +3165,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
-### 2.44 IPedestrianSideWalkRegion
+### 2.45 IPedestrianSideWalkRegion
 
 人行道区域接口
 
@@ -3093,7 +3205,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 在第index个位置插入顶点，初始位置为pos
 
-### 2.45 IPedestrianStairRegion
+### 2.46 IPedestrianStairRegion
 
 楼梯区域接口
 
@@ -3217,7 +3329,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取终止衔接区域长度控制点
 
-### 2.46 ICrosswalkSignalLamp
+### 2.47 ICrosswalkSignalLamp
 
 人行横道信号灯接口
 
