@@ -7666,7 +7666,7 @@ bool MySimulator::reCalcdesirSpeed(IVehicle *pIVehicle, qreal &inOutDesirSpeed) 
 }
 ```
 
-Ø **bool reCalcdesirSpeed(IVehicle \*pIVehicle, qreal &inOutDesirSpeed, UnitOfMeasure& unit)**
+Ø **bool reCalcdesirSpeed(IVehicle \*pIVehicle, qreal &inOutDesirSpeed, UnitOfMeasure* unit)**
 
 重新计算期望速度(支持单位参数)，TESS NG调用此方法时将车辆当前期望速度赋给inOutDesirSpeed，如果需要，用户可在此方法重新计算期望速度，并赋给inOutDesirSpeed。
 
@@ -7718,7 +7718,7 @@ bool MySimulator::reSetFollowingParams(IVehicle *pIVehicle, qreal &inOutSi, qrea
 }
 ```
 
-Ø **bool reSetFollowingParam(IVehicle \*pIVehicle, qreal &inOutSafeInterval, qreal &inOutSafeDistance, UnitOfMeasure& unit)**
+Ø **bool reSetFollowingParam(IVehicle \*pIVehicle, qreal &inOutSafeInterval, qreal &inOutSafeDistance, UnitOfMeasure* unit)**
 
 重新设置跟驰模型的安全间距和安全时距(支持单位参数)。
 
@@ -7754,7 +7754,7 @@ bool MySimulator::reSetFollowingParams(IVehicle *pIVehicle, qreal &inOutSi, qrea
 
 返回：false：忽略，true：用distance设置前车距，用s0设置安全跟车距离
 
-Ø **bool reSetDistanceFront(IVehicle\* pIVehicle, qreal& distance, qreal& s0, UnitOfMeasure& unit)**
+Ø **bool reSetDistanceFront(IVehicle\* pIVehicle, qreal& distance, qreal& s0, UnitOfMeasure* unit)**
 
 重新设置前车距及安全跟车距离(支持单位参数)。
 
@@ -7813,7 +7813,7 @@ bool MySimulator::reSetSpeed(IVehicle* pIVehicle, qreal& inOutSpeed) {
 }
 ```
 
-Ø **bool reSetSpeed(IVehicle \*pIVehicle, qreal &inOutSpeed, UnitOfMeasure& unit)**
+Ø **bool reSetSpeed(IVehicle \*pIVehicle, qreal &inOutSpeed, UnitOfMeasure* unit)**
 
 重新设置车速(支持单位参数)。TESS NG调用此方法时将当前计算所得车速赋给inOutSpeed，如果需要，用户可以在此方法重新计算车速并赋给inOutSpeed。
 
@@ -7921,7 +7921,7 @@ void MySimulator:: afterOneStep () {
 
 返回：false：忽略，true：用outSpeed限制指定车道速度
 
-Ø **bool calcSpeedLimitByLane(ILink\* pILink, int laneNumber, qreal& outSpeed, UnitOfMeasure& unit)**
+Ø **bool calcSpeedLimitByLane(ILink\* pILink, int laneNumber, qreal& outSpeed, UnitOfMeasure* unit)**
 
 由车道确定的限制车速（最高速度, 公里/小时）
 
@@ -7966,7 +7966,7 @@ bool MySimulator::calcMaxLimitedSpeed(IVehicle *pIVehicle, qreal &inOutLimitedSp
 }
 ```
 
-Ø **bool calcMaxLimitedSpeed(IVehicle \*pIVehicle, qreal &inOutLimitedSpeed, UnitOfMeasure& unit)**
+Ø **bool calcMaxLimitedSpeed(IVehicle \*pIVehicle, qreal &inOutLimitedSpeed, UnitOfMeasure* unit)**
 
 重新计算车辆当前最大限速，不受道路限速的影响。在没有插件干预的情况下，车辆速度大于道路限度时按道路最大限速行驶，在此方法的干预下，可以提高限速，让车辆大于道路限速行驶。
 
@@ -7996,7 +7996,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed，如果�
 
 返回：false：忽略，true：用dist计算安全变道距离等
 
-Ø **bool calcDistToEventObj(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure& unit)**
+Ø **bool calcDistToEventObj(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure* unit)**
 
 计算到事件对象距离(支持单位参数)，如到事故区、施工区的距离
 
@@ -8022,7 +8022,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed，如果�
 
 返回：false 忽略，true TESSNG取dist作为安全变道距离
 
-Ø **bool calcChangeLaneSafeDist(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure& unit)**
+Ø **bool calcChangeLaneSafeDist(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure* unit)**
 
 计算安全变道距离(支持单位参数)。
 
@@ -8072,7 +8072,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed，如果�
 
 返回：false 忽略，true 则TESNG用调用此方法后所得acce作为当前车辆的加速度。
 
-Ø **bool calcAcce(IVehicle \*pIVehicle, qreal &acce, UnitOfMeasure& unit)**
+Ø **bool calcAcce(IVehicle \*pIVehicle, qreal &acce, UnitOfMeasure* unit)**
 
 计算加速度(支持单位参数)
 
@@ -8134,7 +8134,7 @@ bool MySimulator::reSetAcce(IVehicle *pIVehicle, qreal &inOutAcce) {
 }
 ```
 
-Ø **bool reSetAcce(IVehicle \*pIVehicle, qreal &inOutAcce, UnitOfMeasure& unit)**
+Ø **bool reSetAcce(IVehicle \*pIVehicle, qreal &inOutAcce, UnitOfMeasure* unit)**
 
 重新计算加速度(支持单位参数)。TESS NG调用此方法时将当前计算所得加速度赋给inOutAcce，如果需要，用户可以在此方法中重新计算加速度并赋给inOutAcce。
 
