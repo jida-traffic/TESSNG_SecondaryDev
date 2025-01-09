@@ -2251,9 +2251,52 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取施工区所占的车道列表
 
+Ø **QList< long > laneObjectIds()**
+
+获取施工区所占的车道ID列表
+
+Ø **qreal upCautionLength(UnitOfMeasure unit)**
+
+获取施工区上游警示区长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal upTransitionLength(UnitOfMeasure unit)**
+
+获取施工区上游过渡区长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal upBufferLength(UnitOfMeasure unit)**
+
+获取施工区上游缓冲区长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal downTransitionLength(UnitOfMeasure unit)**
+
+获取施工区下游过渡区长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal downTerminationLength(UnitOfMeasure unit)**
+
+获取施工区下游终止区长度，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
 Ø **long duration()**
 
 施工持续时间，单位：秒。自仿真过程创建后，持续时间大于此值，则移除
+
+Ø **bool isBorrowed()**
+
+获取施工区是否被借道
 
 ### 2.25 ILimitedZone
 
