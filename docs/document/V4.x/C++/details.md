@@ -6026,7 +6026,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 获取所有行人类型
 
-Ø **QList< IPedestrianComposition > pedestrianCompositions()**
+Ø **QList< Online::Pedestrian::PedestrianComposition > pedestrianCompositions()**
 
 获取所有行人组成
 
@@ -6146,23 +6146,23 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 根据id获取行人决策点配置信息，id为行人决策点ID
 
-Ø **long createPedestrianComposition(QString name, QList< PedestrianCompositionDetail > lCompositionDetail)**
+Ø **long createPedestrianComposition(QString name, QMap< int, qreal > mpCompositionRatio)**
 
 创建行人组成
 
 参数：
 [ in ] name：组成名称
-[ in ] lCompositionDetail：组成明细
+[ in ] mpCompositionRatio：组成明细，key为行人类型编码，value为行人类型占比
 
 返回：组成ID，如果创建失败返回-1
 
-Ø **bool updatePedestrianComposition(long compositionId, QList< PedestrianCompositionDetail > lCompositionDetail)**
+Ø **bool updatePedestrianComposition(long compositionId, QMap< int, qreal > mpCompositionRatio);**
 
 更新行人组成
 
 参数：
 [ in ] compositionId：组成ID
-[ in ] lCompositionDetail：组成明细
+[ in ] mpCompositionRatio：组成明细，key为行人类型编码，value为行人类型占比
 
 返回：是否更新成功
 
