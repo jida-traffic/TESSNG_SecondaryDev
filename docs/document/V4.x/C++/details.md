@@ -4352,7 +4352,7 @@ openNetFile(QString::fromLocal8Bit("C:/TESSNG/Example/杭州武林门区域路�
 
 Ø **void saveRoadNet()**
 
-保存路网
+保存路网，打开另存为窗口，无法覆盖已保存的路网文件。
 
 Ø **QString netFilePath()**
 
@@ -4393,15 +4393,6 @@ openNetFile(QString::fromLocal8Bit("C:/TESSNG/Example/杭州武林门区域路�
 Ø **qreal sceneScale()**
 
 场景中的像素比，单位：米/像素
-
-Ø **void setSceneSize(qreal w, qreal h, UnitOfMeasure unit)**
-
-设置场景大小，默认单位：像素，可通过unit参数设置单位
-
-参数：
-[ in ] w：场景宽度
-[ in ] h：场景高度
-[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **qreal sceneWidth(UnitOfMeasure unit)**
 
