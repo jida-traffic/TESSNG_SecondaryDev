@@ -2374,13 +2374,17 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取限速区名称
 
-Ø **qreal location()**
+Ø **qreal location(UnitOfMeasure unit)**
 
-获取距起点距离，单位：米
+获取距起点距离，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
-Ø **qreal areaLength()**
+Ø **qreal areaLength(UnitOfMeasure unit)**
 
-获取限速区长度，单位：米
+获取限速区长度，默认单位：像素，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
 Ø **long sectionId()**
 
@@ -2394,11 +2398,139 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取目标车道序号
 
+Ø **IReduceSpeedInterval\* addReduceSpeedInterval(Online::DynaReduceSpeedIntervalParam param)**
+
+添加限速时段
+参数：
+[ in ] param：限速时段参数，数据类型在文件 Plugin/_datastruct.h中定义
+
+Ø **void removeReduceSpeedInterval(long id)**
+
+移除限速时段
+参数：
+[ in ] id：限速时段ID
+
+Ø **bool updateReduceSpeedInterval(Online::DynaReduceSpeedIntervalParam param)**
+
+更新限速时段
+参数：
+[ in ] param：限速时段参数，数据类型在文件 Plugin/_datastruct.h中定义
+
+Ø **QList< IReduceSpeedInterval\* > reduceSpeedIntervals()**
+
+获取限速时段列表
+
+Ø **IReduceSpeedInterval\* findReduceSpeedIntervalById(long id)**
+
+根据ID获取限速时段
+参数：
+[ in ] id：限速时段ID
+
+Ø **IReduceSpeedInterval\* findReduceSpeedIntervalByStartTime(long startTime)**
+
+根据起始时间获取限速时段
+参数：
+[ in ] startTime：起始时间
+
 Ø **QPolygonF polygon()**
 
 获取多边型轮廓
 
-### 2.28 ISignalPlan
+### 2.28 IReduceSpeedInterval
+
+限速时段接口
+
+接口文件：IReduceSpeedInterval.h
+
+接口方法：
+
+Ø **long id()**
+
+获取限速时段ID
+
+Ø **long reduceSpeedAreaId()**
+
+获取所属限速区ID
+
+Ø **long intervalStartTime()**
+
+获取开始时间
+
+Ø **long intervalEndTime()**
+
+获取结束时间
+
+Ø **IReduceSpeedVehiType\* addReduceSpeedVehiType(Online::DynaReduceSpeedVehiTypeParam param)**
+
+添加限速车型
+参数：
+[ in ] param：限速车型参数，数据类型在文件 Plugin/_datastruct.h中定义
+
+Ø **void removeReduceSpeedVehiType(long id)**
+
+移除限速车型
+参数：
+[ in ] id：限速车型ID
+
+Ø **bool updateReduceSpeedVehiType(Online::DynaReduceSpeedVehiTypeParam param)**
+
+更新限速车型
+参数：
+[ in ] param：限速车型参数，数据类型在文件 Plugin/_datastruct.h中定义
+
+Ø **QList< IReduceSpeedVehiType\* > reduceSpeedVehiTypes()**
+
+获取本时段限速车型及限速参数列表
+
+Ø **IReduceSpeedVehiType\* findReduceSpeedVehiTypeById(long id)**
+
+根据id获取限速车型
+参数：
+[ in ] id：限速车型ID
+
+Ø **IReduceSpeedVehiType\* findReduceSpeedVehiTypeByCode(long vehicleTypeCode)**
+
+根据车型代码获取限速车型
+参数：
+[ in ] vehicleTypeCode：车型代码
+
+### 2.29 IReduceSpeedVehiType
+
+限速车型接口
+
+接口文件：IReduceSpeedVehiType.h
+
+接口方法：
+
+Ø **long id()**
+
+获取限速车型ID
+
+Ø **long intervalId()**
+
+获取所属限速时段ID
+
+Ø **long reduceSpeedAreaId()**
+
+获取所属限速区ID
+
+Ø **long vehiTypeCode()**
+
+获取车型编码
+
+Ø **qreal averageSpeed(UnitOfMeasure unit)**
+
+获取平均车速，默认单位：像素/秒，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal speedStandardDeviation(UnitOfMeasure unit)**
+
+获取车速标准差，默认单位：像素/秒，可通过unit参数设置单位
+参数：
+[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+### 2.30 ISignalPlan
 
 信号控制方案接口
 
@@ -2450,7 +2582,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置结束时间，单位：秒
 
-### 2.29 ITrafficLight
+### 2.31 ITrafficLight
 
 信号机接口
 
@@ -2495,7 +2627,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 检查信号机的有效性
 
-### 2.30 ITollLane
+### 2.32 ITollLane
 
 收费车道接口
 
@@ -2538,7 +2670,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取收费车道所有收费点
 
-### 2.31 ITollDecisionPoint
+### 2.33 ITollDecisionPoint
 
 收费决策点接口
 
@@ -2581,7 +2713,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取收费决策点多边型轮廓
 
-### 2.32 ITollRouting
+### 2.34 ITollRouting
 
 收费路径接口
 
@@ -2619,7 +2751,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取路段序列
 
-### 2.33 ITollPoint
+### 2.35 ITollPoint
 
 收费点接口
 
@@ -2672,7 +2804,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] timeDisId：时间分布ID
 
-### 2.34 IParkingStall
+### 2.36 IParkingStall
 
 停车位接口
 
@@ -2696,7 +2828,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取车位类型，与车辆类型编码一致
 
-### 2.35 IParkingRegion
+### 2.37 IParkingRegion
 
 停车区域接口
 
@@ -2727,7 +2859,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取动态停车区域信息
 
-### 2.36 IParkingDecisionPoint
+### 2.38 IParkingDecisionPoint
 
 停车决策点接口
 
@@ -2770,7 +2902,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取停车决策点多边型轮廓
 
-### 2.37 IParkingRouting
+### 2.39 IParkingRouting
 
 停车决策路径接口
 
@@ -2808,7 +2940,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取路段序列
 
-### 2.38 IJunction
+### 2.40 IJunction
 
 节点接口
 
@@ -2831,7 +2963,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] strName：新名称
 
-### 2.39 IPedestrian
+### 2.41 IPedestrian
 
 行人接口
 
@@ -2915,7 +3047,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 停止仿真，会在下一个仿真批次移除当前行人，释放资源
 
-### 2.40 IPedestrianCrossWalkRegion
+### 2.42 IPedestrianCrossWalkRegion
 
 人行横道区域接口
 
@@ -2991,7 +3123,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 判断是否添加了管控反向通行的信号灯
 
-### 2.41 IPedestrianFanShapeRegion
+### 2.43 IPedestrianFanShapeRegion
 
 扇形区域接口
 
@@ -3015,7 +3147,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取扫过角度，单位：度
 
-### 2.42 IPedestrianPath
+### 2.44 IPedestrianPath
 
 行人路径接口
 
@@ -3043,7 +3175,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 判断是否是局部路径
 
-### 2.43 IPedestrianPathPoint
+### 2.45 IPedestrianPathPoint
 
 行人路径点接口
 
@@ -3066,7 +3198,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取行人路径点的半径，单位：米
 
-### 2.44 IPedestrianRegion
+### 2.46 IPedestrianRegion
 
 行人区域接口
 
@@ -3165,7 +3297,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
-### 2.45 IPedestrianSideWalkRegion
+### 2.47 IPedestrianSideWalkRegion
 
 人行道区域接口
 
@@ -3205,7 +3337,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 在第index个位置插入顶点，初始位置为pos
 
-### 2.46 IPedestrianStairRegion
+### 2.48 IPedestrianStairRegion
 
 楼梯区域接口
 
@@ -3329,7 +3461,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取终止衔接区域长度控制点
 
-### 2.47 ICrosswalkSignalLamp
+### 2.49 ICrosswalkSignalLamp
 
 人行横道信号灯接口
 
@@ -5707,20 +5839,12 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] pToISignalPhase：目标相位
 [ in ] signalLamp：信号灯对象
 
-Ø **IReduceSpeedArea\* createReduceSpeedArea(QString name, qreal location, qreal areaLength, long roadId, int laneNumber, int toLaneNumber, long fromTime, long toTime, QList< Online::ReduceSpeedVehicleType > lSpeedVehiType)**
+Ø **IReduceSpeedArea\* createReduceSpeedArea(Online::DynaReduceSpeedAreaParam param)**
 
 创建限速区
 
 参数：
-[ in ] name：限速区名称
-[ in ] location：距起点距离,单位像素
-[ in ] areaLength：限速区长度,单位像素
-[ in ] roadId：路段或连接段ID
-[ in ] laneNumber：车道序号,从0开始
-[ in ] toLaneNumber：目标车道序号,如果大于等于0,roadID是连接段ID,否则是路段ID
-[ in ] fromTime：起始时间
-[ in ] toTime：结束时间
-[ in ] lSpeedVehiType：限速车型列表
+[ in ] param：限速区参数，数据类型在文件 Plugin/_datastruct.h中定义
 
 Ø **void removeReduceSpeedArea(IReduceSpeedArea\* pIReduceSpeedArea)**
 
@@ -5728,6 +5852,13 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 参数：
 [ in ] pIReduceSpeedArea：限速区对象
+
+Ø **bool updateReduceSpeedArea(Online::DynaReduceSpeedAreaParam param)**
+
+更新限速区
+
+参数：
+[ in ] param：限速区参数，数据类型在文件 Plugin/_datastruct.h中定义
 
 Ø **QList< IReduceSpeedArea\* > reduceSpeedAreas()**
 
