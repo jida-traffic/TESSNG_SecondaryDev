@@ -859,14 +859,14 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 Ø **qreal limitSpeed(UnitOfMeasure unit)**
 
-获取连接段最高限速，默认单位：像素，可通过unit参数设置单位
+获取连接段最高限速，默认单位：千米/小时，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **qreal minSpeed(UnitOfMeasure unit)**
 
-获取连接段最低限速，默认单位：像素，可通过unit参数设置单位
+获取连接段最低限速，默认单位：千米/小时，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
@@ -1434,7 +1434,7 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 Ø **qreal desirSpeed(UnitOfMeasure unit)**
 
-获取公交线路期望速度，默认单位：像素，可通过unit参数设置单位
+获取公交线路期望速度，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
@@ -1473,7 +1473,7 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 Ø **void setDesirSpeed(qreal speed, UnitOfMeasure unit)**
 
-设置公交线路期望速度，默认单位：像素，可通过unit参数设置单位
+设置公交线路期望速度，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
 [ in ] speed：速度值
@@ -2059,7 +2059,7 @@ IGuidArrow* pGuideArrow = gpTessInterface->netInterface()->createGuidArrow(pRigh
 
 Ø **qreal limitedSpeed(UnitOfMeasure unit)**
 
-获取事故区当前时段限速，默认单位：像素，可通过unit参数设置单位
+获取事故区当前时段限速，默认单位：像素(km/h)，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
@@ -2174,7 +2174,7 @@ qDebug() << pAccidentZone-> roadType() << endl;
 
 Ø **qreal limitedSpeed(UnitOfMeasure unit)**
 
-获取事故区在该时段的限速，默认单位：像素，可通过unit参数设置单位
+获取事故区在该时段的限速，默认单位：像素(km/h)，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位(km/h)，Default表示无单位限制
@@ -2222,7 +2222,7 @@ qDebug() << pAccidentZone-> roadType() << endl;
 
 Ø **qreal limitSpeed(UnitOfMeasure unit)**
 
-获取施工区限速，默认单位：像素，可通过unit参数设置单位
+获取施工区限速，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
@@ -2330,7 +2330,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 Ø **qreal limitSpeed(UnitOfMeasure unit)**
 
-获取限行区限速，默认单位：像素，可通过unit参数设置单位
+获取限行区限速，默认单位：像素(km/h)，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
@@ -2392,7 +2392,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 Ø **qreal passagewayLimitedSpeed(UnitOfMeasure unit)**
 
-获取保通开口限速，默认单位：像素，可通过unit参数设置单位
+获取保通开口限速，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
@@ -3573,7 +3573,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 初始化车速，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
-[ in ] speed：初始速度值，单位：像素/秒或米/秒(取决于unit参数)
+[ in ] speed：初始速度值，单位：像素/秒
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
 
 Ø **void initLane(int laneNumber, qreal dist = -1, qreal speed = -1, UnitOfMeasure unit = UnitOfMeasure::Default)**
@@ -3582,8 +3582,8 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 参数：
 [ in ] laneNumber：车道序号
-[ in ] dist：距起点距离，单位：像素或米(取决于unit参数)
-[ in ] speed：初始速度，单位：像素/秒或米/秒(取决于unit参数)
+[ in ] dist：距起点距离，单位：像素
+[ in ] speed：初始速度，单位：像素/秒
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 注：如传入米制参数，请勿遗忘传入dist与speed参数。
@@ -3605,8 +3605,8 @@ if (tmpId == 1) {
 参数：
 [ in ] laneNumber：起始车道序号
 [ in ] toLaneNumber：目标车道序号
-[ in ] dist：距起点距离，单位：像素或米(取决于unit参数)
-[ in ] speed：初始速度，单位：像素/秒或米/秒(取决于unit参数)
+[ in ] dist：距起点距离，单位：像素
+[ in ] speed：初始速度，单位：像素/秒
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 注：如传入米制参数，请勿遗忘传入dist与speed参数。
@@ -3673,17 +3673,17 @@ if (tmpId == 1) {
 
 Ø **qreal limitMaxSpeed(UnitOfMeasure unit)**
 
-获取最大限速，默认单位：像素，可通过unit参数设置单位
+获取最大限速，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
-[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **qreal limitMinSpeed(UnitOfMeasure unit)**
 
-获取最小限速，默认单位：像素，可通过unit参数设置单位
+获取最小限速，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
-[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **long vehicleTypeCode()**
 
@@ -3728,7 +3728,7 @@ if (tmpId == 1) {
 
 Ø **qreal currSpeed(UnitOfMeasure unit)**
 
-获取当前速度，默认单位：像素，可通过unit参数设置单位
+获取当前速度，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
@@ -4002,7 +4002,7 @@ if (tmpId == 1) {
 获取期望速度，默认单位：像素/秒，可通过unit参数设置单位
 
 参数：
-[ in ] unit：单位参数，默认为Default，Metric表示米制单位(m/s)，Default表示无单位限制
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **ISection\* getCurrRoad()**
 
