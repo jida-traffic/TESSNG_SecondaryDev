@@ -1281,10 +1281,6 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 相位ID
 
-Ø **int number()**
-
-相位序号
-
 Ø **QString phaseName()**
 
 相位名称
@@ -1312,7 +1308,7 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 	}
 ```
 
-Ø **int period()**
+Ø **int cycleTime()**
 
 相位周期，单位：秒
 
@@ -1327,10 +1323,6 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 Ø **QList< ISignalLamp\* > signalLamps()**
 
 相关信号灯列表
-
-Ø **void setNumber(int number)**
-
-设置相位序号
 
 Ø **void setPhaseName(QString name)**
 
@@ -6601,26 +6593,26 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：保通开口长度
 
-Ø **int trafficLightCount()**
+Ø **int TrafficContolerCount()**
 
 信号机数量
 
-Ø **QList< long > trafficLightIds()**
+Ø **QList< long > TrafficContolerIds()**
 
 信号机ID集
 
-Ø **QList< ITrafficContoler\* > trafficLights()**
+Ø **QList< ITrafficContoler\* > TrafficContolers()**
 
 信号机集
 
-Ø **ITrafficContoler\* findTrafficLight(long id)**
+Ø **ITrafficContoler\* findTrafficContolerById(long id)**
 
 根据id查询信号机
 
 参数：
 [ in ] id：信号机ID
 
-Ø **ITrafficContoler\* findTrafficLightName(QString name)**
+Ø **ITrafficContoler\* findTrafficContolerByName(QString name)**
 
 根据名称查询信号机(如果同名返回第一个)
 
@@ -6653,7 +6645,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数：
 [ in ] name：信控方案名称
 
-Ø **ITrafficContoler\* creatTrafficLight(QString name)**
+Ø **ITrafficContoler\* creatTrafficContoler(QString name)**
 
 创建信号机
 
