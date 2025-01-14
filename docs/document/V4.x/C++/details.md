@@ -584,14 +584,6 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 获取下游连接段列表
 
-Ø **ISection\* fromSection(long id)**
-
-根据ID获取上游Section。如果当前是路段, id 为 0 返回空指针，否则返回上游指定ID的连接段；如果当前是连接段，id 为 0 返回上游路段，否则返回空指针。
-
-Ø **ISection\* toSection(long id)**
-
-根据ID获取下游 Sction。如果当前是路段, id 为 0 返回空指针，否则返回下游指定ID的连接段；如果当前是连接段，id 为 0 返回下游路段，否则返回空指针。
-
 Ø **void setOtherAttr(QJsonObject otherAttr)**
 
 设置路段其它属性
@@ -676,13 +668,13 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 获取车道的行为类型
 
-Ø **ILaneObject\* fromLaneObject(long id)**
+Ø **QList< ILaneConnector\* > fromLaneConnectors()**
 
-根据ID获取上游 LaneObject。id 为 0 返回空指针，否则返回上游指定ID的"车道连接
+获取上游车道连接列表
 
-Ø **ILaneObject\* toLaneObject(long id)**
+Ø **QList< ILaneConnector\* > toLaneConnectors()**
 
-根据ID获取下游 LaneObject。id 为 0 返回空指针，否则返回下游指定ID的"车道连接"
+获取下游车道连接列表
 
 Ø **QList< QPointF > centerBreakPoints(UnitOfMeasure unit)**
 
@@ -851,14 +843,6 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 获取目标路段
 
-Ø **ISection\* fromSection(long id)**
-
-根据ID获取上游Section。如果当前是路段, id 为 0 返回空指针，否则返回上游指定ID的连接段；如果当前是连接段，id 为 0 返回上游路段，否则返回空指针。
-
-Ø **ISection\* toSection(long id)**
-
-根据ID获取下游 Sction。如果当前是路段, id 为 0 返回空指针，否则返回下游指定ID的连接段；如果当前是连接段，id 为 0 返回下游路段，否则返回空指针。
-
 Ø **qreal limitSpeed(UnitOfMeasure unit)**
 
 获取连接段最高限速，默认单位：千米/小时，可通过unit参数设置单位
@@ -936,35 +920,6 @@ if (pConn) {
 Ø **ILane \*toLane()**
 
 下游车道
-
-Ø **ILaneObject\* fromLaneObject(long id)**
-
-根据ID获取上游 LaneObject。id 为 0 返回空指针，否则返回上游指定ID的"车道连接
-
-举例：
-
-```cpp
-if (pConn) {
-			//连接段车道连接列表
-			QList< ILaneObject* > lConnLaneObjs;
-			lConnLaneObjs = pConn->laneObjects();
-			for (ILaneObject*& pLaneObj : lConnLaneObjs) {
-				qDebug() << "上游车道ID" << pLaneObj->fromLaneObject()->id() << "下游车道ID" << pLaneObj->toLaneObject()->id() << endl;
-			}
-		}
-```
-
-Ø **ILaneObject\* toLaneObject(long id)**
-
-根据ID获取下游 LaneObject。id 为 0 返回空指针，否则返回下游指定ID的"车道连接"
-
-举例：
-
-```cpp
-for (ILaneObject*& pLaneObj : lConnLaneObjs) {
-				qDebug() << "上游车道ID" << pLaneObj->fromLaneObject()->id() << "下游车道ID" << pLaneObj->toLaneObject()->id() << endl;
-			}
-```
 
 Ø **qreal length(UnitOfMeasure unit)**
 
