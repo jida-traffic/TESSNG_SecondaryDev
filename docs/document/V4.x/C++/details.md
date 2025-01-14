@@ -138,11 +138,13 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 
 背景路径
 
-Ø **QJsonObject otherAttrs()**
-
-Ø 其它属性json数据**QString explain()**
+Ø **QString explain()**
 
 获取路网说明
+
+Ø **QJsonObject otherAttrs()**
+
+其它属性json数据
 
 Ø **QPointF centerPoint(UnitOfMeasure unit)**
 
@@ -1256,9 +1258,13 @@ if (pLink1) {
 
 获取信号灯ID
 
-Ø **void setName(QString name)**
+Ø **void setSignalPhase(ISignalPhase* pPhase)**
 
-设置信号灯名称
+设置相位，所设相位可以是其它信号灯组的相位
+
+Ø **void setPhaseNumber(int num)**
+
+设置相位序号，序号从1开始，如果num序号大于相位总数不进行设置
 
 Ø **void setLampColor(QString colorStr)**
 
@@ -1268,13 +1274,17 @@ if (pLink1) {
 
 colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"、"黄"、"灰"，，或者是"R"、"G"、"Y"、"grey"。 
 
-Ø **ISignalGroup \*signalGroup()**
+Ø **QString color()**
 
-获取信号灯组
+获取信号灯色，"R"、“G”、“Y”、“gray”分别表示"红"、"绿"、"黄"、"灰"
 
-Ø **ISignalPhase\* signalPhase()**
+Ø **QString name()**
 
-获取相位
+获取信号灯名称
+
+Ø **void setName(QString name)**
+
+设置信号灯名称
 
 Ø **void setDistToStart(qreal dist, UnitOfMeasure unit)**
 
@@ -1284,9 +1294,25 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 [ in ] dist：距离值
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+Ø **ISignalPlan\* signalPlan()**
+
+获取信控方案
+
+Ø **ISignalPhase\* signalPhase()**
+
+获取相位
+
+Ø **ILaneObject\* laneObject()**
+
+获取所在车道或车道连接
+
 Ø **QPolygonF polygon()**
 
 获取信号灯多边型轮廓的顶点
+
+Ø **qreal angle()**
+
+获取信号灯角度
 
 ### 2.13 ISignalPhase
 
@@ -1307,14 +1333,6 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 Ø **QString phaseName()**
 
 相位名称
-
-Ø **ISignalGroup\* signalGroup()**
-
-相位所在信号灯组
-
-Ø **QList< ISignalLamp\* > signalLamps()**
-
-相关信号灯列表
 
 Ø **QList< Online::ColorInterval > listColor()**
 
@@ -1339,6 +1357,26 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 	}
 ```
 
+Ø **int period()**
+
+相位周期，单位：秒
+
+Ø **Online::SignalPhaseColor phaseColor()**
+
+当前相位灯色，Online::SignalPhaseColor见Plugin/_datastruct.h
+
+Ø **ISignalGroup\* signalGroup()**
+
+相位所在信号灯组
+
+Ø **ISignalPlan\* signalPlan()**
+
+相位所在信控方案
+
+Ø **QList< ISignalLamp\* > signalLamps()**
+
+相关信号灯列表
+
 Ø **void setNumber(int number)**
 
 设置相位序号
@@ -1353,11 +1391,13 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 接口文件：ISignalGroup.h
 
+接口方法：
+
 Ø **long id()**
 
 灯组ID
 
-Ø **QString groupName ()**
+Ø **QString groupName()**
 
 灯组名
 
@@ -2300,7 +2340,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 ### 2.25 ILimitedZone
 
-限行区域接口
+限行区接口
 
 接口文件：ILimitedZone.h
 
@@ -2593,7 +2633,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取信号机名称
 
-Ø **int periodTime()**
+Ø **int cycleTime()**
 
 获取信号周期，单位：秒
 
@@ -2613,7 +2653,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置信号灯组/信控方案名称
 
-Ø **void setPeriodTime(int period)**
+Ø **void setcycleTime(int period)**
 
 设置信号周期，单位：秒
 
@@ -2818,6 +2858,10 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取所属收费车道ID
 
+Ø **ITollLane\* tollLane()**
+
+获取所属收费车道
+
 Ø **bool isEnabled()**
 
 获取是否启用
@@ -2866,6 +2910,10 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 Ø **long parkingRegionId()**
 
 获取所属停车区域ID
+
+Ø **IParkingRegion\* parkingRegion()**
+
+获取所属停车区域
 
 Ø **qreal distance()**
 
@@ -3014,6 +3062,22 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] strName：新名称
 
+Ø **QList< ILink\* > getJunctionLinks()**
+
+获取节点内的路段 
+
+Ø **QList< IConnector\* > getJunctionConnectors()**
+
+获取节点内的连接段
+
+Ø **QList< Online::Junction::TurnningBaseInfo > getAllTurnningInfo()**
+
+获取节点内所有流向信息，Online::Junction::TurnningBaseInfo见Plugin/_datastruct.h
+
+Ø **Online::Junction::TurnningBaseInfo getTurnningInfo(long turningId)**
+
+获取节点内指定流向信息，Online::Junction::TurnningBaseInfo见Plugin/_datastruct.h
+
 ### 2.41 IPedestrian
 
 行人接口
@@ -3098,13 +3162,170 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 停止仿真，会在下一个仿真批次移除当前行人，释放资源
 
-### 2.42 IPedestrianCrossWalkRegion
+### 2.42 IObstacleRegion
 
-人行横道区域接口
+障碍物面域基类接口
+
+接口文件：IObstacleRegion.h
+
+接口方法：
+
+Ø **bool isObstacle() const**
+
+获取面域是否为障碍物
+
+Ø **void setObstacle(bool b)**
+
+设置面域是否为障碍物
+
+参数：
+[ in ] b：是否为障碍物
+
+### 2.43 IPedestrianPathRegionBase
+
+行人路径面域基类接口
+
+接口文件：IPedestrianPathRegionBase.h
+
+接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
+
+### 2.44 IPassengerRegion
+
+乘客面域基类接口
+
+接口文件：IPassengerRegion.h
+
+接口方法：
+
+Ø **bool isBoardingArea() const**
+
+获取面域是否为上客区域
+
+Ø **void setIsBoardingArea(bool b)**
+
+设置面域是否为上客区域
+
+Ø **bool isAlightingArea() const**
+
+获取面域是否为下客区域
+
+Ø **void setIsAlightingArea(bool b)**
+
+设置面域是否为下客区域
+
+### 2.45 IPedestrianCrossWalkRegion
+
+人行横道面域接口
 
 接口文件：IPedestrianCrossWalkRegion.h
 
 接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
+
+Ø **qreal getExpectSpeedFactor() const**
+
+获取期望速度系数
+
+Ø **void setExpectSpeedFactor(qreal val)**
+
+设置期望速度系数
+
+Ø **qreal getElevation() const**
+
+获取面域高程
+
+Ø **void setElevation(qreal elevation)**
+
+设置面域高程
+
+Ø **QPolygonF getPolygon() const**
+
+获取面域多边形
+
+Ø **long getLayerId() const**
+
+获取面域所在图层ID
+
+Ø **void setLayerId(long id)**
+
+设置面域所在图层，如果图层ID非法，则不做任何改变
 
 Ø **qreal getWidth() const**
 
@@ -3177,112 +3398,13 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 判断是否添加了管控反向通行的信号灯
 
-### 2.43 IPedestrianFanShapeRegion
+### 2.46 IPedestrianEllipseRegion
 
-扇形区域接口
+行人椭圆面域接口
 
-接口文件：IPedestrianFanShapeRegion.h
-
-接口方法：
-
-Ø **qreal getInnerRadius() const**
-
-获取内半径，单位：米
-
-Ø **qreal getOuterRadius() const**
-
-获取外半径，单位：米
-
-Ø **qreal getStartAngle() const**
-
-获取起始角度，单位：度
-
-Ø **qreal getSweepAngle() const**
-
-获取扫过角度，单位：度
-
-### 2.44 IPedestrianPath
-
-行人路径接口
-
-接口文件：IPedestrianPath.h
+接口文件：IPedestrianEllipseRegion.h
 
 接口方法：
-
-Ø **long getId() const**
-
-获取行人路径ID
-
-Ø **IPedestrianPathPoint\* getPathStartPoint() const**
-
-获取行人路径起始点
-
-Ø **IPedestrianPathPoint\* getPathEndPoint() const**
-
-获取行人路径终点
-
-Ø **QList< IPedestrianPathPoint\* > getPathMiddlePoints() const**
-
-获取行人路径中间点
-
-Ø **bool isLocalPath() const**
-
-判断是否是局部路径
-
-### 2.45 IPedestrianPathPoint
-
-行人路径点接口
-
-接口文件：IPedestrianPathPoint.h
-
-接口方法：
-
-Ø **long getId() const**
-
-获取行人路径点ID
-
-Ø **QPointF getScenePos(UnitOfMeasure unit) const**
-
-获取行人路径点场景坐标系下的位置，默认单位：像素，可通过unit参数设置单位
-
-参数：
-[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
-
-Ø **qreal getRadius() const**
-
-获取行人路径点的半径，单位：米
-
-### 2.46 IPedestrianRegion
-
-行人区域接口
-
-接口文件：IPedestrianRegion.h
-
-接口方法：
-
-Ø **bool isObstacle() const**
-
-获取面域是否为障碍物
-
-Ø **void setObstacle(bool b)**
-
-设置面域是否为障碍物
-
-Ø **bool isBoardingArea() const**
-
-获取面域是否为上客区域
-
-Ø **void setIsBoardingArea(bool b)**
-
-设置面域是否为上客区域
-
-Ø **bool isAlightingArea() const**
-
-获取面域是否为下客区域
-
-Ø **void setIsAlightingArea(bool b)**
-
-设置面域是否为下客区域
 
 Ø **long getId() const**
 
@@ -3351,13 +3473,642 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
-### 2.47 IPedestrianSideWalkRegion
+Ø **bool isObstacle() const**
 
-人行道区域接口
+获取面域是否为障碍物
+
+Ø **void setObstacle(bool b)**
+
+设置面域是否为障碍物
+
+Ø **bool isBoardingArea() const**
+
+获取面域是否为上客区域
+
+Ø **void setIsBoardingArea(bool b)**
+
+设置面域是否为上客区域
+
+Ø **bool isAlightingArea() const**
+
+获取面域是否为下客区域
+
+Ø **void setIsAlightingArea(bool b)**
+
+设置面域是否为下客区域
+
+### 2.47 IPedestrianFanShapeRegion
+
+行人扇形面域接口
+
+接口文件：IPedestrianFanShapeRegion.h
+
+接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
+
+Ø **qreal getExpectSpeedFactor() const**
+
+获取期望速度系数
+
+Ø **void setExpectSpeedFactor(qreal val)**
+
+设置期望速度系数
+
+Ø **qreal getElevation() const**
+
+获取面域高程
+
+Ø **void setElevation(qreal elevation)**
+
+设置面域高程
+
+Ø **QPolygonF getPolygon() const**
+
+获取面域多边形
+
+Ø **long getLayerId() const**
+
+获取面域所在图层ID
+
+Ø **void setLayerId(long id)**
+
+设置面域所在图层，如果图层ID非法，则不做任何改变
+
+Ø **bool isObstacle() const**
+
+获取面域是否为障碍物
+
+Ø **void setObstacle(bool b)**
+
+设置面域是否为障碍物
+
+Ø **bool isBoardingArea() const**
+
+获取面域是否为上客区域
+
+Ø **void setIsBoardingArea(bool b)**
+
+设置面域是否为上客区域
+
+Ø **bool isAlightingArea() const**
+
+获取面域是否为下客区域
+
+Ø **void setIsAlightingArea(bool b)**
+
+设置面域是否为下客区域
+
+Ø **qreal getInnerRadius() const**
+
+获取内半径，单位：米
+
+Ø **qreal getOuterRadius() const**
+
+获取外半径，单位：米
+
+Ø **qreal getStartAngle() const**
+
+获取起始角度，单位：度
+
+Ø **qreal getSweepAngle() const**
+
+获取扫过角度，单位：度
+
+### 2.48 IPedestrianPolygonRegion
+
+行人多边形面域接口
+
+接口文件：IPedestrianPolygonRegion.h
+
+接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
+
+Ø **qreal getExpectSpeedFactor() const**
+
+获取期望速度系数
+
+Ø **void setExpectSpeedFactor(qreal val)**
+
+设置期望速度系数
+
+Ø **qreal getElevation() const**
+
+获取面域高程
+
+Ø **void setElevation(qreal elevation)**
+
+设置面域高程
+
+Ø **QPolygonF getPolygon() const**
+
+获取面域多边形
+
+Ø **long getLayerId() const**
+
+获取面域所在图层ID
+
+Ø **void setLayerId(long id)**
+
+设置面域所在图层，如果图层ID非法，则不做任何改变
+
+Ø **bool isObstacle() const**
+
+获取面域是否为障碍物
+
+Ø **void setObstacle(bool b)**
+
+设置面域是否为障碍物
+
+Ø **bool isBoardingArea() const**
+
+获取面域是否为上客区域
+
+Ø **void setIsBoardingArea(bool b)**
+
+设置面域是否为上客区域
+
+Ø **bool isAlightingArea() const**
+
+获取面域是否为下客区域
+
+Ø **void setIsAlightingArea(bool b)**
+
+设置面域是否为下客区域
+
+### 2.49 IPedestrianRectRegion
+
+行人矩形面域接口
+
+接口文件：IPedestrianRectRegion.h
+
+接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
+
+Ø **qreal getExpectSpeedFactor() const**
+
+获取期望速度系数
+
+Ø **void setExpectSpeedFactor(qreal val)**
+
+设置期望速度系数
+
+Ø **qreal getElevation() const**
+
+获取面域高程
+
+Ø **void setElevation(qreal elevation)**
+
+设置面域高程
+
+Ø **QPolygonF getPolygon() const**
+
+获取面域多边形
+
+Ø **long getLayerId() const**
+
+获取面域所在图层ID
+
+Ø **void setLayerId(long id)**
+
+设置面域所在图层，如果图层ID非法，则不做任何改变
+
+Ø **bool isObstacle() const**
+
+获取面域是否为障碍物
+
+Ø **void setObstacle(bool b)**
+
+设置面域是否为障碍物
+
+Ø **bool isBoardingArea() const**
+
+获取面域是否为上客区域
+
+Ø **void setIsBoardingArea(bool b)**
+
+设置面域是否为上客区域
+
+Ø **bool isAlightingArea() const**
+
+获取面域是否为下客区域
+
+Ø **void setIsAlightingArea(bool b)**
+
+设置面域是否为下客区域
+
+### 2.50 IPedestrianTriangleRegion
+
+行人三角形面域接口
+
+接口文件：IPedestrianTriangleRegion.h
+
+接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
+
+Ø **qreal getExpectSpeedFactor() const**
+
+获取期望速度系数
+
+Ø **void setExpectSpeedFactor(qreal val)**
+
+设置期望速度系数
+
+Ø **qreal getElevation() const**
+
+获取面域高程
+
+Ø **void setElevation(qreal elevation)**
+
+设置面域高程
+
+Ø **QPolygonF getPolygon() const**
+
+获取面域多边形
+
+Ø **long getLayerId() const**
+
+获取面域所在图层ID
+
+Ø **void setLayerId(long id)**
+
+设置面域所在图层，如果图层ID非法，则不做任何改变
+
+Ø **bool isObstacle() const**
+
+获取面域是否为障碍物
+
+Ø **void setObstacle(bool b)**
+
+设置面域是否为障碍物
+
+Ø **bool isBoardingArea() const**
+
+获取面域是否为上客区域
+
+Ø **void setIsBoardingArea(bool b)**
+
+设置面域是否为上客区域
+
+Ø **bool isAlightingArea() const**
+
+获取面域是否为下客区域
+
+Ø **void setIsAlightingArea(bool b)**
+
+设置面域是否为下客区域
+
+### 2.50 IPedestrianPath
+
+行人路径接口
+
+接口文件：IPedestrianPath.h
+
+接口方法：
+
+Ø **long getId() const**
+
+获取行人路径ID
+
+Ø **IPedestrianPathPoint\* getPathStartPoint() const**
+
+获取行人路径起始点
+
+Ø **IPedestrianPathPoint\* getPathEndPoint() const**
+
+获取行人路径终点
+
+Ø **QList< IPedestrianPathPoint\* > getPathMiddlePoints() const**
+
+获取行人路径中间点
+
+Ø **bool isLocalPath() const**
+
+判断是否是局部路径
+
+### 2.51 IPedestrianPathPoint
+
+行人路径点接口
+
+接口文件：IPedestrianPathPoint.h
+
+接口方法：
+
+Ø **long getId() const**
+
+获取行人路径点ID
+
+Ø **QPointF getScenePos(UnitOfMeasure unit) const**
+
+获取行人路径点场景坐标系下的位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **qreal getRadius() const**
+
+获取行人路径点的半径，单位：米
+
+### 2.52 IPedestrianRegion
+
+行人面域接口
+
+接口文件：IPedestrianRegion.h
+
+接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
+
+Ø **qreal getExpectSpeedFactor() const**
+
+获取期望速度系数
+
+Ø **void setExpectSpeedFactor(qreal val)**
+
+设置期望速度系数
+
+Ø **qreal getElevation() const**
+
+获取面域高程
+
+Ø **void setElevation(qreal elevation)**
+
+设置面域高程
+
+Ø **QPolygonF getPolygon() const**
+
+获取面域多边形
+
+Ø **long getLayerId() const**
+
+获取面域所在图层ID
+
+Ø **void setLayerId(long id)**
+
+设置面域所在图层，如果图层ID非法，则不做任何改变
+
+### 2.53 IPedestrianSideWalkRegion
+
+人行道面域接口
 
 接口文件：IPedestrianSideWalkRegion.h
 
 接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
+
+Ø **qreal getExpectSpeedFactor() const**
+
+获取期望速度系数
+
+Ø **void setExpectSpeedFactor(qreal val)**
+
+设置期望速度系数
+
+Ø **qreal getElevation() const**
+
+获取面域高程
+
+Ø **void setElevation(qreal elevation)**
+
+设置面域高程
+
+Ø **QPolygonF getPolygon() const**
+
+获取面域多边形
+
+Ø **long getLayerId() const**
+
+获取面域所在图层ID
+
+Ø **void setLayerId(long id)**
+
+设置面域所在图层，如果图层ID非法，则不做任何改变
 
 Ø **qreal getWidth() const**
 
@@ -3391,13 +4142,52 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 在第index个位置插入顶点，初始位置为pos
 
-### 2.48 IPedestrianStairRegion
+### 2.54 IPedestrianStairRegion
 
-楼梯区域接口
+楼梯面域接口
 
 接口文件：IPedestrianStairRegion.h
 
 接口方法：
+
+Ø **long getId() const**
+
+获取面域ID
+
+Ø **QString getName() const**
+
+获取面域名称
+
+Ø **void setName(QString name)**
+
+设置面域名称
+
+Ø **QColor getRegionColor() const**
+
+获取面域颜色
+
+Ø **void setRegionColor(QColor color)**
+
+设置面域颜色
+
+Ø **QPointF getPosition(UnitOfMeasure unit) const**
+
+获取面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **void setPosition(QPointF scenePos, UnitOfMeasure unit)**
+
+设置面域位置，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] scenePos：场景坐标系下的位置
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **int getGType() const**
+
+获取面域类型
 
 Ø **qreal getWidth() const**
 
@@ -3515,13 +4305,73 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取终止衔接区域长度控制点
 
-### 2.49 ICrosswalkSignalLamp
+### 2.55 ICrosswalkSignalLamp
 
 人行横道信号灯接口
 
 接口文件：ICrosswalkSignalLamp.h
 
 接口方法：
+
+Ø **long id()**
+
+获取信号灯ID
+
+Ø **void setSignalPhase(ISignalPhase* pPhase)**
+
+设置相位，所设相位可以是其它信号灯组的相位
+
+Ø **void setPhaseNumber(int num)**
+
+设置相位序号，序号从1开始，如果num序号大于相位总数不进行设置
+
+Ø **void setLampColor(QString colorStr)**
+
+设置信号灯颜色
+
+参数：
+
+colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"、"黄"、"灰"，，或者是"R"、"G"、"Y"、"grey"。 
+
+Ø **QString color()**
+
+获取信号灯色，"R"、“G”、“Y”、“gray”分别表示"红"、"绿"、"黄"、"灰"
+
+Ø **QString name()**
+
+获取信号灯名称
+
+Ø **void setName(QString name)**
+
+设置信号灯名称
+
+Ø **void setDistToStart(qreal dist, UnitOfMeasure unit)**
+
+设置信号灯距路段起点距离，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] dist：距离值
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+Ø **ISignalPlan\* signalPlan()**
+
+获取信控方案
+
+Ø **ISignalPhase\* signalPhase()**
+
+获取相位
+
+Ø **ILaneObject\* laneObject()**
+
+获取所在车道或车道连接
+
+Ø **QPolygonF polygon()**
+
+获取信号灯多边型轮廓的顶点
+
+Ø **qreal angle()**
+
+获取信号灯角度
 
 Ø **IPedestrianCrossWalkRegion\* getICrossWalk() const**
 
