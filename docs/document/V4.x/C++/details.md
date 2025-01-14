@@ -2665,7 +2665,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 信号机接口
 
-接口文件：ITrafficContoler.h
+接口文件：ITrafficLight.h
 
 接口方法：
 
