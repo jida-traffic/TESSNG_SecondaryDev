@@ -2258,7 +2258,7 @@ qDebug() << pAccidentZone-> roadType() << endl;
 
 Ø **qreal limitSpeed(UnitOfMeasure unit)**
 
-获取施工区限速，默认单位：像素/秒，可通过unit参数设置单位
+获取施工区限速，默认单位：像素（km/h），可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
@@ -2428,7 +2428,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 Ø **qreal passagewayLimitedSpeed(UnitOfMeasure unit)**
 
-获取保通开口限速，默认单位：像素/秒，可通过unit参数设置单位
+获取保通开口限速，默认单位：像素（km/h），可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
