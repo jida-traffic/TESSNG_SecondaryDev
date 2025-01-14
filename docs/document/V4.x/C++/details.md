@@ -1365,10 +1365,6 @@ colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"�
 
 当前相位灯色，Online::SignalPhaseColor见Plugin/_datastruct.h
 
-Ø **ISignalGroup\* signalGroup()**
-
-相位所在信号灯组
-
 Ø **ISignalPlan\* signalPlan()**
 
 相位所在信控方案
@@ -2665,11 +2661,11 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置结束时间，单位：秒
 
-### 2.31 ITrafficLight
+### 2.31 ITrafficContoler
 
 信号机接口
 
-接口文件：ITrafficLight.h
+接口文件：ITrafficContoler.h
 
 接口方法：
 
@@ -6185,7 +6181,7 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 	ISignalPhase* pSignalPhase = gpTessInterface->netInterface()->createSignalPhase(pSignalGroup, QObject::tr("信号灯组1相位1"), QList< Online::ColorInterval>() << green << yellow << red);
 ```
 
-Ø **void removeSignalPhase(ISignalGroup\* pGroup, long phaseId)**
+Ø **void removeSignalPhase(ISignalPlan\* pPlan, long phaseId)**
 
 移除已有相位，相位移除后，原相位序列自动重排,
 
@@ -6221,6 +6217,18 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 			ISignalLamp* pSignalLamp = gpTessInterface->netInterface()->createSignalLamp(pSignalPhase, QObject::tr("信号灯%1").arg(i + 1), lConnLaneObjs[i]->fromLaneObject()->id(),  lConnLaneObjs[i]->toLaneObject()->id(), m2p(2.0));
 	}
 ```
+
+Ø **ISignalLamp\* createTrafficSignalLamp(ITrafficContoler\* pTrafficLight, QString name, long laneId, long toLaneId, qreal distance)**
+
+创建信号灯，参数:
+
+[ in ] pTrafficLight：信号机
+[ in ] name：信号灯名称
+[ in ] laneId：信号灯所在车道ID，或所在“车道连接”上游车道ID
+[ in ] toLaneId：信号灯所在“车道连接”下游道ID
+[ in ] distance：信号灯距车道或“车道连接”起点距离，单位像素
+
+返回：信号灯对象
 
 Ø **IBusLine\* createBusLine(QList< ILink\* > lLink)**
 
@@ -6646,18 +6654,18 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 信号机ID集
 
-Ø **QList< ITrafficLight\* > trafficLights()**
+Ø **QList< ITrafficContoler\* > trafficLights()**
 
 信号机集
 
-Ø **ITrafficLight\* findTrafficLight(long id)**
+Ø **ITrafficContoler\* findTrafficLight(long id)**
 
 根据id查询信号机
 
 参数：
 [ in ] id：信号机ID
 
-Ø **ITrafficLight\* findTrafficLightName(QString name)**
+Ø **ITrafficContoler\* findTrafficLightName(QString name)**
 
 根据名称查询信号机(如果同名返回第一个)
 
@@ -6676,28 +6684,28 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 信控方案集
 
-Ø **ISignalPlan\* findSignalPlan(long id)**
+Ø **ISignalPlan\* findSignalPlanByid(long id)**
 
 根据信控方案ID查找信控方案
 
 参数：
 [ in ] id：信控方案ID
 
-Ø **ISignalPlan\* findSignalPlan(QString name)**
+Ø **ISignalPlan\* findSignalPlanByname(QString name)**
 
 根据信控方案名称查找信控方案
 
 参数：
 [ in ] name：信控方案名称
 
-Ø **ITrafficLight\* creatTrafficLight(QString name)**
+Ø **ITrafficContoler\* creatTrafficLight(QString name)**
 
 创建信号机
 
 参数：
 [ in ] name：信号机名称
 
-Ø **ISignalPlan\* creatSignalPlan(ITrafficLight\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
+Ø **ISignalPlan\* creatSignalPlan(ITrafficContoler\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
 
 创建信控方案
 
@@ -7491,7 +7499,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianPath：行人路径对象
 
-Ø **ICrosswalkSignalLamp\* createCrossWalkSignalLamp(ITrafficLight\* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
+Ø **ICrosswalkSignalLamp\* createCrossWalkSignalLamp(ITrafficContoler\* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
 
 创建人行横道信号灯
 
