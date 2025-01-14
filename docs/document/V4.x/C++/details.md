@@ -590,7 +590,7 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 Ø **void setLaneTypes(QList< QString > lType)**
 
-设置车道属性，属性类型包括："机动车道"、"机非共享"、"非机动车道"、"公交专用道"
+设置车道属性，属性类型包括："机动车道"、"机非共享"、"非机动车道"、"公交专用道"，车道顺序从右到左。
 
 Ø **void setLaneOtherAtrrs(QList< QJsonObject > lAttrs)**
 
