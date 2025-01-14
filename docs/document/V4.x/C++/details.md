@@ -2772,6 +2772,10 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取所属收费决策点ID
 
+Ø **long tollLaneId()**
+
+路径到达的收费区域id
+
 Ø **qreal calcuLength()**
 
 计算路径长度
@@ -2961,6 +2965,10 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取所属决策点ID
 
+Ø **long parkingRegionId()**
+
+路径到达的停车区域id
+
 Ø **qreal calcuLength()**
 
 计算路径长度
@@ -3106,9 +3114,12 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置人行横道宽度，单位：米
 
-Ø **QLineF getSceneLine() const**
+Ø **QLineF getSceneLine(UnitOfMeasure unit) const**
 
-获取人行横道起点到终点的线段，场景坐标系下
+获取人行横道起点到终点的线段，场景坐标系下，默认单位：像素，可通过unit参数设置单位
+
+参数：
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
 Ø **qreal getAngle() const**
 
