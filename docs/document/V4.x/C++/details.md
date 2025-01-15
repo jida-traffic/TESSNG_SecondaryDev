@@ -2608,7 +2608,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 设置结束时间，单位：秒
 
-### 2.31 ITrafficContoler
+### 2.31 ITrafficController
 
 信号机接口
 
@@ -6165,7 +6165,7 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 	}
 ```
 
-Ø **ISignalLamp\* createTrafficSignalLamp(ITrafficContoler\* pTrafficLight, QString name, long laneId, long toLaneId, qreal distance)**
+Ø **ISignalLamp\* createTrafficSignalLamp(ITrafficController\* pTrafficLight, QString name, long laneId, long toLaneId, qreal distance)**
 
 创建信号灯，参数:
 
@@ -6593,26 +6593,26 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：保通开口长度
 
-Ø **int TrafficContolerCount()**
+Ø **int TrafficControllerCount()**
 
 信号机数量
 
-Ø **QList< long > TrafficContolerIds()**
+Ø **QList< long > TrafficControllerIds()**
 
 信号机ID集
 
-Ø **QList< ITrafficContoler\* > TrafficContolers()**
+Ø **QList< ITrafficController\* > ITrafficController()**
 
 信号机集
 
-Ø **ITrafficContoler\* findTrafficContolerById(long id)**
+Ø **ITrafficController\* findTrafficControllerById(long id)**
 
 根据id查询信号机
 
 参数：
 [ in ] id：信号机ID
 
-Ø **ITrafficContoler\* findTrafficContolerByName(QString name)**
+Ø **ITrafficController\* findTrafficControllerByName(QString name)**
 
 根据名称查询信号机(如果同名返回第一个)
 
@@ -6631,28 +6631,28 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 信控方案集
 
-Ø **ISignalPlan\* findSignalPlanByid(long id)**
+Ø **ISignalPlan\* findSignalPlanById(long id)**
 
 根据信控方案ID查找信控方案
 
 参数：
 [ in ] id：信控方案ID
 
-Ø **ISignalPlan\* findSignalPlanByname(QString name)**
+Ø **ISignalPlan\* findSignalPlanByName(QString name)**
 
 根据信控方案名称查找信控方案
 
 参数：
 [ in ] name：信控方案名称
 
-Ø **ITrafficContoler\* creatTrafficContoler(QString name)**
+Ø **ITrafficController\* creatTrafficController(QString name)**
 
 创建信号机
 
 参数：
 [ in ] name：信号机名称
 
-Ø **ISignalPlan\* creatSignalPlan(ITrafficContoler\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
+Ø **ISignalPlan\* creatSignalPlan(ITrafficController\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
 
 创建信控方案
 
@@ -7446,7 +7446,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianPath：行人路径对象
 
-Ø **ICrosswalkSignalLamp\* createCrossWalkSignalLamp(ITrafficContoler\* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
+Ø **ICrosswalkSignalLamp\* createCrossWalkSignalLamp(ITrafficController\* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
 
 创建人行横道信号灯
 
