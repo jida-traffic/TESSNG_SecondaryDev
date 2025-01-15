@@ -2125,7 +2125,7 @@ qDebug() << pAccidentZone-> roadType() << endl;
 
 接口方法：
 
-Ø **long id()**
+Ø **long intervalId()**
 
 获取事故时段ID
 
