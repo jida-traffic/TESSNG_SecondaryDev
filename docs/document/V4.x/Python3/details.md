@@ -97,35 +97,124 @@ TESSNG调用插件方法的频次是指对插件实现的PyCustomerSimulator接�
 
 获取路网ID，即路网编辑弹窗中的编号
 
+举例：
+
+```python
+# 获取路网ID
+iface = tessngIFace()
+# TESSNG路网子接口
+netiface = iface.netInterface()
+netAttrs = netiface.netAttrs()
+print(f"路网ID={netAttrs.id()}")
+```
+
  **def netName(self) -> str: ...**
 
 获取路网名称
+
+举例：
+
+```python
+# 获取路网名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网的基本属性
+netAttrs = netiface.netAttrs()
+print(f"路网名称={netAttrs.netName()}")
+```
 
  **def url(self) -> str: ..**
 
 获取源数据路径，可以是本地文件，可以是网络地址
 
+举例：
+
+```python
+# 获取源数据路径
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网的基本属性
+netAttrs = netiface.netAttrs()
+print(f"源数据路径={netAttrs.url()}")
+```
+
  **def type(self) -> str: ...**
 
 获取来源分类："TESSNG"表示TESSNG自建；"OpenDrive"表示由OpenDrive数据导入；"GeoJson"表示由geojson数据导入
+
+举例：
+
+```python
+# 获取来源分类
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网的基本属性
+netAttrs = netiface.netAttrs()
+print(f"来源分类={netAttrs.type()}")
+```
 
  **def bkgUrl(self) -> str: ...**
 
 获取背景路径
 
+举例：
+
+```python
+# 获取背景路径
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网的基本属性
+netAttrs = netiface.netAttrs()
+print(f"背景路径={netAttrs.bkgUrl()}")
+```
+
  **def otherAttrs(self) -> typing.Dict: ...**
 
 获取其它属性数据, json 数据
 
+举例：
+
+```python
+# 获取其它属性数据
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网的基本属性
+netAttrs = netiface.netAttrs()
+print(f"其它属性数据={netAttrs.otherAttrs()}")
+```
+
  **def explain(self) -> str: ...**
 
 获取路网说明
+
+举例：
+
+```python
+# 获取路网说明
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网的基本属性
+netAttrs = netiface.netAttrs()
+print(f"路网说明={netAttrs.explain()}")
+```
 
  **def centerPoint(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 获取路网中心点位置，默认单位：像素，可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
 参数：
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+# 获取路网中心点位置
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网的基本属性
+netAttrs = netiface.netAttrs()
+print(f"路网中心点位置={netAttrs.centerPoint()}")
+print(f"路网中心点位置(米制)={netAttrs.centerPoint(UnitOfMeasure.Metric)}")
+```
 
 **案例代码**
 
@@ -166,31 +255,120 @@ def showRoadNetAttr(netiface):
 
 获取Section类型，GLinkType 或 GConnectorType。在Tessng.pyi / NetItemType类中定义了一批枚举，每一个数值代表路网上一种元素类型。如：GLinkType代表路段、GConnectorType代表连接段。
 
+举例：
+
+```python
+# 获取Section类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"id为{section.id()}的Section的类型是{section.gtype()}")
+```
+
  **def isLink(self) -> bool: ...**
 
 是否是路段；TESSNG中基础路网由路段Link和连接段connector构成
 
+举例：
+
+```python
+# 获取Section类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    if section.isLink():
+        print(f"id为{section.id()}的Section是路段")
+    else:
+        print(f"id为{section.id()}的Section是连接段")
+```
+
  **def id(self) -> int: ...**
 
 获取ID：如果当前对象是Link，则id是Link的ID；如果是连接段，则id是连接段ID
+
+举例：
+
+```python
+# 获取Section的ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"Section的ID是{section.id()}")
+```
 
  **def sectionId(self) -> int: ...**
 
 获取ID，如果当前Isection对象是Link，则id是Link的ID；
 如果是连接段，则id是连接段ID+10000000（TESSNG内部通过加常数的方式来区分路段与连接段）
 
+举例：
+
+```python
+# 获取Section的ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"id为{section.id()}的Section的sectionId是{section.sectionId()}")
+```
+
  **def name(self) -> str: ...**
 
 获取Section名称：路段名或连接段名
+
+举例：
+
+```python
+# 获取Section名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"id为{section.id()}的Section的名称是{section.name()}")
+```
 
  **def setName(self, name:str) -> None: ...**
 
 设置Section名称
 
+举例：
+
+```python
+# 设置Section名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    section.setName(section.name() + str(section.id()))
+    print(f"id为{section.id()}的Section的名称是{section.name()}")
+```
+
  **def v3z(self，unit:Tess.UnitOfMeasure) -> float: ...**
 获取Section高程，默认单位：像素，可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
 参数：
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+# 获取Section高程
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"id为{section.id()}的Section的高程是{section.v3z()}")
+    print(f"id为{section.id()}的Section的高程(米制)是{section.v3z(UnitOfMeasure.Metric)}")
+```
 
  **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -198,9 +376,36 @@ def showRoadNetAttr(netiface):
 参数：
 \[in\]  unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取Section长度
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"id为{section.id()}的Section的长度是{section.length()}")
+    print(f"id为{section.id()}的Section的长度(米制)是{section.length(UnitOfMeasure.Metric)}")
+```
+
  **def laneObjects(self) -> typing.List: ...**
 
 车道与“车道连接”的父类接口列表
+
+举例：
+
+```python
+# 获取Section的车道与“车道连接”的父类接口列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    laneObjects = section.laneObjects()
+    for laneObject in laneObjects:
+        print(f"id为{section.id()}的Section包含id为{laneObject.id()}的laneObject")
+```
 
  **def fromSection(self, id:int=...) -> Tessng.ISection: ...**
 
@@ -212,38 +417,97 @@ def showRoadNetAttr(netiface):
 举例：
 
 ```python
-# 根据id获取路段5上游id为2的连接段
-sectionLink = tessngIFace().netInterface().findLink(5)
-    sectionConnector = sectionLink.fromSection(2)
-    if sectionConnector is not None and sectionConnector.gtype() == NetItemType.GConnectorType:
-        print("路段5上游id为2的section为：", sectionConnector.id())
-
+# 获取Section的上游Section
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    if section.gtype() == NetItemType.GConnectorType:
+        print(f"id为{section.id()}的Section的上游Section是{section.fromSection(0)}")
 ```
-
- 
 
  **def toSection(self, id:int=...) -> Tessng.ISection: ...**
 
 根据ID获取下游 Section。如果当前section是路段且 id 为 0则 返回空，否则返回下游指定ID的连接段；
 如果当前section是连接段且id 为 0 则返回下游路段，否则返回空。
 
+举例：
+
+```python
+# 获取Section的下游Section
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    if section.gtype() == NetItemType.GConnectorType:
+        print(f"id为{section.id()}的Section的下游Section是{section.toSection(0)}")
+```
+
  **def setOtherAttr(self, otherAttr:typing.Dict) -> None: ...**
 
 设置路段或连接段其它属性；这些属性可以用户自定义，类型为字典，方便用户做二次开发时扩充属性
+
+举例：
+
+```python
+# 设置Section的其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    section.setOtherAttr({'newAttr': 'add a new attr'})
+```
 
  **def castToLink(self) -> Tessng.ILink: ...**
 
 将当前Section转换成其子类ILink，如果当前Section是连接段则返回空
 
+举例：
+
+```python
+# 将当前Section转换成其子类ILink
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"id为{section.id()}的Section转换成ILink后是{section.castToLink()}")
+```
+
  **def castToConnector(self) -> Tessng.IConnector: ...**
 
 将当前Section转换成其子类转换成IConnector，如果当前Section为路段Link则返回空
+
+举例：
+
+```python
+# 将当前Section转换成其子类转换成IConnector
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"id为{section.id()}的Section转换成IConnector后是{section.castToConnector()}")
+```
 
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取Section的轮廓， 轮廓由section的一系列顶点组成
 
- 
+举例：
+
+```python
+# 获取Section的轮廓
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+sections = netiface.sections()
+for section in sections:
+    print(f"id为{section.id()}的Section的轮廓是{section.polygon()}")
+```
 
 **案例代码**
 
@@ -292,32 +556,134 @@ def showSectionAttr(netiface):
 
 类型，GLaneType或GLaneConnectorType
 
+举例：
+
+```python
+# 获取ILaneObject的类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有Section
+lSections = netiface.sections()
+for section in lSections:
+    # 获取路网中的所有ILaneObject
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        print(f"id为{laneObject.id()}的ILaneObject的类型是{laneObject.gtype()}")
+```
+
  **def isLane(self) -> bool: ...**
 
-是否车道， 因为也有可能是车道链接
+是否车道， 因为也有可能是车道连接
+
+举例：
+
+```python
+# 判断ILaneObject是否是车道
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        print(f"id为{laneObject.id()}的ILaneObject是否是车道：{laneObject.isLane()}")
+```
 
  **def id(self) -> int: ...**
 
 获取ID，如果当前self对象是Lane则id是Lane的ID， 如果是车道连接，则id是“车道连接”ID
 
- **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
+举例：
+
+```python
+# 获取ILaneObject的ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        print(f"ILaneObject的ID是{laneObject.id()}")
+```
+
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取车道或“车道连接”长度，默认单位：像素;可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 获取ILaneObject的长度
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        print(f"id为{laneObject.id()}的ILaneObject的长度是{laneObject.length()}")
+        print(f"id为{laneObject.id()}的ILaneObject的长度(米制单位)是{laneObject.length(UnitOfMeasure.Metric)}")
+```
+
  **def section(self) -> Tessng.ISection: ...**
 
 获取所属的ISection
 
+举例：
+
+```python
+# 获取ILaneObject所属的ISection
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        print(f"id为{laneObject.id()}的ILaneObject所属的ISection是{laneObject.section()}")
+```
+
  **def fromLaneObject(self, id:int=...) -> Tessng.ILaneObject: ...**
 
 根据laneObject ID获取其上游的 LaneObject对象。如果当前laneObject对象是车道,则且id 为 0表示未传入laneObject ID信息，则 返回空；否则返回其上游的“车道连接”；  
-如果当前laneObject对象是连接段且id 为 0，那么 返回其上游车道对象，否则返回空。
+如果当前laneObject对象是车道连接且id 为 0，那么 返回其上游车道对象，否则返回空。
+
+举例：
+
+```python
+# 获取ILaneObject的上游LaneObject
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        if laneObject.gtype() == NetItemType.GLaneConnectorType:
+        print(f"id为{laneObject.id()}的ILaneObject的上游LaneObject是{laneObject.fromLaneObject(0)}")
+```
 
  **def toLaneObject(self, id:int=...) -> Tessng.ILaneObject: ...**
 
 根据ID获取下游 LaneObject。如果当前是车道, id 为 0 返回空，否则返回下游指定ID的“车道连接”；如果当前是连接段，id 为 0 返回下游车道，否则返回空。
+
+举例：
+
+```python
+# 获取ILaneObject的下游LaneObject
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        if laneObject.gtype() == NetItemType.GLaneConnectorType:
+            print(f"id为{laneObject.id()}的ILaneObject的下游LaneObject是{laneObject.toLaneObject(0)}")
+```
 
  **def centerBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -325,11 +691,49 @@ def showSectionAttr(netiface):
 参数：
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 获取ILaneObject的中心线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lCenterBreakPoints = laneObject.centerBreakPoints()
+        for centerBreakPoint in lCenterBreakPoints:
+            print(f"id为{laneObject.id()}的ILaneObject的中心线断点列表是{centerBreakPoint}")
+        lCenterBreakPoints = laneObject.centerBreakPoints(UnitOfMeasure.Metric)
+        for centerBreakPoint in lCenterBreakPoints:
+            print(f"id为{laneObject.id()}的ILaneObject的中心线断点列表(米制)是{centerBreakPoint}")
+```
+
  **def leftBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的左侧边线断点列表； 即车道或“车道连接”左侧线断点集; 断点都是像素坐标下的点  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+# 获取ILaneObject的左侧边线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lLeftBreakPoints = laneObject.leftBreakPoints()
+        for leftBreakPoint in lLeftBreakPoints:
+            print(f"id为{laneObject.id()}的ILaneObject的左侧边线断点列表是{leftBreakPoint}")
+        lLeftBreakPoints = laneObject.leftBreakPoints(UnitOfMeasure.Metric)
+        for leftBreakPoint in lLeftBreakPoints:
+            print(f"id为{laneObject.id()}的ILaneObject的左侧边线断点列表(米制)是{leftBreakPoint}")
+```
 
  **def rightBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -337,11 +741,49 @@ def showSectionAttr(netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 获取ILaneObject的右侧边线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lRightBreakPoints = laneObject.rightBreakPoints()
+        for rightBreakPoint in lRightBreakPoints:
+            print(f"id为{laneObject.id()}的ILaneObject的右侧边线断点列表是{rightBreakPoint}")
+        lRightBreakPoints = laneObject.rightBreakPoints(UnitOfMeasure.Metric)
+        for rightBreakPoint in lRightBreakPoints:
+            print(f"id为{laneObject.id()}的ILaneObject的右侧边线断点列表(米制)是{rightBreakPoint}")
+```
+
  **def centerBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的右侧边线断点列表；车道或“车道连接”中心线断点(三维)集（包含高程v3z属性的点）除高程是米制单位，x/y均为像素坐标，像素单位  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+# 获取ILaneObject的中心线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lCenterBreakPoint3Ds = laneObject.centerBreakPoint3Ds()
+        for centerBreakPoint3D in lCenterBreakPoint3Ds:
+            print(f"id为{laneObject.id()}的ILaneObject的中心线断点列表(三维)是{centerBreakPoint3D}")
+        lCenterBreakPoint3Ds = laneObject.centerBreakPoint3Ds(UnitOfMeasure.Metric)
+        for centerBreakPoint3D in lCenterBreakPoint3Ds:
+            print(f"id为{laneObject.id()}的ILaneObject的中心线断点列表(三维，米制)是{centerBreakPoint3D}")
+```
 
  **def leftBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -349,11 +791,49 @@ def showSectionAttr(netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 获取ILaneObject的左侧边线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lLeftBreakPoint3Ds = laneObject.leftBreakPoint3Ds()
+        for leftBreakPoint3D in lLeftBreakPoint3Ds:
+            print(f"id为{laneObject.id()}的ILaneObject的左侧边线断点列表(三维)是{leftBreakPoint3D}")
+        lLeftBreakPoint3Ds = laneObject.leftBreakPoint3Ds(UnitOfMeasure.Metric)
+        for leftBreakPoint3D in lLeftBreakPoint3Ds:
+            print(f"id为{laneObject.id()}的ILaneObject的左侧边线断点列表(三维，米制)是{leftBreakPoint3D}")
+```
+
  **def rightBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ... **  
 
 获取laneObject的右侧边线断点列表；车道或“车道连接”右侧线断点(三维)集；（包含高程v3z属性的点）除高程是米制单位，x/y均为像素坐标，像素单位  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+# 获取ILaneObject的右侧边线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lRightBreakPoint3Ds = laneObject.rightBreakPoint3Ds()
+        for rightBreakPoint3D in lRightBreakPoint3Ds:
+            print(f"id为{laneObject.id()}的ILaneObject的右侧边线断点列表(三维)是{rightBreakPoint3D}")
+        lRightBreakPoint3Ds = laneObject.rightBreakPoint3Ds(UnitOfMeasure.Metric)
+        for rightBreakPoint3D in lRightBreakPoint3Ds:
+            print(f"id为{laneObject.id()}的ILaneObject的右侧边线断点列表(三维，米制)是{rightBreakPoint3D}")
+```
 
  **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -361,7 +841,28 @@ def showSectionAttr(netiface):
 参数：  
 \[in\] fromPoint：中心线上某一点作为起点  
 \[in\] toPoint：中心线上某一点作为终点  
-\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位        
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位    
+
+举例：
+
+```python
+# 获取ILaneObject的左侧边线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lLeftBreakPoints = laneObject.leftBreakPoints()
+        if len(lLeftBreakPoints) > 2:
+            lLeftBreak3Ds = laneObject.leftBreak3DsPartly(lLeftBreakPoints[0],lLeftBreakPoints[2])
+            for leftBreak3D in lLeftBreak3Ds:
+                print(f"id为{laneObject.id()}的ILaneObject的左侧边线断点列表(三维)是{leftBreak3D}")
+            lLeftBreak3Ds = laneObject.leftBreak3DsPartly(laneObject.leftBreakPoints(UnitOfMeasure.Metric)[0],laneObject.leftBreakPoints(UnitOfMeasure.Metric)[2],UnitOfMeasure.Metric)
+            for leftBreak3D in lLeftBreak3Ds:
+                print(f"id为{laneObject.id()}的ILaneObject的左侧边线断点列表(三维，米制)是{leftBreak3D}")
+```
 
  **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF,unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -371,11 +872,49 @@ def showSectionAttr(netiface):
 \[in\] toPoint：中心线上某一点作为终点；QPointF类型，且是像素坐标  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
 
+举例：
+
+```python
+# 获取ILaneObject的右侧边线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lRightBreakPoints = laneObject.rightBreakPoints()
+        if len(lRightBreakPoints) > 2:
+            lRightBreak3Ds = laneObject.rightBreak3DsPartly(lRightBreakPoints[0],lRightBreakPoints[2])
+            for rightBreak3D in lRightBreak3Ds:
+                print(f"id为{laneObject.id()}的ILaneObject的右侧边线断点列表(三维)是{rightBreak3D}")
+            lRightBreak3Ds = laneObject.rightBreak3DsPartly(laneObject.rightBreakPoints(UnitOfMeasure.Metric)[0],laneObject.rightBreakPoints(UnitOfMeasure.Metric)[2],UnitOfMeasure.Metric)
+            for rightBreak3D in lRightBreak3Ds:
+                print(f"id为{laneObject.id()}的ILaneObject的右侧边线断点列表(三维，米制)是{rightBreak3D}")
+```
+
  **def distToStartPoint(self, p:PySide2.QtCore.QPointF,unit:Tess.UnitOfMeasure) -> float: ...**
 
 中心线上一点到laneObject对象起点的距离； 默认单位：像素  
 参数：  
-\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+# 获取ILaneObject的中心线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        dist = laneObject.distToStartPoint(laneObject.centerBreakPoints()[1])
+        print(f"id为{laneObject.id()}的ILaneObject的距中心线起点距离为{dist}")
+        dist = laneObject.distToStartPoint(laneObject.centerBreakPoints(UnitOfMeasure.Metric)[1],UnitOfMeasure.Metric)
+        print(f"id为{laneObject.id()}的ILaneObject的距中心线起点距离(米制)为{dist}")
+```
 
  **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=...,unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -385,6 +924,23 @@ laneObject中心线上一点到起点的距离，像素单位，附加条件是�
 \[in\] segmIndex：参数p点所在车道上的分段序号; 两个断点组成一个分段，分段序号从0开始，沿着道路方向递增  
 \[in\] bOnCentLine：参数p点是否在中心线上  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+# 获取ILaneObject的中心线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        dist = laneObject.distToStartPointWithSegmIndex(laneObject.centerBreakPoints()[1],1)
+        print(f"id为{laneObject.id()}的ILaneObject的距中心线起点距离为{dist}")
+        dist = laneObject.distToStartPointWithSegmIndex(laneObject.centerBreakPoints(UnitOfMeasure.Metric)[1],1,True,UnitOfMeasure.Metric)
+        print(f"id为{laneObject.id()}的ILaneObject的距中心线起点距离(米制)为{dist}")
+```
 
  **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int,unit:Tess.UnitOfMeasure) -> bool: ...**
 
@@ -427,17 +983,79 @@ laneObject中心线上一点到起点的距离，像素单位，附加条件是�
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 获取ILaneObject的中心线断点列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        outPoint = QPointF()
+        dist = laneObject.getPointByDist(50, outPoint)
+        print(f"id为{laneObject.id()}的ILaneObject的距离中心线起点向下游延伸的点为{outPoint}")
+        dist = laneObject.getPointByDist(50, outPoint,UnitOfMeasure.Metric)
+        print(f"id为{laneObject.id()}的ILaneObject的距离中心线起点向下游延伸的点(米制)为{outPoint}")
+```
+
  **def setOtherAttr(self, attr:typing.Dict) -> None: ...**
 
 设置车道或“车道连接”其它属性； 字典类型
+
+举例：
+
+```python
+# 设置ILaneObject的其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        laneObject.setOtherAttr({'newAttr':'add a new attr'})
+```
 
  **def castToLane(self) -> Tessng.ILane: ...**
 
 将ILaneObject转换为子类ILane，但如果当前ILaneObject是“车道连接”则转化失败，返回空
 
+举例：
+
+```python
+# 将ILaneObject转换为子类ILane
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        lane = laneObject.castToLane()
+        print(f"id为{laneObject.id()}的ILaneObject转换为子类ILane为{lane}")
+```
+
  **def castToLaneConnector(self) -> Tessng.ILaneConnector: ...**
 
 将ILaneObject转换为ILaneConnector子类，但如果当前ILaneObject是车道则转化失败，返回空
+
+举例：
+
+```python
+# 将ILaneObject转换为ILaneConnector子类
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILaneObject
+lSections = netiface.sections()
+for section in lSections:
+    lLaneObjects = section.laneObjects()
+    for laneObject in lLaneObjects:
+        laneConnector = laneObject.castToLaneConnector()
+        print(f"id为{laneObject.id()}的ILaneObject转换为子类ILaneConnector为{laneConnector}")
+```
 
 **案例代码**
 
@@ -468,7 +1086,7 @@ def showLaneObjectAttr(self, netiface):
           f"leftBreak3DsPartly(米制)={laneObject.leftBreak3DsPartly(laneObject.leftBreakPoints(UnitOfMeasure.Metric)[1],laneObject.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
           f"rightBreak3DsPartly(像素制)={laneObject.leftBreak3DsPartly(laneObject.leftBreakPoints()[1],laneObject.leftBreakPoints()[-1])},"
           f"rightBreak3DsPartly(米制)={laneObject.leftBreak3DsPartly(laneObject.leftBreakPoints(UnitOfMeasure.Metric)[1],laneObject.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
-          f"distToStartPoint(像素制)={laneObject.distToStartPoint(laneObject.centerBreakPoints()[0])}，distToStartPoint(米制)={laneObject.distToStartPoint(laneObject.centerBreakPoints()[0],UnitOfMeasure.Metric)}，"
+          f"distToStartPoint(像素制)={laneObject.distToStartPoint(laneObject.centerBreakPoints()[0])}，distToStartPoint(米制)={laneObject.distToStartPoint(laneObject.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)}，"
           f"设置自定义属性setOtherAttr={laneObject.setOtherAttr({'newAttr':'add a new attr'})}, 将section强转为子类link={laneObject.castToLane()},"
           f"将section强转为子类Iconnector={laneObject.castToLaneConnector()}")
     outPoint = QPointF()
@@ -499,9 +1117,33 @@ def showLaneObjectAttr(self, netiface):
 
 类型，返回GLinkType，TESSNG的一个常量， int类型
 
+举例：
+
+```python
+# 获取ILink的类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的类型为{link.gtype()}")
+```
+
  **def id(self) -> int: ...**
 
 获取路段ID
+
+举例：
+
+```python
+# 获取ILink的ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"ILink的ID为{link.id()}")
+```
 
  **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -509,11 +1151,37 @@ def showLaneObjectAttr(self, netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 获取ILink的长度
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的长度为{link.length()}")
+    print(f"id为{link.id()}的ILink的长度(米制)为{link.length(UnitOfMeasure.Metric)}")
+```
+
  **def width(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取路段宽度，单位像素;可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+# 获取ILink的宽度
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的宽度为{link.width()}")
+    print(f"id为{link.id()}的ILink的宽度(米制)为{link.width(UnitOfMeasure.Metric)}")
+```
 
  **def z(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -521,37 +1189,138 @@ def showLaneObjectAttr(self, netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
 
+举例：
+
+```python
+# 获取ILink的高程
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的高程为{link.z()}")
+    print(f"id为{link.id()}的ILink的高程(米制)为{link.z(UnitOfMeasure.Metric)}")
+```
+
  **def v3z(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取路段高程，过载ISection的方法， 等同于上边的z(self)  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 获取ILink的高程
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的高程为{link.v3z()}")
+    print(f"id为{link.id()}的ILink的高程(米制)为{link.v3z(UnitOfMeasure.Metric)}")
+```
+
  **def name(self) -> str: ...** 
 
 获取路段名称
+
+举例：
+
+```python
+# 获取ILink的名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的名称{link.name()}")
+```
 
  **def setName(self, name:str) -> None: ...**
 
 设置路段名称
 
+举例：
+
+```python
+# 设置ILink的名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    link.setName('test_name')
+    print(f"id为{link.id()}的ILink的名称{link.name()}")
+```
+
  **def linkType(self) -> str: ...**
 
 获取路段类型，出参为字符串枚举：城市主干道、城市次干道、人行道。
+
+举例：
+
+```python
+# 获取ILink的类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的类型为{link.linkType()}")
+```
 
  **def setType(self, type:str) -> None: ...**
 
 设置路段类型，路段类型有10种，入参可以为：高速路、城市快速路、匝道、城市主要干道、次要干道、地方街道、非机动车道、人行道、公交专用道、机非共享； 其中的任意一个，其他类型暂不支持
 
+举例：
+
+```python
+# 设置ILink的类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    link.setType('机非共享')
+    print(f"id为{link.id()}的ILink的类型为{link.linkType()}")
+```
+
  **def laneCount(self) -> int: ...**
 
 获取车道数
+
+举例：
+
+```python
+# 获取ILink的车道数
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的车道数为{link.laneCount()}")
+```
 
  **def limitSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取路段最高限速，默认单位：千米/小时  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取ILink的最高限速
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的最高限速为{link.limitSpeed()}")
+    print(f"id为{link.id()}的ILink的最高限速(米制)为{link.limitSpeed(UnitOfMeasure.Metric)}")
+```
 
  **def setLimitSpeed(self, speed:float, unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -563,15 +1332,16 @@ def showLaneObjectAttr(self, netiface):
 举例：
 
 ```python
-link = None
-# 创建路段省略
-if link is not None:
-# 设置路段限速30km/h
-link.setLimitSpeed(30)
-
+# 设置ILink的最高限速
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    link.setLimitSpeed(link.limitSpeed()*1.2)
+    print(f"id为{link.id()}的ILink的最高限速为{link.limitSpeed()}")
+    print(f"id为{link.id()}的ILink的最高限速(米制)为{link.limitSpeed(UnitOfMeasure.Metric)}")
 ```
-
- 
 
  **def minSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -579,13 +1349,54 @@ link.setLimitSpeed(30)
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILink的最低限速
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的ILink的最低限速为{link.minSpeed()}")
+    print(f"id为{link.id()}的ILink的最低限速(米制)为{link.minSpeed(UnitOfMeasure.Metric)}")
+```
+
  **def lanes(self) -> typing.List: ...**
 
 获取ILink上的车道列表， 列表按照从左到右的顺序排列；列表元素为ILane对象
 
+举例：
+
+```python
+# 获取ILink上的车道列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    lanes = link.lanes()
+    for lane in lanes:
+        print(f"id为{lane.id()}的车道对象为{lane}")
+```
+
  **def laneObjects(self) -> typing.List: ...**
 
 获取ILink下所有LaneObject对象，列表类型，LaneObject可以是车道，也可以是“车道连接”的父对象
+
+举例：
+
+```python
+# 获取ILink下的所有LaneObject对象
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    laneObjects = link.laneObjects()
+    for laneObject in laneObjects:
+        print(f"id为{laneObject.id()}的LaneObject对象为{laneObject}")
+```
 
  **def centerBreakPoints(self，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -593,11 +1404,45 @@ link.setLimitSpeed(30)
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILink的中心线断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    centerBreakPoints = link.centerBreakPoints()
+    for centerBreakPoint in centerBreakPoints:
+        print(f"路段id为{link.id()}的中心线断点为{centerBreakPoint}")
+    centerBreakPoints = link.centerBreakPoints(UnitOfMeasure.Metric)
+    for centerBreakPoint in centerBreakPoints:
+        print(f"路段id为{link.id()}的中心线断点(米制)为{centerBreakPoint}")
+```
+
  **def leftBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取路段左侧线断点集， 像素坐标   
 参数：  
-\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取ILink的左侧线断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    leftBreakPoints = link.leftBreakPoints()
+    for leftBreakPoint in leftBreakPoints:
+        print(f"路段id为{link.id()}的左侧线断点为{leftBreakPoint}")
+    leftBreakPoints = link.leftBreakPoints(UnitOfMeasure.Metric)
+    for leftBreakPoint in leftBreakPoints:
+        print(f"路段id为{link.id()}的左侧线断点(米制)为{leftBreakPoint}")
+```
 
  **def rightBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -605,11 +1450,45 @@ link.setLimitSpeed(30)
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILink的右侧线断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    rightBreakPoints = link.rightBreakPoints()
+    for rightBreakPoint in rightBreakPoints:
+        print(f"路段id为{link.id()}的右侧线断点为{rightBreakPoint}")
+    rightBreakPoints = link.rightBreakPoints(UnitOfMeasure.Metric)
+    for rightBreakPoint in rightBreakPoints:
+        print(f"路段id为{link.id()}的右侧线断点(米制)为{rightBreakPoint}")
+```
+
  **def centerBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取路段中心线断点(三维)集， 像素坐标，但高程z的单位为米  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取ILink的中心线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    centerBreakPoint3Ds = link.centerBreakPoint3Ds()
+    for centerBreakPoint3D in centerBreakPoint3Ds:
+        print(f"路段id为{link.id()}的中心线断点(三维)为{centerBreakPoint3D}")
+    centerBreakPoint3Ds = link.centerBreakPoint3Ds(UnitOfMeasure.Metric)
+    for centerBreakPoint3D in centerBreakPoint3Ds:
+        print(f"路段id为{link.id()}的中心线断点(三维)(米制)为{centerBreakPoint3D}")
+```
 
  **def leftBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -617,41 +1496,167 @@ link.setLimitSpeed(30)
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILink的左侧线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    leftBreakPoint3Ds = link.leftBreakPoint3Ds()
+    for leftBreakPoint3D in leftBreakPoint3Ds:
+        print(f"路段id为{link.id()}的左侧线断点(三维)为{leftBreakPoint3D}")
+    leftBreakPoint3Ds = link.leftBreakPoint3Ds(UnitOfMeasure.Metric)
+    for leftBreakPoint3D in leftBreakPoint3Ds:
+        print(f"路段id为{link.id()}的左侧线断点(三维)(米制)为{leftBreakPoint3D}")
+```
+
  **def rightBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取路段右侧线断点(三维)集， 像素坐标，但高程z的单位为米  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILink的右侧线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    rightBreakPoint3Ds = link.rightBreakPoint3Ds()
+    for rightBreakPoint3D in rightBreakPoint3Ds:
+        print(f"路段id为{link.id()}的右侧线断点(三维)为{rightBreakPoint3D}")
+    rightBreakPoint3Ds = link.rightBreakPoint3Ds(UnitOfMeasure.Metric)
+    for rightBreakPoint3D in rightBreakPoint3Ds:
+        print(f"路段id为{link.id()}的右侧线断点(三维)(米制)为{rightBreakPoint3D}")
+```
+
  **def fromConnectors(self) -> typing.List: ...**
 
 获取ILink的上游连接段， 其可能有多个，所以返回类型为列表，列表元素为IConnector对象
 
+举例：
+
+```python
+# 获取ILink的上游连接段
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    fromConnectors = link.fromConnectors()
+    for fromConnector in fromConnectors:
+        print(f"路段id为{link.id()}的上游连接段之一为{fromConnector.id()}")
+```
+
  **def toConnectors(self) -> typing.List: ...**
 
-获取ILink的上游连接段， 其可能有多个，所以返回类型为列表，列表元素为IConnector对象
+获取ILink的下游连接段， 其可能有多个，所以返回类型为列表，列表元素为IConnector对象
+
+举例：
+
+```python
+# 获取ILink的下游连接段
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    toConnectors = link.toConnectors()
+    for toConnector in toConnectors:
+        print(f"路段id为{link.id()}的下游连接段之一为{toConnector.id()}")
+```
 
  **def setOtherAttr(self, otherAttr:typing.Dict) -> None: ...**
 
 设置路段的其它属性， TESSNG仿真过程中仅记录拓展的属性，方便用户拓展，并自定义使用
 
+举例：
+
+```python
+# 设置ILink的其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    link.setOtherAttr({'new_msg':'test'})
+    print(f"路段id为{link.id()}的其它属性为{link.otherAttr()}")
+```
+
  **def otherAttr(self) -> typing.Dict: ...**
 
 获取路段的其它属性， TESSNG仿真过程中仅记录拓展的属性，方便用户拓展，并自定义使用
+
+举例：
+
+```python
+# 获取ILink的其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"路段id为{link.id()}的其它属性为{link.otherAttr()}")
+```
 
  **def setLaneTypes(self, lType:typing.Sequence) -> None: ...**
 
 依次为ILink下所有车道设置车道属性（列表顺序为 从左到右的车道顺序），入参为序列类型（列表，元组等），其中元素的类型从这四种常量字符串中获取："机动车道"、"机非共享"、"非机动车道"、"公交专用道"
 
+举例：
+
+```python
+# 依次为ILink下所有车道设置车道属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    if link.laneCount() == 3:
+        link.setLaneTypes(['机动车道','非机动车道','公交专用道'])
+```
+
  **def setLaneOtherAtrrs(self, lAttrs:typing.Sequence) -> None: ...**
 
 依次为ILink下所有车道设置车道其它属性
+
+举例：
+
+```python
+# 依次为ILink下所有车道设置车道其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    if link.laneCount() == 3:
+        link.setLaneOtherAtrrs([{'new_name':'自定义机动车道'},{'new_name':'自定义非机动车道'},{'new_name':'自定义公交专用道'}])
+```
 
  **def distToStartPoint(self, p:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> float: ...**
 
 ILink中心线上任意一点到ILink起点的距离， 像素单位  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取ILink中心线上任意一点到ILink起点的距离
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的路段的中心线到起点的距离为{link.distToStartPoint(link.centerBreakPoints()[1])}")
+    print(f"id为{link.id()}的路段的中心线到起点的距离(米制单位){link.distToStartPoint(link.centerBreakPoints(UnitOfMeasure.Metric)[1],UnitOfMeasure.Metric)}")
+```
 
  **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int, unit:Tess.UnitOfMeasure) -> bool: ...**
 
@@ -660,7 +1665,26 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 \[in\] dist：中心线起点向下游延伸的距离  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
 [out] outPoint：中心线起点向下游延伸dist距离后所在点  
-[out] outIndex：中心线起点向下游延伸dist处的点所属分段序号  
+[out] outIndex：中心线起点向下游延伸dist处的点所属分段序号
+
+举例：
+
+```python
+# 获取ILink中心线起点下游dist距离处的点及其所属分段序号
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    outPoint = QPointF()
+    outIndex = 0
+    link.getPointAndIndexByDist(50, outPoint, outIndex)
+    print(f"id为{link.id()}的路段的中心线起点向下游延伸dist米处的点为{outPoint}，所属分段序号为{outIndex}")
+    outPoint1 = QPointF()
+    outIndex1 = 0
+    link.getPointAndIndexByDist(50, outPoint1, outIndex1, UnitOfMeasure.Metric)
+    print(f"id为{link.id()}的路段的中心线起点向下游延伸dist米处的点(米制单位)为{outPoint1}，所属分段序号为{outIndex1}")
+```
 
  **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> bool: ...**
 
@@ -668,9 +1692,38 @@ ILink中心线上任意一点到ILink起点的距离， 像素单位
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILink中心线起点向前延伸dist距离后所在点
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    outPoint = QPointF()
+    link.getPointByDist(50, outPoint)
+    print(f"id为{link.id()}的路段的中心线起点向前延伸dist米处的点(像素制)为{outPoint}")
+    outPoint1 = QPointF()
+    link.getPointByDist(50, outPoint1, UnitOfMeasure.Metric)
+    print(f"id为{link.id()}的路段的中心线起点向前延伸dist米处的点(米制单位)为{outPoint1}")
+```
+
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取路段的多边型轮廓， 返回值类型QPolygonF， 像素坐标
+
+举例：
+
+```python
+# 获取ILink的多边型轮廓
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILink
+lLinks = netiface.links()
+for link in lLinks:
+    print(f"id为{link.id()}的路段的多边型轮廓为{link.polygon()}")
+```
 
 **案例代码**
 
@@ -706,7 +1759,7 @@ def showLinkAttr(netiface):
           f"toSection={link.toSection(link.toConnectors()[0].id() if link.toConnectors() is not None and len(link.toConnectors() )> 0 else 0)}, "
           f"自定义其他属性： setOtherAttr={link.setOtherAttr({'new_msg':'this is a av car'})},"
           f"从右到左依次为车道设置类别={link.setLaneTypes(['公交专用道','机动车道','机动车道'])}，为车道设置其他属性={link.setLaneOtherAtrrs([{'new_name':'自定义公交专用车道'},{'new_name':'自定义机动车道'},{'new_name':'自定义机动车道'}])}，"
-          f"distToStartPoint距离起点长度（像素制）={link.distToStartPoint(link.centerBreakPoints()[-1])}, 米制={link.distToStartPoint(link.centerBreakPoints()[-1],UnitOfMeasure.Metric)},"
+          f"distToStartPoint距离起点长度（像素制）={link.distToStartPoint(link.centerBreakPoints()[-1])}, 米制={link.distToStartPoint(link.centerBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
           f"polygon={link.polygon()}"
           )
     outPoint = QPointF()
@@ -740,19 +1793,73 @@ def showLinkAttr(netiface):
 
  **def gtype(self) -> int: ...**
 
-类型，车道类型为GLaneType，其中GLaneType是一种常量，
+类型，车道类型为GLaneType，其中GLaneType是一种常量
+
+举例：
+
+```python
+# 获取ILane的类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILane
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的类型为{lane.gtype()}")
+```
 
  **def id(self) -> int: ...**
 
 获取车道ID
 
+举例：
+
+```python
+# 获取ILane的ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILane
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}")
+```
+
  **def link(self) -> Tessng.ILink: ...**
 
 获取车道所属路段，返回路段对象
 
+举例：
+
+```python
+# 获取ILane所属路段
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道所属路段为{lane.link()}")
+```
+
  **def section(self) -> Tessng.ISection: ...**
 
 获取车道所属Section，返回Section对象，其为ILink的父对象
+
+举例：
+
+```python
+# 获取ILane所属Section
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道所属Section为{lane.section()}")
+```
 
  **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -760,27 +1867,112 @@ def showLinkAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILane的长度
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ILane
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道长度为{lane.length()}")
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道长度(米制单位)为{lane.length(UnitOfMeasure.Metric)}")
+```
+
  **def width(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取车道宽度，默认单位：像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
 
+举例：
+
+```python
+# 获取ILane的宽度
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道宽度为{lane.width()}")
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道宽度(米制单位)为{lane.width(UnitOfMeasure.Metric)}")
+```
+
  **def number(self) -> int: ...**
 
 获取车道序号，从0开始（自外侧往内侧，即自左向右依次编号）
+
+举例：
+
+```python
+# 获取ILane的序号
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道序号为{lane.number()}")
+```
 
  **def actionType(self) -> str: ...**
 
 获取车道的行为类型，返回的为行为类型常量字符串，包括："机动车道"、“非机动车道”、“公交专用道”
 
+举例：
+
+```python
+# 获取ILane的行为类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道行为类型为{lane.actionType()}")
+```
+
 **def  fromLaneConnectors() ->typing.List: ...**
 
 获取上游车道连接列表
 
+举例：
+
+```python
+# 获取ILane的上游车道连接列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lLaneConnectors = lane.fromLaneConnectors()
+        for laneConnector in lLaneConnectors:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道上车道连接列表为{laneConnector.id()}")
+```
+
 **def toLaneConnectors()->typing.List: ...**
 
 获取下游车道连接列表
+
+举例：
+
+```python
+# 获取ILane的下游车道连接列表
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lLaneConnectors = lane.toLaneConnectors()
+        for laneConnector in lLaneConnectors:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道下游车道连接列表为{laneConnector.id()}")
+```
 
  **def centerBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -788,17 +1980,71 @@ def showLinkAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILane的中心点断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lCenterBreakPoints = lane.centerBreakPoints()
+        for centerBreakPoint in lCenterBreakPoints:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的中心点断点集为{centerBreakPoint}")
+        lCenterBreakPointsMeter = lane.centerBreakPoints(UnitOfMeasure.Metric)
+        for centerBreakPointMeter in lCenterBreakPointsMeter:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的中心点断点集(米制单位)为{centerBreakPointMeter}")
+```
+
  **def leftBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道左侧线断点集,断点坐标用像素表示  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
 
+举例：
+
+```python
+# 获取ILane的左侧线断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lLeftBreakPoints = lane.leftBreakPoints()
+        for leftBreakPoint in lLeftBreakPoints:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的左侧线断点集为{leftBreakPoint}")
+        lLeftBreakPointsMeter = lane.leftBreakPoints(UnitOfMeasure.Metric)
+        for leftBreakPointMeter in lLeftBreakPointsMeter:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的左侧线断点集(米制单位)为{leftBreakPointMeter}")
+```
+
  **def rightBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道右侧线断点集,断点坐标用像素表示  
 参数：  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
+
+举例：
+
+```python
+# 获取ILane的右侧线断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lRightBreakPoints = lane.rightBreakPoints()
+    for rightBreakPoint in lRightBreakPoints:
+        print(f"id为{lane.id()}的车道的右侧线断点集为{rightBreakPoint}")
+    lRightBreakPointsMeter = lane.rightBreakPoints(UnitOfMeasure.Metric)
+    for rightBreakPointMeter in lRightBreakPointsMeter:
+        print(f"id为{lane.id()}的车道的右侧线断点集(米制单位)为{rightBreakPointMeter}")
+```
 
  **def centerBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -806,17 +2052,71 @@ def showLinkAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILane的中心线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lCenterBreakPoint3Ds = lane.centerBreakPoint3Ds()
+        for centerBreakPoint3D in lCenterBreakPoint3Ds:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的中心线断点(三维)集为{centerBreakPoint3D}")
+        lCenterBreakPoint3DsMeter = lane.centerBreakPoint3Ds(UnitOfMeasure.Metric)
+        for centerBreakPoint3DMeter in lCenterBreakPoint3DsMeter:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的中心线断点(三维)集(米制单位)为{centerBreakPoint3DMeter}")
+```
+
  **def leftBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道左侧线断点(三维)集， 断点坐标用像素表示，其中高程z用单位米表示  
 参数：  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
+
+举例：
+
+```python
+# 获取ILane的左侧线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lLeftBreakPoint3Ds = lane.leftBreakPoint3Ds()
+        for leftBreakPoint3D in lLeftBreakPoint3Ds:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的左侧线断点(三维)集为{leftBreakPoint3D}")
+        lLeftBreakPoint3DsMeter = lane.leftBreakPoint3Ds(UnitOfMeasure.Metric)
+        for leftBreakPoint3DMeter in lLeftBreakPoint3DsMeter:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的左侧线断点(三维)集(米制单位)为{leftBreakPoint3DMeter}")
+```
 
  **def rightBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取车道右侧线断点(三维)集， 断点坐标用像素表示，其中高程z用单位米表示  
 参数：  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
+
+举例：
+
+```python
+# 获取ILane的右侧线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+    lRightBreakPoint3Ds = lane.rightBreakPoint3Ds()
+        for rightBreakPoint3D in lRightBreakPoint3Ds:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的右侧线断点(三维)集为{rightBreakPoint3D}")
+        lRightBreakPoint3DsMeter = lane.rightBreakPoint3Ds(UnitOfMeasure.Metric)
+        for rightBreakPoint3DMeter in lRightBreakPoint3DsMeter:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的右侧线断点(三维)集(米制单位)为{rightBreakPoint3DMeter}")
+```
 
  **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -827,6 +2127,26 @@ def showLinkAttr(netiface):
 \[in\] toPoint：中心线上某一点作为终点， 像素坐标，其中高程z用单位米表示  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILane的左侧部分断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lLeftBreakPoints = lane.leftBreakPoints()
+    if len(lLeftBreakPoints) > 2:
+        lLeftBreak3DsPartly = lane.leftBreak3DsPartly(lane.leftBreakPoints()[0], lane.leftBreakPoints()[2])
+        for leftBreak3DPartly in lLeftBreak3DsPartly:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的左侧部分断点(三维)集为{leftBreak3DPartly}")
+        lLeftBreak3DsPartlyMeter = lane.leftBreak3DsPartly(lane.leftBreakPoints(UnitOfMeasure.Metric)[0], lane.leftBreakPoints(UnitOfMeasure.Metric)[2], UnitOfMeasure.Metric)
+        for leftBreak3DPartlyMeter in lLeftBreak3DsPartlyMeter:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的左侧部分断点(三维)集(米制单位)为{leftBreak3DPartlyMeter}")
+```
+
  **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 根据指定起终点断点，获取车道右侧部分断点(三维)集,  断点坐标用像素表示，其中高程z用单位米表示
@@ -836,11 +2156,47 @@ def showLinkAttr(netiface):
 \[in\] toPoint：中心线上某一点作为终点，像素坐标，其中高程z用单位米表示  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
 
+举例：
+
+```python
+# 获取ILane的右侧部分断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lRightBreakPoints = lane.rightBreakPoints()
+    if len(lRightBreakPoints) > 2:
+        lRightBreak3DsPartly = lane.rightBreak3DsPartly(lane.rightBreakPoints()[0], lane.rightBreakPoints()[2])
+        for rightBreak3DPartly in lRightBreak3DsPartly:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的右侧部分断点(三维)集为{rightBreak3DPartly}")
+        lRightBreak3DsPartlyMeter = lane.rightBreak3DsPartly(lane.rightBreakPoints(UnitOfMeasure.Metric)[0], lane.rightBreakPoints(UnitOfMeasure.Metric)[2], UnitOfMeasure.Metric)
+        for rightBreak3DPartlyMeter in lRightBreak3DsPartlyMeter:
+            print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的右侧部分断点(三维)集(米制单位)为{rightBreak3DPartlyMeter}")
+```
+
  **def distToStartPoint(self, p:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取中心线上一点到起点的距离， 单位像素  
 参数：  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取ILane的中心线上一点到起点的距离
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lDistToStartPoint = lane.distToStartPoint(lane.centerBreakPoints()[1])
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的中心线上一点到起点的距离为{lDistToStartPoint}")
+        lDistToStartPointMeter = lane.distToStartPoint(lane.centerBreakPoints(UnitOfMeasure.Metric)[1], UnitOfMeasure.Metric)
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的中心线上一点到起点的距离(米制单位)为{lDistToStartPointMeter}")
+```
 
  **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=..., unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -850,7 +2206,23 @@ def showLinkAttr(netiface):
 \[in\] p：当前中心线上的点坐标，像素单位  
 \[in\] segmIndex：该点所在车道上的分段序号  
 \[in\] bOnCentLine：该点是否在中心线上  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取ILane的中心线上一点到起点的距离
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lDistToStartPoint = lane.distToStartPointWithSegmIndex(lane.centerBreakPoints()[1], 1)
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的中心线上一点到起点的距离为{lDistToStartPoint}")
+        lDistToStartPointMeter = lane.distToStartPointWithSegmIndex(lane.centerBreakPoints(UnitOfMeasure.Metric)[1], 1, True, UnitOfMeasure.Metric)
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的中心线上一点到起点的距离(米制单位)为{lDistToStartPointMeter}")
+```
 
  **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int, unit:Tess.UnitOfMeasure) -> bool: ...**
 
@@ -861,7 +2233,25 @@ def showLinkAttr(netiface):
 \[in\] dist：中心线起点向前延伸的距离  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
 \[out\] outPoint：中心线起点向前延伸dist距离后所在点  
-\[out\] outIndex：中心线起点向前延伸dist距离后所在分段序号  
+\[out\] outIndex：中心线起点向前延伸dist距离后所在分段序号 
+
+举例：
+
+```python
+# 获取ILane的中心线上一点到起点的距离
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        outPoint = QPointF()
+        outIndex = 0
+        lDistToStartPoint = lane.getPointAndIndexByDist(50, outPoint, outIndex)
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道中心线起点下游dist距离处的点为{outPoint}, 分段序号为{outIndex}")
+        lDistToStartPointMeter = lane.getPointAndIndexByDist(50, outPoint, outIndex, UnitOfMeasure.Metric)
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道中心线起点下游dist距离处的点为{outPoint}, 分段序号为{outIndex}")
+```
 
  **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> bool: ...**
 
@@ -870,9 +2260,39 @@ def showLinkAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取ILane的中心线上一点到起点的距离
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        outPoint = QPointF()
+        lDistToStartPoint = lane.getPointByDist(50, outPoint)
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道中心线起点下游dist距离处的点为{outPoint}")
+        lDistToStartPointMeter = lane.getPointByDist(50, outPoint, UnitOfMeasure.Metric)
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道中心线起点下游dist距离处的点为{outPoint}")
+```
+
  **def setOtherAttr(self, attr:typing.Dict) -> None: ...**
 
-设置车道的其它属性，方便用户拓展车道属性； 类型： 字典形式  
+设置车道的其它属性，方便用户拓展车道属性； 类型： 字典形式
+
+举例：
+
+```python
+# 设置ILane的其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lane.setOtherAttr({'newAttr':'add a new attr'})
+```
 
  **def setLaneType(self, type:str) -> None: ...**
 
@@ -882,9 +2302,35 @@ def showLinkAttr(netiface):
 
 \[in\] type：车道类型，选下列几种类型其中一种："机动车道"、"机非共享"、"非机动车道"、 "公交专用道"
 
+举例：
+
+```python
+# 设置ILane的类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        lane.setLaneType('机动车道')
+```
+
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取车道的多边型轮廓顶点, 像素坐标
+
+举例：
+
+```python
+# 获取ILane的多边型轮廓顶点
+iface = tessngIFace()
+netiface = iface.netInterface()
+lLinks = netiface.links()
+for link in lLinks:
+    lLanes = link.lanes()
+    for lane in lLanes:
+        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道的多边型轮廓顶点为{lane.polygon()}")
+```
 
 **案例代码**
 
@@ -914,7 +2360,7 @@ def showLaneAttr(netiface):
           f"leftBreak3DsPartly(米制)={lane.leftBreak3DsPartly(lane.leftBreakPoints(UnitOfMeasure.Metric)[1],lane.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
           f"rightBreak3DsPartly(像素制)={lane.leftBreak3DsPartly(lane.leftBreakPoints()[1],lane.leftBreakPoints()[-1])},"
           f"rightBreak3DsPartly(米制)={lane.leftBreak3DsPartly(lane.leftBreakPoints(UnitOfMeasure.Metric)[1],lane.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
-          f"distToStartPoint(像素制)={lane.distToStartPoint(lane.centerBreakPoints()[0])}，distToStartPoint(米制)={lane.distToStartPoint(lane.centerBreakPoints()[0],UnitOfMeasure.Metric)}，"
+          f"distToStartPoint(像素制)={lane.distToStartPoint(lane.centerBreakPoints()[0])}，distToStartPoint(米制)={lane.distToStartPoint(lane.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)}，"
           f"设置自定义属性setOtherAttr={lane.setOtherAttr({'newAttr':'add a new attr'})}, setLaneType={lane.setLaneType('机动车道')},action Type={lane.actionType()}"
           f"polygon={lane.polygon()}")
     outPoint = QPointF()
@@ -947,9 +2393,33 @@ def showLaneAttr(netiface):
 
 类型，连接段类型为GConnectorType，GConnectorType是一种整数型常量。
 
+举例：
+
+```python
+# 获取IConnector的类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的类型为{connector.gtype()}")
+```
+
  **def id(self) -> int: ...**
 
 获取连接段ID； 因为连接段ID和路段ID是相互独立的，所以可能两者的ID之间会有重复
+
+举例：
+
+```python
+# 获取IConnector的ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"连接段的ID为{connector.id()}")
+```
 
  **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -957,29 +2427,116 @@ def showLaneAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取IConnector的长度
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的长度为{connector.length()}")
+    print(f"id为{connector.id()}的连接段的长度(米制单位)为{connector.length(UnitOfMeasure.Metric)}")
+```
+
  **def z(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取连接段高程，单位：米； ，默认单位：像素，可通过unit参数设置单位
+
+举例：
+
+```python
+# 获取IConnector的高程
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的高程为{connector.z()}")
+    print(f"id为{connector.id()}的连接段的高程(米制单位)为{connector.z(UnitOfMeasure.Metric)}")
+```
 
  **def v3z(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取连接段高程，过载自ISection的方法， 单位，像素；其效果等同于z()函数 ，默认单位：像素，可通过unit参数设置单位
 
+举例：
+
+```python
+# 获取IConnector的高程
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的高程为{connector.v3z()}")
+    print(f"id为{connector.id()}的连接段的高程(米制单位)为{connector.v3z(UnitOfMeasure.Metric)}")
+```
+
  **def name(self) -> str: ...**
 
 获取连接段名称
+
+举例：
+
+```python
+# 获取IConnector的名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的名称{connector.name()}")
+```
 
  **def setName(self, name:str) -> None: ...**
 
 设置连接段名称
 
- **def fromLink(self) -> Tessng.ILink: …**
+举例：
+
+```python
+# 设置IConnector的名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    connector.setName('new connector')
+```
+
+ **def fromLink(self) -> Tessng.ILink: ...**
 
 获取当前connector的起始路段， 返回路段对象
+
+举例：
+
+```python
+# 获取IConnector的起始路段
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的起始路段为{connector.fromLink()}")
+```
 
  **def toLink(self) -> Tessng.ILink: ...**
 
 获取当前connector的目标路段（出口路段）， 返回路段对象
+
+举例：
+
+```python
+# 获取IConnector的目标路段
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的目标路段为{connector.toLink()}")
+```
 
  **def limitSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -987,30 +2544,117 @@ def showLaneAttr(netiface):
 参数：
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  这个本身返回的就是km/h把，
 
+举例：
+
+```python
+# 获取IConnector的最高限速
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的最高限速为{connector.limitSpeed()}")
+    print(f"id为{connector.id()}的连接段的最高限速(米制单位)为{connector.limitSpeed(UnitOfMeasure.Metric)}")
+```
+
  **def minSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取连接器的最低限速，因为连接器没有最低限速这一属性，因此返回连接器起始路段的最低限速作为连接段的最低限速， 单位 km/h
 参数：
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制 ？？？ 这个本身返回的就是km/h把，
+
+举例：
+
+```python
+# 获取IConnector的最低限速
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的最低限速为{connector.minSpeed()}")
+    print(f"id为{connector.id()}的连接段的最低限速(米制单位)为{connector.minSpeed(UnitOfMeasure.Metric)}")
+```
+
  **def laneConnectors(self) -> typing.List: ...**
 
 获取连接器下的所有“车道连接”对象， 列表形式，列表元素为ILaneConnector对象
+
+举例：
+
+```python
+# 获取IConnector的车道连接
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的车道连接为{connector.laneConnectors()}")
+```
 
  **def laneObjects(self) -> typing.List: ...**
 
 车道及“车道连接”的接口列表
 
+举例：
+
+```python
+# 获取IConnector的车道连接
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的车道连接为{connector.laneObjects()}")
+```
+
  **def setLaneConnectorOtherAtrrs(self, lAttrs:typing.Sequence) -> None: ...**
 
 设置包含的“车道连接”其它属性
+
+举例：
+
+```python
+# 设置IConnector的车道连接其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    connector.setLaneConnectorOtherAtrrs([{'newAttr':i} for i in range(len(connector.laneConnectors()))])
+```
 
  **def setOtherAttr(self, otherAttr:typing.Dict) -> None: ...**
 
 设置连接段其它属性
 
+举例：
+
+```python
+# 设置IConnector的其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    connector.setOtherAttr({'newAttr':'add a new attr'})
+```
+
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取连接段的多边型轮廓顶点
+
+举例：
+
+```python
+# 获取IConnector的多边型轮廓顶点
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    print(f"id为{connector.id()}的连接段的多边型轮廓顶点为{connector.polygon()}")
+```
 
 **案例代码**
 
@@ -1053,25 +2697,109 @@ def showConnectorAttr(netiface):
 
 类型，GLaneType或GLaneConnectorType，车道连接段为GLaneConnectorType ，这里的返回值只可能是GLaneConnectorType
 
+举例：
+
+```python
+# 获取IConnector的类型
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的类型为{laneConnector.gtype()}")
+```
+
  **def id(self) -> int: ...**
 
 获取车道连接ID
+
+举例：
+
+```python
+# 获取车道连接ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的ID为{laneConnector.id()}")
+```
 
  **def connector(self) -> Tessng.IConnector: ...**
 
 获取车道连接所属的连接段Connector对象, 返回类型IConnector
 
+举例：
+
+```python
+# 获取车道连接所属的连接段Connector对象
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}所属的连接段Connector对象为{laneConnector.connector()}")
+```
+
  **def section(self) -> Tessng.ISection: ...**
 
 获取车道所属Section, Section为 IConnector的父类
+
+举例：
+
+```python
+# 获取车道连接所属的Section
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}所属的Section为{laneConnector.section()}")
+```
 
  **def fromLane(self) -> Tessng.ILane: ...**
 
 获取当前车道链接的上游车道对象
 
+举例：
+
+```python
+# 获取车道连接的上游车道对象
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的上游车道对象为{laneConnector.fromLane()}")
+```
+
  **def toLane(self) -> Tessng.ILane: ...**
 
 获取当前车道链接的下游车道对象
+
+举例：
+
+```python
+# 获取车道连接的下游车道对象
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的下游车道对象为{laneConnector.toLane()}")
+```
 
  **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -1079,11 +2807,41 @@ def showConnectorAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取车道连接的长度
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的长度为{laneConnector.length()}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的长度(米制单位)为{laneConnector.length(UnitOfMeasure.Metric)}")
+```
+
  **def centerBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”的中心线断点集，断点坐标用像素表示  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取车道连接的中心线断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线断点集为{laneConnector.centerBreakPoints()}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线断点集(米制单位)为{laneConnector.centerBreakPoints(UnitOfMeasure.Metric)}")
+```
 
  **def leftBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -1091,11 +2849,41 @@ def showConnectorAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取车道连接的左侧线断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的左侧线断点集为{laneConnector.leftBreakPoints()}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的左侧线断点集(米制单位)为{laneConnector.leftBreakPoints(UnitOfMeasure.Metric)}")
+```
+
  **def rightBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”右侧线断点集，断点坐标用像素表示  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取车道连接的右侧线断点集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的右侧线断点集为{laneConnector.rightBreakPoints()}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的右侧线断点集(米制单位)为{laneConnector.rightBreakPoints(UnitOfMeasure.Metric)}")
+```
 
  **def centerBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -1103,11 +2891,41 @@ def showConnectorAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取车道连接的中心线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线断点(三维)集为{laneConnector.centerBreakPoint3Ds()}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线断点(三维)集(米制单位)为{laneConnector.centerBreakPoint3Ds(UnitOfMeasure.Metric)}")
+```
+
  **def leftBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取“车道连接”左侧线断点(三维)集，断点坐标用像素表示， 高程Z单位像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取车道连接的左侧线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的左侧线断点(三维)集为{laneConnector.leftBreakPoint3Ds()}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的左侧线断点(三维)集(米制单位)为{laneConnector.leftBreakPoint3Ds(UnitOfMeasure.Metric)}")
+```
 
  **def rightBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -1115,11 +2933,41 @@ def showConnectorAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+# 获取车道连接的右侧线断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的右侧线断点(三维)集为{laneConnector.rightBreakPoint3Ds()}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的右侧线断点(三维)集(米制单位)为{laneConnector.rightBreakPoint3Ds(UnitOfMeasure.Metric)}")
+```
+
  **def leftBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 根据指定的起终止点获取“车道连接”左侧部分断点(三维)集，断点坐标用像素表示， 高程Z单位像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 获取车道连接的左侧部分断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接的左侧部分断点(三维)集为{laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints()[0], laneConnector.leftBreakPoints()[-1])}")
+        print(f"id为{connector.id()}的连接段的车道连接的左侧部分断点(三维)集(米制单位)为{laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[0], laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[-1], UnitOfMeasure.Metric)}")
+```
 
  **def rightBreak3DsPartly(self, fromPoint:PySide2.QtCore.QPointF, toPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -1127,11 +2975,41 @@ def showConnectorAttr(netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制 
 
+举例：
+
+```python
+# 获取车道连接的右侧部分断点(三维)集
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接的右侧部分断点(三维)集为{laneConnector.rightBreak3DsPartly(laneConnector.rightBreakPoints()[0], laneConnector.rightBreakPoints()[-1])}")
+        print(f"id为{connector.id()}的连接段的车道连接的右侧部分断点(三维)集(米制单位)为{laneConnector.rightBreak3DsPartly(laneConnector.rightBreakPoints(UnitOfMeasure.Metric)[0], laneConnector.rightBreakPoints(UnitOfMeasure.Metric)[-1], UnitOfMeasure.Metric)}")
+```
+
  **def distToStartPoint(self, p:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> float: ...**
 
 计算车道链接中心线上任意点到起点的距离， 单位像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+# 计算车道连接中心线上任意点到起点的距离
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线上任意点到起点的距离为{laneConnector.distToStartPoint(laneConnector.centerBreakPoints()[1])}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线上任意点到起点的距离(米制单位)为{laneConnector.distToStartPoint(laneConnector.centerBreakPoints(UnitOfMeasure.Metric)[1], UnitOfMeasure.Metric)}")
+```
 
  **def distToStartPointWithSegmIndex(self, p:PySide2.QtCore.QPointF, segmIndex:int=..., bOnCentLine:bool=..., unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -1141,7 +3019,22 @@ def showConnectorAttr(netiface):
 \[in\] segmIndex：该点所在车道上的分段序号  
 \[in\] bOnCentLine：是否在中心线上  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
-注：如传入米制参数，请勿遗忘传入segmIndex与bOnCentLine参数。  
+注：如传入米制参数，请勿遗忘传入segmIndex与bOnCentLine参数。
+
+举例：
+
+```python
+# 计算中心线上任意点到起点的距离
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线上任意点到起点的距离为{laneConnector.distToStartPointWithSegmIndex(laneConnector.centerBreakPoints()[1], 1)}")
+        print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线上任意点到起点的距离(米制单位)为{laneConnector.distToStartPointWithSegmIndex(laneConnector.centerBreakPoints(UnitOfMeasure.Metric)[1], 1, True, UnitOfMeasure.Metric)}")
+```
 
  **def getPointAndIndexByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, outIndex:int, unit:Tess.UnitOfMeasure) -> bool: ...**
 
@@ -1151,17 +3044,74 @@ def showConnectorAttr(netiface):
 \[in\] dist：中心线起点向前延伸的距离，像素单位  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
 \[out\] outPoint：中心线起点向前延伸dist距离后所在点， 像素坐标  
-\[out\] outIndex：中心线起点向前延伸dist距离后所在分段序号  
+\[out\] outIndex：中心线起点向前延伸dist距离后所在分段序号
+
+举例：
+
+```python
+# 求中心线起点下游dist距离处的点及分段序号
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        outPoint = QPointF()
+        outIndex = 0
+        if laneConnector.getPointAndIndexByDist(50, outPoint, outIndex):
+            print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线起点向前延伸dist距离后所在点为{outPoint},分段序号为{outIndex}")
+        if laneConnector.getPointAndIndexByDist(50, outPoint, outIndex, UnitOfMeasure.Metric):
+            print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线起点向前延伸dist距离后所在点(米制单位)为{outPoint},分段序号为{outIndex}")
+```
+
+
 
  **def getPointByDist(self, dist:float, outPoint:PySide2.QtCore.QPointF, unit:Tess.UnitOfMeasure) -> bool: ...**
 
 求中心线起始点下游dist距离处的点, 如果目标点不在中心线上返回False，否则返回True  
 参数：  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+\[in\] dist：中心线起点向前延伸的距离，像素单位  
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制  
+\[out\] outPoint：中心线起点向前延伸dist距离后所在点， 像素坐标  
+
+举例：
+
+```python
+# 求中心线起始点下游dist距离处的点
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        outPoint = QPointF()
+        if laneConnector.getPointByDist(50, outPoint):
+            print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线起点向前延伸dist距离后所在点为{outPoint}")
+        if laneConnector.getPointByDist(50, outPoint, UnitOfMeasure.Metric):
+            print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线起点向前延伸dist距离后所在点(米制单位)为{outPoint}")
+```
+
+
 
  **def setOtherAttr(self, attr:typing.Dict) -> None: ...**
 
 设置车道连接其它属性，方便二次开发过程中使用
+
+举例：
+
+```python
+# 设置车道连接其它属性
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnector
+lConnectors = netiface.connectors()
+for connector in lConnectors:
+    laneConnectors = connector.laneConnectors()
+    for laneConnector in laneConnectors:
+        laneConnector.setOtherAttr({'newAttr':'add a new attr'})
+```
 
 **案例代码**
 
@@ -1188,7 +3138,7 @@ def showLaneConnectorAttr(self, netiface):
           f"leftBreak3DsPartly(米制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[1],laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
           f"rightBreak3DsPartly(像素制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints()[1],laneConnector.leftBreakPoints()[-1])},"
           f"rightBreak3DsPartly(米制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[1],laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
-          f"distToStartPoint(像素制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints()[0])}，distToStartPoint(米制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints()[0],UnitOfMeasure.Metric)}，"
+          f"distToStartPoint(像素制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints()[0])}，distToStartPoint(米制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)}，"
           f"设置自定义属性setOtherAttr={laneConnector.setOtherAttr({'newAttr':'add a new attr'})}")
     outPoint = QPointF()
     outIndex = 0
@@ -1221,9 +3171,35 @@ def showLaneConnectorAttr(self, netiface):
 
 获取面域ID； 面域是指：若干Connector重叠形成的区域;
 
+举例：
+
+```python
+# 获取面域ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnectorArea
+lConnectorAreas = netiface.allConnectorArea()
+for connectorArea in lConnectorAreas:
+    print(f"面域ID为{connectorArea.id()}")
+```
+
  **def allConnector(self) -> typing.List: ...**
 
 获取当前面域包含的所有连接段， 返回类型列表，元素为IConnector对象
+
+举例：
+
+```python
+# 获取当前面域包含的所有连接段
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnectorArea
+lConnectorAreas = netiface.allConnectorArea()
+for connectorArea in lConnectorAreas:
+    lConnectors = connectorArea.allConnector()
+    for connector in lConnectors:
+        print(f"id为{connector.id()}的连接段的面域ID为{connectorArea.id()}")
+```
 
  **def centerPoint(self, unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
@@ -1231,7 +3207,18 @@ def showLaneConnectorAttr(self, netiface):
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- 
+ 举例：
+
+```python
+# 获取面域中心点
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IConnectorArea
+lConnectorAreas = netiface.allConnectorArea()
+for connectorArea in lConnectorAreas:
+    print(f"id为{connectorArea.id()}的面域中心点为{connectorArea.centerPoint()}")
+    print(f"id为{connectorArea.id()}的面域中心点(米制单位)为{connectorArea.centerPoint(UnitOfMeasure.Metric)}")
+```
 
 **案例代码**
 
