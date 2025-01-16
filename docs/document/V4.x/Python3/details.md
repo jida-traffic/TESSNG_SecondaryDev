@@ -3249,13 +3249,49 @@ def showConnectorAreaAttr(self, netiface):
 
 获取发车点ID
 
+举例：
+
+```python
+# 获取发车点ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDispatchPoint
+lDispatchPoints = netiface.dispatchPoints()
+for dispatchPoint in lDispatchPoints:
+    print(f"发车点ID为{dispatchPoint.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取发车名称
 
+举例：
+
+```python
+# 获取发车名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDispatchPoint
+lDispatchPoints = netiface.dispatchPoints()
+for dispatchPoint in lDispatchPoints:
+    print(f"发车点名称={dispatchPoint.name()}")
+```
+
  **def link(self) -> Tessng.ILink: ...**
 
 获取发车点所在路段
+
+举例：
+
+```python
+# 获取发车点所在路段
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDispatchPoint
+lDispatchPoints = netiface.dispatchPoints()
+for dispatchPoint in lDispatchPoints:
+    print(f"发车点所在路段ID={dispatchPoint.link().id()}")
+```
 
  **def addDispatchInterval(self, vehiCompId:int, interval:int, vehiCount:int) -> int: ...**
 
@@ -3288,6 +3324,17 @@ if link1:
 
 获取发车点多边型轮廓
 
+举例：
+
+```python
+# 获取发车点多边型轮廓
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDispatchPoint
+lDispatchPoints = netiface.dispatchPoints()
+for dispatchPoint in lDispatchPoints:
+    print(f"发车点多边型轮廓={dispatchPoint.polygon()}")
+```
 
 
 **案例代码**
@@ -3321,13 +3368,49 @@ def showDispatchPointAttr(self, netiface):
 
 获取决策点ID
 
+举例：
+
+```python
+# 获取决策点ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDecisionPoint
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    print(f"决策点ID为{decisionPoint.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取决策点名称
 
+举例：
+
+```python
+# 获取决策点名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDecisionPoint
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    print(f"决策点{decisionPoint.id()}的名称={decisionPoint.name()}")
+```
+
  **def link(self) -> Tessng.ILink: ...**
 
 获取决策点所在路段
+
+举例：
+
+```python
+# 获取决策点所在路段
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDecisionPoint
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    print(f"决策点{decisionPoint.id()}所在路段ID={decisionPoint.link().id()}")
+```
 
  **def distance(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -3335,14 +3418,52 @@ def showDispatchPointAttr(self, netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 获取距路段起点距离
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDecisionPoint
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    print(f"决策点{decisionPoint.id()}距路段起点距离={decisionPoint.distance()}")
+    print(f"决策点{decisionPoint.id()}距路段起点距离(米制单位)={decisionPoint.distance(UnitOfMeasure.Metric)}")
+```
+
  **def routings(self) -> typing.List: ...**
 
 获取决策点控制的所有决策路径， 返回类型列表，元素为IRouting对象
+
+举例：
+
+```python
+# 获取决策点控制的所有决策路径
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDecisionPoint
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    lRoutings = decisionPoint.routings()
+    for routing in lRoutings:
+        print(f"决策点{decisionPoint.id()}的决策路径{routing.id()}")
+```
 
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取决策点多边型轮廓
 
+举例：
+
+```python
+# 获取决策点多边型轮廓
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IDecisionPoint
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    print(f"决策点{decisionPoint.id()}的多边型轮廓={decisionPoint.polygon()}")
+```
 
 
 **案例代码**
@@ -3380,23 +3501,93 @@ def showDecisionPointAttr(self, netiface):
 
 获取路径ID
 
+举例：
+
+```python
+# 获取路径ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+# 获取决策点控制的所有决策路径
+    lRoutings = decisionPoint.routings()
+        for routing in lRoutings:
+            print(f"决策点{decisionPoint.id()}的决策路径ID为{routing.id()}")
+```
+
  **def calcuLength(self) -> float: ...**
 
 计算路径长度，默认单位：像素，可通过unit参数设置单位  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+# 计算路径长度
+iface = tessngIFace()
+netiface = iface.netInterface()
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    lRoutings = decisionPoint.routings()
+    for routing in lRoutings:
+        print(f"决策点{decisionPoint.id()}的决策路径{routing.id()}长度={routing.calcuLength()}")
+        print(f"决策点{decisionPoint.id()}的决策路径{routing.id()}长度(米制单位)={routing.calcuLength(UnitOfMeasure.Metric)}")
+```
+
  **def getLinks(self) -> typing.List: ...**
 
 获取当前路径的路段序列， 不包含连接器
+
+举例：
+
+```python
+# 获取当前路径的路段序列
+iface = tessngIFace()
+netiface = iface.netInterface()
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    lRoutings = decisionPoint.routings()
+    for routing in lRoutings:
+        links = routing.getLinks()
+        for link in links:
+            print(f"决策点{decisionPoint.id()}的决策路径{routing.id()}的路段序列={link.name()}")
+```
 
  **def deciPointId(self) -> int: ...**
 
 获取当前路径所属的决策点ID
 
+举例：
+
+```python
+# 获取当前路径所属的决策点ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    lRoutings = decisionPoint.routings()
+    for routing in lRoutings:
+        print(f"决策点{decisionPoint.id()}的决策路径{routing.id()}所属的决策点ID={routing.deciPointId()}")
+```
+
  **def contain(self, pRoad:Tessng.ISection) -> bool: ...**
 
 判定道路是否在当前路径上， 入参需是ISection对象
+
+举例：
+
+```python
+# 判定道路是否在当前路径上
+iface = tessngIFace()
+netiface = iface.netInterface()
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    lRoutings = decisionPoint.routings()
+    for routing in lRoutings:
+        links = routing.getLinks()
+        print(f"决策点{decisionPoint.id()}的决策路径{routing.id()}判断道路是否在当前路径上={routing.contain(links[0])}")
+```
 
  **def nextRoad(self, pRoad:Tessng.ISection) -> Tessng.ISection: ...**
 
@@ -3406,7 +3597,19 @@ def showDecisionPointAttr(self, netiface):
 
 \[in\] pRoad：路段或连接段
 
+举例：
 
+```python
+# 根据当前路径，获取所给道路的下一条道路
+iface = tessngIFace()
+netiface = iface.netInterface()
+lDecisionPoints = netiface.decisionPoints()
+for decisionPoint in lDecisionPoints:
+    lRoutings = decisionPoint.routings()
+    for routing in lRoutings:
+        links = routing.getLinks()
+        print(f"决策点{decisionPoint.id()}的决策路径{routing.id()}根据当前路径，获取所给道路的下一条道路={routing.nextRoad(links[0])}")
+```
 
 **案例代码**
 
@@ -3443,30 +3646,107 @@ def showRoutingAttr(self, netiface):
 
 获取信控机ID 
 
+举例：
+
+```python
+# 获取信控机ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    print(f"信控机ID为{trafficController.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取信控机名称
+
+举例：
+
+```python
+# 获取信控机名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    print(f"信控机{trafficController.id()}名称={trafficController.name()}")
+```
 
  **def setName(name: str) -> None: ...**
 
 设置信控机名称  
 \[in\] name：信号机名称
 
+举例：
+
+```python
+# 设置信控机名称
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    print(f"设置信控机{trafficController.id()}名称={trafficController.setName('new_'+trafficController.name())}")
+```
+
  **def addPlan(plan: Tessng.ISignalPlan) -> None: ...**
 
  为信号机添加信控方案  
 \[in\] plan ：信控方案， 可循环调用设置多时段信控方案
+
+举例：
+
+```python
+# 为信号机添加信控方案
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.plans()
+    print(f"移除/删除信号机{trafficController.id()}的信控方案")
+    trafficController.removePlan(plans[0])
+    print(f"为信号机{trafficController.id()}添加信控方案")
+    trafficController.addPlan(plans[0])
+```
 
  **def removePlan(plan: Tessng.ISignalPlan) -> None: ...**
 
  移除/删除信号机的信控方案  
 \[in\] plan ：信控方案， 
 
- **def plans(plan: Tessng.ISignalPlan) -> typing.List<Tessng.ISignalPlan>: ...**
+举例：
+
+```python
+# 移除/删除信号机的信控方案
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.plans()
+    print(f"移除/删除信号机{trafficController.id()}的信控方案")
+    trafficController.removePlan(plans[0])
+```
+
+ **def plans(self) -> typing.List<Tessng.ISignalPlan>: ...**
 
  获取当前信号机中所有的信控方案  
 \[out\] plan ：信控方案
 
+举例：
+
+```python
+# 获取当前信号机中所有的信控方案
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    print(f"获取信号机{trafficController.id()}中所有的信控方案={trafficController.plans()}")
+```
 
 
 **案例代码**
@@ -3518,18 +3798,16 @@ def showTrafficControllerAttr(netiface):
 信号控制方案接口
 
  **def id(self) -> int: ...**
-获取信控方案ID 
 
+获取信控方案ID 
 
  **def name(self) -> str: ...**
 
 获取信控方案名称（V3版本的信号灯组名称） 
 
-
  **def trafficName(self) -> str: ...**
 
 获取信号机名称(在增加一个获取信号机ID的属性？因为名称不唯一) 
-
 
  **def cycleTime(self) -> int: ...**
 
@@ -3537,16 +3815,15 @@ def showTrafficControllerAttr(netiface):
 
  **def fromTime(self) -> int: ...**
 
-获取什么起始时间，单位：秒 
-
+获取信控方案起始时间，单位：秒 
 
  **def toTime(self) -> int: ...**
 
-获取什么结束时间，单位：秒 
+获取信控方案结束时间，单位：秒 
 
  **def phases(self) -> : typing.List<Tessng.ISignalPhase>: ...**
 
-获取相位列表
+获取信控方案中的相位列表
 
  **def setName( name: str) -> None: ...**
 
@@ -3556,14 +3833,13 @@ def showTrafficControllerAttr(netiface):
 
 设置信控方案（V3版本的信号灯组）的信号周期， 单位：秒 
 
-
  **def setFromTime(time: int) -> None: ...**
 
-设置信控方案（V3版本的信号灯组）起作用时段的起始时间， 单位：秒 ，
+设置信控方案（V3版本的信号灯组）起作用时段的起始时间， 单位：秒 
 
  **def setToTime(time: int) -> None: ...**
 
-设置信控方案（V3版本的信号灯组）起作用时段的结束时间， 单位：秒 ，
+设置信控方案（V3版本的信号灯组）起作用时段的结束时间， 单位：秒
 
 **案例代码**
 
@@ -3623,7 +3899,6 @@ def showSignalPlanAttr(netiface):
 参数：
 
 \[in\] lColor：灯色时长信息，包含信号灯颜色和信号灯色时长
-
 举例：
 
 ```python
@@ -3639,8 +3914,6 @@ if method_number == 3:
 
 ```
 
-
-
  **def setPhaseName(self, name:str) -> None: ...**
 
 设置当前相位名称
@@ -3651,15 +3924,15 @@ if method_number == 3:
 
  **def phaseColor(self) -> Online.SignalPhaseColor: ...**
 
-当前相位灯色，Online.SignalPhaseColor
+获取当前相位灯色，Online.SignalPhaseColor
 
  **def signalPlan(self) -> Tess.ISignalPlan: ...**
 
-相位所在信控方案
+获取相位所在信控方案
 
  **def signalLamps(self) -> Type.List<Tess.ISignalLamp>: ...**
 
-相关信号灯列表
+获取相关信号灯列表
 
 **案例代码**
 
@@ -3678,7 +3951,6 @@ if method_number == 3:
  **def id(self) -> int: ...**
 
 获取信号灯ID
-
  **def color(self) -> str: ...**
 
 获取信号灯当前信号灯色，"R"、“G”、“Y”、“gray”分别表示"红"、"绿"、"黄"、"灰"
@@ -3700,8 +3972,6 @@ if method_number == 3:
 \[in\] colorStr：字符串表达的颜色，有四种可选，支持汉字："红"、"绿"、"黄"、"灰"，也支持字符： "R"、"G"、"Y"、"grey"。
 
  **def signalPhase(self) -> Tessng.ISignalPhase: ...**
-
-获取当前信号灯所在的相位， 返回类型：ISignalPhase
 
  **def setSignalPhase(self, signalPhase: Tessng.ISignalPhase) -> None: ...**
 
@@ -3748,9 +4018,34 @@ if method_number == 3:
 
 获取当前公交线路的ID
 
+举例：
+
+```python
+
+# 获取当前公交线路的ID
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路ID={busLine.id()}")
+
+```
+
  **def name(self) -> str: ...**
 
 获取当前公交线路的名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路名称={busLine.name()}")
+```
 
  **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -3758,17 +4053,62 @@ if method_number == 3:
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路长度={busLine.length()}")
+    print(f"公交线路长度={busLine.length(UnitOfMeasure.Metric)}")
+```
+
  **def dispatchFreq(self) -> int: ...**
 
-获取当前公交线路的发车间隔，单位：秒  
+获取当前公交线路的发车间隔，单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路发车间隔={busLine.dispatchFreq()}")
+```
 
  **def dispatchStartTime(self) -> int: ...**
 
 获取当前公交线路的发车开始时间，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路发车开始时间={busLine.dispatchStartTime()}")
+```
+
  **def dispatchEndTime(self) -> int: ...**
 
 获取当前公交线路的发车结束时间，单位：秒， 即当前线路的公交调度表的结束时刻
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路发车结束时间={busLine.dispatchEndTime()}")
+```
 
  **def desirSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -3776,37 +4116,137 @@ if method_number == 3:
 参数：
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路期望速度={busLine.desirSpeed()}")
+    print(f"公交线路期望速度={busLine.desirSpeed(UnitOfMeasure.Metric)}")
+```
+
  **def passCountAtStartTime(self) -> int: ...**
 
 公交线路中公交车的起始载客人数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路中公交车的起始载客人数={busLine.passCountAtStartTime()}")
+```
 
  **def links(self) -> typing.List: ...**
 
 获取公交线路经过的路段序列
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路经过的路段序列={busLine.links()}")
+```
+
  **def stations(self) -> typing.List: ...**
 
 获取公交线路上的所有站点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交线路上的所有站点={busLine.stations()}")
+```
 
  **def stationLines(self) -> typing.List: ...**
 
 公交站点线路，当前线路相关站点的上下客等参数 ， 所有参数的列表
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"公交站点线路，当前线路相关站点的上下客等参数 ， 所有参数的列表={busLine.stationLines()}")
+```
+
  **def setName(self, name:str) -> None: ...**
 
 设置当前公交线路的名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"设置当前公交线路的名称={busLine.setName('new name')}")
+```
 
  **def setDispatchFreq(self, freq:int) -> None: ...**
 
 设置当前公交线路的发车间隔，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"设置当前公交线路的发车间隔，单位：秒={busLine.setDispatchFreq(20)}")
+```
+
  **def setDispatchStartTime(self, startTime:int) -> None: ...**
 
 设置当前公交线路上的公交首班车辆的开始发车时间
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"设置当前公交线路上的公交首班车辆的开始发车时间={busLine.setDispatchStartTime(0)}")
+```
+
  **def setDispatchEndTime(self, endTime:int) -> None: ...**
 
 设置当前公交线路上的公交末班车的发车时间
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"设置当前公交线路上的公交末班车的发车时间={busLine.setDispatchEndTime(300)}")
+```
 
  **def setDesirSpeed(self, desirSpeed:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -3827,6 +4267,17 @@ if busLine is not None:
  **def setPassCountAtStartTime(self, count:int) -> None: ...**
 
 设置当前公交线路的起始载客人数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"设置当前公交线路的起始载客人数={busLine.setPassCountAtStartTime(60)}")
+```
 
 **案例代码**
 
@@ -3867,13 +4318,46 @@ def showBusLineAttr(netiface):
 
 获取当前公交站点ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点ID={busStation.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取当前公交线路名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点名称={busStation.name()}")
+```
+
  **def laneNumber(self) -> int: ...**
 
 获取当前公交站点所在车道序号
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点所在车道序号={busStation.laneNumber()}")
+```
 
  **def x(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -3881,11 +4365,33 @@ def showBusLineAttr(netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点的中心点的位置， X坐标={busStation.x()}")
+```
+
  **def y(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的中心点的位置， Y坐标  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点的中心点的位置， Y坐标={busStation.y()}")
+```
 
  **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -3893,17 +4399,61 @@ def showBusLineAttr(netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点的长度，单位：像素={busStation.length()}")
+```
+
  **def stationType(self) -> int: ...**
 
 获取当前公交站点的类型：站点类型 1：路边式、2：港湾式
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点的类型：站点类型 1：路边式、2：港湾式={busStation.stationType()}")
+```
 
  **def link(self) -> Tessng.ILink: ...**
 
 获取当前公交站点所在路段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点所在路段={busStation.link()}")
+```
+
  **def lane(self) -> Tessng.ILane: ...**
 
 获取当前公交站点所在车道
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点所在车道={busStation.lane()}")
+```
 
  **def distance(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -3911,9 +4461,31 @@ def showBusLineAttr(netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取当前公交站点的起始位置距路段起点的距离，默认单位：像素={busStation.distance()}")
+```
+
  **def setName(self, name:str) -> None: ...**
 
 设置站点名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"设置站点名称={busStation.setName('new name')}")
+```
 
  **def setDistToStart(self, dist:float) -> None: ...**
 
@@ -3922,11 +4494,33 @@ def showBusLineAttr(netiface):
 \[in\] dist：距车道起点距离，单位：像素  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"设置站点起始点距车道起点距离，默认单位：像素={busStation.setDistToStart(100)}")
+```
+
  **def setLength(self, length:float) -> None: ...**
 
 设置当前公交站点的长度，默认单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"设置当前公交站点的长度，默认单位：像素={busStation.setLength(100)}")
+```
 
  **def setType(self, type:int) -> None: ...**
 
@@ -3936,9 +4530,31 @@ def showBusLineAttr(netiface):
 
 \[in\] type：站点类型，1 路侧式、2 港湾式
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"设置当前公交站点类型={busStation.setType(2)}")
+```
+
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取 公交站点多边型轮廓的顶点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusStation
+lBusStations = netiface.busStations()
+for busStation in lBusStations:
+    print(f"获取 公交站点多边型轮廓的顶点={busStation.polygon()}")
+```
 
 
 
@@ -4080,57 +4696,203 @@ def showBusStationLineAttr(netiface):
 
 获取采集器ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器ID：{vehicleDrivInfoCollector.id()}")
+```
+
  **def collName(self) -> str: ...**
 
 获取采集器名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}名称：{vehicleDrivInfoCollector.collName()}")
+```
 
  **def onLink(self) -> bool: ...**
 
 判断当前数据采集器是否在路段上，返回值为True表示检测器在路段上，返回值False则表示在connector上
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}是否在路段上：{vehicleDrivInfoCollector.onLink()}")
+```
+
  **def link(self) -> Tessng.ILink: ...**
 
 获取采集器所在的路段
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}所在的路段：{vehicleDrivInfoCollector.link()}")
+```
 
  **def connector(self) -> Tessng.IConnector: ...**
 
 获取采集器所在的连接段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}所在的连接段：{vehicleDrivInfoCollector.connector()}")
+```
+
  **def lane(self) -> Tessng.ILane: ...**
 
 如果采集器在路段上，则返回ILane对象，否则范围None
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}所在的车道：{vehicleDrivInfoCollector.lane()}")
+```
 
  **def laneConnector(self) -> Tessng.ILaneConnector: ...**
 
 如果采集器在连接段上，则返回laneConnector“车道连接”对象，否则返回None
 
- **def distToStart(self，unit:Tess.UnitOfMeasure) -> float: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}所在的车道连接：{vehicleDrivInfoCollector.laneConnector()}")
+```
+
+ **def distToStart(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取采集器距离路段|连接段起点的距离，默认单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def point(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}距离路段|连接段起点的距离为{vehicleDrivInfoCollector.distToStart()}")
+    print(f"采集器{vehicleDrivInfoCollector.id()}距离路段|连接段起点的距离（米制）为{vehicleDrivInfoCollector.distToStart(UnitOfMeasure.Metric)}")
+```
+
+ **def point(self, unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 采集器所在点，像素坐标  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}所在点，坐标为{vehicleDrivInfoCollector.point()}")
+    print(f"采集器{vehicleDrivInfoCollector.id()}所在点，米制坐标为{vehicleDrivInfoCollector.point(UnitOfMeasure.Metric)}")
+```
+
  **def fromTime(self) -> int: ...**
 
 获取采集器的工作起始时间，单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}的工作起始时间，为{vehicleDrivInfoCollector.fromTime()}秒")
+```
 
  **def toTime(self) -> int: ...**
 
 获取采集器的工作停止时间，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}的工作停止时间，为{vehicleDrivInfoCollector.toTime()}秒")
+```
+
  **def aggregateInterval(self) -> int: ...**
 
 获取数据集计的时间间隔，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}数据集计的时间间隔，为{vehicleDrivInfoCollector.aggregateInterval()}秒")
+```
+
  **def setName(self, name:str) -> None: ...**
 
 设置采集器名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    vehicleDrivInfoCollector.setName("采集器名称")
+    print(f"采集器{vehicleDrivInfoCollector.id()}的名称，为{vehicleDrivInfoCollector.collName()}")
+```
 
  **def setDistToStart(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -4142,28 +4904,79 @@ def showBusStationLineAttr(netiface):
 举例：
 
 ```python
-collector = tessngIFace().netInterface().createVehiCollectorOnLink(leftLane, dist)
-# 将采集器设置到距路段起点400米处
-if collector is not None:
-    collector.setDistToStart(m2p(400))
-
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    vehicleDrivInfoCollector.setDistToStart(400)
+    print(f"采集器{vehicleDrivInfoCollector.id()}距车道起点（或“车道连接”起点）的距离，为{vehicleDrivInfoCollector.distToStart()}像素")
+    vehicleDrivInfoCollector.setDistToStart(400, UnitOfMeasure.Metric)
+    print(f"采集器{vehicleDrivInfoCollector.id()}距车道起点（或“车道连接”起点）的距离（米制），为{vehicleDrivInfoCollector.distToStart(UnitOfMeasure.Metric)}米")
 ```
 
  **def setFromTime(self, time:int) -> None: ...**
 
 设置工作起始时间(秒)
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    vehicleDrivInfoCollector.setFromTime(10)
+    print(f"采集器{vehicleDrivInfoCollector.id()}的工作起始时间，为{vehicleDrivInfoCollector.fromTime()}秒")
+```
+
  **def setToTime(self, time:int) -> None: ...**
 
 设置工作结束时间(秒)
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    vehicleDrivInfoCollector.setToTime(60)
+    print(f"采集器{vehicleDrivInfoCollector.id()}的工作停止时间，为{vehicleDrivInfoCollector.toTime()}秒")
+```
 
  **def setAggregateInterval(self, interval:int) -> None: ...**
 
 设置集计数据时间间隔(秒)
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    vehicleDrivInfoCollector.setAggregateInterval(10)
+    print(f"采集器{vehicleDrivInfoCollector.id()}数据集计的时间间隔，为{vehicleDrivInfoCollector.aggregateInterval()}秒")
+```
+
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取采集器的多边型轮廓顶点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleDrivInfoCollector
+lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
+for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
+    print(f"采集器{vehicleDrivInfoCollector.id()}的多边型轮廓顶点为{vehicleDrivInfoCollector.polygon()}")
+```
 
 
 
@@ -4185,37 +4998,126 @@ if collector is not None:
 
  **def id(self) -> int: ...**
 
-获取当前排队计数器ID 
+获取当前排队计数器ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}的ID为{vehicleQueueCounter.id()}")
+```
 
  **def counterName(self) -> str: ...**
 
 获取当前排队计数器名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}的名称为{vehicleQueueCounter.counterName()}")
+```
+
  **def onLink(self) -> bool: ...**
 
 是否在路段上，如果True则connector()返回None
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}是否在路段上为{vehicleQueueCounter.onLink()}")
+```
 
  **def link(self) -> Tessng.ILink: ...**
 
 获取当前排队计数器所在路段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}所在路段为{vehicleQueueCounter.link()}")
+```
+
  **def connector(self) -> Tessng.IConnector: ...**
 
 获取当前计数器所在连接段
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}所在连接段为{vehicleQueueCounter.connector()}")
+```
 
  **def lane(self) -> Tessng.ILane: ...**
 
 如果计数器在路段上则lane()返回所在车道，laneConnector()返回None
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}所在车道为{vehicleQueueCounter.lane()}")
+```
+
  **def laneConnector(self) -> Tessng.ILaneConnector: ...**
 
 如果计数器在连接段上则laneConnector返回“车道连接”,lane()返回None
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}所在车道连接为{vehicleQueueCounter.laneConnector()}")
+```
 
  **def distToStart(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 计数器距离起点距离，默认单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离为{vehicleQueueCounter.distToStart()}")
+    print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离（米制）为{vehicleQueueCounter.distToStart(UnitOfMeasure.Metric)}")
+```
 
  **def point(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
@@ -4225,28 +5127,75 @@ if collector is not None:
 举例：
 
 ```python
-# 在路段9最左侧车道100米处创建排队计数器
-counter = tessngIFace().netInterface().createVehiQueueCounterOnLink(leftLane, dist)
-if counter is not None:
-    print(f"计数器所在点坐标为: ({counter.point().x()}, {counter.point().y()})")
-
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}所在点坐标为{vehicleQueueCounter.point()}")
+    print(f"排队计数器{vehicleQueueCounter.id()}所在点坐标（米制）为{vehicleQueueCounter.point(UnitOfMeasure.Metric)}")
 ```
 
  **def fromTime(self) -> int: ...**
 
 获取当前计数器工作起始时间，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}的工作起始时间，为{vehicleQueueCounter.fromTime()}秒")
+```
+
  **def toTime(self) -> int: ...**
 
 获取当前计数器工作停止时间，单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}的工作停止时间，为{vehicleQueueCounter.toTime()}秒")
+```
 
  **def aggregateInterval(self) -> int: ...**
 
 计数集计数据时间间隔，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}数据集计的时间间隔，为{vehicleQueueCounter.aggregateInterval()}秒")
+```
+
  **def setName(self, name:str) -> None: ...**
 
 设置计数器名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    vehicleQueueCounter.setName("计数器名称")
+    print(f"排队计数器{vehicleQueueCounter.id()}的名称，为{vehicleQueueCounter.counterName()}")
+```
 
  **def setDistToStart(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -4254,23 +5203,84 @@ if counter is not None:
 
 参数：  
 \[in\] dist：计数器距离车道起点（或“车道连接”起点）的距离，默认单位：像素  
-\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    vehicleQueueCounter.setDistToStart(100)
+    print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离，为{vehicleQueueCounter.distToStart()}")
+    vehicleQueueCounter.setDistToStart(100, UnitOfMeasure.Metric)
+    print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离（米制），为{vehicleQueueCounter.distToStart(UnitOfMeasure.Metric)}米")
+```
 
  **def setFromTime(self, time:int) -> None: ...**
 
 设置工作起始时间(秒)
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    vehicleQueueCounter.setFromTime(10)
+    print(f"排队计数器{vehicleQueueCounter.id()}的工作起始时间，为{vehicleQueueCounter.fromTime()}秒")
+```
+
  **def setToTime(self, time:int) -> None: ...**
 
 设置工作结束时间(秒)
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    vehicleQueueCounter.setToTime(60)
+    print(f"排队计数器{vehicleQueueCounter.id()}的工作结束时间，为{vehicleQueueCounter.toTime()}秒")
+```
 
  **def setAggregateInterval(self, interval:int) -> None: ...**
 
 设置集计数据时间间隔(秒)
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    vehicleQueueCounter.setAggregateInterval(10)
+    print(f"排队计数器{vehicleQueueCounter.id()}数据集计的时间间隔，为{vehicleQueueCounter.aggregateInterval()}秒")
+```
+
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取计数器的多边型轮廓顶点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleQueueCounter
+lVehicleQueueCounters = netiface.vehiQueueCounters()
+for vehicleQueueCounter in lVehicleQueueCounters:
+    print(f"排队计数器{vehicleQueueCounter.id()}的多边型轮廓顶点为{vehicleQueueCounter.polygon()}")
+```
 
 **案例代码**
 
@@ -4294,37 +5304,136 @@ if counter is not None:
 
 获取检测器ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的ID为{vehicleTravelDetector.id()}")
+```
+
  **def detectorName(self) -> str: ...**
 
 获取检测器名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的名称，为{vehicleTravelDetector.detectorName()}")
+```
 
  **def isStartDetector(self) -> bool: ...**
 
 是否检测器起始点
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}是否为起始点，为{vehicleTravelDetector.isStartDetector()}")
+```
+
  **def isOnLink_startDetector(self) -> bool: ...**
 
 检测器起点是否在路段上，如果否，则起点在连接段上
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器起点{vehicleTravelDetector.id()}是否在路段上，为{vehicleTravelDetector.isOnLink_startDetector()}")
+```
 
  **def isOnLink_endDetector(self) -> bool: ...**
 
 检测器终点是否在路段上，如果否，则终点在连接段上
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器终点{vehicleTravelDetector.id()}是否在路段上，为{vehicleTravelDetector.isOnLink_endDetector()}")
+```
+
  **def link_startDetector(self) -> Tessng.ILink: ...**
 
 如果检测器起点在路段上则link_startDetector()返回起点所在路段，laneConnector_startDetector()返回None
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器起点{vehicleTravelDetector.id()}所在路段，为{vehicleTravelDetector.link_startDetector()}")
+```
 
  **def laneConnector_startDetector(self) -> Tessng.ILaneConnector: ...**
 
 如果检测器起点在连接段上则laneConnector_startDetector()返回起点“车道连接”,link_startDetector()返回None
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器起点{vehicleTravelDetector.id()}所在连接段，为{vehicleTravelDetector.laneConnector_startDetector()}")
+```
+
  **def link_endDetector(self) -> Tessng.ILink: ...**
 
 如果检测器终点在路段上则link_endDetector()返回终点所在路段，laneConnector_endDetector()返回None
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器终点{vehicleTravelDetector.id()}所在路段，为{vehicleTravelDetector.link_endDetector()}")
+```
+
  **def laneConnector_endDetector(self) -> Tessng.ILaneConnector: ...**
 
 如果检测器终点在连接段上则laneConnector_endDetector()返回终点“车道连接”,link_endDetector()返回None
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器终点{vehicleTravelDetector.id()}所在连接段，为{vehicleTravelDetector.laneConnector_endDetector()}")
+```
 
  **def distance_startDetector(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -4332,9 +5441,35 @@ if counter is not None:
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离，为{vehicleTravelDetector.distance_startDetector()}")
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离（米制），为{vehicleTravelDetector.distance_startDetector(UnitOfMeasure.Metric)}米")
+```
+
  **def distance_endDetector(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-检测器终点距离所在车道起点或“车道连接”起点距离，默认单位：像素
+检测器终点距离所在车道起点或“车道连接”起点距离，默认单位：像素  
+参数：  
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离，为{vehicleTravelDetector.distance_endDetector()}")
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离（米制），为{vehicleTravelDetector.distance_endDetector(UnitOfMeasure.Metric)}米")
+```
 
  **def point_startDetector(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
@@ -4342,27 +5477,96 @@ if counter is not None:
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点位置，为{vehicleTravelDetector.point_startDetector()}")
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点位置（米制），为{vehicleTravelDetector.point_startDetector(UnitOfMeasure.Metric)}米")
+```
+
  **def point_endDetector(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 检测器终点位置,默认单位：像素，可通过可选参数：unit设置单位，  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点位置，为{vehicleTravelDetector.point_endDetector()}")
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点位置（米制），为{vehicleTravelDetector.point_endDetector(UnitOfMeasure.Metric)}米")
+```
+
  **def fromTime(self) -> int: ...**
 
 检测器工作起始时间，单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作起始时间，为{vehicleTravelDetector.fromTime()}")
+```
 
  **def toTime(self) -> int: ...**
 
 检测器工作停止时间，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作停止时间，为{vehicleTravelDetector.toTime()}")
+```
+
  **def aggregateInterval(self) -> int: ...**
 
 集计数据时间间隔，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的集计数据时间间隔，为{vehicleTravelDetector.aggregateInterval()}")
+```
+
  **def setName(self, name:str) -> None: ...**
 
 设置检测器名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    vehicleTravelDetector.setName("检测器名称")
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的名称，为{vehicleTravelDetector.detectorName()}")
+```
 
  **def setDistance_startDetector(self, dist:float) -> None: ...**
 
@@ -4370,11 +5574,37 @@ if counter is not None:
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    vehicleTravelDetector.setDistance_startDetector(100)
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离，为{vehicleTravelDetector.distance_startDetector()}")
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离（米制），为{vehicleTravelDetector.distance_startDetector(UnitOfMeasure.Metric)}米")
+```
+
  **def setDistance_endDetector(self, dist:float) -> None: ...**
 
 设置检测器终点距车道起点（或“车道连接”起点）距离，默认单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    vehicleTravelDetector.setDistance_endDetector(100)
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离，为{vehicleTravelDetector.distance_endDetector()}")
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离（米制），为{vehicleTravelDetector.distance_endDetector(UnitOfMeasure.Metric)}米")
+```
 
  **def setFromTime(self, time:int) -> None: ...**
 
@@ -4383,12 +5613,15 @@ if counter is not None:
 举例：
 
 ```python
-lVehicleTravelDetector = tessngIFace().netInterface().createVehicleTravelDetector_link2link(link, link, m2p(50),m2p(550))
-   if lVehicleTravelDetector is not None:
-      for detector in lVehicleTravelDetector:
-          detector.setFromTime(10)
-          detector.setToTime(60)
-
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    vehicleTravelDetector.setFromTime(10)
+    vehicleTravelDetector.setToTime(60)
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作起始时间，为{vehicleTravelDetector.fromTime()}秒")
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作结束时间，为{vehicleTravelDetector.toTime()}秒")
 ```
 
  
@@ -4397,17 +5630,63 @@ lVehicleTravelDetector = tessngIFace().netInterface().createVehicleTravelDetecto
 
 设置工作结束时间，单位：秒
 
- **def aggregateInterval(self) -> int: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    vehicleTravelDetector.setToTime(60)
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作结束时间，为{vehicleTravelDetector.toTime()}")
+```
+
+ **def setAggregateInterval(self) -> int: ...**
 
 设置集计数据时间间隔，单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    vehicleTravelDetector.setAggregateInterval(10)
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的集计数据时间间隔，为{vehicleTravelDetector.aggregateInterval()}")
+```
 
  **def polygon_startDetector(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取行程时间检测器起始点多边型轮廓的顶点
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点多边型轮廓的顶点，为{vehicleTravelDetector.polygon_startDetector()}")
+```
+
  **def polygon_endDetector(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取行程时间检测器终止点多边型轮廓的顶点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lVehicleTravelDetectors = netiface.vehiTravelDetectors()
+for vehicleTravelDetector in lVehicleTravelDetectors:
+    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点多边型轮廓的顶点，为{vehicleTravelDetector.polygon_endDetector()}")
+```
 
 **案例代码**
 
