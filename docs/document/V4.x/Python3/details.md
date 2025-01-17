@@ -5841,7 +5841,7 @@ netiface = iface.netInterface()
 # 获取路网中的所有IAccidentZone
 lAccidentZones = netiface.accidentZones()
 for accidentZone in lAccidentZones:
-    print(f"事故区的名称，为{accidentZone.name()}")
+    print(f"事故区的名称为{accidentZone.name()}")
 ```
 
  **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
@@ -5925,7 +5925,7 @@ netiface = iface.netInterface()
 # 获取路网中的所有IAccidentZone
 lAccidentZones = netiface.accidentZones()
 for accidentZone in lAccidentZones:
-    print(f"事故区{accidentZone.id()}所在路段的ID，为{accidentZone.roadId()}")
+    print(f"事故区{accidentZone.id()}所在路段的ID为{accidentZone.roadId()}")
 ```
 
  **def roadType(self) -> str: ...**
@@ -5940,10 +5940,10 @@ netiface = iface.netInterface()
 # 获取路网中的所有IAccidentZone
 lAccidentZones = netiface.accidentZones()
 for accidentZone in lAccidentZones:
-    print(f"事故区{accidentZone.id()}所在的道路类型，为{accidentZone.roadType()}")
+    print(f"事故区{accidentZone.id()}所在的道路类型为{accidentZone.roadType()}")
 ```
 
- **def laneObjects(self) -> typing.List<Tess.ILaneObjects>: ...**
+ **def laneObjects(self) -> typing.List< Tess.ILaneObjects >: ...**
 
 获取事故区当前时段占用的车道列表
 
@@ -5955,7 +5955,7 @@ netiface = iface.netInterface()
 # 获取路网中的所有IAccidentZone
 lAccidentZones = netiface.accidentZones()
 for accidentZone in lAccidentZones:
-    print(f"事故区{accidentZone.id()}当前时段占用的车道列表，为{accidentZone.laneObjects()}")
+    print(f"事故区{accidentZone.id()}当前时段占用的车道列表为{accidentZone.laneObjects()}")
 ```
 
  **def controlLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
@@ -5985,6 +5985,12 @@ for accidentZone in lAccidentZones:
 举例：
 
 ```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    accidentZoneIntervals=accidentZone.accidentZoneIntervals()
     param = accidentZoneIntervals[-1]
     accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
     accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
@@ -5994,10 +6000,12 @@ for accidentZone in lAccidentZones:
     accidentZoneIntervalParam.location = param.location()
     accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
     accidentZoneIntervalParam.controlLength = param.controlLength()
-    laneNumbers =  [lane.number() for lane in netiface.findLink(acczone.roadId()).lanes()]
+    laneNumbers =  [lane.number() for lane in netiface.findLink(accidentZone.roadId()).lanes()]
     accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
 
-    accidentZoneInterval = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+    print(f"添加前事故时段列表{accidentZone.accidentZoneIntervals()}")
+    accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
+    print(f"添加后事故时段列表{accidentZone.accidentZoneIntervals()}")
 ```
 
  **def removeAccidentZoneInterval(self，accidentZoneIntervalId:int) -> None: ...**
@@ -6009,7 +6017,12 @@ for accidentZone in lAccidentZones:
 举例：
 
 ```python
-    accidentZoneIntervals=acczone.accidentZoneIntervals()
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    accidentZoneIntervals=accidentZone.accidentZoneIntervals()
     param = accidentZoneIntervals[-1]
     accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
     accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
@@ -6019,18 +6032,20 @@ for accidentZone in lAccidentZones:
     accidentZoneIntervalParam.location = param.location()
     accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
     accidentZoneIntervalParam.controlLength = param.controlLength()
-    laneNumbers =  [lane.number() for lane in netiface.findLink(acczone.roadId()).lanes()]
+    laneNumbers =  [lane.number() for lane in netiface.findLink(accidentZone.roadId()).lanes()]
     accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
 
-    accidentZoneInterval = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+    accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
 
     accidentZoneIntervalParam1 = accidentZoneIntervalParam
     accidentZoneIntervalParam1.startTime =accidentZoneIntervalParam1.endTime
     accidentZoneIntervalParam1.endTime = accidentZoneIntervalParam1.endTime+300
-    accidentZoneInterval1 = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+    accidentZoneInterval1 = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
 
     # 移除刚添加的事故时段accidentZoneInterval1
-    acczone.removeAccidentZoneInterval(accidentZoneInterval1.id())
+    print(f"移除前事故时段列表{accidentZone.accidentZoneIntervals()}")
+    accidentZone.removeAccidentZoneInterval(accidentZoneInterval1.intervalId())
+    print(f"移除后事故时段列表{accidentZone.accidentZoneIntervals()}")
 ```
 
  **def updateAccidentZoneInterval(self，param:Tess.Online.DynaAccidentZoneIntervalParam) -> bool: ...**
@@ -6042,7 +6057,12 @@ for accidentZone in lAccidentZones:
 举例：
 
 ```python
-    accidentZoneIntervals=acczone.accidentZoneIntervals()
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    accidentZoneIntervals = accidentZone.accidentZoneIntervals()
     param = accidentZoneIntervals[-1]
     accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
     accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
@@ -6052,18 +6072,18 @@ for accidentZone in lAccidentZones:
     accidentZoneIntervalParam.location = param.location()
     accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
     accidentZoneIntervalParam.controlLength = param.controlLength()
-    laneNumbers =  [lane.number() for lane in netiface.findLink(acczone.roadId()).lanes()]
+    laneNumbers =  [lane.number() for lane in netiface.findLink(accidentZone.roadId()).lanes()]
     accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
 
-    accidentZoneInterval = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+    accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
 
     accidentZoneIntervalParam1 = accidentZoneIntervalParam
     accidentZoneIntervalParam1.startTime =accidentZoneIntervalParam1.endTime
     accidentZoneIntervalParam1.endTime = accidentZoneIntervalParam1.endTime+300
-    accidentZoneInterval1 = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+    accidentZoneInterval1 = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
 
     accidentZoneIntervalParam.controlLength = param.controlLength() + 10
-    acczone.updateAccidentZoneInterval(accidentZoneIntervalParam)
+    accidentZone.updateAccidentZoneInterval(accidentZoneIntervalParam)
 ```
 
  **def accidentZoneIntervals(self) -> typing.List<Tess.IAccidentZoneInterval>: ...**
@@ -6095,16 +6115,29 @@ netiface = iface.netInterface()
 # 获取路网中的所有IAccidentZone
 lAccidentZones = netiface.accidentZones()
 for accidentZone in lAccidentZones:
-    print(f"事故区{accidentZone.id()}的事故时段，为{accidentZone.findAccidentZoneIntervalById(accidentZoneIntervalId)}")
+    accidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in accidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段，为{accidentZone.findAccidentZoneIntervalById(accidentZoneInterval.intervalId())}")
 ```
 
-**def findAccidentZoneIntervalByStartTime(self，startTime:int) -> Tess.IAccidentZoneInterval: ...**
+**def findAccidentZoneIntervalByStartTime(self, startTime:int) -> Tess.IAccidentZoneInterval: ...**
 
 根据开始时间查询事故时段
 参数：  
 \[in\] startTime：事故时段开始时间
 
+举例：
 
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    accidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in accidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段，为{accidentZone.findAccidentZoneIntervalByStartTime(accidentZoneInterval.startTime())}")
+```
 
 **案例代码**
 
@@ -6146,11 +6179,11 @@ def showAccidentZoneAttr(self, netiface):
     accidentZoneIntervalParam1.endTime = accidentZoneIntervalParam1.endTime+300
     accidentZoneInterval1 = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
 
-    # acczone.removeAccidentZoneInterval(accidentZoneInterval1.id())
+    # acczone.removeAccidentZoneInterval(accidentZoneInterval1.intervalId())
     accidentZoneIntervalParam.controlLength = param.controlLength() + 10
     acczone.updateAccidentZoneInterval(accidentZoneIntervalParam)
     print(f"获取所有事故时段={acczone.accidentZoneIntervals()},"
-          # f"根据ID查询事故时段={acczone.findAccidentZoneIntervalById(accidentZoneInterval.id())},"
+          # f"根据ID查询事故时段={acczone.findAccidentZoneIntervalById(accidentZoneInterval.intervalId())},"
           f"根据开始时间查询事故时段={acczone.findAccidentZoneIntervalByStartTime(accidentZoneInterval.startTime())}")
 
 ```
@@ -6161,7 +6194,7 @@ def showAccidentZoneAttr(self, netiface):
 
 事故时段接口，方法如下：
 
- **def id(self) -> int: ...**
+ **def intervalId(self) -> int: ...**
 
 获取事故时段ID
 
@@ -6175,7 +6208,7 @@ lAccidentZones = netiface.accidentZones()
 for accidentZone in lAccidentZones:
     lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
     for accidentZoneInterval in lAccidentZoneIntervals:
-        print(f"事故区{accidentZone.id()}的事故时段ID为{accidentZoneInterval.id()}")
+        print(f"事故区{accidentZone.id()}的事故时段ID为{accidentZoneInterval.intervalId()}")
 ```
 
  **def accidentZoneId(self) -> int: ...**
@@ -6339,7 +6372,7 @@ _showAccidentZoneIntervalAttr(netiface)
 def _showAccidentZoneIntervalAttr(acczone):
     interval = acczone.accidentZoneIntervals()[0]
     print(
-        # f"获取事故时段ID={interval.id()},"
+        # f"获取事故时段ID={interval.intervalId()},"
           f"获取所属事故区ID={interval.accidentZoneId()},"
           f"获取事故时段开始时间={interval.startTime()},获取事故时段结束时间={interval.endTime()},"
           f"获取事故区在该时段的长度,像素制={interval.location()},米制={interval.location(UnitOfMeasure.Metric)},"
@@ -6690,7 +6723,7 @@ def showRoadWorkZoneAttr(self, netiface):
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区ID={limitedZone.id()}")
@@ -6705,7 +6738,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区名称={limitedZone.name()}")
@@ -6722,7 +6755,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区距起点距离={limitedZone.location()}")
@@ -6740,7 +6773,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区长度={limitedZone.zoneLength()}")
@@ -6758,7 +6791,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区限速={limitedZone.limitSpeed()}")
@@ -6774,7 +6807,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区所在路段或连接段ID={limitedZone.sectionId()}")
@@ -6789,7 +6822,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区所在路段或连接段名称={limitedZone.sectionName()}")
@@ -6804,7 +6837,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区所在道路的类型={limitedZone.sectionType()}")
@@ -6819,7 +6852,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区所在车道对象列表={limitedZone.laneObjects()}")
@@ -6834,7 +6867,7 @@ for limitedZone in lLimitedZones:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
+# 获取路网中的所有ILimitedZone
 lLimitedZones = netiface.limitedZones()
 for limitedZone in lLimitedZones:
     print(f"限行区持续时间={limitedZone.duration()}")
@@ -7134,7 +7167,7 @@ netiface = iface.netInterface()
 # 获取路网中的所有IReduceSpeedArea
 lReduceSpeedAreas = netiface.reduceSpeedAreas()
 for reduceSpeedArea in lReduceSpeedAreas:
-    print(f"限速区获取目标车道序号={reduceSpeedArea.tolaneNumber()}")
+    print(f"限速区获取目标车道序号={reduceSpeedArea.toLaneNumber()}")
 ```
 
  **def addReduceSpeedInterval(self, param: Online.DynaReduceSpeedIntervalParam) -> Tess.IReduceSpeedInterval: ...**
@@ -7147,15 +7180,22 @@ for reduceSpeedArea in lReduceSpeedAreas:
 举例：
 
 ```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
     param = Online.DynaReduceSpeedIntervalParam()
-    param.startTime = 100 # 需要注意新增的时段要和已有时段不冲突
-    param.endTime = 500
+    param.startTime = 3601 # 需要注意新增的时段要和已有时段不冲突
+    param.endTime = 7200
     type1 = Online.DynaReduceSpeedVehiTypeParam()
     type1.vehicleTypeCode = 2
     type1.avgSpeed = 10
     type1.speedSD = 5
     param.mlReduceSpeedVehicleTypeParam = [type1]
+    print(f"添加前限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
     interval = reduceSpeedArea.addReduceSpeedInterval(param)
+    print(f"添加后限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
 ```
 
  **def removeReduceSpeedInterval(self, id:int) -> None: ...**
@@ -7168,16 +7208,23 @@ for reduceSpeedArea in lReduceSpeedAreas:
 举例：
 
 ```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
     param = Online.DynaReduceSpeedIntervalParam()
-    param.startTime = 100 # 需要注意新增的时段要和已有时段不冲突
-    param.endTime = 500
+    param.startTime = 3601 # 需要注意新增的时段要和已有时段不冲突
+    param.endTime = 7200
     type1 = Online.DynaReduceSpeedVehiTypeParam()
     type1.vehicleTypeCode = 2
     type1.avgSpeed = 10
     type1.speedSD = 5
     param.mlReduceSpeedVehicleTypeParam = [type1]
     interval = reduceSpeedArea.addReduceSpeedInterval(param)
+    print(f"移除前限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
     reduceSpeedArea.removeReduceSpeedInterval(interval.id())
+    print(f"移除后限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
 ```
 
  **def updateReduceSpeedInterval(self, param: Online.DynaReduceSpeedIntervalParam) -> bool: ...**
@@ -7190,9 +7237,14 @@ for reduceSpeedArea in lReduceSpeedAreas:
 举例：
 
 ```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
     param = Online.DynaReduceSpeedIntervalParam()
-    param.startTime = 100 # 需要注意新增的时段要和已有时段不冲突
-    param.endTime = 500
+    param.startTime = 3601  # 需要注意新增的时段要和已有时段不冲突
+    param.endTime = 7200
     type1 = Online.DynaReduceSpeedVehiTypeParam()
     type1.vehicleTypeCode = 2
     type1.avgSpeed = 10
@@ -7202,6 +7254,10 @@ for reduceSpeedArea in lReduceSpeedAreas:
     reduceSpeedArea.removeReduceSpeedInterval(interval.id())
     interval1 = reduceSpeedArea.addReduceSpeedInterval(param)
     print(f" reduceSpeedArea.addReduceSpeedInterval(param) 添加成功={interval1}")
+    param.id = interval1.id()
+    param.reduceSpeedAreaId = reduceSpeedArea.id()
+    param.startTime = 7200
+    param.endTime = 10000
     flag = reduceSpeedArea.updateReduceSpeedInterval(param)
     print(f" reduceSpeedArea.updateReduceSpeedInterval(param) 更新成功={flag}")
 ```
@@ -7389,8 +7445,8 @@ for reduceSpeedArea in lReduceSpeedAreas:
     for reduceSpeedInterval in lReduceSpeedIntervals:
         lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
         for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            print(f"移除限速车型{reduceSpeedVehiType.id()}")
             reduceSpeedInterval.removeReduceSpeedVehiType(reduceSpeedVehiType.id())
-            print(f"移除限速车型成功={reduceSpeedVehiType.id()}")
 ```
 
  **def updateReduceSpeedVehiType(self,param:Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
@@ -7410,16 +7466,18 @@ lReduceSpeedAreas = netiface.reduceSpeedAreas()
 for reduceSpeedArea in lReduceSpeedAreas:
     lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
     for reduceSpeedInterval in lReduceSpeedIntervals:
+        vehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        vehiType = vehiTypes[-1]
+
         param = Online.DynaReduceSpeedVehiTypeParam()
-        param.vehicleTypeCode = 13
-        param.avgSpeed = 10
-        param.speedSD = 5
-        interval = reduceSpeedInterval.addReduceSpeedVehiType(param)
-        print(f"添加限速车型成功={interval}")
-        param.avgSpeed = 20
-        param.speedSD = 0
-        interval = reduceSpeedInterval.updateReduceSpeedVehiType(param)
-        print(f"更新限速车型成功={interval}")
+        param.vehicleTypeCode = vehiType.vehiTypeCode()
+        param.avgSpeed = vehiType.averageSpeed() + 10
+        param.speedSD = vehiType.speedStandardDeviation() + 5
+        param.reduceSpeedAreaId = reduceSpeedArea.id()
+        param.reduceSpeedIntervalId = reduceSpeedInterval.id()
+        param.id = vehiType.id()
+        b = reduceSpeedInterval.updateReduceSpeedVehiType(param)
+        print(f"更新限速车型成功={b}")
 ```
 
  **def reduceSpeedVehiTypes(self) -> Type.List< Tess.IReduceSpeedVehiType >: ...**
@@ -7439,12 +7497,12 @@ for reduceSpeedArea in lReduceSpeedAreas:
         print(f"获取本时段限速车型及限速参数列表={reduceSpeedInterval.reduceSpeedVehiTypes()}")
 ```
 
- **def findReduceSpeedVehiTypeById(self,vehicleTypeCode:int) -> Tess.IReduceSpeedVehiType: ...**
+ **def findReduceSpeedVehiTypeById(self,id:int) -> Tess.IReduceSpeedVehiType: ...**
 
 根据车型代码获取限速车型
 
 参数：  
-[ in ] vehicleTypeCode：车型代码，数据结构见Online
+[ in ] id：限速车型ID
 
 举例：
 
@@ -7458,7 +7516,7 @@ for reduceSpeedArea in lReduceSpeedAreas:
     for reduceSpeedInterval in lReduceSpeedIntervals:
         lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
         for reduceSpeedVehiType in lReduceSpeedVehiTypes:
-            print(f"根据车型代码获取限速车型={reduceSpeedInterval.findReduceSpeedVehiTypeById(reduceSpeedVehiType.vehiTypeCode())}")
+            print(f"根据ID获取限速车型={reduceSpeedInterval.findReduceSpeedVehiTypeById(reduceSpeedVehiType.id())}")
 ```
 
 **案例代码**
