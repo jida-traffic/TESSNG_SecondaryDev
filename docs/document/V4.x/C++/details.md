@@ -122,35 +122,102 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 
 路网ID
 
+举例：
+
+```cpp
+	//获取路网ID
+	IRoadNet* pIRoadNet = gpTessInterface->netInterface()->netAttrs();
+	qDebug() << "路网ID:" << pIRoadNet->id();
+```
+
 Ø **QString netName()**
 
 路网名称
+
+举例：
+
+```cpp
+	//获取路网名称
+	IRoadNet* pIRoadNet = gpTessInterface->netInterface()->netAttrs();
+	qDebug() << "路网名称:" << pIRoadNet->netName();
+```
 
 Ø **QString url()**
 
 源数据路径，可以是本地文件，可以是网络地址
 
+举例：
+
+```cpp
+	//获取路网源数据路径
+	IRoadNet* pIRoadNet = gpTessInterface->netInterface()->netAttrs();
+	qDebug() << "路网源数据路径:" << pIRoadNet->url();
+```
+
 Ø **QString type()**
 
 来源分类："TESSNG"表示TESSNG自建；"OpenDrive"表示由OpenDrive数据导入；"GeoJson"表示由geojson数据导入
+
+举例：
+
+```cpp
+	//获取路网来源分类
+	IRoadNet* pIRoadNet = gpTessInterface->netInterface()->netAttrs();
+	qDebug() << "路网来源分类:" << pIRoadNet->type();
+```
 
 Ø **QString bkgUrl()**
 
 背景路径
 
+举例：
+
+```cpp
+	//获取背景路径
+	IRoadNet* pIRoadNet = gpTessInterface->netInterface()->netAttrs();
+	qDebug() << "背景路径:" << pIRoadNet->bkgUrl();
+```
+
 Ø **QString explain()**
 
 获取路网说明
 
+举例：
+
+```cpp
+	//获取路网说明
+	IRoadNet* pIRoadNet = gpTessInterface->netInterface()->netAttrs();
+	qDebug() << "路网说明:" << pIRoadNet->explain();
+```
+
 Ø **QJsonObject otherAttrs()**
 
 其它属性json数据
+
+举例：
+
+```cpp
+	//获取路网其它属性，如proj_string
+	IRoadNet* pIRoadNet = gpTessInterface->netInterface()->netAttrs();
+	QJsonObject otherAttrs = pIRoadNet->otherAttrs();
+	qDebug() << "otherAttrs:" << otherAttrs;
+	qDebug() << "otherAttrs-proj_string:" << otherAttrs.value("proj_string").toString();
+```
 
 Ø **QPointF centerPoint(UnitOfMeasure unit)**
 
 获取路网中心点位置，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取路网中心点位置
+	IRoadNet* pIRoadNet = gpTessInterface->netInterface()->netAttrs();
+	qDebug() << "路网中心点位置:" << pIRoadNet->centerPoint();
+	qDebug() << "路网中心点位置(米制):" << pIRoadNet->centerPoint(UnitOfMeasure::Metric);
+```
 
 ### 2.2 ISection
 
@@ -164,25 +231,94 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 
 类型，GLinkType 或 GConnectorType。在文件Plugin/_netitemtype.h中定义了一批常量，每一个数值代表路网上一种元素类型。如：GLinkType代表路段、GConnectorType代表连接段。
 
+举例：
+
+```cpp
+	//获取路段或连接段类型
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		if (pSection->gtype() == NetItemType::GLinkType) {
+			qDebug() << "当前Section为路段" << endl;
+		} else if (pSection->gtype() == NetItemType::GConnectorType) {
+			qDebug() << "当前Section为连接段" << endl;
+		}
+	}
+```
+
 Ø **bool isLink()**
 
 是否是路段
+
+举例：
+
+```cpp
+	//获取路段或连接段类型
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		if (pSection->isLink()) {
+			qDebug() << "当前Section为路段" << endl;
+		} else {
+			qDebug() << "当前Section为连接段" << endl;
+		}
+	}
+```
 
 Ø **long id()**
 
 获取ID，如果是Link，id是Link的ID，如果是连接段，id是连接段ID
 
+举例：
+
+```cpp
+	//获取路段或连接段ID
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		qDebug() << "当前Section的ID:" << pSection->id() << endl;
+	}
+```
+
 Ø **long sectionId()**
 
 获取ID，如果是Link，id是Link的ID，如果是连接段，id是连接段ID+10000000，从而区分路段与连接段
+
+举例：
+
+```cpp
+	//获取路段或连接段ID
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		qDebug() << "当前Section的ID:" << pSection->sectionId() << endl;
+	}
+```
 
 Ø **QString name()**
 
 获取Section名称，路段名或连接段名
 
+举例：
+
+```cpp
+	//获取Section名称
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		qDebug() << "当前Section的名称:" << pSection->name() << endl;
+	}
+```
+
 Ø **void setName(QString name)**
 
 设置Section名称
+
+举例：
+
+```cpp
+	//设置Section名称
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		pSection->setName("newName");
+		qDebug() << "当前Section的名称:" << pSection->name() << endl;
+	}
+```
 
 Ø **qreal v3z(UnitOfMeasure unit)**
 
@@ -190,11 +326,33 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取Section高程
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		qDebug() << "当前Section的高程:" << pSection->v3z() << endl;
+		qDebug() << "当前Section的高程(米制):" << pSection->v3z(UnitOfMeasure::Metric) << endl;
+	}
+```
+
 Ø **qreal length(UnitOfMeasure unit)**
 
 获取Section长度，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取Section长度
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		qDebug() << "当前Section的长度:" << pSection->length() << endl;
+		qDebug() << "当前Section的长度(米制):" << pSection->length(UnitOfMeasure::Metric) << endl;
+	}
+```
 
 Ø **QList< ILaneObject\* > laneObjects()**
 
@@ -203,14 +361,14 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 举例：
 
 ```cpp
-if (pConn) {
-			//连接段车道连接列表
-			QList< ILaneObject* > lConnLaneObjs;
-			lConnLaneObjs = pConn->laneObjects();
-			for (ILaneObject*& pLaneObj : lConnLaneObjs) {
-				qDebug() << "上游车道ID" << pLaneObj->fromLaneObject()->id() << "下游车道ID" << pLaneObj->toLaneObject()->id() << endl;
-			}
+	//获取车道与"车道连接"的父类接口列表
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的ID:" << pLaneObject->id() << endl;
 		}
+	}
 ```
 
 Ø **ISection\* fromSection(long id)**
@@ -220,8 +378,8 @@ if (pConn) {
 举例：
 
 ```cpp
-//根据id获取路段5上游id为2的连接段
-ISection* pSectionLink = gpTessInterface->netInterface()->findLink(5);
+	//根据id获取路段5上游id为2的连接段
+	ISection* pSectionLink = gpTessInterface->netInterface()->findLink(5);
 	ISection* pSectionConnector = pSectionLink ->fromSection(2);
 	if (pSectionConnector) {
 		if (pSectionConnector ->gtype() == NetItemType::GConnectorType) {
@@ -234,9 +392,35 @@ ISection* pSectionLink = gpTessInterface->netInterface()->findLink(5);
 
 根据ID获取下游 Sction。如果当前是路段, id 为 0 返回空指针，否则返回下游指定ID的连接段；如果当前是连接段，id 为 0 返回下游路段，否则返回空指针。
 
+举例：
+
+```cpp
+	//根据id获取路段5下游id为2的连接段
+	ISection* pSectionLink = gpTessInterface->netInterface()->findLink(5);
+	ISection* pSectionConnector = pSectionLink ->toSection(2);
+	if (pSectionConnector) {
+		if (pSectionConnector ->gtype() == NetItemType::GConnectorType) {
+			qDebug() << "路段5下游id为2的section为：" << pSectionConnector ->id() << endl;
+		}
+	}
+```
+
 Ø **void setOtherAttr(QJsonObject otherAttr)**
 
 设置路段或连接段其它属性
+
+举例：
+
+```cpp
+	//设置路段或连接段其它属性
+	QJsonObject otherAttr;
+	otherAttr["newAttr"] = "add a new attr";
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		pSection->setOtherAttr(otherAttr);
+		qDebug() << "当前Section的其它属性:" << pSection->otherAttr() << endl;
+	}
+```
 
 Ø **ILink\* castToLink()**
 
@@ -245,8 +429,14 @@ ISection* pSectionLink = gpTessInterface->netInterface()->findLink(5);
 举例：
 
 ```cpp
-QList< ISection* > lLinksAndConnector = createExampleLinkAndConnector(QStringLiteral("信控编辑"), -50);
-	ILink* pLink1 = lLinksAndConnector.front()->castToLink();
+	//转换成ILink，如果当前为连接段则返回空指针
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		ILink* pLink = pSection->castToLink();
+		if (pLink) {
+			qDebug() << "当前Section的ILink:" << pLink->id() << endl;
+		}
+	}
 ```
 
 Ø **IConnector\* castToConnector()**
@@ -256,28 +446,30 @@ QList< ISection* > lLinksAndConnector = createExampleLinkAndConnector(QStringLit
 举例：
 
 ```cpp
-IConnector* pConn = lLinksAndConnector.back()->castToConnector();
+	//转换成IConnector，如果当前为路段则返回空指针
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		IConnector* pConn = pSection->castToConnector();
+		if (pConn) {
+			qDebug() << "当前Section的IConnector:" << pConn->id() << endl;
+		}
+	}
 ```
 
 Ø **QPolygonF polygon()**
 
 获取Section的多边型轮廓顶点构成的多边形
 
-Ø **int workerKey()**
+举例：
 
-Worker节点标识，在分布式环境可用
-
-Ø **void setWorkerKey(int key)**
-
-设置Worker节点，在分布式环境可用
-
-Ø **int fromWorkerKey()**
-
-上游Worker节点标识，在分布式环境可用
-
-Ø **void setFromWorkerKey(int key)**
-
-设置上游Worker节点标识，在分布式环境可用
+```cpp
+	//获取Section的多边型轮廓顶点构成的多边形
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QPolygonF polygon = pSection->polygon();
+		qDebug() << "当前Section的多边形:" << polygon << endl;
+	}
+```
 
 ### 2.3 ILaneObject
 
@@ -291,13 +483,54 @@ Worker节点标识，在分布式环境可用
 
 类型，GLaneType或GLaneConnectorType
 
+举例：
+
+```cpp
+	//获取类型，GLaneType或GLaneConnectorType
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的类型:" << pLaneObject->gtype() << endl;
+		}
+	}
+```
+
 Ø **bool isLane()**
 
 是否车道
 
+举例：
+
+```cpp
+	//是否车道
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			if (pLaneObject->isLane()) {
+				qDebug() << "当前Section的laneObject是车道:" << pLaneObject->id() << endl;
+			}
+		}
+	}
+```
+
 Ø **long id()**
 
 获取ID，如果是Lane，id是Lane的ID， 如果是车道连接，id是"车道连接"ID
+
+举例：
+
+```cpp
+	//获取ID，如果是Lane，id是Lane的ID， 如果是车道连接，id是"车道连接"ID
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的ID:" << pLaneObject->id() << endl;
+		}
+	}
+```
 
 Ø **qreal length(UnitOfMeasure unit)**
 
@@ -305,17 +538,74 @@ Worker节点标识，在分布式环境可用
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取长度，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的长度:" << pLaneObject->length() << endl;
+			qDebug() << "当前Section的laneObject的长度(米制):" << pLaneObject->length(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **ISection\* section()**
 
 获取所属的ISection
+
+举例：
+
+```cpp
+	//获取所属的ISection
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的所属ISection:" << pLaneObject->section()->id() << endl;
+		}
+	}
+```
 
 Ø **ILaneObject\* fromLaneObject(long id)**
 
 根据ID获取上游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回上游指定ID的"车道连接"；如果当前是连接段，id 为 0 返回上游车道，否则返回空指针。
 
+举例：
+
+```cpp
+	//根据ID获取上游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回上游指定ID的"车道连接"；如果当前是连接段，id 为 0 返回上游车道，否则返回空指针。
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			if(!pLaneObject->isLane()) {
+				qDebug() << "当前Section的laneObject的上游Lane:" << pLaneObject->fromLaneObject()->id() << endl;
+			}
+		}
+	}
+```
+
 Ø **ILaneObject\* toLaneObject(long id)**
 
 根据ID获取下游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回下游指定ID的"车道连接"；如果当前是连接段，id 为 0 返回下游车道，否则返回空指针。
+
+举例：
+
+```cpp
+	//根据ID获取下游 LaneObject。如果当前是车道, id 为 0 返回空指针，否则返回下游指定ID的"车道连接"；如果当前是连接段，id 为 0 返回下游车道，否则返回空指针。
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			if(!pLaneObject->isLane()) {
+				qDebug() << "当前Section的laneObject的下游Lane:" << pLaneObject->toLaneObject()->id() << endl;
+			}
+		}
+	}
+```
 
 Ø **QList< QPointF > centerBreakPoints(UnitOfMeasure unit)**
 
@@ -323,11 +613,39 @@ Worker节点标识，在分布式环境可用
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取中心线断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的中心线断点集:" << pLaneObject->centerBreakPoints() << endl;
+			qDebug() << "当前Section的laneObject的中心线断点集(米制):" << pLaneObject->centerBreakPoints(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **QList< QPointF > leftBreakPoints(UnitOfMeasure unit)**
 
 获取左侧线断点集，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取左侧线断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的左侧线断点集:" << pLaneObject->leftBreakPoints() << endl;
+			qDebug() << "当前Section的laneObject的左侧线断点集(米制):" << pLaneObject->leftBreakPoints(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **QList< QPointF > rightBreakPoints(UnitOfMeasure unit)**
 
@@ -335,11 +653,39 @@ Worker节点标识，在分布式环境可用
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取右侧线断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的右侧线断点集:" << pLaneObject->rightBreakPoints() << endl;
+			qDebug() << "当前Section的laneObject的右侧线断点集(米制):" << pLaneObject->rightBreakPoints(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **QList< QVector3D > centerBreakPoint3Ds(UnitOfMeasure unit)**
 
 获取中心线三维断点集，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取中心线三维断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的中心线三维断点集:" << pLaneObject->centerBreakPoint3Ds() << endl;
+			qDebug() << "当前Section的laneObject的中心线三维断点集(米制):" << pLaneObject->centerBreakPoint3Ds(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **QList< QVector3D > leftBreakPoint3Ds(UnitOfMeasure unit)**
 
@@ -347,11 +693,39 @@ Worker节点标识，在分布式环境可用
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取左侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的左侧线三维断点集:" << pLaneObject->leftBreakPoint3Ds() << endl;
+			qDebug() << "当前Section的laneObject的左侧线三维断点集(米制):" << pLaneObject->leftBreakPoint3Ds(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **QList< QVector3D > rightBreakPoint3Ds(UnitOfMeasure unit)**
 
 获取右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的右侧线三维断点集:" << pLaneObject->rightBreakPoint3Ds() << endl;
+			qDebug() << "当前Section的laneObject的右侧线三维断点集(米制):" << pLaneObject->rightBreakPoint3Ds(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **QList< QVector3D > leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
 
@@ -361,6 +735,23 @@ Worker节点标识，在分布式环境可用
 [ in ] toPoint：中心线上某一点作为终点
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取左侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			QList<QPointF> lLeftPoints = pLaneObject->leftBreakPoints();
+			if(lLeftPoints.size() > 2) {
+				qDebug() << "当前Section的laneObject的左侧部分三维断点集:" << pLaneObject->leftBreak3DsPartly(lLeftPoints[0],lLeftPoints[2]) << endl;
+				qDebug() << "当前Section的laneObject的左侧部分三维断点集(米制):" << pLaneObject->leftBreak3DsPartly(lLeftPoints[0],lLeftPoints[2],UnitOfMeasure::Metric) << endl;
+			}
+		}
+	}
+```
+
 Ø **QList< QVector3D > rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
 
 获取右侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
@@ -369,6 +760,23 @@ Worker节点标识，在分布式环境可用
 [ in ] toPoint：中心线上某一点作为终点
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取右侧部分三维断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			QList<QPointF> lRightPoints = pLaneObject->rightBreakPoints();
+			if(lRightPoints.size() > 2) {
+				qDebug() << "当前Section的laneObject的右侧部分三维断点集:" << pLaneObject->rightBreak3DsPartly(lRightPoints[0],lRightPoints[2]) << endl;
+				qDebug() << "当前Section的laneObject的右侧部分三维断点集(米制):" << pLaneObject->rightBreak3DsPartly(lRightPoints[0],lRightPoints[2],UnitOfMeasure::Metric) << endl;
+			}
+		}
+	}
+```
+
 Ø **qreal distToStartPoint(const QPointF p, UnitOfMeasure unit)**
 
 中心线上一点到起点距离，默认单位：像素，可通过unit参数设置单位
@@ -376,6 +784,20 @@ Worker节点标识，在分布式环境可用
 参数：
 [ in ] p：当前点坐标
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//中心线上一点到起点距离，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的中心线上一点到起点距离:" << pLaneObject->distToStartPoint(pLaneObject->centerBreakPoints()[1]) << endl;
+			qDebug() << "当前Section的laneObject的中心线上一点到起点距离(米制):" << pLaneObject->distToStartPoint(pLaneObject->centerBreakPoints()[1],UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **qreal distToStartPointWithSegmIndex(const QPointF p, int segmIndex = 0, bool bOnCentLine = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
@@ -389,6 +811,20 @@ Worker节点标识，在分布式环境可用
 
 注：如传入米制参数，请勿遗忘传入segmIndex与bOnCentLine参数。
 
+举例：
+
+```cpp
+	//中心线上一点到起点距离，附加条件是该点所在车道上的分段序号，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "当前Section的laneObject的中心线上一点到起点距离:" << pLaneObject->distToStartPointWithSegmIndex(pLaneObject->centerBreakPoints()[1],1) << endl;
+			qDebug() << "当前Section的laneObject的中心线上一点到起点距离(米制):" << pLaneObject->distToStartPointWithSegmIndex(pLaneObject->centerBreakPoints()[1],1,true,UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex, UnitOfMeasure unit)**
 
 求中心线起点向前延伸dist距离后所在点及分段序号,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
@@ -401,14 +837,21 @@ Worker节点标识，在分布式环境可用
 举例：
 
 ```cpp
-//路段5最左侧车道向前延伸140米后所在点及分段序号
-ILink* pLink = gpTessInterface->netInterface()->findLink(5);
-	ILaneObject* pLaneObjLeft = pLink ->laneObjects().back();
-	QPointF outPoint;
-	int outIndex;
-	qreal dist = m2p(140);
-	if (pLaneObjLeft ->getPointAndIndexByDist(dist, outPoint, outIndex)) {
-qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" << outPoint.x() <<","<< outPoint.y() <<")，分段序号为：" << outIndex << endl;
+	//求中心线起点向前延伸dist距离后所在点及分段序号，默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			QPointF outPoint;
+			int outIndex;
+			qreal dist = 50;
+			if (pLaneObject ->getPointAndIndexByDist(dist, outPoint, outIndex)) {
+				qDebug() << "当前Section的laneObject的中心线上一点到起点距离:" << outPoint << endl;
+			}
+			if(pLaneObject->getPointAndIndexByDist(dist, outPoint, outIndex,UnitOfMeasure::Metric)) {
+				qDebug() << "当前Section的laneObject的中心线上一点到起点距离(米制):" << outPoint << endl;
+			}
+		}
 	}
 ```
 
@@ -421,17 +864,88 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 [ out ] outPoint：中心线起点向前延伸dist距离后所在点
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//求中心线起点向前延伸dist距离后所在点,默认单位：像素，可通过unit参数设置单位
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			QPointF outPoint;
+			qreal dist = 50;
+			if (pLaneObject ->getPointByDist(dist, outPoint)) {
+				qDebug() << "当前Section的laneObject的中心线上一点到起点距离:" << outPoint << endl;
+			}
+			if(pLaneObject->getPointByDist(dist, outPoint,UnitOfMeasure::Metric)) {
+				qDebug() << "当前Section的laneObject的中心线上一点到起点距离(米制):" << outPoint << endl;
+			}
+		}
+	}
+```
+
 Ø **void setOtherAttr(QJsonObject attr)**
 
 设置车道或"车道连接"其它属性
+
+举例：
+
+```cpp
+	//设置车道或"车道连接"其它属性
+	QJsonObject otherAttr;
+	otherAttr["newAttr"] = "add a new attr";
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			pLaneObject->setOtherAttr(otherAttr);
+			if(pLaneObject->isLane()) {
+				qDebug() << "当前LaneObject的其它属性:" << pLaneObject->castToLane()->otherAttr() << endl;
+			}
+			else{
+				qDebug() << "当前LaneObject的其它属性:" << pLaneObject->castToLaneConnector()->otherAttr() << endl;
+			}
+		}
+	}
+```
 
 Ø **ILane\* castToLane()**
 
 将ILaneObject转换为ILane，如果当前ILaneObject是"车道连接"则返回空指针
 
+举例：
+
+```cpp
+	//将ILaneObject转换为ILane，如果当前ILaneObject是"车道连接"则返回空指针
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			if(pLaneObject->isLane()) {
+				qDebug() << "当前LaneObject的其它属性:" << pLaneObject->castToLane()->otherAttr() << endl;
+			}
+		}
+	}
+```
+
 Ø **ILaneConnector\* castToLaneConnector()**
 
 将ILaneObject转换为ILaneConnector，如果当前ILaneObject是车道则返回空指针
+
+举例：
+
+```cpp
+	//将ILaneObject转换为ILaneConnector，如果当前ILaneObject是车道则返回空指针
+	QList<ISection*> lSections = gpTessInterface->netInterface()->sections();
+	for (ISection* pSection : lSections) {
+		QList<ILaneObject*> lLaneObjects = pSection->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			if(!pLaneObject->isLane()) {
+				qDebug() << "当前LaneObject的其它属性:" << pLaneObject->castToLaneConnector()->otherAttr() << endl;
+			}
+		}
+	}
+```
 
 ### 2.4 ILink
 
@@ -445,9 +959,29 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 
 类型，返回GLinkType
 
+举例：
+
+```cpp
+	//类型，返回GLinkType
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "当前Link的类型:" << pLink->gtype() << endl;
+	}
+```
+
 Ø **long id()**
 
 获取路段ID
+
+举例：
+
+```cpp
+	//获取路段ID
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "当前Link的ID:" << pLink->id() << endl;
+	}
+```
 
 Ø **qreal length(UnitOfMeasure unit)**
 
@@ -455,11 +989,33 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取路段长度，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "长度:" << pLink->length() << endl;
+		qDebug() << "路段:" << pLink->id() << "长度(米制):" << pLink->length(UnitOfMeasure::Metric) << endl;
+	}
+```
+
 Ø **qreal width(UnitOfMeasure unit)**
 
 获取路段宽度，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取路段宽度，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "宽度:" << pLink->width() << endl;
+		qDebug() << "路段:" << pLink->id() << "宽度(米制):" << pLink->width(UnitOfMeasure::Metric) << endl;
+	}
+```
 
 Ø **qreal z(UnitOfMeasure unit)**
 
@@ -467,37 +1023,122 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取路段高程，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "高程:" << pLink->z() << endl;
+		qDebug() << "路段:" << pLink->id() << "高程(米制):" << pLink->z(UnitOfMeasure::Metric) << endl;
+	}
+```
+
 Ø **qreal v3z(UnitOfMeasure unit)**
 
 获取路段高程,过载ISection的方法，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取路段高程,过载ISection的方法，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "高程(v3z):" << pLink->v3z() << endl;
+		qDebug() << "路段:" << pLink->id() << "高程(v3z,米制):" << pLink->v3z(UnitOfMeasure::Metric) << endl;
+	}
+```
+
 Ø **QString name()**
 
 获取路段名称
+
+举例：
+
+```cpp
+	//获取路段名称
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "名称:" << pLink->name() << endl;
+	}
+```
 
 Ø **void setName(QString name)**
 
 设置路段名称
 
+举例：
+
+```cpp
+	//设置路段名称
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		pLink->setName("Link_" + QString::number(pLink->id()));
+		qDebug() << "路段:" << pLink->id() << "名称:" << pLink->name() << endl;
+	}
+```
+
 Ø **QString linkType()**
 
 获取路段类型，如：城市主干道、城市次干道、人行道等
+
+举例：
+
+```cpp
+	//获取路段类型，如：城市主干道、城市次干道、人行道等
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "类型:" << pLink->linkType() << endl;
+	}
+```
 
 Ø **void setType(QString type)**
 
 设置路段类型，路段类型有10种，分别为：高速路、城市快速路、匝道、城市主要干道、次要干道、地方街道、非机动车道、人行道、公交专用道和机非共享
 
+举例：
+
+```cpp
+	//设置路段类型
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		pLink->setType("城市主干道");
+		qDebug() << "路段:" << pLink->id() << "类型:" << pLink->linkType() << endl;
+	}
+```
+
 Ø **int laneCount()**
 
 获取车道数
+
+举例：
+
+```cpp
+	//获取车道数
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "车道数:" << pLink->laneCount() << endl;
+	}
+```
 
 Ø **double limitSpeed(UnitOfMeasure unit)**
 
 获取路段最高限速，默认单位：千米/小时
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取路段最高限速，默认单位：千米/小时
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "限速:" << pLink->limitSpeed() << endl;
+		qDebug() << "路段:" << pLink->id() << "限速(米制):" << pLink->limitSpeed(UnitOfMeasure::Metric) << endl;
+	}
+```
 
 Ø **void setLimitSpeed(qreal speed, UnitOfMeasure unit)**
 
@@ -509,15 +1150,14 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
   举例：
 
 ```cpp
-//以L5路段为例
-	if (planNumber == 3) {
-		ILink* pLink5 = gpTessInterface->netInterface()->findLink(5);
-		qreal minSpeedOfLink5 = pLink5->minSpeed();
-		if (limitSpeed >= minSpeedOfLink5) {
-			pLink5->setLimitSpeed(static_cast< qreal >(limitSpeed));
-		}
+	//设置路段最高限速
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		pLink->setLimitSpeed(60);
+		qDebug() << "路段:" << pLink->id() << "限速:" << pLink->limitSpeed() << endl;
+		pLink->setLimitSpeed(60, UnitOfMeasure::Metric);
+		qDebug() << "路段:" << pLink->id() << "限速(米制):" << pLink->limitSpeed() << endl;
 	}
-
 ```
 
 Ø **qreal minSpeed(UnitOfMeasure unit)**
@@ -528,17 +1168,48 @@ qDebug() << "路段5最左侧车道向前延伸140米后所在点坐标为：(" 
 
 举例：
 
-```
-qreal minSpeedOfLink5 = pLink5->minSpeed();
+```cpp
+	//获取路段最低限速，默认单位：千米/小时
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		qDebug() << "路段:" << pLink->id() << "最低限速:" << pLink->minSpeed() << endl;
+		qDebug() << "路段:" << pLink->id() << "最低限速(米制):" << pLink->minSpeed(UnitOfMeasure::Metric) << endl;
+	}
 ```
 
 Ø **QList< ILane\* > lanes()**
 
 车道接口列表
 
+举例：
+
+```cpp
+	//获取车道接口列表
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {	
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "路段:" << pLink->id() << "车道:" << pLane->id() << endl;
+		}
+	}
+```
+
 Ø **QList< ILaneObject\* > laneObjects()**
 
 车道及"车道连接"的接口列表
+
+举例：
+
+```cpp
+	//获取车道及"车道连接"的接口列表
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {	
+		QList<ILaneObject*> lLaneObjects = pLink->laneObjects();
+		for (ILaneObject* pLaneObject : lLaneObjects) {
+			qDebug() << "路段:" << pLink->id() << "车道:" << pLaneObject->id() << endl;
+		}
+	}
+```
 
 Ø **QList< QPointF > centerBreakPoints(UnitOfMeasure unit)**
 
@@ -546,11 +1217,45 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取路段中心线断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<QPointF> lPoints = pLink->centerBreakPoints();
+		for (QPointF p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "中心线断点:" << p.x() << "," << p.y() << endl;
+		}
+		lPoints = pLink->centerBreakPoints(UnitOfMeasure::Metric);
+		for (QPointF p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "中心线断点(米制):" << p.x() << "," << p.y() << endl;
+		}
+	}
+```
+
 Ø **QList< QPointF > leftBreakPoints(UnitOfMeasure unit)**
 
 获取路段左侧线断点集，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取路段左侧线断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<QPointF> lPoints = pLink->leftBreakPoints();
+		for (QPointF p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "左侧线断点:" << p.x() << "," << p.y() << endl;
+		}
+		lPoints = pLink->leftBreakPoints(UnitOfMeasure::Metric);
+		for (QPointF p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "左侧线断点(米制):" << p.x() << "," << p.y() << endl;
+		}
+	}
+```
 
 Ø **QList< QPointF > rightBreakPoints(UnitOfMeasure unit)**
 
@@ -558,11 +1263,45 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取路段右侧线断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<QPointF> lPoints = pLink->rightBreakPoints();
+		for (QPointF p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "右侧线断点:" << p.x() << "," << p.y() << endl;
+		}
+		lPoints = pLink->rightBreakPoints(UnitOfMeasure::Metric);
+		for (QPointF p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "右侧线断点(米制):" << p.x() << "," << p.y() << endl;
+		}
+	}
+```
+
 Ø **QList< QVector3D > centerBreakPoint3Ds(UnitOfMeasure unit)**
 
 获取路段中心线三维断点集，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取路段中心线三维断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<QVector3D> lPoints = pLink->centerBreakPoint3Ds();
+		for (QVector3D p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "中心线三维断点:" << p.x() << "," << p.y() << "," << p.z() << endl;
+		}
+		lPoints = pLink->centerBreakPoint3Ds(UnitOfMeasure::Metric);
+		for (QVector3D p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "中心线三维断点(米制):" << p.x() << "," << p.y() << "," << p.z() << endl;
+		}
+	}
+```
 
 Ø **QList< QVector3D > leftBreakPoint3Ds(UnitOfMeasure unit)**
 
@@ -570,31 +1309,154 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取路段左侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<QVector3D> lPoints = pLink->leftBreakPoint3Ds();
+		for (QVector3D p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "左侧线三维断点:" << p.x() << "," << p.y() << "," << p.z() << endl;
+		}
+		lPoints = pLink->leftBreakPoint3Ds(UnitOfMeasure::Metric);
+		for (QVector3D p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "左侧线三维断点(米制):" << p.x() << "," << p.y() << "," << p.z() << endl;
+		}
+	}
+```
+
 Ø **QList< QVector3D > rightBreakPoint3Ds(UnitOfMeasure unit)**
 
 获取路段右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取路段右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<QVector3D> lPoints = pLink->rightBreakPoint3Ds();
+		for (QVector3D p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "右侧线三维断点:" << p.x() << "," << p.y() << "," << p.z() << endl;
+		}
+		lPoints = pLink->rightBreakPoint3Ds(UnitOfMeasure::Metric);
+		for (QVector3D p : lPoints) {
+			qDebug() << "路段:" << pLink->id() << "右侧线三维断点(米制):" << p.x() << "," << p.y() << "," << p.z() << endl;
+		}
+	}
+```
+
 Ø **QList< IConnector\* > fromConnectors()**
 
 获取上游连接段列表
+
+举例：
+
+```cpp
+	//获取上游连接段列表
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<IConnector*> lConnectors = pLink->fromConnectors();
+		for (IConnector* pConnector : lConnectors) {
+			qDebug() << "路段:" << pLink->id() << "上游连接段:" << pConnector->id() << endl;
+		}
+	}
+```
 
 Ø **QList< IConnector\* > toConnectors()**
 
 获取下游连接段列表
 
+举例：
+
+```cpp
+	//获取下游连接段列表
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<IConnector*> lConnectors = pLink->toConnectors();
+		for (IConnector* pConnector : lConnectors) {
+			qDebug() << "路段:" << pLink->id() << "下游连接段:" << pConnector->id() << endl;
+		}
+	}
+```
+
 Ø **void setOtherAttr(QJsonObject otherAttr)**
 
 设置路段其它属性
+
+举例：
+
+```cpp
+	//设置路段其它属性
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QJsonObject otherAttr;
+		otherAttr.insert("name", "test");
+		pLink->setOtherAttr(otherAttr);
+	}
+```
+
+Ø **QJsonObject otherAttr()**
+
+获取路段其它属性
+
+举例：
+
+```cpp
+	//获取路段其它属性
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QJsonObject otherAttr = pLink->otherAttr();
+		qDebug() << "路段:" << pLink->id() << "其它属性:" << otherAttr.value("name").toString() << endl;
+	}
+```
 
 Ø **void setLaneTypes(QList< QString > lType)**
 
 设置车道属性，属性类型包括："机动车道"、"机非共享"、"非机动车道"、"公交专用道"，车道顺序从右到左。
 
+举例：
+
+```cpp
+	//设置车道属性
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		if(pLink->laneCount() == 4)
+		{
+			QList<QString> lTypes;
+			lTypes.append("机动车道");
+			lTypes.append("机非共享");
+			lTypes.append("非机动车道");
+			lTypes.append("公交专用道");
+			pLink->setLaneTypes(lTypes);
+		}
+	}
+```
+
 Ø **void setLaneOtherAtrrs(QList< QJsonObject > lAttrs)**
 
 设置车道其它属性
+
+举例：
+
+```cpp
+	//设置车道其它属性
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<QJsonObject> lAttrs;
+		QJsonObject attr1, attr2, attr3;
+		attr1.insert("name", "test1");
+		attr2.insert("name", "test2");
+		attr3.insert("name", "test3");
+		lAttrs.append(attr1);
+		lAttrs.append(attr2);
+		lAttrs.append(attr3);
+		pLink->setLaneOtherAtrrs(lAttrs);
+	}
+```
 
 Ø **qreal distToStartPoint(const QPointF p, UnitOfMeasure unit)**
 
@@ -602,6 +1464,20 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] p：当前点坐标
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取中心线上一点到起点距离
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QPointF p(100, 100);
+		qreal dist = pLink->distToStartPoint(p);
+		qreal dist1 = pLink->distToStartPoint(p, UnitOfMeasure::Metric);
+		qDebug() << "路段:" << pLink->id() << "中心线上一点到起点距离:" << dist << endl;
+		qDebug() << "路段:" << pLink->id() << "中心线上一点到起点距离(米制):" << dist1 << endl;
+	}
+```
 
 Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex, UnitOfMeasure unit)**
 
@@ -612,6 +1488,27 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 [ out ] outIndex：中心线起点向前延伸dist距离后所在分段序号
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取中心线起点向前延伸dist距离后所在点及分段序号
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QPointF outPoint;
+		int outIndex;
+		if(pLink->getPointAndIndexByDist(100, outPoint, outIndex))
+		{
+			qDebug() << "路段:" << pLink->id() << "中心线起点向前延伸dist距离后所在点:" << outPoint.x() << "," << outPoint.y() << endl;
+			qDebug() << "路段:" << pLink->id() << "中心线起点向前延伸dist距离后所在分段序号:" << outIndex << endl;
+		}
+		if(pLink->getPointAndIndexByDist(100, outPoint, outIndex, UnitOfMeasure::Metric))
+		{
+			qDebug() << "路段:" << pLink->id() << "中心线起点向前延伸dist距离后所在点(米制):" << outPoint.x() << "," << outPoint.y() << endl;
+			qDebug() << "路段:" << pLink->id() << "中心线起点向前延伸dist距离后所在分段序号(米制):" << outIndex << endl;
+		}
+	}
+```
+
 Ø **bool getPointByDist(qreal dist, QPointF& outPoint, UnitOfMeasure unit)**
 
 求中心线起点向前延伸dist距离后所在点,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
@@ -620,9 +1517,40 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 [ out ] outPoint：中心线起点向前延伸dist距离后所在点
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取中心线起点向前延伸dist距离后所在点
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QPointF outPoint;
+		if(pLink->getPointByDist(100, outPoint))
+		{
+			qDebug() << "路段:" << pLink->id() << "中心线起点向前延伸dist距离后所在点:" << outPoint.x() << "," << outPoint.y() << endl;
+		}
+		if(pLink->getPointByDist(100, outPoint, UnitOfMeasure::Metric))
+		{
+			qDebug() << "路段:" << pLink->id() << "中心线起点向前延伸dist距离后所在点(米制):" << outPoint.x() << "," << outPoint.y() << endl;
+		}
+	}
+```
+
 Ø **QPolygonF polygon()**
 
 获取路段的多边型轮廓顶点
+
+举例：
+
+```cpp
+	//获取路段的多边型轮廓顶点
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QPolygonF polygon = pLink->polygon();
+		for (QPointF p : polygon) {
+			qDebug() << "路段:" << pLink->id() << "多边型轮廓顶点:" << p.x() << "," << p.y() << endl;
+		}
+	}
+```
 
 ### 2.5 ILane
 
@@ -636,17 +1564,69 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 类型，车道类型为GLaneType
 
+举例：
+
+```cpp
+	//获取车道类型
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "车道类型:" << pLane->gtype() << endl;
+		}
+	}
+```
+
 Ø **long id()**
 
 获取车道ID
+
+举例：
+
+```cpp
+	//获取车道ID
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << endl;
+		}
+	}
+```
 
 Ø **ILink \*link()**
 
 获取车道所在路段
 
+举例：
+
+```cpp
+	//获取车道所在路段
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "所在路段:" << pLane->link()->id() << endl;
+		}
+	}
+```
+
 Ø **ISection\* section()**
 
 获取车道所属Section
+
+举例：
+
+```cpp
+	//获取车道所属Section
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "所属Section:" << pLane->section()->id() << endl;
+		}
+	}
+```
 
 Ø **qreal length(UnitOfMeasure unit)**
 
@@ -654,27 +1634,107 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取车道长度
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "长度:" << pLane->length() << endl;
+			qDebug() << "车道:" << pLane->id() << "长度(米制):" << pLane->length(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **qreal width(UnitOfMeasure unit)**
 
 获取车道宽度，默认单位：像素，可通过unit参数设置单位
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取车道宽度
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "宽度:" << pLane->width() << endl;
+			qDebug() << "车道:" << pLane->id() << "宽度(米制):" << pLane->width(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **int number()**
 
 获取车道序号，从0开始（自外侧往内侧）
+
+举例：
+
+```cpp
+	//获取车道序号
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "序号:" << pLane->number() << endl;
+		}
+	}
+```
 
 Ø **QString actionType()**
 
 获取车道的行为类型
 
+举例：
+
+```cpp
+	//获取车道的行为类型
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "行为类型:" << pLane->actionType() << endl;
+		}
+	}
+```
+
 Ø **QList< ILaneConnector\* > fromLaneConnectors()**
 
 获取上游车道连接列表
 
+举例：
+
+```cpp
+	//获取上游车道连接列表
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "上游车道连接列表:" << pLane->fromLaneConnectors() << endl;
+		}
+	}
+```
+
 Ø **QList< ILaneConnector\* > toLaneConnectors()**
 
 获取下游车道连接列表
+
+举例：
+
+```cpp
+	//获取下游车道连接列表
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "下游车道连接列表:" << pLane->toLaneConnectors() << endl;
+		}
+	}
+```
 
 Ø **QList< QPointF > centerBreakPoints(UnitOfMeasure unit)**
 
@@ -683,12 +1743,40 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取车道中心线断点集
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "中心线断点集:" << pLane->centerBreakPoints() << endl;
+			qDebug() << "车道:" << pLane->id() << "中心线断点集(米制):" << pLane->centerBreakPoints(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **QList< QPointF > leftBreakPoints(UnitOfMeasure unit)**
 
 获取车道左侧线断点集，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取车道左侧线断点集
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "左侧线断点集:" << pLane->leftBreakPoints() << endl;
+			qDebug() << "车道:" << pLane->id() << "左侧线断点集(米制):" << pLane->leftBreakPoints(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **QList< QPointF > rightBreakPoints(UnitOfMeasure unit)**
 
@@ -697,12 +1785,40 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取车道右侧线断点集
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "右侧线断点集:" << pLane->rightBreakPoints() << endl;
+			qDebug() << "车道:" << pLane->id() << "右侧线断点集(米制):" << pLane->rightBreakPoints(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **QList< QVector3D > centerBreakPoint3Ds(UnitOfMeasure unit)**
 
 获取车道中心线三维断点集，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取车道中心线三维断点集
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "中心线三维断点集:" << pLane->centerBreakPoint3Ds() << endl;
+			qDebug() << "车道:" << pLane->id() << "中心线三维断点集(米制):" << pLane->centerBreakPoint3Ds(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **QList< QVector3D > leftBreakPoint3Ds(UnitOfMeasure unit)**
 
@@ -711,12 +1827,40 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取车道左侧线三维断点集
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "左侧线三维断点集:" << pLane->leftBreakPoint3Ds() << endl;
+			qDebug() << "车道:" << pLane->id() << "左侧线三维断点集(米制):" << pLane->leftBreakPoint3Ds(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **QList< QVector3D > rightBreakPoint3Ds(UnitOfMeasure unit)**
 
 获取车道右侧线三维断点集，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取车道右侧线三维断点集
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "右侧线三维断点集:" << pLane->rightBreakPoint3Ds() << endl;
+			qDebug() << "车道:" << pLane->id() << "右侧线三维断点集(米制):" << pLane->rightBreakPoint3Ds(UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **QList< QVector3D > leftBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
 
@@ -725,7 +1869,23 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] fromPoint：中心线上某一点作为起点
 [ in ] toPoint：中心线上某一点作为终点
-[ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+[ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取左侧部分三维断点集
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			QList<QVector3D> lLeftBreak3Ds = pLane->leftBreakPoint3Ds();
+			QList<QVector3D> lLeftBreak3DsMetric = pLane->leftBreakPoint3Ds(UnitOfMeasure::Metric);
+			qDebug() << "车道:" << pLane->id() << "左侧部分三维断点集:" << pLane->leftBreak3DsPartly(lLeftBreak3Ds.first(),lLeftBreak3Ds.last()) << endl;
+			qDebug() << "车道:" << pLane->id() << "左侧部分三维断点集(米制):" << pLane->leftBreak3DsPartly(lLeftBreak3DsMetric.first(),lLeftBreak3DsMetric.last(),UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **QList< QVector3D > rightBreak3DsPartly(QPointF fromPoint, QPointF toPoint, UnitOfMeasure unit)**
 
@@ -735,6 +1895,22 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 [ in ] toPoint：中心线上某一点作为终点
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取右侧部分三维断点集
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			QList<QVector3D> lRightBreak3Ds = pLane->rightBreakPoint3Ds();
+			QList<QVector3D> lRightBreak3DsMetric = pLane->rightBreakPoint3Ds(UnitOfMeasure::Metric);
+			qDebug() << "车道:" << pLane->id() << "右侧部分三维断点集:" << pLane->rightBreak3DsPartly(lRightBreak3Ds.first(),lRightBreak3Ds.last()) << endl;
+			qDebug() << "车道:" << pLane->id() << "右侧部分三维断点集(米制):" << pLane->rightBreak3DsPartly(lRightBreak3DsMetric.first(),lRightBreak3DsMetric.last(),UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **qreal distToStartPoint(const QPointF p, UnitOfMeasure unit)**
 
 中心线上一点到起点距离，默认单位：像素，可通过unit参数设置单位
@@ -742,6 +1918,20 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 参数：
 [ in ] p：当前点坐标
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```cpp
+	//获取中心线上一点到起点距离
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "中心线上一点到起点距离:" << pLane->distToStartPoint(QPointF(100,100)) << endl;
+			qDebug() << "车道:" << pLane->id() << "中心线上一点到起点距离(米制):" << pLane->distToStartPoint(QPointF(100,100),UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
 
 Ø **qreal distToStartPointWithSegmIndex(const QPointF p, int segmIndex = 0, bool bOnCentLine = true, UnitOfMeasure unit = UnitOfMeasure::Default)**
 
@@ -755,6 +1945,20 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 注：如传入米制参数，请勿遗忘传入segmIndex与bOnCentLine参数。
 
+举例：
+
+```cpp
+	//获取中心线上一点到起点距离
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "中心线上一点到起点距离:" << pLane->distToStartPointWithSegmIndex(QPointF(100,100),0) << endl;
+			qDebug() << "车道:" << pLane->id() << "中心线上一点到起点距离(米制):" << pLane->distToStartPointWithSegmIndex(QPointF(100,100),0,true,UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **bool getPointAndIndexByDist(qreal dist, QPointF& outPoint, int& outIndex, UnitOfMeasure unit)**
 
 求中心线起点向前延伸dist距离后所在点及分段序号,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
@@ -765,6 +1969,22 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 [ out ] outIndex：中心线起点向前延伸dist距离后所在分段序号
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取中心线上一点到起点距离
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			QPointF outPoint;
+			int outIndex;
+			qDebug() << "车道:" << pLane->id() << "中心线上一点到起点距离:" << pLane->getPointAndIndexByDist(100,outPoint,outIndex) << endl;
+			qDebug() << "车道:" << pLane->id() << "中心线上一点到起点距离(米制):" << pLane->getPointAndIndexByDist(100,outPoint,outIndex,UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **bool getPointByDist(qreal dist, QPointF& outPoint, UnitOfMeasure unit)**
 
 求中心线起点向前延伸dist距离后所在点,如果目标点不在中心线上返回false，否则返回true，默认单位：像素，可通过unit参数设置单位
@@ -774,9 +1994,39 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 [ out ] outPoint：中心线起点向前延伸dist距离后所在点
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```cpp
+	//获取中心线上一点到起点距离
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			QPointF outPoint;
+			qDebug() << "车道:" << pLane->id() << "中心线上一点到起点距离:" << pLane->getPointByDist(100,outPoint) << endl;
+			qDebug() << "车道:" << pLane->id() << "中心线上一点到起点距离(米制):" << pLane->getPointByDist(100,outPoint,UnitOfMeasure::Metric) << endl;
+		}
+	}
+```
+
 Ø **void setOtherAttr(QJsonObject attr)**
 
 设置车道其它属性
+
+举例：
+
+```cpp
+	//设置车道其它属性
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			QJsonObject otherAttr;
+			otherAttr.insert("laneType","机动车道");
+			pLane->setOtherAttr(otherAttr);
+		}
+	}
+```
 
 Ø **void setLaneType(QString type)**
 
@@ -786,9 +2036,35 @@ qreal minSpeedOfLink5 = pLink5->minSpeed();
 
 [ in ] type：车道类型，选下列几种类型其中一种："机动车道"、"机非共享"、"非机动车道"、"公交专用道"
 
+举例：
+
+```cpp
+	//设置车道类型
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			pLane->setLaneType("机动车道");
+		}
+	}
+```
+
 Ø **QPolygonF polygon()**
 
 获取车道的多边型轮廓顶点
+
+举例：
+
+```cpp
+	//获取车道的多边型轮廓顶点
+	QList<ILink*> lLinks = gpTessInterface->netInterface()->links();
+	for (ILink* pLink : lLinks) {
+		QList<ILane*> lLanes = pLink->lanes();
+		for (ILane* pLane : lLanes) {
+			qDebug() << "车道:" << pLane->id() << "多边型轮廓顶点:" << pLane->polygon() << endl;
+		}
+	}
+```
 
 ### 2.6 IConnector
 
@@ -2645,7 +3921,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] plan：要移除的信控方案
 
-Ø **QList< ISignalPlan\* > IPlans()**
+Ø **QList< ISignalPlan\* > plans()**
 
 获取所有信控方案
 
@@ -2692,7 +3968,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取动态收费车道信息
 
-Ø **QVector< ITollPoint\* > tollPoints()**
+Ø **std::vector< ITollPoint\* > tollPoints()**
 
 获取收费车道所有收费点
 
@@ -2720,15 +3996,15 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取距路段起点距离，单位：米
 
-Ø **QList< ITollRouting\* > routings()**
+Ø **std::vector< ITollRouting\* > routings()**
 
 获取相关收费路径
 
-Ø **QList< Online::TollStation::DynaTollDisInfo > tollDisInfoList()**
+Ø **std::vector< Online::TollStation::DynaTollDisInfo > tollDisInfoList()**
 
 获取收费分配信息列表
 
-Ø **void updateTollDisInfoList(const QList< Online::TollStation::DynaTollDisInfo >&)**
+Ø **void updateTollDisInfoList(const std::vector< Online::TollStation::DynaTollDisInfo >&)**
 
 更新收费分配信息列表
 
@@ -2777,7 +4053,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] pRoad：路段或连接段
 
-Ø **QList< ILink\* > getLinks()**
+Ø **std::vector< ILink\* > getLinks()**
 
 获取路段序列
 
@@ -2889,7 +4165,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] name：新名称
 
-Ø **QVector< IParkingStall\* > parkingStalls()**
+Ø **std::vector< IParkingStall\* > parkingStalls()**
 
 获取所有停车位
 
@@ -2921,18 +4197,18 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取停车决策点距路段起点距离，单位：米
 
-Ø **QList< IParkingRouting\* > routings()**
+Ø **std::vector< IParkingRouting\* > routings()**
 
 获取相关停车路径
 
-Ø **bool updateParkDisInfo(const QList< Online::ParkingLot::DynaParkDisInfo >& tollDisInfoList)**
+Ø **bool updateParkDisInfo(const std::vector< Online::ParkingLot::DynaParkDisInfo >& tollDisInfoList)**
 
 更新停车分配信息
 
 参数：
 [ in ] tollDisInfoList：停车分配信息列表
 
-Ø **QList< Online::ParkingLot::DynaParkDisInfo > parkDisInfoList()**
+Ø **std::vector< Online::ParkingLot::DynaParkDisInfo > parkDisInfoList()**
 
 获取停车分配信息列表
 
@@ -2978,7 +4254,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 参数：
 [ in ] pRoad：路段或连接段
 
-Ø **QList< ILink\* > getLinks()**
+Ø **std::vector< ILink\* > getLinks()**
 
 获取路段序列
 
@@ -5325,22 +6601,6 @@ openNetFile(QString::fromLocal8Bit("C:/TESSNG/Example/杭州武林门区域路�
 ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignalPhase(7);  
 ```
 
-Ø **int signalGroupCount()**
-
-信号灯组数
-
-Ø **QList< long > signalGroupIds()**
-
-信号灯组ID集
-
-Ø **QList< ISignalGroup\* > signalGroups()**
-
-信号灯组集
-
-Ø **ISignalGroup\* findSignalGroup(long id)**
-
-根据信号灯组ID查找信号灯组
-
 Ø **QList< IDispatchPoint\* > dispatchPoints()**
 
 发车点集。
@@ -6083,58 +7343,13 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 
 返回：行程时间检测器对象
 
-Ø **ISignalGroup\* createSignalGroup(QString name, int period, long fromTime, long toTime)**
-
-创建信号灯组
-
-参数：
-
-[ in ] name：灯组名称 
-
-[ in ] period：周期，默认单位：秒
-
-[ in ] fromTime：起始时间，默认单位：秒
-
-[ in ] toTime:结束时间,默认单位：秒
-
-返回：信号灯组对象
-
-举例：
-
-```cpp
-//创建信号灯组
-	ISignalGroup* pSignalGroup = gpTessInterface->netInterface()->createSignalGroup(QObject::tr("信号灯组1"), 60, 1, 3600);
-```
-
-Ø **ISignalPhase\* createSignalPhase(ISignalGroup\* pGroup, QString name, QList< Online::ColorInterval > lColor)**
-
-创建相位
-
-参数：
-
-[ in ] pGroup：信号灯组
-
-[ in ] name：相位名称
-
-[ in ] lColor：相位灯色序列，新建相位排在已有相位序列的最后
-
-返回：信号相位对象
-
-举例：
-
-```cpp
-//创建相位,40秒绿灯，黄灯3秒，全红3秒
-	Online::ColorInterval green("绿", 40), yellow("黄", 3), red("红", 3);
-	ISignalPhase* pSignalPhase = gpTessInterface->netInterface()->createSignalPhase(pSignalGroup, QObject::tr("信号灯组1相位1"), QList< Online::ColorInterval>() << green << yellow << red);
-```
-
 Ø **void removeSignalPhase(ISignalPlan\* pPlan, long phaseId)**
 
 移除已有相位，相位移除后，原相位序列自动重排,
 
 参数：
 
-[ in ] pGroup：信号灯组对象
+[ in ] pPlan：信控方案对象
 
 [ in ] phaseId：将要移除的相位ID
 
@@ -6593,15 +7808,15 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：保通开口长度
 
-Ø **int TrafficControllerCount()**
+Ø **int trafficControllerCount()**
 
 信号机数量
 
-Ø **QList< long > TrafficControllerIds()**
+Ø **QList< long > trafficControllerIds()**
 
 信号机ID集
 
-Ø **QList< ITrafficController\* > ITrafficController()**
+Ø **QList< ITrafficController\* > trafficControllers()**
 
 信号机集
 
@@ -6645,14 +7860,14 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数：
 [ in ] name：信控方案名称
 
-Ø **ITrafficController\* creatTrafficController(QString name)**
+Ø **ITrafficController\* createTrafficController(QString name)**
 
 创建信号机
 
 参数：
 [ in ] name：信号机名称
 
-Ø **ISignalPlan\* creatSignalPlan(ITrafficController\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
+Ø **ISignalPlan\* createSignalPlan(ITrafficController\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
 
 创建信控方案
 
@@ -6675,6 +7890,14 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 Ø **void addSignalPhaseToLamp(int SignalPhaseId, ISignalLamp\* signalLamp)**
 
 信号灯添加绑定的相位
+
+参数：
+[ in ] SignalPhaseId：信号相位ID
+[ in ] signalLamp：信号灯对象
+
+Ø **void addCrossWalkSignalPhaseToLamp(int SignalPhaseId, ISignalLamp\* signalLamp)**
+
+添加行人信号灯
 
 参数：
 [ in ] SignalPhaseId：信号相位ID
@@ -6723,19 +7946,19 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回：限速区对象
 
-Ø **QList< ITollLane\* > tollLanes()**
+Ø **std::vector< ITollLane\* > tollLanes()**
 
 获取所有收费车道列表
 
-Ø **QList< ITollDecisionPoint\* > tollDecisionPoints()**
+Ø **std::vector< ITollDecisionPoint\* > tollDecisionPoints()**
 
 获取所有收费决策点列表
 
-Ø **QList< IParkingRegion\* > parkingRegions()**
+Ø **std::vector< IParkingRegion\* > parkingRegions()**
 
 获取所有停车区列表
 
-Ø **QList< IParkingDecisionPoint\* > parkingDecisionPoints()**
+Ø **std::vector< IParkingDecisionPoint\* > parkingDecisionPoints()**
 
 获取所有停车决策点列表
 
@@ -6778,6 +8001,30 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 Ø **void removeParkingRouting(IParkingRouting\* pIParkingRouting)**
 
 移除停车路径
+
+Ø **void removeTollLaneById(long id)**
+
+通过ID移除收费车道
+
+Ø **void removeTollDecisionPointById(long id)**
+
+通过ID移除收费决策点
+
+Ø **void removeParkingRegionById(long id)**
+
+通过ID移除停车区
+
+Ø **void removeParkingDecisionPointById(long id)**
+
+通过ID移除停车决策点
+
+Ø **void removeTollRoutingById(long id)**
+
+通过ID移除收费路径
+
+Ø **void removeParkingRoutingById(long id)**
+
+通过ID移除停车路径
 
 Ø **ITollLane\* createTollLane(const Online::TollStation::DynaTollLane& param)**
 
@@ -6849,7 +8096,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] pDeciPoint：停车决策点
 [ in ] pIParkingRegion：停车区
 
-Ø **QList< Online::TollStation::DynaTollParkingTimeDis > tollParkingTimeDis()**
+Ø **std::vector< Online::TollStation::DynaTollParkingTimeDis > tollParkingTimeDis()**
 
 获取收费站停车时距分布列表
 
@@ -6874,7 +8121,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数：
 [ in ] param：停车时距分布参数
 
-Ø **QList< Online::ParkingLot::DynaParkingTimeDis > parkingTimeDis()**
+Ø **std::vector< Online::ParkingLot::DynaParkingTimeDis > parkingTimeDis()**
 
 获取停车场停车时距分布列表
 
@@ -6983,7 +8230,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] theta：参数θ(0.01-1)
 [ in ] bpra：BPR路阻参数A(0.05-0.5)
 [ in ] bprb：BPR路阻参数B(1-10)
-[ in ] maxIterateNum：最大迭代次数(1-1000)
+[ in ] maxIterateNum：最大迭代次数(1-5000)
 [ in ] useNewPath：是否重新构建静态路径
 
 Ø **bool updatePathBuildParams(bool deciPointPosFlag, bool laneConnectorFlag, long minPathNum = 3)**
