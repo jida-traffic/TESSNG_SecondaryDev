@@ -5708,9 +5708,31 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 获取导向箭头ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lGuidArrows = netiface.guidArrows()
+for guidArrow in lGuidArrows:
+    print(f"导向箭头的ID为{guidArrow.id()}")
+```
+
  **def lane(self) -> Tessng.ILane: ...**
 
 获取导向箭头所在的车道
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lGuidArrows = netiface.guidArrows()
+for guidArrow in lGuidArrows:
+    print(f"导向箭头{guidArrow.id()}所在的车道为{guidArrow.lane()}")
+```
 
  **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -5718,15 +5740,50 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lGuidArrows = netiface.guidArrows()
+for guidArrow in lGuidArrows:
+    print(f"导向箭头{guidArrow.id()}的长度，为{guidArrow.length()}")
+    print(f"导向箭头{guidArrow.id()}的长度（米制），为{guidArrow.length(UnitOfMeasure.Metric)}米")
+```
+
  **def distToTerminal(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取导向箭头到的终点距离，默认单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lGuidArrows = netiface.guidArrows()
+for guidArrow in lGuidArrows:
+    print(f"导向箭头{guidArrow.id()}的终点距离，为{guidArrow.distToTerminal()}")
+    print(f"导向箭头{guidArrow.id()}的终点距离（米制），为{guidArrow.distToTerminal(UnitOfMeasure.Metric)}米")
+```
+
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取导向箭头的多边型轮廓的顶点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IVehicleTravelDetector
+lGuidArrows = netiface.guidArrows()
+for guidArrow in lGuidArrows:
+    print(f"导向箭头{guidArrow.id()}的多边型轮廓的顶点，为{guidArrow.polygon()}")
+```
 
 **案例代码**
 
@@ -5761,9 +5818,31 @@ def showGuidArrowAttr(netiface):
 
 获取事故区ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区的ID为{accidentZone.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取事故区名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区的名称，为{accidentZone.name()}")
+```
 
  **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -5771,25 +5850,83 @@ def showGuidArrowAttr(netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}距所在路段起点的距离，为{accidentZone.location()}")
+    print(f"事故区{accidentZone.id()}距所在路段起点的距离（米制），为{accidentZone.location(UnitOfMeasure.Metric)}米")
+```
+
  **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区长度，默认单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}的长度，为{accidentZone.zoneLength()}")
+    print(f"事故区{accidentZone.id()}的长度（米制），为{accidentZone.zoneLength(UnitOfMeasure.Metric)}米")
+```
+
  **def limitedSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区当前时段限速，默认单位：像素(km/h)，可通过unit参数设置单位  
 参数：  
-\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位(km/h)，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}的限速，为{accidentZone.limitedSpeed()}")
+    print(f"事故区{accidentZone.id()}的限速（米制），为{accidentZone.limitedSpeed(UnitOfMeasure.Metric)}km/h")
+```
 
  **def section(self) -> Tessng.ISection: ...**
 
 获取事故区所在的路段或连接段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}所在的路段或连接段，为{accidentZone.section()}")
+```
+
  **def roadId(self) -> int: ...**
 
 获取事故区所在路段的ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}所在路段的ID，为{accidentZone.roadId()}")
+```
 
  **def roadType(self) -> str: ...**
 
@@ -5798,15 +5935,28 @@ def showGuidArrowAttr(netiface):
 举例：
 
 ```python
-# 获取事故区所在的道路类型
-zone = tessngIFace().netInterface().createAccidentZone(accidentZone)
-print(zone.roadType())
-
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}所在的道路类型，为{accidentZone.roadType()}")
 ```
 
  **def laneObjects(self) -> typing.List<Tess.ILaneObjects>: ...**
 
 获取事故区当前时段占用的车道列表
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}当前时段占用的车道列表，为{accidentZone.laneObjects()}")
+```
 
  **def controlLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -5814,11 +5964,41 @@ print(zone.roadType())
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}当前时段控制距离，为{accidentZone.controlLength()}")
+    print(f"事故区{accidentZone.id()}当前时段控制距离（米制），为{accidentZone.controlLength(UnitOfMeasure.Metric)}米")
+```
+
  **def addAccidentZoneInterval(self，param:Tess.Online.DynaAccidentZoneIntervalParam) -> Tess.IAccidentZoneInterval: ...**
 
 添加事故时段, 
 参数：  
-\[in\]   param：事故时段参数,入参数据结构见pyi文件的 Online.DynaAccidentZoneIntervalParam类 
+\[in\]   param：事故时段参数,入参数据结构见pyi文件的 Online.DynaAccidentZoneIntervalParam类
+
+举例：
+
+```python
+    param = accidentZoneIntervals[-1]
+    accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
+    accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
+    accidentZoneIntervalParam.startTime = param.endTime()
+    accidentZoneIntervalParam.endTime = param.endTime() + 300
+    accidentZoneIntervalParam.length = param.length()
+    accidentZoneIntervalParam.location = param.location()
+    accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
+    accidentZoneIntervalParam.controlLength = param.controlLength()
+    laneNumbers =  [lane.number() for lane in netiface.findLink(acczone.roadId()).lanes()]
+    accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
+
+    accidentZoneInterval = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+```
 
  **def removeAccidentZoneInterval(self，accidentZoneIntervalId:int) -> None: ...**
 
@@ -5826,21 +6006,97 @@ print(zone.roadType())
 参数：  
 \[in\] accidentZoneIntervalId：事故时段ID
 
+举例：
+
+```python
+    accidentZoneIntervals=acczone.accidentZoneIntervals()
+    param = accidentZoneIntervals[-1]
+    accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
+    accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
+    accidentZoneIntervalParam.startTime =param.endTime()
+    accidentZoneIntervalParam.endTime = param.endTime()+300
+    accidentZoneIntervalParam.length = param.length()
+    accidentZoneIntervalParam.location = param.location()
+    accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
+    accidentZoneIntervalParam.controlLength = param.controlLength()
+    laneNumbers =  [lane.number() for lane in netiface.findLink(acczone.roadId()).lanes()]
+    accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
+
+    accidentZoneInterval = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+
+    accidentZoneIntervalParam1 = accidentZoneIntervalParam
+    accidentZoneIntervalParam1.startTime =accidentZoneIntervalParam1.endTime
+    accidentZoneIntervalParam1.endTime = accidentZoneIntervalParam1.endTime+300
+    accidentZoneInterval1 = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+
+    # 移除刚添加的事故时段accidentZoneInterval1
+    acczone.removeAccidentZoneInterval(accidentZoneInterval1.id())
+```
+
  **def updateAccidentZoneInterval(self，param:Tess.Online.DynaAccidentZoneIntervalParam) -> bool: ...**
 
 更新事故时段
 参数：  
-\[in\] param：事故时段参数,入参数据结构见pyi文件的 Online.DynaAccidentZoneIntervalParam类 
+\[in\] param：事故时段参数,入参数据结构见pyi文件的 Online.DynaAccidentZoneIntervalParam类
 
- **def findAccidentZoneIntervalById(self，accidentZoneIntervalId:int) -> Tess.IAccidentZoneInterval: ...**
+举例：
+
+```python
+    accidentZoneIntervals=acczone.accidentZoneIntervals()
+    param = accidentZoneIntervals[-1]
+    accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
+    accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
+    accidentZoneIntervalParam.startTime = param.endTime()
+    accidentZoneIntervalParam.endTime = param.endTime() + 300
+    accidentZoneIntervalParam.length = param.length()
+    accidentZoneIntervalParam.location = param.location()
+    accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
+    accidentZoneIntervalParam.controlLength = param.controlLength()
+    laneNumbers =  [lane.number() for lane in netiface.findLink(acczone.roadId()).lanes()]
+    accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
+
+    accidentZoneInterval = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+
+    accidentZoneIntervalParam1 = accidentZoneIntervalParam
+    accidentZoneIntervalParam1.startTime =accidentZoneIntervalParam1.endTime
+    accidentZoneIntervalParam1.endTime = accidentZoneIntervalParam1.endTime+300
+    accidentZoneInterval1 = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+
+    accidentZoneIntervalParam.controlLength = param.controlLength() + 10
+    acczone.updateAccidentZoneInterval(accidentZoneIntervalParam)
+```
+
+ **def accidentZoneIntervals(self) -> typing.List<Tess.IAccidentZoneInterval>: ...**
 
 获取所有事故时段
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}的事故时段，为{accidentZone.accidentZoneIntervals()}")
+```
 
  **def findAccidentZoneIntervalById(self，accidentZoneIntervalId:int) -> Tess.IAccidentZoneInterval: ...**
 
 根据ID查询事故时段
 参数：  
-\[in\] accidentZoneIntervalId：事故时段ID 
+\[in\] accidentZoneIntervalId：事故时段ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    print(f"事故区{accidentZone.id()}的事故时段，为{accidentZone.findAccidentZoneIntervalById(accidentZoneIntervalId)}")
+```
 
 **def findAccidentZoneIntervalByStartTime(self，startTime:int) -> Tess.IAccidentZoneInterval: ...**
 
@@ -5909,30 +6165,110 @@ def showAccidentZoneAttr(self, netiface):
 
 获取事故时段ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段ID为{accidentZoneInterval.id()}")
+```
+
  **def accidentZoneId(self) -> int: ...**
 
 获取所属事故区ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段所属事故区ID为{accidentZoneInterval.accidentZoneId()}")
+```
 
  **def startTime(self) -> int: ...**
 
 获取事故区开始时间
 
- **def length(UnitOfMeasure unit -> float: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段开始时间为{accidentZoneInterval.startTime()}")
+```
+
+ **def endTime(self) -> int: ...**
+
+获取事故区结束时间
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段结束时间为{accidentZoneInterval.endTime()}")
+```
+
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区在该时段的长度，默认单位：像素，可通过unit参数设置单位
 
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def endTime(self) -> int: ...**
+举例：
 
-获取事故区结束时间
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段长度为{accidentZoneInterval.length()}")
+        print(f"事故区{accidentZone.id()}的事故时段长度为{accidentZoneInterval.length(UnitOfMeasure.Metric)}")
+```
 
  **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区在该时段的距起点距离，默认单位：像素，可通过unit参数设置单位  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段距起点距离为{accidentZoneInterval.location()}")
+        print(f"事故区{accidentZone.id()}的事故时段距起点距离为{accidentZoneInterval.location(UnitOfMeasure.Metric)}")
+```
 
  **def limitedSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -5941,16 +6277,57 @@ def showAccidentZoneAttr(self, netiface):
 参数：   
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位(km/h)，Default表示无单位限制
 
- **def controlLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段限速为{accidentZoneInterval.limitedSpeed()}")
+        print(f"事故区{accidentZone.id()}的事故时段限速为{accidentZoneInterval.limitedSpeed(UnitOfMeasure.Metric)}")
+```
+
+ **def controlLength(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区在该时段的控制距离（车辆距离事故区起点该距离内，强制变道），默认单位：像素，可通过unit参数设置单位
 
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def  laneNumbers() -> int: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段控制距离为{accidentZoneInterval.controlLength()}")
+        print(f"事故区{accidentZone.id()}的事故时段控制距离为{accidentZoneInterval.controlLength(UnitOfMeasure.Metric)}")
+```
+
+ **def laneNumbers(self) -> int: ...**
 
 获取事故区在该时段的占用车道序号
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IAccidentZone
+lAccidentZones = netiface.accidentZones()
+for accidentZone in lAccidentZones:
+    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
+    for accidentZoneInterval in lAccidentZoneIntervals:
+        print(f"事故区{accidentZone.id()}的事故时段占用车道序号为{accidentZoneInterval.laneNumbers()}")
+```
 
 **案例代码**
 
@@ -5984,9 +6361,31 @@ def _showAccidentZoneIntervalAttr(acczone):
 
 获取当前施工区ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区ID为{roadWorkZone.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取施工区名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区名称={roadWorkZone.name()}")
+```
 
  **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -5994,17 +6393,53 @@ def _showAccidentZoneIntervalAttr(acczone):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区距所在路段起点的距离={roadWorkZone.location()}")
+    print(f"施工区距所在路段起点的距离={roadWorkZone.location(UnitOfMeasure.Metric)}")
+```
+
  **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取施工区长度，默认单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区长度={roadWorkZone.zoneLength()}")
+    print(f"施工区长度={roadWorkZone.zoneLength(UnitOfMeasure.Metric)}")
+```
+
  **def limitSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 施工区限速（最大车速:像素/秒（km/h））  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区限速={roadWorkZone.limitSpeed()}")
+    print(f"施工区限速={roadWorkZone.limitSpeed(UnitOfMeasure.Metric)}")
+```
 
  **def sectionId(self) -> int: ...**
 
@@ -6013,27 +6448,73 @@ def _showAccidentZoneIntervalAttr(acczone):
 举例：
 
 ```python
-# 获取路段9上施工区所在路段的ID
-zone = tessngIFace().netInterface().createRoadWorkZone(workZone)
-print("施工区所在路段或连接段ID为:", zone.sectionId())
-
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区所在路段或连接段ID为{roadWorkZone.sectionId()}")
 ```
 
  **def sectionName(self) -> str: ...**
 
 获取施工区所在路段或连接段的名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区所在路段或连接段名称={roadWorkZone.sectionName()}")
+```
+
  **def sectionType(self) -> str: ...**
 
 获取施工区所在道路的道路类型，link:路段, connector:连接段
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区所在道路的道路类型={roadWorkZone.sectionType()}")
+```
 
  **def laneObjects(self) -> typing.List<Tess.LaneObject>: ...**
 
 获取施工区所占的车道列表
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区所占的车道列表={roadWorkZone.laneObjects()}")
+```
+
  **def laneObjectIds(self) -> typing.List<int>: ...**
 
 获取施工区所占的车道ID列表
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区所占的车道ID列表={roadWorkZone.laneObjectIds()}")
+```
 
  **def upCautionLength(self, unit:UnitOfMeasure) ->float: ...**
 
@@ -6042,7 +6523,17 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
 
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区上游警示区长度={roadWorkZone.upCautionLength()}")
+    print(f"施工区上游警示区长度={roadWorkZone.upCautionLength(UnitOfMeasure.Metric)}")
+```
 
  **def upTransitionLength(self, unit:UnitOfMeasure) ->float: ...**
 
@@ -6051,12 +6542,36 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区上游过渡区长度={roadWorkZone.upTransitionLength()}")
+    print(f"施工区上游过渡区长度={roadWorkZone.upTransitionLength(UnitOfMeasure.Metric)}")
+```
+
  **def upBufferLength(self, unit:UnitOfMeasure) ->float: ...**
 
 获取施工区上游缓冲区长度，默认单位：像素，可通过unit参数设置单位
 
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区上游缓冲区长度={roadWorkZone.upBufferLength()}")
+    print(f"施工区上游缓冲区长度={roadWorkZone.upBufferLength(UnitOfMeasure.Metric)}")
+```
 
  **def downTransitionLength(self, unit:UnitOfMeasure) ->float: ...**
 
@@ -6065,6 +6580,18 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区下游过渡区长度={roadWorkZone.downTransitionLength()}")
+    print(f"施工区下游过渡区长度={roadWorkZone.downTransitionLength(UnitOfMeasure.Metric)}")
+```
+
  **def downTerminationLength(self, unit:UnitOfMeasure) ->float: ...**
 
 获取施工区下游终止区长度，默认单位：像素，可通过unit参数设置单位
@@ -6072,13 +6599,47 @@ print("施工区所在路段或连接段ID为:", zone.sectionId())
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区下游终止区长度={roadWorkZone.downTerminationLength()}")
+    print(f"施工区下游终止区长度={roadWorkZone.downTerminationLength(UnitOfMeasure.Metric)}")
+```
+
  **def duration(self) -> int: ...**
 
 施工持续时间，单位：秒。自仿真过程创建后，持续时间大于此值，则移除
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工持续时间={roadWorkZone.duration()}")
+```
+
  **def isBorrowed(self) -> bool: ...**
 
 获取施工区是否被借道
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lRoadWorkZones = netiface.roadWorkZones()
+for roadWorkZone in lRoadWorkZones:
+    print(f"施工区是否被借道={roadWorkZone.isBorrowed()}")
+```
 
 **案例代码**
 
@@ -6118,53 +6679,166 @@ def showRoadWorkZoneAttr(self, netiface):
 
 ### 2.25. ILimitedZone
 
-限制区接口（借道施工的被借车道，限制对向车辆行走的区域），方法如下：
+限行区接口（借道施工的被借车道，限制对向车辆行走的区域），方法如下：
 
  **def id(self) -> int: ...**
 
-获取限制区ID
+获取限行区ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区ID={limitedZone.id()}")
+```
 
  **def name(self) -> str: ...**
 
-获取限制区名称
+获取限行区名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区名称={limitedZone.name()}")
+```
 
  **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取距起点距离，单位：x像素  
+获取距起点距离，单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区距起点距离={limitedZone.location()}")
+    print(f"限行区距起点距离={limitedZone.location(UnitOfMeasure.Metric)}")
+```
 
  **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取限制区长度，单位：像素  
+获取限行区长度，单位：像素  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区长度={limitedZone.zoneLength()}")
+    print(f"限行区长度={limitedZone.zoneLength(UnitOfMeasure.Metric)}")
+```
 
  **def limitSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-获取限制区限速（最大限速），单位：像素（千米/小时）可通过unit参数设置单位  
+获取限行区限速（最大限速），单位：像素（千米/小时）可通过unit参数设置单位  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区限速={limitedZone.limitSpeed()}")
+    print(f"限行区限速={limitedZone.limitSpeed(UnitOfMeasure.Metric)}")
+```
+
  **def sectionId(self) -> int: ...**
 
-获取限制区所在路段或连接段ID
+获取限行区所在路段或连接段ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区所在路段或连接段ID={limitedZone.sectionId()}")
+```
 
  **def sectionName(self) -> str: ...**
 
-获取限制区所在路段或连接段的名称
+获取限行区所在路段或连接段的名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区所在路段或连接段名称={limitedZone.sectionName()}")
+```
 
  **def sectionType(self) -> str: ...**
 
-获取限制区所在道路的类型： "link"表示路段，"connector"表示连接段
+获取限行区所在道路的类型： "link"表示路段，"connector"表示连接段
 
- **def laneObjects(self) -> typing.List<Tessng.ILaneObject>: ...**
+举例：
 
-获取限制区所在车道对象列表
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区所在道路的类型={limitedZone.sectionType()}")
+```
+
+ **def laneObjects(self) -> typing.List< Tessng.ILaneObject >: ...**
+
+获取限行区所在车道对象列表
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区所在车道对象列表={limitedZone.laneObjects()}")
+```
 
  **def duration(self) -> int: ...**
 
-获取限制区的持续时间，单位：秒
+获取限行区的持续时间，单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lLimitedZones = netiface.limitedZones()
+for limitedZone in lLimitedZones:
+    print(f"限行区持续时间={limitedZone.duration()}")
+```
 
 **案例代码**
 
@@ -6202,13 +6876,46 @@ def showLimitZoneAttr(self, netiface):
 
 获取改扩建对象ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lReconstructions = netiface.reconstructions()
+for reconstruction in lReconstructions:
+    print(f"改扩建对象ID={reconstruction.id()}")
+```
+
  **def roadWorkZoneId(self) -> int: ...**
 
 获取改扩建对象的起始施工区ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lReconstructions = netiface.reconstructions()
+for reconstruction in lReconstructions:
+    print(f"改扩建对象的起始施工区ID={reconstruction.roadWorkZoneId()}")
+```
+
  **def limitedZoneId(self) -> int: ...**
 
-获取改扩建对象的被借道限速区ID
+获取改扩建对象的被借道限行区ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lReconstructions = netiface.reconstructions()
+for reconstruction in lReconstructions:
+    print(f"改扩建对象的被借道限行区ID={reconstruction.limitedZoneId()}")
+```
 
  **def passagewayLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -6216,24 +6923,80 @@ def showLimitZoneAttr(self, netiface):
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lReconstructions = netiface.reconstructions()
+for reconstruction in lReconstructions:
+    print(f"改扩建对象的保通长度={reconstruction.passagewayLength()}")
+    print(f"改扩建对象的保通长度={reconstruction.passagewayLength(UnitOfMeasure.Metric)}")
+```
+
  **def duration(self) -> int: ...**
 
 获取改扩建的持续时间，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lReconstructions = netiface.reconstructions()
+for reconstruction in lReconstructions:
+    print(f"改扩建的持续时间={reconstruction.duration()}")
+```
 
  **def borrowedNum(self) -> int: ...**
 
 获取改扩建的借道车道数量
 
- **def passagewayLimitedSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+举例：
 
-获取保通开口限速，默认单位：像素/秒（km/h），可通过unit参数设置单位 
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lReconstructions = netiface.reconstructions()
+for reconstruction in lReconstructions:
+    print(f"改扩建的借道车道数量={reconstruction.borrowedNum()}")
+```
+
+ **def passagewayLimitedSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
+
+获取保通开口限速，默认单位：像素/秒（km/h），可通过unit参数设置单位  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lReconstructions = netiface.reconstructions()
+for reconstruction in lReconstructions:
+    print(f"保通开口限速={reconstruction.passagewayLimitedSpeed()}")
+    print(f"保通开口限速={reconstruction.passagewayLimitedSpeed(UnitOfMeasure.Metric)}")
+```
+
  **def dynaReconstructionParam(self) -> Online.DynaReconstructionParam: ...**
 
-获取改扩建动态参数，返回参数的长度单位为米制; 入参数据结构见pyi文件的 Online.DynaReconstructionParam类 
+获取改扩建动态参数; 入参数据结构见pyi文件的 Online.DynaReconstructionParam类 
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IRoadWorkZone
+lReconstructions = netiface.reconstructions()
+for reconstruction in lReconstructions:
+    print(f"获取改扩建动态参数={reconstruction.dynaReconstructionParam()}")
+```
 
 **案例代码**
 
@@ -6262,12 +7025,34 @@ def showReconstructionAttr(self, netiface):
 限速区接口
 
  **def id(self) -> int: ...**
+
 获取限速区ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"限速区ID={reduceSpeedArea.id()}")
+```
 
  **def name(self) -> str: ...**
 
 获取限速区名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"限速区名称={reduceSpeedArea.name()}")
+```
 
  **def location(self, unit: UnitOfMeasure) -> float: ...**
 
@@ -6276,6 +7061,18 @@ def showReconstructionAttr(self, netiface):
 参数：  
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"限速区距起点距离={reduceSpeedArea.location()}")
+    print(f"限速区距起点距离={reduceSpeedArea.location(UnitOfMeasure.Metric)}")
+```
+
  **def areaLength(self, unit: UnitOfMeasure) -> float: ...**
 
 获取限速区长度，默认单位：像素，可通过unit参数设置单位
@@ -6283,17 +7080,62 @@ def showReconstructionAttr(self, netiface):
 参数：  
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"限速区长度={reduceSpeedArea.areaLength()}")
+    print(f"限速区长度={reduceSpeedArea.areaLength(UnitOfMeasure.Metric)}")
+```
+
  **def sectionId(self) -> int: ...**
 
-获取限制区所在路段或连接段ID
+获取限速区所在路段或连接段ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"限速区所在路段或连接段ID={reduceSpeedArea.sectionId()}")
+```
 
  **def laneNumber(self) -> int: ...**
 
 获取限速区车道序号
 
- **def tolaneNumber(self) -> int: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"限速区车道序号={reduceSpeedArea.laneNumber()}")
+```
+
+ **def toLaneNumber(self) -> int: ...**
 
 获取限速区获取目标车道序号（当限速区设置在连接段时，返回值非空）
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"限速区获取目标车道序号={reduceSpeedArea.tolaneNumber()}")
+```
 
  **def addReduceSpeedInterval(self, param: Online.DynaReduceSpeedIntervalParam) -> Tess.IReduceSpeedInterval: ...**
 
@@ -6302,6 +7144,42 @@ def showReconstructionAttr(self, netiface):
 参数：  
 [ in ]  param：限速时段参数，入参数据结构见pyi文件的 Online.DynaReduceSpeedIntervalParam类 
 
+举例：
+
+```python
+    param = Online.DynaReduceSpeedIntervalParam()
+    param.startTime = 100 # 需要注意新增的时段要和已有时段不冲突
+    param.endTime = 500
+    type1 = Online.DynaReduceSpeedVehiTypeParam()
+    type1.vehicleTypeCode = 2
+    type1.avgSpeed = 10
+    type1.speedSD = 5
+    param.mlReduceSpeedVehicleTypeParam = [type1]
+    interval = reduceSpeedArea.addReduceSpeedInterval(param)
+```
+
+ **def removeReduceSpeedInterval(self, id:int) -> None: ...**
+
+移除限速时段
+
+参数：  
+[ in ] id：限速时段ID
+
+举例：
+
+```python
+    param = Online.DynaReduceSpeedIntervalParam()
+    param.startTime = 100 # 需要注意新增的时段要和已有时段不冲突
+    param.endTime = 500
+    type1 = Online.DynaReduceSpeedVehiTypeParam()
+    type1.vehicleTypeCode = 2
+    type1.avgSpeed = 10
+    type1.speedSD = 5
+    param.mlReduceSpeedVehicleTypeParam = [type1]
+    interval = reduceSpeedArea.addReduceSpeedInterval(param)
+    reduceSpeedArea.removeReduceSpeedInterval(interval.id())
+```
+
  **def updateReduceSpeedInterval(self, param: Online.DynaReduceSpeedIntervalParam) -> bool: ...**
 
 更新限速时段
@@ -6309,16 +7187,57 @@ def showReconstructionAttr(self, netiface):
 参数：  
 [ in ]  param：限速时段参数，入参数据结构见pyi文件的 Online.DynaReduceSpeedIntervalParam类 
 
- **def reduceSpeedIntervals(self) -> Type.List<Tess.IReduceSpeedInterval>: ...**
+举例：
+
+```python
+    param = Online.DynaReduceSpeedIntervalParam()
+    param.startTime = 100 # 需要注意新增的时段要和已有时段不冲突
+    param.endTime = 500
+    type1 = Online.DynaReduceSpeedVehiTypeParam()
+    type1.vehicleTypeCode = 2
+    type1.avgSpeed = 10
+    type1.speedSD = 5
+    param.mlReduceSpeedVehicleTypeParam = [type1]
+    interval = reduceSpeedArea.addReduceSpeedInterval(param)
+    reduceSpeedArea.removeReduceSpeedInterval(interval.id())
+    interval1 = reduceSpeedArea.addReduceSpeedInterval(param)
+    print(f" reduceSpeedArea.addReduceSpeedInterval(param) 添加成功={interval1}")
+    flag = reduceSpeedArea.updateReduceSpeedInterval(param)
+    print(f" reduceSpeedArea.updateReduceSpeedInterval(param) 更新成功={flag}")
+```
+
+ **def reduceSpeedIntervals(self) -> Type.List< Tess.IReduceSpeedInterval >: ...**
 
 获取限速时段列表
 
- **def findReduceSpeedIntervalByStartTime(self, id:int) -> Tess.IReduceSpeedInterval: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"获取限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
+```
+
+ **def findReduceSpeedIntervalById(self, id:int) -> Tess.IReduceSpeedInterval: ...**
 
 根据ID获取限速时段
 
 参数：  
 [ in ] id：限速时段ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"根据ID获取限速时段={reduceSpeedArea.findReduceSpeedIntervalById(reduceSpeedArea.reduceSpeedIntervals()[0].id())}")
+```
 
  **def findReduceSpeedIntervalByStartTime(self, startTime:int) -> Tess.IReduceSpeedInterval: ...**
 
@@ -6328,29 +7247,103 @@ def showReconstructionAttr(self, netiface):
 [ in ] startTime：起始时间
 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"根据起始时间获取限速时段={reduceSpeedArea.findReduceSpeedIntervalByStartTime(reduceSpeedArea.reduceSpeedIntervals()[0].intervalStartTime())}")
+```
+
  **def polygon(self) -> QPolygonF : ...**
 
 获取限速区获取多边型轮廓
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    print(f"获取限速区获取多边型轮廓={reduceSpeedArea.polygon()}")
+```
 
 ### 2.28. IReduceSpeedInterval
 
 限速时段接口
 
  **def id(self) -> int: ...**
+
 获取限速时段ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        print(f"获取限速时段ID={reduceSpeedInterval.id()}")
+```
 
  **def reduceSpeedAreaId(self) -> int: ...**
 
 获取所属限速区ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        print(f"获取所属限速区ID={reduceSpeedInterval.reduceSpeedAreaId()}")
+```
+
  **def intervalStartTime(self) -> int: ...**
 
 获取开始时间
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        print(f"获取开始时间={reduceSpeedInterval.intervalStartTime()}")
+```
+
  **def intervalEndTime(self) -> int: ...**
 
 获取结束时间
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        print(f"获取结束时间={reduceSpeedInterval.intervalEndTime()}")
+```
 
  **def addReduceSpeedVehiType(self,param:Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
 
@@ -6359,12 +7352,46 @@ def showReconstructionAttr(self, netiface):
 参数：  
 [ in ] param：限速车型参数，数据结构见Online.DynaReduceSpeedVehiTypeParam
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        param = Online.DynaReduceSpeedVehiTypeParam()
+        param.vehicleTypeCode = 13
+        param.avgSpeed = 10
+        param.speedSD = 5
+        interval = reduceSpeedInterval.addReduceSpeedVehiType(param)
+        print(f"添加限速车型成功={interval}")
+```
+
  **def removeReduceSpeedVehiType(self,id:int) -> bool: ...**
 
-更新限速车型
+移除限速车型
 
 参数：  
 [ in ]  id：限速车型ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            reduceSpeedInterval.removeReduceSpeedVehiType(reduceSpeedVehiType.id())
+            print(f"移除限速车型成功={reduceSpeedVehiType.id()}")
+```
 
  **def updateReduceSpeedVehiType(self,param:Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
 
@@ -6373,9 +7400,44 @@ def showReconstructionAttr(self, netiface):
 参数：  
 [ in ] param：限速车型参数，数据结构见Online.DynaReduceSpeedVehiTypeParam
 
-**def reduceSpeedVehiTypes() -> Type.List<Tess.IReduceSpeedVehiType>: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        param = Online.DynaReduceSpeedVehiTypeParam()
+        param.vehicleTypeCode = 13
+        param.avgSpeed = 10
+        param.speedSD = 5
+        interval = reduceSpeedInterval.addReduceSpeedVehiType(param)
+        print(f"添加限速车型成功={interval}")
+        param.avgSpeed = 20
+        param.speedSD = 0
+        interval = reduceSpeedInterval.updateReduceSpeedVehiType(param)
+        print(f"更新限速车型成功={interval}")
+```
+
+ **def reduceSpeedVehiTypes(self) -> Type.List< Tess.IReduceSpeedVehiType >: ...**
 
 获取本时段限速车型及限速参数列表
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        print(f"获取本时段限速车型及限速参数列表={reduceSpeedInterval.reduceSpeedVehiTypes()}")
+```
 
  **def findReduceSpeedVehiTypeById(self,vehicleTypeCode:int) -> Tess.IReduceSpeedVehiType: ...**
 
@@ -6383,6 +7445,21 @@ def showReconstructionAttr(self, netiface):
 
 参数：  
 [ in ] vehicleTypeCode：车型代码，数据结构见Online
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            print(f"根据车型代码获取限速车型={reduceSpeedInterval.findReduceSpeedVehiTypeById(reduceSpeedVehiType.vehiTypeCode())}")
+```
 
 **案例代码**
 
@@ -6431,20 +7508,80 @@ def showReduceSpeedAreaAttr(netiface):
 限速车型接口
 
  **def id(self) -> int: ...**
+
 获取限速车型ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            print(f"获取限速车型ID={reduceSpeedVehiType.id()}")
+```
 
  **def intervalId(self) -> int: ...**
 
 获取所属限速时段ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            print(f"获取所属限速时段ID={reduceSpeedVehiType.intervalId()}")
+```
+
  **def reduceSpeedAreaId(self) -> int: ...**
 
 获取所属限速区ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            print(f"获取所属限速区ID={reduceSpeedVehiType.reduceSpeedAreaId()}")
+```
+
  **def vehiTypeCode(self) -> int: ...**
 
 获取车型编码
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            print(f"获取车型编码={reduceSpeedVehiType.vehiTypeCode()}")
+```
 
  **def averageSpeed(self,unit:UnitOfMeasure) -> float: ...**
 
@@ -6452,11 +7589,43 @@ def showReduceSpeedAreaAttr(netiface):
 参数：  
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            print(f"获取平均车速={reduceSpeedVehiType.averageSpeed()}")
+            print(f"获取平均车速，单位：米/秒={reduceSpeedVehiType.averageSpeed(UnitOfMeasure.Metric)}")
+```
+
  **def speedStandardDeviation(self,unit:UnitOfMeasure) -> float: ...**
 
 获取车速标准差，默认单位：像素/秒，可通过unit参数设置单位   
 参数：  
 [ in ] unit：单位参数，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IReduceSpeedArea
+lReduceSpeedAreas = netiface.reduceSpeedAreas()
+for reduceSpeedArea in lReduceSpeedAreas:
+    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
+    for reduceSpeedInterval in lReduceSpeedIntervals:
+        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
+        for reduceSpeedVehiType in lReduceSpeedVehiTypes:
+            print(f"获取车速标准差={reduceSpeedVehiType.speedStandardDeviation()}")
+            print(f"获取车速标准差，单位：米/秒={reduceSpeedVehiType.speedStandardDeviation(UnitOfMeasure.Metric)}")
+```
 
 **案例代码**
 
