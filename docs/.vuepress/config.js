@@ -28,6 +28,7 @@ module.exports = {
         key: 'version',
         ariaLabel: 'Language Menu',
         items: [
+          { text: 'V4.x', link: '/V4.x' },
           { text: 'V3.x', link: '/V3.x' },
         ]
       },
@@ -35,6 +36,82 @@ module.exports = {
       { text: 'GitHub地址', link: 'https://github.com/jida-traffic/TESSNG_SecondaryDev_Doc', target: '_blank' }
     ],
     sidebar: {
+      '/document/V4.x/C++': [
+        {
+          title: '简介',
+          path: '/document/V4.x/C++/'
+        },
+        {
+          title: '更新日志',
+          path: '/document/V4.x/C++/1-changelog.md'
+        },
+        {
+          title: '软件安装',
+          path: '/document/V4.x/C++/install.md'
+        },
+        {
+          title: '快速入门',
+          path: '/document/V4.x/C++/quickstart.md'
+        },
+        {
+          title: '接口详解',
+          path: '/document/V4.x/C++/details.md'
+        },
+        {
+          title: '典型接口案例',
+          path: '/document/V4.x/C++/turorials.md'
+        },
+        {
+          title: '行业案例',
+          path: '/document/V4.x/C++/demo.md'
+        },
+        {
+          title: '注意事项',
+          path: '/document/V4.x/C++/2-information.md'
+        },
+        {
+          title: '问答列表',
+          path: '/document/V4.x/C++/3-QA.md'
+        }
+      ],
+      '/document/V4.x/Python3': [
+        {
+          title: '简介',
+          path: '/document/V4.x/Python3/'
+        },
+        {
+          title: '更新日志',
+          path: '/document/V4.x/Python3/1-changelog.md'
+        },
+        {
+          title: '软件安装',
+          path: '/document/V4.x/Python3/install.md'
+        },
+        {
+          title: '快速入门',
+          path: '/document/V4.x/Python3/quickstart.md'
+        },
+        {
+          title: '接口详解',
+          path: '/document/V4.x/Python3/details.md'
+        },
+        {
+          title: '典型接口案例',
+          path: '/document/V4.x/Python3/turorials.md'
+        },
+        {
+          title: '行业案例',
+          path: '/document/V4.x/Python3/demo.md'
+        },
+        {
+          title: '注意事项',
+          path: '/document/V4.x/Python3/2-information.md'
+        },
+        {
+          title: '问答列表',
+          path: '/document/V4.x/Python3/3-QA.md'
+        }
+      ],
       '/document/V3.x/C++': [
         {
           title: '简介',
@@ -118,37 +195,37 @@ module.exports = {
         },
         {
           title: '更新日志',
-          path: '/document/V3.x/Python3/1-changelog.md'
+          path: '/document/V4.x/Python3/1-changelog.md'
         },
         {
           title: '软件安装',
-          path: '/document/V3.x/Python3/install.md'
+          path: '/document/V4.x/Python3/install.md'
         },
         {
           title: '快速入门',
-          path: '/document/V3.x/Python3/quickstart.md'
+          path: '/document/V4.x/Python3/quickstart.md'
         },
         {
           title: '接口详解',
-          path: '/document/V3.x/Python3/details.md'
+          path: '/document/V4.x/Python3/details.md'
         },
         {
           title: '典型接口案例',
-          path: '/document/V3.x/Python3/turorials.md'
+          path: '/document/V4.x/Python3/turorials.md'
         },
         {
           title: '行业案例',
-          path: '/document/V3.x/Python3/demo.md'
+          path: '/document/V4.x/Python3/demo.md'
         },
         {
           title: '注意事项',
-          path: '/document/V3.x/Python3/2-information.md'
+          path: '/document/V4.x/Python3/2-information.md'
         },
         {
           title: '问答列表',
-          path: '/document/V3.x/Python3/3-QA.md'
+          path: '/document/V4.x/Python3/3-QA.md'
         }
-      ]
+      ],
     },
     subSidebar: 'auto'
   },
