@@ -3756,7 +3756,7 @@ iface = tessngIFace()
 # 代表TESS NG的路网子接口
 netiface = iface.netInterface()
 # 创建信控方案
-signalPlan = netiface.creatSignalPlan(trafficController, "早高峰", 150, 50,0,1800) # createSignalPlan
+signalPlan = netiface.createSignalPlan(trafficController, "早高峰", 150, 50,0,1800) # createSignalPlan
 # 创建方向详情--相位
 green = Online.ColorInterval("绿",50)
 yellow = Online.ColorInterval("黄",3)
@@ -3774,7 +3774,7 @@ for lane in e_approach.lanes():
         signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
         w_e_straight_lamps.append(signalLamp)
 
-trafficController = netiface.creatTrafficController("交叉口1")
+trafficController = netiface.createTrafficController("交叉口1")
 showTrafficControllerAttr(netiface)
 def showTrafficControllerAttr(netiface):
     controllers = netiface.trafficControllers()
@@ -3848,7 +3848,7 @@ iface = tessngIFace()
 # 代表TESS NG的路网子接口
 netiface = iface.netInterface()
 # 创建信控方案
-signalPlan = netiface.creatSignalPlan(trafficController, "早高峰", 150, 50,0,1800) # createSignalPlan
+signalPlan = netiface.createSignalPlan(trafficController, "早高峰", 150, 50,0,1800) # createSignalPlan
 # 创建方向详情--相位
 green = Online.ColorInterval("绿",50)
 yellow = Online.ColorInterval("黄",3)
@@ -11956,12 +11956,23 @@ for index, laneObj in enumerate(lLaneObjects):
 
 \[in\] signalLamp：信号灯对象
 
+ **def addCrossWalkSignalPhaseToLamp(self,signalPhaseId:int, signalLamp:Tess.ISignalLamp) -> None: ...**
+
+将人行横道与相位绑定， 不允许跨越信号机绑定
+
+参数： 
+\[in\] signalPhaseId：相位id
+
+\[in\] signalLamp：信号灯对象
+
  **def transferSignalPhase(self,pFromISignalPhase:Tess.ISignalPhase, pToISignalPhase:Tess.ISignalPhase, signalLamp:Tess.ISignalLamp) -> None: ...**
 
 更换信号灯绑定的信控相位，不允许跨越信号机
 
 参数： 
-\[in\] signalPhaseId：相位id
+\[in\] pFromISignalPhase：原相位
+
+\[in\] pToISignalPhase：新相位
 
 \[in\] signalLamp：信号灯对象
 
@@ -12532,7 +12543,7 @@ updated_decision_point = netiface.updateDecipointPoint(
 \[in\]theta：参数θ(0.01-1)  
 \[in\]BPR路阻参数A(0.05-0.5)   
 \[in\]bprb：BPR路阻参数B(1-10)  
-\[in\]maxIterateNum：最大迭代次数(1-1000)  
+\[in\]maxIterateNum：最大迭代次数(1-5000)  
 \[in\]useNewPath：是否重新构建静态路径
 
  **def updatePathBuildParams(self,bDeciPointPosFlag:bool, bLaneConnectorFlag:bool，InputLineMinPathNum：long(defulat=3)) ->None: ...**
@@ -12736,6 +12747,30 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
  **def removeParkingRouting(pIParkingRouting:Tessng.IParkingRouting) ->None: ...**
 
 移除停车路径
+
+ **def removeTollLaneById(id:int) ->None: ...**
+
+通过ID移除收费车道
+
+ **def removeTollDecisionPointById(id:int) ->None: ...**
+
+通过ID移除收费决策点
+
+ **def removeParkingRegionById(id:int) ->None: ...**
+
+通过ID移除停车区
+
+ **def removeParkingDecisionPointById(id:int) ->None: ...**
+
+通过ID移除停车决策点
+
+ **def removeTollRoutingById(id:int) ->None: ...**
+
+通过ID移除收费路径
+
+ **def removeParkingRoutingById(id:int) ->None: ...**
+
+通过ID移除停车路径
 
  **def removeTollParkingTimeDis(id:int) ->None: ...**
 
