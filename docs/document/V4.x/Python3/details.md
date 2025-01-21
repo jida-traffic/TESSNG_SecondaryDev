@@ -8278,36 +8278,116 @@ def _showReduceSpeedAreaIntervalAttr(reduceSpeedArea):
 
  **def id(self) -> int: ...**
 
-获取收费车道ID 
+获取收费车道ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollLane
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    print(f"获取收费车道ID={tollLane.id()}")
+```
 
  **def name(self) -> str: ...**
 
 获取收费车道名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollLane
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    print(f"获取收费车道名称={tollLane.name()}")
+```
+
  **def distance(self) -> float: ...**
 
 获取收费车道起点距当前所在路段起始位置的距离。单位：米 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollLane
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    print(f"获取收费车道起点距当前所在路段起始位置的距离={tollLane.distance()}")
+```
+
  **def setName(self,name: str) -> None: ...**
 
 设置收费车道名称  
-\[in\] name ：信控方案  
+参数：  
+[ in ] name ：收费车道名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollLane
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    print(f"设置收费车道名称={tollLane.setName('test lane toll')}")
+    print(f"获取收费车道名称={tollLane.name()}")
+```
 
  **def setWorkTime(self, startTime: int, endTime: int) -> None: ...**
 
 设置收费车道的工作时间，不设置时，默认与仿真时间对应   
-\[in\] startTime 开始时间（秒）  
-\[in\] endTime 结束时间（秒）  
+参数：  
+[ in ] startTime 开始时间（秒）  
+[ in ] endTime 结束时间（秒）
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollLane
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    print(f"设置收费车道的工作时间={tollLane.setWorkTime(0, 3000)}")
+```
 
  **def dynaTollLane(self) -> typing.List<Online.TollStation.DynaTollLane>: ... **
 
 获取动态收费车道信息, 具体数据结构见Online.TollStation.DynaTollLane  
 \[out\] 返回动态收费车道信息
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollLane
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    print(f"获取动态收费车道信息={tollLane.dynaTollLane()}")
+```
+
  **def tollPoints(self) -> typing.List<Tessng.ITollPoint>: ... **
 
 获取收费车道所有收费点位  
 \[out\] 返回所有收费点位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollLane
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    print(f"获取收费车道所有收费点={tollLane.tollPoints()}")
+```
 
 **案例代码**
 
@@ -8341,36 +8421,124 @@ def showTollLaneAttr(netiface):
 
 获取收费决策点ID 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollDecisionPoint
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    print(f"获取收费决策点ID={tollDecisionPoint.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取收费决策点名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollDecisionPoint
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    print(f"获取收费决策点名称={tollDecisionPoint.name()}")
+```
 
  **def link(self) -> Tessng.ILink: ...**
 
 获取收费决策点所在路段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollDecisionPoint
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    print(f"获取收费决策点所在路段={tollDecisionPoint.link()}")
+```
+
  **def distance(self) ->float: ...**
 
-获取收费决策点距离所在路段起点的距离，默认单位为像素
+获取收费决策点距离所在路段起点的距离，默认单位为米
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollDecisionPoint
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    print(f"获取收费决策点距离所在路段起点的距离={tollDecisionPoint.distance()}")
+```
 
  **def routings(self) ->Type.List<Tess.ITollRouting>: ...**
 
 获取收费决策点的所有收费路径
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollDecisionPoint
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    print(f"获取收费决策点的所有收费路径={tollDecisionPoint.routings()}")
+```
 
  **def tollDisInfoList(self) ->Type.List<Online.TollStation.TollDisInfo>: ...**
 
 获取收费决策点收费路径分配信息列表  
 返回值是 TollDisInfo ; 数据结构见Online.TollStation.TollDisInfo
 
- **def updateTollDisInfoList(self，tollDisInfoList: Type.List<Online.TollStation.DynaTollDisInfo>) ->None: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollDecisionPoint
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    print(f"获取收费决策点收费路径分配信息列表={tollDecisionPoint.tollDisInfoList()}")
+```
+
+ **def updateTollDisInfoList(self,tollDisInfoList: Type.List<Online.TollStation.DynaTollDisInfo>) ->None: ...**
 
 更新收费分配信息列表, 先创建决策点，再更新决策点的车道分配信息  
 参数：  
 [ in ] Online::TollStation::DynaTollDisInfo：收费分配信息列表 数据结构见Online.TollStation.DynaTollDisInfo
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollDecisionPoint
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    print(f"更新收费分配信息列表={tollDecisionPoint.updateTollDisInfoList(tollDecisionPoint.tollDisInfoList())}")
+```
+
  **def polygon(self) -> QPolygonF: ...**
 
 获取收费决策点多边形轮廓
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITollDecisionPoint
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    print(f"获取收费决策点多边形轮廓={tollDecisionPoint.polygon()}")
+```
 
 **案例代码**
 
@@ -8401,31 +8569,122 @@ def showTollDecisionPointAttr(netiface):
 
 获取收费路径ID 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    # 获取路网中的所有ITollRouting
+    tollRoutings = tollDecisionPoint.routings()
+    for tollRouting in tollRoutings:
+    print(f"获取收费路径ID={tollRouting.id()}")
+```
+
  **def tollDeciPointId(self) -> int: ...**
 
 获取收费路径所属收费决策点ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    # 获取路网中的所有ITollRouting
+    tollRoutings = tollDecisionPoint.routings()
+    for tollRouting in tollRoutings:
+    print(f"获取收费路径所属收费决策点ID={tollRouting.tollDeciPointId()}")
+```
+
  **def tollLaneId(self) -> int: ...**
 
-路径到达的收费区域id
+获取路径到达的收费区域id
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    # 获取路网中的所有ITollRouting
+    tollRoutings = tollDecisionPoint.routings()
+    for tollRouting in tollRoutings:
+    print(f"获取路径到达的收费区域id={tollRouting.tollLaneId()}")
+```
 
  **def calcuLength(self) -> float: ...**
 
 获取收费决策路径长度，单位：米； 收费路径长度是指：收费决策点到收费车道
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    # 获取路网中的所有ITollRouting
+    tollRoutings = tollDecisionPoint.routings()
+    for tollRouting in tollRoutings:
+    print(f"获取收费决策路径长度，单位：米={tollRouting.calcuLength()}")
+```
 
  **def contain(self, pRoad: Tessng.ISection) -> boolen: ...**
 
 判断输入的路段是否在当前路径上  
 \[in\] pRoad ：路段或连接段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    # 获取路网中的所有ITollRouting
+    tollRoutings = tollDecisionPoint.routings()
+    for tollRouting in tollRoutings:
+    print(f"判断输入的路段是否在当前路径上={tollRouting.contain(tollDecisionPoint.link())}")
+```
+
  **def nextRoad(self,pRoad: Tessng.ISection) -> Tessng.ISection: ...**
 
 获取输入路段的紧邻下游道路  
 \[in\] pRoad ：路段或连接段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    # 获取路网中的所有ITollRouting
+    tollRoutings = tollDecisionPoint.routings()
+    for tollRouting in tollRoutings:
+    print(f"获取输入路段的紧邻下游道路={tollRouting.nextRoad(tollDecisionPoint.link())}")
+```
+
  **def getLinks(self) -> Type.List<Tess.ILink>: ...**
 
 获取当前收费路径的有序路段序列
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollDecisionPoints = netiface.tollDecisionPoints()
+for tollDecisionPoint in tollDecisionPoints:
+    # 获取路网中的所有ITollRouting
+    tollRoutings = tollDecisionPoint.routings()
+    for tollRouting in tollRoutings:
+    print(f"获取当前收费路径的有序路段序列={tollRouting.getLinks()}")
+```
 
 **案例代码**
 
@@ -8454,46 +8713,168 @@ def showTollRoutingAttr(netiface):
 
 获取收费站停车点位ID 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"获取收费站停车点位ID={tollPoint.id()}")
+```
+
  **def distance(self) -> float: ...**
 
-获取收费站停车点距离路段起始位置的距离，单位：米；
+获取收费站停车点距离路段起始位置的距离，单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"获取收费站停车点距离路段起始位置的距离，单位：米={tollPoint.distance()}")
+```
 
  **def tollLaneId(self) -> int: ...**
 
 获取收费站停车点所在的车道ID，注意不是车辆从左到右的序号
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"获取收费站停车点所在的车道ID={tollPoint.tollLaneId()}")
+```
+
  **def tollLane(self) -> TypeList<Tess.ITollLane>: ...**
 
 获取所属收费车道
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"获取所属收费车道={tollPoint.tollLane()}")
+```
+
  **def isEnabled() -> bool: ...**
 
 获取是否启用的状态
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"获取是否启用的状态={tollPoint.isEnabled()}")
+```
 
  **def setEnabled(self,enabled: bool) -> bool: ...**
 
 设置当前收费站停车点是否启用， 返回是否设置成功的标签  
 \[in\] enabled ：默认为True表示启用， 若传入False则表明禁用该收费站点
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"设置当前收费站停车点是否启用={tollPoint.setEnabled(False)}")
+    print(f"获取当前收费站停车点是否启用={tollPoint.isEnabled()}")
+```
+
  **def tollType(self) -> int: ...**
 
 获取收费类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"获取收费类型={tollPoint.tollType()}")
+```
+
  **def setTollType(self,tollType: int) -> bool: ...**
 
 设置收费类型  
-\[in\] tollType：收费类型, 数据结构 见OnLine.TollType ???
+\[in\] tollType：收费类型, 数据结构 见OnLine.TollType
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"设置收费类型={tollPoint.setTollType(tollPoint.tollType())}")
+    print(f"获取收费类型={tollPoint.tollType()}")
+```
 
  **def timeDisId(self) -> int: ...**
 
 获取停车时间分布ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"获取停车时间分布ID={tollPoint.timeDisId()}")
+```
 
  **def setTimeDisId(self,timeDisId: int) -> bool: ...**
 
 设置停车时间分布ID 
 \[in\] tollType： timeDisId：时间分布ID
 
-**案例说明**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+tollLanes = netiface.tollLanes()
+for tollLane in tollLanes:
+    tollPoints = tollLane.tollPoints()
+    for tollPoint in tollPoints:
+    print(f"设置停车时间分布ID={tollPoint.setTimeDisId(tollPoint.timeDisId())}")
+```
+
+**案例代码**
 
 ```python
 netiface = tessngIFace().netInterface()
