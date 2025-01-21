@@ -13808,41 +13808,141 @@ def showPedestrianPathPointAttr(netiface):
 
 车辆ID，车辆ID的组成方式为 x * 100000 + y，每个发车点的x值不一样，从1开始递增，y是每个发车点所发车辆序号，从1开始递增。第一个发车点所发车辆ID从100001开始递增，第二个发车点所发车辆ID从200001开始递增。
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆ID为{vehi.id()}")
+```
+
  **def startLink(self) -> Tessng.ILink: ...**
 
 车辆进入路网时起始路段
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆进入路网时起始路段={vehi.startLink()}")
+```
 
  **def startSimuTime(self) -> int: ...**
 
 车辆进入路网时起始时间
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆进入路网时起始时间={vehi.startSimuTime()}")
+```
+
  **def roadId(self) -> int: ...**
 
 车辆所在路段link或connector连接段ID
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在路段link或connector连接段ID={vehi.roadId()}")
+```
 
  **def road(self) -> int: ...**
 
 道路，如果在路段上返回ILink, 如果在连接段上返回IConnector
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在道路={vehi.road()}")
+```
+
  **def section(self) -> Tessng.ISection: ...**
 
 车辆所在的Section，即路段或连接段
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在的Section，即路段或连接段={vehi.section()}")
+```
 
  **def laneObj(self) -> Tessng.ILaneObject: ...**
 
 车辆所在的车道或“车道连接”
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在的车道或“车道连接”={vehi.laneObj()}")
+```
+
  **def segmIndex(self) -> int: ...**
 
 车辆在当前LaneObject上分段序号
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆在当前LaneObject上分段序号={vehi.segmIndex()}")
+```
 
  **def roadIsLink(self) -> bool: ...**
 
 车辆所在道路是否路段
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在道路是否路段={vehi.roadIsLink()}")
+```
+
  **def roadName(self) -> str: ...**
 
 道路名
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"道路名={vehi.roadName()}")
+```
 
  **def initSpeed(self, speed:float=...，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -13851,7 +13951,14 @@ def showPedestrianPathPointAttr(netiface):
 参数：  
 \[in\] speed：车速，如果大于0，车辆以指定的速度从发车点出发，单位：像素/秒  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
-返回：初始化车速，单位：像素/秒  
+返回：初始化车速，单位：像素/秒
+
+举例：
+
+```python
+def initVehicle(self, vehi):
+    vehi.initSpeed(5, UnitOfMeasure.Metric)
+```
 
  **def initLane(self, laneNumber:int, dist:float=..., speed:float=...，unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -13862,17 +13969,14 @@ def showPedestrianPathPointAttr(netiface):
 \[in\] dist：距离路段起点距离，单位：像素  
 \[in\] speed：起动时的速度，单位：像素/秒  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
+
 举例：
 
 ```python
-# 初始化飞机位置
-if tmpId == 1:
-    IVehicle.setVehiType(12)
-    IVehicle.initLane(3, m2p(105), 0)
-
+def initVehicle(self, vehi):
+    if vehi.id() == 100001:
+        vehi.initLane(0, 5, 0, UnitOfMeasure.Metric)
 ```
-
- 
 
  **def initLaneConnector(self, laneNumber:int, toLaneNumber:int, dist:float=..., speed:float=...，unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -13886,6 +13990,13 @@ if tmpId == 1:
 \[in\] speed：起动时的速度，单位：像素/秒或米/秒(取决于unit参数)  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
 
+举例：
+```python
+def initVehicle(self, vehi):
+    if vehi.id() == 100001:
+        vehi.initLaneConnector(0, 0, 5, 0, UnitOfMeasure.Metric)
+```
+
  **def setVehiType(self, code:int) -> None: ...**
 
 设置车辆类型，车辆被创建时已确定了类型，通过此方法可以改变车辆类型
@@ -13894,17 +14005,49 @@ if tmpId == 1:
 
 \[in\] code：车辆类型编码
 
+举例：
+
+```python
+def initVehicle(self, vehi):
+    if vehi.id() == 100001:
+        vehi.setVehiType(12)
+```
+
  **def setColor(self, color:str) -> None: ...**
+
 设置车辆颜色  
+
 参数：  
 \[in\] color：颜色RGB，如："#EE0000"
+
+举例：
+
+```python
+def initVehicle(self, vehi):
+    if vehi.roadId() == 2:
+        vehi.setColor("#EE0000")
+```
 
 
  **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-路段或连接段长度，单位：像素
+获取车辆长度，默认单位：像素，可通过unit参数设置单位
+
 参数：  
+
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+返回：车辆长度，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆长度={vehi.length()}")
+    print(f"车辆长度，单位：米={vehi.length(UnitOfMeasure.Metric)}")
+```
 
  **def setLength(self, len:float, bRestWidth:bool=...，unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -13915,134 +14058,434 @@ if tmpId == 1:
 \[in\] bRestWidth：是否同比例约束宽度，默认为False  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+举例：
+
+```python
+def initVehicle(self, vehi):
+    if vehi.id() == 100001:
+        vehi.setLength(10, False, UnitOfMeasure.Metric)
+```
+
  **def laneId(self) -> int: ...**
 
 如果toLaneId() 小于等于0，那么laneId()获取的是当前所在车道ID，如果toLaneId()大于0，则车辆在“车道连接”上，laneId()获取的是上游车道ID
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在车道ID={vehi.laneId()}")
+```
 
  **def toLaneId(self) -> int: ...**
 
 下游车道ID。如果小于等于0，车辆在路段的车道上，否则车辆在连接段的“车道连接”上
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆下游车道ID={vehi.toLaneId()}")
+```
+
  **def lane(self) -> Tessng.ILane: ...**
 
 获取当前车道，如果车辆在“车道连接”上，获取的是“车道连接”的上游车道
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆当前车道={vehi.lane()}")
+```
 
  **def toLane(self) -> Tessng.ILane: ...**
 
 如果车辆在“车道连接”上，返回“车道连接”的下游车道，如果当前不在“车道连接”上，返回对象为空
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆下游车道={vehi.toLane()}")
+```
+
  **def laneConnector(self) -> Tessng.ILaneConnector: ...**
 
 获取当前“车道连接”，如果在车道上，返回空
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆当前车道连接={vehi.laneConnector()}")
+```
 
  **def currBatchNumber(self) -> int: ...**
 
 当前仿真计算批次
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前仿真计算批次={vehi.currBatchNumber()}")
+```
+
  **def roadType(self) -> int: ...**
 
 车辆所在道路类型。包NetItemType中定义了一批常量，每一个数值代表路网上一种元素类型。如：GLinkType代表路段、GConnectorType代表连接段。
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在道路类型={vehi.roadType()}")
+```
 
  **def limitMaxSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 车辆所在路段或连接段最大限速，兼顾到车辆的期望速度，单位：像素/秒  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+返回：最大限速，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在路段或连接段最大限速={vehi.limitMaxSpeed()}")
+    print(f"车辆所在路段或连接段最大限速，单位：米/秒={vehi.limitMaxSpeed(UnitOfMeasure.Metric)}")
+```
 
  **def limitMinSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 车辆所在路段或连接段最小限速，兼顾到车辆的期望速度，单位：像素/秒  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+返回：最小限速，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆所在路段或连接段最小限速={vehi.limitMinSpeed()}")
+    print(f"车辆所在路段或连接段最小限速，单位：米/秒={vehi.limitMinSpeed(UnitOfMeasure.Metric)}")
+```
 
  **def vehicleTypeCode(self) -> int: ...**
 
 车辆类型编码。打开TESSNG，通过菜单“车辆”->“车辆类型”打开车辆类型编辑窗体，可以看到不同类型车辆的编码
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆类型编码={vehi.vehicleTypeCode()}")
+```
+
  **def vehicleTypeName(self) -> str: ...**
 
 获取车辆类型名，如“小客车”
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆类型名={vehi.vehicleTypeName()}")
+```
 
  **def name(self) -> str: ...**
 
 获取车辆名称
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆名称={vehi.name()}")
+```
+
  **def vehicleDriving(self) -> Tessng.IVehicleDriving: ...**
 
 获取车辆驾驶行为接口
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆驾驶行为接口={vehi.vehicleDriving()}")
+```
+
  **def driving(self) -> None: ...**
 
 驱动车辆。在每个运算周期，每个在运行的车辆被调用一次该方法;  
-如果用户使用该函数驱动车辆，那后续整个仿真声明周期都需要用户控制该辆车。即TESSNG将此车辆的控制权移交给用户。
+如果用户使用该函数驱动车辆，那后续整个仿真生命周期都需要用户控制该辆车。即TESSNG将此车辆的控制权移交给用户。
 
  **def pos(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 当前位置，横纵坐标单位：像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+返回：当前位置，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆当前位置={vehi.pos()}")
+    print(f"车辆当前位置，单位：米制={vehi.pos(UnitOfMeasure.Metric)}")
+```
 
  **def zValue(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前高程，单位：像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+返回：当前高程，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆当前高程={vehi.zValue()}")
+    print(f"车辆当前高程，单位：米制={vehi.zValue(UnitOfMeasure.Metric)}")
+```
 
  **def acce(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-当前加速度，单位：像素/秒^2
+当前加速度，单位：像素/秒^2  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+返回：当前加速度，单位：像素/秒^2
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆当前加速度={vehi.acce()}")
+    print(f"车辆当前加速度，单位：米制={vehi.acce(UnitOfMeasure.Metric)}")
+```
 
  **def currSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前速度，单位：像素/秒  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+返回：当前速度，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆当前速度={vehi.currSpeed()}")
+    print(f"车辆当前速度，单位：米制={vehi.currSpeed(UnitOfMeasure.Metric)}")
+```
 
  **def angle(self) -> float: ...**
 
-当前角度，北向0度顺时针
+当前角度，北向0度顺时针  
+
+返回：当前角度，单位：度
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆当前角度={vehi.angle()}")
+```
 
  **def isStarted(self) -> bool: ...**
 
 是否在运行，如果返回False，表明车辆已驰出路网或尚未上路
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆是否在运行={vehi.isStarted()}")
+```
+
  **def vehicleFront(self) -> Tessng.IVehicle: ...**
 
 获取前车， 可能为空
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"前车={vehi.vehicleFront()}")
+```
 
  **def vehicleRear(self) -> Tessng.IVehicle: ...**
 
 后车， 可能为空
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"后车={vehi.vehicleRear()}")
+```
+
  **def vehicleLFront(self) -> Tessng.IVehicle: ...**
 
 左前车， 可能为空
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"左前车={vehi.vehicleLFront()}")
+```
 
  **def vehicleLRear(self) -> Tessng.IVehicle: ...**
 
 左后车， 可能为空
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"左后车={vehi.vehicleLRear()}")
+```
+
  **def vehicleRFront(self) -> Tessng.IVehicle: ...**
 
 右前车， 可能为空
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"右前车={vehi.vehicleRFront()}")
+```
 
  **def vehicleRRear(self) -> Tessng.IVehicle: ...**
 
 右后车， 可能为空
 
- **def vehiDistFront(self) -> float: ...**
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"右后车={vehi.vehicleRRear()}")
+```
+
+ **def vehiDistFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 前车间距，单位：像素; 若无前车，则范围固定的常量 ， 单位像素  
+
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：前车间距，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"前车间距={vehi.vehiDistFront()}")
+    print(f"前车间距，单位：米制={vehi.vehiDistFront(UnitOfMeasure.Metric)}")
+```
 
  **def vehiSpeedFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-前车速度，单位：像素/秒  若无前车，则范围固定的常量 单位像素   
+前车速度，单位：像素/秒  若无前车，则范围固定的常量 单位像素 
+
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：前车速度，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"前车速度={vehi.vehiSpeedFront()}")
+    print(f"前车速度，单位：米/秒={vehi.vehiSpeedFront(UnitOfMeasure.Metric)}")
+```
 
  **def vehiHeadwayFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -14050,11 +14493,38 @@ if tmpId == 1:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：距前车时距，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"距前车时距={vehi.vehiHeadwayFront()}")
+    print(f"距前车时距，单位：米制={vehi.vehiHeadwayFront(UnitOfMeasure.Metric)}")
+```
+
  **def vehiDistRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-后车间距，单位：像素, 若无后车，则范围固定的常量  单位像素   
+后车间距，单位：像素, 若无后车，则范围固定的常量  单位像素 
+
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：后车间距，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"后车间距={vehi.vehiDistRear()}")
+    print(f"后车间距，单位：米制={vehi.vehiDistRear(UnitOfMeasure.Metric)}")
+```
 
  **def vehiSpeedRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -14062,11 +14532,37 @@ if tmpId == 1:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：后车速度，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"后车速度={vehi.vehiSpeedRear()}")
+    print(f"后车速度，单位：米制={vehi.vehiSpeedRear(UnitOfMeasure.Metric)}")
+```
+
  **def vehiHeadwaytoRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
-距后车时距，  若无前后车，则范围固定的常量  单位像素  
+距后车时距，单位：像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：距后车时距，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"距后车时距={vehi.vehiHeadwaytoRear()}")
+    print(f"距后车时距，单位：米制={vehi.vehiHeadwaytoRear(UnitOfMeasure.Metric)}")
+```
 
  **def vehiDistLLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -14074,11 +14570,37 @@ if tmpId == 1:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：相邻左车道前车间距，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"相邻左车道前车间距={vehi.vehiDistLLaneFront()}")
+    print(f"相邻左车道前车间距，单位：米制={vehi.vehiDistLLaneFront(UnitOfMeasure.Metric)}")
+```
+
  **def vehiSpeedLLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：相邻左车道前车速度，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"相邻左车道前车速度={vehi.vehiSpeedLLaneFront()}")
+    print(f"相邻左车道前车速度，单位：米制={vehi.vehiSpeedLLaneFront(UnitOfMeasure.Metric)}")
+```
 
  **def vehiDistLLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -14086,11 +14608,37 @@ if tmpId == 1:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：相邻左车道后车间距，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"相邻左车道后车间距={vehi.vehiDistLLaneRear()}")
+    print(f"相邻左车道后车间距，单位：米制={vehi.vehiDistLLaneRear(UnitOfMeasure.Metric)}")
+```
+
  **def vehiSpeedLLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道后车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：相邻左车道后车速度，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"相邻左车道后车速度={vehi.vehiSpeedLLaneRear()}")
+    print(f"相邻左车道后车速度，单位：米制={vehi.vehiSpeedLLaneRear(UnitOfMeasure.Metric)}")
+```
 
  **def vehiDistRLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -14098,11 +14646,37 @@ if tmpId == 1:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：相邻右车道前车间距，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"相邻右车道前车间距={vehi.vehiDistRLaneFront()}")
+    print(f"相邻右车道前车间距，单位：米制={vehi.vehiDistRLaneFront(UnitOfMeasure.Metric)}")
+```
+
  **def vehiSpeedRLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：相邻右车道前车速度，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"相邻右车道前车速度={vehi.vehiSpeedRLaneFront()}")
+    print(f"相邻右车道前车速度，单位：米制={vehi.vehiSpeedRLaneFront(UnitOfMeasure.Metric)}")
+```
 
  **def vehiDistRLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
@@ -14110,15 +14684,51 @@ if tmpId == 1:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：相邻右车道后车间距，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"相邻右车道后车间距={vehi.vehiDistRLaneRear()}")
+    print(f"相邻右车道后车间距，单位：米制={vehi.vehiDistRLaneRear(UnitOfMeasure.Metric)}")
+```
+
  **def vehiSpeedRLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道后车速度，单位：像素/秒；  若无目标车，则返回固定的常量  单位像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：相邻右车道后车速度，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"相邻右车道后车速度={vehi.vehiSpeedRLaneRear()}")
+    print(f"相邻右车道后车速度，单位：米制={vehi.vehiSpeedRLaneRear(UnitOfMeasure.Metric)}")
+```
+
  **def setIsPermitForVehicleDraw(self, bDraw:bool) -> None: ...**
 
 设置是否允许插件绘制车辆
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    vehi.setIsPermitForVehicleDraw(True)
+```
 
  **def lLaneObjectVertex(self，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -14126,49 +14736,200 @@ if tmpId == 1:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：车道或车道连接中心线内点集
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车道或车道连接中心线内点集={vehi.lLaneObjectVertex()}")
+    print(f"车道或车道连接中心线内点集，单位：米制={vehi.lLaneObjectVertex(UnitOfMeasure.Metric)}")
+```
+
  **def routing(self) -> Tessng.IRouting: ...**
 
 获取车辆当前路径； 返回的是当前车辆的全局路径，包括已经行驶过大的路段序列
+
+返回：车辆当前路径
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆当前路径={vehi.routing()}")
+```
 
  **def picture(self) -> PySide2.QtGui.QPicture: ...**
 
 获取车辆图片
 
+返回：车辆图片
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆图片={vehi.picture()}")
+```
+
  **def boundingPolygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取车辆由方向和长度决定的四个拐角构成的多边型
+
+返回：车辆由方向和长度决定的四个拐角构成的多边型
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆由方向和长度决定的四个拐角构成的多边型={vehi.boundingPolygon()}")
+```
 
  **def setTag(self, tag:int) -> None: ...**
 
 设置标签表示的状态
 
+参数：  
+\[in\] tag：标签表示的状态
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    vehi.setTag(1)
+```
+
  **def tag(self) -> int: ...**
 
 获取标签表示的状态
+
+返回：标签表示的状态
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"标签表示的状态={vehi.tag()}")
+```
 
  **def setTextTag(self, text:str) -> None: ...**
 
 设置文本信息，用于在运行过程保存临时信息，方便开发
 
+参数：  
+\[in\] text：文本信息
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    vehi.setTextTag("test")
+```
+
  **def textTag(self) -> str: ...**
 
 文本信息，运行过程临时保存的信息，方便开发
+
+返回：文本信息
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"文本信息={vehi.textTag()}")
+```
 
  **def setJsonInfo(self, info:typing.Dict) -> None: ...**
 
 设置json格式数据
 
+参数：  
+\[in\] info：json格式数据
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    vehi.setJsonInfo({"test": "test"})
+```
+
  **def jsonInfo(self) -> typing.Dict: ...**
 
 返回json格式数据
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"json格式数据={vehi.jsonInfo()}")
+```
 
  **def jsonProperty(self, propName:str) -> typing.Any: ...**
 
 返回json字段值
 
+参数：  
+\[in\] propName：json字段名
+
+返回：json字段值
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"json字段值={vehi.jsonProperty('test')}")
+```
+
  **def setJsonProperty(self, key:str, value:typing.Any) -> None: ...**
 
 设置json数据属性
+
+参数：  
+\[in\] key：json字段名  
+\[in\] value：json字段值
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    vehi.setJsonProperty("test", "test")
+```
 
    **以下方法设置****TESS NG****调用与车辆及驾驶行为相关方法时的调用频次**
 
@@ -14266,37 +15027,145 @@ if tmpId == 1:
 
 当前驾驶车辆
 
+返回：当前驾驶车辆对象
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前驾驶车辆={vehi.vehicleDriving().vehicle()}")
+```
+
  **def getRandomNumber(self) -> int: ...**
 
-获取随机数
+获取车辆被赋予的随机数
+
+返回：车辆被赋予的随机数
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"随机数={vehi.vehicleDriving().getRandomNumber()}")
+```
 
  **def nextPoint(self) -> bool: ...**
 
 计算下一点位置，过程包括计算车辆邻车关系、公交车是否进站是否出站、是否变道、加速度、车速、移动距离、跟驰类型、轨迹类型等
 
+返回：计算下一点位置成功与否
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"计算下一点位置={vehi.vehicleDriving().nextPoint()}")
+```
+
  **def zeroSpeedInterval(self) -> int: ...**
 
 当前车速为零持续时间(毫秒)
+
+返回：当前车速为零持续时间(毫秒)
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前车速为零持续时间(毫秒)={vehi.vehicleDriving().zeroSpeedInterval()}")
+```
 
  **def isHavingDeciPointOnLink(self) -> bool: ...**
 
 当前是否在路段上且有决策点
 
+返回：当前是否在路段上且有决策点
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前是否在路段上且有决策点={vehi.vehicleDriving().isHavingDeciPointOnLink()}")
+```
+
  **def followingType(self) -> int: ...**
 
-跟驰车辆的类型，即当前车辆前车的类型，分为：0：停车，1: 正常，5：急减速，6：急加速，7：汇入， 8：穿越，9：协作减速，10：协作加速，11：减速待转，12：加速待转
+车辆的跟驰类型，分为：0：停车，1: 正常，5：急减速，6：急加速，7：汇入， 8：穿越，9：协作减速，10：协作加速，11：减速待转，12：加速待转
+
+返回：车辆的跟驰类型
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆的跟驰类型={vehi.vehicleDriving().followingType()}")
+```
 
  **def isOnRouting(self) -> bool: ...**
 
 当前是否在路径上
 
+返回：当前是否在路径上
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前是否在路径上={vehi.vehicleDriving().isOnRouting()}")
+```
+
  **def stopVehicle(self) -> None: ...**
 
 停止运行，车辆移出路网
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+simuTime = simuiface.simuTimeIntervalWithAcceMutiples()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    if simuTime  == 20 * 1000:
+        vehi.vehicleDriving().stopVehicle()
+```
+
  **def angle(self) -> float: ...**
 
 旋转角，北向0度顺时针
+
+返回：旋转角，北向0度顺时针
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"旋转角={vehi.vehicleDriving().angle()}")
+```
 
  **def setAngle(self, angle:float) -> None: ...**
 
@@ -14315,8 +15184,6 @@ if  vehi.roadId() == 5:
         vehi.vehicleDriving().setAngle(vehi.angle() + 45.0) 
 ```
 
- 
-
  **def euler(self, bPositive:bool=...) -> PySide2.QtGui.QVector3D: ...**
 
 返回车辆欧拉角
@@ -14325,35 +15192,128 @@ if  vehi.roadId() == 5:
 
 \[in\] bPositive：车头方向是否正向计算，如果bPosiDire为False则反向计算
 
+返回：车辆欧拉角
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"车辆欧拉角={vehi.vehicleDriving().euler()}")
+```
+
  **def desirSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前期望速度，与车辆自身期望速度和道路限速有关，不大于道路限速，单位：像素/秒  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：当前期望速度，单位：像素/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前期望速度={vehi.vehicleDriving().desirSpeed()}")
+    print(f"当前期望速度单位={vehi.vehicleDriving().desirSpeed(UnitOfMeasure.Metric)}")
+```
+
  **def getCurrRoad(self) -> Tessng.ISection: ...**
 
 返回当前所在路段或连接段
+
+返回：当前所在路段或连接段
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前所在路段或连接段={vehi.vehicleDriving().getCurrRoad()}")
+```
 
  **def getNextRoad(self) -> Tessng.ISection: ...**
 
 下一路段或连接段
 
+返回：下一路段或连接段
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"下一路段或连接段={vehi.vehicleDriving().getNextRoad()}")
+```
+
  **def differToTargetLaneNumber(self) -> int: ...**
 
 与目标车道序号的差值，不等于0表示有强制变道意图，大于0有左变道意图，小于0有右变道意图，绝对值大于0表示需要强制变道次数
+
+返回：与目标车道序号的差值
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"与目标车道序号的差值={vehi.vehicleDriving().differToTargetLaneNumber()}")
+```
 
  **def toLeftLane(self) -> None: ...**
 
 左变道
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    vehi.vehicleDriving().toLeftLane()
+```
+
  **def toRightLane(self) -> None: ...**
 
 右变道
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    vehi.vehicleDriving().toRightLane()
+```
+
  **def laneNumber(self) -> int: ...**
 
 当前车道序号，最右侧序号为0
+
+返回：当前车道序号，最右侧序号为0
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前车道序号={vehi.vehicleDriving().laneNumber()}")
+```
 
  **def initTrace(self) -> None: ...**
 
@@ -14377,9 +15337,23 @@ if  vehi.roadId() == 5:
 
 返回轨迹类型，分为：0：跟驰，1：左变道，2：右变道，3：左虚拟変道，4：右虚拟变道，5：左转待转，6：右转待转，7：入湾，8：出湾
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"轨迹类型={vehi.vehicleDriving().tracingType()}")
+```
+
  **def setTracingType(self, type:int) -> None: ...**
 
 设置轨迹类型； TESSNG车辆后续运动轨迹按照此轨迹类型的动机产生动作，但因为阈值条件有可能环境不满足，因此动机并不一定能执行
+
+参数：
+
+\[in\] type：轨迹类型
 
  **def setLaneNumber(self, number:int) -> None: ...**
 
@@ -14395,11 +15369,37 @@ if  vehi.roadId() == 5:
 参数： 
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：当前计算周期移动距离，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前计算周期移动距离={vehi.vehicleDriving().currDistance()}")
+    print(f"当前计算周期移动距离，米制={vehi.vehicleDriving().currDistance(UnitOfMeasure.Metric)}")
+```
+
  **def currDistanceInRoad(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前路段或连接上已行驶距离，单位：像素  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：当前路段或连接上已行驶距离，单位：像素
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前路段或连接上已行驶距离={vehi.vehicleDriving().currDistanceInRoad()}")
+    print(f"当前路段或连接上已行驶距离，米制={vehi.vehicleDriving().currDistanceInRoad(UnitOfMeasure.Metric)}")
+```
 
  **def setCurrDistanceInRoad(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -14425,21 +15425,52 @@ if  vehi.roadId() == 5:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：已行驶总里程
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"已行驶总里程={vehi.vehicleDriving().getVehiDrivDistance()}")
+    print(f"已行驶总里程，米制={vehi.vehicleDriving().getVehiDrivDistance(UnitOfMeasure.Metric)}")
+```
+
  **def currDistanceInSegment(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前分段已行驶距离  
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：当前分段已行驶距离
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前分段已行驶距离={vehi.vehicleDriving().currDistanceInSegment()}")
+    print(f"当前分段已行驶距离，米制={vehi.vehicleDriving().currDistanceInSegment(UnitOfMeasure.Metric)}")
+```
+
  **def setCurrDistanceInSegment(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置当前分段已行驶的距离  
 参数：  
+\[in\] dist：距离，单位：像素  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
  **def setSegmentIndex(self, index:int) -> None: ...**
 
 设置分段序号
+
+参数：
+
+\[in\] index：分段序号
 
  **def setCurrDistanceInTrace(self, dist:float)，unit:Tess.UnitOfMeasure -> None: ...**
 
@@ -14461,11 +15492,28 @@ if  vehi.roadId() == 5:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：当前时间段移动距离
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前时间段移动距离={vehi.vehicleDriving().currDistance()}")
+    print(f"当前时间段移动距离，米制={vehi.vehicleDriving().currDistance(UnitOfMeasure.Metric)}")
+```
+
  **def setRouting(self, pRouting:Tessng.IRouting) -> bool: ...**
 
 设置路径，外界设置的路径不一定有决策点，可能是临时创建的，如果车辆不在此路径上则设置不成功并返回False
 
+参数：
+
 \[in\] pRouting：路径
+
+返回：是否设置成功
 
 举例：
 
@@ -14504,6 +15552,19 @@ for vehi in allVehiStarted_lst:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：当前在分段上已行驶距离
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前在分段上已行驶距离={vehi.vehicleDriving().currDistanceInSegment()}")
+    print(f"当前在分段上已行驶距离，米制={vehi.vehicleDriving().currDistanceInSegment(UnitOfMeasure.Metric)}")
+```
+
  **def setCurrDistanceInSegment(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置在分段上已行驶距离
@@ -14540,11 +15601,40 @@ for vehi in allVehiStarted_lst:
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
+返回：变轨点集
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"变轨点集={vehi.vehicleDriving().changingTrace()}")
+```
+
  **def changingTraceLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
 
 变轨长度
 
- **def distToStartPoint(self, fromVehiHead:bool=..., bOnCentLine:bool=...，unit:Tess.UnitOfMeasure) -> float: ...**
+参数：
+
+\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
+
+返回：变轨长度
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"变轨长度={vehi.vehicleDriving().changingTraceLength()}")
+    print(f"变轨长度，米制={vehi.vehicleDriving().changingTraceLength(UnitOfMeasure.Metric)}")
+```
+
+ **def distToStartPoint(self, fromVehiHead:bool=..., bOnCentLine:bool=..., unit:Tess.UnitOfMeasure) -> float: ...**
 
 在车道或车道连接上到起点距离
 
@@ -14554,14 +15644,40 @@ for vehi in allVehiStarted_lst:
 \[in\] bOnCentLine：当前是否在中心线上  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def distToEndpoint(self, fromVehiHead:bool=...，unit:Tess.UnitOfMeasure) -> float: ...**
+返回：在车道或车道连接上到起点距离
 
-在车道或“车道连接”上车辆到终端距离
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"在车道或车道连接上到起点距离={vehi.vehicleDriving().distToStartPoint()}")
+    print(f"在车道或车道连接上到起点距离，米制={vehi.vehicleDriving().distToStartPoint(False, True, UnitOfMeasure.Metric)}")
+```
+
+ **def distToEndpoint(self, fromVehiHead:bool=..., bOnCentLine:bool=..., unit:Tess.UnitOfMeasure) -> float: ...**
+
+在车道或“车道连接”上车辆到终点距离
 
 参数：  
 \[in\] fromVehiHead：是否从车头计算，如果为False，从车辆中心点计算，默认值为False  
+\[in\] bOnCentLine：当前是否在中心线上  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
+
+返回：在车道或“车道连接”上车辆到终点距离
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"在车道或“车道连接”上车辆到终点距离={vehi.vehicleDriving().distToEndpoint()}")
+    print(f"在车道或“车道连接”上车辆到终点距离，米制={vehi.vehicleDriving().distToEndpoint(False, True, UnitOfMeasure.Metric)}")
+```
 
  **def setRouting(self, pRouting:Tessng.IRouting) -> bool: ...**
 
@@ -14570,6 +15686,16 @@ for vehi in allVehiStarted_lst:
  **def routing(self) -> Tessng.IRouting: ...**
 
 当前路径
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allVehicleStarted = simuiface.allVehiStarted()
+for vehi in allVehicleStarted:
+    print(f"当前路径={vehi.vehicleDriving().routing()}")
+```
 
  **def moveToLane(self, pLane:Tessng.ILane, dist:float，unit:Tess.UnitOfMeasure) -> bool: ...**
 
@@ -14627,37 +15753,6 @@ if simuTime == 10 * 1000:
                 print("{}车辆移动成功。".format(vehi.id()))
 
 ```
-
- 
-
- **def changingTrace(self) -> typing.List: ...**
-
-变轨点集，如变道轨迹、公交车进入港湾式站点轨迹。
-
- **def changingTraceLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
-
-变轨长度，如变道轨迹长度、公交车进入港湾式站点轨迹长度，单位：像素。  
-参数：  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
-
- **def calcTraceLength(self，unit:Tess.UnitOfMeasure) -> None: ...**
-
-计算变轨长度，如计算变道轨迹长度等。  
-参数：  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
-
- **def setTrace(self, lPoint:typing.Sequence，unit:Tess.UnitOfMeasure) -> None: ...**
-
-设置变轨轨迹； 车辆后续会沿着当前设置的轨迹运动，运动速度默认是当前车辆瞬时速度；该函数一旦使用就需要用户在后续仿真过程中全称控制当前车辆的运动，包括速度，加速度，与其他车辆的交互  
-
-参数：  
-\[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
-
- **def setTracingType(self, type:int) -> None: ...**
-
-设置轨迹类型
-
-\[in\] type：轨迹类型 0：跟驰，1：左变道，2：右变道，3：左虚拟変道, 4：右虚拟变道，5：左转待转，6：右转待转, 7：入湾，8：出湾
 
 
 
