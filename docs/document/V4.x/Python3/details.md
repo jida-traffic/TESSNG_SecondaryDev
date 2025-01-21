@@ -8903,21 +8903,81 @@ def showTollPointAttr(netiface):
 
 获取停车位ID 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    parkingStalls = parkingRegion.parkingStalls()
+    for parkingStall in parkingStalls:
+        print(f"获取停车位ID={parkingStall.id()}")
+```
+
  **def parkingRegionId(self) -> int: ...**
 
 获取所属停车区域ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    parkingStalls = parkingRegion.parkingStalls()
+    for parkingStall in parkingStalls:
+        print(f"获取所属停车区域ID={parkingStall.parkingRegionId()}")
+```
 
  **def parkingRegion(self) -> Tess.IParkingRegion: ...**
 
 获取所属停车区域
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    parkingStalls = parkingRegion.parkingStalls()
+    for parkingStall in parkingStalls:
+        print(f"获取所属停车区域={parkingStall.parkingRegion()}")
+```
+
  **def distance(self) -> float: ...**
 
 获取距路段起始位置，单位：米
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    parkingStalls = parkingRegion.parkingStalls()
+    for parkingStall in parkingStalls:
+        print(f"获取距路段起始位置，单位：米={parkingStall.distance()}")
+```
+
  **def stallType(self) -> int: ...**
 
 获取车位类型，与车辆类型编码一致
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    parkingStalls = parkingRegion.parkingStalls()
+    for parkingStall in parkingStalls:
+        print(f"获取车位类型，与车辆类型编码一致={parkingStall.stallType()}")
+```
 
 **案例代码**
 
@@ -8943,24 +9003,75 @@ def showParkingStallAttr(netiface):
 
  **def id(self) -> int: ...**
 
-获取停车区域ID 
+获取停车区域ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    print(f"获取停车区域ID={parkingRegion.id()}")
+```
 
  **def name(self) -> str: ...**
 
 获取所属停车区域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    print(f"获取停车区域名称={parkingRegion.name()}")
+```
 
  **def setName(self,name: str) -> None: ...**
 
 设置停车区域名称  
 \[in\] name ：停车区域名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    print(f"设置停车区域名称={parkingRegion.setName('test parking name')}")
+    print(f"获取停车区域名称={parkingRegion.name()}")
+```
+
  **def parkingStalls(self) -> Type.List<Tess.IParkingStall>: ...**
 
-获取所有停车位，返回列表,
+获取所有停车位，返回列表
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    print(f"获取所有停车位，返回列表={parkingRegion.parkingStalls()}")
+```
 
  **def dynaParkingRegion(self) -> Online.ParkingLot.DynaParkingRegion : ...**
 
 获取动态停车区域信息
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingRegions = netiface.parkingRegions()
+for parkingRegion in parkingRegions:
+    print(f"获取动态停车区域信息={parkingRegion.dynaParkingRegion()}")
+```
 
  数据结构见pyi文件的Online.ParkingLot.DynaParkingRegion 
 
@@ -8991,21 +9102,71 @@ def showParkingRegionAttr(netiface):
 
 获取停车决策点ID 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    print(f"获取停车决策点ID={parkingDecisionPoint.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取停车决策点名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    print(f"获取停车决策点名称={parkingDecisionPoint.name()}")
+```
 
  **def link(self) -> Tessng.ILink: ...**
 
 获取停车决策点所在路段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    print(f"获取停车决策点所在路段={parkingDecisionPoint.link()}")
+```
+
  **def distance(self) -> float: ...**
 
 获取停车决策点距离所在路段起点的距离，单位：米
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    print(f"获取停车决策点距离所在路段起点的距离，单位：米={parkingDecisionPoint.distance()}")
+```
+
  **def routings(self) -> Type.List<Tessng.IParkingRouting>: ...**
 
 获取当前停车决策点对应的所有停车路径
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    print(f"获取当前停车决策点对应的所有停车路径={parkingDecisionPoint.routings()}")
+```
 
 **def updateParkDisInfo(self, tollDisInfoList:Type.List<Online.ParkingLot.DynaParkDisInfo>)->bool**
 
@@ -9014,13 +9175,43 @@ def showParkingRegionAttr(netiface):
 参数：  
 [ in ] tollDisInfoList：停车分配信息列表, 见pyi文件的Online.ParkingLot.DynaParkDisInfo
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    print(f"更新停车分配信息={parkingDecisionPoint.updateParkDisInfo(parkingDecisionPoint.parkDisInfoList())}")
+```
+
 **def parkDisInfoList()->Type.List<Online.ParkingLot.DynaParkDisInfo >**
 
 获取停车分配信息列表
 
- **def polygon(self) -> : QPolygonF: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    print(f"获取停车分配信息列表={parkingDecisionPoint.parkDisInfoList()}")
+```
+
+ **def polygon(self) -> QPolygonF: ...**
 
 获取当前停车决策点多边形轮廓
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    print(f"获取当前停车决策点多边形轮廓={parkingDecisionPoint.polygon()}")
+```
 
 **案例代码**
 
@@ -9050,31 +9241,115 @@ def showParkingDecisionPointAttr(netiface):
 
 获取停车决策路径ID 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    parkingDecisionPoint.routings()
+    for parkingRouting in parkingDecisionPoint.routings():
+        print(f"获取停车决策路径ID={parkingRouting.id()}")
+```
+
  **def parkingDeciPointId(self) -> int: ...**
 
 获取停车决策路径所属停车决策点的ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    parkingDecisionPoint.routings()
+    for parkingRouting in parkingDecisionPoint.routings():
+        print(f"获取停车决策路径所属停车决策点的ID={parkingRouting.parkingDeciPointId()}")
+```
+
  **def parkingRegionId(self) -> int: ...**
 
-路径到达的停车区域id
+获取路径到达的停车区域id
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    parkingDecisionPoint.routings()
+    for parkingRouting in parkingDecisionPoint.routings():
+        print(f"获取路径到达的停车区域id={parkingRouting.parkingRegionId()}")
+```
 
  **def calcuLength(self) -> float: ...**
 
 获取停车决策路径的长度，单位：米
 
- **def contain(self,pRoad: ISection) -> boolen: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    parkingDecisionPoint.routings()
+    for parkingRouting in parkingDecisionPoint.routings():
+        print(f"获取停车决策路径的长度，单位：米={parkingRouting.calcuLength()}")
+```
+
+ **def contain(self,pRoad: Tessng.ISection) -> boolen: ...**
 
 判断输入的道路（ 路段或连接段）是否在当前停车决策路径上  
 \[in\] pRoad ：道路对象，类型为Tessng.ISection
 
- **def nextRoad(self,pRoad: ISection) -> Tessng.ISection: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    parkingDecisionPoint.routings()
+    for parkingRouting in parkingDecisionPoint.routings():
+        print(f"判断输入的道路（ 路段或连接段）是否在当前停车决策路径上={parkingRouting.contain(parkingDecisionPoint.link())}")
+```
+
+ **def nextRoad(self,pRoad: Tessng.ISection) -> Tessng.ISection: ...**
 
 获取输入道路的紧邻下游道路  
 \[in\] pRoad ：道路对象，类型为Tessng.ISection
 
- **def getLinks(self) -> Type.List<Tess.ILink>: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    parkingDecisionPoint.routings()
+    for parkingRouting in parkingDecisionPoint.routings():
+        print(f"获取输入道路的紧邻下游道路={parkingRouting.nextRoad(parkingDecisionPoint.link())}")
+```
+
+ **def getLinks(self) -> Type.List<Tessng.ILink>: ...**
 
 获取当前停车路径的有序路段序列
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+parkingDecisionPoints = netiface.parkingDecisionPoints()
+for parkingDecisionPoint in parkingDecisionPoints:
+    parkingDecisionPoint.routings()
+    for parkingRouting in parkingDecisionPoint.routings():
+        print(f"获取当前停车路径的有序路段序列={parkingRouting.getLinks()}")
+```
 
 **案例代码**
 
@@ -9103,30 +9378,101 @@ def showParkingRoutingAttr(netiface):
 
 获取节点ID   
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+nodes = netiface.getAllJunctions()
+for node in nodes:
+    print(f"获取节点ID={node.getId()}")
+```
+
  **def name(self) -> int: ...**
 
 获取节点名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+nodes = netiface.getAllJunctions()
+for node in nodes:
+    print(f"获取节点名称={node.name()}")
+```
 
  **def setName(strName: str) -> int: ...**
 
 设置节点名称  
 \[in\] strName ：节点名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+nodes = netiface.getAllJunctions()
+for node in nodes:
+    print(f"设置节点名称={node.setName('new_' + node.name())}")
+    print(f"获取节点名称={node.name()}")
+```
+
  **def getJunctionLinks(self) -> Tess.ILink: ...**
 
 获取节点内的路段
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+nodes = netiface.getAllJunctions()
+for node in nodes:
+    print(f"获取节点内的路段={node.getJunctionLinks()}")
+```
 
  **def getJunctionConnectors(self) -> Tess.Connector: ...**
 
 获取节点内的连接段
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+nodes = netiface.getAllJunctions()
+for node in nodes:
+    print(f"获取节点内的连接段={node.getJunctionConnectors()}")
+```
+
  **def getAllTurnningInfo(self) ->Type.List<Online.Junction.TurnningBaseInfo>: ...**
 
 获取节点内的流向信息， Online.Junction.TurnningBaseInfo 数据结构见 pyi文件
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+nodes = netiface.getAllJunctions()
+for node in nodes:
+    print(f"获取节点内的流向信息={node.getAllTurnningInfo()}")
+```
+
  **def getTurnningInfo(self) ->Online.Junction.TurnningBaseInfo: ...**
 
 根据转向编号获取节点内的流向信息， Online.Junction.TurnningBaseInfo 数据结构见 pyi文件
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+nodes = netiface.getAllJunctions()
+for node in nodes:
+    print(f"根据转向编号获取节点内的流向信息={node.getTurnningInfo()}")
+```
 
 **案例代码**
 
