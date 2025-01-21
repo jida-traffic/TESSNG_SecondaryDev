@@ -3688,7 +3688,8 @@ netiface = iface.netInterface()
 # 获取路网中的所有ITrafficController
 lTrafficControllers = netiface.trafficControllers()
 for trafficController in lTrafficControllers:
-    print(f"设置信控机{trafficController.id()}名称={trafficController.setName('new_'+trafficController.name())}")
+    print(f"设置信控机{trafficController.id()}名称,返回值={trafficController.setName('new_'+trafficController.name())}")
+    print(f"获取信控机{trafficController.id()}名称={trafficController.name()}")
 ```
 
  **def addPlan(plan: Tessng.ISignalPlan) -> None: ...**
@@ -3705,7 +3706,7 @@ netiface = iface.netInterface()
 # 获取路网中的所有ITrafficController
 lTrafficControllers = netiface.trafficControllers()
 for trafficController in lTrafficControllers:
-    plans = trafficController.plans()
+    plans = trafficController.IPlans()
     print(f"移除/删除信号机{trafficController.id()}的信控方案")
     trafficController.removePlan(plans[0])
     print(f"为信号机{trafficController.id()}添加信控方案")
@@ -3726,12 +3727,12 @@ netiface = iface.netInterface()
 # 获取路网中的所有ITrafficController
 lTrafficControllers = netiface.trafficControllers()
 for trafficController in lTrafficControllers:
-    plans = trafficController.plans()
+    plans = trafficController.IPlans()
     print(f"移除/删除信号机{trafficController.id()}的信控方案")
     trafficController.removePlan(plans[0])
 ```
 
- **def plans(self) -> typing.List<Tessng.ISignalPlan>: ...**
+ **def IPlans(self) -> typing.List<Tessng.ISignalPlan>: ...**
 
  获取当前信号机中所有的信控方案  
 \[out\] plan ：信控方案
@@ -3745,7 +3746,7 @@ netiface = iface.netInterface()
 # 获取路网中的所有ITrafficController
 lTrafficControllers = netiface.trafficControllers()
 for trafficController in lTrafficControllers:
-    print(f"获取信号机{trafficController.id()}中所有的信控方案={trafficController.plans()}")
+    print(f"获取信号机{trafficController.id()}中所有的信控方案={trafficController.IPlans()}")
 ```
 
 
@@ -3784,11 +3785,11 @@ def showTrafficControllerAttr(netiface):
     controller = netiface.findTrafficControllerByName(controllers[0].name())
     print(f"路网中的信号机总数={controllerCount},所有的信号机id列表={trafficControllerIds},信号机编号={trafficControllerIds[0]}的具体信息："
           f"编号={controller.id()},名称={controller.name()}, 设置新名字={controller.setName('new_'+controller.name())},"
-          f"获取信号机的信控方案={controller.plans()}")
-    plans = controller.plans()
-    print(f"移除/删除信号机的信控方案={controller.removePlan(plans[0])}")
-    print(f"为信号机添加信控方案,添加回原有信控方案={controller.addPlan(plans[0])}")
-    print(f"信号机当前信控方案={controller.plans()}")
+          f"获取信号机的信控方案={controller.IPlans()}")
+    IPlans = controller.IPlans()
+    print(f"移除/删除信号机的信控方案={controller.removePlan(IPlans[0])}")
+    print(f"为信号机添加信控方案,添加回原有信控方案={controller.addPlan(IPlans[0])}")
+    print(f"信号机当前信控方案={controller.IPlans()}")
 ```
 
 
@@ -3801,45 +3802,193 @@ def showTrafficControllerAttr(netiface):
 
 获取信控方案ID 
 
+举例：
+
+```python
+# 获取当前信号机中所有的信控方案
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"信控方案ID={signalPlan.id()}")
+```
+
  **def name(self) -> str: ...**
 
 获取信控方案名称（V3版本的信号灯组名称） 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"信控方案名称={signalPlan.name()}")
+```
+
  **def trafficName(self) -> str: ...**
 
-获取信号机名称(在增加一个获取信号机ID的属性？因为名称不唯一) 
+获取信号机名称(在增加一个获取信号机ID的属性？因为名称不唯一)
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"信号机名称={signalPlan.trafficName()}")
+```
 
  **def cycleTime(self) -> int: ...**
 
 获取获取信号周期，单位：秒 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"信控方案周期={signalPlan.cycleTime()}")
+```
+
  **def fromTime(self) -> int: ...**
 
 获取信控方案起始时间，单位：秒 
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"信控方案起始时间={signalPlan.fromTime()}")
+```
 
  **def toTime(self) -> int: ...**
 
 获取信控方案结束时间，单位：秒 
 
- **def phases(self) -> : typing.List<Tessng.ISignalPhase>: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"信控方案结束时间={signalPlan.toTime()}")
+```
+
+ **def phases(self) -> typing.List<Tessng.ISignalPhase>: ...**
 
 获取信控方案中的相位列表
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"信控方案中的相位列表={signalPlan.phases()}")
+```
 
  **def setName( name: str) -> None: ...**
 
 设置信控方案（V3版本的信号灯组）名称 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"设置信控方案名称={signalPlan.setName('new_'+signalPlan.name())}")
+        print(f"获取信控方案名称={signalPlan.name()}")
+```
+
  **def setCycleTime(period: int) -> None: ...**
 
 设置信控方案（V3版本的信号灯组）的信号周期， 单位：秒 
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"设置信控方案周期={signalPlan.setCycleTime(100)}")
+        print(f"获取信控方案周期={signalPlan.cycleTime()}")
+```
 
  **def setFromTime(time: int) -> None: ...**
 
 设置信控方案（V3版本的信号灯组）起作用时段的起始时间， 单位：秒 
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"设置信控方案起始时间={signalPlan.setFromTime(100)}")
+        print(f"获取信控方案起始时间={signalPlan.fromTime()}")
+```
+
  **def setToTime(time: int) -> None: ...**
 
 设置信控方案（V3版本的信号灯组）起作用时段的结束时间， 单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        print(f"设置信控方案结束时间={signalPlan.setToTime(100)}")
+        print(f"获取信控方案结束时间={signalPlan.toTime()}")
+```
 
 **案例代码**
 
@@ -3880,17 +4029,77 @@ def showSignalPlanAttr(netiface):
 
 获取当前相位的相位ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        phases = signalPlan.phases()
+        for signalPhase in phases:
+            print(f"相位ID={signalPhase.id()}")
+```
+
  **def phaseName(self) -> str: ...**
 
 获取当前相位的相位名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        phases = signalPlan.phases()
+        for signalPhase in phases:
+            print(f"相位名称={signalPhase.phaseName()}")
+```
 
  **def signalLamps(self) -> typing.List: ...**
 
 获取本相位下的信号灯列表
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        phases = signalPlan.phases()
+        for signalPhase in phases:
+            print(f"本相位下的信号灯列表={signalPhase.signalLamps()}")
+```
+
  **def listColor(self) -> typing.List: ...**
 
 获取本相位的相位灯色列表
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        phases = signalPlan.phases()
+        for signalPhase in phases:
+            print(f"本相位的相位灯色列表={signalPhase.listColor()}")
+```
 
  **def setColorList(self, lColor:typing.List<Online.ColorInterval>) -> None: ...**
 
@@ -3918,21 +4127,78 @@ if method_number == 3:
 
 设置当前相位名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        phases = signalPlan.phases()
+        for signalPhase in phases:
+            print(f"设置当前相位名称={signalPhase.setPhaseName('new_'+signalPhase.phaseName())}")
+            print(f"获取当前相位名称={signalPhase.phaseName()}")
+```
+
  **def cycleTime(self) -> int: ...**
 
 相位周期，单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        phases = signalPlan.phases()
+        for signalPhase in phases:
+            print(f"相位周期={signalPhase.cycleTime()}")
+```
 
  **def phaseColor(self) -> Online.SignalPhaseColor: ...**
 
 获取当前相位灯色，Online.SignalPhaseColor
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        phases = signalPlan.phases()
+        for signalPhase in phases:
+            print(f"当前相位灯色={signalPhase.phaseColor()}")
+```
+
  **def signalPlan(self) -> Tess.ISignalPlan: ...**
 
 获取相位所在信控方案
 
- **def signalLamps(self) -> Type.List<Tess.ISignalLamp>: ...**
+举例：
 
-获取相关信号灯列表
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ITrafficController
+lTrafficControllers = netiface.trafficControllers()
+for trafficController in lTrafficControllers:
+    plans = trafficController.IPlans()
+    for signalPlan in plans:
+        phases = signalPlan.phases()
+        for signalPhase in phases:
+            print(f"相位所在信控方案={signalPhase.signalPlan()}")
+```
 
 **案例代码**
 
@@ -3951,17 +4217,63 @@ if method_number == 3:
  **def id(self) -> int: ...**
 
 获取信号灯ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"信号灯ID={signalLamp.id()}")
+```
+
  **def color(self) -> str: ...**
 
 获取信号灯当前信号灯色，"R"、“G”、“Y”、“gray”分别表示"红"、"绿"、"黄"、"灰"
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"信号灯当前信号灯色={signalLamp.color()}")
+```
 
  **def name(self) -> str: ...**
 
 获取信号灯名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"信号灯名称={signalLamp.name()}")
+```
+
  **def setName(self, name:str) -> None: ...**
 
 设置信号灯名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"设置信号灯名称={signalLamp.setName('new_'+signalLamp.name())}")
+    print(f"获取信号灯名称={signalLamp.name()}")
+```
 
  **def setLampColor(self, colorStr:str) -> None: ...**
 
@@ -3971,15 +4283,64 @@ if method_number == 3:
 
 \[in\] colorStr：字符串表达的颜色，有四种可选，支持汉字："红"、"绿"、"黄"、"灰"，也支持字符： "R"、"G"、"Y"、"grey"。
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"设置信号灯颜色={signalLamp.setLampColor('R')}")
+    print(f"获取信号灯颜色={signalLamp.color()}")
+```
+
  **def signalPhase(self) -> Tessng.ISignalPhase: ...**
+
+获取当前信号灯所在的相位
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"当前信号灯所在的相位={signalLamp.signalPhase()}")
+```
 
  **def setSignalPhase(self, signalPhase: Tessng.ISignalPhase) -> None: ...**
 
 为信号灯设置相位
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+signalPhase = netiface.findSignalPhase(2)
+for signalLamp in lSignalLamps:
+    if signalPhase:
+        print(f"为信号灯设置相位={signalLamp.setSignalPhase(signalPhase)}")
+```
+
  **def signalPlan(self) -> Tessng.ISignalPlan: ...**
 
 获取当前信号灯所在的灯组， 这里灯组类似于一个信号机种的某个信控方案
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"当前信号灯所在的灯组={signalLamp.signalPlan()}")
+```
 
  **def setDistToStart(self, dist:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
@@ -3988,19 +4349,64 @@ if method_number == 3:
 \[in\] dist：距离值  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"设置信号灯距路段起点距离={signalLamp.setDistToStart(100)}")
+    print(f"获取信号灯距路段起点距离={signalLamp.distToStart()}")
+    print(f"设置信号灯距路段起点距离(米制)={signalLamp.setDistToStart(100, UnitOfMeasure.Metric)}")
+    print(f"获取信号灯距路段起点距离(米制)={signalLamp.distToStart(UnitOfMeasure.Metric)}")
+```
+
  **def laneObject(self) -> Tess.ILaneObject: ...**
 
 获取所在车道或车道连接
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"所在车道或车道连接={signalLamp.laneObject()}")
+```
 
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
 
 获取信号灯多边型轮廓
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"信号灯多边型轮廓={signalLamp.polygon()}")
+```
+
 **def angle()->float:**
 
 获取信号灯角度，正北为0顺时针方向
 
+举例：
 
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有ISignalLamp
+lSignalLamps = netiface.signalLamps()
+for signalLamp in lSignalLamps:
+    print(f"信号灯角度={signalLamp.angle()}")
+```
 
 **案例代码**
 
@@ -4201,6 +4607,7 @@ netiface = iface.netInterface()
 lBusLines = netiface.buslines()
 for busLine in lBusLines:
     print(f"设置当前公交线路的名称={busLine.setName('new name')}")
+    print(f"获取当前公交线路的名称={busLine.name()}")
 ```
 
  **def setDispatchFreq(self, freq:int) -> None: ...**
@@ -4216,6 +4623,7 @@ netiface = iface.netInterface()
 lBusLines = netiface.buslines()
 for busLine in lBusLines:
     print(f"设置当前公交线路的发车间隔，单位：秒={busLine.setDispatchFreq(20)}")
+    print(f"获取当前公交线路的发车间隔，单位：秒={busLine.dispatchFreq()}")
 ```
 
  **def setDispatchStartTime(self, startTime:int) -> None: ...**
@@ -4231,6 +4639,7 @@ netiface = iface.netInterface()
 lBusLines = netiface.buslines()
 for busLine in lBusLines:
     print(f"设置当前公交线路上的公交首班车辆的开始发车时间={busLine.setDispatchStartTime(0)}")
+    print(f"获取当前公交线路上的公交首班车辆的开始发车时间={busLine.dispatchStartTime()}")
 ```
 
  **def setDispatchEndTime(self, endTime:int) -> None: ...**
@@ -4246,22 +4655,27 @@ netiface = iface.netInterface()
 lBusLines = netiface.buslines()
 for busLine in lBusLines:
     print(f"设置当前公交线路上的公交末班车的发车时间={busLine.setDispatchEndTime(300)}")
+    print(f"获取当前公交线路上的公交末班车的发车时间={busLine.dispatchEndTime()}")
 ```
 
  **def setDesirSpeed(self, desirSpeed:float，unit:Tess.UnitOfMeasure) -> None: ...**
 
 设置当前公交线路的期望速度,默认输入是像素，可通过unit参数设置单位  
-参数：  
-\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位 
+参数： 
+\[in\]  desirSpeed：期望速度，单位：像素/秒 （km/h）的像素制（经过了p2m的比例尺转化）
+\[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
 
 举例：
 
 ```python
-# 创建公交线路
-busLine = tessngIFace().netInterface().createBusLine([link10, link11])
-if busLine is not None:
-    busLine.setDesirSpeed(m2p(60))
-
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+lBusLines = netiface.buslines()
+for busLine in lBusLines:
+    print(f"设置当前公交线路的期望速度,默认输入是像素，可通过unit参数设置单位={busLine.setDesirSpeed(40, UnitOfMeasure.Metric)}")
+    print(f"获取当前公交线路的期望速度,默认输入是像素，可通过unit参数设置单位={busLine.desirSpeed()}")
+    print(f"获取当前公交线路的期望速度,默认输入是像素，可通过unit参数设置单位={busLine.desirSpeed(UnitOfMeasure.Metric)}")
 ```
 
  **def setPassCountAtStartTime(self, count:int) -> None: ...**
@@ -4277,6 +4691,7 @@ netiface = iface.netInterface()
 lBusLines = netiface.buslines()
 for busLine in lBusLines:
     print(f"设置当前公交线路的起始载客人数={busLine.setPassCountAtStartTime(60)}")
+    print(f"获取当前公交线路的起始载客人数={busLine.passCountAtStartTime()}")
 ```
 
 **案例代码**
@@ -4374,6 +4789,7 @@ netiface = iface.netInterface()
 lBusStations = netiface.busStations()
 for busStation in lBusStations:
     print(f"获取当前公交站点的中心点的位置， X坐标={busStation.x()}")
+    print(f"获取当前公交站点的中心点的位置， X坐标={busStation.x(UnitOfMeasure.Metric)}")
 ```
 
  **def y(self，unit:Tess.UnitOfMeasure) -> float: ...**
@@ -4391,6 +4807,7 @@ netiface = iface.netInterface()
 lBusStations = netiface.busStations()
 for busStation in lBusStations:
     print(f"获取当前公交站点的中心点的位置， Y坐标={busStation.y()}")
+    print(f"获取当前公交站点的中心点的位置， Y坐标={busStation.y(UnitOfMeasure.Metric)}")
 ```
 
  **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
@@ -4408,6 +4825,7 @@ netiface = iface.netInterface()
 lBusStations = netiface.busStations()
 for busStation in lBusStations:
     print(f"获取当前公交站点的长度，单位：像素={busStation.length()}")
+    print(f"获取当前公交站点的长度，单位：米={busStation.length(UnitOfMeasure.Metric)}")
 ```
 
  **def stationType(self) -> int: ...**
@@ -4470,6 +4888,7 @@ netiface = iface.netInterface()
 lBusStations = netiface.busStations()
 for busStation in lBusStations:
     print(f"获取当前公交站点的起始位置距路段起点的距离，默认单位：像素={busStation.distance()}")
+    print(f"获取当前公交站点的起始位置距路段起点的距离，单位：米={busStation.distance(UnitOfMeasure.Metric)}")
 ```
 
  **def setName(self, name:str) -> None: ...**
@@ -4485,6 +4904,7 @@ netiface = iface.netInterface()
 lBusStations = netiface.busStations()
 for busStation in lBusStations:
     print(f"设置站点名称={busStation.setName('new name')}")
+    print(f"获取站点名称={busStation.name()}")
 ```
 
  **def setDistToStart(self, dist:float) -> None: ...**
@@ -4503,6 +4923,8 @@ netiface = iface.netInterface()
 lBusStations = netiface.busStations()
 for busStation in lBusStations:
     print(f"设置站点起始点距车道起点距离，默认单位：像素={busStation.setDistToStart(100)}")
+    print(f"获取当前公交站点的起始位置距路段起点的距离，默认单位：像素={busStation.distance()}")
+    print(f"获取当前公交站点的起始位置距路段起点的距离，单位：米={busStation.distance(UnitOfMeasure.Metric)}")
 ```
 
  **def setLength(self, length:float) -> None: ...**
@@ -4520,6 +4942,8 @@ netiface = iface.netInterface()
 lBusStations = netiface.busStations()
 for busStation in lBusStations:
     print(f"设置当前公交站点的长度，默认单位：像素={busStation.setLength(100)}")
+    print(f"获取当前公交站点的长度，单位：像素={busStation.length()}")
+    print(f"获取当前公交站点的长度，单位：米={busStation.length(UnitOfMeasure.Metric)}")
 ```
 
  **def setType(self, type:int) -> None: ...**
@@ -4539,6 +4963,7 @@ netiface = iface.netInterface()
 lBusStations = netiface.busStations()
 for busStation in lBusStations:
     print(f"设置当前公交站点类型={busStation.setType(2)}")
+    print(f"获取当前公交站点类型={busStation.stationType()}")
 ```
 
  **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
@@ -4603,29 +5028,120 @@ def showBusStationAttr(self, netiface):
 
 获取公交“站点-线路”ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"获取公交“站点-线路”ID={busStationLine.id()}")
+```
+
  **def stationId(self) -> int: ...**
 
 获取当前公交站点的ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"获取当前公交站点的ID={busStationLine.stationId()}")
+```
 
  **def lineId(self) -> int: ...**
 
 获取当前公交站台所属的公交线路ID
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"获取当前公交站台所属的公交线路ID={busStationLine.lineId()}")
+```
+
  **def busParkingTime(self) -> int: ...**
 
 获取当前公交线路下该站台的公交车辆停靠时间(秒)
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"获取当前公交线路下该站台的公交车辆停靠时间(秒)={busStationLine.busParkingTime()}")
+```
 
  **def getOutPercent(self) -> float: ...**
 
 获取当前公交线路下该站台的下客百分比
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"获取当前公交线路下该站台的下客百分比={busStationLine.getOutPercent()}")
+```
+
  **def getOnTimePerPerson(self) -> float: ...**
 
 获取当前公交线路下该站台下的平均每位乘客上车时间，单位：秒
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"获取当前公交线路下该站台下的平均每位乘客上车时间，单位：秒={busStationLine.getOnTimePerPerson()}")
+```
+
  **def getOutTimePerPerson(self) -> float: ...**
 
 获取当前公交线路下该站台下的平均每位乘客下车时间，单位：秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"获取当前公交线路下该站台下的平均每位乘客下车时间，单位：秒={busStationLine.getOutTimePerPerson()}")
+```
 
  **def setBusParkingTime(self, time:int) -> None: ...**
 
@@ -4634,25 +5150,70 @@ def showBusStationAttr(self, netiface):
 举例：
 
 ```python
-lStationLine = busLine.stationLines()
-if len(lStationLine)>0:
-stationLine = lStationLine[0] 
-# 设置车辆停靠时间(秒)
-stationLine.setBusParkingTime(20)
-
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"设置当前公交线路下的该站台下的车辆停靠时间(秒)={busStationLine.setBusParkingTime(20)}")
+        print(f"获取当前公交线路下的该站台下的车辆停靠时间(秒)={busStationLine.busParkingTime()}")
 ```
 
  **def setGetOutPercent(self, percent:float) -> None: ..**
 
 设置当前公交线路下的该站台的下客百分比
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"设置当前公交线路下的该站台的下客百分比={busStationLine.setGetOutPercent(20)}")
+        print(f"获取当前公交线路下的该站台的下客百分比={busStationLine.getOutPercent()}")
+```
+
  **def setGetOnTimePerPerson(self, time:float) -> None: ...**
 
 设置当前公交线路下的该站台的平均每位乘客上车时间
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"设置当前公交线路下的该站台的平均每位乘客上车时间={busStationLine.setGetOnTimePerPerson(5.0)}")
+        print(f"获取当前公交线路下的该站台的平均每位乘客上车时间={busStationLine.getOnTimePerPerson()}")
+```
+
  **def setGetOutTimePerPerson(self, time:float) -> None: ...**
 
 设置当前公交线路下的该站台的平均每位乘客下车时间
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+# 获取路网中的所有IBusLine
+buslines = netiface.buslines()
+for busLine in buslines:
+    busStationLines = busLine.stationLines()
+    for busStationLine in busStationLines:
+        print(f"设置当前公交线路下的该站台的平均每位乘客下车时间={busStationLine.setGetOutTimePerPerson(1.0)}")
+        print(f"获取当前公交线路下的该站台的平均每位乘客下车时间={busStationLine.getOutTimePerPerson()}")
+```
 
 **案例代码**
 
