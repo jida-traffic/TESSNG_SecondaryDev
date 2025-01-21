@@ -198,7 +198,7 @@ netAttrs = netiface.netAttrs()
 print(f"路网说明={netAttrs.explain()}")
 ```
 
- **def centerPoint(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **def centerPoint(self, unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 获取路网中心点位置，默认单位：像素，可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
 参数：
@@ -237,7 +237,7 @@ def showRoadNetAttr(netiface):
     graphicScene = netiface.graphicsScene()
     graphicsView = netiface.graphicsView()
     sceneScale = netiface.sceneScale()
-    print(f"像素比={sceneScale}，场景宽度={netiface.sceneWidth()}，"
+    print(f"像素比={sceneScale}，场景宽度={netiface.sceneWidth()},"
           # f"高度={netiface.sceneHeight()}, "
           f"背景图={netiface.backgroundMap()},")
 ```
@@ -352,7 +352,7 @@ for section in sections:
     print(f"id为{section.id()}的Section的名称是{section.name()}")
 ```
 
- **def v3z(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def v3z(self, unit:Tess.UnitOfMeasure) -> float: ...**
 获取Section高程，默认单位：像素，可通过可选参数：unit设置单位，（或者用户也可以根据需求通过m2p转成米制单位坐标，并注意y轴的正负号）
 参数：
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
@@ -370,7 +370,7 @@ for section in sections:
     print(f"id为{section.id()}的Section的高程(米制)是{section.v3z(UnitOfMeasure.Metric)}")
 ```
 
- **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取Section长度，默认单位：像素，可通过unit参数设置单位
 参数：
@@ -529,14 +529,14 @@ def showSectionAttr(netiface):
 
             print(f"该section的属性：id(linkid or connectorid)={section.id()}, 类型gtype={section.gtype()}, "
                   f"是否为link={section.isLink()}, sectionId={section.sectionId()}, name={section.name()}, 设置新的name={section.setName(section.name() + str(1))},"
-                  f"v3z(像素制)={section.v3z()}，v3z(米制)={section.v3z(UnitOfMeasure.Metric)}，长度length（像素制）={section.length()}， 米制={section.length(UnitOfMeasure.Metric)}"
+                  f"v3z(像素制)={section.v3z()}，v3z(米制)={section.v3z(UnitOfMeasure.Metric)}，长度length（像素制）={section.length()}, 米制={section.length(UnitOfMeasure.Metric)}"
                   f"section下包含的laneObject（lane和lanconnector的父类）={section.laneObjects()}, fromSection={section.fromSection()}, toSection={section.toSection()},"
                   f"设置自定义属性setOtherAttr={section.setOtherAttr({'newAttr': 'add a new attr'})}, 将section强转为子类link={section.castToLink()},"
                   f"将section强转为子类Iconnector={section.castToLink()}, 获取section外轮廓={section.polygon()}")
     print()
     print(f"该section的属性：id(linkid or connectorid)={section.id()}, 类型gtype={section.gtype()}, "
           f"是否为link={section.isLink()}, sectionId={section.sectionId()}, name={section.name()}, 设置新的name={section.setName(section.name() + str(1))},"
-          f"v3z(像素制)={section.v3z()}，v3z(米制)={section.v3z(UnitOfMeasure.Metric)}，长度length（像素制）={section.length()}， 米制={section.length(UnitOfMeasure.Metric)}"
+          f"v3z(像素制)={section.v3z()}，v3z(米制)={section.v3z(UnitOfMeasure.Metric)}，长度length（像素制）={section.length()}, 米制={section.length(UnitOfMeasure.Metric)}"
           f"section下包含的laneObject（lane和lanconnector的父类）={section.laneObjects()}, fromSection={section.fromSection()}, toSection={section.toSection()},"
           f"设置自定义属性setOtherAttr={section.setOtherAttr({'newAttr': 'add a new attr'})}, 将section强转为子类link={section.castToLink()},"
           f"将section强转为子类Iconnector={section.castToLink()}, 获取section外轮廓={section.polygon()}")
@@ -685,7 +685,7 @@ for section in lSections:
             print(f"id为{laneObject.id()}的ILaneObject的下游LaneObject是{laneObject.toLaneObject(0)}")
 ```
 
- **def centerBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
+ **def centerBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的中心线断点列表；即车道或“车道连接”中心线断点集； 断点都是像素坐标下的点  
 参数：
@@ -710,7 +710,7 @@ for section in lSections:
             print(f"id为{laneObject.id()}的ILaneObject的中心线断点列表(米制)是{centerBreakPoint}")
 ```
 
- **def leftBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
+ **def leftBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的左侧边线断点列表； 即车道或“车道连接”左侧线断点集; 断点都是像素坐标下的点  
 参数：  
@@ -735,7 +735,7 @@ for section in lSections:
             print(f"id为{laneObject.id()}的ILaneObject的左侧边线断点列表(米制)是{leftBreakPoint}")
 ```
 
- **def rightBreakPoints(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
+ **def rightBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的右侧边线断点列表；车道或“车道连接”右侧线断点集; 断点都是像素坐标下的点  
 参数：  
@@ -760,7 +760,7 @@ for section in lSections:
             print(f"id为{laneObject.id()}的ILaneObject的右侧边线断点列表(米制)是{rightBreakPoint}")
 ```
 
- **def centerBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
+ **def centerBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的右侧边线断点列表；车道或“车道连接”中心线断点(三维)集（包含高程v3z属性的点）除高程是米制单位，x/y均为像素坐标，像素单位  
 参数：  
@@ -785,7 +785,7 @@ for section in lSections:
             print(f"id为{laneObject.id()}的ILaneObject的中心线断点列表(三维，米制)是{centerBreakPoint3D}")
 ```
 
- **def leftBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ...**
+ **def leftBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取laneObject的左侧边线断点列表；车道或“车道连接”左侧线断点(三维)集；（包含高程v3z属性的点）除高程是米制单位，x/y均为像素坐标，像素单位  
 参数：  
@@ -810,7 +810,7 @@ for section in lSections:
             print(f"id为{laneObject.id()}的ILaneObject的左侧边线断点列表(三维，米制)是{leftBreakPoint3D}")
 ```
 
- **def rightBreakPoint3Ds(self,unit:Tess.UnitOfMeasure) -> typing.List: ... **  
+ **def rightBreakPoint3Ds(self, unit:Tess.UnitOfMeasure) -> typing.List: ... **  
 
 获取laneObject的右侧边线断点列表；车道或“车道连接”右侧线断点(三维)集；（包含高程v3z属性的点）除高程是米制单位，x/y均为像素坐标，像素单位  
 参数：  
@@ -1074,7 +1074,7 @@ def showLaneObjectAttr(self, netiface):
             break
     print(laneObject.leftBreak3DsPartly(laneObject.leftBreakPoints(UnitOfMeasure.Metric)[1],laneObject.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric))
     print(f"===section中的第一个laneObject(最右侧) id(linkid or connectorid)={laneObject.id()}, 类型gtype={laneObject.gtype()}, "
-          f"是否为link={laneObject.isLane()}, 所属section={laneObject.section()},长度length（像素制）={laneObject.length()}， 米制={laneObject.length(UnitOfMeasure.Metric)}"
+          f"是否为link={laneObject.isLane()}, 所属section={laneObject.section()},长度length（像素制）={laneObject.length()}, 米制={laneObject.length(UnitOfMeasure.Metric)}"
           f"fromLaneObject={laneObject.fromLaneObject()}, toLaneObject={laneObject.toLaneObject()},"
           f"centerBreakPoints(像素制)={laneObject.centerBreakPoints()},centerBreakPoints(米制)={laneObject.centerBreakPoints(UnitOfMeasure.Metric)},"
           f"leftBreakPoints(像素制)={laneObject.leftBreakPoints()},leftBreakPoints(米制)={laneObject.leftBreakPoints(UnitOfMeasure.Metric)},"
@@ -1086,7 +1086,7 @@ def showLaneObjectAttr(self, netiface):
           f"leftBreak3DsPartly(米制)={laneObject.leftBreak3DsPartly(laneObject.leftBreakPoints(UnitOfMeasure.Metric)[1],laneObject.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
           f"rightBreak3DsPartly(像素制)={laneObject.leftBreak3DsPartly(laneObject.leftBreakPoints()[1],laneObject.leftBreakPoints()[-1])},"
           f"rightBreak3DsPartly(米制)={laneObject.leftBreak3DsPartly(laneObject.leftBreakPoints(UnitOfMeasure.Metric)[1],laneObject.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
-          f"distToStartPoint(像素制)={laneObject.distToStartPoint(laneObject.centerBreakPoints()[0])}，distToStartPoint(米制)={laneObject.distToStartPoint(laneObject.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)}，"
+          f"distToStartPoint(像素制)={laneObject.distToStartPoint(laneObject.centerBreakPoints()[0])}，distToStartPoint(米制)={laneObject.distToStartPoint(laneObject.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)},"
           f"设置自定义属性setOtherAttr={laneObject.setOtherAttr({'newAttr':'add a new attr'})}, 将section强转为子类link={laneObject.castToLane()},"
           f"将section强转为子类Iconnector={laneObject.castToLaneConnector()}")
     outPoint = QPointF()
@@ -1398,7 +1398,7 @@ for link in lLinks:
         print(f"id为{laneObject.id()}的LaneObject对象为{laneObject}")
 ```
 
- **def centerBreakPoints(self，unit:Tess.UnitOfMeasure) -> typing.List: ...**
+ **def centerBreakPoints(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取路段中心线断点集， 像素坐标  
 参数：  
@@ -1607,7 +1607,7 @@ for link in lLinks:
 
  **def setLaneTypes(self, lType:typing.Sequence) -> None: ...**
 
-依次为ILink下所有车道设置车道属性（列表顺序为 从左到右的车道顺序），入参为序列类型（列表，元组等），其中元素的类型从这四种常量字符串中获取："机动车道"、"机非共享"、"非机动车道"、"公交专用道"
+依次为ILink下所有车道设置车道属性（列表顺序为 从右到左的车道顺序），入参为序列类型（列表，元组等），其中元素的类型从这四种常量字符串中获取："机动车道"、"机非共享"、"非机动车道"、"公交专用道"
 
 举例：
 
@@ -1741,12 +1741,12 @@ def showLinkAttr(netiface):
     print(f"该link的属性：id={link.id()}, ")
     print(f"link.fromConnectors()={link.fromConnectors()}")
     print(f"该link的最右侧车道为：id={link.id()}, 其属性为：路段类型={link.gtype()}, 路段长度（像素制）={link.length()}，米制={link.length(UnitOfMeasure.Metric)},"
-          f"宽度（像素制）={link.width()}，米制={link.width(UnitOfMeasure.Metric)}， 高程（像素制）={link.z()}， 米制={link.z(UnitOfMeasure.Metric)},"
+          f"宽度（像素制）={link.width()}，米制={link.width(UnitOfMeasure.Metric)}, 高程（像素制）={link.z()}, 米制={link.z(UnitOfMeasure.Metric)},"
           f"高程v3z(像素制)={link.v3z()},米制={link.v3z(UnitOfMeasure.Metric)}, 设置新名字={link.setName('test_name')}name={link.name()},linkType={link.linkType()},"
           f"设置路段类型为城市次干道={link.setType('次要干道')}，再次获取城市类型={link.linkType()}, 车道数={link.laneCount()},"
-          f"路段最高限速(像素制)={link.limitSpeed()}， 米制（km/h）={link.limitSpeed(UnitOfMeasure.Metric)},路段最低限速(像素制)={link.minSpeed()}， 米制（km/h）={link.minSpeed(UnitOfMeasure.Metric)},"
+          f"路段最高限速(像素制)={link.limitSpeed()}, 米制（km/h）={link.limitSpeed(UnitOfMeasure.Metric)},路段最低限速(像素制)={link.minSpeed()}, 米制（km/h）={link.minSpeed(UnitOfMeasure.Metric)},"
           f"将路段最高限速提高百分之20={link.setLimitSpeed(link.limitSpeed()*1.2)} or {link.setLimitSpeed(link.limitSpeed(UnitOfMeasure.Metric)*1.2, UnitOfMeasure.Metric)},"
-          f"路段最高限速(像素制)={link.limitSpeed()}， 米制（km/h）={link.limitSpeed(UnitOfMeasure.Metric)}, 路段包含的车道对象={link.lanes()},"
+          f"路段最高限速(像素制)={link.limitSpeed()}, 米制（km/h）={link.limitSpeed(UnitOfMeasure.Metric)}, 路段包含的车道对象={link.lanes()},"
           f"路段包含的laneObject对象={link.laneObjects()},"
           f"路段中心线（像素制）={link.centerBreakPoints()},米制={link.centerBreakPoints(UnitOfMeasure.Metric)},"
           f"路段左侧线（像素制）={link.leftBreakPoints()},米制={link.leftBreakPoints(UnitOfMeasure.Metric)},"
@@ -1758,7 +1758,7 @@ def showLinkAttr(netiface):
           f"fromSection={link.fromConnectors()[0].id() if link.fromConnectors() is not None and len(link.fromConnectors()) > 0 else 0},"
           f"toSection={link.toSection(link.toConnectors()[0].id() if link.toConnectors() is not None and len(link.toConnectors() )> 0 else 0)}, "
           f"自定义其他属性： setOtherAttr={link.setOtherAttr({'new_msg':'this is a av car'})},"
-          f"从右到左依次为车道设置类别={link.setLaneTypes(['公交专用道','机动车道','机动车道'])}，为车道设置其他属性={link.setLaneOtherAtrrs([{'new_name':'自定义公交专用车道'},{'new_name':'自定义机动车道'},{'new_name':'自定义机动车道'}])}，"
+          f"从右到左依次为车道设置类别={link.setLaneTypes(['公交专用道','机动车道','机动车道'])}，为车道设置其他属性={link.setLaneOtherAtrrs([{'new_name':'自定义公交专用车道'},{'new_name':'自定义机动车道'},{'new_name':'自定义机动车道'}])},"
           f"distToStartPoint距离起点长度（像素制）={link.distToStartPoint(link.centerBreakPoints()[-1])}, 米制={link.distToStartPoint(link.centerBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
           f"polygon={link.polygon()}"
           )
@@ -2347,8 +2347,8 @@ def showLaneAttr(netiface):
             lane = i
             break
     print(f"===link中的第一个lane(最右侧) id={lane.id()}, 类型gtype={lane.gtype()}, "
-          f"是否为lane={lane.isLane()}, 所属link={lane.link()}, 所属section={lane.section()},长度length（像素制）={lane.length()}， 米制={lane.length(UnitOfMeasure.Metric)},"
-          f"宽度width（像素制）={lane.width()}， 米制={lane.width(UnitOfMeasure.Metric)}, 车道序号number={lane.number()},行为类型={lane.actionType()}"
+          f"是否为lane={lane.isLane()}, 所属link={lane.link()}, 所属section={lane.section()},长度length（像素制）={lane.length()}, 米制={lane.length(UnitOfMeasure.Metric)},"
+          f"宽度width（像素制）={lane.width()}, 米制={lane.width(UnitOfMeasure.Metric)}, 车道序号number={lane.number()},行为类型={lane.actionType()}"
           f"fromLaneObject={lane.fromLaneObject()}, toLaneObject={lane.toLaneObject()},"
           f"centerBreakPoints(像素制)={lane.centerBreakPoints()},centerBreakPoints(米制)={lane.centerBreakPoints(UnitOfMeasure.Metric)},"
           f"leftBreakPoints(像素制)={lane.leftBreakPoints()},leftBreakPoints(米制)={lane.leftBreakPoints(UnitOfMeasure.Metric)},"
@@ -2360,7 +2360,7 @@ def showLaneAttr(netiface):
           f"leftBreak3DsPartly(米制)={lane.leftBreak3DsPartly(lane.leftBreakPoints(UnitOfMeasure.Metric)[1],lane.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
           f"rightBreak3DsPartly(像素制)={lane.leftBreak3DsPartly(lane.leftBreakPoints()[1],lane.leftBreakPoints()[-1])},"
           f"rightBreak3DsPartly(米制)={lane.leftBreak3DsPartly(lane.leftBreakPoints(UnitOfMeasure.Metric)[1],lane.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
-          f"distToStartPoint(像素制)={lane.distToStartPoint(lane.centerBreakPoints()[0])}，distToStartPoint(米制)={lane.distToStartPoint(lane.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)}，"
+          f"distToStartPoint(像素制)={lane.distToStartPoint(lane.centerBreakPoints()[0])}，distToStartPoint(米制)={lane.distToStartPoint(lane.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)},"
           f"设置自定义属性setOtherAttr={lane.setOtherAttr({'newAttr':'add a new attr'})}, setLaneType={lane.setLaneType('机动车道')},action Type={lane.actionType()}"
           f"polygon={lane.polygon()}")
     outPoint = QPointF()
@@ -2665,14 +2665,14 @@ netiface = iface.netInterface()
 showConnectorAttr(netiface)
 def showConnectorAttr(netiface):
     print(
-        f"===场景中的connector个数（连接段对象）={len(netiface.connectors())},{netiface.connectorCount()}, {len(netiface.connectorIds())}，"
+        f"===场景中的connector个数（连接段对象）={len(netiface.connectors())},{netiface.connectorCount()}, {len(netiface.connectorIds())},"
         f"第一个connector的属性={netiface.connectors()[0].id()}")
     connector = netiface.connectors()[0]
     connector1 = netiface.findConnector(netiface.connectorIds()[0])
     print(type(connector), dir(connector))
     print(f"该connectors的属性：id(连接段和路段ID是独立的，因此两者ID可能会重复)={connector.id()}, 类型gtype={connector.gtype()},"
           f"name={connector.name()}, setName={connector.setName('new connector')} "
-          f"长度length（像素制）={connector.length()}， 米制={connector.length(UnitOfMeasure.Metric)},"
+          f"长度length（像素制）={connector.length()}, 米制={connector.length(UnitOfMeasure.Metric)},"
           f"高程={connector.z()}, toLaneObject={connector.v3z()},"
           f"fromLink={connector.fromLink()}, toLink={connector.toLink()},fromSection={connector.fromSection(id=0)}, toSection={connector.toSection(id=0)},"
           f"最高限速(像素制)={connector.limitSpeed()},最高限速(米制)={connector.limitSpeed(UnitOfMeasure.Metric)},"
@@ -3127,7 +3127,7 @@ def showLaneConnectorAttr(self, netiface):
           f"其所属的连接段={laneConnector.connector()}, 所属section={laneConnector.section()},"
           f"fromLane={laneConnector.fromLane()}, toLane={laneConnector.toLane()},"
           f"fromLaneObject={laneConnector.fromLaneObject()}, toLaneObject={laneConnector.toLaneObject()},"
-          f"长度length（像素制）={laneConnector.length()}， 米制={laneConnector.length(UnitOfMeasure.Metric)},"
+          f"长度length（像素制）={laneConnector.length()}, 米制={laneConnector.length(UnitOfMeasure.Metric)},"
           f"centerBreakPoints(像素制)={laneConnector.centerBreakPoints()},centerBreakPoints(米制)={laneConnector.centerBreakPoints(UnitOfMeasure.Metric)},"
           f"leftBreakPoints(像素制)={laneConnector.leftBreakPoints()},leftBreakPoints(米制)={laneConnector.leftBreakPoints(UnitOfMeasure.Metric)},"
           f"rightBreakPoints(像素制)={laneConnector.rightBreakPoints()},rightBreakPoints(米制)={laneConnector.rightBreakPoints(UnitOfMeasure.Metric)},"
@@ -3138,7 +3138,7 @@ def showLaneConnectorAttr(self, netiface):
           f"leftBreak3DsPartly(米制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[1],laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
           f"rightBreak3DsPartly(像素制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints()[1],laneConnector.leftBreakPoints()[-1])},"
           f"rightBreak3DsPartly(米制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[1],laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[-1],UnitOfMeasure.Metric)},"
-          f"distToStartPoint(像素制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints()[0])}，distToStartPoint(米制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)}，"
+          f"distToStartPoint(像素制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints()[0])}，distToStartPoint(米制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints(UnitOfMeasure.Metric)[0],UnitOfMeasure.Metric)},"
           f"设置自定义属性setOtherAttr={laneConnector.setOtherAttr({'newAttr':'add a new attr'})}")
     outPoint = QPointF()
     outIndex = 0
@@ -3234,7 +3234,7 @@ def showConnectorAreaAttr(self, netiface):
     print(
         f"===场景中的connectorArea个数={len(allConnectorArea)}，第一个connectorArea的属性={connectorArea.id()}")
     print(f"该connectorArea的属性：id={connectorArea.id()}, 包含的所有connector={connectorArea.allConnector()}, "
-          f"面域中心点(像素制)={connectorArea.centerPoint()}，(米制)={connectorArea.centerPoint(UnitOfMeasure.Metric)}")
+          f"面域中心点(像素制)={connectorArea.centerPoint()},(米制)={connectorArea.centerPoint(UnitOfMeasure.Metric)}")
 ```
 
 
@@ -3412,7 +3412,7 @@ for decisionPoint in lDecisionPoints:
     print(f"决策点{decisionPoint.id()}所在路段ID={decisionPoint.link().id()}")
 ```
 
- **def distance(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def distance(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取距路段起点距离，默认单位：像素，可通过unit参数设置单位  
 参数：  
@@ -3638,7 +3638,7 @@ def showRoutingAttr(self, netiface):
 
 
 
-### 2.31. ITrafficController
+### 2.12. ISignalController
 
 信号机接口
 
@@ -3652,10 +3652,10 @@ def showRoutingAttr(self, netiface):
 # 获取信控机ID
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    print(f"信控机ID为{trafficController.id()}")
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    print(f"信控机ID为{signalController.id()}")
 ```
 
  **def name(self) -> str: ...**
@@ -3668,10 +3668,10 @@ for trafficController in lTrafficControllers:
 # 获取信控机名称
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    print(f"信控机{trafficController.id()}名称={trafficController.name()}")
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    print(f"信控机{signalController.id()}名称={signalController.name()}")
 ```
 
  **def setName(name: str) -> None: ...**
@@ -3685,11 +3685,11 @@ for trafficController in lTrafficControllers:
 # 设置信控机名称
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    print(f"设置信控机{trafficController.id()}名称,返回值={trafficController.setName('new_'+trafficController.name())}")
-    print(f"获取信控机{trafficController.id()}名称={trafficController.name()}")
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    print(f"设置信控机{signalController.id()}名称,返回值={signalController.setName('new_'+signalController.name())}")
+    print(f"获取信控机{signalController.id()}名称={signalController.name()}")
 ```
 
  **def addPlan(plan: Tessng.ISignalPlan) -> None: ...**
@@ -3703,14 +3703,14 @@ for trafficController in lTrafficControllers:
 # 为信号机添加信控方案
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
-    print(f"移除/删除信号机{trafficController.id()}的信控方案")
-    trafficController.removePlan(plans[0])
-    print(f"为信号机{trafficController.id()}添加信控方案")
-    trafficController.addPlan(plans[0])
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
+    print(f"移除/删除信号机{signalController.id()}的信控方案")
+    signalController.removePlan(plans[0])
+    print(f"为信号机{signalController.id()}添加信控方案")
+    signalController.addPlan(plans[0])
 ```
 
  **def removePlan(plan: Tessng.ISignalPlan) -> None: ...**
@@ -3724,12 +3724,12 @@ for trafficController in lTrafficControllers:
 # 移除/删除信号机的信控方案
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
-    print(f"移除/删除信号机{trafficController.id()}的信控方案")
-    trafficController.removePlan(plans[0])
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
+    print(f"移除/删除信号机{signalController.id()}的信控方案")
+    signalController.removePlan(plans[0])
 ```
 
  **def IPlans(self) -> typing.List<Tessng.ISignalPlan>: ...**
@@ -3743,10 +3743,10 @@ for trafficController in lTrafficControllers:
 # 获取当前信号机中所有的信控方案
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    print(f"获取信号机{trafficController.id()}中所有的信控方案={trafficController.IPlans()}")
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    print(f"获取信号机{signalController.id()}中所有的信控方案={signalController.IPlans()}")
 ```
 
 
@@ -3757,7 +3757,7 @@ iface = tessngIFace()
 # 代表TESS NG的路网子接口
 netiface = iface.netInterface()
 # 创建信控方案
-signalPlan = netiface.createSignalPlan(trafficController, "早高峰", 150, 50,0,1800) # createSignalPlan
+signalPlan = netiface.createSignalPlan(signalController, "早高峰", 150, 50,0,1800) # createSignalPlan
 # 创建方向详情--相位
 green = Online.ColorInterval("绿",50)
 yellow = Online.ColorInterval("黄",3)
@@ -3775,15 +3775,15 @@ for lane in e_approach.lanes():
         signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
         w_e_straight_lamps.append(signalLamp)
 
-trafficController = netiface.createTrafficController("交叉口1")
-showTrafficControllerAttr(netiface)
-def showTrafficControllerAttr(netiface):
-    controllers = netiface.trafficControllers()
-    controllerCount = netiface.trafficControllerCount()
-    trafficControllerIds = netiface.trafficControllerIds()
-    controller = netiface.findTrafficControllerById(trafficControllerIds[0])
-    controller = netiface.findTrafficControllerByName(controllers[0].name())
-    print(f"路网中的信号机总数={controllerCount},所有的信号机id列表={trafficControllerIds},信号机编号={trafficControllerIds[0]}的具体信息："
+signalController = netiface.createSignalController("交叉口1")
+showSignalControllerAttr(netiface)
+def showSignalControllerAttr(netiface):
+    controllers = netiface.signalControllers()
+    controllerCount = netiface.signalControllerCount()
+    signalControllerIds = netiface.signalControllerIds()
+    controller = netiface.findSignalControllerById(signalControllerIds[0])
+    controller = netiface.findSignalControllerByName(controllers[0].name())
+    print(f"路网中的信号机总数={controllerCount},所有的信号机id列表={signalControllerIds},信号机编号={signalControllerIds[0]}的具体信息："
           f"编号={controller.id()},名称={controller.name()}, 设置新名字={controller.setName('new_'+controller.name())},"
           f"获取信号机的信控方案={controller.IPlans()}")
     IPlans = controller.IPlans()
@@ -3794,7 +3794,7 @@ def showTrafficControllerAttr(netiface):
 
 
 
-### 2.30. ISignalPlan
+### 2.13. ISignalPlan
 
 信号控制方案接口
 
@@ -3808,10 +3808,10 @@ def showTrafficControllerAttr(netiface):
 # 获取当前信号机中所有的信控方案
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"信控方案ID={signalPlan.id()}")
 ```
@@ -3825,27 +3825,27 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"信控方案名称={signalPlan.name()}")
 ```
 
  **def trafficName(self) -> str: ...**
 
-获取信号机名称(在增加一个获取信号机ID的属性？因为名称不唯一)
+获取信号机名称
 
 举例：
 
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"信号机名称={signalPlan.trafficName()}")
 ```
@@ -3859,10 +3859,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"信控方案周期={signalPlan.cycleTime()}")
 ```
@@ -3876,10 +3876,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"信控方案起始时间={signalPlan.fromTime()}")
 ```
@@ -3893,10 +3893,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"信控方案结束时间={signalPlan.toTime()}")
 ```
@@ -3910,10 +3910,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"信控方案中的相位列表={signalPlan.phases()}")
 ```
@@ -3927,10 +3927,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"设置信控方案名称={signalPlan.setName('new_'+signalPlan.name())}")
         print(f"获取信控方案名称={signalPlan.name()}")
@@ -3945,10 +3945,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"设置信控方案周期={signalPlan.setCycleTime(100)}")
         print(f"获取信控方案周期={signalPlan.cycleTime()}")
@@ -3963,10 +3963,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"设置信控方案起始时间={signalPlan.setFromTime(100)}")
         print(f"获取信控方案起始时间={signalPlan.fromTime()}")
@@ -3981,10 +3981,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         print(f"设置信控方案结束时间={signalPlan.setToTime(100)}")
         print(f"获取信控方案结束时间={signalPlan.toTime()}")
@@ -3997,7 +3997,7 @@ iface = tessngIFace()
 # 代表TESS NG的路网子接口
 netiface = iface.netInterface()
 # 创建信控方案
-signalPlan = netiface.createSignalPlan(trafficController, "早高峰", 150, 50,0,1800) # createSignalPlan
+signalPlan = netiface.createSignalPlan(signalController, "早高峰", 150, 50,0,1800) # createSignalPlan
 # 创建方向详情--相位
 green = Online.ColorInterval("绿",50)
 yellow = Online.ColorInterval("黄",3)
@@ -4021,7 +4021,7 @@ def showSignalPlanAttr(netiface):
 
 
 
-### 2.13. ISignalPhase
+### 2.14. ISignalPhase
 
 信号相位，接口方法：
 
@@ -4034,10 +4034,10 @@ def showSignalPlanAttr(netiface):
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         phases = signalPlan.phases()
         for signalPhase in phases:
@@ -4053,10 +4053,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         phases = signalPlan.phases()
         for signalPhase in phases:
@@ -4072,10 +4072,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         phases = signalPlan.phases()
         for signalPhase in phases:
@@ -4091,10 +4091,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         phases = signalPlan.phases()
         for signalPhase in phases:
@@ -4132,10 +4132,10 @@ if method_number == 3:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         phases = signalPlan.phases()
         for signalPhase in phases:
@@ -4152,10 +4152,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         phases = signalPlan.phases()
         for signalPhase in phases:
@@ -4171,10 +4171,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         phases = signalPlan.phases()
         for signalPhase in phases:
@@ -4190,10 +4190,10 @@ for trafficController in lTrafficControllers:
 ```python
 iface = tessngIFace()
 netiface = iface.netInterface()
-# 获取路网中的所有ITrafficController
-lTrafficControllers = netiface.trafficControllers()
-for trafficController in lTrafficControllers:
-    plans = trafficController.IPlans()
+# 获取路网中的所有ISignalController
+lSignalControllers = netiface.signalControllers()
+for signalController in lSignalControllers:
+    plans = signalController.IPlans()
     for signalPlan in plans:
         phases = signalPlan.phases()
         for signalPhase in phases:
@@ -4203,14 +4203,50 @@ for trafficController in lTrafficControllers:
 **案例代码**
 
 ```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+# 创建信控方案
+signalPlan = netiface.creatSignalPlan(signalController, "早高峰", 150, 50,0,1800) # createSignalPlan
+# 创建方向详情--相位
+green = Online.ColorInterval("绿",50)
+yellow = Online.ColorInterval("黄",3)
+red = Online.ColorInterval("红",97)
+w_e_straight_phasecolor = [green, yellow, red]
+w_e_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行",w_e_straight_phasecolor)
+we_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行行人", w_e_straight_phasecolor)
+showSignalPlanAttr(netiface)
+def showSignalPlanAttr(netiface):
+    signalPlans = netiface.signalPlans()
+    signalPlanCount = netiface.signalPlanCount()
+    signalPlanIds = netiface.signalPlanIds()
+    signalPlan = netiface.findSignalPlanById(signalPlanIds[0])
+    signalPlan = netiface.findSignalPlanByName(signalPlans[0].name())
+    print(
+        f"路网中的信控方案总数={signalPlanCount},所有信控方案列表={signalPlanIds},信控方案编号={signalPlanIds[0]}的具体信息："
+        f"编号={signalPlan.id()},名称={signalPlan.name()}, 所属信号机名称={signalPlan.trafficName()},设置新名字={signalPlan.setName('new_' + signalPlan.name())},"
+        f"获取信控方案信控周期={signalPlan.cycleTime()},开始时间-结束时间={signalPlan.fromTime()}-{signalPlan.toTime()},"
+        f"所有相位信息={signalPlan.phases()}")
+showSignalPhaseAttr(netiface)
 
+def showSignalPhaseAttr(netiface):
+    signalPlans = netiface.signalPlans()
+    signalPlan = netiface.findSignalPlanById(signalPlans[0].name())
+    signalPhases = signalPlan.phases()
+    signalPhase = signalPhases[0]
+    print(
+        f"信控方案={signalPlans[0].name()},的所有相位列表={signalPhases},第一相位={signalPhase.id()}的具体信息："
+        f"编号={signalPhase.id()},名称={signalPhase.phaseName()}, 获取本相位下的信号灯列表={signalPhase.signalLamps()},"
+        f"获取本相位的相位灯色列表={signalPhase.listColor()},"
+        f"相位周期，单位：秒={signalPhase.cycleTime()},当前相位灯色，Online.SignalPhaseColor={signalPhase.phaseColor()},"
+        f"所在信控方案={signalPhase.signalPlan()}")
 ```
 
 
 
 
 
-### 2.12. ISignalLamp
+### 2.15. ISignalLamp
 
 信号灯接口，方法如下：
 
@@ -4411,12 +4447,139 @@ for signalLamp in lSignalLamps:
 **案例代码**
 
 ```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+# 创建信控方案
+signalPlan = netiface.creatSignalPlan(signalController, "早高峰", 150, 50,0,1800) # createSignalPlan
+# 创建方向详情--相位
+green = Online.ColorInterval("绿",50)
+yellow = Online.ColorInterval("黄",3)
+red = Online.ColorInterval("红",97)
+w_e_straight_phasecolor = [green, yellow, red]
+w_e_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行",w_e_straight_phasecolor)
+we_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行行人", w_e_straight_phasecolor)
 
+red = Online.ColorInterval("红",53)
+green = Online.ColorInterval("绿",30)
+yellow = Online.ColorInterval("黄",3)
+red1 = Online.ColorInterval("红",64)
+w_e_left_phasecolor = [red, green, yellow, red1]
+w_e_left_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西左转",w_e_left_phasecolor)
+
+
+red = Online.ColorInterval("红",86)
+green = Online.ColorInterval("绿",30)
+yellow = Online.ColorInterval("黄",3)
+red1 = Online.ColorInterval("红",31)
+s_n_straight_phasecolor = [red, green, yellow, red1]
+s_n_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北直行", s_n_straight_phasecolor)
+ns_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北直行行人", s_n_straight_phasecolor)
+
+red = Online.ColorInterval("红",119)
+green = Online.ColorInterval("绿",29)
+yellow = Online.ColorInterval("黄",3)
+s_n_left_phasecolor = [red, green, yellow]
+s_n_left_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北左转",s_n_left_phasecolor)
+
+# 创建机动车信号灯
+w_e_straight_lamps = []
+for lane in w_approach.lanes():
+    if lane.number()< w_approach.laneCount()-1 and lane.number()>0:
+        signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
+        w_e_straight_lamps.append(signalLamp)
+for lane in e_approach.lanes():
+    if lane.number()< e_approach.laneCount()-1 and lane.number()>0:
+        signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
+        w_e_straight_lamps.append(signalLamp)
+
+
+w_e_left_lamps = []
+for lane in w_approach.lanes():
+    if lane.number()== w_approach.laneCount()-1:
+        signalLamp = netiface.createSignalLamp(w_e_left_phase, "东西左转信号灯", lane.id(), -1,
+                                               lane.length() - 0.5)
+        w_e_left_lamps.append(signalLamp)
+for lane in e_approach.lanes():
+    if lane.number()== e_approach.laneCount()-1:
+        signalLamp = netiface.createSignalLamp(w_e_left_phase, "东西左转信号灯", lane.id(), -1,
+                                               lane.length() - 0.5)
+        w_e_left_lamps.append(signalLamp)
+
+n_s_straight_lamps = []
+for lane in n_approach.lanes():
+    if lane.number()< n_approach.laneCount()-1 and lane.number()>0:
+        signalLamp = netiface.createSignalLamp(s_n_straight_phase, "南北直行信号灯", lane.id(), -1,
+                                               lane.length() - 0.5)
+        n_s_straight_lamps.append(signalLamp)
+for lane in s_approach.lanes():
+    if lane.number()< s_approach.laneCount()-1 and lane.number()>0:
+        signalLamp = netiface.createSignalLamp(s_n_straight_phase, "南北直行信号灯", lane.id(), -1,
+                                               lane.length() - 0.5)
+        n_s_straight_lamps.append(signalLamp)
+
+n_s_left_lamps = []
+for lane in n_approach.lanes():
+    if lane.number()== n_approach.laneCount()-1:
+        signalLamp = netiface.createSignalLamp(s_n_left_phase, "南北左转信号灯", lane.id(), -1,
+                                               lane.length() - 0.5)
+        n_s_left_lamps.append(signalLamp)
+for lane in s_approach.lanes():
+        if lane.number()== s_approach.laneCount()-1:
+            signalLamp = netiface.createSignalLamp(s_n_left_phase, "南北左转信号灯", lane.id(), -1,
+                                                   lane.length() - 0.5)
+            n_s_left_lamps.append(signalLamp)
+
+
+# 创建行人信号灯, 并行人信号灯关联相位
+signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() ,QPointF(13, 22),True)
+signalLamp1_negetive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() ,QPointF(-13, 22),False)
+signalLamp1_positive.setSignalPhase(we_ped_phase)
+signalLamp1_negetive.setSignalPhase(we_ped_phase)
+# netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp1_positive)
+# netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp1_negetive)
+
+signalLamp2_positive = netiface.createCrossWalkSignalLamp(signalController, "北斑马线信号灯", n_crosswalk.getId() ,QPointF(13, -22),True)
+signalLamp2_negetive = netiface.createCrossWalkSignalLamp(signalController, "北斑马线信号灯", n_crosswalk.getId(),QPointF(-13, -22), False)
+signalLamp2_positive.setSignalPhase(we_ped_phase)
+signalLamp2_negetive.setSignalPhase(we_ped_phase)
+# netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp2_positive)
+# netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp2_negetive)
+
+signalLamp3_positive = netiface.createCrossWalkSignalLamp(signalController, "东斑马线信号灯", e_crosswalk.getId() ,QPointF(22, -13),True)
+signalLamp3_negetive = netiface.createCrossWalkSignalLamp(signalController, "东斑马线信号灯", e_crosswalk.getId() ,QPointF(22, 13),False)
+signalLamp3_positive.setSignalPhase(ns_ped_phase)
+signalLamp3_negetive.setSignalPhase(ns_ped_phase)
+# netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp3_positive)
+# netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp3_negetive)
+
+signalLamp4_positive = netiface.createCrossWalkSignalLamp(signalController, "西斑马线信号灯", w_crosswalk.getId() ,QPointF(-22, -13),True)
+signalLamp4_negetive = netiface.createCrossWalkSignalLamp(signalController, "西斑马线信号灯", w_crosswalk.getId() ,QPointF(-22, 13),False)
+signalLamp4_positive.setSignalPhase(ns_ped_phase)
+signalLamp4_negetive.setSignalPhase(ns_ped_phase)
+# netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp4_positive)
+# netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp4_negetive)
+        
+showSignalLampAttr(netiface)
+    
+def showSignalLampAttr(netiface):
+    signalLampCount = netiface.signalLampCount()
+    signalLampIds = netiface.signalLampIds()
+    signalLamps = netiface.signalLamps()
+    signalLamp = netiface.findSignalLamp(signalLampIds[0])
+
+    print(
+        f"机动车信号灯总数={signalLampCount},编号列表={signalLampIds},{signalLamp.id()}的具体信息："
+        f"编号={signalLamp.id()},获取信号灯当前信号灯色={signalLamp.color()}, 名称={signalLamp.name()},"
+        f"设置信号灯名称={signalLamp.setName('new_' + signalLamp.name())},"
+        f"获取当前信号灯所在的相位={signalLamp.signalPhase()},获取当前信号灯所在的灯组={signalLamp.signalPlan()},"
+        f"获取所在车道或车道连接={signalLamp.laneObject()}，获取信号灯多边型轮廓={signalLamp.polygon()}, "
+        f"获取信号灯角度，正北为0顺时针方向={signalLamp.angle()}")
 ```
 
 
 
-### 2.14. IBusLine
+### 2.16. IBusLine
 
 公交线路接口，接口方法：
 
@@ -4453,7 +4616,7 @@ for busLine in lBusLines:
     print(f"公交线路名称={busLine.name()}")
 ```
 
- **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交线路长度，单位：像素  
 参数：  
@@ -4516,7 +4679,7 @@ for busLine in lBusLines:
     print(f"公交线路发车结束时间={busLine.dispatchEndTime()}")
 ```
 
- **def desirSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def desirSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交线路的期望速度，单位：像素/秒 （km/h）的像素制（经过了p2m的比例尺转化）   
 参数：
@@ -4581,7 +4744,7 @@ for busLine in lBusLines:
 
  **def stationLines(self) -> typing.List: ...**
 
-公交站点线路，当前线路相关站点的上下客等参数 ， 所有参数的列表
+公交站点线路，当前线路相关站点的上下客等参数,所有参数的列表
 
 举例：
 
@@ -4591,7 +4754,7 @@ netiface = iface.netInterface()
 # 获取路网中的所有IBusLine
 lBusLines = netiface.buslines()
 for busLine in lBusLines:
-    print(f"公交站点线路，当前线路相关站点的上下客等参数 ， 所有参数的列表={busLine.stationLines()}")
+    print(f"公交站点线路，当前线路相关站点的上下客等参数,所有参数的列表={busLine.stationLines()}")
 ```
 
  **def setName(self, name:str) -> None: ...**
@@ -4711,7 +4874,7 @@ def showBusLineAttr(netiface):
               f"获取当前公交线路的发车结束时间，单位：秒， 即当前线路的公交调度表的结束时刻={path.dispatchEndTime()},"
               f"获取当前公交线路的期望速度，像素制：={path.desirSpeed()}, 米制km/h={path.desirSpeed(UnitOfMeasure.Metric)},"
               f"公交线路中公交车的起始载客人数={path.passCountAtStartTime()},获取公交线路经过的路段序列={path.links()},"
-              f"获取公交线路上的所有站点={path.stations()}, 公交站点线路，当前线路相关站点的上下客等参数 ， 所有参数的列表={path.stationLines()},"
+              f"获取公交线路上的所有站点={path.stations()}, 公交站点线路，当前线路相关站点的上下客等参数 , 所有参数的列表={path.stationLines()},"
               f"设置当前公交线路的名称={path.setName('new name')},设置当前公交线路的发车间隔，单位：秒={path.setDispatchFreq(20)},"
               f"设置当前公交线路上的公交首班车辆的开始发车时间={path.setDispatchStartTime(0)},设置当前公交线路上的公交末班车的发车时间={path.setDispatchEndTime(300)},"
               f"设置当前公交线路的期望速度,默认输入是像素，可通过unit参数设置单位={path.setDesirSpeed(40, UnitOfMeasure.Metric)},"
@@ -4725,7 +4888,7 @@ def showBusLineAttr(netiface):
 
 
 
-### 2.15. IBusStation
+### 2.17. IBusStation
 
 公交站点接口，接口方法：
 
@@ -4774,7 +4937,7 @@ for busStation in lBusStations:
     print(f"获取当前公交站点所在车道序号={busStation.laneNumber()}")
 ```
 
- **def x(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def x(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的中心点的位置， X坐标  
 参数：  
@@ -4792,7 +4955,7 @@ for busStation in lBusStations:
     print(f"获取当前公交站点的中心点的位置， X坐标={busStation.x(UnitOfMeasure.Metric)}")
 ```
 
- **def y(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def y(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的中心点的位置， Y坐标  
 参数：  
@@ -4810,7 +4973,7 @@ for busStation in lBusStations:
     print(f"获取当前公交站点的中心点的位置， Y坐标={busStation.y(UnitOfMeasure.Metric)}")
 ```
 
- **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的长度，单位：像素  
 参数：  
@@ -4873,7 +5036,7 @@ for busStation in lBusStations:
     print(f"获取当前公交站点所在车道={busStation.lane()}")
 ```
 
- **def distance(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def distance(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取当前公交站点的起始位置距路段起点的距离，默认单位：像素  
 参数：  
@@ -5018,7 +5181,7 @@ def showBusStationAttr(self, netiface):
 
 
 
-### 2.16. IBusStationLine
+### 2.18. IBusStationLine
 
 公交站点-线路接口，通过此接口可以获取指定线路某站点运行参数，如靠站时间、下客百分比等，还可以设置这些参数。
 
@@ -5249,7 +5412,7 @@ def showBusStationLineAttr(netiface):
 
 
 
-### 2.18. IVehicleDrivInfoCollector
+### 2.19. IVehicleDrivInfoCollector
 
 数据采集器接口，方法如下：
 
@@ -5544,7 +5707,20 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 **案例代码**
 
 ```python
+netiface = tessngIFace().netInterface()
+showBusStationLineAttr(netiface)
+showVehicleDrivInfoCounter(netiface)
+def showVehicleDrivInfoCounter(netiface):
+    collectors = netiface.vehiInfoCollectors()
+    if len(collectors)>0:
+        collector = netiface.findVehiInfoCollector(collectors[0].id())
 
+        print(
+            f"获取采集器ID={collector.id()},获取采集器名称={collector.collName()},判断当前数据采集器是否在路段上，返回值为True表示检测器在路段上，返回值False则表示在connector上={controller.onLink()}"
+            f"获取采集器所在的路段={collector.link()},获取采集器所在的连接段={collector.connector()},"
+            f"如果采集器在路段上，则返回ILane对象，否则范围None={collector.lane()},如果采集器在连接段上，则返回laneConnector“车道连接”对象，否则返回None={collector.laneConnector()}"
+            f" 获取采集器的工作起始时间,工作停止时间={collector.fromTime()}-{collector.toTime()}, 采集器所在点，像素坐标={collector.point()}"
+            f"获取采集器距离路段|连接段起点的距离={collector.distToStart()}")
 ```
 
 
@@ -5553,7 +5729,7 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 
 
 
-### 2.19. IVehicleQueueCounter
+### 2.20. IVehicleQueueCounter
 
 排队计数器接口，方法如下：
 
@@ -5662,7 +5838,7 @@ for vehicleQueueCounter in lVehicleQueueCounters:
     print(f"排队计数器{vehicleQueueCounter.id()}所在车道连接为{vehicleQueueCounter.laneConnector()}")
 ```
 
- **def distToStart(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def distToStart(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 计数器距离起点距离，默认单位：像素  
 参数：  
@@ -5680,7 +5856,7 @@ for vehicleQueueCounter in lVehicleQueueCounters:
     print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离（米制）为{vehicleQueueCounter.distToStart(UnitOfMeasure.Metric)}")
 ```
 
- **def point(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **def point(self, unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 计数器所在点，像素坐标  
 参数：  
@@ -5846,7 +6022,23 @@ for vehicleQueueCounter in lVehicleQueueCounters:
 **案例代码**
 
 ```python
+netiface = tessngIFace().netInterface()
+showVehicleQueueCounter(netiface)
 
+def showVehicleQueueCounter(netiface):
+    collectors = netiface.vehiQueueCounters()
+    if len(collectors)>0:
+        collector = netiface.findVehiQueueCounter(collectors[0].id())
+
+        print(
+            f"获取当前排队计数器ID={collector.id()},获取当前排队计数器名称={collector.counterName()},"
+            f"判断当前数据采集器是否在路段上，返回值为True表示检测器在路段上，返回值False则表示在connector上={collector.onLink()},"
+            f"获取当前排队计数器所在路段={collector.link()},获取当前排队计数器所在连接段={collector.connector()},"
+            f"如果计数器在路段上则lane()返回所在车道，laneConnector()返回None={collector.lane()},"
+            f"如果计数器在连接段上则laneConnector返回“车道连接”,lane()返回None={collector.laneConnector()}"
+            f" 获取当前计数器工作起始时间,工作停止时间={collector.fromTime()}-{collector.toTime()}, "
+            f"计数器所在点，像素坐标={collector.point()},计数集计数据时间间隔={collector.aggregateInterval()}"
+            f"计数器距离起点距离，默认单位：像素 ={collector.distToStart()}")
 ```
 
 
@@ -5857,7 +6049,7 @@ for vehicleQueueCounter in lVehicleQueueCounters:
 
 
 
-### 2.20. IVehicleTravelDetector
+### 2.21. IVehicleTravelDetector
 
 行程时间检测器接口，方法如下：
 
@@ -5996,7 +6188,7 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
     print(f"行程时间检测器终点{vehicleTravelDetector.id()}所在连接段，为{vehicleTravelDetector.laneConnector_endDetector()}")
 ```
 
- **def distance_startDetector(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def distance_startDetector(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 检测器起点距离所在车道起点或“车道连接”起点距离，默认单位：像素  
 参数：  
@@ -6014,7 +6206,7 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
     print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离（米制），为{vehicleTravelDetector.distance_startDetector(UnitOfMeasure.Metric)}米")
 ```
 
- **def distance_endDetector(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def distance_endDetector(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 检测器终点距离所在车道起点或“车道连接”起点距离，默认单位：像素  
 参数：  
@@ -6032,7 +6224,7 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
     print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离（米制），为{vehicleTravelDetector.distance_endDetector(UnitOfMeasure.Metric)}米")
 ```
 
- **def point_startDetector(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **def point_startDetector(self, unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 检测器起点位置,默认单位：像素，可通过可选参数：unit设置单位，  
 参数：  
@@ -6050,7 +6242,7 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
     print(f"行程时间检测器{vehicleTravelDetector.id()}的起点位置（米制），为{vehicleTravelDetector.point_startDetector(UnitOfMeasure.Metric)}米")
 ```
 
- **def point_endDetector(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **def point_endDetector(self, unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 检测器终点位置,默认单位：像素，可通过可选参数：unit设置单位，  
 参数：  
@@ -6252,7 +6444,31 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 **案例代码**
 
 ```python
+netiface = tessngIFace().netInterface()
+showVehicleTravelDetector(netiface)
 
+def showVehicleTravelDetector(netiface):
+    collectors = netiface.vehiTravelDetectors()
+    if len(collectors) > 0:
+        collector = netiface.findVehiTravelDetector(collectors[0].id())
+
+        print(
+            f"获取检测器ID={collector.id()},获取检测器名称={collector.detectorName()},是否检测器起始点={collector.isStartDetector()},"
+            f"判断当前数据采集器是否在路段上，返回值为True表示检测器在路段上，返回值False则表示在connector上={collector.onLink()},"
+            f"检测器起点是否在路段上，如果否，则起点在连接段上={collector.isOnLink_startDetector()},"
+            f"检测器终点是否在路段上，如果否，则终点在连接段上={collector.isOnLink_endDetector()},"
+            f"如果检测器起点在路段上则link_startDetector()返回起点所在路段，laneConnector_startDetector()返回None={collector.link_startDetector()},"
+            f"如果检测器起点在连接段上则laneConnector_startDetector()返回起点“车道连接”,link_startDetector()返回None={collector.laneConnector_startDetector()}"
+            f"如果检测器终点在路段上则link_endDetector()返回终点所在路段，laneConnector_endDetector()返回None={collector.link_endDetector()}, "
+            f"如果检测器终点在连接段上则laneConnector_endDetector()返回终点“车道连接”,link_endDetector()返回None={collector.laneConnector_endDetector()},"
+            f"检测器起点距离所在车道起点或“车道连接”起点距离，默认单位：像素={collector.distance_startDetector()},"
+            f"检测器终点距离所在车道起点或“车道连接”起点距离，默认单位：像素={collector.distance_endDetector()},"
+            f"检测器起点位置,默认单位：像素，可通过可选参数：unit设置单位，={collector.point_startDetector()},"
+            f"检测器终点位置,默认单位：像素，可通过可选参数：unit设置单位，  ={collector.point_endDetector()},"
+            f"检测器工作起始时间，单位：秒={collector.fromTime()},检测器工作停止时间，单位：秒={collector.toTime()},"
+            f"集计数据时间间隔，单位：秒={collector.aggregateInterval()},"
+            f"获取行程时间检测器起始点多边型轮廓的顶点={collector.polygon_startDetector()},"
+            f"获取行程时间检测器终止点多边型轮廓的顶点={collector.polygon_endDetector()}")
 ```
 
 
@@ -6261,7 +6477,7 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 
 
-### 2.21. IGuidArrow
+### 2.22. IGuidArrow
 
 导向箭头接口，方法如下：
 
@@ -6295,7 +6511,7 @@ for guidArrow in lGuidArrows:
     print(f"导向箭头{guidArrow.id()}所在的车道为{guidArrow.lane()}")
 ```
 
- **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取导向箭头的长度，默认单位：像素，可通过可选参数：unit设置单位，  
 参数：  
@@ -6313,7 +6529,7 @@ for guidArrow in lGuidArrows:
     print(f"导向箭头{guidArrow.id()}的长度（米制），为{guidArrow.length(UnitOfMeasure.Metric)}米")
 ```
 
- **def distToTerminal(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def distToTerminal(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取导向箭头到的终点距离，默认单位：像素  
 参数：  
@@ -6356,7 +6572,7 @@ def showGuidArrowAttr(netiface):
     print(f"导向箭头数={netiface.guidArrowCount()},导向箭头集={netiface.guidArrows()},")
     print(f"导向箭头ID={guidArrow.id()},"
           f"获取导向箭头所在的车道={guidArrow.lane()},"
-          f"获取导向箭头长度，像素制={guidArrow.length()}， 米制={guidArrow.length(UnitOfMeasure.Metric)},"
+          f"获取导向箭头长度，像素制={guidArrow.length()}, 米制={guidArrow.length(UnitOfMeasure.Metric)},"
           f"获取导向箭头到终点距离，像素制， 米制={guidArrow.distToTerminal()}, 米制={guidArrow.distToTerminal(UnitOfMeasure.Metric)},"
           f"获取导向箭头的类型，导向箭头的类型分为：直行、左转、右转、直行或左转、直行或右转、"
           f"直行左转或右转、左转或右转、掉头、直行或掉头和左转或掉头={guidArrow.arrowType()},"
@@ -6371,7 +6587,7 @@ def showGuidArrowAttr(netiface):
 
 ------
 
-### 2.22. IAccidentZone
+### 2.23. IAccidentZone
 
 事故区接口，方法如下：
 
@@ -6405,7 +6621,7 @@ for accidentZone in lAccidentZones:
     print(f"事故区的名称为{accidentZone.name()}")
 ```
 
- **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def location(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区距所在路段起点的距离，默认单位：像素  
 参数：  
@@ -6423,7 +6639,7 @@ for accidentZone in lAccidentZones:
     print(f"事故区{accidentZone.id()}距所在路段起点的距离（米制），为{accidentZone.location(UnitOfMeasure.Metric)}米")
 ```
 
- **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def zoneLength(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区长度，默认单位：像素  
 参数：  
@@ -6441,7 +6657,7 @@ for accidentZone in lAccidentZones:
     print(f"事故区{accidentZone.id()}的长度（米制），为{accidentZone.zoneLength(UnitOfMeasure.Metric)}米")
 ```
 
- **def limitedSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def limitedSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区当前时段限速，默认单位：像素(km/h)，可通过unit参数设置单位  
 参数：  
@@ -6519,7 +6735,7 @@ for accidentZone in lAccidentZones:
     print(f"事故区{accidentZone.id()}当前时段占用的车道列表为{accidentZone.laneObjects()}")
 ```
 
- **def controlLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def controlLength(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区当前时段控制距离（车辆距离事故区起点该距离内，强制变道），默认单位：像素  
 参数：  
@@ -6537,7 +6753,7 @@ for accidentZone in lAccidentZones:
     print(f"事故区{accidentZone.id()}当前时段控制距离（米制），为{accidentZone.controlLength(UnitOfMeasure.Metric)}米")
 ```
 
- **def addAccidentZoneInterval(self，param:Tess.Online.DynaAccidentZoneIntervalParam) -> Tess.IAccidentZoneInterval: ...**
+ **def addAccidentZoneInterval(self, param:Tess.Online.DynaAccidentZoneIntervalParam) -> Tess.IAccidentZoneInterval: ...**
 
 添加事故时段, 
 参数：  
@@ -6569,7 +6785,7 @@ for accidentZone in lAccidentZones:
     print(f"添加后事故时段列表{accidentZone.accidentZoneIntervals()}")
 ```
 
- **def removeAccidentZoneInterval(self，accidentZoneIntervalId:int) -> None: ...**
+ **def removeAccidentZoneInterval(self, accidentZoneIntervalId:int) -> None: ...**
 
 移除事故时段 
 参数：  
@@ -6609,7 +6825,7 @@ for accidentZone in lAccidentZones:
     print(f"移除后事故时段列表{accidentZone.accidentZoneIntervals()}")
 ```
 
- **def updateAccidentZoneInterval(self，param:Tess.Online.DynaAccidentZoneIntervalParam) -> bool: ...**
+ **def updateAccidentZoneInterval(self, param:Tess.Online.DynaAccidentZoneIntervalParam) -> bool: ...**
 
 更新事故时段
 参数：  
@@ -6662,7 +6878,7 @@ for accidentZone in lAccidentZones:
     print(f"事故区{accidentZone.id()}的事故时段，为{accidentZone.accidentZoneIntervals()}")
 ```
 
- **def findAccidentZoneIntervalById(self，accidentZoneIntervalId:int) -> Tess.IAccidentZoneInterval: ...**
+ **def findAccidentZoneIntervalById(self, accidentZoneIntervalId:int) -> Tess.IAccidentZoneInterval: ...**
 
 根据ID查询事故时段
 参数：  
@@ -6714,7 +6930,7 @@ def showAccidentZoneAttr(self, netiface):
           f"获取事故区当前时段长度,像素制={acczone.zoneLength()},米制={acczone.zoneLength(UnitOfMeasure.Metric)},"
           f"获取事故区当前时段限速,像素制 km/h={acczone.limitedSpeed()},米制={acczone.limitedSpeed(UnitOfMeasure.Metric)},"
           f"获取事故区所在的路段或连接段={acczone.section()},获取事故区所在路段的ID={acczone.roadId()},"
-          f"获取事故区所在的道路类型(路段或连接段)={acczone.roadType()}，"
+          f"获取事故区所在的道路类型(路段或连接段)={acczone.roadType()},"
           f"获取事故区当前时段占用的车道列表={acczone.laneObjects()}, "
           f"获取事故区当前时段控制距离（车辆距离事故区起点该距离内，强制变道, 像素制={acczone.controlLength()}, 米制={acczone.controlLength(UnitOfMeasure.Metric)},"
           )
@@ -6751,7 +6967,7 @@ def showAccidentZoneAttr(self, netiface):
 
 
 
-### 2.23. IAccidentZoneInterval
+### 2.24. IAccidentZoneInterval
 
 事故时段接口，方法如下：
 
@@ -6844,7 +7060,7 @@ for accidentZone in lAccidentZones:
         print(f"事故区{accidentZone.id()}的事故时段长度为{accidentZoneInterval.length(UnitOfMeasure.Metric)}")
 ```
 
- **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def location(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区在该时段的距起点距离，默认单位：像素，可通过unit参数设置单位  
 参数：  
@@ -6864,7 +7080,7 @@ for accidentZone in lAccidentZones:
         print(f"事故区{accidentZone.id()}的事故时段距起点距离为{accidentZoneInterval.location(UnitOfMeasure.Metric)}")
 ```
 
- **def limitedSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def limitedSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取事故区在该时段的限速，默认单位：像素(km/h)，可通过unit参数设置单位
 
@@ -6947,7 +7163,7 @@ def _showAccidentZoneIntervalAttr(acczone):
 
 ------
 
-### 2.24. IRoadWorkZone
+### 2.25. IRoadWorkZone
 
 施工区接口，方法如下：
 
@@ -6981,7 +7197,7 @@ for roadWorkZone in lRoadWorkZones:
     print(f"施工区名称={roadWorkZone.name()}")
 ```
 
- **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def location(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取施工区距所在路段起点的距离，默认单位：像素  
 参数：  
@@ -6999,7 +7215,7 @@ for roadWorkZone in lRoadWorkZones:
     print(f"施工区距所在路段起点的距离={roadWorkZone.location(UnitOfMeasure.Metric)}")
 ```
 
- **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def zoneLength(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取施工区长度，默认单位：像素  
 参数：  
@@ -7017,7 +7233,7 @@ for roadWorkZone in lRoadWorkZones:
     print(f"施工区长度={roadWorkZone.zoneLength(UnitOfMeasure.Metric)}")
 ```
 
- **def limitSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def limitSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 施工区限速（最大车速:像素/秒（km/h））  
 参数：  
@@ -7253,8 +7469,8 @@ def showRoadWorkZoneAttr(self, netiface):
           f"获取施工区所在道路的道路类型，link:路段, connector:连接段={roadworkzone.sectionType()},"
           f"获取施工区所占的车道列表={roadworkzone.laneObjects()},"
           f"获取施工区所占的车道ID列表={roadworkzone.laneObjectIds()},"
-          f"获取施工区上游警示区长度,像素制={roadworkzone.upCautionLength()}， 米制={roadworkzone.upCautionLength(UnitOfMeasure.Metric)},"
-          f"获取施工区上游过渡区长度,像素制={roadworkzone.upTransitionLength()}， 米制={roadworkzone.upTransitionLength(UnitOfMeasure.Metric)},"
+          f"获取施工区上游警示区长度,像素制={roadworkzone.upCautionLength()}, 米制={roadworkzone.upCautionLength(UnitOfMeasure.Metric)},"
+          f"获取施工区上游过渡区长度,像素制={roadworkzone.upTransitionLength()}, 米制={roadworkzone.upTransitionLength(UnitOfMeasure.Metric)},"
           f"获取施工区上游缓冲区长度,像素制={roadworkzone.upBufferLength()},米制={roadworkzone.upBufferLength(UnitOfMeasure.Metric)},"
           f"获取施工区下游过渡区长度，,像素制={roadworkzone.downTransitionLength()},米制={roadworkzone.downTransitionLength(UnitOfMeasure.Metric)},"
           f"施工持续时间，单位：秒。自仿真过程创建后，持续时间大于此值，则移除={roadworkzone.duration()},"
@@ -7271,7 +7487,7 @@ def showRoadWorkZoneAttr(self, netiface):
 
 
 
-### 2.25. ILimitedZone
+### 2.26. ILimitedZone
 
 限行区接口（借道施工的被借车道，限制对向车辆行走的区域），方法如下：
 
@@ -7305,7 +7521,7 @@ for limitedZone in lLimitedZones:
     print(f"限行区名称={limitedZone.name()}")
 ```
 
- **def location(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def location(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取距起点距离，单位：像素  
 参数：  
@@ -7323,7 +7539,7 @@ for limitedZone in lLimitedZones:
     print(f"限行区距起点距离={limitedZone.location(UnitOfMeasure.Metric)}")
 ```
 
- **def zoneLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def zoneLength(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取限行区长度，单位：像素  
 参数：  
@@ -7341,7 +7557,7 @@ for limitedZone in lLimitedZones:
     print(f"限行区长度={limitedZone.zoneLength(UnitOfMeasure.Metric)}")
 ```
 
- **def limitSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def limitSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取限行区限速（最大限速），单位：像素（千米/小时）可通过unit参数设置单位  
 参数：  
@@ -7462,7 +7678,7 @@ def showLimitZoneAttr(self, netiface):
 
 
 
-### 2.26. IReconstruction
+### 2.27. IReconstruction
 
 改扩建接口， 此接口最好是在构造路网的最后调用，避免后续其他接口调用原因导致创建施工区的路段线性被更改
 
@@ -7511,7 +7727,7 @@ for reconstruction in lReconstructions:
     print(f"改扩建对象的被借道限行区ID={reconstruction.limitedZoneId()}")
 ```
 
- **def passagewayLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def passagewayLength(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取改扩建对象的保通长度，单位：像素，可通过unit参数设置单位  
 参数：  
@@ -7614,7 +7830,7 @@ def showReconstructionAttr(self, netiface):
 
 
 
-### 2.27. IReduceSpeedArea
+### 2.28. IReduceSpeedArea
 
 限速区接口
 
@@ -7890,7 +8106,7 @@ for reduceSpeedArea in lReduceSpeedAreas:
     print(f"获取限速区获取多边型轮廓={reduceSpeedArea.polygon()}")
 ```
 
-### 2.28. IReduceSpeedInterval
+### 2.29. IReduceSpeedInterval
 
 限速时段接口
 
@@ -7962,7 +8178,7 @@ for reduceSpeedArea in lReduceSpeedAreas:
         print(f"获取结束时间={reduceSpeedInterval.intervalEndTime()}")
 ```
 
- **def addReduceSpeedVehiType(self,param:Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
+ **def addReduceSpeedVehiType(self, param:Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
 
 添加限速车型
 
@@ -7987,7 +8203,7 @@ for reduceSpeedArea in lReduceSpeedAreas:
         print(f"添加限速车型成功={interval}")
 ```
 
- **def removeReduceSpeedVehiType(self,id:int) -> bool: ...**
+ **def removeReduceSpeedVehiType(self, id:int) -> bool: ...**
 
 移除限速车型
 
@@ -8010,7 +8226,7 @@ for reduceSpeedArea in lReduceSpeedAreas:
             reduceSpeedInterval.removeReduceSpeedVehiType(reduceSpeedVehiType.id())
 ```
 
- **def updateReduceSpeedVehiType(self,param:Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
+ **def updateReduceSpeedVehiType(self, param:Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
 
 更新限速车型
 
@@ -8058,7 +8274,7 @@ for reduceSpeedArea in lReduceSpeedAreas:
         print(f"获取本时段限速车型及限速参数列表={reduceSpeedInterval.reduceSpeedVehiTypes()}")
 ```
 
- **def findReduceSpeedVehiTypeById(self,id:int) -> Tess.IReduceSpeedVehiType: ...**
+ **def findReduceSpeedVehiTypeById(self, id:int) -> Tess.IReduceSpeedVehiType: ...**
 
 根据车型代码获取限速车型
 
@@ -8122,7 +8338,7 @@ def showReduceSpeedAreaAttr(netiface):
 
 
 
-### 2.29. IReduceSpeedVehiType
+### 2.30. IReduceSpeedVehiType
 
 限速车型接口
 
@@ -8202,7 +8418,7 @@ for reduceSpeedArea in lReduceSpeedAreas:
             print(f"获取车型编码={reduceSpeedVehiType.vehiTypeCode()}")
 ```
 
- **def averageSpeed(self,unit:UnitOfMeasure) -> float: ...**
+ **def averageSpeed(self, unit:UnitOfMeasure) -> float: ...**
 
 获取平均车速，默认单位：像素/秒(m/s)，可通过unit参数设置单位  
 参数：  
@@ -8224,7 +8440,7 @@ for reduceSpeedArea in lReduceSpeedAreas:
             print(f"获取平均车速，单位：米/秒={reduceSpeedVehiType.averageSpeed(UnitOfMeasure.Metric)}")
 ```
 
- **def speedStandardDeviation(self,unit:UnitOfMeasure) -> float: ...**
+ **def speedStandardDeviation(self, unit:UnitOfMeasure) -> float: ...**
 
 获取车速标准差，默认单位：像素/秒，可通过unit参数设置单位   
 参数：  
@@ -8272,7 +8488,7 @@ def _showReduceSpeedAreaIntervalAttr(reduceSpeedArea):
 
 
 
-### 2.32. ITollLane
+### 2.31. ITollLane
 
 收费车道接口
 
@@ -8321,7 +8537,7 @@ for tollLane in tollLanes:
     print(f"获取收费车道起点距当前所在路段起始位置的距离={tollLane.distance()}")
 ```
 
- **def setName(self,name: str) -> None: ...**
+ **def setName(self, name: str) -> None: ...**
 
 设置收费车道名称  
 参数：  
@@ -8413,7 +8629,7 @@ def showTollLaneAttr(netiface):
 
 
 
-### 2.33. ITollDecisionPoint
+### 2.32. ITollDecisionPoint
 
 收费决策点接口
 
@@ -8508,7 +8724,7 @@ for tollDecisionPoint in tollDecisionPoints:
     print(f"获取收费决策点收费路径分配信息列表={tollDecisionPoint.tollDisInfoList()}")
 ```
 
- **def updateTollDisInfoList(self,tollDisInfoList: Type.List<Online.TollStation.DynaTollDisInfo>) ->None: ...**
+ **def updateTollDisInfoList(self, tollDisInfoList: Type.List<Online.TollStation.DynaTollDisInfo>) ->None: ...**
 
 更新收费分配信息列表, 先创建决策点，再更新决策点的车道分配信息  
 参数：  
@@ -8561,7 +8777,7 @@ def showTollDecisionPointAttr(netiface):
 
 
 
-### 2.34. ITollRouting
+### 2.33. ITollRouting
 
 收费路径接口
 
@@ -8651,7 +8867,7 @@ for tollDecisionPoint in tollDecisionPoints:
     print(f"判断输入的路段是否在当前路径上={tollRouting.contain(tollDecisionPoint.link())}")
 ```
 
- **def nextRoad(self,pRoad: Tessng.ISection) -> Tessng.ISection: ...**
+ **def nextRoad(self, pRoad: Tessng.ISection) -> Tessng.ISection: ...**
 
 获取输入路段的紧邻下游道路  
 \[in\] pRoad ：路段或连接段
@@ -8705,7 +8921,7 @@ def showTollRoutingAttr(netiface):
 
 
 
-### 2.35. ITollPoint
+### 2.34. ITollPoint
 
 收费站停车点接口
 
@@ -8789,7 +9005,7 @@ for tollLane in tollLanes:
     print(f"获取是否启用的状态={tollPoint.isEnabled()}")
 ```
 
- **def setEnabled(self,enabled: bool) -> bool: ...**
+ **def setEnabled(self, enabled: bool) -> bool: ...**
 
 设置当前收费站停车点是否启用， 返回是否设置成功的标签  
 \[in\] enabled ：默认为True表示启用， 若传入False则表明禁用该收费站点
@@ -8823,7 +9039,7 @@ for tollLane in tollLanes:
     print(f"获取收费类型={tollPoint.tollType()}")
 ```
 
- **def setTollType(self,tollType: int) -> bool: ...**
+ **def setTollType(self, tollType: int) -> bool: ...**
 
 设置收费类型  
 \[in\] tollType：收费类型, 数据结构 见OnLine.TollType
@@ -8857,7 +9073,7 @@ for tollLane in tollLanes:
     print(f"获取停车时间分布ID={tollPoint.timeDisId()}")
 ```
 
- **def setTimeDisId(self,timeDisId: int) -> bool: ...**
+ **def setTimeDisId(self, timeDisId: int) -> bool: ...**
 
 设置停车时间分布ID 
 \[in\] tollType： timeDisId：时间分布ID
@@ -8895,7 +9111,7 @@ def showTollPointAttr(netiface):
 
 
 
-### 2.36. IParkingStall
+### 2.35. IParkingStall
 
 停车位接口
 
@@ -8997,7 +9213,7 @@ def showParkingStallAttr(netiface):
 
 
 
-### 2.37. IParkingRegion
+### 2.36. IParkingRegion
 
 停车区域接口
 
@@ -9029,7 +9245,7 @@ for parkingRegion in parkingRegions:
     print(f"获取停车区域名称={parkingRegion.name()}")
 ```
 
- **def setName(self,name: str) -> None: ...**
+ **def setName(self, name: str) -> None: ...**
 
 设置停车区域名称  
 \[in\] name ：停车区域名称
@@ -9094,7 +9310,7 @@ def showParkingRegionAttr(netiface):
 
 
 
-### 2.38. IParkingDecisionPoint
+### 2.37. IParkingDecisionPoint
 
 停车决策点接口
 
@@ -9233,7 +9449,7 @@ def showParkingDecisionPointAttr(netiface):
 
 
 
-### 2.39. IParkingRouting
+### 2.38. IParkingRouting
 
 停车决策路径接口
 
@@ -9301,7 +9517,7 @@ for parkingDecisionPoint in parkingDecisionPoints:
         print(f"获取停车决策路径的长度，单位：米={parkingRouting.calcuLength()}")
 ```
 
- **def contain(self,pRoad: Tessng.ISection) -> boolen: ...**
+ **def contain(self, pRoad: Tessng.ISection) -> boolen: ...**
 
 判断输入的道路（ 路段或连接段）是否在当前停车决策路径上  
 \[in\] pRoad ：道路对象，类型为Tessng.ISection
@@ -9318,7 +9534,7 @@ for parkingDecisionPoint in parkingDecisionPoints:
         print(f"判断输入的道路（ 路段或连接段）是否在当前停车决策路径上={parkingRouting.contain(parkingDecisionPoint.link())}")
 ```
 
- **def nextRoad(self,pRoad: Tessng.ISection) -> Tessng.ISection: ...**
+ **def nextRoad(self, pRoad: Tessng.ISection) -> Tessng.ISection: ...**
 
 获取输入道路的紧邻下游道路  
 \[in\] pRoad ：道路对象，类型为Tessng.ISection
@@ -9370,7 +9586,7 @@ def showParkingRoutingAttr(netiface):
 
 
 
-### 2.40. IJunction
+### 2.39. IJunction
 
 节点接口
 
@@ -9482,7 +9698,7 @@ showJunctionAttr(netiface)
 def showJunctionAttr(netiface):
     nodes = netiface.getAllJunctions()
     node = netiface.findJunction(nodes[0].id())
-    node = netiface.findTrafficControllerByName(node.name())
+    node = netiface.findSignalControllerByName(node.name())
     print(
         f"路网中的节点总数={len(nodes)},节点编号={nodes[0].id()}的具体信息："
         f"获取节点ID={node.getId()},名称={node.name()}, 设置新名字={node.setName('new_' + node.name())},"
@@ -9499,7 +9715,7 @@ def showJunctionAttr(netiface):
 
 
 
-### 2.41. IPedestrian
+### 2.40. IPedestrian
 
 行人接口
 
@@ -9803,7 +10019,7 @@ def showJunctionAttr(simuiface):
 ```
 
 
-### 2.43. IPedestrianPathRegionBase
+### 2.41. IPedestrianPathRegionBase
 
 行人可通行路径面域基类接口，用例见下文子类
 
@@ -9831,7 +10047,7 @@ def showJunctionAttr(simuiface):
 
 [in] color： 面域颜色
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -9859,14 +10075,14 @@ def showJunctionAttr(simuiface):
 
 获取面域是否为障碍物
 
- **def setObstacleRegion(self，b:bool) ->None: ...**
+ **def setObstacleRegion(self, b:bool) ->None: ...**
 
 设置面域是否为障碍物
 
 [in] b： True表示设置为障碍物，False表示设置为非障碍物
 
 
-### 2.44. IPassengerRegion
+### 2.43. IPassengerRegion
 
 乘客面域基类接口，用例见下文子类
 
@@ -9888,7 +10104,7 @@ def showJunctionAttr(simuiface):
 
 
 
-### 2.53. IPedestrianRegion 
+### 2.44. IPedestrianRegion 
 
 行人区域（面域）接口，用例见下文子类
 
@@ -9900,22 +10116,22 @@ def showJunctionAttr(simuiface):
 
 获取行人区域(面域)名称
 
- **def setName(self，name：str) -> None: ...**
+ **def setName(self, name：str) -> None: ...**
 
 设置行人区域(面域)名称
 
- **def setRegionColor(self，color:QColor) -> None: ...**
+ **def setRegionColor(self, color:QColor) -> None: ...**
 
 设置行人区域(面域)的颜色
 
- **def getPosition(self,unit:UnitOfMeasure) -> QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) -> QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit参数设置单位， 这里范围的面域中心点的位置， QT像素坐标系  
 
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
- **def setPosition(self，scenePos: QPoint,unit:UnitOfMeasure) ->  None: ...**
+ **def setPosition(self, scenePos: QPoint,unit:UnitOfMeasure) ->  None: ...**
 
 设置面域位置，默认单位：像素，可通过unit参数设置单位
 
@@ -9932,7 +10148,7 @@ def showJunctionAttr(simuiface):
 
 获取行人区域(面域)的期望速度系数
 
- **def setExpectSpeedFactor(self，factor: float) -> None: ...**
+ **def setExpectSpeedFactor(self, factor: float) -> None: ...**
 
 设置行人区域(面域)的期望速度系数
 
@@ -9940,7 +10156,7 @@ def showJunctionAttr(simuiface):
 
 获取面域高程， 单位：米
 
- **def setElevation(self，elevation: float) -> None: ...**
+ **def setElevation(self, elevation: float) -> None: ...**
 
 设置面域高程， 单位：米
 
@@ -9952,13 +10168,13 @@ def showJunctionAttr(simuiface):
 
 获取面域所在图层ID
 
- **def setLayerId(self，id:int) -> None: ...**
+ **def setLayerId(self, id:int) -> None: ...**
 
 将面域图层设置为图层id， 如果图层id非法，则不做任何改变
 
 
 
-### 2.54. IPedestrianSideWalkRegion
+### 2.45. IPedestrianSideWalkRegion
 
 人行道区域（面域）接口
 
@@ -10038,7 +10254,7 @@ for region in allRegion:
     print(f"获取面域颜色={region.getRegionColor()}")
 ```
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -10103,7 +10319,7 @@ for region in allRegion:
     print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
 ```
 
- **def setExpectSpeedFactor(self，val:float) -> None: ...**
+ **def setExpectSpeedFactor(self, val:float) -> None: ...**
 
 设置期望速度系数
 
@@ -10135,7 +10351,7 @@ for region in allRegion:
     print(f"获取面域高程={region.getElevation()}")
 ```
 
- **def setElevation(self，elevation:float) -> None: ...**
+ **def setElevation(self, elevation:float) -> None: ...**
 
 设置面域高程
 
@@ -10181,7 +10397,7 @@ for region in allRegion:
     print(f"获取面域所在图层ID={region.getLayerId()}")
 ```
 
- **def setLayerId(self，elevation:float) -> None: ...**
+ **def setLayerId(self, elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
@@ -10213,7 +10429,7 @@ for region in allRegion:
     print(f"获取人行道(面域)宽度， 单位：米={region.getWidth()}")
 ```
 
- **def setWidth(self，width:float) -> None: ...**
+ **def setWidth(self, width:float) -> None: ...**
 
 设置人行道(面域)宽度， 单位：米
 
@@ -10287,7 +10503,7 @@ for region in allRegion:
     print(f"获取人行道(面域)候选顶点={region.getCandidateVetexs()}")
 ```
 
- **def removeVetex(self，index: int) ->None: ...**
+ **def removeVetex(self, index: int) ->None: ...**
 
 删除人行道(面域)的第index个顶点： 顺序： 按照人行横道的绘制顺序排列
 
@@ -10304,7 +10520,7 @@ for region in allRegion:
     print(f"删除人行道(面域)的第index个顶点={region.removeVetex(1)}")
 ```
 
- **def insertVetex(self，pos: QPointF, index:int) ->None: ...**
+ **def insertVetex(self, pos: QPointF, index:int) ->None: ...**
 
 在人行道(面域)的第index的位置插入顶点，初始位置为pos： 顺序： 按照人行横道的绘制顺序排列
 
@@ -10365,7 +10581,7 @@ def showPedestrianSideWalkRegionAttr(netiface):
 
 
 
-### 2.45. IPedestrianCrossWalkRegion
+### 2.46. IPedestrianCrossWalkRegion
 
 人行横道区域接口
 
@@ -10447,7 +10663,7 @@ for region in allRegion:
     print(f"获取面域颜色={region.getRegionColor()}")
 ```
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -10514,7 +10730,7 @@ for region in allRegion:
     print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
 ```
 
- **def setExpectSpeedFactor(self，val:float) -> None: ...**
+ **def setExpectSpeedFactor(self, val:float) -> None: ...**
 
 设置期望速度系数
 
@@ -10546,7 +10762,7 @@ for region in allRegion:
     print(f"获取面域高程={region.getElevation()}")
 ```
 
- **def setElevation(self，elevation:float) -> None: ...**
+ **def setElevation(self, elevation:float) -> None: ...**
 
 设置面域高程
 
@@ -10592,7 +10808,7 @@ for region in allRegion:
     print(f"获取面域所在图层ID={region.getLayerId()}")
 ```
 
- **def setLayerId(self，elevation:float) -> None: ...**
+ **def setLayerId(self, elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
@@ -10907,7 +11123,7 @@ def showPedestrianCrossWalkRegionAttr(netiface):
               f"获取管控反向通行的信号灯={crossWalkRegion.getNegativeDirectionSignalLamp()},")
 ```
 
-### 2.46. IPedestrianEllipseRegion
+### 2.47. IPedestrianEllipseRegion
 
 行人椭圆面域接口
 
@@ -10989,7 +11205,7 @@ for region in allRegion:
     print(f"获取面域颜色={region.getRegionColor()}")
 ```
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -11056,7 +11272,7 @@ for region in allRegion:
     print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
 ```
 
- **def setExpectSpeedFactor(self，val:float) -> None: ...**
+ **def setExpectSpeedFactor(self, val:float) -> None: ...**
 
 设置期望速度系数
 
@@ -11088,7 +11304,7 @@ for region in allRegion:
     print(f"获取面域高程={region.getElevation()}")
 ```
 
- **def setElevation(self，elevation:float) -> None: ...**
+ **def setElevation(self, elevation:float) -> None: ...**
 
 设置面域高程
 
@@ -11134,7 +11350,7 @@ for region in allRegion:
     print(f"获取面域所在图层ID={region.getLayerId()}")
 ```
 
- **def setLayerId(self，elevation:float) -> None: ...**
+ **def setLayerId(self, elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
@@ -11166,7 +11382,7 @@ for region in allRegion:
     print(f"获取面域是否为障碍物={region.isObstacle()}")
 ```
 
- **def setObstacle(self,b:bool) -> None: ...**
+ **def setObstacle(self, b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
@@ -11284,7 +11500,7 @@ def showPedestrianEllipseRegionAttr(netiface):
 
 
 
-### 2.47. IPedestrianFanShapeRegion
+### 2.48. IPedestrianFanShapeRegion
 
 行人扇形面域接口
 
@@ -11366,7 +11582,7 @@ for region in allRegion:
     print(f"获取面域颜色={region.getRegionColor()}")
 ```
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -11433,7 +11649,7 @@ for region in allRegion:
     print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
 ```
 
- **def setExpectSpeedFactor(self，val:float) -> None: ...**
+ **def setExpectSpeedFactor(self, val:float) -> None: ...**
 
 设置期望速度系数
 
@@ -11465,7 +11681,7 @@ for region in allRegion:
     print(f"获取面域高程={region.getElevation()}")
 ```
 
- **def setElevation(self，elevation:float) -> None: ...**
+ **def setElevation(self, elevation:float) -> None: ...**
 
 设置面域高程
 
@@ -11511,7 +11727,7 @@ for region in allRegion:
     print(f"获取面域所在图层ID={region.getLayerId()}")
 ```
 
- **def setLayerId(self，elevation:float) -> None: ...**
+ **def setLayerId(self, elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
@@ -11543,7 +11759,7 @@ for region in allRegion:
     print(f"获取面域是否为障碍物={region.isObstacle()}")
 ```
 
- **def setObstacle(self,b:bool) -> None: ...**
+ **def setObstacle(self, b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
@@ -11623,7 +11839,7 @@ allRegion = netiface.pedestrianFanShapeRegions()
 for region in allRegion:
     print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
     print(f"获取面域是否为下客区域={region.isAlightingArea()}")
-``` 
+```
 
 **def getInnerRadius(self) -> float: ...**
 
@@ -11709,7 +11925,7 @@ def showPedestrianFanShapRegionAttr(netiface):
               f"获取面域所在图层ID={r.getLayerId() },设置面域所在图层，如果图层ID非法，则不做任何改变={r.setLayerId(r.getLayerId())}")
 ```
 
-### 2.48.IPedestrianPolygonRegion
+### 2.49.IPedestrianPolygonRegion
 
 行人多边形面域接口
 
@@ -11791,7 +12007,7 @@ for region in allRegion:
     print(f"获取面域颜色={region.getRegionColor()}")
 ```
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -11858,7 +12074,7 @@ for region in allRegion:
     print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
 ```
 
- **def setExpectSpeedFactor(self，val:float) -> None: ...**
+ **def setExpectSpeedFactor(self, val:float) -> None: ...**
 
 设置期望速度系数
 
@@ -11890,7 +12106,7 @@ for region in allRegion:
     print(f"获取面域高程={region.getElevation()}")
 ```
 
- **def setElevation(self，elevation:float) -> None: ...**
+ **def setElevation(self, elevation:float) -> None: ...**
 
 设置面域高程
 
@@ -11936,7 +12152,7 @@ for region in allRegion:
     print(f"获取面域所在图层ID={region.getLayerId()}")
 ```
 
- **def setLayerId(self，elevation:float) -> None: ...**
+ **def setLayerId(self, elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
@@ -11968,7 +12184,7 @@ for region in allRegion:
     print(f"获取面域是否为障碍物={region.isObstacle()}")
 ```
 
- **def setObstacle(self,b:bool) -> None: ...**
+ **def setObstacle(self, b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
@@ -12048,7 +12264,7 @@ allRegion = netiface.pedestrianPolygonRegions()
 for region in allRegion:
     print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
     print(f"获取面域是否为下客区域={region.isAlightingArea()}")
-``` 
+```
 
 **案例代码**
 
@@ -12080,7 +12296,7 @@ def showPedestrianPolygonRegionAttr(netiface):
 
 
 
-### 2.49. IPedestrianRectRegion
+### 2.50. IPedestrianRectRegion
 
 行人矩形面域接口
 
@@ -12162,7 +12378,7 @@ for region in allRegion:
     print(f"获取面域颜色={region.getRegionColor()}")
 ```
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -12229,7 +12445,7 @@ for region in allRegion:
     print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
 ```
 
- **def setExpectSpeedFactor(self，val:float) -> None: ...**
+ **def setExpectSpeedFactor(self, val:float) -> None: ...**
 
 设置期望速度系数
 
@@ -12261,7 +12477,7 @@ for region in allRegion:
     print(f"获取面域高程={region.getElevation()}")
 ```
 
- **def setElevation(self，elevation:float) -> None: ...**
+ **def setElevation(self, elevation:float) -> None: ...**
 
 设置面域高程
 
@@ -12307,7 +12523,7 @@ for region in allRegion:
     print(f"获取面域所在图层ID={region.getLayerId()}")
 ```
 
- **def setLayerId(self，elevation:float) -> None: ...**
+ **def setLayerId(self, elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
@@ -12339,7 +12555,7 @@ for region in allRegion:
     print(f"获取面域是否为障碍物={region.isObstacle()}")
 ```
 
- **def setObstacle(self,b:bool) -> None: ...**
+ **def setObstacle(self, b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
@@ -12419,7 +12635,7 @@ allRegion = netiface.pedestrianRectRegions()
 for region in allRegion:
     print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
     print(f"获取面域是否为下客区域={region.isAlightingArea()}")
-```  
+```
 
 **案例代码**
 
@@ -12449,7 +12665,7 @@ def showPedestrianRectRegionAttr(netiface):
               f"获取面域所在图层ID={r.getLayerId() },设置面域所在图层，如果图层ID非法，则不做任何改变={r.setLayerId(r.getLayerId())}")
 ```
 
-### 2.50. IPedestrianTriangleRegion
+### 2.51. IPedestrianTriangleRegion
 
 行人三角形面域接口
 
@@ -12531,7 +12747,7 @@ for region in allRegion:
     print(f"获取面域颜色={region.getRegionColor()}")
 ```
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -12598,7 +12814,7 @@ for region in allRegion:
     print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
 ```
 
- **def setExpectSpeedFactor(self，val:float) -> None: ...**
+ **def setExpectSpeedFactor(self, val:float) -> None: ...**
 
 设置期望速度系数
 
@@ -12630,7 +12846,7 @@ for region in allRegion:
     print(f"获取面域高程={region.getElevation()}")
 ```
 
- **def setElevation(self，elevation:float) -> None: ...**
+ **def setElevation(self, elevation:float) -> None: ...**
 
 设置面域高程
 
@@ -12676,7 +12892,7 @@ for region in allRegion:
     print(f"获取面域所在图层ID={region.getLayerId()}")
 ```
 
- **def setLayerId(self，elevation:float) -> None: ...**
+ **def setLayerId(self, elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
@@ -12708,7 +12924,7 @@ for region in allRegion:
     print(f"获取面域是否为障碍物={region.isObstacle()}")
 ```
 
- **def setObstacle(self,b:bool) -> None: ...**
+ **def setObstacle(self, b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
@@ -12788,7 +13004,7 @@ allRegion = netiface.pedestrianTriangleRegions()
 for region in allRegion:
     print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
     print(f"获取面域是否为下客区域={region.isAlightingArea()}")
-``` 
+```
 
 **案例代码**
 
@@ -12826,7 +13042,7 @@ def showPedestrianTriangleRegionAttr(netiface):
 
 
 
-### 2.55. IPedestrianStairRegion
+### 2.52. IPedestrianStairRegion
 
 楼梯区域接口
 
@@ -12908,7 +13124,7 @@ for region in allRegion:
     print(f"获取面域颜色={region.getRegionColor()}")
 ```
 
- **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
+ **def getPosition(self, unit:UnitOfMeasure) ->QPointF: ...**
 
 获取面域位置，默认单位：像素，可通过unit设置单位
 
@@ -12974,7 +13190,7 @@ for region in allRegion:
     print(f"获取楼梯宽度，单位：米={region.getWidth()}")
 ```
 
- **def setWidth(self，width:float) -> None: ...**
+ **def setWidth(self, width:float) -> None: ...**
 
 设置楼梯(面域)宽度， 单位：米
 
@@ -13157,7 +13373,7 @@ for region in allRegion:
     print(f"获取楼梯类型={region.getStairType()}")
 ```
 
- **def setStairType(self，type:StairType) -> None: ...**
+ **def setStairType(self, type:StairType) -> None: ...**
 
 设置楼梯类型, 类型枚举说明， 参见pyi的 StariType类型
 
@@ -13185,7 +13401,7 @@ for region in allRegion:
     print(f"获取楼梯的起始层级={region.getStartLayerId()}")
 ```
 
- **def setStartLayerId(self,id:int) -> None: ...**
+ **def setStartLayerId(self, id:int) -> None: ...**
 
 设置楼梯的起始层级
 
@@ -13214,7 +13430,7 @@ for region in allRegion:
     print(f"获取楼梯的终止层级={region.getEndLayerId()}")
 ```
 
- **def setEndLayerId(self,id:int) -> None: ...**
+ **def setEndLayerId(self, id:int) -> None: ...**
 
 设置楼梯的终止层级
 
@@ -13243,7 +13459,7 @@ for region in allRegion:
     print(f"获取楼梯传输速度，单位米/秒={region.getTransmissionSpeed()}")
 ```
 
- **def setTransmissionSpeed(self,speed:float) -> None: ...**
+ **def setTransmissionSpeed(self, speed:float) -> None: ...**
 
 设置楼梯传输速度，单位米/秒
 
@@ -13272,7 +13488,7 @@ for region in allRegion:
     print(f"获取楼梯净高，单位：米={region.getHeadroom()}")
 ```
 
- **def setHeadroom(self,headroom:float) -> None: ...**
+ **def setHeadroom(self, headroom:float) -> None: ...**
 
 设置楼梯净高，单位：米
 
@@ -13415,7 +13631,7 @@ def showPedestrianStairRegionAttr(netiface):
 
 
 
-### 2.56. ICrosswalkSignalLamp
+### 2.53. ICrosswalkSignalLamp
 
 人行横道信号灯接口
 
@@ -13614,7 +13830,7 @@ def showCrossWalkSignalLampAttr(netiface):
  
 
 
-### 2.51 IPedestrianPath
+### 2.54 IPedestrianPath
 
 行人路径接口
 
@@ -13712,7 +13928,7 @@ def showPedestrianPathAttr(netiface):
 
 
 
-### 2.52. IPedestrianPathPoint
+### 2.55. IPedestrianPathPoint
 
 行人路径点（起点，终点，途经点）接口
 
@@ -14029,7 +14245,7 @@ def initVehicle(self, vehi):
 ```
 
 
- **def length(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def length(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 获取车辆长度，默认单位：像素，可通过unit参数设置单位
 
@@ -14164,7 +14380,7 @@ for vehi in allVehicleStarted:
     print(f"车辆所在道路类型={vehi.roadType()}")
 ```
 
- **def limitMaxSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def limitMaxSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 车辆所在路段或连接段最大限速，兼顾到车辆的期望速度，单位：像素/秒  
 参数：  
@@ -14182,7 +14398,7 @@ for vehi in allVehicleStarted:
     print(f"车辆所在路段或连接段最大限速，单位：米/秒={vehi.limitMaxSpeed(UnitOfMeasure.Metric)}")
 ```
 
- **def limitMinSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def limitMinSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 车辆所在路段或连接段最小限速，兼顾到车辆的期望速度，单位：像素/秒  
 参数：  
@@ -14261,7 +14477,7 @@ for vehi in allVehicleStarted:
 驱动车辆。在每个运算周期，每个在运行的车辆被调用一次该方法;  
 如果用户使用该函数驱动车辆，那后续整个仿真生命周期都需要用户控制该辆车。即TESSNG将此车辆的控制权移交给用户。
 
- **def pos(self，unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **def pos(self, unit:Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
 当前位置，横纵坐标单位：像素  
 参数：  
@@ -14279,7 +14495,7 @@ for vehi in allVehicleStarted:
     print(f"车辆当前位置，单位：米制={vehi.pos(UnitOfMeasure.Metric)}")
 ```
 
- **def zValue(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def zValue(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前高程，单位：像素  
 参数：  
@@ -14297,7 +14513,7 @@ for vehi in allVehicleStarted:
     print(f"车辆当前高程，单位：米制={vehi.zValue(UnitOfMeasure.Metric)}")
 ```
 
- **def acce(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def acce(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前加速度，单位：像素/秒^2  
 参数：  
@@ -14315,7 +14531,7 @@ for vehi in allVehicleStarted:
     print(f"车辆当前加速度，单位：米制={vehi.acce(UnitOfMeasure.Metric)}")
 ```
 
- **def currSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def currSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前速度，单位：像素/秒  
 参数：  
@@ -14447,9 +14663,9 @@ for vehi in allVehicleStarted:
     print(f"右后车={vehi.vehicleRRear()}")
 ```
 
- **def vehiDistFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiDistFront(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
-前车间距，单位：像素; 若无前车，则范围固定的常量 ， 单位像素  
+前车间距，单位：像素; 若无前车，则范围固定的常量, 单位像素  
 
 参数：  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
@@ -14467,7 +14683,7 @@ for vehi in allVehicleStarted:
     print(f"前车间距，单位：米制={vehi.vehiDistFront(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiSpeedFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiSpeedFront(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 前车速度，单位：像素/秒  若无前车，则范围固定的常量 单位像素 
 
@@ -14487,7 +14703,7 @@ for vehi in allVehicleStarted:
     print(f"前车速度，单位：米/秒={vehi.vehiSpeedFront(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiHeadwayFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiHeadwayFront(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 距前车时距, 若无前车，则范围固定的常量  单位像素   
 参数：  
@@ -14506,7 +14722,7 @@ for vehi in allVehicleStarted:
     print(f"距前车时距，单位：米制={vehi.vehiHeadwayFront(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiDistRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiDistRear(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 后车间距，单位：像素, 若无后车，则范围固定的常量  单位像素 
 
@@ -14526,7 +14742,7 @@ for vehi in allVehicleStarted:
     print(f"后车间距，单位：米制={vehi.vehiDistRear(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiSpeedRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiSpeedRear(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 后车速度，单位：像素/秒  若无后车，则范围固定的常量  单位像素  
 参数：  
@@ -14545,7 +14761,7 @@ for vehi in allVehicleStarted:
     print(f"后车速度，单位：米制={vehi.vehiSpeedRear(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiHeadwaytoRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiHeadwaytoRear(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 距后车时距，单位：像素  
 参数：  
@@ -14564,7 +14780,7 @@ for vehi in allVehicleStarted:
     print(f"距后车时距，单位：米制={vehi.vehiHeadwaytoRear(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiDistLLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiDistLLaneFront(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道前车间距，单位：像素； 若无目标车，则返回固定的常量  单位像素  
 参数：  
@@ -14583,7 +14799,7 @@ for vehi in allVehicleStarted:
     print(f"相邻左车道前车间距，单位：米制={vehi.vehiDistLLaneFront(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiSpeedLLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiSpeedLLaneFront(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素  
 参数：  
@@ -14602,7 +14818,7 @@ for vehi in allVehicleStarted:
     print(f"相邻左车道前车速度，单位：米制={vehi.vehiSpeedLLaneFront(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiDistLLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiDistLLaneRear(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道后车间距，单位：像素;  若无目标车，则返回固定的常量  单位像素  
 参数：  
@@ -14621,7 +14837,7 @@ for vehi in allVehicleStarted:
     print(f"相邻左车道后车间距，单位：米制={vehi.vehiDistLLaneRear(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiSpeedLLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiSpeedLLaneRear(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道后车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素  
 参数：  
@@ -14640,7 +14856,7 @@ for vehi in allVehicleStarted:
     print(f"相邻左车道后车速度，单位：米制={vehi.vehiSpeedLLaneRear(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiDistRLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiDistRLaneFront(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道前车间距，单位：像素;  若无目标车，则返回固定的常量  单位像素  
 参数：  
@@ -14659,7 +14875,7 @@ for vehi in allVehicleStarted:
     print(f"相邻右车道前车间距，单位：米制={vehi.vehiDistRLaneFront(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiSpeedRLaneFront(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiSpeedRLaneFront(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道前车速度，单位：像素/秒;  若无目标车，则返回固定的常量  单位像素  
 参数：  
@@ -14678,7 +14894,7 @@ for vehi in allVehicleStarted:
     print(f"相邻右车道前车速度，单位：米制={vehi.vehiSpeedRLaneFront(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiDistRLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiDistRLaneRear(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道后车间距，单位：像素; 若无目标车，则返回固定的常量  单位像素  
 参数：  
@@ -14697,7 +14913,7 @@ for vehi in allVehicleStarted:
     print(f"相邻右车道后车间距，单位：米制={vehi.vehiDistRLaneRear(UnitOfMeasure.Metric)}")
 ```
 
- **def vehiSpeedRLaneRear(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def vehiSpeedRLaneRear(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道后车速度，单位：像素/秒；  若无目标车，则返回固定的常量  单位像素  
 参数：  
@@ -14730,7 +14946,7 @@ for vehi in allVehicleStarted:
     vehi.setIsPermitForVehicleDraw(True)
 ```
 
- **def lLaneObjectVertex(self，unit:Tess.UnitOfMeasure) -> typing.List: ...**
+ **def lLaneObjectVertex(self, unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 车道或车道连接中心线内点集  
 参数：  
@@ -15204,7 +15420,7 @@ for vehi in allVehicleStarted:
     print(f"车辆欧拉角={vehi.vehicleDriving().euler()}")
 ```
 
- **def desirSpeed(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def desirSpeed(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前期望速度，与车辆自身期望速度和道路限速有关，不大于道路限速，单位：像素/秒  
 参数：  
@@ -15327,7 +15543,7 @@ for vehi in allVehicleStarted:
 \[in\] lPoint：轨迹点坐标集合  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def calcTraceLength(self，unit:Tess.UnitOfMeasure) -> None: ...**
+ **def calcTraceLength(self, unit:Tess.UnitOfMeasure) -> None: ...**
 
 计算轨迹长度； 前提是：TESSNG开启车辆轨迹记录|输出 功能  
 参数：  
@@ -15363,7 +15579,7 @@ for vehi in allVehicleStarted:
 
 \[in\] number：车道序号
 
- **def currDistance(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def currDistance(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前计算周期移动距离，单位：像素  
 参数： 
@@ -15382,7 +15598,7 @@ for vehi in allVehicleStarted:
     print(f"当前计算周期移动距离，米制={vehi.vehicleDriving().currDistance(UnitOfMeasure.Metric)}")
 ```
 
- **def currDistanceInRoad(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def currDistanceInRoad(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前路段或连接上已行驶距离，单位：像素  
 参数：  
@@ -15419,7 +15635,7 @@ for vehi in allVehicleStarted:
 \[in\] dist：总里程，单位：像素  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def getVehiDrivDistance(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def getVehiDrivDistance(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 已行驶总里程  
 参数：  
@@ -15438,7 +15654,7 @@ for vehi in allVehicleStarted:
     print(f"已行驶总里程，米制={vehi.vehicleDriving().getVehiDrivDistance(UnitOfMeasure.Metric)}")
 ```
 
- **def currDistanceInSegment(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def currDistanceInSegment(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前分段已行驶距离  
 参数：  
@@ -15486,7 +15702,7 @@ for vehi in allVehicleStarted:
 
 设置是否改变轨迹，当设为True时会对轨迹初始化，如设轨迹分段序号为0，等
 
- **def currDistance(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def currDistance(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前时间段移动距离  
 参数：  
@@ -15546,7 +15762,7 @@ for vehi in allVehiStarted_lst:
 
 \[in\] index：分段序号
 
- **def currDistanceInSegment(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def currDistanceInSegment(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 当前在分段上已行驶距离  
 参数：  
@@ -15613,7 +15829,7 @@ for vehi in allVehicleStarted:
     print(f"变轨点集={vehi.vehicleDriving().changingTrace()}")
 ```
 
- **def changingTraceLength(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def changingTraceLength(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 变轨长度
 
@@ -15871,13 +16087,13 @@ openNetFile("C:/TESSNG/Example/杭州武林门区域路网公交优先方案.tes
 场景中的像素比，单位：米/像素
 
 
- **def sceneWidth(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def sceneWidth(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 场景宽度，单位：米  
 参数：  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
- **def sceneHeight(self，unit:Tess.UnitOfMeasure) -> float: ...**
+ **def sceneHeight(self, unit:Tess.UnitOfMeasure) -> float: ...**
 
 场景高度，单位：米  
 参数：  
@@ -15964,7 +16180,7 @@ openNetFile("C:/TESSNG/Example/杭州武林门区域路网公交优先方案.tes
 
 所有排队计数器
 
- **def vehiTravelDetectors(self, id:int) -> Tessng.IVehicleTravelDetector**: ...**
+ **def vehiTravelDetectors(self, id:int) -> Tessng.IVehicleTravelDetector: ...**
 
 所有车辆行程时间检测器，返回列表中的每一个元素是一对行程时间检测器的起始检测器
 
@@ -15991,15 +16207,15 @@ for laneConnector in laneConnectors:
 
 ```
 
-  **def trafficControllerCount(self) -> int: ...**
+  **def signalControllerCount(self) -> int: ...**
 
 获取路网中信号机总数数
 
- **def trafficControllerIds(self) -> Type.List<int>: ...**
+ **def signalControllerIds(self) -> Type.List<int>: ...**
 
 获取信号机编号列表
 
- **def trafficControllers(self) -> Type.List<Tess.ITrafficController>: ...**
+ **def signalControllers(self) -> Type.List<Tess.ISignalController>: ...**
 
 获取信号机对象列表
 
@@ -16083,7 +16299,7 @@ for laneConnector in laneConnectors:
 
  **def addFlowTimeInterval(self) ->Online.Junction.FlowTimeInterval: ...**
 
-添加时间段，返回新时间段ID，失败返回-1
+添加时间段，返回新时间段ID，失败返回-1; 调用这个接口后会根据上一个时间段计算当前时间段
 
 
  **def getJunctionFlows(self, junctionId:int) ->Type.Dict(int, Type.Dict(int, Tess.Online.Junction.FlowTurning)): ...**
@@ -16110,10 +16326,6 @@ for laneConnector in laneConnectors:
  **def layerInfos() ->Type.List<OnLine.Pedestrian.LayerInfo>: ...**
 
 获取所有层级信息
-
- **def pedestrianRegions() ->Type.List<Tessng.IPedestrianRegion>: ...**
-
-获取所有行人面域
 
  **def pedestrianRectRegions() ->Type.List<Tessng.IPedestrianRectRegion>: ...**
 
@@ -16162,12 +16374,6 @@ for laneConnector in laneConnectors:
  **def crosswalkSignalLamps() ->Type.List<Tessng.ICrosswalkSignalLamp>: ...**
 
 获取所有人行横道红绿灯
-
-
-
-
-
-
 
  **def findLink(self, id:int) -> Tessng.ILink: ...**
 
@@ -16280,11 +16486,11 @@ for laneConnector in laneConnectors:
 
 返回：行程时间检测器对象
 
- **def findTrafficControllerById(self, id:long) -> Tess.ITrafficController: ...**
+ **def findSignalControllerById(self, id:long) -> Tess.ISignalController: ...**
 
 获取指定id的信号机对象
 
- **def findTrafficControllerByName(self, name:str) -> Tess.ITrafficController: ...**
+ **def findSignalControllerByName(self, name:str) -> Tess.ISignalController: ...**
 
 根据名称查询信号机(如果同名返回第一个)
 
@@ -16407,12 +16613,6 @@ for laneConnector in laneConnectors:
 
 根据id获取行人决策点配置信息，id为行人决策点ID
 
-
-
-
-
-
-
  **def linkCenterPoints(self, linkId:int，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
 获取指定路段的中心线断点集
@@ -16432,8 +16632,6 @@ for laneConnector in laneConnectors:
  **def judgeLinkToCross(self, linkId:int) -> bool: ...**
 
 判断路段去向是否进入交叉口， 以面域是否存在多连接段以及当前路段与后续路段之间的角度为依据； 和节点Ijunction没啥关系
-
-
 
  **def createLink(self, lCenterPoint:typing.Sequence, laneCount:int, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
@@ -16471,6 +16669,13 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 返回：路段对象。  
 注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
+```python
+startPoint = QVector3D(300, -6, 0)
+endPoint = QVector3D(25, -6, 5)
+lPoint = [startPoint, endPoint]
+e_approach = netiface.createLink3D(lPoint, 3,  linkName="东进口creatlink3d", bAddToScene=True, unit=UnitOfMeasure.Metric)
+```
+
  **def createLinkWithLaneWidth(self, lCenterPoint:typing.Sequence, lLaneWidth:typing.Sequence, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
 创建路段,默认单位：像素，可通过unit参数设置单位
@@ -16485,6 +16690,14 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 返回：路段对象。  
 注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
 
+```python
+startPoint = QVector3D(6, 300)
+endPoint = QVector3D(6, 25)
+lPoint = [startPoint, endPoint]
+s_approach = netiface.createLinkWithLaneWidth(lPoint, [3.5,3.0,3.0], linkName="南进口creatlinkWithLaneWidth", bAddToScene=True, unit =UnitOfMeasure.Metric)
+
+```
+
  **def createLink3DWithLaneWidth(self, lCenterV3:typing.Sequence, lLaneWidth:typing.Sequence, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
 创建指定车道宽度的3D路段，默认单位：像素，可通过unit参数设置单位
@@ -16498,6 +16711,16 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 返回：路段对象。  
 注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。  
 
+```python
+startPoint = QVector3D(6, 300, 0)
+endPoint = QVector3D(6, 25, 5)
+lPoint = [startPoint, endPoint]
+s_approach = netiface.createLink3DWithLaneWidth(lPoint, [3.5,3.0,3.0], linkName="南进口creatlink3dWithLaneWidth", bAddToScene=True, unit =UnitOfMeasure.Metric)
+
+```
+
+
+
  **def createLink3DWithLanePoints(self, lCenterLineV3:typing.Sequence, lanesWithPoints:typing.Sequence, linkName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
 创建指定车道断点的3D路段，默认单位：像素，可通过unit参数设置单位
@@ -16510,6 +16733,31 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
 返回：路段对象  
 注：如传入米制参数，请勿遗忘传入linkName与bAddToScene参数。
+
+```python
+startPoint = QVector3D(-6, -300, 0)
+endPoint = QVector3D(-6, -25, 5)
+lPoint = [startPoint, endPoint]
+lane3_left = [QVector3D(-3, -300, 0), QVector3D(-3, -25, 0)]
+lane3_mid = [QVector3D(-1.5, -300, 0), QVector3D(-1.5, -25, 0)]
+lane3_right = [QVector3D(0, -300, 0), QVector3D(0, -25, 0)]
+
+lane2_left = [QVector3D(-6, -300, 0), QVector3D(-6, -25, 0)]
+lane2_mid = [QVector3D(-4.5, -300, 0), QVector3D(-4.5, -25, 0)]
+lane2_right = [QVector3D(-3, -300, 0), QVector3D(-3, -25, 0)]
+
+lane1_left = [QVector3D(-9, -300, 0), QVector3D(-9, -25, 0)]
+lane1_mid = [QVector3D(-7.5, -300, 0), QVector3D(-7.5, -25, 0)]
+lane1_right = [QVector3D(-6, -300, 0), QVector3D(-6, -25, 0)]
+n_approach = netiface.createLink3DWithLanePoints(lPoint, [{'left':lane1_left,'center':lane1_mid,'right':lane1_right},
+                                                          {'left':lane2_left,'center':lane2_mid,'right':lane2_right},
+                                                          {'left':lane3_left,'center':lane3_mid,'right':lane3_right}],
+                                                 linkName="北进口createLink3DWithLanePoints", bAddToScene=True, unit =UnitOfMeasure.Metric)
+
+
+```
+
+
 
  **def createConnector(self, fromLinkId:int, toLinkId:int, lFromLaneNumber:typing.Sequence, lToLaneNumber:typing.Sequence, connName:str=..., bAddToScene:bool=...) -> Tessng.IConnector: ...**
 
@@ -16525,6 +16773,21 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 \[in\] bAddToScene：创建后是否放入路网场景，默认为True  
 
  
+
+```python
+startPoint = QPointF(-300, 6)
+endPoint = QPointF(-25, 6)
+lPoint = [startPoint, endPoint]
+w_approach = netiface.createLink(lPoint, 3, "西进口",  True, UnitOfMeasure.Metric)
+startPoint = QVector3D(300, -6, 0)
+endPoint = QVector3D(25, -6, 5)
+lPoint = [startPoint, endPoint]
+e_approach = netiface.createLink3D(lPoint, 3,  linkName="东进口creatlink3d", bAddToScene=True, unit=UnitOfMeasure.Metric)
+        
+lFromLaneNumber = [2]
+lToLaneNumber = [2]
+w_e_straight_connector = netiface.createConnector(w_approach.id(), e_outgoing.id(), lFromLaneNumber, lToLaneNumber, "东西直行", True)
+```
 
  **def createConnector3DWithPoints(self, fromLinkId:int, toLinkId:int, lFromLaneNumber:typing.Sequence, lToLaneNumber:typing.Sequence, laneConnectorWithPoints:typing.Sequence, connName:str=..., bAddToScene:bool=...，unit:Tess.UnitOfMeasure) -> Tessng.IConnector: ...**
 
@@ -16542,6 +16805,22 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 返回：连接段对象  
 注：如传入米制参数，请勿遗忘传入connName与bAddToScene参数。  
 
+```python
+startPoint = QPointF(-300, 6)
+endPoint = QPointF(-25, 6)
+lPoint = [startPoint, endPoint]
+w_approach = netiface.createLink(lPoint, 3, "西进口",  True, UnitOfMeasure.Metric)
+startPoint = QVector3D(300, -6, 0)
+endPoint = QVector3D(25, -6, 5)
+lPoint = [startPoint, endPoint]
+e_approach = netiface.createLink3D(lPoint, 3,  linkName="东进口creatlink3d", bAddToScene=True, unit=UnitOfMeasure.Metric)
+
+connector = netiface.createConnector3DWithPoints(w_approach.id(), e_outgoing.id(), [2], [2],
+laneConnectorWithPoints,"直行", True, UnitOfMeasure.Metric)
+```
+
+
+
  **def createDispatchPoint(self, pLink:Tessng.ILink, dpName:str=..., bAddToScene:bool=...) -> Tessng.IDispatchPoint: ...**
 
 创建发车点
@@ -16550,6 +16829,20 @@ link1 = netiface.createLink(lPoint, 7, "曹安公路")
 \[in\] pLink：路段，在其上创建发车点  
 \[in\] dpName：发车点名称，默认为空，将以发车点ID作为名称  
 \[in\] bAddToScene：创建后是否放入路网场景，默认为True  
+
+```python
+startPoint1 = QPointF(m2p(-300), m2p(-200))
+endPoint1 = QPointF(m2p(-50), m2p(-200))
+lPoint1 = [startPoint1, endPoint1]
+link1 = netiface.createLink(lPoint1, 3, "信控编辑路段1")
+if link1:
+    dp = netiface.createDispatchPoint(link1)
+    if dp:
+        dp.addDispatchInterval(1, 3600, 3600)
+
+```
+
+
 
  **def createVehicleComposition(self, name:str, lVehiComp:typing.Sequence) -> int: ...**
 
@@ -16621,18 +16914,8 @@ vehiCompositionID = netiface.createVehicleComposition("动态创建车型组成"
 返回：创建车道箭头  
 
 ```python
-//在路段4的最右侧车道上添加直行或右转箭头,导向箭头距离路段起终点不能小于9米
-    ILink* pLink = gpTessInterface->netInterface()->findLink(4);
-    if (pLink) {
-        ILane* pRightLane = pLink->lanes().front();
-        qreal length = m2p(4.0);
-        qreal distToTerminal = m2p(50);
-        Online::GuideArrowType arrowType = Online::GuideArrowType::StraightRight;
-        if (pRightLane) {
-IGuidArrow* pGuideArrow = gpTessInterface->netInterface()->createGuidArrow(pRightLane, length, distToTerminal, arrowType);
-            qDebug() << "创建箭头成功，箭头所在车道为：" << pGuideArrow->lane()->id() << endl;
-        }
-}
+arrowType = Online.GuideArrowType.StraightRight
+straitghtRightArrow = netiface.createGuidArrow(w_approach.lanes()[0], 4,10,arrowType)
 
 ```
 
@@ -16679,6 +16962,11 @@ decisionPoint = netiface.createDecisionPoint(link3, 30，Tess.UnitOfMeasure.Metr
 举例：
 
 ```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+# 创建决策点
+decisionPoint = netiface.createDecisionPoint(link3, m2p(30))
 # 创建路径(左，直，右)
 decisionRouting1 = tessngIFace().netInterface().createDeciRouting(decisionPoint, [link3, link10, link6])
 decisionRouting2 = tessngIFace().netInterface().createDeciRouting(decisionPoint, [link3, link10, link8])
@@ -16839,7 +17127,122 @@ detector.setToTime(60)
 举例：
 
 ```python
+def create_signal_control(netiface,w_approach, e_approach, n_approach, s_approach,
+                          n_crosswalk,   s_crosswalk,  w_crosswalk,  e_crosswalk):
+    # 创建信号机
+    print(dir(netiface))
 
+    SignalController = netiface.createSignalController("交叉口1")
+    # 创建信控方案
+    signalPlan = netiface.createSignalPlan(SignalController, "早高峰", 150, 50,0,1800)
+    # 创建方向详情--相位
+    green = Online.ColorInterval("绿",50)
+    yellow = Online.ColorInterval("黄",3)
+    red = Online.ColorInterval("红",97)
+    w_e_straight_phasecolor = [green, yellow, red]
+    w_e_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行",w_e_straight_phasecolor)
+
+    we_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行行人", w_e_straight_phasecolor)
+
+    red = Online.ColorInterval("红",53)
+    green = Online.ColorInterval("绿",30)
+    yellow = Online.ColorInterval("黄",3)
+    red1 = Online.ColorInterval("红",64)
+    w_e_left_phasecolor = [red, green, yellow, red1]
+    w_e_left_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西左转",w_e_left_phasecolor)
+
+
+    red = Online.ColorInterval("红",86)
+    green = Online.ColorInterval("绿",30)
+    yellow = Online.ColorInterval("黄",3)
+    red1 = Online.ColorInterval("红",31)
+    s_n_straight_phasecolor = [red, green, yellow, red1]
+    s_n_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北直行", s_n_straight_phasecolor)
+    ns_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北直行行人", s_n_straight_phasecolor)
+
+    red = Online.ColorInterval("红",119)
+    green = Online.ColorInterval("绿",29)
+    yellow = Online.ColorInterval("黄",3)
+    s_n_left_phasecolor = [red, green, yellow]
+    s_n_left_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北左转",s_n_left_phasecolor)
+
+    # 创建机动车信号灯
+    w_e_straight_lamps = []
+    for lane in w_approach.lanes():
+        if lane.number()< w_approach.laneCount()-1 and lane.number()>0:
+            signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
+            w_e_straight_lamps.append(signalLamp)
+    for lane in e_approach.lanes():
+        if lane.number()< e_approach.laneCount()-1 and lane.number()>0:
+            signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
+            w_e_straight_lamps.append(signalLamp)
+
+
+    w_e_left_lamps = []
+    for lane in w_approach.lanes():
+        if lane.number()== w_approach.laneCount()-1:
+            signalLamp = netiface.createSignalLamp(w_e_left_phase, "东西左转信号灯", lane.id(), -1,
+                                                   lane.length() - 0.5)
+            w_e_left_lamps.append(signalLamp)
+    for lane in e_approach.lanes():
+        if lane.number()== e_approach.laneCount()-1:
+            signalLamp = netiface.createSignalLamp(w_e_left_phase, "东西左转信号灯", lane.id(), -1,
+                                                   lane.length() - 0.5)
+            w_e_left_lamps.append(signalLamp)
+
+    n_s_straight_lamps = []
+    for lane in n_approach.lanes():
+        if lane.number()< n_approach.laneCount()-1 and lane.number()>0:
+            signalLamp = netiface.createSignalLamp(s_n_straight_phase, "南北直行信号灯", lane.id(), -1,
+                                                   lane.length() - 0.5)
+            n_s_straight_lamps.append(signalLamp)
+    for lane in s_approach.lanes():
+        if lane.number()< s_approach.laneCount()-1 and lane.number()>0:
+            signalLamp = netiface.createSignalLamp(s_n_straight_phase, "南北直行信号灯", lane.id(), -1,
+                                                   lane.length() - 0.5)
+            n_s_straight_lamps.append(signalLamp)
+
+    n_s_left_lamps = []
+    for lane in n_approach.lanes():
+        if lane.number()== n_approach.laneCount()-1:
+            signalLamp = netiface.createSignalLamp(s_n_left_phase, "南北左转信号灯", lane.id(), -1,
+                                                   lane.length() - 0.5)
+            n_s_left_lamps.append(signalLamp)
+    for lane in s_approach.lanes():
+            if lane.number()== s_approach.laneCount()-1:
+                signalLamp = netiface.createSignalLamp(s_n_left_phase, "南北左转信号灯", lane.id(), -1,
+                                                       lane.length() - 0.5)
+                n_s_left_lamps.append(signalLamp)
+
+
+    # 创建行人信号灯, 并行人信号灯关联相位
+    signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() ,QPointF(13, 22),True)
+    signalLamp1_negetive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() ,QPointF(-13, 22),False)
+    signalLamp1_positive.setSignalPhase(we_ped_phase)
+    signalLamp1_negetive.setSignalPhase(we_ped_phase)
+    # netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp1_positive)
+    # netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp1_negetive)
+
+    signalLamp2_positive = netiface.createCrossWalkSignalLamp(signalController, "北斑马线信号灯", n_crosswalk.getId() ,QPointF(13, -22),True)
+    signalLamp2_negetive = netiface.createCrossWalkSignalLamp(signalController, "北斑马线信号灯", n_crosswalk.getId(),QPointF(-13, -22), False)
+    signalLamp2_positive.setSignalPhase(we_ped_phase)
+    signalLamp2_negetive.setSignalPhase(we_ped_phase)
+    # netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp2_positive)
+    # netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp2_negetive)
+
+    signalLamp3_positive = netiface.createCrossWalkSignalLamp(signalController, "东斑马线信号灯", e_crosswalk.getId() ,QPointF(22, -13),True)
+    signalLamp3_negetive = netiface.createCrossWalkSignalLamp(signalController, "东斑马线信号灯", e_crosswalk.getId() ,QPointF(22, 13),False)
+    signalLamp3_positive.setSignalPhase(ns_ped_phase)
+    signalLamp3_negetive.setSignalPhase(ns_ped_phase)
+    # netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp3_positive)
+    # netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp3_negetive)
+
+    signalLamp4_positive = netiface.createCrossWalkSignalLamp(signalController, "西斑马线信号灯", w_crosswalk.getId() ,QPointF(-22, -13),True)
+    signalLamp4_negetive = netiface.createCrossWalkSignalLamp(signalController, "西斑马线信号灯", w_crosswalk.getId() ,QPointF(-22, 13),False)
+    signalLamp4_positive.setSignalPhase(ns_ped_phase)
+    signalLamp4_negetive.setSignalPhase(ns_ped_phase)
+    # netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp4_positive)
+    # netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp4_negetive)
 ```
 
 
@@ -16869,13 +17272,13 @@ for index, laneObj in enumerate(lLaneObjects):
 
  
 
- **def createTrafficSignalLamp(self, pTrafficLight:ITrafficController, name:str, laneId:int, toLaneId:int, distance:float) -> Tessng.ISignalLamp: ...**
+ **def createTrafficSignalLamp(self, pTrafficLight:ISignalController, name:str, laneId:int, toLaneId:int, distance:float) -> Tessng.ISignalLamp: ...**
 
 创建信号灯
 
 参数：
 
-\[in\] ITrafficController：信号控制机
+\[in\] ISignalController：信号控制机
 
 \[in\] pPhase：相位对象  
 \[in\] name：信号灯名称  
@@ -16890,25 +17293,25 @@ for index, laneObj in enumerate(lLaneObjects):
 ```python
 # 创建信号灯
 for index, laneObj in enumerate(lLaneObjects):
-    signalLamp = netiface.createTrafficSignalLamp(trafficController,signalPhase, "信号灯{}".format(index + 1), laneObj.fromLane().id(),laneObj.toLane().id(), m2p(2.0))
+    signalLamp = netiface.createTrafficSignalLamp(signalController,signalPhase, "信号灯{}".format(index + 1), laneObj.fromLane().id(),laneObj.toLane().id(), m2p(2.0))
 
 ```
 
  
 
- **def createTrafficController(self,name:str) -> Tessng.ITrafficContoller: ...**
+ **def createSignalController(self, name:str) -> Tessng.ITrafficContoller: ...**
 
 创建信号机
 
 参数： 
 \[in\] name：信号灯名称  
 
- **def createSignalPlan(self,trafficController:ITrafficController, name:str, cycleTime:int, offset:int, startTime:int, endTime:int) -> Tessng.ISignalPlan: ...**
+ **def createSignalPlan(self, signalController:ISignalController, name:str, cycleTime:int, offset:int, startTime:int, endTime:int) -> Tessng.ISignalPlan: ...**
 
 创建信控方案
 
 参数： 
-\[in\] trafficController：信号控制器
+\[in\] signalController：信号控制器
 
 \[in\] name：信控方案名称
 
@@ -16922,7 +17325,7 @@ for index, laneObj in enumerate(lLaneObjects):
 
 
 
- **def addSignalPhaseToLamp(self,signalPhaseId:int, signalLamp:Tess.ISignalLamp) -> None: ...**
+ **def addSignalPhaseToLamp(self, signalPhaseId:int, signalLamp:Tess.ISignalLamp) -> None: ...**
 
 将信号灯与相位绑定， 不允许跨越信号机绑定
 
@@ -16931,7 +17334,7 @@ for index, laneObj in enumerate(lLaneObjects):
 
 \[in\] signalLamp：信号灯对象
 
- **def addCrossWalkSignalPhaseToLamp(self,signalPhaseId:int, signalLamp:Tess.ISignalLamp) -> None: ...**
+ **def addCrossWalkSignalPhaseToLamp(self, signalPhaseId:int, signalLamp:Tess.ISignalLamp) -> None: ...**
 
 将人行横道与相位绑定， 不允许跨越信号机绑定
 
@@ -16940,7 +17343,7 @@ for index, laneObj in enumerate(lLaneObjects):
 
 \[in\] signalLamp：信号灯对象
 
- **def transferSignalPhase(self,pFromISignalPhase:Tess.ISignalPhase, pToISignalPhase:Tess.ISignalPhase, signalLamp:Tess.ISignalLamp) -> None: ...**
+ **def transferSignalPhase(self, pFromISignalPhase:Tess.ISignalPhase, pToISignalPhase:Tess.ISignalPhase, signalLamp:Tess.ISignalLamp) -> None: ...**
 
 更换信号灯绑定的信控相位，不允许跨越信号机
 
@@ -17027,30 +17430,22 @@ if busStation2 and tessngIFace().netInterface().addBusStationToLine(busLine, bus
 举例：
 
 ```python
-# 创建施工区和删除施工区示例,施工区和事故区的删除有两种方式，duration结束后自动删除以及主动删除(removeRoadWorkZone)，此处初始化前者
-def createworkZone(self):
-    """ 创建施工区
-    :param :
-    :return:
-    """
-    # 创建施工区
-    workZone = Online.DynaRoadWorkZoneParam()
-    # 道路ID
-    workZone.roadId = int(5)
-    # 施工区名称
-    workZone.name = "施工区，限速40,持续20秒"
-    # 位置，距离路段或连接段起点距离，单位米
-    workZone.location = 50
-    # 施工区长度，单位米
-    workZone.length = 50
-    # 车辆经过施工区的最大车速，单位千米/小时
-    workZone.limitSpeed = 40
-    # 施工区施工时长，单位秒
-    workZone.duration = 20
-    # 施工区起始车道
-    workZone.mlFromLaneNumber = [0]
-    # 创建施工区
-    zone = tessngIFace().netInterface().createRoadWorkZone(workZone)
+def create_roadworkzone(netiface, upstreamLink, downstreamLink):
+    param = Online.DynaRoadWorkZoneParam()
+    param.name= '施工区'
+    param.roadId = upstreamLink.id()
+    param.location = 200
+    param.length = 100
+    param.upCautionLength = 70
+    param.upTransitionLength = 50
+    param.upBufferLength = 50
+    param.downTransitionLength = 40
+    param.downTerminationLength = 40
+    param.mlFromLaneNumber =  [3]
+    param.startTime = 0
+    param.duration = 3600
+    param.limitSpeed = 42
+    workzone = netiface.createRoadWorkZone(param, UnitOfMeasure.Metric)
 
 ```
 
@@ -17065,20 +17460,37 @@ def createworkZone(self):
 举例：
 
 ```python
+
 # 创建事故区
-accidentZone = Online.DynaAccidentZoneParam()
+accidentZoneParam = Online.DynaAccidentZoneParam()
 # 道路ID
-accidentZone.roadId = 9
+accidentZoneParam.roadId = upstream.id()
 # 事故区名称
-accidentZone.name = "最左侧车道发生事故"
+accidentZoneParam.name = "最左侧车道发生事故"
 # 位置，距离路段或连接段起点距离，单位米
-accidentZone.location = m2p(200)
+accidentZoneParam.location = 700
 # 事故区长度，单位米
-accidentZone.length = m2p(50)
+accidentZoneParam.length = 50
 # 事故区起始车道序号列表
-accidentZone.mlFromLaneNumber=[2]
+accidentZoneParam.mlFromLaneNumber = [2]
+accidentZoneParam.startTime= 0
+accidentZoneParam.duration = 500
+accidentZoneParam.needStayed = True
+accidentZoneParam.limitSpeed = 55
+accidentZoneParam.controlLength = 100
 # 创建事故区
-zone = tessngIFace().netInterface().createAccidentZone(accidentZone)
+accidentZone = netiface.createAccidentZone(accidentZoneParam)
+# 创建事故区时间段信息
+accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
+accidentZoneIntervalParam.accidentZoneId = accidentZone.id()
+accidentZoneIntervalParam.startTime = 90
+accidentZoneIntervalParam.endTime = 120
+accidentZoneIntervalParam.length = 50
+accidentZoneIntervalParam.location = 200
+accidentZoneIntervalParam.limitedSpeed = 10
+accidentZoneIntervalParam.controlLength = 100
+accidentZoneIntervalParam.mlFromLaneNumber = [0, 1, 3]
+accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
 
 ```
 
@@ -17124,7 +17536,32 @@ gpTessInterface.netInterface().createLimitedZone(dynaLimitedZoneParam);
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
 ```python
-//例：改扩建对象初始化案例
+def create_Reconstruction(netiface, upstream, downstream):
+    param = Online.DynaRoadWorkZoneParam()
+    param.name= '施工区'
+    param.roadId = upstream.id()
+    param.location = 200
+    param.length = 100
+    param.upCautionLength = 70
+    param.upTransitionLength = 50
+    param.upBufferLength = 50
+    param.downTransitionLength = 40
+    param.downTerminationLength = 40
+    param.mlFromLaneNumber =  [3]
+    param.startTime = 0
+    param.duration = 3600
+    param.limitSpeed = 42
+    workzone = netiface.createRoadWorkZone(param, UnitOfMeasure.Metric)
+
+    if workzone is not None:
+        param2 = Online.DynaReconstructionParam()
+        param2.roadWorkZoneId = workzone.id()
+        param2.beBorrowedLinkId = downstream.id()
+        param2.passagewayLimitedSpeed = 42
+        param2.borrowedNum = 1
+        # 下列参数可选
+        # param2.passagewayLength = 100
+        reconstruction = netiface.createReconstruction(param2, UnitOfMeasure.Metric)
 
 
 ```
@@ -17154,13 +17591,66 @@ fromTime：起始时间
 toTime：结束时间
 lSpeedVehiType：限速车型列表
 
+```python
+print("创建限速区")
+type1 = Online.DynaReduceSpeedVehiTypeParam()
+type1.vehicleTypeCode = 1
+type1.avgSpeed = 10
+type1.speedSD = 5
+type2 = Online.DynaReduceSpeedVehiTypeParam()
+type2.vehicleTypeCode = 2
+type2.avgSpeed = 20
+type2.speedSD = 0
+
+reduceSpeedIntervalParam = Online.DynaReduceSpeedIntervalParam()
+reduceSpeedIntervalParam.startTime = 0
+reduceSpeedIntervalParam.endTime = 50
+reduceSpeedIntervalParam.mlReduceSpeedVehicleTypeParam = [type1, type2]
+#
+#
+param1 = Online.DynaReduceSpeedAreaParam()
+param1.name="限速区"
+param1.location = 2500
+param1.areaLength =100
+param1.roadId=upstream.id()
+param1.laneNumber = 0
+param1.toLaneNumber = -1
+param1.mlReduceSpeedIntervalParam = [reduceSpeedIntervalParam]
+reduceSpeedArea = netiface.createReduceSpeedArea(param1)
+print(reduceSpeedArea)
+```
+
+
+
  **def createTollLane(param:Online.TollStation.DynaTollLaneg) ->Tessng.ITollLane: ...**
 
 创建收费车道  
 \[in\]  param：动态收费车道信息，数据类型在文件 Plugin/_datastruct.h中定义, python初始化  Online.TollStation.DynaTollLane的示例代码如下：
 
 ```python
-
+def create_toll_lane(netiface,  link_id: int, location: float, length: float, lane_number: int, start_time: float, end_time: float, toll_point_list: list, toll_point_length: float = 8):
+    """创建收费车道"""
+    toll_lane_param = Online.TollStation.DynaTollLane()
+    # toll_lane_param.name = "123"
+    # 路段ID
+    toll_lane_param.roadId = link_id
+    # 距离路段起点的距离，单位：m
+    toll_lane_param.location = location
+    # 收费车道长度，单位：m
+    toll_lane_param.length = length
+    # 车道序号，从右向左，从0开始
+    toll_lane_param.laneNumber = lane_number
+    # 开始时间，单位：秒
+    toll_lane_param.startTime = start_time
+    # 结束时间，单位：秒
+    toll_lane_param.endTime = end_time
+    # 收费区域列表
+    toll_lane_param.tollPoint = toll_point_list
+    # 收费区域长度
+    toll_lane_param.tollPointLen = toll_point_length
+    # 创建收费车道
+    toll_lane = netiface.createTollLane(toll_lane_param)
+    return toll_lane
 ```
 
  **def createParkingRegion(param:Online.ParkingLot.DynaParkingRegion) ->Tessng.IParkingRegion: ...**
@@ -17173,6 +17663,165 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 
 ```python
 
+def create_parking(netiface, downstream):
+
+    print(f"创建停车时间分布")
+    new_pt = Online.ParkingLot.DynaParkingParkTime()
+    new_pt.time = 3
+    new_pt.prop = 100
+    new_pt1 = Online.ParkingLot.DynaParkingParkTime()
+    new_pt1.time = 5
+    new_pt1.prop = 100
+    new_ptd = Online.ParkingLot.DynaParkingTimeDis()
+    new_ptd.name = "新增停车时间分布"
+    new_ptd.parkingTimeList = [new_pt, new_pt1]
+    netiface.createParkingTimeDis(new_ptd)
+
+    print(f"创建停车区域")
+    dynaParkingRegion = Online.ParkingLot.DynaParkingRegion()
+    dynaParkingRegion.name = "test Parking region"
+    dynaParkingRegion.location = 7800
+    dynaParkingRegion.length = 100
+    dynaParkingRegion.roadId = downstream.id()
+    dynaParkingRegion.laneNumber = 0
+    dynaParkingRegion.findParkingStallStrategy = 1
+    # 0 - 车道内;1 - 车道右侧; 2 - 车道左侧
+    dynaParkingRegion.parkingStallPos = 1
+    dynaParkingRegion.arrangeType = 1
+    # 车位吸引力
+    dynaParkingRegion.firstParkingStallAttract = 1
+    dynaParkingRegion.middleParkingStallAttract = 1
+    dynaParkingRegion.lastParkingStallAttract = 1
+    # 停车运动参数
+    dynaParkingRegion.menaValue = 0 #  均值
+    dynaParkingRegion.variance = 1.0 # 方差
+    dynaParkingRegion.parkingSpeed = 5.0 # 泊车速度
+    dynaParkingRegion.joinGap = 5.0 # 汇入间隙
+    # 0 - 前进->前进;1 - 前进->后退; 2 - 后退->前进
+    dynaParkingRegion.parkingType = 1
+    # 运营参数
+    dynaParkingRegion.attract = 0 #吸引力
+    dynaParkingRegion.startTime = 0 # 开始时间
+    dynaParkingRegion.endTime = 999999 #结束时间
+    dynaParkingRegion.stallLength = 6 # 车位长度单位米
+    dynaParkingRegion.stallWidth = 3 # 车位宽度单位米
+    # 根据区域长度和车位长度，创建停车位
+    stallLen = 6
+    parkingStalls= []
+    for i in range(int(dynaParkingRegion.length/stallLen)-1):
+        parkingStall = Online.ParkingLot.DynaParkingStall()
+        parkingStall.location = dynaParkingRegion.location + stallLen * i
+        parkingStall.linkID = dynaParkingRegion.roadId
+        parkingStall.laneNumber = dynaParkingRegion.laneNumber
+        # 0 - 车道内; 1 - 车道右侧; 2 - 车道左侧
+        parkingStall.parkingStallPos = 1
+        # 0 - 垂直式; 1 - 倾斜式 - 30°;2 - 倾斜式 - 45°;3 - 倾斜式 - 60°;4 - 平行式
+        parkingStall.arrangeType = 0
+        # 停车位类型
+        parkingStall.parkingStallType = 1 # 小客车 / 大客车 / 其他
+        parkingStalls.append(parkingStall)
+    dynaParkingRegion.parkingStalls = parkingStalls
+
+    parkingRegion = netiface.createParkingRegion(dynaParkingRegion)
+
+    distance = 7500
+    new_pdp = netiface.createParkingDecisionPoint(downstream, distance, "上游路段停车场")
+    new_pr = netiface.createParkingRouting(new_pdp, parkingRegion)
+
+
+    # 更新停车时间分布
+    origin_ptd = netiface.parkingTimeDis()[-1]
+    origin_ptl = origin_ptd.parkingTimeList
+    print(origin_ptd.id, [(i.parkingTimeDisId, i.time, i.prop) for i in origin_ptl])
+    update_ptd = Online.ParkingLot.DynaParkingTimeDis()
+    update_ptd.id = origin_ptd.id
+    pt = Online.ParkingLot.DynaParkingParkTime()
+    pt.time = 60
+    pt.prop = 0.5
+    new_ptl = origin_ptl + [pt]
+    update_ptd.parkingTimeList = new_ptl
+    netiface.updateParkingTimeDis(update_ptd)
+
+    # 更新停车决策分配
+    pdp = netiface.parkingDecisionPoints()[-1]
+    pdi = pdp.parkDisInfoList()[-1]
+    print(f'len(pdi.disVehiclsInfoList): {len(pdi.disVehiclsInfoList)}')
+    dvi = pdi.disVehiclsInfoList[-1]
+    dvi.startTime = 0
+    dvi.endTime = 1800
+    pdi.disVehiclsInfoList = [dvi]
+    print(f"len(pdi.disVehiclsInfoList): {len(pdi.disVehiclsInfoList)}")
+    for i in pdi.disVehiclsInfoList:
+        print(f"{i.startTime}-{i.endTime}")
+    print(f"{pdi.disVehiclsInfoList[0].startTime}-{pdi.disVehiclsInfoList[0].endTime}")
+    pdp.updateParkDisInfo([pdi])
+
+    # 移除
+    # last_pr = netiface.parkingDecisionPoints()[-1].routings()[-1]
+    # netiface.removeParkingRouting(last_pr)
+    # pr = netiface.findParkingRegion(2)
+    # netiface.removeParkingRegion(pr)    # 停车区相关的路径会被同步移除
+    # last_ptd = netiface.parkingTimeDis()[-1]
+    # netiface.removeParkingTimeDis(last_ptd.id)
+
+    # 停车测试
+    parkingRegions = netiface.parkingRegions()
+    print(netiface.vehicleTypes())
+    for pr in parkingRegions:
+        print(f"id: {pr.id()}")
+        print(f"name: {pr.name()}")
+        print(f"parkingStalls: {pr.parkingStalls()}")
+        pr.setName(f'停车区{pr.name()+"_new"}')
+        parkingStalls = pr.parkingStalls()
+        for ps in parkingStalls:
+            print(dir(ps))
+            print(f"id: {ps.id()}")
+            print(f"distance: {ps.distance()}")
+            print(f"parkingRegion: {ps.parkingRegionId()}")
+            print(f"type: {ps.stallType()}")
+
+    parkingDecisionPoints = netiface.parkingDecisionPoints()
+    # 停车决策点
+    for pdp in parkingDecisionPoints:
+        print(dir(pdp))
+        print(f"id: {pdp.id()}")
+        print(f"distance: {pdp.distance()}")
+        print(f"link: {pdp.link().id()}")
+        print(f"name: {pdp.name()}")
+        print(f"parkDisInfoList: {pdp.parkDisInfoList()}")
+        # 静态决策路径
+        for pdi in pdp.parkDisInfoList():
+            print(type(pdi), dir(pdi))
+            print(f"disVehiclsInfoList: {pdi.disVehiclsInfoList}")
+            # 静态路径时间段
+            for dvi in pdi.disVehiclsInfoList:
+                # print(type(dvi), dir(dvi))
+                print(f"startTime: {dvi.startTime}")
+                print(f"endTime: {dvi.endTime}")
+                print(f"vehicleDisDetailList: {dvi.vehicleDisDetailList}")
+                # 停车分配详细信息
+                for vdd in dvi.vehicleDisDetailList:
+                    print(type(vdd), dir(vdd))
+                    print(f"parkingRegionID: {vdd.parkingRegionID}")
+                    print(f"parkingRoutingID: {vdd.parkingRoutingID}")
+                    print(f"parkingSelection: {vdd.parkingSelection}")
+                    print(f"parkingTimeDisId: {vdd.parkingTimeDisId}")
+                    print(f"prop: {vdd.prop}")
+                    print(f"vehicleType: {vdd.vehicleType}")
+            print(f"pIRouting: {pdi.pIRouting}")
+        print(f"polygon: {pdp.polygon()}")
+        print(f"routings: {pdp.routings()}")
+    for routing in pdp.routings():
+        # print(type(routing), dir(routing))
+        print(f"routingId: {routing.id()}")
+        print(f"routingLinks: {routing.getLinks()}")
+        link = netiface.findLink(21)
+        print(f"nextRoad: {routing.nextRoad(link)}")
+        print(f"deciPoint: {routing.parkingDeciPointId()}")
+        print(f"contain: {routing.contain(link)}")
+        print(f"length: {routing.calcuLength()}")
+
+    parkingTimeDisArray = netiface.parkingTimeDis()
 ```
 
 
@@ -17183,11 +17832,28 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 \[in\]  distance：收费决策点距离路段起点的距离，默认单位：像素  
 \[in\]  pLink：收费决策点的名称， 可选参数
 
+```python
+def create_toll_decision_point(netiface, link_id: int, location: float, name: str = ""):
+    """创建收费路径决策点"""
+    link = netiface.findLink(link_id)
+    if not link:
+        return None
+    toll_deci_point = netiface.createTollDecisionPoint(link, location, name)
+    return toll_deci_point
+```
+
  **def createTollRouting(pDeciPoint:Tessng.ITollDecisionPoint, pITollLane:Tessng.ITollLane) ->Tessng.ITollRouting: ...**
 
 创建收费路径  
 \[in\] pDeciPoint：收费决策点  
 \[in\] pITollLane：收费车道  
+
+```python
+def create_toll_routing(netiface, toll_deci_point, toll_lane):
+    """创建收费路径"""
+    toll_routing = netiface.createTollRouting(toll_deci_point, toll_lane)
+    return toll_routing
+```
 
  **def createParkingDecisionPoint(pLink:Tessng.ILink, distance:float, name:str(optional)) ->Tessng.IParkingDecisionPoint: ...**
 
@@ -17214,6 +17880,20 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 更新收费站停车时距分布  
 \[in\]  param：停车时距分布参数
 
+```python
+print(f"创建停车时间分布")
+new_pt = Online.ParkingLot.DynaParkingParkTime()
+new_pt.time = 3
+new_pt.prop = 100
+new_pt1 = Online.ParkingLot.DynaParkingParkTime()
+new_pt1.time = 5
+new_pt1.prop = 100
+new_ptd = Online.ParkingLot.DynaParkingTimeDis()
+new_ptd.name = "新增停车时间分布"
+new_ptd.parkingTimeList = [new_pt, new_pt1]
+netiface.createParkingTimeDis(new_ptd)
+```
+
 
  **def createJunction (startPoint:QPointF, endPoint:QPointF, name:str) ->Tessng.IJunction: ...**
 
@@ -17222,6 +17902,74 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 \[in\] endPoint：右下角起始点坐标  
 \[in\] name：节点名字  
 
+```python
+def createJunctionNode(netiface):
+    # # step1：创建节点
+    x1 = -500
+    y1 = 500
+    x2 = 500
+    y2 = -500
+    junctionName = 'newJunction'
+    netiface.createJunction(QPointF(m2p(x1), m2p(y1)), QPointF(m2p(x2), m2p(y2)), junctionName)
+
+    # # step2：创建静态路径
+    netiface.buildAndApplyPaths(3)    # 设置每个OD最多搜索3条路径
+    netiface.reSetDeciPoint()    # 优化决策点位置
+    for dp in netiface.decisionPoints():
+        for routing in dp.routings():
+            netiface.reSetLaneConnector(routing)    # 优化路径中的车道连接
+
+
+    # # step3：为节点中每个转向设置流量
+    # 由于没有已知值，这里针对不同转向类型为其赋流量初值
+    turnVolumeReduct = {'左转': 400, '直行': 1200, '右转': 200, '掉头': 0}
+    # # step3-1：添加流量时间段
+    timeInterval = netiface.addFlowTimeInterval()
+    timeId = timeInterval.timeId
+    startTime = 0
+    endTime = 3600
+    netiface.updateFlowTimeInterval(timeId, startTime, endTime)
+    # # step3-2：遍历转向，为其设置流量
+    junctions = netiface.getAllJunctions()
+    for junction in junctions:
+        junctionId = junction.getId()
+        for turning in junction.getAllTurnningInfo():
+            turningId = turning.turningId
+            turnType = turning.strTurnType
+            inputVolume = turnVolumeReduct.get(turnType, 0)
+            # 为该转向设置输入流量
+            netiface.updateFlow(timeId, junctionId, turningId, inputVolume)
+
+
+    # # step4：进行流量分配计算
+    # 设置BPR路阻函数参数，流量分配算法参数
+    theta = 0.1
+    bpra = 0.15
+    bprb = 4
+    maxIterateNum = 300
+    netiface.updateFlowAlgorithmParams(theta, bpra, bprb, maxIterateNum)    # 更新计算参数
+    result = netiface.calculateFlows()    # 计算路径流量分配并应用，返回分配结果
+
+    # 取流量分配结果
+    resultJson = collections.defaultdict(list)
+    for timeId, turningFlow in result.items():
+        for i in turningFlow:
+            junction = i.pJunction.getId()
+            turning = f"{i.turningBaseInfo.strDirection}-{i.turningBaseInfo.strTurnType}"
+            inputVolume = i.inputFlowValue    # 该转向输入流量
+            realVolume = i.realFlow    # 该转向实际分配到的流量
+            relativeError = i.relativeError    # 分配的相对误差
+            interval = i.flowTimeInterval
+            startTime = interval.startTime
+            endTime = interval.endTime
+            resultJson[f"{startTime}-{endTime}"].append({'junction': junction, 'turning': turning, 'inputVolume': inputVolume, 'realVolume': realVolume, 'relativeError': relativeError})
+    print(f"result：{resultJson}")
+
+
+```
+
+
+
  **def createPedestrianComposition(name:str,mpCompositionRatio:Type.Dict<int, float>) -> int : ...**
 
 创建行人组成  
@@ -17229,6 +17977,12 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 \[in\] name：组成名称  
 \[in\] mpCompositionRatio：组成明细,key为行人类型编码，value为行人类型占比 ,
 \[out\] 返回：组成ID，如果创建失败返回-1
+
+```python
+# # 创建行人组成
+compostion = {1:0.8, 2:0.2}
+pedComposition = netiface.createPedestrianComposition("自定义1", compostion)
+```
 
 
  **def addLayerInfo(name:str, height:float, visible:bool,locked:bool) -> Online.Pedestrian.LayerInfo : ...**
@@ -17241,18 +17995,25 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 \[in\] locked：是否锁定，锁定后面域不可以修改  
 \[out\] 返回：图层对象  
 
-
+```python
+pedLayer = netiface.addLayerInfo("行人图层",0.0,True, False)
+```
 
 
  **def createPedestrianRectRegion(startPoint:QPointF, endPoint:QPointF) -> Tessng.IPedestrianRectRegion : ...**
 
-创建矩形行人面域  
+创建矩形行人面域   
 参数  
 \[in\] startPoint：左上角  
 \[in\] endPoint：右下角  
 \[out\] 矩形行人面域对象  
 
-
+```python
+# 创建行人面域
+leftupArea = netiface.createPedestrianRectRegion(QPointF(-300,-300), QPointF(-400,-400))
+leftupArea1 = netiface.createPedestrianRectRegion(QPointF(-400, -400), QPointF(-500, -500))
+netiface.removePedestrianRectRegion(leftupArea1)
+```
 
  **def createPedestrianEllipseRegion(startPoint:QPointF, endPoint:QPointF) -> Tessng.IPedestrianEllipseRegion : ...** 
 
@@ -17338,7 +18099,7 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 \[out\] 创建行人决策点  
 
 
- **def createPedestrianPath(pStartPoint:Tessng.IPedestrianPathPoint,pEndPoint:Tessng.IPedestrianPathPoint，middlePoints：Type.List<QPointF>) -> Tessng.IPedestrianPath: ...**
+ **def createPedestrianPath(pStartPoint:Tessng.IPedestrianPathPoint,pEndPoint:Tessng.IPedestrianPathPoint，middlePoints：Type.List< QPointF >) -> Tessng.IPedestrianPath: ...**
 
 创建行人路径（或行人局部路径）  
 参数  
@@ -17348,18 +18109,20 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 \[out\] 行人路径对象
 
 
- **def createCrossWalkSignalLamp(pTrafficController:Tessng.ITrafficController,name:str，crosswalkid：str, scenePos:QPointF, isPositive:bool) -> Tessng.ICrosswalkSignalLamp: ...**
+ **def createCrossWalkSignalLamp(psignalController:Tessng.ISignalController,name:str，crosswalkid：str, scenePos:QPointF, isPositive:bool) -> Tessng.ICrosswalkSignalLamp: ...**
 
 创建人行横道信号灯  
 参数  
-\[in\]  pTrafficController：信号机  
+\[in\]  psignalController：信号机  
 \[in\] name：名称  
 \[in\] crosswalkId：人行横道ID  
 \[in\] scenePos：位于人行横道内的场景坐标  
 \[in\] isPositive：信号灯管控方向是否为正向  
 \[out\]人行横道信号灯对象  
 
-
+```python
+signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() ,QPointF(13, 22),True)
+```
 
  **def updateLink(self, link:Tessng._Link, lLane:typing.Sequence=..., lPoint:typing.Sequence=...，unit:Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
@@ -17371,6 +18134,8 @@ Online.ParkingLot.DynaParkingRegion的示例代码如下：
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
 返回：更新后的路段对象  
 注：如传入米制参数，请勿遗忘传入lLane与lPoint参数。  
+
+
 
  **def updateConnector(self, connector:Tessng._Connector) -> Tessng.IConnector: ...**
 
@@ -17521,7 +18286,7 @@ updated_decision_point = netiface.updateDecipointPoint(
 \[in\]maxIterateNum：最大迭代次数(1-5000)  
 \[in\]useNewPath：是否重新构建静态路径
 
- **def updatePathBuildParams(self,bDeciPointPosFlag:bool, bLaneConnectorFlag:bool，InputLineMinPathNum：long(defulat=3)) ->None: ...**
+ **def updatePathBuildParams(self, bDeciPointPosFlag:bool, bLaneConnectorFlag:bool，InputLineMinPathNum：long(defulat=3)) ->None: ...**
 
 更新静态路径构建参数  
 \[in\]  bDeciPointPosFlag：是否考虑决策点位置  
@@ -17667,6 +18432,28 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
 \[in\] pBusLine：公交线路
 
 \[in\] pStation：公交站点
+
+```python
+# 创建公交线路
+busline = netiface.createBusLine([w_approach,e_outgoing])
+busline1 = netiface.createBusLine([w_approach, s_outgoing])
+netiface.removeBusLine(busline1)
+if busline is not None:
+    busline.setDesirSpeed(60, UnitOfMeasure.Metric)
+
+
+# 创建公交站
+busstation1 = netiface.createBusStation(w_approach.lanes()[0],30, 100,"西进口公交站点1", UnitOfMeasure.Metric)
+busstation2 = netiface.createBusStation(w_approach.lanes()[0], 30, 200, "西进口公交站点2", UnitOfMeasure.Metric)
+busstation3 = netiface.createBusStation(e_outgoing.lanes()[0], 30, 200, "东出口公交站点1", UnitOfMeasure.Metric)
+# 将公交站点关联到公交线路上
+netiface.addBusStationToLine(busline, busstation1)
+netiface.addBusStationToLine(busline, busstation2)
+netiface.addBusStationToLine(busline, busstation3)
+netiface.removeBusStationFromLine(busline, busstation2)
+```
+
+
 
  **def removeAccidentZone(self, pIAccidentZone:Tessng.IAccidentZone) -> None: ...**
 
@@ -17888,6 +18675,15 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
 \[in\] width：单元格宽度，默认单位：米  
 \[in\]  unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位  
 
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+netiface.buildNetGrid(10,UnitOfMeasure.Metric)
+```
+
+
+
 
  **def findSectionOn1Cell(self, point:PySide2.QtCore.QPointF，unit:Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -17985,10 +18781,19 @@ point周围若干个单元格里查询LaneObject，默认单位：像素，可�
 
 参数：
 \[in\] lLink：要移动的路段列表  
-\[in\] offset：移动的偏移量, 指移动到指定点吗？？？  
+\[in\] offset：移动的偏移量, 即沿着坐标系向X向Y轴各自移动的偏移量  
 \[in\] unit：单位参数，默认为Default，Metric表示米制单位，Default表示不指定单位返回接口默认的单位
 
-
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+startPoint = QPointF(-300, 6)
+endPoint = QPointF(-25, 6)
+lPoint = [startPoint, endPoint]
+w_approach = netiface.createLink(lPoint, 3, "西进口",  True, UnitOfMeasure.Metric)
+netiface.moveLinks([w_approach],QPointF(0,12),UnitOfMeasure.Metric)
+```
 
 
 
@@ -18459,11 +19264,13 @@ class IVehicle():
 
  **def allPedestrianStarted(self) -> Tpye.List<Online.Pedestrian.IPedestrian>: ...**
 
-获取所有正在运行的行人  
+获取所有正在运行的行人; ，因为此函数可能会影响仿真效率，仿真默认关闭，如需要可在config配置里添加配置开启  
 参数：  
 \[out\] 行人对象列表
 
+```python
 
+```
 
 
 
