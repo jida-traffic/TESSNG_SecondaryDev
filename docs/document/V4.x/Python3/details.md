@@ -9507,77 +9507,267 @@ def showJunctionAttr(netiface):
 
 获取行人ID
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人ID={ped.getId()}")
+```
+
  **def getRadius(self) -> float: ...**
 
 获取行人半径大小， 单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人半径大小， 单位：米={ped.getRadius()}")
+```
 
  **def getWeight(self) -> float: ...**
 
 获取行人质量， 单位：千克
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人质量， 单位：千克={ped.getWeight()}")
+```
+
  **def getColor(self) -> float: ...**
 
 获取行人颜色， 十六进制颜色代码，如"#EE0000"
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人颜色={ped.getColor()}")
+```
 
  **def getPos(self) -> QPointF: ...**
 
 获取行人当前位置（瞬时位置），像素坐标系下的坐标点，单位：米; 
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人当前位置（瞬时位置），像素坐标系下的坐标点，单位：米={ped.getPos()}")
+```
+
  **def getAngle(self) -> float: ...**
 
 获取行人当前角度，QT像素坐标系下，X轴正方向为0，逆时针为正，单位：度; 
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人当前角度，QT像素坐标系下，X轴正方向为0，逆时针为正，单位：度={ped.getAngle()}")
+```
 
  **def getDirection(self) -> Array: ...**
 
 获取行人当前方向向量，二维向量；
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人当前方向向量，二维向量={ped.getDirection()}")
+```
+
  **def getElevation(self) -> float: ...**
 
 获取行人当前位置的高程，单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人当前位置的高程，单位：米={ped.getElevation()}")
+```
 
  **def getSpeed(self) -> float: ...**
 
 获取行人当前速度，单位：米/秒
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人当前速度，单位：米/秒={ped.getSpeed()}")
+```
+
  **def getDesiredSpeed(self) -> float: ...**
 
 获取行人期望速度，单位：米/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人期望速度，单位：米/秒={ped.getDesiredSpeed()}")
+```
 
  **def getMaxSpeed(self) -> float: ...**
 
 获取行人最大速度限制，单位：米/秒
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人最大速度限制，单位：米/秒={ped.getMaxSpeed()}")
+```
+
  **def getAcce(self) -> float: ...**
 
 获取行人当前加速度，单位：米/秒²
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人当前加速度，单位：米/秒²={ped.getAcce()}")
+```
 
  **def getMaxAcce(self) -> float: ...**
 
 获取行人最大加速度限制，单位：米/秒²
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人最大加速度限制，单位：米/秒²={ped.getMaxAcce()}")
+```
+
  **def getEuler(self) -> Type.List: ...**
 
-获取行人欧拉角，用于三维的信息展示和计算，单位：度
+获取行人欧拉角，单位：度
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人欧拉角，用于三维的信息展示和计算，单位：度={ped.getEuler()}")
+```
 
  **def getSpeedEuler(self) -> Type.List: ...**
 
-获取行人速度欧拉角，用于三维的信息展示和计算，单位：度
+获取行人速度欧拉角，单位：度
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人速度欧拉角，用于三维的信息展示和计算，单位：度={ped.getSpeedEuler()}")
+```
 
  **def getWallFDirection(self) ->Type.List: ...**
 
 获取墙壁方向单位向量
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取墙壁方向单位向量={ped.getWallFDirection()}")
+```
+
  **def getRegion(self) -> Tess.IPedestrianRegion: ...**
 
 获取行人当前所在面域
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人当前所在面域={ped.getRegion()}")
+```
 
  **def getPedestrianTypeId(self) -> int: ...**
 
 获取行人类型ID
 
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"获取行人类型ID={ped.getPedestrianTypeId()}")
+```
+
  **def stop(self) -> None: ...**
 
 停止仿真，会在下一个仿真批次移除当前行人，释放资源
+
+举例：
+
+```python
+iface = tessngIFace()
+simuiface = iface.simuInterface()
+allPedestrian = simuiface.allPedestrianStarted()
+for ped in allPedestrian:
+    print(f"停止仿真，会在下一个仿真批次移除当前行人，释放资源={ped.stop()}")
+```
 
 **案例代码**
 
@@ -9612,25 +9802,10 @@ def showJunctionAttr(simuiface):
 
 ```
 
-### 2.42. IObstacleRegion
-
-障碍物面域基类接口
-
- **def isObstacleRegion(self) -> bool: ...**
-
-获取面域是否为障碍物
-
- **def setObstacleRegion(self，b:bool) ->None: ...**
-
-设置面域是否为障碍物
-
-[in] b： True表示设置为障碍物，False表示设置为非障碍物
-
-
 
 ### 2.43. IPedestrianPathRegionBase
 
-行人可通行路径面域基类接口
+行人可通行路径面域基类接口，用例见下文子类
 
  **def getId(self) -> int: ...**
 
@@ -9676,10 +9851,24 @@ def showJunctionAttr(simuiface):
 获取面域类型，面域类型见pyi文件NetItemType类
 
 
+### 2.42. IObstacleRegion
+
+障碍物面域基类接口，用例见下文子类
+
+ **def isObstacleRegion(self) -> bool: ...**
+
+获取面域是否为障碍物
+
+ **def setObstacleRegion(self，b:bool) ->None: ...**
+
+设置面域是否为障碍物
+
+[in] b： True表示设置为障碍物，False表示设置为非障碍物
+
 
 ### 2.44. IPassengerRegion
 
-乘客面域基类接口
+乘客面域基类接口，用例见下文子类
 
  **def isBoardingArea(self) -> bool: ...**
 
@@ -9699,12 +9888,9 @@ def showJunctionAttr(simuiface):
 
 
 
-
-
-
 ### 2.53. IPedestrianRegion 
 
-行人区域（面域）接口
+行人区域（面域）接口，用例见下文子类
 
  **def getId(self) -> int: ...**
 
@@ -9770,44 +9956,6 @@ def showJunctionAttr(simuiface):
 
 将面域图层设置为图层id， 如果图层id非法，则不做任何改变
 
-**案例代码**
-
-```python
-netiface = tessngIFace().netInterface()
-showPedestrianRegionAttr(netiface)
-def showPedestrianRegionAttr(netiface):
-    """
-    所有类型的行人面域的公共属性，特殊类型的私有属性可以进一步根据面域类型获取指定类型后获取
-    Args:
-        netiface:
-
-    Returns:
-
-    """
-    allRegion = netiface.pedestrianRegions()
-    if len(allRegion) > 0:
-        r = allRegion[0]
-        print(f"仿真路网中各种人行面域的总数={len(allRegion)},"
-              f"获取面域ID={r.getId()},"
-              f"获取面域名称={r.getName()},"
-              f"设置面域名称={r.setName('test_area')}," 
-              f"获取面域颜色={r.getRegionColor()},"
-              f"设置面域颜色={r.setRegionColor(QColor('red'))},"
-              f"获取面域位置，默认单位：像素={r.getPosition()},"
-              f"获取面域位置,米制={r.getPosition(UnitOfMeasure.Metric)},"
-              f"设置面域位置，像素制={r.setPosition(r.getPosition())},"
-              f"设置面域位置，米制={r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)},"
-              f"获取面域类型={r.getGType()},"
-              f"获取期望速度系数={r.getExpectSpeedFactor()},"
-              f"设置期望速度系数={r.setExpectSpeedFactor(1.5)},"
-              f"获取面域高程={r. getElevation() },"
-              f"设置面域高程={r. setElevation(0.1)},"
-              f"获取面域多边形={r.getPolygon()}," 
-              f"获取面域所在图层ID={r.getLayerId() },设置面域所在图层，如果图层ID非法，则不做任何改变={r.setLayerId(r.getLayerId())}")
-
-```
-
-
 
 
 ### 2.54. IPedestrianSideWalkRegion
@@ -9818,9 +9966,29 @@ def showPedestrianRegionAttr(netiface):
 
 获取面域id
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取面域ID={region.getId()}")
+```
+
  **def getName(self) ->str: ...**
 
 获取面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def setName(self, name) ->None: ...**
 
@@ -9828,15 +9996,47 @@ def showPedestrianRegionAttr(netiface):
 
 [in] name： 面域名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"设置面域名称={region.setName('new_' + region.getName())}")
+    print(f"获取面域名称={region.getName()}")
+```
+
  **def getRegionColor(self) ->QColor: ...**
 
 获取面域颜色，返回pyside2的QColor类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
+
  **def setRegionColor(self, color:QColor) ->None: ...**
 
-获取面域颜色，
+设置面域颜色
 
-[in] color： 面域颜色
+[ in ] color： 面域颜色
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
 
  **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
 
@@ -9844,6 +10044,17 @@ def showPedestrianRegionAttr(netiface):
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    print(f"获取面域位置,米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
 
  **def setPosition(self, scenePos:QPointF, unit:UnitOfMeasure) ->None: ...**
 
@@ -9853,69 +10064,263 @@ def showPedestrianRegionAttr(netiface):
 [ in ] scenePos：场景坐标系下的位置
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"设置面域位置，像素制={region.setPosition(region.getPosition())},"
+          f"设置面域位置，米制={region.setPosition(region.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}")
+```
+
  **def getGType(self) ->int: ...**
 
 获取面域类型，面域类型见pyi文件NetItemType类
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取面域类型={region.getGType()}")
+```
 
  **def getExpectSpeedFactor(self) -> float: ...**
 
 获取期望速度系数
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
+
  **def setExpectSpeedFactor(self，val:float) -> None: ...**
 
 设置期望速度系数
+
+参数：
+[ in ] val：期望速度系数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
 
  **def getElevation(self) -> float: ...**
 
 获取面域高程
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取面域高程={region.getElevation()}")
+```
+
  **def setElevation(self，elevation:float) -> None: ...**
 
 设置面域高程
+
+参数：
+[ in ] elevation： 高程
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"设置面域高程={region.setElevation(0.1)}")
+    print(f"获取面域高程={region.getElevation()}")
+```
 
  **def getPolygon(self) -> float: ...**
 
 获取面域多边形
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取面域多边形={region.getPolygon()}")
+```
+
  **def getLayerId(self) -> float: ...**
 
 获取面域所在图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
 
  **def setLayerId(self，elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
+参数：
+[ in ] layerId： 图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"设置面域所在图层，如果图层ID非法，则不做任何改变={region.setLayerId(region.getLayerId())}")
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
+
  **def getWidth(self) -> int: ...**
 
 获取人行道(面域)宽度， 单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取人行道(面域)宽度， 单位：米={region.getWidth()}")
+```
 
  **def setWidth(self，width:float) -> None: ...**
 
 设置人行道(面域)宽度， 单位：米
 
+参数：
+[ in ] width： 宽度
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"设置人行道(面域)宽度， 单位：米={region.setWidth(region.getWidth()+0.1)}")
+    print(f"获取人行道(面域)宽度， 单位：米={region.getWidth()}")
+```
+
  **def getVetexs(self) ->  Type.List<QGraphicsEllipseItem>: ...**
 
 获取人行道(面域)顶点，即初始折线顶点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取人行道(面域)顶点，即初始折线顶点={region.getVetexs()}")
+```
 
  **def getControl1Vetexs(self) -> Type.List<QGraphicsEllipseItem>: ...**
 
 获取人行道(面域)贝塞尔曲线控制点P1
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取人行道(面域)贝塞尔曲线控制点P1={region.getControl1Vetexs()}")
+```
+
  **def getControl2Vetexs(self) -> Type.List<QGraphicsEllipseItem>: ...**
 
 获取人行道(面域)贝塞尔曲线控制点P2
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取人行道(面域)贝塞尔曲线控制点P2={region.getControl2Vetexs()}")
+```
 
  **def getCandidateVetexs(self) -> Type.List<QGraphicsEllipseItem>: ...**
 
 获取人行道(面域)候选顶点
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"获取人行道(面域)候选顶点={region.getCandidateVetexs()}")
+```
+
  **def removeVetex(self，index: int) ->None: ...**
 
 删除人行道(面域)的第index个顶点： 顺序： 按照人行横道的绘制顺序排列
 
+参数：
+[ in ] index： 顶点索引
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"删除人行道(面域)的第index个顶点={region.removeVetex(1)}")
+```
+
  **def insertVetex(self，pos: QPointF, index:int) ->None: ...**
 
 在人行道(面域)的第index的位置插入顶点，初始位置为pos： 顺序： 按照人行横道的绘制顺序排列
+
+参数：
+[ in ] pos： 顶点位置
+[ in ] index： 顶点索引
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianSideWalkRegions()
+for region in allRegion:
+    print(f"在第index个位置插入顶点，初始位置为pos={region.insertVetex(QPointF(region.getCandidateVetexs()[0].pos().x()+0.1, region.getCandidateVetexs()[0].pos().y()+0.1), 0)}")
+```
 
 **案例代码**
 
@@ -9968,25 +10373,79 @@ def showPedestrianSideWalkRegionAttr(netiface):
 
 获取面域id
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取面域id={region.getId()}")
+```
+
  **def getName(self) ->str: ...**
 
 获取面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def setName(self, name) ->None: ...**
 
 设置面域名称
 
-[in] name： 面域名称
+参数：
+[ in ] name： 面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"设置面域名称={region.setName('test_area')}")
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def getRegionColor(self) ->QColor: ...**
 
 获取面域颜色，返回pyside2的QColor类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
+
  **def setRegionColor(self, color:QColor) ->None: ...**
 
-获取面域颜色，
+设置面域颜色
 
-[in] color： 面域颜色
+参数：
+[ in ] color： 面域颜色
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
 
  **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
 
@@ -9994,6 +10453,17 @@ def showPedestrianSideWalkRegionAttr(netiface):
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
 
  **def setPosition(self, scenePos:QPointF, unit:UnitOfMeasure) ->None: ...**
 
@@ -10003,109 +10473,396 @@ def showPedestrianSideWalkRegionAttr(netiface):
 [ in ] scenePos：场景坐标系下的位置
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    region.setPosition(QPointF(100,100))
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    region.setPosition(QPointF(100,100), UnitOfMeasure.Metric)
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
+
  **def getGType(self) ->int: ...**
 
 获取面域类型，面域类型见pyi文件NetItemType类
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取面域类型={region.getGType()}")
+```
 
  **def getExpectSpeedFactor(self) -> float: ...**
 
 获取期望速度系数
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
+
  **def setExpectSpeedFactor(self，val:float) -> None: ...**
 
 设置期望速度系数
+
+参数：
+[ in ] val：期望速度系数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
 
  **def getElevation(self) -> float: ...**
 
 获取面域高程
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取面域高程={region.getElevation()}")
+```
+
  **def setElevation(self，elevation:float) -> None: ...**
 
 设置面域高程
+
+参数：
+[ in ] elevation：高程
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"设置面域高程={region.setElevation(0.1)}")
+    print(f"获取面域高程={region.getElevation()}")
+```
 
  **def getPolygon(self) -> float: ...**
 
 获取面域多边形
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取面域多边形={region.getPolygon()}")
+```
+
  **def getLayerId(self) -> float: ...**
 
 获取面域所在图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
 
  **def setLayerId(self，elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
+参数：
+[ in ] layerId：图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"设置面域所在图层={region.setLayerId(1)}")
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
+
  **def getWidth(self) -> float: ...**
 
 获取人行横道宽度，单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道宽度，单位：米={region.getWidth()}")
+```
 
  **def setWidth(self, width:float) -> float: ...**
 
 设置行人横道宽度，单位：米
 
+参数：
+[ in ] width：宽度
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"设置行人横道宽度，单位：米={region.setWidth(1.5)}")
+    print(f"获取行人横道宽度，单位：米={region.getWidth()}")
+```
+
  **def getSceneLine(self, unit:UnitOfMeasure) -> QLineF: ...**  
 
-获取人行横道起点到终点的线段，	QT场景坐标系，场景坐标系下，默认单位：像素，可通过unit参数设置单位
+获取人行横道起点到终点的线段，QT场景坐标系，场景坐标系下，默认单位：像素，可通过unit参数设置单位
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道起点到终点的线段，场景坐标系，默认单位：像素={region.getSceneLine()}")
+    print(f"获取人行横道起点到终点的线段，场景坐标系，米制={region.getSceneLine(UnitOfMeasure.Metric)}")
+```
 
  **def getAngle(self) -> float: ...**  
 
 获取人行横道倾斜角度，单位：度， QT像素坐标系下，X轴正方向为0，逆时针为正
 
- **def setAngle(angle：float) -> float: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道倾斜角度，单位：度={region.getAngle()}")
+```
+
+ **def setAngle(self, angle:float) -> None: ...**
 
 设置人行横道倾斜角度，单位：度， QT像素坐标系下，X轴正方向为0，逆时针为正
+
+参数：
+[ in ] angle：角度
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"设置人行横道倾斜角度，单位：度={region.setAngle(5)}")
+    print(f"获取人行横道倾斜角度，单位：度={region.getAngle()}")
+```
 
  **def getRedLightSpeedFactor(self) -> float: ...**
 
 获取人行横道上红灯清尾速度系数
 
- **def setRedLightSpeedFactor(factor：float) -> None: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道上红灯清尾速度系数={region.getRedLightSpeedFactor()}")
+```
+
+ **def setRedLightSpeedFactor(self, factor:float) -> None: ...**
 
 设置人行横道上红灯清尾速度系数  
-\[in\] factor ：红灯清尾速度系数
+
+参数：
+[ in ] factor ：红灯清尾速度系数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"设置人行横道上红灯清尾速度系数={region.setRedLightSpeedFactor(1.5)}")
+    print(f"获取人行横道上红灯清尾速度系数={region.getRedLightSpeedFactor()}")
+```
 
  **def getUnitDirectionFromStartToEnd(self) -> Type.List: ...**
 
 获取人行横道起点到终点的在场景坐标系下的单位方向向量，场景坐标系下
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道起点到终点的在场景坐标系下的单位方向向量={region.getUnitDirectionFromStartToEnd()}")
+```
+
  **def getLocalUnitDirectionFromStartToEnd(self) -> Type.List: ...**
 
 获取人行横道本身坐标系下从起点到终点的单位方向
 
- **def getStartControlPoint(self) -> ArQGraphicsEllipseItem: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道本身坐标系下从起点到终点的单位方向={region.getLocalUnitDirectionFromStartToEnd()}")
+```
+
+ **def getStartControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取人行横道起点控制点，场景坐标系
 
- **def getEndControlPoint(self) -> ArQGraphicsEllipseItem: ...**
+举例：
 
-获取人行横道终点控制点，场景坐标系下
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道起点控制点，场景坐标系={region.getStartControlPoint()}")
+```
 
- **def getLeftControlPoint(self) -> ArQGraphicsEllipseItem: ...**
+ **def getEndControlPoint(self) -> QGraphicsEllipseItem: ...**
+
+获取人行横道终点控制点，场景坐标系
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道终点控制点，场景坐标系下={region.getEndControlPoint()}")
+```
+
+ **def getLeftControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取人行横道左侧控制点，场景坐标系
 
- **def getRightControlPoint(self) -> ArQGraphicsEllipseItem: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道左侧控制点，场景坐标系={region.getLeftControlPoint()}")
+```
+
+ **def getRightControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取人行横道右侧控制点，场景坐标系
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道右侧控制点，场景坐标系={region.getRightControlPoint()}")
+```
 
  **def getPositiveDirectionSignalLamp(self) -> Tessng.ICrosswalkSignalLamp: ...**
 
 获取人行横道上管控正向通行的信号灯对象
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道上管控正向通行的信号灯对象={region.getPositiveDirectionSignalLamp()}")
+```
+
  **def getNegativeDirectionSignalLamp(self) -> Tessng.ICrosswalkSignalLamp: ...**
 
 获取人行横道上管控反向通行的信号灯对象
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"获取人行横道上管控反向通行的信号灯对象={region.getNegativeDirectionSignalLamp()}")
+```
 
  **def isPositiveTrafficLightAdded(self) -> boolen: ...**
 
 判断人行横道上是否存在管控正向通行的信号灯
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"判断人行横道上是否存在管控正向通行的信号灯={region.isPositiveTrafficLightAdded()}")
+```
+
  **def isReverseTrafficLightAdded(self) -> boolen: ...**
 
 判断人行横道上是否存在管控反向通行的信号灯
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianCrossWalkRegions()
+for region in allRegion:
+    print(f"判断人行横道上是否存在管控反向通行的信号灯={region.isReverseTrafficLightAdded()}")
+```
 
 **案例代码**
 
@@ -10154,29 +10911,83 @@ def showPedestrianCrossWalkRegionAttr(netiface):
 
 行人椭圆面域接口
 
-**def getId(self) -> int: ...**
+ **def getId(self) -> int: ...**
 
 获取面域id
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域id={region.getId()}")
+```
 
  **def getName(self) ->str: ...**
 
 获取面域名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域名称={region.getName()}")
+```
+
  **def setName(self, name) ->None: ...**
 
 设置面域名称
 
-[in] name： 面域名称
+参数：
+[ in ] name： 面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"设置面域名称={region.setName('test_area')}")
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def getRegionColor(self) ->QColor: ...**
 
 获取面域颜色，返回pyside2的QColor类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
+
  **def setRegionColor(self, color:QColor) ->None: ...**
 
-获取面域颜色，
+设置面域颜色
 
-[in] color： 面域颜色
+参数：
+[ in ] color： 面域颜色
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
 
  **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
 
@@ -10184,6 +10995,17 @@ def showPedestrianCrossWalkRegionAttr(netiface):
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
 
  **def setPosition(self, scenePos:QPointF, unit:UnitOfMeasure) ->None: ...**
 
@@ -10193,61 +11015,238 @@ def showPedestrianCrossWalkRegionAttr(netiface):
 [ in ] scenePos：场景坐标系下的位置
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    region.setPosition(QPointF(100,100))
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    region.setPosition(QPointF(100,100), UnitOfMeasure.Metric)
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
+
  **def getGType(self) ->int: ...**
 
 获取面域类型，面域类型见pyi文件NetItemType类
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域类型={region.getGType()}")
+```
 
  **def getExpectSpeedFactor(self) -> float: ...**
 
 获取期望速度系数
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
+
  **def setExpectSpeedFactor(self，val:float) -> None: ...**
 
 设置期望速度系数
+
+参数：
+[ in ] val：期望速度系数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
 
  **def getElevation(self) -> float: ...**
 
 获取面域高程
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域高程={region.getElevation()}")
+```
+
  **def setElevation(self，elevation:float) -> None: ...**
 
 设置面域高程
+
+参数：
+[ in ] elevation：高程
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"设置面域高程={region.setElevation(0.1)}")
+    print(f"获取面域高程={region.getElevation()}")
+```
 
  **def getPolygon(self) -> float: ...**
 
 获取面域多边形
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域多边形={region.getPolygon()}")
+```
+
  **def getLayerId(self) -> float: ...**
 
 获取面域所在图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
 
  **def setLayerId(self，elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
+参数：
+[ in ] layerId：图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"设置面域所在图层={region.setLayerId(1)}")
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
+
  **def isObstacle(self) -> bool: ...**
 
 获取面域是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
 
  **def setObstacle(self,b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
-  **def isBoardingArea(self) -> bool: ...**
+参数：
+[ in ] b：是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
+
+**def isBoardingArea(self) -> bool: ...**
 
 获取面域是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
 
  **def setIsBoardingArea(self, b:bool) -> None: ...**
 
 设置面域是否为上客区域
 
+参数：
+[ in ] b：是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
+
  **def isAlightingArea(self) -> bool: ...**
 
 获取面域是否为下客区域
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```
+
  **def setIsAlightingArea(self, b:bool) -> None: ...**
 
 设置面域是否为下客区域 
+
+参数：
+[ in ] b：是否为下客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianEllipseRegions()
+for region in allRegion:
+    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```
 
 **案例代码**
 
@@ -10289,31 +11288,83 @@ def showPedestrianEllipseRegionAttr(netiface):
 
 行人扇形面域接口
 
- 行人椭圆面域接口
-
-**def getId(self) -> int: ...**
+ **def getId(self) -> int: ...**
 
 获取面域id
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域id={region.getId()}")
+```
 
  **def getName(self) ->str: ...**
 
 获取面域名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域名称={region.getName()}")
+```
+
  **def setName(self, name) ->None: ...**
 
 设置面域名称
 
-[in] name： 面域名称
+参数：
+[ in ] name： 面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"设置面域名称={region.setName('test_area')}")
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def getRegionColor(self) ->QColor: ...**
 
 获取面域颜色，返回pyside2的QColor类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
+
  **def setRegionColor(self, color:QColor) ->None: ...**
 
-获取面域颜色，
+设置面域颜色
 
-[in] color： 面域颜色
+参数：
+[ in ] color： 面域颜色
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
 
  **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
 
@@ -10321,6 +11372,17 @@ def showPedestrianEllipseRegionAttr(netiface):
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
 
  **def setPosition(self, scenePos:QPointF, unit:UnitOfMeasure) ->None: ...**
 
@@ -10330,77 +11392,294 @@ def showPedestrianEllipseRegionAttr(netiface):
 [ in ] scenePos：场景坐标系下的位置
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    region.setPosition(QPointF(100,100))
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    region.setPosition(QPointF(100,100), UnitOfMeasure.Metric)
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
+
  **def getGType(self) ->int: ...**
 
 获取面域类型，面域类型见pyi文件NetItemType类
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域类型={region.getGType()}")
+```
 
  **def getExpectSpeedFactor(self) -> float: ...**
 
 获取期望速度系数
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
+
  **def setExpectSpeedFactor(self，val:float) -> None: ...**
 
 设置期望速度系数
+
+参数：
+[ in ] val：期望速度系数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
 
  **def getElevation(self) -> float: ...**
 
 获取面域高程
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域高程={region.getElevation()}")
+```
+
  **def setElevation(self，elevation:float) -> None: ...**
 
 设置面域高程
+
+参数：
+[ in ] elevation：高程
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"设置面域高程={region.setElevation(0.1)}")
+    print(f"获取面域高程={region.getElevation()}")
+```
 
  **def getPolygon(self) -> float: ...**
 
 获取面域多边形
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域多边形={region.getPolygon()}")
+```
+
  **def getLayerId(self) -> float: ...**
 
 获取面域所在图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
 
  **def setLayerId(self，elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
+参数：
+[ in ] layerId：图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"设置面域所在图层={region.setLayerId(1)}")
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
+
  **def isObstacle(self) -> bool: ...**
 
 获取面域是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
 
  **def setObstacle(self,b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
-  **def isBoardingArea(self) -> bool: ...**
+参数：
+[ in ] b：是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
+
+**def isBoardingArea(self) -> bool: ...**
 
 获取面域是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
 
  **def setIsBoardingArea(self, b:bool) -> None: ...**
 
 设置面域是否为上客区域
 
+参数：
+[ in ] b：是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
+
  **def isAlightingArea(self) -> bool: ...**
 
 获取面域是否为下客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```
 
  **def setIsAlightingArea(self, b:bool) -> None: ...**
 
 设置面域是否为下客区域 
 
+参数：
+[ in ] b：是否为下客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+``` 
+
 **def getInnerRadius(self) -> float: ...**
 
 获取扇形面域内半径，单位：米
 
- **def getOuterRadius(width:float) -> float: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取扇形面域内半径={region.getInnerRadius()}")
+```
+
+ **def getOuterRadius(self) -> float: ...**
 
 获取扇形面域外半径，单位：米
 
- **def getStartAngle() -> float: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取扇形面域外半径={region.getOuterRadius()}")
+```
+
+ **def getStartAngle(self) -> float: ...**
 
 获取扇形面域起始角度，单位：度  QT像素坐标系下，X轴正方向为0，逆时针为正
 
- **def getSweepAngle() -> float: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取扇形面域起始角度={region.getStartAngle()}")
+```
+
+ **def getSweepAngle(self) -> float: ...**
 
 获取扇形面域扫过角度，单位：度  QT像素坐标系下，X轴正方向为0，逆时针为正
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianFanShapeRegions()
+for region in allRegion:
+    print(f"获取扇形面域扫过角度={region.getSweepAngle()}")
+```
 
 **案例代码**
 
@@ -10434,31 +11713,83 @@ def showPedestrianFanShapRegionAttr(netiface):
 
 行人多边形面域接口
 
-行人椭圆面域接口
-
-**def getId(self) -> int: ...**
+ **def getId(self) -> int: ...**
 
 获取面域id
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域id={region.getId()}")
+```
 
  **def getName(self) ->str: ...**
 
 获取面域名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域名称={region.getName()}")
+```
+
  **def setName(self, name) ->None: ...**
 
 设置面域名称
 
-[in] name： 面域名称
+参数：
+[ in ] name： 面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"设置面域名称={region.setName('test_area')}")
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def getRegionColor(self) ->QColor: ...**
 
 获取面域颜色，返回pyside2的QColor类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
+
  **def setRegionColor(self, color:QColor) ->None: ...**
 
-获取面域颜色，
+设置面域颜色
 
-[in] color： 面域颜色
+参数：
+[ in ] color： 面域颜色
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
 
  **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
 
@@ -10466,6 +11797,17 @@ def showPedestrianFanShapRegionAttr(netiface):
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
 
  **def setPosition(self, scenePos:QPointF, unit:UnitOfMeasure) ->None: ...**
 
@@ -10475,61 +11817,238 @@ def showPedestrianFanShapRegionAttr(netiface):
 [ in ] scenePos：场景坐标系下的位置
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    region.setPosition(QPointF(100,100))
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    region.setPosition(QPointF(100,100), UnitOfMeasure.Metric)
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
+
  **def getGType(self) ->int: ...**
 
 获取面域类型，面域类型见pyi文件NetItemType类
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域类型={region.getGType()}")
+```
 
  **def getExpectSpeedFactor(self) -> float: ...**
 
 获取期望速度系数
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
+
  **def setExpectSpeedFactor(self，val:float) -> None: ...**
 
 设置期望速度系数
+
+参数：
+[ in ] val：期望速度系数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
 
  **def getElevation(self) -> float: ...**
 
 获取面域高程
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域高程={region.getElevation()}")
+```
+
  **def setElevation(self，elevation:float) -> None: ...**
 
 设置面域高程
+
+参数：
+[ in ] elevation：高程
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"设置面域高程={region.setElevation(0.1)}")
+    print(f"获取面域高程={region.getElevation()}")
+```
 
  **def getPolygon(self) -> float: ...**
 
 获取面域多边形
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域多边形={region.getPolygon()}")
+```
+
  **def getLayerId(self) -> float: ...**
 
 获取面域所在图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
 
  **def setLayerId(self，elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
+参数：
+[ in ] layerId：图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"设置面域所在图层={region.setLayerId(1)}")
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
+
  **def isObstacle(self) -> bool: ...**
 
 获取面域是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
 
  **def setObstacle(self,b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
-  **def isBoardingArea(self) -> bool: ...**
+参数：
+[ in ] b：是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
+
+**def isBoardingArea(self) -> bool: ...**
 
 获取面域是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
 
  **def setIsBoardingArea(self, b:bool) -> None: ...**
 
 设置面域是否为上客区域
 
+参数：
+[ in ] b：是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
+
  **def isAlightingArea(self) -> bool: ...**
 
 获取面域是否为下客区域
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```
+
  **def setIsAlightingArea(self, b:bool) -> None: ...**
 
 设置面域是否为下客区域 
+
+参数：
+[ in ] b：是否为下客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPolygonRegions()
+for region in allRegion:
+    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+``` 
 
 **案例代码**
 
@@ -10565,31 +12084,83 @@ def showPedestrianPolygonRegionAttr(netiface):
 
 行人矩形面域接口
 
-行人椭圆面域接口
-
-**def getId(self) -> int: ...**
+ **def getId(self) -> int: ...**
 
 获取面域id
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域id={region.getId()}")
+```
 
  **def getName(self) ->str: ...**
 
 获取面域名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域名称={region.getName()}")
+```
+
  **def setName(self, name) ->None: ...**
 
 设置面域名称
 
-[in] name： 面域名称
+参数：
+[ in ] name： 面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"设置面域名称={region.setName('test_area')}")
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def getRegionColor(self) ->QColor: ...**
 
 获取面域颜色，返回pyside2的QColor类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
+
  **def setRegionColor(self, color:QColor) ->None: ...**
 
-获取面域颜色，
+设置面域颜色
 
-[in] color： 面域颜色
+参数：
+[ in ] color： 面域颜色
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
 
  **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
 
@@ -10597,6 +12168,17 @@ def showPedestrianPolygonRegionAttr(netiface):
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
 
  **def setPosition(self, scenePos:QPointF, unit:UnitOfMeasure) ->None: ...**
 
@@ -10606,61 +12188,238 @@ def showPedestrianPolygonRegionAttr(netiface):
 [ in ] scenePos：场景坐标系下的位置
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    region.setPosition(QPointF(100,100))
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    region.setPosition(QPointF(100,100), UnitOfMeasure.Metric)
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
+
  **def getGType(self) ->int: ...**
 
 获取面域类型，面域类型见pyi文件NetItemType类
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域类型={region.getGType()}")
+```
 
  **def getExpectSpeedFactor(self) -> float: ...**
 
 获取期望速度系数
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
+
  **def setExpectSpeedFactor(self，val:float) -> None: ...**
 
 设置期望速度系数
+
+参数：
+[ in ] val：期望速度系数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
 
  **def getElevation(self) -> float: ...**
 
 获取面域高程
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域高程={region.getElevation()}")
+```
+
  **def setElevation(self，elevation:float) -> None: ...**
 
 设置面域高程
+
+参数：
+[ in ] elevation：高程
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"设置面域高程={region.setElevation(0.1)}")
+    print(f"获取面域高程={region.getElevation()}")
+```
 
  **def getPolygon(self) -> float: ...**
 
 获取面域多边形
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域多边形={region.getPolygon()}")
+```
+
  **def getLayerId(self) -> float: ...**
 
 获取面域所在图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
 
  **def setLayerId(self，elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
+参数：
+[ in ] layerId：图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"设置面域所在图层={region.setLayerId(1)}")
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
+
  **def isObstacle(self) -> bool: ...**
 
 获取面域是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
 
  **def setObstacle(self,b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
-  **def isBoardingArea(self) -> bool: ...**
+参数：
+[ in ] b：是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
+
+**def isBoardingArea(self) -> bool: ...**
 
 获取面域是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
 
  **def setIsBoardingArea(self, b:bool) -> None: ...**
 
 设置面域是否为上客区域
 
+参数：
+[ in ] b：是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
+
  **def isAlightingArea(self) -> bool: ...**
 
 获取面域是否为下客区域
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```
+
  **def setIsAlightingArea(self, b:bool) -> None: ...**
 
 设置面域是否为下客区域 
+
+参数：
+[ in ] b：是否为下客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianRectRegions()
+for region in allRegion:
+    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```  
 
 **案例代码**
 
@@ -10694,31 +12453,83 @@ def showPedestrianRectRegionAttr(netiface):
 
 行人三角形面域接口
 
-行人椭圆面域接口
-
-**def getId(self) -> int: ...**
+ **def getId(self) -> int: ...**
 
 获取面域id
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域id={region.getId()}")
+```
 
  **def getName(self) ->str: ...**
 
 获取面域名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域名称={region.getName()}")
+```
+
  **def setName(self, name) ->None: ...**
 
 设置面域名称
 
-[in] name： 面域名称
+参数：
+[ in ] name： 面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"设置面域名称={region.setName('test_area')}")
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def getRegionColor(self) ->QColor: ...**
 
 获取面域颜色，返回pyside2的QColor类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
+
  **def setRegionColor(self, color:QColor) ->None: ...**
 
-获取面域颜色，
+设置面域颜色
 
-[in] color： 面域颜色
+参数：
+[ in ] color： 面域颜色
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
 
  **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
 
@@ -10726,6 +12537,17 @@ def showPedestrianRectRegionAttr(netiface):
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
 
  **def setPosition(self, scenePos:QPointF, unit:UnitOfMeasure) ->None: ...**
 
@@ -10735,61 +12557,238 @@ def showPedestrianRectRegionAttr(netiface):
 [ in ] scenePos：场景坐标系下的位置
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    region.setPosition(QPointF(100,100))
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    region.setPosition(QPointF(100,100), UnitOfMeasure.Metric)
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
+
  **def getGType(self) ->int: ...**
 
 获取面域类型，面域类型见pyi文件NetItemType类
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域类型={region.getGType()}")
+```
 
  **def getExpectSpeedFactor(self) -> float: ...**
 
 获取期望速度系数
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
+
  **def setExpectSpeedFactor(self，val:float) -> None: ...**
 
 设置期望速度系数
+
+参数：
+[ in ] val：期望速度系数
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
+    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```
 
  **def getElevation(self) -> float: ...**
 
 获取面域高程
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域高程={region.getElevation()}")
+```
+
  **def setElevation(self，elevation:float) -> None: ...**
 
 设置面域高程
+
+参数：
+[ in ] elevation：高程
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"设置面域高程={region.setElevation(0.1)}")
+    print(f"获取面域高程={region.getElevation()}")
+```
 
  **def getPolygon(self) -> float: ...**
 
 获取面域多边形
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域多边形={region.getPolygon()}")
+```
+
  **def getLayerId(self) -> float: ...**
 
 获取面域所在图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
 
  **def setLayerId(self，elevation:float) -> None: ...**
 
 设置面域所在图层，如果图层ID非法，则不做任何改变
 
+参数：
+[ in ] layerId：图层ID
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"设置面域所在图层={region.setLayerId(1)}")
+    print(f"获取面域所在图层ID={region.getLayerId()}")
+```
+
  **def isObstacle(self) -> bool: ...**
 
 获取面域是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
 
  **def setObstacle(self,b:bool) -> None: ...**
 
 设置面域是否为障碍物
 
-  **def isBoardingArea(self) -> bool: ...**
+参数：
+[ in ] b：是否为障碍物
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
+    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```
+
+**def isBoardingArea(self) -> bool: ...**
 
 获取面域是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
 
  **def setIsBoardingArea(self, b:bool) -> None: ...**
 
 设置面域是否为上客区域
 
+参数：
+[ in ] b：是否为上客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
+    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```
+
  **def isAlightingArea(self) -> bool: ...**
 
 获取面域是否为下客区域
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```
+
  **def setIsAlightingArea(self, b:bool) -> None: ...**
 
 设置面域是否为下客区域 
+
+参数：
+[ in ] b：是否为下客区域
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianTriangleRegions()
+for region in allRegion:
+    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
+    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+``` 
 
 **案例代码**
 
@@ -10831,29 +12830,83 @@ def showPedestrianTriangleRegionAttr(netiface):
 
 楼梯区域接口
 
-**def getId(self) -> int: ...**
+ **def getId(self) -> int: ...**
 
 获取面域id
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取面域id={region.getId()}")
+```
 
  **def getName(self) ->str: ...**
 
 获取面域名称
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取面域名称={region.getName()}")
+```
+
  **def setName(self, name) ->None: ...**
 
 设置面域名称
 
-[in] name： 面域名称
+参数：
+[ in ] name： 面域名称
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"设置面域名称={region.setName('test_area')}")
+    print(f"获取面域名称={region.getName()}")
+```
 
  **def getRegionColor(self) ->QColor: ...**
 
 获取面域颜色，返回pyside2的QColor类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
+
  **def setRegionColor(self, color:QColor) ->None: ...**
 
-获取面域颜色，
+设置面域颜色
 
-[in] color： 面域颜色
+参数：
+[ in ] color： 面域颜色
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
+    print(f"获取面域颜色={region.getRegionColor()}")
+```
 
  **def getPosition(self,unit:UnitOfMeasure) ->QPointF: ...**
 
@@ -10861,6 +12914,17 @@ def showPedestrianTriangleRegionAttr(netiface):
 
 参数：
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
 
  **def setPosition(self, scenePos:QPointF, unit:UnitOfMeasure) ->None: ...**
 
@@ -10870,125 +12934,442 @@ def showPedestrianTriangleRegionAttr(netiface):
 [ in ] scenePos：场景坐标系下的位置
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    region.setPosition(QPointF(100,100))
+    print(f"获取面域位置，默认单位：像素={region.getPosition()}")
+    region.setPosition(QPointF(100,100), UnitOfMeasure.Metric)
+    print(f"获取面域位置，米制={region.getPosition(UnitOfMeasure.Metric)}")
+```
+
  **def getGType(self) ->int: ...**
 
 获取面域类型，面域类型见pyi文件NetItemType类
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取面域类型={region.getGType()}")
 
  **def getWidth(self) -> int: ...**
 
 获取楼梯宽度， 单位：米
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯宽度，单位：米={region.getWidth()}")
+```
+
  **def setWidth(self，width:float) -> None: ...**
 
 设置楼梯(面域)宽度， 单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"设置楼梯宽度，单位：米={region.setWidth(region.getWidth()+0.2)}")
+    print(f"获取楼梯宽度，单位：米={region.getWidth()}")
+```
 
  **def getStartPoint(self) -> QPointF: ...**
 
 获取楼梯起始点，场景坐标系下
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯起始点，场景坐标系下={region.getStartPoint()}")
+```
+
  **def getEndPoint(self) -> QPointF: ...**
 
 获取楼梯终止点，场景坐标系下
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯终止点，场景坐标系下={region.getEndPoint()}")
+```
 
  **def getStartConnectionAreaLength(self) -> float: ...**
 
 获取起始衔接区域长度，单位：米
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取起始衔接区域长度，单位：米={region.getStartConnectionAreaLength()}")
+```
+
  **def getEndConnectionAreaLength(self) -> float: ...**
 
 获取终止衔接区域长度，单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取终止衔接区域长度，单位：米={region.getEndConnectionAreaLength()}")
+```
 
  **def getStartRegionCenterPoint(self) -> QPointF: ...**
 
 获取起始衔接区域中心，场景坐标系下
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取起始衔接区域中心，场景坐标系下={region.getStartRegionCenterPoint()}")
+```
+
  **def getEndRegionCenterPoint(self) -> QPointF: ...**
 
 获取终止衔接区域中心，场景坐标系下
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取终止衔接区域中心，场景坐标系下={region.getEndRegionCenterPoint()}")
+```
 
  **def getStartSceneRegion(self) -> QPainterPath: ...**
 
 获取起始衔接区域形状，场景坐标系下
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取起始衔接区域形状，场景坐标系下={region.getStartSceneRegion()}")
+```
+
  **def getEndSceneRegion(self) -> QPainterPath: ...**
 
 获取终止衔接区域形状，场景坐标系下
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取终止衔接区域形状，场景坐标系下={region.getEndSceneRegion()}")
+```
 
  **def getMainQueueRegion(self) -> QPainterPath: ...**
 
 获取楼梯主体形状，场景坐标系下
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯主体形状，场景坐标系下={region.getMainQueueRegion()}")
+```
+
  **def getFullQueueregion(self) -> QPainterPath: ...**
 
 获取楼梯整体形状，场景坐标系下
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯整体形状，场景坐标系下={region.getFullQueueregion()}")
+```
 
  **def getMainQueuePolygon(self) -> QPolygonF : ...**
 
 获取楼梯主体多边形，场景坐标系下
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯主体多边形，场景坐标系下={region.getMainQueuePolygon()}")
+```
+
  **def getStairType(self) -> Tessng.StairType: ...**
 
 获取楼梯类型, 类型枚举说明， 参见pyi的 StariType类型
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯类型={region.getStairType()}")
+```
+
  **def setStairType(self，type:StairType) -> None: ...**
 
-获取楼梯类型, 类型枚举说明， 参见pyi的 StariType类型
+设置楼梯类型, 类型枚举说明， 参见pyi的 StariType类型
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"设置楼梯类型={region.setStairType(region.getStairType())}")
+```
 
  **def getStartLayerId(self) -> int: ...**
 
 获取楼梯的起始层级
 
- **def setStartLayerId(id:int) -> None: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯的起始层级={region.getStartLayerId()}")
+```
+
+ **def setStartLayerId(self,id:int) -> None: ...**
 
 设置楼梯的起始层级
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"设置楼梯的起始层级={region.setStartLayerId(region.getStartLayerId())}")
+    print(f"获取楼梯的起始层级={region.getStartLayerId()}")
+```
 
  **def getEndLayerId(self) -> int: ...**
 
 获取楼梯的终止层级
 
- **def setEndLayerId(id:int) -> None: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯的终止层级={region.getEndLayerId()}")
+```
+
+ **def setEndLayerId(self,id:int) -> None: ...**
 
 设置楼梯的终止层级
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"设置楼梯的终止层级={region.setEndLayerId(region.getEndLayerId())}")
+    print(f"获取楼梯的终止层级={region.getEndLayerId()}")
+```
 
  **def getTransmissionSpeed(self) -> float: ...**
 
 获取楼梯传输速度，单位米/秒， 如果是步行楼梯，则返回值应该是0
 
- **def setTransmissionSpeed(speed:float) -> None: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯传输速度，单位米/秒={region.getTransmissionSpeed()}")
+```
+
+ **def setTransmissionSpeed(self,speed:float) -> None: ...**
 
 设置楼梯传输速度，单位米/秒
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"设置楼梯传输速度，单位米/秒={region.setTransmissionSpeed(region.getTransmissionSpeed())}")
+    print(f"获取楼梯传输速度，单位米/秒={region.getTransmissionSpeed()}")
+```
 
  **def getHeadroom(self) -> float: ...**
 
 获取楼梯净高，单位：米
 
- **def setHeadroom(headroom:float) -> None: ...**
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯净高，单位：米={region.getHeadroom()}")
+```
+
+ **def setHeadroom(self,headroom:float) -> None: ...**
 
 设置楼梯净高，单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"设置楼梯净高，单位：米={region.setHeadroom(region.getHeadroom() + 0.2)}")
+    print(f"获取楼梯净高，单位：米={region.getHeadroom()}")
+```
 
  **def getStartControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取楼梯的起点控制点
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯的起点控制点={region.getStartControlPoint()}")
+```
+
  **def getEndControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取楼梯的终点控制点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯的终点控制点={region.getEndControlPoint()}")
+```
 
  **def getLeftControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取楼梯的左侧控制点
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯的左侧控制点={region.getLeftControlPoint()}")
+```
+
  **def getRightControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取楼梯的右侧控制点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯的右侧控制点={region.getRightControlPoint()}")
+```
 
  **def getStartConnectionAreaControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取楼梯的起始衔接区域长度控制点
 
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯的起始衔接区域长度控制点={region.getStartConnectionAreaControlPoint()}")
+```
+
  **def getEndConnectionAreaControlPoint(self) -> QGraphicsEllipseItem: ...**
 
 获取楼梯的终止衔接区域长度控制点
+
+举例：
+
+```python
+iface = tessngIFace()
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianStairRegions()
+for region in allRegion:
+    print(f"获取楼梯的终止衔接区域长度控制点={region.getEndConnectionAreaControlPoint()}")
+```
 
 **案例代码**
 
@@ -11042,9 +13423,31 @@ def showPedestrianStairRegionAttr(netiface):
 
 获取行人信号灯ID
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"获取行人信号灯ID={region.id()}")
+```
+
  **def setSignalPhase(self, phase:Tess.ISignalPhase) ->None: ...**
 
 设置相位，所设相位可以是其它信号灯组的相位
+
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"设置相位，所设相位可以是其它信号灯组的相位={region.setSignalPhase(region.signalPhase())}")
+```
 
  **def setLampColor(self, colorStr:str) ->None: ...**
 
@@ -11052,39 +13455,139 @@ def showPedestrianStairRegionAttr(netiface):
 
 参数：
 
-colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"、"黄"、"灰"，，或者是"R"、"G"、"Y"、"grey"。
+colorStr：字符串表达的颜色，有四种可选，分别是"红"、"绿"、"黄"、"灰"，，或者是"R"、"G"、"Y"、"gray"。
+
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"设置信号灯颜色={region.setLampColor('gray')}")
+```
 
  **def color(self) -> str: ...**
 
 获取信号灯色，"R"、“G”、“Y”、“gray”分别表示"红"、"绿"、"黄"、"灰"
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"获取信号灯色={region.color()}")
+```
+
 **def name(self) -> str: ...**
 
 获取信号灯名称
 
-**def setName(self， name) -> None: ...**
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"获取信号灯名称={region.name()}")
+```
+
+**def setName(self, name) -> None: ...**
 
 设置信号灯名称
+
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"设置信号灯名称={region.setName('new_' + region.name())}")
+    print(f"获取信号灯名称={region.name()}")
+```
 
  **def signalPlan(self) -> Tessng.ISignalPlan: ...**
 
 获取信控方案
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"获取信控方案={region.signalPlan()}")
+```
+
  **def signalPhase(self) -> Tessng.ISignalPhase: ...**
 
 获取相位
+
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"获取相位={region.signalPhase()}")
+```
 
  **def polygon(self) -> QPolygonF: ...**
 
 获取信号灯多边型轮廓的顶点
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"获取信号灯多边型轮廓的顶点={region.polygon()}")
+```
+
  **def angle(self) -> float: ...**
 
 获取信号灯角度, 正北为0，顺时针
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"获取信号灯角度, 正北为0，顺时针={region.angle()}")
+```
+
  **def getICrossWalk(self) -> Tessng.IPedestrianCrossWalkRegion: ...**
 
 获取行人信号灯所属人行横道
+
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.crosswalkSignalLamps()
+for region in allRegion:
+    print(f"获取行人信号灯所属人行横道={region.getICrossWalk()}")
+```
 
 **案例代码**
 
@@ -11119,21 +13622,76 @@ def showCrossWalkSignalLampAttr(netiface):
 
 获取行人路径ID 
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPaths()
+for region in allRegion:
+    print(f"获取行人路径ID={region.getId()}")
+```
+
  **def getPathStartPoint(self) -> Tessng.IPedestrianPathPoint: ...**
 
 获取行人路径起点
+
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPaths()
+for region in allRegion:
+    print(f"获取行人路径起点={region.getPathStartPoint()}")
+```
 
  **def getPathEndPoint(self) -> Tessng.IPedestrianPathPoint: ...**
 
 获取行人路径终点
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPaths()
+for region in allRegion:
+    print(f"获取行人路径终点={region.getPathEndPoint()}")
+```
+
  **def getPathMiddlePoints(self) -> Type.List<Tessng.IPedestrianPathPoint>: ...**
 
 获取行人路径的中间点集合， 有序集合
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPaths()
+for region in allRegion:
+    print(f"获取行人路径的中间点集合， 有序集合={region.getPathMiddlePoints()}")
+```
+
  **def isLocalPath(self) ->boolen: ...**
 
 判断当前行人路径是否为行人局部路径
+
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPaths()
+for region in allRegion:
+    print(f"判断当前行人路径是否为行人局部路径={region.isLocalPath()}")
+```
 
 **案例代码**
 
@@ -11162,6 +13720,17 @@ def showPedestrianPathAttr(netiface):
 
 获取行人路径点ID 
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPathDecisionPoints()
+for region in allRegion:
+    print(f"获取行人路径点ID={region.getId()}")
+```
+
  **def getScenePos(self, unit:UnitOfMeasure) -> float: ...**
 
 获取行人路径点场景坐标系下的位置，默认单位：像素，可通过unit参数设置单位
@@ -11169,9 +13738,32 @@ def showPedestrianPathAttr(netiface):
 参数：  
 [ in ] unit：单位参数，默认为Default，Metric表示米制单位，Default表示无单位限制
 
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPathDecisionPoints()
+for region in allRegion:
+    print(f"获取行人路径点场景坐标系下的位置,单位：像素={region.getScenePos()}")
+    print(f"获取行人路径点场景坐标系下的位置,单位：米={region.getScenePos(UnitOfMeasure.Metric)}")
+```
+
  **def getRadius(self) -> float: ...**
 
 获取行人路径点的半径,单位：米
+
+举例：
+
+```python
+iface = tessngIFace()
+# 代表TESS NG的路网子接口
+netiface = iface.netInterface()
+allRegion = netiface.pedestrianPathDecisionPoints()
+for region in allRegion:
+    print(f"获取行人路径点的半径,单位：米={region.getRadius()}")
+```
 
 **案例代码**
 
