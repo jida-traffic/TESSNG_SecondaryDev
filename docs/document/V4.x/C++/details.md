@@ -953,7 +953,7 @@ pIVehicle ->setIsPermitForVehicleDraw(false)
 
 获取车道ID
 
-Ø **ILink \*link()**
+Ø **ILink\* link()**
 
 获取车道所在路段
 
@@ -4828,7 +4828,7 @@ colorStr: 字符串表达的颜色, 有四种可选, 分别是"红"、"绿"、"�
 
 车辆ID, 车辆ID的组成方式为 x * 100000 + y, 每个发车点的x值不一样, 从1开始递增, y是每个发车点所发车辆序号, 从1开始递增。第一个发车点所发车辆ID从100001开始递增, 第二个发车点所发车辆ID从200001开始递增。
 
-Ø **ILink \*startLink()**
+Ø **ILink\* startLink()**
 
 车辆进入路网时起始路段
 
@@ -4840,7 +4840,7 @@ colorStr: 字符串表达的颜色, 有四种可选, 分别是"红"、"绿"、"�
 
 车辆所在路段或连接段ID
 
-Ø **void \*road()**
+Ø **void\* road()**
 
 道路, 如果在路段上返回ILink, 如果在连接段上返回IConnector
 
@@ -4947,11 +4947,11 @@ if (tmpId == 1) {
 
 下游车道ID。如果小于等于0, 车辆在路段的车道上, 否则车辆在连接段的“车道连接”上
 
-Ø **ILane \*lane()**
+Ø **ILane\* lane()**
 
 获取当前车道, 如果车辆在"车道连接"上, 获取的是"车道连接"的上游车道
 
-Ø **ILane \*toLane()**
+Ø **ILane\* toLane()**
 
 如果车辆在"车道连接"上, 返回"车道连接"的下游车道, 如果当前不在"车道连接"上, 返回空指针
 
@@ -5037,27 +5037,27 @@ if (tmpId == 1) {
 
 是否在运行, 如果返回false, 表明车辆已驰出路网或尚未上路
 
-Ø **IVehicle \*vehicleFront()** 
+Ø **IVehicle\* vehicleFront()** 
 
 前车
 
-Ø **IVehicle \*vehicleRear()**
+Ø **IVehicle\* vehicleRear()**
 
 后车
 
-Ø **IVehicle \*vehicleLFront()**
+Ø **IVehicle\* vehicleLFront()**
 
 左前车
 
-Ø **IVehicle \*vehicleLRear()**
+Ø **IVehicle\* vehicleLRear()**
 
 左后车
 
-Ø **IVehicle \*vehicleRFront()**
+Ø **IVehicle\* vehicleRFront()**
 
 右前车
 
-Ø **IVehicle \*vehicleRRear()**
+Ø **IVehicle\* vehicleRRear()**
 
 右后车
 
@@ -5159,11 +5159,11 @@ if (tmpId == 1) {
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位(m/s), Default表示无单位限制
 
-Ø **void setDynaInfo(void \*pDynaInfo)**
+Ø **void setDynaInfo(void\* pDynaInfo)**
 
 设置动态信息
 
-Ø **void \*dynaInfo()**
+Ø **void\* dynaInfo()**
 
 获取动态信息
 
@@ -5174,11 +5174,11 @@ if (tmpId == 1) {
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
-Ø **IRouting \*routing()**
+Ø **IRouting\* routing()**
 
 当前路径
 
-Ø **Vehicle \*vehicle()**
+Ø **Vehicle\* vehicle()**
 
 车辆
 
@@ -5230,7 +5230,7 @@ if (tmpId == 1) {
 
 接口方法: 
 
-Ø **IVehicle \*vehicle()**
+Ø **IVehicle\* vehicle()**
 
 当前驾驶车辆
 
@@ -5481,7 +5481,7 @@ if (tmpId == 1) {
 
 注: 如传入米制参数, 请勿遗忘传入fromVehiHead与bOnCentLine参数。
 
-Ø **bool setRouting(IRouting \*pRouting)**
+Ø **bool setRouting(IRouting\* pRouting)**
 
 设置路径, 外界设置的路径不一定有决策点, 可能是临时创建的, 如果车辆不在此路径上则设置不成功并返回false
 
@@ -5602,15 +5602,15 @@ TessInterface 是TESSN对外暴露的顶级接口, 下面有三个子接口: Net
 
 卸载并释放插件
 
-Ø **NetInterface \*netInterface()**
+Ø **NetInterface\* netInterface()**
 
 返回用于访问控制路网的接口NetInterface
 
-Ø **SimuInterface \*simuInterface()**
+Ø **SimuInterface\* simuInterface()**
 
 返回用于控制仿真过程的接口SimuInterface
 
-Ø **GuiInterface \*guiInterface()**
+Ø **GuiInterface\* guiInterface()**
 
 返回用于访问控制用户介面的接口GuiInterface
 
@@ -5720,7 +5720,7 @@ openNetFile(QString: : fromLocal8Bit("C: /TESSNG/Example/杭州武林门区域�
 
 路段集
 
-Ø **ILink \*findLink(long id)**
+Ø **ILink\* findLink(long id)**
 
 根据路段ID查找路段
 
@@ -5755,7 +5755,7 @@ openNetFile(QString: : fromLocal8Bit("C: /TESSNG/Example/杭州武林门区域�
 
 连接段集
 
-Ø **IConnector \*findConnector(long id)**
+Ø **IConnector\* findConnector(long id)**
 
 根据连接段ID查找连接段
 
@@ -5767,7 +5767,7 @@ openNetFile(QString: : fromLocal8Bit("C: /TESSNG/Example/杭州武林门区域�
 
 根据起始路段ID及目标路段ID查找连接段
 
-Ø **ILaneConnector \* findLaneConnector(long fromLaneId, long toLaneId)**
+Ø **ILaneConnector\* findLaneConnector(long fromLaneId, long toLaneId)**
 
 根据起始车道ID及目标车道ID查找"车道连接"
 
@@ -5829,7 +5829,7 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 公交线路集
 
-Ø **IBusLine \*findBusline(long buslineId)**
+Ø **IBusLine\* findBusline(long buslineId)**
 
 根据公交线路ID查找公交线路
 
@@ -5837,7 +5837,7 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 [ in ] buslineId: 公交线路ID
 
-Ø **IBusLine \*findBuslineByFirstLinkId(long linkId)**
+Ø **IBusLine\* findBuslineByFirstLinkId(long linkId)**
 
 根据公交线路起始路段ID查找公交线路
 
@@ -5951,7 +5951,7 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 返回: 路段对象指针。
 
-Ø **ILink* createLink3DWithLaneWidth(QList< QVector3D > lCenterV3, QList< qreal > lLaneWidth, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
+Ø **ILink\* createLink3DWithLaneWidth(QList< QVector3D > lCenterV3, QList< qreal > lLaneWidth, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
 
 创建指定车道宽度的3D路段, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -5966,7 +5966,7 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 返回: 路段对象指针。
 
-Ø **ILink* createLink3DWithLanePoints(QList< QVector3D > lCenterLineV3, QList< QMap< QString, QList< QVector3D > > > lanesWithPoints, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
+Ø **ILink\* createLink3DWithLanePoints(QList< QVector3D > lCenterLineV3, QList< QMap< QString, QList< QVector3D > > > lanesWithPoints, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
 
 创建指定车道断点的3D路段, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6010,7 +6010,7 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 }
 ```
 
-Ø **IConnector* createConnector3DWithPoints(long fromLinkId, long toLinkId, QList< int > lFromLaneNumber, QList< int > lToLaneNumber, QList< QMap< QString, QList< QVector3D > > > laneConnectorWithPoints, QString connName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
+Ø **IConnecto\r* createConnector3DWithPoints(long fromLinkId, long toLinkId, QList< int > lFromLaneNumber, QList< int > lToLaneNumber, QList< QMap< QString, QList< QVector3D > > > laneConnectorWithPoints, QString connName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
 
 创建指定断点的3D连接段, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6086,7 +6086,7 @@ if (pLink1) {
 		}
 ```
 
-Ø **IRouting \*shortestRouting(ILink\* pFromLink, ILink\* pToLink)**
+Ø **IRouting\* shortestRouting(ILink\* pFromLink, ILink\* pToLink)**
 
 计算最短路径
 
@@ -6098,7 +6098,7 @@ if (pLink1) {
 
 返回: 最短路径对象, 包含经过的路段对象序列
 
-Ø **IRouting \*createRouting(QList< ILink\* > lILink)**
+Ø **IRouting\* createRouting(QList< ILink\* > lILink)**
 
 用连续通达的路段序列创建路径
 
@@ -6198,7 +6198,7 @@ ILaneConnector* pLaneConnector = gpTessInterface->netInterface()->findConnector(
 
 [ in ] dbver: : 数据库版本
 
-Ø **ILink* createLink3DWithLanePointsAndAttrs(QList< QVector3D > lCenterLineV3, QList< QMap< QString, QList< QVector3D > > > lanesWithPoints, QList< QString > lLaneType, QList< QJsonObject > lAttr, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
+Ø **ILink\* createLink3DWithLanePointsAndAttrs(QList< QVector3D > lCenterLineV3, QList< QMap< QString, QList< QVector3D > > > lanesWithPoints, QList< QString > lLaneType, QList< QJsonObject > lAttr, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
 
 创建指定车道断点和属性的3D路段, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6223,7 +6223,7 @@ ILaneConnector* pLaneConnector = gpTessInterface->netInterface()->findConnector(
 
 [ in ] pLink: 将要移除的路段
 
-Ø **ILink* updateLink(_Link link, QList< _Lane > lLane = QList< _Lane >(), QList< QPointF > lPoint = QList< QPointF >(), UnitOfMeasure unit = UnitOfMeasure: : Default)**
+Ø **ILink\* updateLink(_Link link, QList< _Lane > lLane = QList< _Lane >(), QList< QPointF > lPoint = QList< QPointF >(), UnitOfMeasure unit = UnitOfMeasure: : Default)**
 
 更新路段, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6245,7 +6245,7 @@ ILaneConnector* pLaneConnector = gpTessInterface->netInterface()->findConnector(
 
 [ in ] pConnector: 连接段对象
 
-Ø **IConnector* updateConnector(_Connector connector)**
+Ø **IConnector\* updateConnector(_Connector connector)**
 
 更新连接段, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6254,7 +6254,7 @@ ILaneConnector* pLaneConnector = gpTessInterface->netInterface()->findConnector(
 
 返回: 更新后的连接段对象
 
-Ø **IGuidArrow* createGuidArrow(ILane* pLane, qreal length, qreal distToTerminal, Online::GuideArrowType arrowType, UnitOfMeasure unit)**
+Ø **IGuidArrow\* createGuidArrow(ILane\* pLane, qreal length, qreal distToTerminal, Online::GuideArrowType arrowType, UnitOfMeasure unit)**
 
 创建导向箭头, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6284,7 +6284,7 @@ IGuidArrow* pGuideArrow = gpTessInterface->netInterface()->createGuidArrow(pRigh
 }
 ```
 
-Ø **void removeGuidArrow(IGuidArrow \*pArrow)**
+Ø **void removeGuidArrow(IGuidArrow\* pArrow)**
 
 移除导向箭头
 
@@ -6340,7 +6340,7 @@ IGuidArrow* pGuideArrow = gpTessInterface->netInterface()->createGuidArrow(pRigh
 		mpDecisionPoint = gpTessInterface->netInterface()->createDecisionPoint(pLink3, m2p(30)); 
 ```
 
-Ø **IRouting\* createDeciRouting(IDecisionPoint \*pDeciPoint, QList< ILink\* > lILink)**
+Ø **IRouting\* createDeciRouting(IDecisionPoint\* pDeciPoint, QList< ILink\* > lILink)**
 
 创建决策路径
 
@@ -6424,7 +6424,7 @@ if (gpTessInterface->netInterface()->removeDeciRouting(mpDecisionPoint, mpDecisi
 		mpDecisionPoint = gpTessInterface->netInterface()->updateDecipointPoint(_decisionPointData, QList< _RoutingFLowRatio >() << _flowRatioLeft << _flowRatioStraight << _flowRatioRight); 
 ```
 
-Ø **IVehicleDrivInfoCollector* createVehiCollectorOnLink(ILane* pLane, qreal dist, UnitOfMeasure unit)**
+Ø **IVehicleDrivInfoCollector\* createVehiCollectorOnLink(ILane\* pLane, qreal dist, UnitOfMeasure unit)**
 
 在路段的车道上创建车辆采集器, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6446,7 +6446,7 @@ ILink* pLink = gpTessInterface->netInterface()->findLink(9);
 		IVehicleDrivInfoCollector* pCollector = gpTessInterface->netInterface()->createVehiCollectorOnLink(pLeftLane, dist); }
 ```
 
-Ø **IVehicleDrivInfoCollector* createVehiCollectorOnConnector(ILaneConnector* pLaneConnector, qreal dist, UnitOfMeasure unit)**
+Ø **IVehicleDrivInfoCollector\* createVehiCollectorOnConnector(ILaneConnector\* pLaneConnector, qreal dist, UnitOfMeasure unit)**
 
 在连接段的车道连接上创建车辆采集器, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6463,7 +6463,7 @@ ILink* pLink = gpTessInterface->netInterface()->findLink(9);
 
 [ in ] pCollector: 车辆信息采集器
 
-Ø **IVehicleQueueCounter* createVehiQueueCounterOnLink(ILane* pLane, qreal dist, UnitOfMeasure unit)**
+Ø **IVehicleQueueCounter\* createVehiQueueCounterOnLink(ILane\* pLane, qreal dist, UnitOfMeasure unit)**
 
 在路段的车道上创建车辆排队计数器, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6485,7 +6485,7 @@ if (pLink) {
 		IVehicleQueueCounter* pCounter = gpTessInterface->netInterface()->createVehiQueueCounterOnLink(pLeftLane, dist); }
 ```
 
-Ø **IVehicleQueueCounter* createVehiQueueCounterOnConnector(ILaneConnector* pLaneConnector, qreal dist, UnitOfMeasure unit)**
+Ø **IVehicleQueueCounter\* createVehiQueueCounterOnConnector(ILaneConnector\* pLaneConnector, qreal dist, UnitOfMeasure unit)**
 
 在连接段的车道连接上创建车辆排队计数器, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6496,7 +6496,7 @@ if (pLink) {
 
 返回: 排队计数器对象
 
-Ø **QList< IVehicleTravelDetector* > createVehicleTravelDetector_link2link(ILink* pStartLink, ILink* pEndLink, qreal dist1, qreal dist2, UnitOfMeasure unit)**
+Ø **QList< IVehicleTravelDetector\* > createVehicleTravelDetector_link2link(ILink\* pStartLink, ILink\* pEndLink, qreal dist1, qreal dist2, UnitOfMeasure unit)**
 
 创建路段到路段的行程时间检测器, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6516,7 +6516,7 @@ if (pLink) {
 QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->createVehicleTravelDetector_link2link(pLink, pLink, m2p(50), m2p(550)); }
 ```
 
-Ø **QList< IVehicleTravelDetector* > createVehicleTravelDetector_link2conn(ILink* pStartLink, ILaneConnector* pEndLaneConnector, qreal dist1, qreal dist2, UnitOfMeasure unit)**
+Ø **QList< IVehicleTravelDetector\* > createVehicleTravelDetector_link2conn(ILink\* pStartLink, ILaneConnector\* pEndLaneConnector, qreal dist1, qreal dist2, UnitOfMeasure unit)**
 
 创建路段到连接段的行程时间检测器, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6529,7 +6529,7 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 
 返回: 行程时间检测器对象
 
-Ø **QList< IVehicleTravelDetector* > createVehicleTravelDetector_conn2link(ILaneConnector* pStartLaneConnector, ILink* pEndLink, qreal dist1, qreal dist2, UnitOfMeasure unit)**
+Ø **QList< IVehicleTravelDetector\* > createVehicleTravelDetector_conn2link(ILaneConnector\* pStartLaneConnector, ILink\* pEndLink, qreal dist1, qreal dist2, UnitOfMeasure unit)**
 
 创建连接段到路段的行程时间检测器, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6542,7 +6542,7 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 
 返回: 行程时间检测器对象
 
-Ø **QList< IVehicleTravelDetector* > createVehicleTravelDetector_conn2conn(ILaneConnector* pStartLaneConnector, ILaneConnector* pEndLaneConnector, qreal dist1, qreal dist2, UnitOfMeasure unit)**
+Ø **QList< IVehicleTravelDetector\* > createVehicleTravelDetector_conn2conn(ILaneConnector\* pStartLaneConnector, ILaneConnector\* pEndLaneConnector, qreal dist1, qreal dist2, UnitOfMeasure unit)**
 
 创建连接段到连接段的行程时间检测器, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6623,7 +6623,7 @@ if (pBusLine) {
 参数: 
 [ in ] pBusLine: 将要移除的公交线路对象
 
-Ø **IBusStation* createBusStation(ILane* pLane, qreal length, qreal dist, QString name = QString(), UnitOfMeasure unit = UnitOfMeasure: : Default)**
+Ø **IBusStation\* createBusStation(ILane\* pLane, qreal length, qreal dist, QString name = QString(), UnitOfMeasure unit = UnitOfMeasure: : Default)**
 
 创建公交站点, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6720,7 +6720,7 @@ if (pBusStation2 && gpTessInterface->netInterface()->addBusStationToLine(pBusLin
 [ in ] width: 单元格宽度
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
-Ø **QList< ISection* > findSectionOn1Cell(QPointF point, UnitOfMeasure unit)**
+Ø **QList< ISection\* > findSectionOn1Cell(QPointF point, UnitOfMeasure unit)**
 
 根据point查询所在单元格所有Section, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6730,7 +6730,7 @@ if (pBusStation2 && gpTessInterface->netInterface()->addBusStationToLine(pBusLin
 
 返回: ISection列表
 
-Ø **QList< ISection* > findSectionOn4Cell(QPointF point, UnitOfMeasure unit)**
+Ø **QList< ISection\* > findSectionOn4Cell(QPointF point, UnitOfMeasure unit)**
 
 根据point查询最近4个单元格所有Section, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6740,7 +6740,7 @@ if (pBusStation2 && gpTessInterface->netInterface()->addBusStationToLine(pBusLin
 
 返回: ISection列表
 
-Ø **QList< ISection* > findSectionOn9Cell(QPointF point, UnitOfMeasure unit)**
+Ø **QList< ISection\* > findSectionOn9Cell(QPointF point, UnitOfMeasure unit)**
 
 根据point查询最近9个单元格所有Section, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6750,7 +6750,7 @@ if (pBusStation2 && gpTessInterface->netInterface()->addBusStationToLine(pBusLin
 
 返回: ISection列表
 
-Ø **QList< Online::Location > locateOnSections(QPointF point, QList< ISection* > lSection, qreal referDistance = 0, UnitOfMeasure unit = UnitOfMeasure: : Default)**
+Ø **QList< Online::Location > locateOnSections(QPointF point, QList< ISection\* > lSection, qreal referDistance = 0, UnitOfMeasure unit = UnitOfMeasure: : Default)**
 
 根据point对lSection列表中每一个Section所有LaneObject求最短距离, 返回Location列表, 列表按最短距离排序, 从小到大, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6797,7 +6797,7 @@ point周围若干个单元格里查询LaneObject, 默认单位: 像素, 可通�
 
 路网外围Rect, 用以获取路网边界
 
-Ø **IRoadWorkZone* createRoadWorkZone(Online::DynaRoadWorkZoneParam param, UnitOfMeasure unit)**
+Ø **IRoadWorkZone\* createRoadWorkZone(Online::DynaRoadWorkZoneParam param, UnitOfMeasure unit)**
 
 创建施工区, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6901,7 +6901,7 @@ Online::DynaAccidentZoneParam accidentZone;
 
 [ in ] accidentZoneId: 事故区ID
 
-Ø **ILimitedZone* createLimitedZone(Online::DynaLimitedZoneParam param, UnitOfMeasure unit)**
+Ø **ILimitedZone\* createLimitedZone(Online::DynaLimitedZoneParam param, UnitOfMeasure unit)**
 
 创建限行区, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6953,7 +6953,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] limitedZoneId: 限行区ID
 
-Ø **void moveLinks(QList< ILink* > lLink, QPointF offset, UnitOfMeasure unit)**
+Ø **void moveLinks(QList< ILink\* > lLink, QPointF offset, UnitOfMeasure unit)**
 
 移动路段及相关连接段, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -6962,7 +6962,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 [ in ] offset: 偏移量
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
-Ø **IReconstruction* createReconstruction(Online::DynaReconstructionParam param, UnitOfMeasure unit)**
+Ø **IReconstruction\* createReconstruction(Online::DynaReconstructionParam param, UnitOfMeasure unit)**
 
 创建改扩建, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -7346,7 +7346,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数: 
 [ in ] param: 停车时距分布参数
 
-Ø **IJunction\ createJunction(QPointF startPoint, QPointF endPoint, QString name)**
+Ø **IJunction\* createJunction(QPointF startPoint, QPointF endPoint, QString name)**
 
 创建节点
 
@@ -7454,11 +7454,11 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 获取所有行人类型
 
-Ø **QList< Online::Pedestrian: : PedestrianComposition > pedestrianCompositions()**
+Ø **QList< Online::Pedestrian::PedestrianComposition > pedestrianCompositions()**
 
 获取所有行人组成
 
-Ø **QList< Online::Pedestrian: : LayerInfo > layerInfos()**
+Ø **QList< Online::Pedestrian::LayerInfo > layerInfos()**
 
 获取所有层级信息
 
@@ -7566,11 +7566,11 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 根据id获取人行横道红绿灯
 
-Ø **Online::Pedestrian: : PedestrianPathStartPointConfigInfo findPedestrianStartPointConfigInfo(long id)**
+Ø **Online::Pedestrian::PedestrianPathStartPointConfigInfo findPedestrianStartPointConfigInfo(long id)**
 
 根据id获取行人发生点配置信息, id为行人发生点ID
 
-Ø **Online::Pedestrian: : PedestrianDecisionPointConfigInfo findPedestrianDecisionPointConfigInfo(long id)**
+Ø **Online::Pedestrian::PedestrianDecisionPointConfigInfo findPedestrianDecisionPointConfigInfo(long id)**
 
 根据id获取行人决策点配置信息, id为行人决策点ID
 
@@ -7601,7 +7601,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数: 
 [ in ] compositionId: 组成ID
 
-Ø **Online::Pedestrian: : LayerInfo addLayerInfo(QString name, qreal height, bool visible, bool locked)**
+Ø **Online::Pedestrian::LayerInfo addLayerInfo(QString name, qreal height, bool visible, bool locked)**
 
 新增层级, 返回新增的层级信息
 
@@ -7641,7 +7641,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回: 是否更新成功
 
-Ø **bool updatePedestrianStartPointConfigInfo(Online::Pedestrian: : PedestrianPathStartPointConfigInfo info)**
+Ø **bool updatePedestrianStartPointConfigInfo(Online::Pedestrian::PedestrianPathStartPointConfigInfo info)**
 
 更新行人发生点配置信息
 
@@ -7651,7 +7651,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回: 是否更新成功
 
-Ø **bool updatePedestrianDecisionPointConfigInfo(Online::Pedestrian: : PedestrianDecisionPointConfigInfo info)**
+Ø **bool updatePedestrianDecisionPointConfigInfo(Online::Pedestrian::PedestrianDecisionPointConfigInfo info)**
 
 更新行人决策点配置信息
 
@@ -8258,7 +8258,7 @@ QList< Online::VehiTravelDetected > lVTravel =  gpTessInterface->simuInterface()
 
 动态创建车辆
 
-**参数****: **
+参数: 
 
 [ in ]: dynaVehi: 动态车辆信息, 数据类型在文件 Plugin/_datastruct.h中定义举例: 
 
@@ -8376,7 +8376,7 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 
 返回: 是否获取成功
 
-Ø **QList< Online::Pedestrian: : PedestrianStatus > getPedestriansStatusByRegionId(long regionId)**
+Ø **QList< Online::Pedestrian::PedestrianStatus > getPedestriansStatusByRegionId(long regionId)**
 
 根据行人面域id获取当前时间面域上所有行人的状态信息
 
@@ -8398,7 +8398,7 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 
 GuiInterface是TessInterface的子接口, 通过此接口可以访问控制TESSNG主窗体, 在主窗体上创建菜单、自定义窗体等。
 
-Ø **QMainWindow \*mainWindow()**
+Ø **QMainWindow\* mainWindow()**
 
 TESSNG主窗体
 
@@ -8523,7 +8523,7 @@ void MyNet: : afterLoadNet() {
 }
 ```
 
-Ø **bool removeItemFromScene(CustomerGraphicsObject \*pItem)**
+Ø **bool removeItemFromScene(CustomerGraphicsObject\* pItem)**
 
 从场景中移除插件创建的对象
 
@@ -8547,7 +8547,7 @@ void MyNet: : afterLoadNet() {
 
 [ out ] lType: 用户定义的车道类型列表
 
-Ø **bool linkBuildGLanes(ILink \*pILink)**
+Ø **bool linkBuildGLanes(ILink\* pILink)**
 
 创建车道
 
@@ -8559,7 +8559,9 @@ void MyNet: : afterLoadNet() {
 
 Ø **bool isPermitForCustDraw()**
 
-Ø 默认为true, 是否允许调用客户绘制, 默认为true。本方法的目的是在python环境减少不必要的对python代码调用, 消除对运行效率的负面影响, 在C++环境可以不考虑实现此方法。**bool linkBrushColor(long linkId, QColor& color)**
+默认为true, 是否允许调用客户绘制, 默认为true。本方法的目的是在python环境减少不必要的对python代码调用, 消除对运行效率的负面影响, 在C++环境可以不考虑实现此方法。
+
+Ø **bool linkBrushColor(long linkId, QColor& color)**
 
 路段笔刷颜色
 
@@ -8571,7 +8573,7 @@ void MyNet: : afterLoadNet() {
 
 返回: 如果返回false, TESSNG会忽略, 否则用color颜色绘制路段
 
-Ø **bool paint(int itemType, long itemId, QPainter \*painter)**
+Ø **bool paint(int itemType, long itemId, QPainter\* painter)**
 
 绘制路网元素
 
@@ -8806,7 +8808,7 @@ QList< Online::DispatchInterval> MySimulator: : calcDynaDispatchParameters()
 
 返回: 信号灯组控制信息列表, 数据结构Online::SignalContralParam在文件Plugin/_datastruct.h中定义。
 
-Ø **void initVehicle(IVehicle \*pIVehicle)**
+Ø **void initVehicle(IVehicle\* pIVehicle)**
 
 初始化车辆, 此方法在车辆起动加入路网时被调用, 用户可以在这个方法里调用IVehicle的setVehiType方法重新设置类型, 调用initLane或initLaneConnector方法对车辆的车道序号、起始位置、车辆大小进行初始化。
 
@@ -8894,7 +8896,7 @@ bool MySimulator: : initVehicle(IVehicle *pIVehicle) {
 
 返回: 如果返回 true, 且keepOn等于false, TESSNG不再计算信号灯色。
 
-Ø **bool calcLampColor(ISignalLamp \*pSignalLamp)**
+Ø **bool calcLampColor(ISignalLamp\* pSignalLamp)**
 
 计算信号灯的灯色。ISignalLamp有设置信号灯颜色方法。
 
@@ -8919,7 +8921,7 @@ bool MySimulator: : calcLampColor(ISignalLamp* pSignalLamp) {
 }
 ```
 
-Ø **bool reCalcToLeftLane(IVehicle \*pIVehicle)**
+Ø **bool reCalcToLeftLane(IVehicle\* pIVehicle)**
 
 计算是否要左强制变道, TESS NG在移动车辆时计算强制左变道的条件, 当条件不足时让插件计算, 如果返回值为true, 强制左变道。
 
@@ -8929,7 +8931,7 @@ bool MySimulator: : calcLampColor(ISignalLamp* pSignalLamp) {
 
 返回: false: 忽略, true: 强制左变道
 
-Ø **bool reCalcToRightLane(IVehicle \*pIVehicle)**
+Ø **bool reCalcToRightLane(IVehicle\* pIVehicle)**
 
 计算是否要右强制变道, TESS NG在移动车辆时计算强制右变道的条件, 当条件不足时让插件计算, 如果返回值为true, 强制右变道。
 
@@ -8974,15 +8976,17 @@ void  MySimulator: : beforeToRightFreely(IVehicle* pIVehicle, bool& bKeepOn) {
 }
 ```
 
-Ø **bool reCalcToLeftFreely(IVehicle \*pIVehicle)**
+Ø **bool reCalcToLeftFreely(IVehicle\* pIVehicle)**
 
 重新计算是否要自由左变道。TESS NG在移动车辆时计算自由左变道条件, 当条件不足时让插件计算, 如果返回值为true, 自由左变道。
+
+参数: 
 
 [ in ] pIVehicle: 车辆
 
 返回: false: 忽略, true: 左自由変道, 但在一些特殊场景也会放弃变道, 如危险
 
-Ø **bool reCalcToRightFreely(IVehicle \*pIVehicle)**
+Ø **bool reCalcToRightFreely(IVehicle\* pIVehicle)**
 
 重新计算是否要自由右变道。TESS NG在移动车辆时计算自由右变道条件, 当条件不足时让插件计算, 如果返回值为true, 自由右变道。
 
@@ -9027,7 +9031,7 @@ bool MySimulator: : reCalcDismissChangeLane(IVehicle* pIVehicle) {
 }
 ```
 
-Ø **bool reCalcdesirSpeed(IVehicle \*pIVehicle, qreal &inOutDesirSpeed)**
+Ø **bool reCalcdesirSpeed(IVehicle\* pIVehicle, qreal &inOutDesirSpeed)**
 
 重新计算期望速度, TESS NG调用此方法时将车辆当前期望速度赋给inOutDesirSpeed, 如果需要, 用户可在此方法重新计算期望速度, 并赋给inOutDesirSpeed。
 
@@ -9064,7 +9068,7 @@ bool MySimulator: : reCalcdesirSpeed(IVehicle *pIVehicle, qreal &inOutDesirSpeed
 }
 ```
 
-Ø **bool reCalcdesirSpeed(IVehicle \*pIVehicle, qreal &inOutDesirSpeed, UnitOfMeasure* unit)**
+Ø **bool reCalcdesirSpeed(IVehicle\* pIVehicle, qreal &inOutDesirSpeed, UnitOfMeasure\* unit)**
 
 重新计算期望速度(支持单位参数), TESS NG调用此方法时将车辆当前期望速度赋给inOutDesirSpeed, 如果需要, 用户可在此方法重新计算期望速度, 并赋给inOutDesirSpeed。
 
@@ -9088,7 +9092,7 @@ bool MySimulator: : reCalcdesirSpeed(IVehicle *pIVehicle, qreal &inOutDesirSpeed
 
 返回: false: 忽略, true: 用outTypeValue设置车辆驾驶行为的跟驰类型
 
-Ø **bool reSetFollowingParam(IVehicle \*pIVehicle, qreal &inOutSafeInterval, qreal &inOutSafeDistance)**
+Ø **bool reSetFollowingParam(IVehicle\* pIVehicle, qreal &inOutSafeInterval, qreal &inOutSafeDistance)**
 
 重新设置跟驰模型的安全间距和安全时距。
 
@@ -9116,7 +9120,7 @@ bool MySimulator: : reSetFollowingParams(IVehicle *pIVehicle, qreal &inOutSi, qr
 }
 ```
 
-Ø **bool reSetFollowingParam(IVehicle \*pIVehicle, qreal &inOutSafeInterval, qreal &inOutSafeDistance, UnitOfMeasure* unit)**
+Ø **bool reSetFollowingParam(IVehicle\* pIVehicle, qreal &inOutSafeInterval, qreal &inOutSafeDistance, UnitOfMeasure\* unit)**
 
 重新设置跟驰模型的安全间距和安全时距(支持单位参数)。
 
@@ -9152,7 +9156,7 @@ bool MySimulator: : reSetFollowingParams(IVehicle *pIVehicle, qreal &inOutSi, qr
 
 返回: false: 忽略, true: 用distance设置前车距, 用s0设置安全跟车距离
 
-Ø **bool reSetDistanceFront(IVehicle\* pIVehicle, qreal& distance, qreal& s0, UnitOfMeasure* unit)**
+Ø **bool reSetDistanceFront(IVehicle\* pIVehicle, qreal& distance, qreal& s0, UnitOfMeasure\* unit)**
 
 重新设置前车距及安全跟车距离(支持单位参数)。
 
@@ -9168,7 +9172,7 @@ bool MySimulator: : reSetFollowingParams(IVehicle *pIVehicle, qreal &inOutSi, qr
 
 返回: false: 忽略, true: 用distance设置前车距, 用s0设置安全跟车距离
 
-Ø **bool reSetSpeed(IVehicle \*pIVehicle, qreal &inOutSpeed)**
+Ø **bool reSetSpeed(IVehicle\* pIVehicle, qreal &inOutSpeed)**
 
 重新设置车速。TESS NG调用此方法时将当前计算所得车速赋给inOutSpeed, 如果需要, 用户可以在此方法重新计算车速并赋给inOutSpeed。
 
@@ -9211,7 +9215,7 @@ bool MySimulator: : reSetSpeed(IVehicle* pIVehicle, qreal& inOutSpeed) {
 }
 ```
 
-Ø **bool reSetSpeed(IVehicle \*pIVehicle, qreal &inOutSpeed, UnitOfMeasure* unit)**
+Ø **bool reSetSpeed(IVehicle\* pIVehicle, qreal &inOutSpeed, UnitOfMeasure\* unit)**
 
 重新设置车速(支持单位参数)。TESS NG调用此方法时将当前计算所得车速赋给inOutSpeed, 如果需要, 用户可以在此方法重新计算车速并赋给inOutSpeed。
 
@@ -9225,7 +9229,7 @@ bool MySimulator: : reSetSpeed(IVehicle* pIVehicle, qreal& inOutSpeed) {
 
 返回: false: 忽略, true: 用inOutSpeed设置车辆当前速度
 
-Ø **void beforeMergingToLane(IVehicle \*pIVehicle, bool &keepOn)**
+Ø **void beforeMergingToLane(IVehicle\* pIVehicle, bool &keepOn)**
 
 在"车道连接"上汇入车道前的计算, 可以让TESS NG放弃汇入计算, 以便于用户实现自己的汇入逻辑。
 
@@ -9285,7 +9289,7 @@ void MySimulator: : afterOneStep () {
 
 计算车辆后续"车道连接", 此时车辆正跨出当前路段, 将驶到pCurrLaneConnector。此方法可以改变后续"车道连接"。如果返回的"车道连接"为空, TESSNG会忽略此方法的调用。如果返回的"车道连接"不在原有路径上, 或者此方法设置了新路径且新路径不经过返回的"车道连接", TESSNG调用此方法后会将路径设为空。
 
-Ø **void beforeNextPoint(IVehicle \*pIVehicle, bool &keepOn)**
+Ø **void beforeNextPoint(IVehicle\* pIVehicle, bool &keepOn)**
 
 计算车辆移动到下一点前的操作, 用户可以通过此方法让TESSNG放弃对指定车辆到下一点的计算。
 
@@ -9319,7 +9323,7 @@ void MySimulator: : afterOneStep () {
 
 返回: false: 忽略, true: 用outSpeed限制指定车道速度
 
-Ø **bool calcSpeedLimitByLane(ILink\* pILink, int laneNumber, qreal& outSpeed, UnitOfMeasure* unit)**
+Ø **bool calcSpeedLimitByLane(ILink\* pILink, int laneNumber, qreal& outSpeed, UnitOfMeasure\* unit)**
 
 由车道确定的限制车速（最高速度, 公里/小时）
 
@@ -9335,7 +9339,7 @@ void MySimulator: : afterOneStep () {
 
 返回: false: 忽略, true: 用outSpeed限制指定车道速度
 
-Ø **bool calcMaxLimitedSpeed(IVehicle \*pIVehicle, qreal &inOutLimitedSpeed)**
+Ø **bool calcMaxLimitedSpeed(IVehicle\* pIVehicle, qreal &inOutLimitedSpeed)**
 
 重新计算车辆当前最大限速, 不受道路限速的影响。在没有插件干预的情况下, 车辆速度大于道路限度时按道路最大限速行驶, 在此方法的干预下, 可以提高限速, 让车辆大于道路限速行驶。
 
@@ -9364,7 +9368,7 @@ bool MySimulator: : calcMaxLimitedSpeed(IVehicle *pIVehicle, qreal &inOutLimited
 }
 ```
 
-Ø **bool calcMaxLimitedSpeed(IVehicle \*pIVehicle, qreal &inOutLimitedSpeed, UnitOfMeasure* unit)**
+Ø **bool calcMaxLimitedSpeed(IVehicle\* pIVehicle, qreal &inOutLimitedSpeed, UnitOfMeasure\* unit)**
 
 重新计算车辆当前最大限速, 不受道路限速的影响。在没有插件干预的情况下, 车辆速度大于道路限度时按道路最大限速行驶, 在此方法的干预下, 可以提高限速, 让车辆大于道路限速行驶。
 
@@ -9394,7 +9398,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 返回: false: 忽略, true: 用dist计算安全变道距离等
 
-Ø **bool calcDistToEventObj(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure* unit)**
+Ø **bool calcDistToEventObj(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure\* unit)**
 
 计算到事件对象距离(支持单位参数), 如到事故区、施工区的距离
 
@@ -9420,7 +9424,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 返回: false 忽略, true TESSNG取dist作为安全变道距离
 
-Ø **bool calcChangeLaneSafeDist(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure* unit)**
+Ø **bool calcChangeLaneSafeDist(IVehicle\* pIVehicle, qreal& dist, UnitOfMeasure\* unit)**
 
 计算安全变道距离(支持单位参数)。
 
@@ -9452,7 +9456,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 [ in ] boardingTime: 上客所需总时间, 默认单位: 秒
 
-Ø **void afterStep (IVehicle \*pIVehicle)**
+Ø **void afterStep (IVehicle\* pIVehicle)**
 
 完成车辆pIVehicle"一个批次计算"后的处理。可以在此获取车辆当前信息, 如当前道路、位置、方向角、速度、期望速度、前后左右车辆等。
 
@@ -9460,9 +9464,11 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 [ in ] pIVehicle: 车辆对象; 
 
-Ø **bool calcAcce(IVehicle \*pIVehicle, qreal &acce)**
+Ø **bool calcAcce(IVehicle\* pIVehicle, qreal &acce)**
 
 计算加速度
+
+参数: 
 
 [ in ] pIVehicle: 待计算加速度的车辆
 
@@ -9470,9 +9476,11 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 返回: false 忽略, true 则TESNG用调用此方法后所得acce作为当前车辆的加速度。
 
-Ø **bool calcAcce(IVehicle \*pIVehicle, qreal &acce, UnitOfMeasure* unit)**
+Ø **bool calcAcce(IVehicle\*pIVehicle, qreal &acce, UnitOfMeasure\* unit)**
 
 计算加速度(支持单位参数)
+
+参数: 
 
 [ in ] pIVehicle: 待计算加速度的车辆
 
@@ -9532,7 +9540,7 @@ bool MySimulator: : reSetAcce(IVehicle *pIVehicle, qreal &inOutAcce) {
 }
 ```
 
-Ø **bool reSetAcce(IVehicle \*pIVehicle, qreal &inOutAcce, UnitOfMeasure* unit)**
+Ø **bool reSetAcce(IVehicle\* pIVehicle, qreal &inOutAcce, UnitOfMeasure\* unit)**
 
 重新计算加速度(支持单位参数)。TESS NG调用此方法时将当前计算所得加速度赋给inOutAcce, 如果需要, 用户可以在此方法中重新计算加速度并赋给inOutAcce。
 
@@ -9620,7 +9628,7 @@ bool MySimulator: : reSetAcce(IVehicle *pIVehicle, qreal &inOutAcce) {
 
 [ in ] painter, QPainter对象
 
-Ø **bool reCalcAngle(IVehicle \*pIVehicle, qreal &inOutAngle)**
+Ø **bool reCalcAngle(IVehicle\* pIVehicle, qreal &inOutAngle)**
 
 重新计算角度。TESS NG调用此方法时将当前算得的角度赋给inOutAngle, 如果需要, 用户可在此方法中重新计算车辆角度, 并将算得的角度赋给inOutAngle。
 
@@ -9630,7 +9638,7 @@ bool MySimulator: : reSetAcce(IVehicle *pIVehicle, qreal &inOutAcce) {
 
 [ in、out ] inOutAngle: 重新计算前后角度, 北向0度顺时针; 
 
-Ø **bool isStopDriving(IVehicle \*pIVehicle)**
+Ø **bool isStopDriving(IVehicle\* pIVehicle)**
 
 是否停车运行, TESS NG在计算下一点位置后调用, 判断是否要停止车辆pIVehicle的运行。
 
@@ -9650,7 +9658,7 @@ bool MySimulator: : reSetAcce(IVehicle *pIVehicle, qreal &inOutAcce) {
 
 [ in ] pIVehicle: 车辆对象; 
 
-Ø **void beforeStopVehicle(IVehicle \*pIVehicle)**
+Ø **void beforeStopVehicle(IVehicle\* pIVehicle)**
 
 车辆停止运行前的处理。
 
@@ -9658,7 +9666,7 @@ bool MySimulator: : reSetAcce(IVehicle *pIVehicle, qreal &inOutAcce) {
 
 [ in ] pIVehicle: 车辆对象; 
 
-Ø **void afterStopVehicle(IVehicle \*pIVehicle)**
+Ø **void afterStopVehicle(IVehicle\* pIVehicle)**
 
 车辆停止运行后的处理
 
