@@ -18918,12 +18918,12 @@ netiface.removeBusStationFromLine(busline, busstation2)
 参数: 
 [ in ] pIPedestrianEllipseRegion: 三角形行人面域对象  
 
- **def removePedestrianFanShapeRegion(pIPedestrianTriangleRegion: Tessng.IPedestrianTriangleRegion) -> None : ...**  
+ **def removePedestrianFanShapeRegion(pIPedestrianFanRegion: Tessng.IPedestrianFanRegion) -> None : ...**  
 
 删除扇形行人面域  
 
 参数: 
-[ in ] IPedestrianTriangleRegion: 扇形行人面域对象
+[ in ] IPedestrianFanRegion: 扇形行人面域对象
 
  **def removePedestrianPolygonRegion(pIPedestrianPolygonRegion: Tessng.IPedestrianPolygonRegion) -> None : ...**
 
@@ -19266,10 +19266,6 @@ simuiface.pauseSimu()
 
 当前批次实际时间
 
- **def batchNumber(self) -> int: ...**
-
-当前批次
-
  **def startMSecsSinceEpoch(self) -> int: ...**
 
 获取仿真开始的现实时间
@@ -19399,7 +19395,7 @@ lVehiInfo = simuiface.getVehisInfoCollected()
 
 返回: 行程时间检测器数据Online.VehiTravelDetected列表
 
- **def getVehisTravelAggregated(self) -> typing.List<Online.VehiTraveAggregated>: ...**
+ **def getVehisTravelAggregated(self) -> typing.List<Online.VehiTravelAggregated>: ...**
 
 获取最近集计时间段内行程时间检测器集计数据
 
@@ -19529,14 +19525,14 @@ class IVehicle():
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
 [ out ] 是否获取成功  
 
- **def getPedestriansStatusByRegionId(regionId: int) -> Tpye.List<Online.Pedestrian.PedestrianStatus>: ...**
+ **def getPedestriansStatusByRegionId(regionId: int) -> Type.List<Online.Pedestrian.PedestrianStatus>: ...**
 
 根据行人面域id获取当前时间面域上所有行人的状态信息  
 参数: 
 [ in ]  regionId: 面域ID  
 [ out ] 行人状态信息列表
 
- **def allPedestrianStarted(self) -> Tpye.List<Online.Pedestrian.IPedestrian>: ...**
+ **def allPedestrianStarted(self) -> Type.List<Online.Pedestrian.IPedestrian>: ...**
 
 获取所有正在运行的行人; , 因为此函数可能会影响仿真效率, 仿真默认关闭, 如需要可在config配置里添加配置开启  
 参数: 
@@ -20012,8 +20008,6 @@ def initVehicle(self, vehi):
             # 最后两列小车的长度设为一样长, 这个很重要, 如果车长不一样长, 导致的前车距就不一样, 会使它们变道轨迹长度不一样, 就会步调不一致。
             if tmpId >= 23 and tmpId <= 28: 
                 vehi.setLength(m2p(4.5), True)
-        # 此处宽度设置为True, 表示车身宽度也等比例变化, 如果为False, 则车身宽度不变
-        return True
 
 
 ```
@@ -20779,20 +20773,6 @@ def ref_reSetAcce(self, vehi, inOutAcce):
 [ in ] pIVehicle: 车辆对象
 
 [ in ] painter: 笔刷
-
-返回: True, TESSNG不再绘制车辆, False, TESSNG认为用户没有绘制, 继续绘制
-
- **def ref_paintVehicleWithRotation(self, pIVehicle: Tessng.IVehicle, painter: PySide2.QtGui.QPainter, ref_inOutRotation: Tessng.objreal) -> bool: ...**
-
-绘制车辆, 绘制前将车辆对象旋转指定角度
-
-参数: 
-
-[ in ] pIVehicle: 车辆对象
-
-[ in ] painter: QPainter指针
-
-[ in ] inOutRotation: 旋转的角度
 
 返回: True, TESSNG不再绘制车辆, False, TESSNG认为用户没有绘制, 继续绘制
 
