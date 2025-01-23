@@ -4816,7 +4816,7 @@ colorStr: 字符串表达的颜色, 有四种可选, 分别是"红"、"绿"、"�
 
 ## 3   车辆及驾驶行为
 
-### 2.1 IVehicle
+### 3.1 IVehicle
 
 车辆接口, 用于访问、控制车辆。通过此接口可以读取车辆属性, 初始化时设置车辆部分属性, 仿真过程读取当前道路情况、车辆前后左右相邻车辆及与它们的距离, 可以在车辆未驰出路网时停止车辆运行等。
 
@@ -5222,7 +5222,7 @@ if (tmpId == 1) {
 
 设置json数据属性
 
-### 2.2 IVehicleDriving
+### 3.2 IVehicleDriving
 
 驾驶行为接口, 通过此接口可以控制车辆的左右变道、设置车辆角度, 对车辆速度、坐标位置等进行控制, 可以在路网中间停止车辆运行, 将车辆移出路网, 等等。
 
@@ -5669,13 +5669,9 @@ openNetFile(QString: : fromLocal8Bit("C: /TESSNG/Example/杭州武林门区域�
 参数: 
 
 [ in ] name: 路网名称
-
 [ in ] centerPoint: 中心点坐标所在路网, 默认为(0, 0), 用户也可以将中心点坐标保存到otherAttrsJson字段里
-
 [ in ] sourceType: 数据来源分类, 默认为 "TESSNG", 表示路网由TESSNG软件直接创建。取值"OPENDRIVE", 表示路网是经过opendrive路网导入而来
-
 [ in ] backgroundUrl: 底图路径
-
 [ in ] otherAttrsJson: 保存在json对象中的其它属性, 如大地坐标等信息。
 
 Ø **QGraphicsScene\* graphicsScene()**
@@ -6564,9 +6560,7 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 移除已有相位, 相位移除后, 原相位序列自动重排, 
 
 参数: 
-
 [ in ] pPlan: 信控方案对象
-
 [ in ] phaseId: 将要移除的相位ID
 
 Ø **ISignalLamp\* createSignalLamp(ISignalPhase\* pPhase, QString name, long laneId, long toLaneId, qreal distance)**
@@ -6574,15 +6568,10 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 创建信号灯
 
 参数: 
-
 [ in ] pPhase: 相位对象
-
 [ in ] name: 信号灯名称
-
 [ in ] laneId: 信号灯所在车道ID, 或所在"车道连接"上游车道ID
-
 [ in ] toLaneId: 信号灯所在"车道连接"下游车道ID
-
 [ in ] distance: 信号灯距车道或"车道连接"起点距离, 默认单位: 像素
 
 返回: 信号灯对象
@@ -6596,7 +6585,7 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 	}
 ```
 
-Ø **ISignalLamp\* createTrafficSignalLamp(ITrafficController\* pTrafficLight, QString name, long laneId, long toLaneId, qreal distance)**
+Ø **ISignalLamp\* createTrafficSignalLamp(ISignalController\* pTrafficLight, QString name, long laneId, long toLaneId, qreal distance)**
 
 创建信号灯, 参数: 
 
@@ -6613,7 +6602,6 @@ QList< IVehicleTravelDetector* > pDetector = gpTessInterface->netInterface()->cr
 创建公交线路, lLink列表中相邻两路段可以是路网上相邻两路段, 也可以不相邻, 如果不相邻, TESSNG会在它们之间创建一条最短路径。如果lLink列表中相邻路段在路网上不相邻并且二者之间不存在最短路径, 则相邻的第二条路段及后续路段无效。
 
 参数: 
-
 [ in ] lLink, 公交线路经过的路段对象集
 
 返回: 公交线路对象
@@ -6633,7 +6621,6 @@ if (pBusLine) {
 移除公交线路
 
 参数: 
-
 [ in ] pBusLine: 将要移除的公交线路对象
 
 Ø **IBusStation* createBusStation(ILane* pLane, qreal length, qreal dist, QString name = QString(), UnitOfMeasure unit = UnitOfMeasure: : Default)**
@@ -6668,7 +6655,6 @@ if (pBusLine) {
 移除公交站点
 
 参数: 
-
 [ in ] pStation: 公交站点对象
 
 Ø **bool addBusStationToLine(IBusLine\* pBusLine, IBusStation\* pStation)**
@@ -6676,9 +6662,7 @@ if (pBusLine) {
 将公交站点关联到公交线路上
 
 参数: 
-
 [ in ] pBusLine: 公交线路
-
 [ in ] pStation: 公交站点
 
 举例: 
@@ -7016,7 +7000,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 Ø **qreal reCalcPassagewayLength(Online::DynaReconstructionParam param, UnitOfMeasure unit)**
 
-重新计算保通开口长度, 默认单位: 像素, 可通过unit参数设置单位
+重新计算保通开口长度, 可根据保通详细参数计算出保通开口长度, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
 [ in ] param: 改扩建参数
@@ -7024,26 +7008,26 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 返回: 保通开口长度
 
-Ø **int trafficControllerCount()**
+Ø **int signalControllerCount()**
 
 信号机数量
 
-Ø **QList< long > trafficControllerIds()**
+Ø **QList< long > signalControllerIds()**
 
 信号机ID集
 
-Ø **QList< ITrafficController\* > trafficControllers()**
+Ø **QList< ISignalController\* > signalControllers()**
 
 信号机集
 
-Ø **ITrafficController\* findTrafficControllerById(long id)**
+Ø **ISignalController\* findSignalControllerById(long id)**
 
 根据id查询信号机
 
 参数: 
 [ in ] id: 信号机ID
 
-Ø **ITrafficController\* findTrafficControllerByName(QString name)**
+Ø **ISignalController\* findSignalControllerByName(QString name)**
 
 根据名称查询信号机(如果同名返回第一个)
 
@@ -7076,14 +7060,14 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 参数: 
 [ in ] name: 信控方案名称
 
-Ø **ITrafficController\* createTrafficController(QString name)**
+Ø **ISignalController\* createSignalController(QString name)**
 
 创建信号机
 
 参数: 
 [ in ] name: 信号机名称
 
-Ø **ISignalPlan\* createSignalPlan(ITrafficController\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
+Ø **ISignalPlan\* createSignalPlan(ISignalController\* pITrafficLight, QString name, int cycle, int phasedifference, int startTime, int endTime)**
 
 创建信控方案
 
@@ -7909,7 +7893,7 @@ gpTessInterface->netInterface()->createLimitedZone(dynaLimitedZoneParam);
 
 [ in ] pIPedestrianPath: 行人路径对象
 
-Ø **ICrosswalkSignalLamp\* createCrossWalkSignalLamp(ITrafficController\* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
+Ø **ICrosswalkSignalLamp\* createCrossWalkSignalLamp(ISignalController\* pTrafficLight, QString name, long crosswalkId, QPointF scenePos, bool isPositive)**
 
 创建人行横道信号灯
 
@@ -8322,26 +8306,6 @@ Online::DynaVehiParam dvpLane0, dvpLane1, dvpLane2;
 IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 1000); 
 ```
 
-Ø **QString catchSnapshotAsString()**
-
-创建快照, 需要分布式组件支持
-
-Ø **bool loadSnapshotFromString(QString data)**
-
-加载快照, 需要分布式组件支持
-
-参数: 
-
-[ in ] data: 快照数据
-
-Ø **void stopVehicleDriving(IVehicle \*pVehicle)**
-
-停止指定车辆的仿真运行, 车辆被移出路网
-
-参数: 
-
-[ in ] pVehicle: 车辆对象
-
 Ø **QList< IVehicle\* > vehisInLink(long linkId)** 
 
 指定ID路段上的车辆
@@ -8376,7 +8340,6 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 指定ID车道上的车辆
 
 参数: 
-
 [ in ] laneId: 车道ID
 
 返回: 车辆列表
@@ -8386,7 +8349,6 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 指定ID连接段上的车辆
 
 参数: 
-
 [ in ] connectorId: 连接段ID
 
 返回: 车辆列表
@@ -8396,11 +8358,8 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 指定连接段ID及上游车道ID和下游车道ID相关"车道连接"上的车辆
 
 参数: 
-
 [ in ] connectorId: 连接段ID
-
 [ in ] fromLaneId: 上游车道ID
-
 [ in ] toLaneId: 下游车道ID
 
 返回: 车辆列表
@@ -8410,13 +8369,9 @@ IVehicle* pBus =  gpTessInterface->simuInterface()->createBus(pBusLine, 10 * 100
 获取排队计数器最近一次排队信息
 
 参数: 
-
 [ in ] queueCounterId: 排队计数器ID
-
 [ out ] queueLength: 排队长度
-
 [ out ] vehiCount: 排队车辆数
-
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
 返回: 是否获取成功
@@ -8449,7 +8404,7 @@ TESSNG主窗体
 
  
 
-## 1.4   TessPlugin
+## 5   TessPlugin
 
 TessPlugin是用户开发的插件顶级接口, 下面有三个子接口: CustomerNet、CustomerSimulator、CustomerGui。TESS NG通过这三个子接口分别在路网、仿真过程、窗体这三个方面与用户插件进行交互。
 
@@ -8515,7 +8470,7 @@ if (gpTessPlugin && gpTessPlugin->customerSimulator()){
 
 下面对CustomerNet、CustomerSimulator两个子接口进行详解
 
-### 1.4.1 CustomerNet
+### 5.1 CustomerNet
 
 接口文件: Plugin/ customernet.h
 
@@ -8528,7 +8483,6 @@ CustomerNet是TessPlugin子接口, 用户实现这个接口, TESSNG在加载路�
 路网文件后缀, 由用户通过参数suffix设置
 
 参数: 
-
 [ out ] suffix: 路网文件后缀名
 
 Ø **QMap< QString, QString > customerTableDDL()**
@@ -8764,7 +8718,7 @@ QGraphicsView的鼠标滚动事件后的行为, 用户可以根据自己的需�
 
 QGraphicsView滚动条移动事件后的行为, 用户可以根据自己的需要实现视窗滚动条移动后响应代码。
 
-### 1.4.2 CustomerSimulator
+### 5.2 CustomerSimulator
 
 接口文件: Plugin/customersimulator.h
 

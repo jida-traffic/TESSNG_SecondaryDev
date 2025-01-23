@@ -6606,7 +6606,6 @@ def showVehicleTravelDetector(netiface):
 
 
 
-------
 
 
 
@@ -14371,7 +14370,7 @@ for vehi in allVehicleStarted:
 
  **def initSpeed(self, speed: float=..., unit: Tess.UnitOfMeasure) -> float: ...**
 
-初始化车速
+初始化车速, 默认单位: 像素/秒, 可通过unit参数设置单位
 
 参数: 
 [ in ] speed: 车速, 如果大于0, 车辆以指定的速度从发车点出发, 默认单位: 像素/秒  
@@ -14387,7 +14386,7 @@ def initVehicle(self, vehi):
 
  **def initLane(self, laneNumber: int, dist: float=..., speed: float=..., unit: Tess.UnitOfMeasure) -> None: ...**
 
-初始化车辆, laneNumber: 车道序号, 从0开始; dist, 距起点距离, 默认单位: 像素; speed: 车速, 像素/秒 初始化车速, 可通过unit参数设置单位
+在路段上初始化车辆, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
 [ in ] laneNumber: 车道序号, 从0开始  
@@ -14405,8 +14404,7 @@ def initVehicle(self, vehi):
 
  **def initLaneConnector(self, laneNumber: int, toLaneNumber: int, dist: float=..., speed: float=..., unit: Tess.UnitOfMeasure) -> None: ...**
 
-初始化车辆, laneNumber: “车道连接”起始车道在所在路段的序号, 从0开始自右往左; toLaneNumber: “车道连接”目标车道在所在路段的序号, 从0开始自右往左, dist, 距起点距离, 默认单位: 像素; speed: 车速, 像素/秒  
-默认单位: 像素, 可通过unit参数设置单位  
+初始化车辆, laneNumber: “车道连接”起始车道在所在路段的序号, 从0开始自右往左; toLaneNumber: “车道连接”目标车道在所在路段的序号, 从0开始自右往左, dist, 距起点距离, 默认单位: 像素; speed: 车速, 像素/秒, 默认单位: 像素, 可通过unit参数设置单位  
 参数: 
 
 [ in ] laneNumber: 车道序号, 从0开始自右侧至左侧  
@@ -14592,6 +14590,7 @@ for vehi in allVehicleStarted:
  **def limitMaxSpeed(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 车辆所在路段或连接段最大限速, 兼顾到车辆的期望速度, 默认单位: 像素/秒  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 返回: 最大限速, 默认单位: 像素/秒
@@ -14610,6 +14609,7 @@ for vehi in allVehicleStarted:
  **def limitMinSpeed(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 车辆所在路段或连接段最小限速, 兼顾到车辆的期望速度, 默认单位: 像素/秒  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 返回: 最小限速, 默认单位: 像素/秒
@@ -14688,7 +14688,8 @@ for vehi in allVehicleStarted:
 
  **def pos(self, unit: Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
 
-当前位置, 横纵坐标单位: 像素  
+获取当前位置, 默认单位: 像素, 可通过unit参数设置单位
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 返回: 当前位置, 默认单位: 像素
@@ -14706,7 +14707,8 @@ for vehi in allVehicleStarted:
 
  **def zValue(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-当前高程, 默认单位: 像素  
+当前高程, 默认单位: 像素, 可通过unit参数设置单位  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 返回: 当前高程, 默认单位: 像素
@@ -14724,7 +14726,8 @@ for vehi in allVehicleStarted:
 
  **def acce(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-当前加速度, 默认单位: 像素/秒^2  
+当前加速度, 默认单位: 像素/秒^2 , 可通过unit参数设置单位
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 返回: 当前加速度, 默认单位: 像素/秒^2
@@ -14743,6 +14746,7 @@ for vehi in allVehicleStarted:
  **def currSpeed(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 当前速度, 默认单位: 像素/秒  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 返回: 当前速度, 默认单位: 像素/秒
@@ -14914,7 +14918,8 @@ for vehi in allVehicleStarted:
 
  **def vehiHeadwayFront(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-距前车时距, 若无前车, 则范围固定的常量  默认单位: 像素   
+距前车时距, 若无前车, 则范围固定的常量  默认单位: 像素 
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -14953,7 +14958,8 @@ for vehi in allVehicleStarted:
 
  **def vehiSpeedRear(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-后车速度, 默认单位: 像素/秒  若无后车, 则范围固定的常量  默认单位: 像素  
+后车速度, 默认单位: 像素/秒  若无后车, 则范围固定的常量  默认单位: 像素 
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -14973,6 +14979,7 @@ for vehi in allVehicleStarted:
  **def vehiHeadwaytoRear(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 距后车时距, 默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -14992,6 +14999,7 @@ for vehi in allVehicleStarted:
  **def vehiDistLLaneFront(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道前车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15011,6 +15019,7 @@ for vehi in allVehicleStarted:
  **def vehiSpeedLLaneFront(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道前车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15030,6 +15039,7 @@ for vehi in allVehicleStarted:
  **def vehiDistLLaneRear(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道后车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15049,6 +15059,7 @@ for vehi in allVehicleStarted:
  **def vehiSpeedLLaneRear(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 相邻左车道后车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15068,6 +15079,7 @@ for vehi in allVehicleStarted:
  **def vehiDistRLaneFront(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道前车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15087,6 +15099,7 @@ for vehi in allVehicleStarted:
  **def vehiSpeedRLaneFront(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道前车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15106,6 +15119,7 @@ for vehi in allVehicleStarted:
  **def vehiDistRLaneRear(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道后车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15125,6 +15139,7 @@ for vehi in allVehicleStarted:
  **def vehiSpeedRLaneRear(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 相邻右车道后车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15157,7 +15172,8 @@ for vehi in allVehicleStarted:
 
  **def lLaneObjectVertex(self, unit: Tess.UnitOfMeasure) -> typing.List: ...**
 
-车道或车道连接中心线内点集  
+车道或车道连接中心线内点集, 默认单位: 像素, 可通过unit参数设置单位 
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15440,7 +15456,7 @@ for vehi in allVehicleStarted:
 
 
 
-------
+
 
 ### 3.2. IVehicleDriving
 
@@ -15597,7 +15613,6 @@ for vehi in allVehicleStarted:
 设置车辆旋转角; 
 
 参数: 
-
 [ in ] angle: 旋转角, 一周360度
 
 举例: 
@@ -15746,17 +15761,15 @@ for vehi in allVehicleStarted:
 
  **def setTrace(self, lPoint: typing.Sequence, unit: Tess.UnitOfMeasure) -> None: ...**
 
-设置轨迹
+设置轨迹, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
 [ in ] lPoint: 轨迹点坐标集合  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
- **def calcTraceLength(self, unit: Tess.UnitOfMeasure) -> None: ...**
+ **def calcTraceLength(self) -> None: ...**
 
 计算轨迹长度; 前提是: TESSNG开启车辆轨迹记录|输出 功能  
-参数: 
-[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
  **def tracingType(self) -> int: ...**
 
@@ -15777,7 +15790,6 @@ for vehi in allVehicleStarted:
 设置轨迹类型; TESSNG车辆后续运动轨迹按照此轨迹类型的动机产生动作, 但因为阈值条件有可能环境不满足, 因此动机并不一定能执行
 
 参数: 
-
 [ in ] type: 轨迹类型
 
  **def setLaneNumber(self, number: int) -> None: ...**
@@ -15785,12 +15797,12 @@ for vehi in allVehicleStarted:
 设置当前车道序号
 
 参数: 
-
 [ in ] number: 车道序号
 
  **def currDistance(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-当前计算周期移动距离, 默认单位: 像素  
+当前计算周期移动距离, 默认单位: 像素, 默认单位: 像素, 可通过unit参数设置单位
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15810,10 +15822,11 @@ for vehi in allVehicleStarted:
  **def currDistanceInRoad(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
 当前路段或连接上已行驶距离, 默认单位: 像素  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
-返回: 当前路段或连接上已行驶距离, 默认单位: 像素
+返回: 当前路段或连接上已行驶距离, 默认单位: 像素, 可通过unit参数设置单位
 
 举例: 
 
@@ -15828,25 +15841,24 @@ for vehi in allVehicleStarted:
 
  **def setCurrDistanceInRoad(self, dist: float, unit: Tess.UnitOfMeasure) -> None: ...**
 
-设置当前路段已行驶距离
+设置当前路段已行驶距离, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] dist: 距离, 默认单位: 像素  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
  **def setVehiDrivDistance(self, dist: float, unit: Tess.UnitOfMeasure) -> None: ...**
 
-设置当前已行驶总里程
+设置当前已行驶总里程, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] dist: 总里程, 默认单位: 像素  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
  **def getVehiDrivDistance(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-已行驶总里程  
+已行驶总里程, 默认单位: 像素, 可通过unit参数设置单位 
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15865,7 +15877,8 @@ for vehi in allVehicleStarted:
 
  **def currDistanceInSegment(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-当前分段已行驶距离  
+当前分段已行驶距离 , 默认单位: 像素, 可通过unit参数设置单位
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15884,7 +15897,8 @@ for vehi in allVehicleStarted:
 
  **def setCurrDistanceInSegment(self, dist: float, unit: Tess.UnitOfMeasure) -> None: ...**
 
-设置当前分段已行驶的距离  
+设置当前分段已行驶的距离, 默认单位: 像素, 可通过unit参数设置单位
+
 参数: 
 [ in ] dist: 距离, 默认单位: 像素  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
@@ -15894,12 +15908,12 @@ for vehi in allVehicleStarted:
 设置分段序号
 
 参数: 
-
 [ in ] index: 分段序号
 
  **def setCurrDistanceInTrace(self, dist: float), unit: Tess.UnitOfMeasure -> None: ...**
 
-设置曲化轨迹上行驶的距离  
+设置曲化轨迹上行驶的距离, 默认单位: 像素, 可通过unit参数设置单位  
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15913,7 +15927,8 @@ for vehi in allVehicleStarted:
 
  **def currDistance(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-当前时间段移动距离  
+当前时间段移动距离, 默认单位: 像素, 可通过unit参数设置单位
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15935,7 +15950,6 @@ for vehi in allVehicleStarted:
 设置路径, 外界设置的路径不一定有决策点, 可能是临时创建的, 如果车辆不在此路径上则设置不成功并返回False
 
 参数: 
-
 [ in ] pRouting: 路径
 
 返回: 是否设置成功
@@ -15968,12 +15982,12 @@ for vehi in allVehiStarted_lst:
  **def setSegmentIndex(self, index: int) -> None: ...**
 
 设置分段序号
-
 [ in ] index: 分段序号
 
  **def currDistanceInSegment(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-当前在分段上已行驶距离  
+当前在分段上已行驶距离 , 默认单位: 像素, 可通过unit参数设置单位
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -15992,11 +16006,11 @@ for vehi in allVehicleStarted:
 
  **def setCurrDistanceInSegment(self, dist: float, unit: Tess.UnitOfMeasure) -> None: ...**
 
-设置在分段上已行驶距离
+设置在分段上已行驶距离, 默认单位: 像素, 可通过unit参数设置单位
 
  **def setX(self, posX: float, unit: Tess.UnitOfMeasure) -> None: ...**
 
-设置横坐标
+设置横坐标, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
 
@@ -16005,7 +16019,7 @@ for vehi in allVehicleStarted:
 
  **def setY(self, posY: float, unit: Tess.UnitOfMeasure) -> None: ...**
 
-设置纵坐标
+设置纵坐标, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
 
@@ -16014,7 +16028,7 @@ for vehi in allVehicleStarted:
 
  **def setV3z(self, v3z: float, unit: Tess.UnitOfMeasure) -> None: ...**
 
-设置高程坐标
+设置高程坐标, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
 
@@ -16022,7 +16036,8 @@ for vehi in allVehicleStarted:
 
  **def changingTrace(self) -> typing.List: ...**
 
-变轨点集, 车辆不在车道中心线或“车道连接”中心线上时的轨迹, 如变道过程的轨迹点集  
+变轨点集, 车辆不在车道中心线或“车道连接”中心线上时的轨迹, 如变道过程的轨迹点集 
+
 参数: 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -16040,10 +16055,9 @@ for vehi in allVehicleStarted:
 
  **def changingTraceLength(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-变轨长度
+变轨长度, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
 返回: 变轨长度
@@ -16061,10 +16075,9 @@ for vehi in allVehicleStarted:
 
  **def distToStartPoint(self, fromVehiHead: bool=..., bOnCentLine: bool=..., unit: Tess.UnitOfMeasure) -> float: ...**
 
-在车道或车道连接上到起点距离
+在车道或车道连接上到起点距离, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] fromVehiHead: 是否从车头计算, 如果为False, 从车辆中心点计算, 默认值为False  
 [ in ] bOnCentLine: 当前是否在中心线上  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
@@ -16084,7 +16097,7 @@ for vehi in allVehicleStarted:
 
  **def distToEndpoint(self, fromVehiHead: bool=..., bOnCentLine: bool=..., unit: Tess.UnitOfMeasure) -> float: ...**
 
-在车道或“车道连接”上车辆到终点距离
+在车道或“车道连接”上车辆到终点距离, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
 [ in ] fromVehiHead: 是否从车头计算, 如果为False, 从车辆中心点计算, 默认值为False  
@@ -16102,24 +16115,6 @@ allVehicleStarted = simuiface.allVehiStarted()
 for vehi in allVehicleStarted: 
     print(f"在车道或“车道连接”上车辆到终点距离={vehi.vehicleDriving().distToEndpoint()}")
     print(f"在车道或“车道连接”上车辆到终点距离, 米制={vehi.vehicleDriving().distToEndpoint(False, True, UnitOfMeasure.Metric)}")
-```
-
- **def setRouting(self, pRouting: Tessng.IRouting) -> bool: ...**
-
-设置路径, 外界设置的路径不一定有决策点, 可能是临时创建的, 如果车辆不在此路径上则设置不成功并返回False
-
- **def routing(self) -> Tessng.IRouting: ...**
-
-当前路径
-
-举例: 
-
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allVehicleStarted = simuiface.allVehiStarted()
-for vehi in allVehicleStarted: 
-    print(f"当前路径={vehi.vehicleDriving().routing()}")
 ```
 
  **def moveToLane(self, pLane: Tessng.ILane, dist: float, unit: Tess.UnitOfMeasure) -> bool: ...**
@@ -16181,8 +16176,6 @@ if simuTime == 10 * 1000:
 
 
 
-------
-
 
 
 ## 4. 自定义窗口组件TessInterface
@@ -16236,7 +16229,6 @@ NetInterface是TessInterface的子接口, 用于访问、控制路网的接口, 
 打开保存在文件中的路网
 
 参数: 
-
 [ in ] filePath: 路网文件全路径名
 
 举例: 
@@ -16244,8 +16236,6 @@ NetInterface是TessInterface的子接口, 用于访问、控制路网的接口, 
 ```python
 openNetFile("C: /TESSNG/Example/杭州武林门区域路网公交优先方案.tess")
 ```
-
- 
 
  **def openNetByNetId(self, netId: int) -> None: ...**
 
@@ -16263,7 +16253,7 @@ openNetFile("C: /TESSNG/Example/杭州武林门区域路网公交优先方案.te
 
 获取路网对象
 
- **def netAttrs (self) -> Tessng.IRoadNet: ...**
+ **def netAttrs(self) -> Tessng.IRoadNet: ...**
 
 获取路网对象, 如果路网是从opendrive导入的, 此路网对象可能保存了路网中心点所在的经纬度坐标, 以及大地坐标等信息
 
@@ -16271,16 +16261,11 @@ openNetFile("C: /TESSNG/Example/杭州武林门区域路网公交优先方案.te
 
 设置路网基本信息
 
-**参数: **
-
+参数:
 [ in ] name: 路网名称
-
 [ in ] centerPoint: 中心点坐标所在路网, 默认为(0, 0) , 用户也可以将中心点坐标保存到otherAttrsJson字段里
-
 [ in ] sourceType: 数据来源分类, 默认为 “TESSNG”, 表示路网由TESSNG软件直接创建。取值“OPENDRIVE”, 表示路网是经过opendrive路网导入而来
-
 [ in ] backgroundUrl: 底图路径
-
 [ in ] otherAttrsJson: 保存在json对象中的其它属性, 如大地坐标等信息。
 
  **def graphicsScene(self) -> PySide2.QtWidgets.QGraphicsScene: ...**
@@ -16295,110 +16280,109 @@ openNetFile("C: /TESSNG/Example/杭州武林门区域路网公交优先方案.te
 
 场景中的像素比, 单位: 米/像素
 
-
  **def sceneWidth(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-场景宽度, 单位: 米  
+场景宽度, 默认单位: 像素, 可通过unit参数设置单位 
+
 参数: 
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
  **def sceneHeight(self, unit: Tess.UnitOfMeasure) -> float: ...**
 
-场景高度, 单位: 米  
+场景高度, 默认单位: 像素, 可通过unit参数设置单位
+
 参数: 
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
  **def backgroundMap(self) -> PySide2.QtCore.QByteArray: ...**
 
-背景图
+获取路网背景图
 
  **def sections(self) -> typing.List: ...**
 
-所有Section
+获取所有Section
 
  **def linkIds(self) -> typing.List: ...**
 
-路段ID集
+获取路网中所有路段的ID列表
 
  **def linkCount(self) -> int: ...**
 
-路段数
+获取路网中的路段数
 
  **def links(self) -> typing.List: ...**
 
-路段集
+获取路网中的路段对象集
 
  **def connectorIds(self) -> typing.List: ...**
 
-连接段ID集
+获取路网中的连接段ID集
 
  **def connectorCount(self) -> int: ...**
 
-连接段数
+获取路网中的连接段数
 
  **def connectors(self) -> typing.List: ...**
 
-连接段集
-
+获取路网中的连接段对象集
 
  **def allConnectorArea(self) -> typing.List: ...**
 
-面域集
+获取路网中的连接面域集
 
  **def signalLampCount(self) -> int: ...**
 
-信号灯数
+获取路网中的信号灯数
 
  **def signalLampIds(self) -> typing.List: ...**
 
-信号灯ID集
+获取路网中的信号灯ID集
 
  **def signalLamps(self) -> typing.List: ...**
 
-信号灯集
+获取路网中的信号灯集
 
  **def guidArrowCount(self) -> int: ...**
 
-导向箭头数
+获取路网中的导向箭头数
 
  **def guidArrowIds(self) -> typing.List: ...**
 
-导向箭头ID集
+获取路网中的导向箭头ID集
 
  **def dispatchPoints(self) -> typing.List: ...**
 
-发车点集。
+获取路网中的发车点集
 
  **def buslines(self) -> typing.List: ...**
 
-公交线路集
+获取路网中的公交线路集
 
 **def busStations(self) -> typing.List: ...**
 
-公交站点集
+获取路网中的公交站点集
 
  **def decisionPoints(self) -> typing.List: ...**
 
-决策点列表
+获取路网中的决策点列表
 
  **def vehiInfoCollectors(self) -> typing.List: ...**
 
-所有车辆检测器
+获取路网中的所有车辆检测器
 
  **def vehiQueueCounters(self) -> typing.List: ...**
 
-所有排队计数器
+获取路网中的所有排队计数器
 
  **def vehiTravelDetectors(self, id: int) -> Tessng.IVehicleTravelDetector: ...**
 
-所有车辆行程时间检测器, 返回列表中的每一个元素是一对行程时间检测器的起始检测器
+获取路网中的所有车辆行程时间检测器, 返回列表中的每一个元素是一对行程时间检测器的起始检测器
 
  **def crossPoints(self, pLaneConnector: Tessng.ILaneConnector) -> typing.List: ...**
 
-当前“车道连接”穿过其它“车道连接”形成的交叉点列表; 
+获取路网中当前“车道连接”穿过其它“车道连接”形成的交叉点列表; 
 
 参数: 
-
 [ in ] pLaneConnector: “车道连接”对象
 
 返回: 交叉点列表
@@ -16418,13 +16402,13 @@ for laneConnector in laneConnectors:
 
   **def signalControllerCount(self) -> int: ...**
 
-获取路网中信号机总数数
+获取路网中信号机总数
 
- **def signalControllerIds(self) -> Type.List<int>: ...**
+ **def signalControllerIds(self) -> typing.List<int>: ...**
 
 获取信号机编号列表
 
- **def signalControllers(self) -> Type.List<Tess.ISignalController>: ...**
+ **def signalControllers(self) -> typing.List<Tess.ISignalController>: ...**
 
 获取信号机对象列表
 
@@ -16432,15 +16416,15 @@ for laneConnector in laneConnectors:
 
 获取路网中信控方案总数
 
- **def signalPlanIds(self) -> Type.List<int>: ...**
+ **def signalPlanIds(self) -> typing.List<int>: ...**
 
-信控方案ID集合
+获取信控方案ID集合
 
- **def signalPlans(self) -> Type.List<Tess.ISignalPlan>: ...**
+ **def signalPlans(self) -> typing.List<Tess.ISignalPlan>: ...**
 
 获取信控方案对象列表
 
-  **def signalPhases(self) -> Type.List<Tess.ISignalPhase>: ...**
+ **def signalPhases(self) -> typing.List<Tess.ISignalPhase>: ...**
 
 获取所有信控方案的相位信息
 
@@ -16457,36 +16441,33 @@ for laneConnector in laneConnectors:
 根据ID查询事故区
 
 参数: 
-
 [ in ] accidentZoneId: 事故区ID
 
-
- **def limitedZones(self) -> Type.List<ILimitedZone>: ...**
+ **def limitedZones(self) -> typing.List<ILimitedZone>: ...**
 
 获取所有限行区
 
- **def reconstructions(self) -> Type.List<Tess.IReconstruction>: ...**
+ **def reconstructions(self) -> typing.List<Tess.IReconstruction>: ...**
 
 获取所有改扩建
 
- **def reduceSpeedAreas(self) ->Type.List<Tessng.IReduceSpeedArea>: ...**
+ **def reduceSpeedAreas(self) -> typing.List<Tessng.IReduceSpeedArea>: ...**
 
 获取所有限速区 
 
-
- **def tollLanes(self) ->Type.List<Tessng.ITollLane>: ...**
+ **def tollLanes(self) -> typing.List<Tessng.ITollLane>: ...**
 
 获取所有收费车道列表
 
- **def tollDecisionPoints(self) ->Type.List<Tessng.ITollDecisionPoint>: ...**
+ **def tollDecisionPoints(self) -> typing.List<Tessng.ITollDecisionPoint>: ...**
 
 获取所有收费决策点列表
 
- **def parkingRegions(self) ->Type.List<Tessng.IParkingRegion>: ...**
+ **def parkingRegions(self) -> typing.List<Tessng.IParkingRegion>: ...**
 
 获取所有停车区列表
 
- **def parkingDecisionPoints(self) ->Type.List<Tessng.IParkingDecisionPoint>: ...**
+ **def parkingDecisionPoints(self) -> typing.List<Tessng.IParkingDecisionPoint>: ...**
 
 获取所有停车决策点列表
 
@@ -16494,15 +16475,15 @@ for laneConnector in laneConnectors:
 
 获取停车场停车时距分布列表
 
- **def tollParkingTimeDis(self) ->Type.List<Online.TollStation.DynaTollParkingTimeDis>: ...**
+ **def tollParkingTimeDis(self) -> typing.List<Online.TollStation.DynaTollParkingTimeDis>: ...**
 
 获取收费站停车时距分布列表
 
- **def getAllJunctions () ->Type.Dict<int, Tessng.IJunction>: ...**
+ **def getAllJunctions(self) -> typing.Dict<int, Tessng.IJunction>: ...**
 
 获得所有节点, 返回类型为字典
 
- **def getFlowTimeIntervals(self) ->Type.List<Tess.Online.Junction.FlowTimeInterval>: ...**
+ **def getFlowTimeIntervals(self) -> typing.List<Tess.Online.Junction.FlowTimeInterval>: ...**
 
 获取所有时间段
 
@@ -16524,63 +16505,63 @@ for laneConnector in laneConnectors:
 
 计算并应用流量结果, 返回时间段ID到流量计算结果的映射
 
- **def pedestrianTypes() ->Type.List<Tessng.IPedestrianType>: ...**
+ **def pedestrianTypes(self) ->Type.List<Tessng.IPedestrianType>: ...**
 
 获取所有行人类型
 
- **def pedestrianCompositions() ->Type.List<Online.Pedestrian.PedestrianComposition >: ...**
+ **def pedestrianCompositions(self) ->Type.List<Online.Pedestrian.PedestrianComposition >: ...**
 
 获取所有行人组成
 
- **def layerInfos() ->Type.List<OnLine.Pedestrian.LayerInfo>: ...**
+ **def layerInfos(self) ->Type.List<OnLine.Pedestrian.LayerInfo>: ...**
 
 获取所有层级信息
 
- **def pedestrianRectRegions() ->Type.List<Tessng.IPedestrianRectRegion>: ...**
+ **def pedestrianRectRegions(self) ->Type.List<Tessng.IPedestrianRectRegion>: ...**
 
 获取所有矩形面域
 
- **def pedestrianEllipseRegions() ->Type.List<Tessng.IPedestrianEllipseRegion>: ...**
+ **def pedestrianEllipseRegions(self) ->Type.List<Tessng.IPedestrianEllipseRegion>: ...**
 
 获取所有椭圆形面域
 
- **def pedestrianTriangleRegions() ->Type.List<Tessng.IPedestrianTriangleRegion>: ...**
+ **def pedestrianTriangleRegions(self) ->Type.List<Tessng.IPedestrianTriangleRegion>: ...**
 
 获取所有三角形面域
 
- **def pedestrianFanShapeRegions() ->Type.List<Tessng.IPedestrianFanShapeRegion>: ...**
+ **def pedestrianFanShapeRegions(self) ->Type.List<Tessng.IPedestrianFanShapeRegion>: ...**
 
 获取所有扇形面域
 
- **def pedestrianPolygonRegions() ->Type.List<Tessng.IPedestrianPolygonRegion>: ...**
+ **def pedestrianPolygonRegions(self) ->Type.List<Tessng.IPedestrianPolygonRegion>: ...**
 
 获取所有多边形面域
 
- **def pedestrianSideWalkRegions() ->Type.List<Tessng.IPedestrianSideWalkRegion>: ...**
+ **def pedestrianSideWalkRegions(self) ->Type.List<Tessng.IPedestrianSideWalkRegion>: ...**
 
 获取所有人行道
 
- **def pedestrianCrossWalkRegions() ->Type.List<Tessng.IPedestrianCrossWalkRegion>: ...**
+ **def pedestrianCrossWalkRegions(self) ->Type.List<Tessng.IPedestrianCrossWalkRegion>: ...**
 
 获取所有人行横道
 
- **def pedestrianPathStartPoints() ->Type.List<Tessng.IPedestrianPathPoint>: ...**
+ **def pedestrianPathStartPoints(self) ->Type.List<Tessng.IPedestrianPathPoint>: ...**
 
 获取所有行人发生点
 
- **def pedestrianPathEndPoints() ->Type.List<Tessng.IPedestrianPathPoint>: ...**
+ **def pedestrianPathEndPoints(self) ->Type.List<Tessng.IPedestrianPathPoint>: ...**
 
 获取所有行人结束点
 
- **def pedestrianPathDecisionPoints() ->Type.List<Tessng.IPedestrianPathPoint>: ...**
+ **def pedestrianPathDecisionPoints(self) ->Type.List<Tessng.IPedestrianPathPoint>: ...**
 
 获取所有行人决策点
 
- **def pedestrianPaths() ->Type.List<Tessng.IPedestrianPath>: ...**
+ **def pedestrianPaths(self) ->Type.List<Tessng.IPedestrianPath>: ...**
 
 获取所有行人路径, 包括局部路径
 
- **def crosswalkSignalLamps() ->Type.List<Tessng.ICrosswalkSignalLamp>: ...**
+ **def crosswalkSignalLamps(self) ->Type.List<Tessng.ICrosswalkSignalLamp>: ...**
 
 获取所有人行横道红绿灯
 
@@ -16588,22 +16569,37 @@ for laneConnector in laneConnectors:
 
 根据路段ID查找路段
 
+参数: 
+[ in ] id: 路段ID
+
  **def findLane(self, id: int) -> Tessng.ILane: ...**
 
 根据车道ID查找车道
+
+参数: 
+[ in ] id: 车道ID
 
  **def findLaneConnector(self, connectorId: int) -> Tessng.ILaneConnector: ...**
 
 根据“车道连接”ID查找“车道连接”
 
+参数: 
+[ in ] connectorId: “车道连接”ID
+
  **def findLaneConnector(self, fromLaneId: int, toLaneId: int) -> Tessng.ILaneConnector: ...**
 
 根据起始车道ID及目标车道ID查找“车道连接”
 
+参数: 
+[ in ] fromLaneId: 起始车道ID
+[ in ] toLaneId: 目标车道ID
 
  **def findConnector(self, id: int) -> Tessng.IConnector: ...**
 
 根据连接段ID查找连接段
+
+参数: 
+[ in ] id: 连接段ID
 
  **def findConnectorArea(self, id: int) -> Tessng.IConnectorArea: ...**
 
@@ -16611,9 +16607,16 @@ for laneConnector in laneConnectors:
 
  **def findConnectorByLinkIds(self, fromLinkId: int, toLinkId: int) -> Tessng.IConnector: ...**
 
+参数: 
+[ in ] fromLinkId: 起始路段ID
+[ in ] toLinkId: 目标路段ID
+
 根据起始路段ID及目标路段ID查找连接段
 
  **def findSignalLamp(self, id: int) -> Tessng.ISignalLamp: ...**
+
+参数: 
+[ in ] id: 信号灯ID
 
 根据信号灯ID查找信号灯
 
@@ -16621,12 +16624,14 @@ for laneConnector in laneConnectors:
 
 根据信号相位ID查找信号相位, 目前的接口有点问题, 返回的是none
 
+参数: 
+[ in ] id: 信号相位ID
+
  **def findDispatchPoint(self, id: int) -> Tessng.IDispatchPoint: ...**
 
 根据发车点ID查找发车点
 
 参数: 
-
 [ in ] id: 发车点ID
 
  **def findBusline(self, buslineId: int) -> Tessng.IBusLine: ...**
@@ -16634,7 +16639,6 @@ for laneConnector in laneConnectors:
 根据公交线路ID查找公交线路
 
 参数: 
-
 [ in ] buslineId: 公交线路ID
 
  **def findBuslineByFirstLinkId(self, linkId: int) -> Tessng.IBusLine: ...**
@@ -16642,21 +16646,27 @@ for laneConnector in laneConnectors:
 根据公交线路起始路段ID查找公交线路
 
 参数: 
-
 [ in ] linkId: 公交线路起始段ID
 
  **def findBusStation(self, stationId: int) -> Tessng.IBusStation: ...**
 
 根据公交站点ID查询公交站点
 
+参数: 
+[ in ] stationId: 公交站点ID
+
  **def findBusStationLineByStationId(self, stationId: int) -> typing.List: ...**
 
 根据公交站点ID查询相关BusLineStation
+
+参数: 
+[ in ] stationId: 公交站点ID
 
  **def findDecisionPoint(self, id: int) -> Tessng.IDecisionPoint: ...**
 
 根据ID查找决策点
 
+参数: 
 [ in ] id: 决策点ID
 
 返回: 决策点对象
@@ -16666,7 +16676,6 @@ for laneConnector in laneConnectors:
 根据ID查询车辆检测器
 
 参数: 
-
 [ in ] id: 车辆检测器ID
 
 返回: 车辆检测器对象
@@ -16676,7 +16685,6 @@ for laneConnector in laneConnectors:
 根据ID查询车辆排队计数器
 
 参数: 
-
 [ in ] id: 排队计数器ID
 
 返回: 排队计数器对象
@@ -16685,12 +16693,14 @@ for laneConnector in laneConnectors:
 
 根据路径ID查找路径
 
+参数: 
+[ in ] id: 路径ID
+
  **def findVehiTravelDetector(self, id: int) -> Tessng.IVehicleTravelDetector: ...**
 
 根据ID查询车辆行程时间检测器, 返回一对行程时间检测器中起始检测器
 
 参数: 
-
 [ in ] id: 行程时间检测器ID
 
 返回: 行程时间检测器对象
@@ -16699,128 +16709,199 @@ for laneConnector in laneConnectors:
 
 获取指定id的信号机对象
 
+参数: 
+[ in ] id: 信号机ID
+
  **def findSignalControllerByName(self, name: str) -> Tess.ISignalController: ...**
 
 根据名称查询信号机(如果同名返回第一个)
+
+参数: 
+[ in ] name: 信号机名称
 
  **def findSignalPlanById(self, id: long) -> Tess.ISignalPlan: ...**
 
 获取指定id的信号机对象
 
+参数: 
+[ in ] id: 信号机ID
+
  **def findSignalPlanByName(self, name: str) -> Tess.ISignalPlan: ...**
 
 根据名称查询信号机(如果同名返回第一个)
+
+参数: 
+[ in ] name: 信号机名称
 
  **def findRoadWorkZone(self, roadWorkZoneId: int) -> Tessng.Online.IRoadWorkZone: ...**
 
 根据ID查询施工区
 
 参数: 
-
 [ in ] roadWorkZoneId: 施工区ID
 
 返回: 施工区对象
 
- **def findLimitedZone(limitedZoneId: int) -> Tessng.ILimitedZone: ...**
+ **def findLimitedZone(self, limitedZoneId: int) -> Tessng.ILimitedZone: ...**
 
 根据ID获取指定的限行区
 
 参数: 
 [ in ] limitedZoneId: 限行区ID
 
- **def findReconstruction(reconstructionId: int) -> Tessng.IReconstruction: ...**
+ **def findReconstruction(self, reconstructionId: int) -> Tessng.IReconstruction: ...**
 
 根据ID获取指定的改扩建对象
 
 参数: 
 [ in ] reconstructionId: 改扩建ID
 
- **def findReduceSpeedArea(id: int) ->Type.List<Tessng.IReduceSpeedArea>: ...**
+ **def findReduceSpeedArea(self, id: int) ->Type.List<Tessng.IReduceSpeedArea>: ...**
 
-查询指定ID的限速区  
+查询指定ID的限速区 
+
 参数: 
 [ in ] id: 限速区ID
 
- **def findTollLane(self) ->Type.List<Tessng.ITollLane>: ...**
+ **def findTollLane(self, id: int) ->Type.List<Tessng.ITollLane>: ...**
 
 通过id查询收费车道
 
- **def findTollDecisionPoint(self) ->Type.List<Tessng.ITollDecisionPoint>: ...**
+参数: 
+[ in ] id: 收费车道ID
+
+ **def findTollDecisionPoint(self, id: int) ->Type.List<Tessng.ITollDecisionPoint>: ...**
 
 通过id查询收费决策点
 
- **def findParkingRegion(self) ->Type.List<Tessng.IParkingRegion>: ...**
+参数: 
+[ in ] id: 收费决策点ID
+
+ **def findParkingRegion(self, id: int) ->Type.List<Tessng.IParkingRegion>: ...**
 
 通过id查询停车区域
 
- **def findParkingDecisionPoint(self) ->Type.List<Tessng.IParkingDecisionPoint>: ...**
+参数: 
+[ in ] id: 停车区域ID
+
+ **def findParkingDecisionPoint(self, id: int) ->Type.List<Tessng.IParkingDecisionPoint>: ...**
 
 通过id查询停车决策点
 
- **def findJunction (id: int) ->Tessng.IJunction: ...**
+参数: 
+[ in ] id: 停车决策点ID
 
-根据路径ID查找节点  
+ **def findJunction (self, id: int) ->Tessng.IJunction: ...**
+
+根据路径ID查找节点 
+
+参数: 
 [ in ] id: 节点ID
 
- **def findPedestrianRegion() ->Tessng.IPedestrianRegion: ...**
+ **def findPedestrianRegion(self, id: int) ->Tessng.IPedestrianRegion: ...**
 
 根据id获取行人面域
 
- **def findPedestrianRectRegion() ->Tessng.IPedestrianRectRegion: ...**
+参数: 
+[ in ] id: 行人面域ID
+
+ **def findPedestrianRectRegion(self, id: int) ->Tessng.IPedestrianRectRegion: ...**
 
 根据id获取矩形面域
 
+参数: 
+[ in ] id: 行人面域ID
 
- **def findPedestrianEllipseRegion() ->Tessng.IPedestrianEllipseRegion: ...**
+ **def findPedestrianEllipseRegion(self, id: int) ->Tessng.IPedestrianEllipseRegion: ...**
+
 根据id获取椭圆形面域
 
- **def findPedestrianTriangleRegion() ->Tessng.IPedestrianTriangleRegion: ...**
+参数: 
+[ in ] id: 行人面域ID
+
+ **def findPedestrianTriangleRegion(self, id: int) ->Tessng.IPedestrianTriangleRegion: ...**
 
 根据id获取三角形面域
 
- **def findPedestrianFanShapeRegion() ->Tessng.IPedestrianFanShapeRegion: ...**
+参数: 
+[ in ] id: 行人面域ID
+
+ **def findPedestrianFanShapeRegion(self, id: int) ->Tessng.IPedestrianFanShapeRegion: ...**
 
 根据id获取扇形面域
 
- **def findPedestrianPolygonRegion() ->Tessng.IPedestrianPolygonRegion: ...**
+参数: 
+[ in ] id: 行人面域ID
+
+ **def findPedestrianPolygonRegion(self, id: int) ->Tessng.IPedestrianPolygonRegion: ...**
 
 根据id获取多边形面域
 
- **def findPedestrianSideWalkRegion() ->Tessng.IPedestrianSideWalkRegion: ...**
+参数: 
+[ in ] id: 行人面域ID
+
+ **def findPedestrianSideWalkRegion(self, id: int) ->Tessng.IPedestrianSideWalkRegion: ...**
 
 根据id获取人行道
 
- **def findPedestrianCrossWalkRegion() ->Tessng.IPedestrianCrossWalkRegion: ...**
+参数: 
+[ in ] id: 人行道ID
+
+ **def findPedestrianCrossWalkRegion(self, id: int) ->Tessng.IPedestrianCrossWalkRegion: ...**
 
 根据id获取人行横道
 
- **def findPedestrianPathStartPoint() ->Tessng.IPedestrianPathPoint: ...**
+参数: 
+[ in ] id: 人行横道ID
+
+ **def findPedestrianPathStartPoint(self, id: int) ->Tessng.IPedestrianPathPoint: ...**
 
 根据id获取行人发生点
 
- **def findPedestrianPathEndPoint() ->Tessng.IPedestrianPathPoint: ...**
+参数: 
+[ in ] id: 行人发生点ID
+
+ **def findPedestrianPathEndPoint(self, id: int) ->Tessng.IPedestrianPathPoint: ...**
 
 根据id获取行人结束点
 
- **def findPedestrianDecisionPoint() ->Tessng.IPedestrianPathPoint: ...**
+参数: 
+[ in ] id: 行人结束点ID
+
+ **def findPedestrianDecisionPoint(self, id: int) ->Tessng.IPedestrianPathPoint: ...**
 
 根据id获取行人决策点
 
- **def findPedestrianPath() ->Tessng.IPedestrianPath: ...**
+参数: 
+[ in ] id: 行人决策点ID
+
+ **def findPedestrianPath(self, id: int) ->Tessng.IPedestrianPath: ...**
 
 根据id获取行人路径, 包括局部路径
 
- **def findCrosswalkSignalLamp(id: int) ->Tessng.ICrosswalkSignalLamp: ...**
+参数: 
+[ in ] id: 行人路径ID
+
+ **def findCrosswalkSignalLamp(self, id: int) ->Tessng.ICrosswalkSignalLamp: ...**
 
 根据id获取人行横道红绿灯
 
- **def findPedestrianStartPointConfigInfo() ->Tessng.PedestrianPathStartPointConfigInfo : ...**
+参数: 
+[ in ] id: 人行横道红绿灯ID
+
+ **def findPedestrianStartPointConfigInfo(self, id: int) ->Tessng.PedestrianPathStartPointConfigInfo : ...**
 
 根据id获取行人发生点配置信息, id为行人发生点ID
 
- **def findPedestrianDecisionPointConfigInfo() ->Tessng.PedestrianDecisionPointConfigInfo  : ...**
+参数: 
+[ in ] id: 行人发生点ID
+
+ **def findPedestrianDecisionPointConfigInfo(self, id: int) ->Tessng.PedestrianDecisionPointConfigInfo  : ...**
 
 根据id获取行人决策点配置信息, id为行人决策点ID
+
+参数: 
+[ in ] id: 行人决策点ID
 
  **def linkCenterPoints(self, linkId: int, unit: Tess.UnitOfMeasure) -> typing.List: ...**
 
@@ -16928,8 +17009,6 @@ s_approach = netiface.createLink3DWithLaneWidth(lPoint, [3.5, 3.0, 3.0], linkNam
 
 ```
 
-
-
  **def createLink3DWithLanePoints(self, lCenterLineV3: typing.Sequence, lanesWithPoints: typing.Sequence, linkName: str=..., bAddToScene: bool=..., unit: Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
 创建指定车道断点的3D路段, 默认单位: 像素, 可通过unit参数设置单位
@@ -17012,6 +17091,7 @@ w_e_straight_connector = netiface.createConnector(w_approach.id(), e_outgoing.id
 [ in ] bAddToScene: 是否加入到场景, 默认为True  
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 返回: 连接段对象  
+
 注: 如传入米制参数, 请勿遗忘传入connName与bAddToScene参数。  
 
 ```python
@@ -17106,7 +17186,8 @@ vehiCompositionID = netiface.createVehicleComposition("动态创建车型组成"
 [ in ] linkName: 路段名, 默认为路段ID, 
 [ in ] bAddToScene: 是否加入路网, 默认True表示加入  
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
-返回: 路段对象  
+返回: 路段对象 
+
 注: 如传入米制参数, 请勿遗忘传入connName与bAddToScene参数。
 
 
@@ -17125,7 +17206,6 @@ vehiCompositionID = netiface.createVehicleComposition("动态创建车型组成"
 ```python
 arrowType = Online.GuideArrowType.StraightRight
 straitghtRightArrow = netiface.createGuidArrow(w_approach.lanes()[0], 4, 10, arrowType)
-
 ```
 
 **def createVehicleType(self, _vt: Tessng._VehicleType) -> bool: ...**
@@ -17133,7 +17213,6 @@ straitghtRightArrow = netiface.createGuidArrow(w_approach.lanes()[0], 4, 10, arr
 创建车型, 如果创建成功, 会将新创建的车辆类型存放到全局数据里供使用
 
 参数: 
-
 [ in ] vt: 车辆类型数据
 
 **def createDecisionPoint(self, pLink: Tessng.ILink, distance: float, name: str=..., unit: Tess.UnitOfMeasure) -> Tessng.IDecisionPoint: ...**
@@ -17141,7 +17220,6 @@ straitghtRightArrow = netiface.createGuidArrow(w_approach.lanes()[0], 4, 10, arr
 创建决策点, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] pLink: 决策点所在的路段  
 [ in ] distance: 决策点距离路段起点的距离, 默认单位: 像素  
 [ in ] name: 决策点的名称  
@@ -17156,16 +17234,12 @@ decisionPoint = netiface.createDecisionPoint(link3, 30, Tess.UnitOfMeasure.Metri
 
 ```
 
-
-
  **def createDeciRouting(self, pDeciPoint: Tessng.IDecisionPoint, lILink: typing.Sequence) -> Tessng.IRouting: ...**
 
 创建决策路径
 
 参数: 
-
 [ in ] pDeciPoint: 决策点
-
 [ in ] lILink: 决策路径所包含的路段集合
 
 举例: 
@@ -17286,7 +17360,6 @@ detector.setToTime(60)
 创建路段到连接段的行程时间检测器, 起点在路段上, 终点均在连接段的“车道连接”上; 默认单位: 像素, 可通过unit参数设置单位  
 
 参数: 
-
 [ in ] pStartLink: 检测器起点所在路段对象  
 [ in ] pEndLaneConnector: 检测器终点所在“车道连接”对象  
 [ in ] dist1: 检测器起点距所在路段起始点距离, 默认单位: 像素  
@@ -17311,7 +17384,6 @@ detector.setToTime(60)
 创建连接段到连接段的行程时间检测器, , 起点和终点均在连接段的“车道连接”上; 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] pStartLaneConnector: 检测器起点所在“车道连接”对象  
 [ in ] pEndLaneConnector: 检测器终点所在“车道连接”对象  
 [ in ] dist1: 检测器起点距所在"车道连接”起始点距离, 默认单位: 像素  
@@ -17326,7 +17398,6 @@ detector.setToTime(60)
 创建相位, 参数 signa1plan: 信控方案, name: 相位名称, 1Co1or: 相位灯色序列, 新建相位排在已有相位序列的最后
 
 参数: 
-
 [ in ] pSignalPlan: 信号方案  
 [ in ] name: 相位名称  
 [ in ] lColor: 相位灯色序列, 新建相位排在已有相位序列的最后  
@@ -17461,7 +17532,6 @@ def create_signal_control(netiface, w_approach, e_approach, n_approach, s_approa
 创建信号灯
 
 参数: 
-
 [ in ] pPhase: 相位对象  
 [ in ] name: 信号灯名称  
 [ in ] laneId: 信号灯所在车道ID, 或所在“车道连接”上游车道ID  
@@ -17486,9 +17556,7 @@ for index, laneObj in enumerate(lLaneObjects):
 创建信号灯
 
 参数: 
-
 [ in ] ISignalController: 信号控制机
-
 [ in ] pPhase: 相位对象  
 [ in ] name: 信号灯名称  
 [ in ] laneId: 信号灯所在车道ID, 或所在“车道连接”上游车道ID  
@@ -17521,15 +17589,10 @@ for index, laneObj in enumerate(lLaneObjects):
 
 参数: 
 [ in ] signalController: 信号控制器
-
 [ in ] name: 信控方案名称
-
 [ in ] cycleTime: 信控 方案周期, 秒
-
 [ in ] offset: 信控方案相位差  
-
 [ in ] startTime: 信控方案开始时间, 秒  
-
 [ in ] endTime: 信控方案结束时间, 秒    
 
 
@@ -17540,7 +17603,6 @@ for index, laneObj in enumerate(lLaneObjects):
 
 参数: 
 [ in ] signalPhaseId: 相位id
-
 [ in ] signalLamp: 信号灯对象
 
  **def addCrossWalkSignalPhaseToLamp(self, signalPhaseId: int, signalLamp: Tess.ISignalLamp) -> None: ...**
@@ -17549,7 +17611,6 @@ for index, laneObj in enumerate(lLaneObjects):
 
 参数: 
 [ in ] signalPhaseId: 相位id
-
 [ in ] signalLamp: 信号灯对象
 
  **def transferSignalPhase(self, pFromISignalPhase: Tess.ISignalPhase, pToISignalPhase: Tess.ISignalPhase, signalLamp: Tess.ISignalLamp) -> None: ...**
@@ -17558,9 +17619,7 @@ for index, laneObj in enumerate(lLaneObjects):
 
 参数: 
 [ in ] pFromISignalPhase: 原相位
-
 [ in ] pToISignalPhase: 新相位
-
 [ in ] signalLamp: 信号灯对象
 
  **def createBusLine(self, lLink: typing.Sequence) -> Tessng.IBusLine: ...**
@@ -17568,7 +17627,6 @@ for index, laneObj in enumerate(lLaneObjects):
 创建公交线路, lLink列表中相邻两路段可以是路网上相邻两路段, 也可以不相邻, 如果不相邻, TESSNG会在它们之间创建一条最短路径。如果lLink列表中相邻路段在路网上不相邻并且二者之间不存在最短路径, 则相邻的第二条路段及后续路段无效。
 
 参数: 
-
 [ in ] lLink, 公交线路经过的路段对象集
 
 返回: 公交线路对象
@@ -17583,15 +17641,15 @@ if busLine is not None:
 
 ```
 
-  **def createBusStation(self, pLane: Tessng.ILane, length: float, dist: float, name: str=..., unit: Tess.UnitOfMeasure) -> Tessng.IBusStation: ...**
+  **def createBusStation(self, pLane: Tessng.ILane, length: float, dist: float, name: str=..., unit: Tess.UnitOfMeasure=Tess.UnitOfMeasure.Default) -> Tessng.IBusStation: ...**
 
 创建公交站点, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] pLane: 车道  
 [ in ] length: 站点长度(默认单位: 像素)  
 [ in ] dist: 站点起始点距车道起点距离(默认单位: 像素)  
+[ in ] name: 站点名称  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
 返回: 公交站点对象  
 
@@ -17612,9 +17670,7 @@ if busLine is not None:
 将公交站点关联到公交线路上
 
 参数: 
-
 [ in ] pBusLine: 公交线路
-
 [ in ] pStation: 公交站点
 
 举例: 
@@ -17663,7 +17719,6 @@ def create_roadworkzone(netiface, upstreamLink, downstreamLink):
 创建事故区
 
 参数: 
-
 [ in ] param: 动态事故区信息, 数据类型在文件pyi的Online.DynaAccidentZoneParam中定义
 
 举例: 
@@ -17708,7 +17763,6 @@ accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
 创建限行区, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] param: 动态限行区信息, 数据类型在文件 Plugin/_datastruct.h中定义, python 构造限行区参数      Online.DynaLimitedZoneParam的案例如下: 
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
@@ -17717,21 +17771,13 @@ accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
 //例: 限行区使用, 距离、速度等单位为米制而非像素
 
 dynaLimitedZoneParam = Online.DynaLimitedZoneParam(); 
-
 dynaLimitedZoneParam.name = "限行区测试"; //名称
-
 dynaLimitedZoneParam.roadId = 1; //道路ID
-
 dynaLimitedZoneParam.location = 50; // 限行区位置
-
 dynaLimitedZoneParam.length = 100; // 限行区长度
-
 dynaLimitedZoneParam.limitSpeed = 40; // 限行区限速, KM/H
-
 dynaLimitedZoneParam.mlFromLaneNumber=[0]; // 限行车道序号, 本例限行右侧两车道
-
 dynaLimitedZoneParam.duration = 3600; // 限行持续时间
-
 gpTessInterface.netInterface().createLimitedZone(dynaLimitedZoneParam); 
 
 ```
@@ -17777,7 +17823,7 @@ def create_Reconstruction(netiface, upstream, downstream):
 
  **def reCalcPassagewayLength(reconstruction: Online.DynaReconstructionParam , unit: Tess.UnitOfMeasure) -> float: ...**
 
-重新计算保通开口长度, 默认单位: 像素, 可通过unit参数设置单位; 这个改完后如果仿真要生效是不是还得更新改扩建对象（调用updateReconstruction）
+重新计算保通开口长度, 可根据保通详细参数计算出保通开口长度, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
 [ in ] reconstruction: 改扩建对象, 数据类型在文件pyi 中定义: Online.DynaReconstructionParam , 具体参见createReconstruction  
@@ -17785,10 +17831,10 @@ def create_Reconstruction(netiface, upstream, downstream):
 
  **def createReduceSpeedArea(self, param: Online.DynaReduceSpeedAreaParam) -> Tessng.IReduceSpeedArea: ...**
 
-创建限速区  
-参数: 
+创建限速区 
 
-[in\] param: 限速区参数, 数据类型在文件 pyi的Online.DynaReduceSpeedAreaParam定义, 其属性有: 
+参数: 
+[ in ] param: 限速区参数, 数据类型在文件 pyi的Online.DynaReduceSpeedAreaParam定义, 其属性有: 
 
 name: 限速区名称
 location: 距起点距离, 默认单位: 像素
@@ -17834,6 +17880,8 @@ print(reduceSpeedArea)
  **def createTollLane(param: Online.TollStation.DynaTollLaneg) ->Tessng.ITollLane: ...**
 
 创建收费车道  
+
+参数: 
 [ in ]  param: 动态收费车道信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化  Online.TollStation.DynaTollLane的示例代码如下: 
 
 ```python
@@ -17866,6 +17914,7 @@ def create_toll_lane(netiface, link_id: int, location: float, length: float, lan
 
 创建停车区
 
+参数: 
 [ in ]  param: 动态停车区信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化
 
 Online.ParkingLot.DynaParkingRegion的示例代码如下: 
@@ -18037,6 +18086,8 @@ def create_parking(netiface, downstream):
  **def createTollDecisionPoint(pLink: Tessng.ILink, distance: float, name: str(optional)) ->Tessng.ITollDecisionPoint: ...**
 
 创建收费决策点  
+
+参数: 
 [ in ]  pLink: 收费决策点所在的路段  
 [ in ]  distance: 收费决策点距离路段起点的距离, 默认单位: 像素  
 [ in ]  pLink: 收费决策点的名称, 可选参数
@@ -18054,6 +18105,8 @@ def create_toll_decision_point(netiface, link_id: int, location: float, name: st
  **def createTollRouting(pDeciPoint: Tessng.ITollDecisionPoint, pITollLane: Tessng.ITollLane) ->Tessng.ITollRouting: ...**
 
 创建收费路径  
+
+参数: 
 [ in ] pDeciPoint: 收费决策点  
 [ in ] pITollLane: 收费车道  
 
@@ -18067,6 +18120,8 @@ def create_toll_routing(netiface, toll_deci_point, toll_lane):
  **def createParkingDecisionPoint(pLink: Tessng.ILink, distance: float, name: str(optional)) ->Tessng.IParkingDecisionPoint: ...**
 
 创建停车决策点  
+
+参数: 
 [ in ] pLink: 停车决策点所在的路tollDisInfoList段  
 [ in ] distance: 停车决策点距离路段起点的距离, 默认单位: 米  
 [ in ]  pLink: 停车决策点的名称, 可选参数  
@@ -18074,19 +18129,23 @@ def create_toll_routing(netiface, toll_deci_point, toll_lane):
  **def createParkingRouting(pDeciPoint: Tessng.IParkingDecisionPoint, pIParkingRegion: Tessng.IParkingRegion) ->Tessng.IParkingRouting: ...**
 
 创建停车路径  
+
+参数: 
 [ in ] pDeciPoint: 停车决策点  
 [ in ]  pIParkingRegion: 停车区  
 
-
-
  **def createTollParkingTimeDis(param: Online.TollStation.DynaTollParkingTimeDis) ->Online.TollStation.DynaTollParkingTimeDis: ...**
 
-创建收费站停车时距分布  
+创建收费站停车时距分布
+
+参数: 
 [ in ]  param: 停车时距分布参数
 
  **def createParkingTimeDis(param: Online.TollStation.DynaTollParkingTimeDis) ->Online.TollStation.DynaTollParkingTimeDis: ...**
 
 更新收费站停车时距分布  
+
+参数: 
 [ in ]  param: 停车时距分布参数
 
 ```python
@@ -18107,6 +18166,8 @@ netiface.createParkingTimeDis(new_ptd)
  **def createJunction (startPoint: QPointF, endPoint: QPointF, name: str) ->Tessng.IJunction: ...**
 
 创建节点  
+
+参数: 
 [ in ] startPoint: 左上角起始点坐标  
 [ in ] endPoint: 右下角起始点坐标  
 [ in ] name: 节点名字  
@@ -18182,7 +18243,8 @@ def createJunctionNode(netiface):
  **def createPedestrianComposition(name: str, mpCompositionRatio: Type.Dict<int, float>) -> int : ...**
 
 创建行人组成  
-参数  
+
+参数: 
 [ in ] name: 组成名称  
 [ in ] mpCompositionRatio: 组成明细, key为行人类型编码, value为行人类型占比 , 
 [ out ] 返回: 组成ID, 如果创建失败返回-1
@@ -18197,7 +18259,8 @@ pedComposition = netiface.createPedestrianComposition("自定义1", compostion)
  **def addLayerInfo(name: str, height: float, visible: bool, locked: bool) -> Online.Pedestrian.LayerInfo : ...**
 
 新增层级, 返回新增的层级信息  
-参数  
+
+参数: 
 [ in ] name: 层级名称  
 [ in ] height: 层级高度  
 [ in ] visible: 是否可见  
@@ -18212,7 +18275,8 @@ pedLayer = netiface.addLayerInfo("行人图层", 0.0, True, False)
  **def createPedestrianRectRegion(startPoint: QPointF, endPoint: QPointF) -> Tessng.IPedestrianRectRegion : ...**
 
 创建矩形行人面域   
-参数  
+
+参数: 
 [ in ] startPoint: 左上角  
 [ in ] endPoint: 右下角  
 [ out ] 矩形行人面域对象  
@@ -18227,7 +18291,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianEllipseRegion(startPoint: QPointF, endPoint: QPointF) -> Tessng.IPedestrianEllipseRegion : ...** 
 
 创建椭圆行人面域  
-参数  
+
+参数: 
 [ in ] startPoint: 左上角  
 [ in ] endPoint: 右下角  
 [ out ] 椭圆行人面域对象
@@ -18235,7 +18300,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianTriangleRegion(startPoint: QPointF, endPoint: QPointF) -> Tessng.IPedestrianTriangleRegion : ...**
 
 创建三角形行人面域  
-参数  
+
+参数: 
 [ in ] startPoint: 左上角  
 [ in ] endPoint: 右下角  
 [ out ] 三角形行人面域对象  
@@ -18244,7 +18310,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianFanShapeRegion(startPoint: QPointF, endPoint: QPointF) -> Tessng.IPedestrianFanShapeRegion : ...**
 
 创建扇形行人面域  
-参数  
+
+参数: 
 [ in ] startPoint: 左上角  
 [ in ] endPoint: 右下角  
 [ out ] 扇形行人面域对象  
@@ -18253,7 +18320,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianPolygonRegion(polygon: QPolygonF) -> Tessng.IPedestrianPolygonRegion : ...**
 
 创建多边形行人面域  
-参数  
+
+参数: 
 [ in ] polygon: 多边形顶点  
 [ out ]多边形行人面域对象
 
@@ -18261,7 +18329,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianSideWalkRegion(vertexs: Type.List<QPointF>) -> Tessng.IPedestrianSideWalkRegion : ...**
 
 创建人行道  
-参数  
+
+参数: 
 [ in ] vertexs: 顶点列表  
 [ out ] 人行道对象
 
@@ -18269,7 +18338,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianCrossWalkRegion(startPoint: QPointF, endPoint: QPointF) -> Tessng.IPedestrianCrossWalkRegion: ...**
 
 创建人行横道  
-参数  
+
+参数: 
 [ in ] startPoint: 左上角  
 [ in ] endPoint: 右下角  
 [ out ] 人行横道对象
@@ -18278,7 +18348,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianStairRegion(startPoint: QPointF, endPoint: QPointF) -> Tessng.IPedestrianStairRegion: ...**
 
 创建人行横道  
-参数  
+
+参数: 
 [ in ] startPoint: 起点  
 [ in ] endPoint: 终点  
 [ out ] 楼梯对象
@@ -18287,7 +18358,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianPathStartPoint(scenePos: QPointF) -> Tessng.IPedestrianPathPoint: ...**
 
 创建行人发生点  
-参数   
+
+参数: 
 [ in ] scenePos: 场景坐标, 
 [ out ] 行人发生点对象
 
@@ -18295,7 +18367,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianPathEndPoint(scenePos: QPointF) -> Tessng.IPedestrianPathPoint: ...**
 
 创建行人结束点  
-参数  
+
+参数: 
 [ in ] scenePos: 场景坐标  
 [ out ] 行人结束点对象
 
@@ -18303,7 +18376,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianDecisionPoint(scenePos: QPointF) -> Tessng.IPedestrianPathPoint: ...**
 
 创建行人决策点  
-参数  
+
+参数: 
 [ in ] scenePos: 场景坐标  
 [ out ] 创建行人决策点  
 
@@ -18311,7 +18385,8 @@ netiface.removePedestrianRectRegion(leftupArea1)
  **def createPedestrianPath(pStartPoint: Tessng.IPedestrianPathPoint, pEndPoint: Tessng.IPedestrianPathPoint, middlePoints: Type.List< QPointF >) -> Tessng.IPedestrianPath: ...**
 
 创建行人路径（或行人局部路径）  
-参数  
+
+参数: 
 [ in ] pStartPoint: 行人发生点（或行人决策点）  
 [ in ] pEndPoint: 行人结束点  
 [ in ] middlePoints: 一组中间必经点  
@@ -18320,8 +18395,9 @@ netiface.removePedestrianRectRegion(leftupArea1)
 
  **def createCrossWalkSignalLamp(psignalController: Tessng.ISignalController, name: str, crosswalkid: str, scenePos: QPointF, isPositive: bool) -> Tessng.ICrosswalkSignalLamp: ...**
 
-创建人行横道信号灯  
-参数  
+创建人行横道信号灯   
+
+参数: 
 [ in ]  psignalController: 信号机  
 [ in ] name: 名称  
 [ in ] crosswalkId: 人行横道ID  
@@ -18335,7 +18411,8 @@ signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南
 
  **def updateLink(self, link: Tessng._Link, lLane: typing.Sequence=..., lPoint: typing.Sequence=..., unit: Tess.UnitOfMeasure) -> Tessng.ILink: ...**
 
-更新路段, 更新后返回路段对象  
+更新路段, 更新后返回路段对象 
+
 参数: 
 [ in ] link: 更新的路段数据  
 [ in ] lLink: 更新的车道列表数据  
@@ -18351,7 +18428,6 @@ signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南
 更新连接段, 更新后返回连接段对象
 
 参数: 
-
 [ in ] connector: 连接段数据
 
 返回: 更新后的连接段对象
@@ -18361,9 +18437,7 @@ signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南
 更新决策点及其各路径不同时间段流量比
 
 参数: 
-
 [ in ] deciPoint: 决策点数据
-
 [ in ] lFlowRatio: 各路径按时间段流量比的数据集合
 
 返回: 更新后的决策点
@@ -18412,7 +18486,6 @@ updated_decision_point = netiface.updateDecipointPoint(
 更新施工区, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] pIRoadWorkZone: 将要移除的施工区对象
 
  **def updateLimitedZone(param: Online.DynaLimitedZoneParam) -> boolen: ...**
@@ -18420,7 +18493,6 @@ updated_decision_point = netiface.updateDecipointPoint(
 更新限行区
 
 参数: 
-
 [ in ] param: 动态限行区信息, 数据类型在文件 Plugin/_datastruct.h中定义, python 构造限行区参数   Online.DynaLimitedZoneParam的案例见createLimitedZone
 
  **def updateReconStruction(param: Online.DynaReconstructionParam, unit: Tess.UnitOfMeasure) -> None: ...**
@@ -18434,46 +18506,58 @@ updated_decision_point = netiface.updateDecipointPoint(
  **def removeReconstruction(ref_pIReconstruction: Online.DynaReconstructionParam) -> None: ...**
 
 移除改扩建
+
 参数: 
 [ in ] pIReconstruction: 将要移除的改扩建对象引用, python构造该数据类型的示例代码见 createReconstruction
 
  **def updateReduceSpeedArea(self, param: Online.DynaReduceSpeedAreaParam) -> bool: ...**
 
 更新限速区  
-参数: 
 
-[in\] param: 限速区参数, 数据类型在文件 pyi的Online.DynaReduceSpeedAreaParam定义, 
+参数: 
+[ in ] param: 限速区参数, 数据类型在文件 pyi的Online.DynaReduceSpeedAreaParam定义, 
 
  **def updateTollLane(param: Online.TollStation.DynaTollLane) ->Tessng.ITollLane: ...**
 
 更新收费车道  
 
-[ in ]  param: : 动态收费车道信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化Online.ParkingLot.DynaParkingRegion的示例见createTollLane: 
+参数: 
+[ in ]  param: 动态收费车道信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化Online.ParkingLot.DynaParkingRegion的示例见createTollLane: 
 
  **def updateParkingRegion(param: Online.ParkingLot.DynaParkingRegion) ->Tessng.IParkingRegion: ...**
 
 更新停车区  
+
+参数: 
 [ in ]  param: 动态停车区信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化  Online.ParkingLot.DynaParkingRegion的示例见createTollLane: 
 
  **def updateTollParkingTimeDis(param: Online.TollStation.DynaTollParkingTimeDis) ->Online.TollStation.DynaTollParkingTimeDis: ...**
 
 更新收费站停车时距分布  
+
+参数: 
 [ in ]  param: 停车时距分布参数
 
  **def updateParkingTimeDis (param: Online.ParkingLot.DynaParkingTimeDis) ->Online.ParkingLot.DynaParkingTimeDis: ...**
 
 更新停车场停车时距分布  
+
+参数: 
 [ in ]  param: 停车时距分布参数
 
  **def updateJunctionName(id: int, name: str) ->None: ...**
 
 更新节点名字  
+
+参数: 
 [ in ] id: 节点ID  
 [ in ] name: 节点名字
 
  **def updateFlowTimeInterval(timeId: int, startTime: int, endTime: int) ->Online.Junction.FlowTimeInterval: ...**
 
 更新时间段(节点的流量时间段)  
+
+参数: 
 [ in ]timeId: 时间段ID  
 [ in ]startTime: 开始时间(秒)  
 [ in ]endTime: 结束时间(秒)
@@ -18481,6 +18565,8 @@ updated_decision_point = netiface.updateDecipointPoint(
  **def updateFlow(self, timeId: int, junctionId: int, turningId: int, inputFlowValue: int) ->bool: ...**
 
 更新节点流向流量  
+
+参数: 
 [ in ]timeId: 时间段ID  
 [ in ]junctionId: 节点ID  
 [ in ]turningId: 转向ID  
@@ -18489,6 +18575,8 @@ updated_decision_point = netiface.updateDecipointPoint(
  **def updateFlowAlgorithmParams(self, theta: float, bpra: float, bprb: float, maxIterateNum: int, useNewPath: bool) ->bool: ...**
 
 更新流量算法参数  
+
+参数: 
 [ in ]theta: 参数θ(0.01-1)  
 [ in ]BPR路阻参数A(0.05-0.5)   
 [ in ]bprb: BPR路阻参数B(1-10)  
@@ -18498,6 +18586,8 @@ updated_decision_point = netiface.updateDecipointPoint(
  **def updatePathBuildParams(self, bDeciPointPosFlag: bool, bLaneConnectorFlag: bool, InputLineMinPathNum: long(defulat=3)) ->None: ...**
 
 更新静态路径构建参数  
+
+参数: 
 [ in ]  bDeciPointPosFlag: 是否考虑决策点位置  
 [ in ]  bLaneConnectorFlag: 是否考虑车道连接  
 [ in ]  InputLineMinPathNum: 最小路径数量(默认3)  
@@ -18505,7 +18595,8 @@ updated_decision_point = netiface.updateDecipointPoint(
  **def updatePedestrianComposition(compositionId: int, mpCompositionRatio: Type.Dict<int, float>) -> bool : ...**
 
 创建行人组成  
-参数  
+
+参数: 
 [ in ] compositionId: 组成Id  
 [ in ] mpCompositionRatio: 组成明细, key为行人类型编码, value为行人类型占比 , 
 [ out ] 返回: True表示更新成功, False表示更新失败
@@ -18513,7 +18604,8 @@ updated_decision_point = netiface.updateDecipointPoint(
  **def updateLayerInfo(layerId: int, name: str, height: float, visible: bool, locked: bool) -> bool: ...**
 
 更新层级信息  
-参数  
+
+参数: 
 [ in ] id: 层级ID  
 [ in ] name: 层级名称  
 [ in ] height: 层级高度  
@@ -18524,22 +18616,23 @@ updated_decision_point = netiface.updateDecipointPoint(
  **def updatePedestrianStartPointConfigInfo(info: Online.Pedestrian.PedestrianPathStartPointConfigInfo) -> bool : ...**
 
 更新行人发生点配置信息  
-参数  
+
+参数: 
 [ in ] info: 行人发生点配置信息  
 [ out ] 返回: 是否更新成功  
 
  **def updatePedestrianDecisionPointConfigInfo(info: Online.Pedestrian.PedestrianDecisionPointConfigInfo ) -> bool : ...**
 
 更新行人决策点配置信息  
-参数  
+
+参数: 
 [ in ] info: 行人决策点配置信息  
 [ out ] 返回: 是否更新成功  
 
-
-
  **def removeLink(self, pLink: Tessng.ILink) -> None: ...**
 
-移除路段, 从场景中移除pLink, 但不从文件中删除, 保存路网后才会从路网文件中删除  
+移除路段, 从场景中移除pLink, 但不从文件中删除, 保存路网后才会从路网文件中删除 
+
 参数: 
 [ in ] pLink: 将要移除的路段
 
@@ -18548,7 +18641,6 @@ updated_decision_point = netiface.updateDecipointPoint(
 移除连接段, 从场景中移除pLink, 但不从文件中删除, 保存路网后才会从路网文件中删除
 
 参数: 
-
 [ in ] pConnector: 连接段对象
 
  **def removeGuidArrow(self, pArrow: Online.GuideArrowType) -> None: ...**
@@ -18564,7 +18656,6 @@ updated_decision_point = netiface.updateDecipointPoint(
 移除发车点
 
 参数: 
-
 [ in ] pDispPoint: 发车点对象
 
  **def removeVehicleComposition(self, vehiCompId: int) -> bool: ...**
@@ -18572,7 +18663,6 @@ updated_decision_point = netiface.updateDecipointPoint(
 移除车型组成
 
 参数: 
-
 [ in ] vehiCompId: 车型组成ID
 
  **def removeDeciRouting(self, pDeciPoint: Tessng.IDecisionPoint, pRouting: Tessng.IRouting) -> bool: ...**
@@ -18580,9 +18670,7 @@ updated_decision_point = netiface.updateDecipointPoint(
 删除决策路径
 
 参数: 
-
 [ in ] pDeciPoint: 决策点
-
 [ in ] pRouting: 将要删除的路径
 
 举例: 
@@ -18599,7 +18687,6 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
 移除车辆信息采集器
 
 参数: 
-
 [ in ] pCollector: 车辆信息采集器
 
  **def removeSignalPhase(self, pPlan: Tessng.ISignalPlan, phaseId: int) -> None: ...**
@@ -18607,9 +18694,7 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
 移除已有相位, 相位移除后, 原相位序列自动重排, 
 
 参数: 
-
 [ in ] pPlan: 信控方案
-
 [ in ] phaseId: 将要移除的相位ID
 
  **def removeSignalPhaseFromLamp(self, signalPhaseId: int, signalLamp: Tess.ISignalLamp) -> None: ...**
@@ -18621,7 +18706,6 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
 移除公交线路
 
 参数: 
-
 [ in ] pBusLine: 将要移除的公交线路对象
 
  **def removeBusStation(self, pStation: Tessng.IBusStation) -> bool: ...**
@@ -18629,7 +18713,6 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
 移除公交站点
 
 参数: 
-
 [ in ] pStation: 公交站点对象
 
  **def removeBusStationFromLine(self, pBusLine: Tessng.IBusLine, pStation: Tessng.IBusStation) -> bool: ...**
@@ -18637,9 +18720,7 @@ if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)):
 将公交站点与公交线路的关联关系解除
 
 参数: 
-
 [ in ] pBusLine: 公交线路
-
 [ in ] pStation: 公交站点
 
 ```python
@@ -18673,7 +18754,6 @@ netiface.removeBusStationFromLine(busline, busstation2)
 移除施工区
 
 参数: 
-
 [ in ] pIRoadWorkZone: 将要移除的施工区对象
 
  **def removeLimitedZone(pILimitedZone: Tessng.ILimitedZone) -> boolen: ...**
@@ -18681,12 +18761,12 @@ netiface.removeBusStationFromLine(busline, busstation2)
 移除限行区 Tessng.ILimitedZone 还是 Online.ILimitedZone
 
 参数: 
-
 [ in ] pILimitedZone: 将要移除的限行区对象, 数据类型在文件 Plugin/_datastruct.h中定义, python 构造限行区参数 Online.DynaLimitedZoneParam的案例见createLimitedZone
 
  **def removeReduceSpeedArea(pIReduceSpeedArea: Tessng.IReduceSpeedArea) ->None: ...**
 
 移除限速区
+
 参数: 
 [ in ] pIReduceSpeedArea: 限速区对象
 
@@ -18694,178 +18774,226 @@ netiface.removeBusStationFromLine(busline, busstation2)
 
 移除收费车道
 
+参数: 
+[ in ] pITollLane: 收费车道对象
 
  **def removeTollDecisionPoint(pITollDecisionPoint: Tessng.ITollDecisionPoint) ->None: ...**
 
 移除收费决策点
 
+参数: 
+[ in ] pITollDecisionPoint: 收费决策点对象
 
  **def removeParkingRegion(pIParkingRegion: Tessng.IParkingRegion) ->None: ...**
 
 移除停车区
 
+参数: 
+[ in ] pIParkingRegion: 停车区对象
 
  **def removeParkingDecisionPoint(pIParkingDecisionPoint: Tessng.IParkingDecisionPoint) ->None: ...**
 
 移除收费决策点
 
+参数: 
+[ in ] pIParkingDecisionPoint: 收费决策点对象
 
  **def removeTollRouting(pITollRouting: Tessng.ITollRouting) ->None: ...**
 
 移除收费路径
 
+参数: 
+[ in ] pITollRouting: 收费路径对象
 
  **def removeParkingRouting(pIParkingRouting: Tessng.IParkingRouting) ->None: ...**
 
 移除停车路径
 
+参数: 
+[ in ] pIParkingRouting: 停车路径对象
+
  **def removeTollLaneById(id: int) ->None: ...**
 
 通过ID移除收费车道
+
+参数: 
+[ in ] id: 收费车道ID
 
  **def removeTollDecisionPointById(id: int) ->None: ...**
 
 通过ID移除收费决策点
 
+参数: 
+[ in ] id: 收费决策点ID
+
  **def removeParkingRegionById(id: int) ->None: ...**
 
 通过ID移除停车区
+
+参数: 
+[ in ] id: 停车区ID
 
  **def removeParkingDecisionPointById(id: int) ->None: ...**
 
 通过ID移除停车决策点
 
+参数: 
+[ in ] id: 停车决策点ID
+
  **def removeTollRoutingById(id: int) ->None: ...**
 
 通过ID移除收费路径
+
+参数: 
+[ in ] id: 收费路径ID
 
  **def removeParkingRoutingById(id: int) ->None: ...**
 
 通过ID移除停车路径
 
+参数: 
+[ in ] id: 停车路径ID
+
  **def removeTollParkingTimeDis(id: int) ->None: ...**
 
 移除收费站停车时距分布  
+
+参数: 
 [ in ]  id : 停车时距分布参数的Id
 
  **def removeParkingTimeDis(id: int) ->None: ...**
 
 移除停车场停车时距分布  
-[ in ]  param: 停车时距分布ID
+
+参数: 
+[ in ]  id : 停车时距分布ID
 
  **def removeJunction(id: int) ->None: ...**
 
 删除节点  
+
+参数: 
 [ in ] id: 节点ID
 
  **def deleteFlowTimeInterval(timeId: int) ->bool: ...**
 
 删除时间段(节点的流量时间段)  
-[ in ]timeId: 时间段ID
+
+参数: 
+[ in ] timeId: 时间段ID
 
  **def removePedestrianComposition(compositionId: int) -> bool : ...**
 
 移除行人组成  
-参数  
+
+参数: 
 [ in ] compositionId: 组成Id  
 [ out ] 返回: True表示成功, False表示失败
 
  **def removeLayerInfo(layerId: int) -> None : ...**
 
-删除某个层级, 会删除层级当中的所有元素  
-参数  
+删除某个层级, 会删除层级当中的所有元素 
+
+参数: 
 [ in ] layerId: 层级Id
 
  **def removePedestrianEllipseRegion(pIPedestrianEllipseRegion: Tessng.IPedestrianEllipseRegion) -> None : ...**
 
 删除椭圆行人面域  
-参数  
+
+参数: 
 [ in ] pIPedestrianEllipseRegion: 椭圆行人面域对象
 
  **def removePedestrianRectRegion(pIPedestrianRectRegion: Tessng.IPedestrianRectRegion) -> None : ...** 
 
 删除矩形行人面域  
-参数  
+
+参数: 
 [ in ] pIPedestrianRectRegion: 矩形行人面域对象
 
  **def removePedestrianTriangleRegion(pIPedestrianTriangleRegion: Tessng.IPedestrianTriangleRegion) -> None : ...**
 
 删除三角形行人面域  
-参数  
+
+参数: 
 [ in ] pIPedestrianEllipseRegion: 三角形行人面域对象  
 
  **def removePedestrianFanShapeRegion(pIPedestrianTriangleRegion: Tessng.IPedestrianTriangleRegion) -> None : ...**  
 
 删除扇形行人面域  
-参数  
+
+参数: 
 [ in ] IPedestrianTriangleRegion: 扇形行人面域对象
 
  **def removePedestrianPolygonRegion(pIPedestrianPolygonRegion: Tessng.IPedestrianPolygonRegion) -> None : ...**
 
 删除多边形行人面域  
-参数  
+
+参数: 
 [ in ] pIPedestrianPolygonRegion: 多边形行人面域对象
 
  **def removePedestrianSideWalkRegion(pIPedestrianSideWalkRegion: Tessng.IPedestrianSideWalkRegion) -> None : ...**
 
 删除人行道  
-参数  
+
+参数: 
 [ in ]  pIPedestrianSideWalkRegion: 人行道对象
 
  **def removePedestrianStairRegion(pIPedestrianStairRegion: Tessng.IPedestrianStairRegion) -> None : ...**
 
 删除楼梯  
-参数   
+
+参数: 
 [ in ] pIPedestrianStairRegion: 楼梯对象  
 
  **def removePedestrianPathStartPoint(pIPedestrianPathStartPoint: Tessng.IPedestrianPathPoint) -> None : ...**
 
-删除行人发生点  
-参数  
+删除行人发生点 
+
+参数: 
 [ in ] pIPedestrianPathStartPoint: 行人发生点对象
 
  **def removePedestrianPathEndPoint(pIPedestrianPathEndPoint: Tessng.IPedestrianPathPoint) -> None : ...**
 
-删除行人结束点  
-参数  
+删除行人结束点 
+
+参数: 
 [ in ] pIPedestrianPathStartPoint: 删除行人结束点
 
  **def removePedestrianDecisionPoint(pIPedestrianDecisionPoint: Tessng.IPedestrianPathPoint) -> None : ...**
 
-删除行人决策点  
-参数  
+删除行人决策点 
+
+参数: 
 [ in ] pIPedestrianPathStartPoint: 行人决策点对象 
 
  **def removePedestrianPath(pIPedestrianPath: Tessng.IPedestrianPath) -> None : ...**
 
-删除行人路径  
-参数  
+删除行人路径 
+
+参数: 
 [ in ] pIPedestrianPath: 行人路径对象
 
  **def removeCrossWalkSignalLamp(pICrosswalkSignalLamp: Tessng.ICrosswalkSignalLamp) -> None : ...**
 
-删除人行横道信号灯  
-参数  
+删除人行横道信号灯 
+
+参数: 
 [ in ]  pICrosswalkSignalLamp: 人行横道信号灯对象
 
  **def removePedestrianCrossWalkRegion(pIPedestrianCrossWalkRegion: Tessng.IPedestrianCrossWalkRegion) -> None : ...**
 
-删除人行横道  
-参数  
+删除人行横道 
+
+参数: 
 [ in ] pIPedestrianCrossWalkRegion: 人行横道对象
-
-
-
-
 
  **def createEmptyNetFile(self, filePath: str, dbver: int=...) -> bool: ...**
 
 创建空白路网
 
 参数: 
-
 [ in ] filePath: 空白路网全路径名
-
 [ in ] dbver: : 数据库版本
 
  **def initSequence(self, schemaName: str=...) -> bool: ...**
@@ -18873,7 +19001,6 @@ netiface.removeBusStationFromLine(busline, busstation2)
 初始化数据库序列, 对保存路网的专业数据库序列进行初始化, 目前支持PostgreSql
 
 参数: 
-
 [ in ] schemaName: 数据库的schema名称
 
  **def buildNetGrid(self, width: float=..., unit: Tess.UnitOfMeasure) -> None: ...**
@@ -18891,9 +19018,6 @@ netiface = iface.netInterface()
 netiface.buildNetGrid(10, UnitOfMeasure.Metric)
 ```
 
-
-
-
  **def findSectionOn1Cell(self, point: PySide2.QtCore.QPointF, unit: Tess.UnitOfMeasure) -> typing.List: ...**
 
 根据point查询所在单元格所有Section, 默认单位: 像素, 可通过unit参数设置单位
@@ -18908,7 +19032,6 @@ netiface.buildNetGrid(10, UnitOfMeasure.Metric)
 根据point查询最近4个单元格所有经过的ISection, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] point: 路网场景中的一个点  
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
 返回: ISection列表
@@ -18918,7 +19041,6 @@ netiface.buildNetGrid(10, UnitOfMeasure.Metric)
 根据point查询最近9个单元格所有经过的ISection, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] point: 路网场景中的一个点  
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
 返回: ISection列表  
@@ -18928,7 +19050,6 @@ netiface.buildNetGrid(10, UnitOfMeasure.Metric)
 根据point对lSection列表中每一个Section所有LaneObject求最短距离, 返回Location列表, 列表按最短距离排序, 从小到大, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] point: 路网场景中的一个点  
 [ in ] lSection: section列表  
 [ in ] referDistance: LaneObject上与point最近的点到LaneObject起点距离, 默认单位: 像素, 是大约数, 只为提高计算效率, 默认值为0  
@@ -18981,7 +19102,6 @@ point周围若干个单元格里查询LaneObject, 默认单位: 像素, 可通�
 根据路网元素名获取自增ID
 
 参数: 
-
 [ in ] name: 路网元素名。路网元素名的定义在文件plugin/_netitem.h中定义
 
 **def moveLinks(links: Type.List<Tessng.ILink>, offset: QPointF, unit: Tess.UnitOfMeasure) -> None: ...**
@@ -19008,8 +19128,6 @@ netiface.moveLinks([w_approach], QPointF(0, 12), UnitOfMeasure.Metric)
 
 
 
-------
-
 
 
 ### 4.2. SimuInterface
@@ -19029,7 +19147,6 @@ SimuInterface是TessInterface的子接口, 通过此接口可以启动、暂停�
 设置是否由现实时间确定仿真时间, 如果设为True, 每个仿真周期现实经历的时间作为仿真时间, 这样仿真时间与现实时间相吻合。
 
 参数: 
-
 [ in ] bByCpuTime: 是否由现实时间确定仿真时间
 
  **def startSimu(self) -> bool: ...**
@@ -19100,7 +19217,6 @@ simuiface.pauseSimu()
 设置是否记录车辆轨迹
 
 参数: 
-
 [ in ] bRecord: 是否记录车辆轨迹
 
  **def simuIntervalScheming(self) -> int: ...**
@@ -19114,7 +19230,6 @@ simuiface.pauseSimu()
 设置预期仿真时长
 
 参数: 
-
 [ in ] interval: 预期仿真时长, 默认单位: 秒
 
  **def simuAccuracy(self) -> int: ...**
@@ -19126,7 +19241,6 @@ simuiface.pauseSimu()
 设置仿真精度, 即每秒计算次数
 
 参数: 
-
 [ in ] accuracy: 每秒计算次数
 
  **def acceMultiples(self) -> int: ...**
@@ -19138,7 +19252,6 @@ simuiface.pauseSimu()
 设置加速倍数
 
 参数: 
-
 [ in ] multiples 加速倍数
 
  **def setThreadCount(self, count: int) -> None: ...**
@@ -19176,7 +19289,6 @@ simuiface.pauseSimu()
 在算力不足的情况下, 存在仿真计算每一个周期所需时间大于设置周期时间的情况, 造成延误。
 
 参数: 
-
 [ in ] batchNumber: 仿真批次
 
 返回值: 仿真到batchNumber批次时的总延误
@@ -19194,7 +19306,6 @@ simuiface.pauseSimu()
 根据车辆ID获取车辆对象
 
 参数: 
-
 [ in ] vehiId: 车辆ID
 
  **def allVehiStarted(self) -> typing.List: ...**
@@ -19207,7 +19318,8 @@ simuiface.pauseSimu()
 
  **def getVehisStatus(self, batchNumber: int, unit: Tess.UnitOfMeasure) -> typing.List<Tess.Online.VehicleStatus>: ...**
 
-获取所有正在运行的车辆状态, 包括轨迹  
+获取所有正在运行的车辆状态, 包括轨迹
+
 参数: 
 [ in ] batchNumber: 批次号  
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
@@ -19234,7 +19346,6 @@ vehis = simuiface.allVehiStarted()
 获取指定车辆运行轨迹, 默认单位: 像素, 可通过unit参数设置单位
 
 参数: 
-
 [ in ] vehiId: 车辆ID  
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
 返回: 车辆运行轨迹, 即Online.VehiclePosition列表  
@@ -19262,9 +19373,6 @@ simuiface = iface.simuInterface()
 lVehiInfo = simuiface.getVehisInfoCollected()
 
 ```
-
- 
-
  
 
  **def getVehisInfoAggregated(self) -> typing.List<Online.VehiInfoAggregated >: ...**
@@ -19287,7 +19395,7 @@ lVehiInfo = simuiface.getVehisInfoCollected()
 
  **def getVehisTravelDetected(self) -> typing.List<Online.VehiTravelDetected>: ...**
 
-​    获取当前行程时间检测器完成的行程时间检测信息
+获取当前行程时间检测器完成的行程时间检测信息
 
 返回: 行程时间检测器数据Online.VehiTravelDetected列表
 
@@ -19302,7 +19410,6 @@ lVehiInfo = simuiface.getVehisInfoCollected()
 动态创建车辆
 
 参数: 
-
 [ in ]: dynaVehi: 动态车辆信息
 
 举例: 
@@ -19345,9 +19452,7 @@ vehi_lane2 = simuiface.createGVehicle(dvp_lane2)
 动态创建公交车
 
 参数: 
-
 [ in ] pBusLine: 公交线路
-
 [ in ] startSimuDateTime: 发车时间, 单位毫秒
 
 举例: 
@@ -19357,41 +19462,6 @@ vehi_lane2 = simuiface.createGVehicle(dvp_lane2)
 bus = tessngIFace().simuInterface().createBus(busLine, 10 * 1000)
 
 ```
-
- 
-
- **def catchSnapshotAsString(self) -> str: ...**
-
-创建快照, 需要分布式组件支持
-
- **def loadSnapshotFromString(self, data: str) -> bool: ...**
-
-加载快照, 需要分布式组件支持
-
-参数: 
-
-[ in ] data: 快照数据
-
- **def stopVehicleDriving(self, pVehicle: Tessng.IVehicle) -> None: ...**
-
-停止指定车辆的仿真运行, 车辆被移出路网
-
-参数: 
-
-[ in ] pVehicle: 车辆对象
-
-举例: 
-
-```python
-# L5路段车辆行驶至离路段终点50m处被移出路网
-if vehi.roadId() == 5: 
-    vehi_currentDistToEnd = vehi.vehicleDriving().distToEndpoint(True)
-    if p2m(vehi_currentDistToEnd) < 50: 
-        simuiface.stopVehicleDriving(vehi)
-
-```
-
- 
 
  **def vehisInLink(self, linkId: int) -> typing.List<Tess.IVehicle>: ...**
 
@@ -19424,7 +19494,6 @@ class IVehicle():
 指定ID车道上的车辆
 
 参数: 
-
 [ in ] laneId: 车道ID
 
 返回: 车辆列表
@@ -19434,7 +19503,6 @@ class IVehicle():
 指定ID连接段上的车辆
 
 参数: 
-
 [ in ] connectorId: 连接段ID
 
 返回: 车辆列表
@@ -19444,11 +19512,8 @@ class IVehicle():
 指定连接段ID及上游车道ID和下游车道ID相关“车道连接”上的车辆
 
 参数: 
-
 [ in ] connectorId: 连接段ID
-
 [ in ] fromLaneId: 上游车道ID
-
 [ in ] toLaneId: 下游车道ID
 
 
@@ -19484,7 +19549,6 @@ class IVehicle():
 
 
 
-------
 
 ### 4.3.  GuiInterface
 
@@ -19494,7 +19558,8 @@ GuiInterface是TessInterface的子接口, 通过此接口可以访问控制TESSN
 
 获取TESS NG主窗体
 
-------
+
+
 
 
 
@@ -19549,7 +19614,6 @@ PyCustomerNet是TessPlugin子接口, 用户实现这个接口, TESSNG在加载�
 路网文件后缀, 由用户通过参数suffix设置
 
 参数: 
-
 [ out ] suffix: 路网文件后缀名
 
  **def customerTableDDL(self) -> typing.Dict: ...**
@@ -19590,8 +19654,6 @@ def afterLoadNet(self):
         self.createNet()
 
 ```
-
- 
 
  **def linkType(self, lType: typing.Sequence) -> bool: ...**
 
@@ -19808,7 +19870,9 @@ QGraphicsView的鼠标滚动事件后的行为, 用户可以根据自己的需�
 
 QGraphicsView滚动条移动事件后的行为, 用户可以根据自己的需要实现视窗滚动条移动后响应代码。
 
-------
+
+
+
 
 ### 5.2. PyCustomerSimulator
 
@@ -19966,7 +20030,7 @@ def initVehicle(self, vehi):
 
 [ in ] pBusLine: 公交线路
 
-[in、out] keepOn: 是否继续执行创建公交车辆, 如果KeepOn被赋值为False, TESSNG不再创建公交车辆
+[ in、out ] keepOn: 是否继续执行创建公交车辆, 如果KeepOn被赋值为False, TESSNG不再创建公交车辆
 
  **def shape(self, pIVehicle: Tessng.IVehicle, outShape: PySide2.QtGui.QPainterPath) -> bool: ...**
 
@@ -19976,7 +20040,7 @@ def initVehicle(self, vehi):
 
 [ in ] pIVehicle: 车辆对象
 
-[in、out] outShape: 车辆外形
+[ in、out ] outShape: 车辆外形
 
 返回: 如果返回False, 则忽略
 
@@ -19986,7 +20050,7 @@ def initVehicle(self, vehi):
 
 参数: 
 
-[in、out] 是否断续计算
+[ in、out ] 是否断续计算
 
 返回: 如果返回 True, 且keepOn等于False, TESS NG不再计算信号灯色。
 
@@ -20032,7 +20096,7 @@ def initVehicle(self, vehi):
 
 [ in ] pIVehicle: 车辆
 
-[in、out] bKeepOn: 是否继续, 如果设为False, 不再计算是否可以左自由变道
+[ in、out ] bKeepOn: 是否继续, 如果设为False, 不再计算是否可以左自由变道
 
  **def ref_beforeToRightFreely(self, pIVehicle: Tessng.IVehicle, ref_keepOn: Tessng.objbool) -> None: ...**
 
@@ -20040,7 +20104,7 @@ def initVehicle(self, vehi):
 用户通过此函数设置车辆是否在后续的仿真中屏蔽自由右变道的动机生成
 [ in ] pIVehicle: 车辆
 
-[in、out] bKeepOn: 是否继续, 如果设为False, 不再计算是否可以右自由变道
+[ in、out ] bKeepOn: 是否继续, 如果设为False, 不再计算是否可以右自由变道
 
 举例: 
 
@@ -20095,7 +20159,7 @@ def ref_beforeToRightFreely(self, pIVehicle, ref_keepOn):
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] inOutDesirSpeed: 重新设置前后的车辆期望速度, 默认单位: 像素/秒; 
+[ in、out ] inOutDesirSpeed: 重新设置前后的车辆期望速度, 默认单位: 像素/秒; 
 
 举例: 
 
@@ -20130,11 +20194,19 @@ def ref_reCalcdesirSpeed(self, vehi, ref_desirSpeed):
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] inOutDesirSpeed: 重新设置前后的车辆期望速度, 默认单位: 像素/秒; 
+[ in、out ] inOutDesirSpeed: 重新设置前后的车辆期望速度, 默认单位: 像素/秒; 
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
+举例：
 
+```python
+    def ref_reCalcdesirSpeed_unit(self, vehi, ref_inOutDesirSpeed, unit):
+        unit.value = UnitOfMeasure.Metric # 默认为米，也可以不填
+        print("test:",ref_inOutDesirSpeed.value,vehi.currSpeed(),vehi.currSpeed(UnitOfMeasure.Metric))
+        ref_inOutDesirSpeed.value = 20
+        return True
+```
 
 **def ref_reSetFollowingType(self, pIVehicle: Tessng.IVehicle, ref_outTypeValue: Tessng.objint) -> bool: ...**
 
@@ -20156,9 +20228,9 @@ def ref_reCalcdesirSpeed(self, vehi, ref_desirSpeed):
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] inOutSafeInterval: 安全时距, 单位: 秒; 
+[ in、out ] inOutSafeInterval: 安全时距, 单位: 秒; 
 
-[in、out] inOutSafeDistance: 安全间距: 单位: 像素; 
+[ in、out ] inOutSafeDistance: 安全间距: 单位: 像素; 
 
 举例: 
 
@@ -20177,21 +20249,28 @@ def ref_reSetFollowingParam(self, vehi, ref_inOutSi, ref_inOutSd):
 
 **def ref_reSetFollowingParam_unit(self, pIVehicle: Tessng.IVehicle, ref_inOutSafeInterval: Tessng.objreal, ref_inOutSafeDistance: Tessng.objreal, unit: UnitOfMeasure) -> bool: ...**
 
-重新设置跟驰模型的安全间距和安全时距（支持单位参数)。
+重新设置跟驰模型的安全间距和安全时距（支持单位参数）。
 
 参数: 
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] inOutSafeInterval: 安全时距, 单位: 秒; 
+[ in、out ] inOutSafeInterval: 安全时距, 单位: 秒; 
 
-[in、out] inOutSafeDistance: 安全间距: 单位: 像素; 
+[ in、out ] inOutSafeDistance: 安全间距: 单位: 像素; 
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
 返回: false: 忽略, true: 用inOutSafeInterval设置安全时距, 用inOutSafeDistance设置安全间距
 
+举例：
 
+```python
+    def ref_reSetFollowingParam_unit(self, vehi, ref_inOutSafeInterval, ref_inOutSafeDistance, unit):
+        unit.value = UnitOfMeasure.Metric
+        ref_inOutSafeDistance.value = 10
+        return True
+```
 
  **def reSetFollowingParams(self) -> typing.List: ...**
 
@@ -20207,9 +20286,9 @@ def ref_reSetFollowingParam(self, vehi, ref_inOutSi, ref_inOutSd):
 
 [ in ] pIVehicle: 车辆对象
 
-[in、out] distance: 当前车辆与前车的距离, 默认单位: 像素
+[ in、out ] distance: 当前车辆与前车的距离, 默认单位: 像素
 
-[in、out] s0: 安全跟车距离, 默认单位: 像素
+[ in、out ] s0: 安全跟车距离, 默认单位: 像素
 
 返回: False: 忽略, True: 用distance设置前车距, 用s0设置安全跟车距离
 
@@ -20221,13 +20300,22 @@ def ref_reSetFollowingParam(self, vehi, ref_inOutSi, ref_inOutSd):
 
 [ in ] pIVehicle: 车辆对象
 
-[in、out] distance: 当前车辆与前车的距离, 默认单位: 像素
+[ in、out ] distance: 当前车辆与前车的距离, 默认单位: 像素
 
-[in、out] s0: 安全跟车距离, 默认单位: 像素
+[ in、out ] s0: 安全跟车距离, 默认单位: 像素
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
 返回: False: 忽略, True: 用distance设置前车距, 用s0设置安全跟车距离
+
+举例：
+```python
+    def ref_reSetDistanceFront_unit(self, pIVehicle, ref_distance, ref_s0, ref_unit):
+        ref_unit.value = UnitOfMeasure.Metric
+        ref_distance.value = 10
+        ref_s0.value = 10
+        return True
+```
 
  **def ref_reSetSpeed(self, pIVehicle: Tessng.IVehicle, ref_inOutSpeed: Tessng.objreal) -> bool: ...**
 
@@ -20237,7 +20325,7 @@ def ref_reSetFollowingParam(self, vehi, ref_inOutSi, ref_inOutSd):
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] inOutSpeed: 重新计算前后的车速, 默认单位: 像素/秒。
+[ in、out ] inOutSpeed: 重新计算前后的车速, 默认单位: 像素/秒。
 
 返回: False: 忽略, True: 用inOutSpeed设置车辆当前速度
 
@@ -20274,13 +20362,19 @@ def ref_reSetSpeed(self, vehi, ref_inOutSpeed):
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] inOutSpeed: 重新计算前后的车速, 默认单位: 像素/秒。
-
-返回: False: 忽略, True: 用inOutSpeed设置车辆当前速度
+[ in、out ] inOutSpeed: 重新计算前后的车速, 默认单位: 像素/秒。
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
+返回: False: 忽略, True: 用inOutSpeed设置车辆当前速度
 
+举例：
+```python
+    def ref_reSetSpeed_unit(self, pIVehicle, ref_inOutSpeed,unit):
+        unit.value = UnitOfMeasure.Metric
+        ref_inOutSpeed.value = 20
+        return True
+```
 
  **def ref_beforeMergingToLane(self, pIVehicle: Tessng.IVehicle, ref_keepOn: Tessng.objbool) -> None: ...**
 
@@ -20318,9 +20412,6 @@ def afterOneStep(self):
     vehis = simuiface.allVehiStarted()
 
 ```
-
- 
-
  
 
  **def duringOneStep(self) -> None: ...**
@@ -20337,7 +20428,7 @@ def afterOneStep(self):
 
 [ in ] pRoad: 暂不使用
 
-[in、out] keepOn: 是否继续计算, False: TESSNG不再计算后续道路, True: 继续计算
+[ in、out ] keepOn: 是否继续计算, False: TESSNG不再计算后续道路, True: 继续计算
 
  **def candidateLaneConnectors(self, pIVehicle: Tessng.IVehicle, lInLC: typing.Sequence) -> typing.List: ...**
 
@@ -20385,7 +20476,7 @@ def afterOneStep(self):
 
 [ in ] laneNumber: , laneNumber: 车道序号, 最右侧编号为0
 
-[in、out] outSpeed: 限制速度, 公里/小时
+[ in、out ] outSpeed: 限制速度, 公里/小时
 
 返回: False: 忽略, True: 用outSpeed限制指定车道速度
 
@@ -20401,13 +20492,20 @@ def afterOneStep(self):
 
 [ in ] laneNumber: , laneNumber: 车道序号, 最右侧编号为0
 
-[in、out] outSpeed: 限制速度, 公里/小时
+[ in、out ] outSpeed: 限制速度, 公里/小时
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
 返回: False: 忽略, True: 用outSpeed限制指定车道速度
 
+举例：
 
+```python
+    def ref_calcSpeedLimitByLane_unit(self, pILink, laneNumber, ref_outSpeed, ref_unit):
+        ref_unit.value = UnitOfMeasure.Metric
+        ref_outSpeed.value = 10
+        return True
+```
 
  **def ref_calcMaxLimitedSpeed(self, pIVehicle: Tessng.IVehicle, ref_inOutLimitedSpeed: Tessng.objreal) -> bool: ...**
 
@@ -20419,7 +20517,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] inOutLimitedSpeed: 计算前后的最大限速, 默认单位: 像素/秒。
+[ in、out ] inOutLimitedSpeed: 计算前后的最大限速, 默认单位: 像素/秒。
 
 返回结果: 
 
@@ -20439,13 +20537,22 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] inOutLimitedSpeed: 计算前后的最大限速, 默认单位: 像素/秒。
+[ in、out ] inOutLimitedSpeed: 计算前后的最大限速, 默认单位: 像素/秒。
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
 返回结果: 
 
 ​    如果返回False则忽略, 否则取inOutLimitedSpeed为当前道路最大限速。
+
+举例：
+
+```python
+    def ref_calcMaxLimitedSpeed_unit(self, vehi, ref_inOutLimitedSpeed, ref_unit):
+        ref_unit.value = UnitOfMeasure.Metric
+        ref_inOutLimitedSpeed.value = 10
+        return True
+```
 
  **def ref_calcDistToEventObj(self, pIVehicle: Tessng.IVehicle, ref_dist: Tessng.objreal) -> bool: ...**
 
@@ -20455,7 +20562,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 [ in ] pIVehicle: 车辆
 
-[in、out] dist: 车辆中心点距事件对象距离, 默认单位: 像素
+[ in、out ] dist: 车辆中心点距事件对象距离, 默认单位: 像素
 
 返回: False: 忽略, True: 用dist计算安全变道距离等
 
@@ -20469,13 +20576,20 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 [ in ] pIVehicle: 车辆
 
-[in、out] dist: 车辆中心点距事件对象距离, 默认单位: 像素
+[ in、out ] dist: 车辆中心点距事件对象距离, 默认单位: 像素
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
 返回: False: 忽略, True: 用dist计算安全变道距离等
 
+举例：
 
+```python
+    def ref_calcDistToEventObj_unit(self, vehi, ref_dist, ref_unit):
+        ref_unit.value = UnitOfMeasure.Metric
+        ref_dist.value = 10
+        return True
+```
 
  **def ref_calcChangeLaneSafeDist(self, pIVehicle: Tessng.IVehicle, ref_dist: Tessng.objreal) -> bool: ...**
 
@@ -20485,9 +20599,34 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 [ in ] pIVehicle: 车辆, 计算该车辆安全变道距离。
 
-[in、out] dist: 安全变道距离, dist.value保存了TESSNG已算得的安全变道距离, 用户可以在此方法重新计算。
+[ in、out ] dist: 安全变道距离, dist.value保存了TESSNG已算得的安全变道距离, 用户可以在此方法重新计算。
 
- 返回: False 忽略, True TESS NG取dist.value作为安全变道距离**def afterStep(self, pIVehicle: Tessng.IVehicle) -> None: ...**
+ 返回: False 忽略, True TESS NG取dist.value作为安全变道距离
+
+ **def ref_calcChangeLaneSafeDist_unit(self, pIVehicle: Tessng.IVehicle, ref_dist: Tessng.objreal, unit: UnitOfMeasure) -> bool: ...**
+
+ 计算安全变道距离(支持单位参数)。
+
+ 参数: 
+
+[ in ] pIVehicle: 车辆, 计算该车辆安全变道距离。
+
+[ in、out ] dist: 安全变道距离, dist.value保存了TESSNG已算得的安全变道距离, 用户可以在此方法重新计算。
+
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+ 返回: False 忽略, True TESS NG取dist.value作为安全变道距离
+
+ 举例：
+
+```python
+    def ref_calcChangeLaneSafeDist_unit(self, vehi, ref_dist, ref_unit):
+        ref_unit.value = UnitOfMeasure.Metric
+        ref_dist.value = 10
+        return True
+```
+ 
+ **def afterStep(self, pIVehicle: Tessng.IVehicle) -> None: ...**
 
 完成车辆pIVehicle“一个批次计算”后的处理。可以在此获取车辆当前信息, 如当前道路、位置、方向角、速度、期望速度、前后左右车辆等。
 
@@ -20517,6 +20656,15 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 返回: False 忽略, True 则TES NG用调用此方法后所得ref_acce.value作为当前车辆的加速度。
 
+ 举例：
+
+```python
+    def ref_calcAcce_unit(self, pIVehicle, ref_acce, ref_unit):
+        ref_unit.value = UnitOfMeasure.Metric
+        ref_acce.value = 2.0
+        return True
+```
+
  **def isCalcVehicleVector3D(self) -> bool: ...**
 
 是否计算车辆3D属性, 如欧拉角等
@@ -20539,7 +20687,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
 
 [ in ] pIVehicle: 车辆对象
 
-[in、out] ref_inOutAcce: 重新计算前及计算后的加速度, 默认单位: 像素/秒^2
+[ in、out ] ref_inOutAcce: 重新计算前及计算后的加速度, 默认单位: 像素/秒^2
 
 返回结果: 
 
@@ -20569,7 +20717,7 @@ def ref_reSetAcce(self, vehi, inOutAcce):
 
 [ in ] pIVehicle: 车辆对象
 
-[in、out] ref_inOutAcce: 重新计算前及计算后的加速度, 默认单位: 像素/秒^2
+[ in、out ] ref_inOutAcce: 重新计算前及计算后的加速度, 默认单位: 像素/秒^2
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
 
@@ -20577,7 +20725,14 @@ def ref_reSetAcce(self, vehi, inOutAcce):
 
 如果返回False则忽略, 如果返回True, 则将inOutAcce作为当前加速度。
 
- 
+ 举例: 
+
+```python
+    def ref_reSetAcce_unit(self, vehi, ref_inOutAcce, ref_unit):
+        ref_unit.value = UnitOfMeasure.Metric
+        ref_inOutAcce.value = 2.0
+        return True
+```
 
  **def afterCalcTracingType(self, pIVehicle: Tessng.IVehicle) -> None: ...**
 
@@ -20651,7 +20806,7 @@ def ref_reSetAcce(self, vehi, inOutAcce):
 
 [ in ] painter: QT的QPainter对象
 
-[in、out] ref_inOutRotation: 角度, TESS NG在调用此方法时传入车辆的旋转角, 这个方法内部可以修改这个角度, 改变TESS NG计算结果
+[ in、out ] ref_inOutRotation: 角度, TESS NG在调用此方法时传入车辆的旋转角, 这个方法内部可以修改这个角度, 改变TESS NG计算结果
 
 返回: 如果True, TESS NG不再绘制, 否则TESS NG按原有规则绘制车辆。
 
@@ -20685,7 +20840,7 @@ def ref_reSetAcce(self, vehi, inOutAcce):
 
 [ in ] pIVehicle: 车辆对象; 
 
-[in、out] ref_outAngle: 重新计算前后角度, 北向0度顺时针, 一周360度
+[ in、out ] ref_outAngle: 重新计算前后角度, 北向0度顺时针, 一周360度
 
  **def isStopDriving(self, pIVehicle: Tessng.IVehicle) -> bool: ...**
 
