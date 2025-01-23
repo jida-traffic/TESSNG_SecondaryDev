@@ -20750,7 +20750,7 @@ def ref_reSetAcce(self, vehi, inOutAcce):
 
 [ in ] pIVehicle: 车辆
 
- **def travelOnChangingTrace(self, pIVehicle: Tessng.IVehicle) -> bool: ...**
+ **def boundingRect(self, pIVehicle: Tessng.IVehicle) -> bool: ...**
 
 获取车辆边界矩形; 矩形顶点坐标是以车辆中心点为原点的, 是车辆坐标系下的像素点
 
