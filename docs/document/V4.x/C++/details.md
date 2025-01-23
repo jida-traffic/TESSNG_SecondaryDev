@@ -1716,7 +1716,7 @@ if (pLink1) {
 
 获取结束时间, 单位: 秒
 
-Ø **QList< ISignalPhase* > phases()**
+Ø **QList< ISignalPhase\* > phases()**
 
 获取相位列表
 
@@ -1822,7 +1822,7 @@ if (pLink1) {
 
 获取信号灯ID
 
-Ø **void setSignalPhase(ISignalPhase* pPhase)**
+Ø **void setSignalPhase(ISignalPhase\* pPhase)**
 
 设置相位, 所设相位可以是其它信号灯组的相位
 
@@ -4697,7 +4697,7 @@ IRoadWorkZone* pWorkZone = gpTessInterface->netInterface()->createRoadWorkZone(w
 
 获取信号灯ID
 
-Ø **void setSignalPhase(ISignalPhase* pPhase)**
+Ø **void setSignalPhase(ISignalPhase\* pPhase)**
 
 设置相位, 所设相位可以是其它信号灯组的相位
 
@@ -5521,7 +5521,7 @@ if (tmpId == 1) {
 
 当前路径
 
-Ø **bool moveToLane(ILane* pLane, qreal dist, UnitOfMeasure unit)**
+Ø **bool moveToLane(ILane\* pLane, qreal dist, UnitOfMeasure unit)**
 
 将车辆移到另一条车道上, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -5554,7 +5554,7 @@ if (simuTime == 20 * 1000) {
 
 ```
 
-Ø **bool move(ILaneObject* pILaneObject, qreal dist, UnitOfMeasure unit)**
+Ø **bool move(ILaneObject\* pILaneObject, qreal dist, UnitOfMeasure unit)**
 
 移动车辆到另一条车道或车道连接上, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -5889,7 +5889,7 @@ ISignalPhase*  pSignalPhase7OfL12 =  gpTessInterface->netInterface()->findSignal
 
 [ in ] name: 路网元素名。路网元素名的定义在文件plugin/_netitem.h中定义
 
-Ø **ILink* createLink(QList< QPointF > lCenterPoint, int laneCount, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
+Ø **ILink\* createLink(QList< QPointF > lCenterPoint, int laneCount, QString linkName = QString(), bool bAddToScene = true, UnitOfMeasure unit = UnitOfMeasure: : Default)**
 
 创建路段, 默认单位: 像素, 可通过unit参数设置单位
 
