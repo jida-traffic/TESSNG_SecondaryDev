@@ -1,0 +1,22 @@
+{
+    "__models_actived": "roadWorkZoneModel, pedestrianModel, parkingGarage, junctionModel, tess3DModel, emissionsModel",
+    "__recentopen": [
+        {
+            "__netfilepath": "E:/twoD_model_demo_v34/Data/1信控交叉口机动车大小转弯.tess"
+        }
+    ],
+    "__recordsignallampstatus": false,
+    "__recordtrace": false,
+    "__showtoolbar_emission": true,
+    "__showtoolbar_file": true,
+    "__showtoolbar_netconfig": true,
+    "__showtoolbar_netedit": true,
+    "__showtoolbar_oper": true,
+    "__showtoolbar_operinfo": true,
+    "__showtoolbar_pedestrian": true,
+    "__showtoolbar_simu": true,
+    "__signallampstatusdirpath": "E:/V4secondaryDev/v36python_test/TESS_PythonAPI_EXAMPLE/SimuResult",
+    "__signallampstatusheader": "时间(ms),信号灯ID,当前灯色,倒计时(s),所属相位ID,所属信号机ID,X(px-像素),Y(px-像素),Z(px-像素),X(m),Y(m),Z(m)\n",
+    "__tracedirpath": "E:/V4secondaryDev/v36python_test/TESS_PythonAPI_EXAMPLE/SimuResult",
+    "__traceheader": "时间(ms),车辆ID,X(px-像素),Y(px-像素),Z(px-像素),X(m),Y(m),Z(m),当前速度(m/s),当前加速度(m/s^2),角度,行程距离(m),道路ID,路段/连接段\n"
+}
