@@ -33,7 +33,7 @@ module.exports = {
         ]
       },
       { text: 'TESS NG 官网', link: 'https://www.jidatraffic.com/', target: '_blank' },
-      { text: 'GitHub地址', link: 'https://github.com/jida-traffic/TESSNG_SecondaryDev_Doc', target: '_blank' }
+      { text: 'GitHub地址', link: 'https://github.com/jida-traffic/TESSNG_SecondaryDev', target: '_blank' }
     ],
     sidebar: {
       '/document/V4.x/C++': [
