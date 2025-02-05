@@ -2,13 +2,13 @@
 
 ## 下载
 
-win10系统: [TESSNG V3.1 二次开发包](https://www.jidatraffic.com/#/simulation)
+win10系统: [TESSNG V4 二次开发](https://www.jidatraffic.com/#/simulation)
 
-Linux系统： [TESSNG V3.1 二次开发包](https://www.jidatraffic.com/#/simulation)
+Linux系统： [TESSNG V4 二次开发](https://www.jidatraffic.com/#/simulation)
 
 ## 安装与激活
 
-第一步：下载TESSNG Python二次开发包 [TESSNG V3.1 二次开发包](https://www.jidatraffic.com/#/simulation)并解压
+第一步：下载TESSNG Python二次开发包 [TESSNG V4 二次开发](https://www.jidatraffic.com/#/simulation)并解压
 
 ![开发包内文件列表](/img/p27.png)
 
