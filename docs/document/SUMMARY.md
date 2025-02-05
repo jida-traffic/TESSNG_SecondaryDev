@@ -28,5 +28,5 @@
 
 ## 链接
 * [TESSNG 官网](https://139.196.85.33/)
-* [GitHub地址](https://github.com/jida-traffic/TESSNG_SecondaryDev_Doc)
+* [GitHub地址](https://github.com/jida-traffic/TESSNG_SecondaryDev)
 
