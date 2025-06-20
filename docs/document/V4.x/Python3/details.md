@@ -14,15 +14,15 @@
 }
 
 ```
-"workspace": 指定“当前工作路径”, TESS NG会在“当前工作路径”的Cert子文件夹下读取认证文件, 在”SimuResult”子文件夹下保存仿真结果, 等。
+"__workspace": 指定“当前工作路径”, TESS NG会在“当前工作路径”的Cert子文件夹下读取认证文件, 在”SimuResult”子文件夹下保存仿真结果, 等。
 
-"netfilepath": 指定TESSNG启动后加载的路网文件全路径名; 
+"__netfilepath": 指定TESSNG启动后加载的路网文件全路径名; 
 
-"simuafterload": 指定TESSNG加载路网文件（指定的路网文件或临时空白路网文件）后是否启动仿真; 
+"__simuafterload": 指定TESSNG加载路网文件（指定的路网文件或临时空白路网文件）后是否启动仿真; 
 
-"timebycpu": 指定每个仿真周期时间计算依据, 是cpu时钟确定的时长（现实时长）, 还是由仿真精度确定的时长。在线仿真且算力吃紧时可以尝试设置此属性为True; 
+"__timebycpu": 指定每个仿真周期时间计算依据, 是cpu时钟确定的时长（现实时长）, 还是由仿真精度确定的时长。在线仿真且算力吃紧时可以尝试设置此属性为True; 
 
-"custsimubysteps": 设置TESSNG对插件方法调用频次的依据, 设为False表示每个计算周期均会调用一次插件实现的方法, 即不依据插件端设置的调用频次; 设为True时TESSNG依据插件设置的调用频次对插件实现的PyCustomerSimulator方法进行调用。
+"__custsimubysteps": 设置TESSNG对插件方法调用频次的依据, 设为False表示每个计算周期均会调用一次插件实现的方法, 即不依据插件端设置的调用频次; 设为True时TESSNG依据插件设置的调用频次对插件实现的PyCustomerSimulator方法进行调用。
 
 python二次开发环境下, 如果运行车辆不多, 可以将"custsimubysteps"设为False。如果运行车辆较多, 可以将"__custsimubysteps"设为True, 再设定实现的方法调用频次, 使对仿真效率的负面影响最小化。
 
@@ -1777,7 +1777,7 @@ def showLinkAttr(netiface):
     print(link1)
     print(f"该link的属性: id={link.id()}, ")
     print(f"link.fromConnectors()={link.fromConnectors()}")
-    print(f"该link的最右侧车道为: id={link.id()}, 其属性为: 路段类型={link.gtype()}, 路段长度（像素制）={link.length()}, 米制={link.length(UnitOfMeasure.Metric)}, "
+    print(f"该link: id={link.id()}, 其属性为: 路段类型={link.gtype()}, 路段长度（像素制）={link.length()}, 米制={link.length(UnitOfMeasure.Metric)}, "
           f"宽度（像素制）={link.width()}, 米制={link.width(UnitOfMeasure.Metric)}, 高程（像素制）={link.z()}, 米制={link.z(UnitOfMeasure.Metric)}, "
           f"高程v3z(像素制)={link.v3z()}, 米制={link.v3z(UnitOfMeasure.Metric)}, 设置新名字={link.setName('test_name')}name={link.name()}, linkType={link.linkType()}, "
           f"设置路段类型为城市次干道={link.setType('次要干道')}, 再次获取城市类型={link.linkType()}, 车道数={link.laneCount()}, "
@@ -2275,7 +2275,7 @@ for link in lLinks:
 [ out ] outPoint: 中心线起点向前延伸dist距离后所在点  
 [ out ] outIndex: 中心线起点向前延伸dist距离后所在分段序号  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制  
- 
+
 
 举例: 
 
@@ -19369,7 +19369,7 @@ simuiface = iface.simuInterface()
 lVehiInfo = simuiface.getVehisInfoCollected()
 
 ```
- 
+
 
  **def getVehisInfoAggregated(self) -> typing.List<Online.VehiInfoAggregated >: ...**
 
@@ -20406,7 +20406,7 @@ def afterOneStep(self):
     vehis = simuiface.allVehiStarted()
 
 ```
- 
+
 
  **def duringOneStep(self) -> None: ...**
 
@@ -20619,7 +20619,7 @@ TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需
         ref_dist.value = 10
         return True
 ```
- 
+
  **def afterStep(self, pIVehicle: Tessng.IVehicle) -> None: ...**
 
 完成车辆pIVehicle“一个批次计算”后的处理。可以在此获取车辆当前信息, 如当前道路、位置、方向角、速度、期望速度、前后左右车辆等。
