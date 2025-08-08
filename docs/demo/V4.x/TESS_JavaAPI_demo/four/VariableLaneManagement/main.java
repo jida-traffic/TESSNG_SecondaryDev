@@ -1,0 +1,30 @@
+package test002.TESS_JavaAPI_demo.four.VariableLaneManagement;
+
+import com.jidatraffic.tessng.TessngFactory;
+import test002.TESS_JavaAPI_demo.four.VariableLaneManagement.MyPlugin;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import java.io.IOException;
+
+public class main {
+
+    static {
+        try {
+            System.loadLibrary("TESS_WIN");
+        } catch (UnsatisfiedLinkError e) {
+            System.err.println("Native code library failed to load. See the chapter on Dynamic Linking Problems in the SWIG Java documentation for help.\n" + e);
+            System.exit(1);
+        }
+    }
+    public static void main(String[] args) throws IOException {
+        System.out.println("Adding and calling a normal C++ callback");
+        MyPlugin myPlugin = new MyPlugin();
+        myPlugin.init();
+        TessngFactory tessngFactory = new TessngFactory();
+        tessngFactory.build(myPlugin, "C:\\TESSNG_4.0.20");
+    }
+}
+
+
