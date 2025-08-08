@@ -19702,6 +19702,1270 @@ private static void showPedestrianPathPointAttr(NetInterface netiface) {
 ```
 
 
+## 3. 车辆及驾驶行为
+
+### 3.1. IVehicle
+
+车辆接口, 用于访问、控制车辆。通过此接口可以读取车辆属性, 初始化时设置车辆部分属性, 仿真过程读取当前道路情况、车辆前后左右相邻车辆及与它们的距离, 可以在车辆未驰出路网时停止车辆运行等。
+
+
+
+接口方法: 
+
+ **int id()**
+
+车辆 ID 由 “x*100000 + y” 构成，其中 x 为发车点编号（从 1 开始递增，每个发车点对应唯一 x 值），y 为该发车点的车辆序号（从 1 开始递增），如第 1 个发车点的车辆 ID 从 100001 开始递增，第 2 个发车点的车辆 ID 从 200001 开始递增，后续以此类推。
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆ID为" + vehi.id());
+}
+```
+
+ **ILink startLink() ;**
+
+车辆进入路网时起始路段
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    String startLinkName = vehi.startLink().name();
+    System.out.println("车辆进入路网时起始路段=" + startLinkName);
+}
+```
+
+ **int startSimuTime();**
+
+车辆进入路网时起始时间
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆进入路网时起始时间=" + vehi.startSimuTime());
+}
+```
+
+ **int roadId();**
+
+车辆所在路段link或connector连接段ID
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在路段link或connector连接段ID=" + vehi.roadId());
+}
+```
+
+ **ILink/IConnector road();**
+
+道路, 如果在路段上返回ILink对象, 如果在连接段上返回IConnector对象
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在道路对象=" + vehi.road());
+}
+```
+
+ **ISection section();**
+
+车辆所在的Section对象, 即路段或连接段
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在的Section, 即路段或连接段=" + vehi.section().name());
+}
+```
+
+ **ILaneObject laneObj();**
+
+车辆所在的车道或“车道连接”对象
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在的车道或“车道连接”ID=" + vehi.laneObj());
+}
+```
+
+ **int segmIndex();**
+
+车辆在当前车道上的分段序号
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆在当前车道上的分段序号=" + vehi.segmIndex());
+}
+```
+
+ **boolean roadIsLink();**
+
+车辆所在道路是否路段
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在道路是否路段=" + vehi.roadIsLink());
+}
+```
+
+ **String roadName();**
+
+道路名
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("道路名=" + vehi.roadName());
+}
+```
+
+ **double initSpeed(double speed, UnitOfMeasure unit);**
+
+初始化车速, 默认单位: 像素/秒
+
+参数: 
+[ in ] speed: 车速, 如果大于0, 车辆以指定的速度从发车点出发, 默认单位: 像素/秒  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认单位  
+返回: 初始化车速, 默认单位: 像素/秒
+
+举例: 
+
+```java
+void initVehicle(IVehicle vehi){
+    return vehi.initSpeed(5,UnitOfMeasure.Metric);
+}
+```
+
+ **void initLane(int laneNumber, double dist, double speed, UnitOfMeasure unit);**
+
+在路段上初始化车辆, 默认单位: 像素
+
+参数: 
+[ in ] laneNumber: 车道序号, 从0开始  
+[ in ] dist: 距离路段起点距离, 默认单位: 像素  
+[ in ] speed: 起动时的速度, 默认单位: 像素/秒  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+
+举例: 
+
+```java
+void initVehicle(IVehicle vehi){
+    if (vehi.id() == 100001){
+        vehi.initLane(3, TESSNG.m2p(105), 0, UnitOfMeasure.Metric);
+    }
+}
+```
+
+ **void initLaneConnector(int laneNumber, int toLaneNumber, double dist, double speed, UnitOfMeasure unit) ;**
+
+初始化车辆, laneNumber: “车道连接”起始车道在所在路段的序号, 从0开始自右往左; toLaneNumber: “车道连接”目标车道在所在路段的序号, 从0开始自右往左, dist, 距起点距离, 默认单位: 像素; speed: 车速, 像素/秒, 默认单位: 像素
+参数: 
+
+[ in ] laneNumber: 车道序号, 从0开始自右侧至左侧  
+[ in ] toLaneNumber: 车道序号, 从0开始自右侧至左侧  
+[ in ] dist: 距离路段起点距离, 单位: : 像素
+[ in ] speed: 起动时的速度, 默认单位: 像素/秒)  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+
+举例: 
+
+```java
+void initVehicle(IVehicle vehi){
+    if (vehi.id() == 100001){
+        vehi.initLaneConnector(0, 0, 5, 0, UnitOfMeasure.Metric);
+    }
+}
+```
+
+ **void setVehiType(int code);**
+
+设置车辆类型, 车辆被创建时已确定了类型, 通过此方法可以改变车辆类型
+
+参数: 
+
+[ in ] code: 车辆类型编码
+
+举例: 
+
+```java
+void initVehicle(IVehicle vehi){
+    if (vehi.id() == 100001){
+        vehi.setVehiType(12);
+    }
+}
+```
+
+ **void setColor(String color) ;**
+
+设置车辆颜色  
+
+参数: 
+[ in ] color: 颜色RGB, 如: "#EE0000"
+
+举例: 
+
+```java
+void initVehicle(IVehicle vehi){
+    if (vehi.roadId() == 2){
+        vehi.setColor("#EE0000");
+    }
+}
+```
+
+ **double length(UnitOfMeasure unit);**
+
+获取车辆长度, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 车辆长度, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆长度="+vehi.length());
+    System.out.println("车辆长度, 单位: 米="+vehi.length(UnitOfMeasure.Metric));
+}
+```
+
+ **void setLength(double len, boolean bRestWidth, UnitOfMeasure unit) ;**
+
+设置车辆长度
+
+参数: 
+[ in ] len: 车辆长度, 默认单位: 像素  
+[ in ] bRestWidth: 是否同比例约束宽度, 默认为False  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+举例: 
+
+```java
+void initVehicle(IVehicle vehi){
+    if (vehi.roadId() == 100001){
+        vehi.setLength(10, false, UnitOfMeasure.Metric);
+    }
+}
+```
+
+ **int laneId();**
+
+如果toLaneId() 小于等于0, 那么laneId()获取的是当前所在车道ID, 如果toLaneId()大于0, 则车辆在“车道连接”上, laneId()获取的是上游车道ID
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在车道ID="+vehi.laneId());
+}
+```
+
+ **int toLaneId();**
+
+下游车道ID。如果小于等于0, 车辆在路段的车道上, 否则车辆在连接段的“车道连接”上
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆下游车道ID="+vehi.toLaneId());
+}
+```
+
+ **ILane lane();**
+
+获取当前车道, 如果车辆在“车道连接”上, 获取的是“车道连接”的上游车道
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆当前车道="+vehi.lane());
+}
+```
+
+ **ILane toLane();**
+
+如果车辆在“车道连接”上, 返回“车道连接”的下游车道, 如果当前不在“车道连接”上, 返回对象为空
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆下游车道="+vehi.toLane());
+}
+```
+
+ **ILaneConnector laneConnector() ;**
+
+获取当前“车道连接”, 如果在车道上, 返回空
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆当前车道连接="+vehi.laneConnector());
+}
+```
+
+**int currBatchNumber();**
+
+当前仿真计算批次
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("当前仿真计算批次="+vehi.currBatchNumber());
+}
+```
+
+ **int roadType();**
+
+车辆所在道路类型。包NetItemType中定义了一批常量, 每一个数值代表路网上一种元素类型。如: GLinkType代表路段、GConnectorType代表连接段。
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在道路类型="+vehi.roadType());
+}
+```
+
+ **double limitMaxSpeed(UnitOfMeasure unit);**
+
+车辆所在路段或连接段最大限速, 兼顾到车辆的期望速度, 默认单位: 像素/秒  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+返回: 最大限速, 默认单位: 像素/秒
+
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在路段或连接段最大限速="+vehi.limitMaxSpeed());
+    System.out.println("车辆所在路段或连接段最大限速, 单位: 米/秒="+vehi.limitMaxSpeed(UnitOfMeasure.Metric));
+}
+```
+
+ **double limitMinSpeed(UnitOfMeasure unit);**
+
+车辆所在路段或连接段最小限速, 兼顾到车辆的期望速度, 默认单位: 像素/秒  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+返回: 最小限速, 默认单位: 像素/秒
+
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface =iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆所在路段或连接段最小限速="+vehi.limitMinSpeed());
+    System.out.println("车辆所在路段或连接段最小限速, 单位: 米/秒="+vehi.limitMaxSpeed(UnitOfMeasure.Metric));
+}
+```
+
+ **int vehicleTypeCode();**
+
+车辆类型编码。打开TESSNG, 通过菜单“车辆”->“车辆类型”打开车辆类型编辑窗体, 可以看到不同类型车辆的编码
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface = iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.printf("车辆类型编码=%s%n", vehi.vehicleTypeCode());
+}
+```
+
+ **String vehicleTypeName();**
+
+获取车辆类型名, 如“小客车”
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuiface = iface.simuInterface();
+List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.printf("车辆类型名=%s%n", vehi.vehicleTypeName());
+}
+```
+
+ **String name();**
+
+获取车辆名称
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆名称=" + vehi.name());
+}
+```
+
+ **IVehicleDriving vehicleDriving();**
+
+获取车辆驾驶行为接口
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆驾驶行为接口=" + vehi.vehicleDriving());
+}
+```
+
+ **void driving()**
+
+驱动车辆。在每个运算周期, 每个在运行的车辆被调用一次该方法; 
+如果用户使用该函数驱动车辆, 那后续整个仿真生命周期均需要用户控制该辆车。即TESSNG将此车辆的控制权移交给用户。
+
+ **Point pos(UnitOfMeasure unit)**
+
+获取当前位置, 默认单位: 像素。
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+返回: 当前位置, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆当前位置=" + vehi.pos());
+    System.out.println("车辆当前位置, 单位: 米制="+vehi.pos(UnitOfMeasure.Metric));
+}
+```
+
+ **doule zValue(UnitOfMeasure unit) **
+
+当前高程, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+返回: 当前加速度, 默认单位: 像素/秒^2
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车辆当前高程=" + vehi.zValue());
+    System.out.println("车辆当前高程=" + vehi.zValue(UnitOfMeasure.Metric));
+}
+```
+
+ **double acce(UnitOfMeasure unit)**
+
+当前加速度, 默认单位: 像素/秒^2 , 可通过unit参数设置单位
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+返回: 当前加速度, 默认单位: 像素/秒^2
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    double acceleration = vehi.acce();
+    System.out.println("车辆当前加速度=" + acceleration);
+    double metricAcceleration = vehi.acce(UnitOfMeasure.Metric);
+    System.out.println("车辆当前加速度, 单位: 米制=" + metricAcceleration);
+}
+```
+
+ **double currSpeed(UnitOfMeasure unit)**
+
+当前速度, 默认单位: 像素/秒
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+返回: 当前速度, 默认单位: 像素/秒
+
+举例: 
+
+```java
+        TessInterface iface = TESSNG.tessngIFace();
+        SimuInterface simuIFace = iface.simuInterface();
+        ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+        for (IVehicle vehi : allVehicleStarted) {
+            double speed = vehi.currSpeed();
+            System.out.println("车辆当前速度=" + speed);
+            double metricSpeed = vehi.currSpeed(UnitOfMeasure.Metric);
+            System.out.println("车辆当前速度, 单位: 米制=" + metricSpeed);
+        }
+```
+
+ **double angle()**
+
+当前角度, 北向0度顺时针  
+
+返回: 当前角度, 单位: 度
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    double angle = vehi.angle();
+    System.out.println("车辆当前角度=" + angle);
+}
+```
+
+ **boolean isStarted()**
+
+是否在运行, 如果返回False, 表明车辆已驰出路网或尚未上路
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    boolean isStarted = vehi.isStarted();
+    System.out.println("车辆是否在运行=" + isStarted);
+}
+```
+
+ **IVehicle vehicleFront()**
+
+获取前车, 可能为空
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    IVehicle frontVehicle = vehi.vehicleFront();
+    System.out.println("前车=" + (frontVehicle != null ? frontVehicle.id() : "null"));
+}
+```
+
+ **IVehicle vehicleRear()**
+
+后车, 可能为空
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    IVehicle rearVehicle = vehi.vehicleRear();
+    System.out.println("后车=" + (rearVehicle != null ? rearVehicle.id() : "null"));
+}
+```
+
+ **IVehicle vehicleLFront()**
+
+左前车, 可能为空
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    IVehicle leftFrontVehicle = vehi.vehicleLFront();
+    System.out.println("左前车=" + (leftFrontVehicle != null ? leftFrontVehicle.id() : "null"));
+}
+```
+
+ **IVehicle vehicleLRear()**
+
+左后车, 可能为空
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    IVehicle leftRearVehicle = vehi.vehicleLRear();
+    System.out.println("左后车=" + (leftRearVehicle != null ? leftRearVehicle.id() : "null"));
+}
+```
+
+ **IVehicle vehicleRFront()**
+
+右前车, 可能为空
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    IVehicle rightFrontVehicle = vehi.vehicleRFront();
+    System.out.println("右前车=" + (rightFrontVehicle != null ? rightFrontVehicle.id() : "null"));
+}
+```
+
+ **IVehicle vehicleRRear()**
+
+右后车, 可能为空
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    IVehicle rightRearVehicle = vehi.vehicleRRear();
+    System.out.println("右后车=" + (rightRearVehicle != null ? rightRearVehicle.id() : "null"));
+}
+```
+
+ **double vehiDistFront(UnitOfMeasure unit)**
+
+前车间距, 默认单位: 像素; 若无前车, 则范围固定的常量, 默认单位: 像素
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 前车间距, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("前车间距=" + vehi.vehiDistFront());
+    System.out.println("前车间距, 单位: 米制=" + vehi.vehiDistFront(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiSpeedFront(UnitOfMeasure unit)**
+
+前车速度, 默认单位: 像素/秒; 若无前车, 则范围固定的常量, 默认单位: 像素
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 前车速度, 默认单位: 像素/秒
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("前车速度=" + vehi.vehiSpeedFront());
+    System.out.println("前车速度, 单位: 米/秒=" + vehi.vehiSpeedFront(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiHeadwayFront(UnitOfMeasure unit)**
+
+距前车时距, 若无前车, 则范围固定的常量  默认单位: 像素 
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 距前车时距, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("距前车时距=" + vehi.vehiHeadwayFront());
+    System.out.println("距前车时距, 单位: 米制=" + vehi.vehiHeadwayFront(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiDistRear(UnitOfMeasure unit)**
+
+后车间距, 默认单位: 像素, 若无后车, 则范围固定的常量  默认单位: 像素 
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 后车间距, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    double rearDistance = vehi.vehiDistRear();
+    System.out.println("后车间距=" + rearDistance);
+    double metricRearDistance = vehi.vehiDistRear(UnitOfMeasure.Metric);
+    System.out.println("后车间距, 单位: 米制=" + metricRearDistance);
+}
+```
+
+ **double vehiSpeedRear(UnitOfMeasure unit)**
+
+后车速度, 默认单位: 像素/秒  若无后车, 则范围固定的常量  默认单位: 像素 
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 后车速度, 默认单位: 像素/秒
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("后车速度=" + vehi.vehiSpeedRear());
+    System.out.println("后车速度, 单位: 米/秒=" + vehi.vehiSpeedRear(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiHeadwaytoRear(UnitOfMeasure unit)**
+
+距后车时距, 默认单位: 像素  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 距后车时距, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("距后车时距=" + vehi.vehiHeadwaytoRear());
+    System.out.println("距后车时距, 单位: 米制=" + vehi.vehiHeadwaytoRear(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiDistLLaneFront(UnitOfMeasure unit)**
+
+相邻左车道前车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 相邻左车道前车间距, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("相邻左车道前车间距=" + vehi.vehiDistLLaneFront());
+    System.out.println("相邻左车道前车间距, 单位: 米制=" + vehi.vehiDistLLaneFront(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiSpeedLLaneFront(UnitOfMeasure unit)**
+
+相邻左车道前车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 相邻左车道前车速度, 默认单位: 像素/秒
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("相邻左车道前车速度=" + vehi.vehiSpeedLLaneFront());
+    System.out.println("相邻左车道前车速度, 单位: 米/秒=" + vehi.vehiSpeedLLaneFront(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiDistLLaneRear(UnitOfMeasure unit)**
+
+相邻左车道后车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 相邻左车道后车间距, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("相邻左车道后车间距=" + vehi.vehiDistLLaneRear());
+    System.out.println("相邻左车道后车间距, 单位: 米制=" + vehi.vehiDistLLaneRear(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiSpeedLLaneRear(UnitOfMeasure unit)**
+
+相邻左车道后车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 相邻左车道后车速度, 默认单位: 像素/秒
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("相邻左车道后车速度=" + vehi.vehiSpeedLLaneRear());
+    System.out.println("相邻左车道前车速度, 单位: 米/秒=" + vehi.vehiSpeedLLaneRear(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiDistRLaneFront(UnitOfMeasure unit)**
+
+相邻右车道前车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 相邻右车道前车间距, 默认单位: 像素
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("相邻右车道前车间距=" + vehi.vehiDistRLaneFront();
+    System.out.println("相邻右车道前车间距, 单位: 米制=" + vehi.vehiDistRLaneFront(UnitOfMeasure.Metric);
+}
+```
+
+ **double vehiSpeedRLaneFront(UnitOfMeasure unit)**
+
+相邻右车道前车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 相邻右车道前车速度, 默认单位: 像素/秒  
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("相邻右车道前车速度=" + vehi.vehiSpeedRLaneFront());
+    System.out.println("相邻右车道前车速度, 单位: 米/秒=" + vehi.vehiSpeedRLaneFront(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiDistRLaneRear(UnitOfMeasure unit)**
+
+相邻右车道后车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 相邻右车道后车间距, 默认单位: 像素  
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("相邻右车道后车间距=" + vehi.vehiDistRLaneRear());
+    System.out.println("相邻右车道后车间距, 单位: 米制=" + vehi.vehiDistRLaneRear(UnitOfMeasure.Metric));
+}
+```
+
+ **double vehiSpeedRLaneRear(UnitOfMeasure unit)**
+
+相邻右车道后车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 相邻右车道后车速度, 默认单位: 像素/秒
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("相邻右车道后车速度=" + vehi.vehiSpeedRLaneRear());
+    System.out.println("相邻右车道后车速度, 单位: 米/秒=" + vehi.vehiSpeedRLaneRear(UnitOfMeasure.Metric));
+}
+```
+
+ **void setIsPermitForVehicleDraw()**
+
+设置是否允许插件绘制车辆
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    vehi.setIsPermitForVehicleDraw(true);
+}
+```
+
+ **ArrayList<Point> lLaneObjectVertex(UnitOfMeasure unit) **
+
+车道或车道连接中心线内点集, 默认单位: 像素, 可通过unit参数设置单位 
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+返回: 车道或车道连接中心线内点集
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    System.out.println("车道或车道连接中心线内点集=" + vehi.lLaneObjectVertex());
+    System.out.println("车道或车道连接中心线内点集, 单位: 米制=" + vehi.lLaneObjectVertex(UnitOfMeasure.Metric));
+}
+```
+
+ **IRouting routing()**
+
+获取车辆当前路径; 返回的是当前车辆的全局路径, 包括已经行驶过大的路段序列
+
+返回: 车辆当前路径
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    IRouting routing = vehi.routing();
+    System.out.println("车辆当前路径=" + (routing != null ? routing.toString() : "null"));
+}
+```
+
+ **SWIGTYPE_p_QPicture picture(self)**
+
+获取车辆图片
+
+返回: 车辆图片
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    String picture = vehi.picture().toString();
+    System.out.println("车辆图片=" + (picture != null ? picture : "null"));
+}
+```
+
+ **Vector<Point> boundingPolygon()**
+
+获取车辆由方向和长度决定的四个拐角构成的多边型
+
+返回: 车辆由方向和长度决定的四个拐角构成的多边型
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    Vector<Point> boundingPolygon = vehi.boundingPolygon();
+    System.out.println("车辆由方向和长度决定的四个拐角构成的多边型=" +
+                       (boundingPolygon != null ? boundingPolygon.toString() : "null"));
+}
+```
+
+ **void setTag(int tag)**
+
+设置标签表示的状态
+
+参数: 
+[ in ] tag: 标签表示的状态
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    vehi.setTag(1);
+}
+```
+
+ **int tag()**
+
+获取标签表示的状态
+
+返回: 标签表示的状态
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    int tag = vehi.tag();
+    System.out.println("标签表示的状态=" + tag);
+}
+```
+
+ **void setTextTag(String text)**
+
+设置文本信息, 用于在运行过程保存临时信息, 方便开发
+
+参数: 
+[ in ] text: 文本信息
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    vehi.setTextTag("test");
+}
+```
+
+ **String textTag()**
+
+文本信息, 运行过程临时保存的信息, 方便开发
+
+返回: 文本信息
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+for (IVehicle vehi : allVehicleStarted) {
+    String textTag = vehi.textTag();
+    System.out.println("文本信息=" + (textTag != null ? textTag : "null"));
+}
+```
+
+ **void setJsonInfo(JsonObject info)**
+
+设置json格式数据
+
+参数: 
+[ in ] info: json格式数据
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+
+JsonObject json = Json.createObjectBuilder()
+.add("test", "test")
+.build();
+
+for (IVehicle vehi : allVehicleStarted) {
+    vehi.setJsonInfo(json);
+}
+```
+
+ **JsonObject jsonInfo()**
+
+返回json格式数据
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+
+for (IVehicle vehi : allVehicleStarted) {
+    JsonObject jsonInfo = vehi.jsonInfo();
+    System.out.println("json格式数据=" + (jsonInfo != null ? jsonInfo.toString() : "null"));
+}
+```
+
+ **Object jsonProperty(String propName)**
+
+返回json字段值
+
+参数: 
+[ in ] propName: json字段名
+
+返回: json字段值
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+
+for (IVehicle vehi : allVehicleStarted) {
+    Object jsonProperty = vehi.jsonProperty("test");
+    System.out.println("json字段值=" + (jsonProperty != null ? jsonProperty.toString() : "null"));
+}
+```
+
+ **void setJsonProperty(String key, Object value)**
+
+设置json数据属性
+
+参数: 
+[ in ] key: json字段名  
+[ in ] value: json字段值
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuIFace = iface.simuInterface();
+ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
+
+for (IVehicle vehi : allVehicleStarted) {
+    vehi.setJsonProperty("test", "test");
+}
+```
+
+
+
 
 
 ### 3.2. IVehicleDriving
@@ -19908,9 +21172,12 @@ for (IVehicle vehi : allVehicleStarted) {
 }
 ```
 
- **double desirSpeed()**
+ **double desirSpeed(UnitOfMeasure unit)**
 
 当前期望速度, 与车辆自身期望速度和道路限速有关, 不大于道路限速, 默认单位: 像素/秒  
+
+参数: 
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
 返回: 当前期望速度, 默认单位: 像素/秒
 
@@ -19922,6 +21189,7 @@ SimuInterface simuIFace = iface.simuInterface();
 List<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
 for (IVehicle vehi : allVehicleStarted) {
     System.out.println("当前期望速度=" + vehi.vehicleDriving().desirSpeed());
+    System.out.println("当前期望速度, 单位: 米/秒=" + vehi.vehicleDriving().desirSpeed());
 }
 ```
 
@@ -20027,7 +21295,7 @@ for (IVehicle vehi : allVehicleStarted) {
 
 初始化轨迹
 
- **void setTrace(SWIGTYPE_p_QListT_QPointF_t lPoint, SWIGTYPE_UnitOfMeasure unit)**
+ **void setTrace(ArrayList<Point> lPoint, UnitOfMeasure unit)**
 
 设置轨迹, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20068,7 +21336,7 @@ for (IVehicle vehi : allVehicleStarted) {
 参数: 
 [ in ] number: 车道序号
 
- **double currDistance(SWIGTYPE_UnitOfMeasure unit)**
+ **double currDistance(UnitOfMeasure unit)**
 
 当前计算周期移动距离, 默认单位: 像素, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20089,7 +21357,7 @@ for (IVehicle vehi : allVehicleStarted) {
 }
 ```
 
- **double currDistanceInRoad(SWIGTYPE_UnitOfMeasure unit)**
+ **double currDistanceInRoad(UnitOfMeasure unit)**
 
 当前路段或连接上已行驶距离, 默认单位: 像素  
 
@@ -20109,7 +21377,7 @@ for (IVehicle vehi : allVehicleStarted) {
     System.out.println("当前路段或连接上已行驶距离, 米制=" + vehi.vehicleDriving().currDistanceInRoad(UnitOfMeasure.Metric));
 ```
 
- **void setCurrDistanceInRoad(double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **void setCurrDistanceInRoad(double dist, UnitOfMeasure unit)**
 
 设置当前路段已行驶距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20117,7 +21385,7 @@ for (IVehicle vehi : allVehicleStarted) {
 [ in ] dist: 距离, 默认单位: 像素  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
- **void setVehiDrivDistance(double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **void setVehiDrivDistance(double dist, UnitOfMeasure unit)**
 
 设置当前已行驶总里程, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20125,7 +21393,7 @@ for (IVehicle vehi : allVehicleStarted) {
 [ in ] dist: 总里程, 默认单位: 像素  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
- **double getVehiDrivDistance(SWIGTYPE_UnitOfMeasure unit)**
+ **double getVehiDrivDistance(UnitOfMeasure unit)**
 
 已行驶总里程, 默认单位: 像素, 可通过unit参数设置单位 
 
@@ -20145,7 +21413,7 @@ for (IVehicle vehi : allVehicleStarted) {
     System.out.println("已行驶总里程, 米制=" + vehi.vehicleDriving().getVehiDrivDistance(UnitOfMeasure.Metric));
 ```
 
- **double currDistanceInSegment(SWIGTYPE_UnitOfMeasure unit)**
+ **double currDistanceInSegment(UnitOfMeasure unit)**
 
 当前分段已行驶距离 , 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20166,7 +21434,7 @@ for (IVehicle vehi : allVehicleStarted) {
 }
 ```
 
- **void setCurrDistanceInSegment(double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **void setCurrDistanceInSegment(double dist, UnitOfMeasure unit)**
 
 设置当前分段已行驶的距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20181,13 +21449,14 @@ for (IVehicle vehi : allVehicleStarted) {
 参数: 
 [ in ] index: 分段序号
 
- **void setCurrDistanceInTrace(double dist)**
+ **void setCurrDistanceInTrace(double dist, UnitOfMeasure unit)**
 
 设置曲化轨迹上行驶的距离, 默认单位: 像素
 
 参数:
 
-[ in ] dist: 距离, 默认单位: 像素   
+[ in ] dist: 距离, 默认单位: 像素  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
  **void setIndexOfSegmInTrace(int index)**
 
@@ -20200,7 +21469,7 @@ for (IVehicle vehi : allVehicleStarted) {
 
 设置是否改变轨迹, 当设为True时会对轨迹初始化
 
- **double currDistance(SWIGTYPE_UnitOfMeasure unit)**
+ **double currDistance(UnitOfMeasure unit)**
 
 当前时间段移动距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20272,7 +21541,7 @@ for (IVehicle vehi : allVehiStarted_lst) {
 设置分段序号
 [ in ] index: 分段序号
 
- **double currDistanceInSegment(SWIGTYPE_UnitOfMeasure unit)**
+ **double currDistanceInSegment(UnitOfMeasure unit))**
 
 当前在分段上已行驶距离 , 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20287,15 +21556,13 @@ for (IVehicle vehi : allVehiStarted_lst) {
 TessInterface iface = TESSNG.tessngIFace();
 SimuInterface simuIFace = iface.simuInterface();
 List<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-SWIGTYPE_UnitOfMeasure metric = SWIGTYPE_UnitOfMeasure.swigToEnum(0);
-
 for (IVehicle vehi : allVehicleStarted) {
     System.out.println("当前在分段上已行驶距离=" + vehi.vehicleDriving().currDistanceInSegment());
-    System.out.println("当前在分段上已行驶距离, 米制=" + vehi.vehicleDriving().currDistanceInSegment(metric));
+    System.out.println("当前在分段上已行驶距离, 米制=" + vehi.vehicleDriving().currDistanceInSegment(UnitOfMeasure.Metric));
 }
 ```
 
- **void setCurrDistanceInSegment(double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **void setCurrDistanceInSegment(double dist, UnitOfMeasure unit)**
 
 设置在分段上已行驶距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20305,7 +21572,7 @@ for (IVehicle vehi : allVehicleStarted) {
 
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
- **void setX(double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **void setX(double dist, UnitOfMeasure unit)**
 
 设置横坐标, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20314,7 +21581,7 @@ for (IVehicle vehi : allVehicleStarted) {
 [ in ] posX: 横坐标: 单位: 像素  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
 
- **void setY(double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **void setY(double dist, UnitOfMeasure unit)**
 
 设置纵坐标, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20323,7 +21590,7 @@ for (IVehicle vehi : allVehicleStarted) {
 [ in ] posY: 纵坐标: 单位: 像素  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
- **void setV3z(double v3z, unit: SWIGTYPE_UnitOfMeasure unit)**
+ **void setV3z(double v3z, UnitOfMeasure unit)**
 
 设置高程坐标, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20348,7 +21615,7 @@ for (IVehicle vehi : allVehicleStarted) {
 }
 ```
 
- **double changingTraceLength(SWIGTYPE_UnitOfMeasure unit)**
+ **double changingTraceLength(UnitOfMeasure unit)**
 
 变轨长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20363,14 +21630,13 @@ for (IVehicle vehi : allVehicleStarted) {
 TessInterface iface = TESSNG.tessngIFace();
 SimuInterface simuIFace = iface.simuInterface();
 List<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-SWIGTYPE_UnitOfMeasure metric = SWIGTYPE_UnitOfMeasure.swigToEnum(0);
 for (IVehicle vehi : allVehicleStarted) {
     System.out.println("变轨长度=" + vehi.vehicleDriving().changingTraceLength());
-    System.out.println("变轨长度, 米制=" + vehi.vehicleDriving().changingTraceLength(metric));
+    System.out.println("变轨长度, 米制=" + vehi.vehicleDriving().changingTraceLength(UnitOfMeasure.Metric));
 }
 ```
 
- **double distToStartPoint(boolean fromVehiHead, boolean bOnCentLine, SWIGTYPE_UnitOfMeasure unit)**
+ **double distToStartPoint(boolean fromVehiHead, boolean bOnCentLine, UnitOfMeasure unit)**
 
 在车道或车道连接上到起点距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20387,15 +21653,13 @@ for (IVehicle vehi : allVehicleStarted) {
 TessInterface iface = TESSNG.tessngIFace();
 SimuInterface simuIFace = iface.simuInterface();
 List<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-SWIGTYPE_UnitOfMeasure metric = SWIGTYPE_UnitOfMeasure.swigToEnum(0);
-
 for (IVehicle vehi : allVehicleStarted) {
     System.out.println("在车道或车道连接上到起点距离=" + vehi.vehicleDriving().distToStartPoint());
-    System.out.println("在车道或车道连接上到起点距离, 米制=" + vehi.vehicleDriving().distToStartPoint(false, true, metric));
+    System.out.println("在车道或车道连接上到起点距离, 米制=" + vehi.vehicleDriving().distToStartPoint(false, true, UnitOfMeasure.Metric));
 }
 ```
 
- **double distToEndpoint(boolean fromVehiHead, boolean bOnCentLine, SWIGTYPE_UnitOfMeasure unit)**
+ **double distToEndpoint(boolean fromVehiHead, boolean bOnCentLine, UnitOfMeasure unit)**
 
 在车道或“车道连接”上车辆到终点距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20412,15 +21676,13 @@ for (IVehicle vehi : allVehicleStarted) {
 TessInterface iface = TESSNG.tessngIFace();
 SimuInterface simuIFace = iface.simuInterface();
 List<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-SWIGTYPE_UnitOfMeasure metric = SWIGTYPE_UnitOfMeasure.swigToEnum(0);
-
 for (IVehicle vehi : allVehicleStarted) {
     System.out.println("在车道或“车道连接”上车辆到终点距离=" + vehi.vehicleDriving().distToEndpoint());
-    System.out.println("在车道或“车道连接”上车辆到终点距离, 米制=" + vehi.vehicleDriving().distToEndpoint(false, true, metric));
+    System.out.println("在车道或“车道连接”上车辆到终点距离, 米制=" + vehi.vehicleDriving().distToEndpoint(false, true, UnitOfMeasure.Metric));
 }
 ```
 
- **boolean moveToLane(ILane pLane, double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **boolean moveToLane(ILane pLane, double dist, UnitOfMeasure unit)**
 
 将车辆移到另一条车道上; 车辆会瞬间从当前车道移动到目标车道及指定的距离出, 后续TESSNG接管车辆继续行驶   
 
@@ -20439,7 +21701,7 @@ if (plane.vehicleDriving().moveToLane(lane, 400)) {
     System.out.println("移动飞机成功");
 }
 ```
- **boolean moveToLaneConnector(ILaneConnector pLaneConnector, double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **boolean moveToLaneConnector(ILaneConnector pLaneConnector, double dist, UnitOfMeasure unit)**
 
 将车辆移到另一条车道连接上; 车辆会瞬间从当前位置移动到目标车道连接及指定的距离处, 后续TESSNG接管车辆继续行驶 
 
@@ -20455,13 +21717,12 @@ SimuInterface simuIface = iface.simuInterface();
 NetInterface netIface = iface.netInterface();
 IVehicle vehicle = simuIface.getVehicle(1001);
 ILaneConnector laneConnector = netIface.findLaneConnector(5);
-SWIGTYPE_UnitOfMeasure metric = SWIGTYPE_UnitOfMeasure.swigToEnum(0);
-if (vehicle.vehicleDriving().moveToLaneConnector(laneConnector, 100, metric)) {
+if (vehicle.vehicleDriving().moveToLaneConnector(laneConnector, 100)) {
     System.out.println("车辆成功移动到目标车道连接");
 }
 ```
 
- **boolean move(ILaneObject pILaneObject, double dist, SWIGTYPE_UnitOfMeasure unit)**
+ **boolean move(ILaneObject pILaneObject, double dist, UnitOfMeasure unit)**
 
 移动车辆到到另一条车道或“车道连接”; 使用该函数后, 车辆脱离TESSNG管控, 需要用户维护后期车辆运动
 
@@ -20637,14 +21898,14 @@ netIFace.openNetFle("C: /TESSNG/Example/杭州武林门区域路网公交优先�
 
 场景中的像素比, 单位: 米/像素
 
- **double sceneHeigth(SWIGTYPE_UnitOfMeasure unit)**
+ **double sceneWidth(UnitOfMeasure unit)**
 
 场景宽度, 默认单位: 像素, 可通过unit参数设置单位 
 
 参数: 
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
- **double sceneHeigth(SWIGTYPE_UnitOfMeasure unit)**
+ **double sceneHeigth(UnitOfMeasure unit)**
 
 场景高度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -20723,15 +21984,15 @@ netIFace.openNetFle("C: /TESSNG/Example/杭州武林门区域路网公交优先�
 
 获取路网中的决策点列表
 
- **SWIGTYPE_p_QListT_IVehicleDrivInfoCollector_p_t vehiInfoCollectors()**
+ **ArrayList<IVehicleDrivInfoCollector> vehiInfoCollectors()**
 
 获取路网中的所有车辆检测器
 
- **SWIGTYPE_p_QListT_IVehicleQueueCounter_p_t vehiQueueCounters()**
+ **ArrayList<IVehicleQueueCounter> vehiQueueCounters()**
 
 获取路网中的所有排队计数器
 
- **SWIGTYPE_p_QListT_IVehicleTravelDetector_p_t vehiTravelDetectors()**
+ **ArrayList<IVehicleTravelDetector> vehiTravelDetectors()**
 
 获取路网中的所有车辆行程时间检测器, 返回列表中的每一个元素是一对行程时间检测器的起始检测器
 
@@ -20783,7 +22044,7 @@ if (connector != null) {
 
 获取信号机编号列表
 
- **SWIGTYPE_p_QListT_ISignalController_p_t signalControllers()**
+ **ArrayList<ISignalController> signalControllers()**
 
 获取信号机对象列表
 
@@ -20795,7 +22056,7 @@ if (connector != null) {
 
 获取信控方案ID集合
 
- **SWIGTYPE_p_QListT_ISignalPlan_p_t signalPlans()**
+ **ArrayList<ISignalPlan> signalPlans()**
 
 获取信控方案对象列表
 
@@ -20803,11 +22064,11 @@ if (connector != null) {
 
 获取所有信控方案的相位信息
 
- **SWIGTYPE_p_QListT_IRoadWorkZone_p_t roadWorkZones()**
+ **ArrayList<IRoadWorkZone> roadWorkZones()**
 
 获取所有施工区
 
- **SWIGTYPE_p_QListT_IAccidentZone_p_t accidentZones()**
+ **ArrayList<IAccidentZone> accidentZones()**
 
 获取所有事故区
 
@@ -20818,35 +22079,35 @@ if (connector != null) {
 参数: 
 [ in ] accidentZoneId: 事故区ID
 
- **SWIGTYPE_p_QListT_ILimitedZone_p_t limitedZones()**
+ **ArrayList<ILimitedZone> limitedZones()**
 
 获取所有限行区
 
- **SWIGTYPE_p_QListT_IReconstruction_p_t reconstructions()**
+ **ArrayList<IReconstruction> reconstructions()**
 
 获取所有改扩建
 
- **SWIGTYPE_p_QListT_IReduceSpeedArea_p_t reduceSpeedAreas()**
+ **ArrayList<IReduceSpeedArea> reduceSpeedAreas()**
 
 获取所有限速区 
 
- **SWIGTYPE_p_QListT_ITollLane_p_t tollLanes()**
+ **ArrayList<ITollLane> tollLanes()**
 
 获取所有收费车道列表
 
- **SWIGTYPE_p_QListT_ITollDecisionPoint_p_t tollDecisionPoints()**
+ **ArrayList<ITollDecisionPoint> tollDecisionPoints()**
 
 获取所有收费决策点列表
 
- **SWIGTYPE_p_QListT_IParkingRegion_p_t parkingRegions()**
+ **ArrayList<IParkingRegion> parkingRegions()**
 
 获取所有停车区列表
 
- **SWIGTYPE_p_QListT_IParkingDecisionPoint_p_t parkingDecisionPoints()**
+ **ArrayList<IParkingDecisionPoint> parkingDecisionPoints()**
 
 获取所有停车决策点列表
 
- **SWIGTYPE_p_QListT_Online__ParkingLot__DynaParkingTimeDis_t parkingTimeDis()**
+ **ArrayList<DynaParkingTimeDis> parkingTimeDis()**
 
 获取停车场停车时距分布列表
 
@@ -20854,11 +22115,11 @@ if (connector != null) {
 
 获取收费站停车时距分布列表
 
- **SWIGTYPE_p_QListT_IJunction_p_t getAllJunctions()**
+ **ArrayList<IJunction> getAllJunctions()**
 
 获得所有节点, 返回类型为字典
 
- **SWIGTYPE_p_QListT_Online__Junction__FlowTimeInterval_t getFlowTimeIntervals()**
+ **ArrayList<FlowTimeInterval> getFlowTimeIntervals()**
 
 获取所有时间段
 
@@ -20867,7 +22128,7 @@ if (connector != null) {
 添加时间段, 返回新时间段ID, 失败返回-1; 调用这个接口后会根据上一个时间段计算当前时间段
 
 
- **SWIGTYPE_p_QListT_Online__Junction__FlowTurning_t getJunctionFlows(int junctionId)**
+ **ArrayList<FlowTurning> getJunctionFlows(long junctionId)**
 
 获取节点流向信息  
 [ in ]junctionId: 节点ID
@@ -21030,7 +22291,7 @@ if (connector != null) {
 参数: 
 [ in ] stationId: 公交站点ID
 
- **SWIGTYPE_p_QListT_IBusStationLine_p_t findBusStationLineByStationId(int stationId)**
+ **ArrayList<IBusStationLine> findBusStationLineByStationId(long stationId)**
 
 根据公交站点ID查询相关BusLineStation
 
@@ -21278,14 +22539,4382 @@ if (connector != null) {
 参数: 
 [ in ] id: 行人决策点ID
 
- **ArrayList<Point> linkCenterPoints(int linkId, SWIGTYPE_UnitOfMeasure unit)**
+ **ArrayList<Point> linkCenterPoints(long linkId, UnitOfMeasure unit)**
 
 获取指定路段的中心线断点集
 
 参数: 
-[ in ]linkId: 指定路段ID  
-[ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+[ in ] linkId: 指定路段ID  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
 
- **ArrayList<Point> laneCenterPoints(int laneId, SWIGTYPE_UnitOfMeasure unit)**
+ **ArrayList<Point> laneCenterPoints(long laneId, UnitOfMeasure unit)**
 
 **获取指定车道的中心线断点集**
+
+参数: 
+[ in ] laneId: 指定车道ID  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+ **boolean judgeLinkToCross(int linkId)**
+
+判断路段去向是否进入交叉口, 以面域是否存在多连接段以及当前路段与后续路段之间的角度为依据; 和节点Ijunction没啥关系
+
+ **ILink createLink(ArrayList<Point> lCenterPoint, int laneCount, String linkName, boolean bAddToScene, UnitOfMeasure unit)**
+
+创建路段
+
+参数: 
+[ in ] lCenterPoint: 路段中心线断点集  
+[ in ] laneCount: 车道数  
+[ in ] linkName: 路段名, 默认为空, 将以路段ID作为路段名  
+[ in ] bAddToScene: 创建后是否放入路网场景, 默认为True  
+[ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+注: 如传入米制参数, 请勿遗忘传入linkName与bAddToScene参数。  
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+Point startPoint = new Point(TESSNG.m2p(-300), 0);
+Point endPoint = new Point(TESSNG.m2p(300), 0);
+ArrayList<Point> lPoint = new ArrayList<>();
+lPoint.add(startPoint);
+lPoint.add(endPoint);
+ILink link1 = netiface.createLink(lPoint, 7, "曹安公路");
+```
+
+返回: 路段对象。
+
+ **ILink createLink3D(ArrayList<Point3D> lCenterV3, int laneCount, String linkName, boolean bAddToScene, UnitOfMeasure unit)**
+
+创建路段, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] lCenterV3: 路段中心线断点序列, 每个断点均为三维空间的点  
+[ in ] laneCount: 车道数  
+[ in ] linkName: 路段名  
+[ in ] bAddToScene: 创建后是否放入路网场景, 默认为True  
+[ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 路段对象。  
+注: 如传入米制参数, 请勿遗忘传入linkName与bAddToScene参数。 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+ArrayList<Vector3D> centerPoints1 = new ArrayList<>();
+Vector3D startPoint1 = new Vector3D(300, -6, 0); // 起点
+Vector3D endPoint1 = new Vector3D(25, -6, 5);     // 终点
+centerPoints1.add(startPoint1);
+centerPoints1.add(endPoint1);
+int laneCount = 3;                          // 车道数量
+String linkName = "东进口creatlink3d";       // 路段名称
+boolean bAddToScene = true;                 // 是否加入场景
+// 创建3D道路链接
+ILink e_approach = netiface.createLink3D(centerPoints1, laneCount, linkName, bAddToScene,UnitOfMeasure.Metric);
+```
+
+ **ILink createLinkWithLaneWidth(ArrayList<Point> lCenterPoint, ArrayList<Double> lLaneWidth, String linkName, boolean bAddToScene, UnitOfMeasure unit)**
+
+创建路段, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+
+[ in ] lCenterPoint: 路段中心线断点序列  
+[ in ] lLaneWidth: 车道宽度列表  
+[ in ] linkName: 路段名  
+[ in ] bAddToScene: 是否加入场景, 默认为True  
+[ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 路段对象。  
+注: 如传入米制参数, 请勿遗忘传入linkName与bAddToScene参数。  
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+ArrayList<Point> centerPoints1 = new ArrayList<>();
+Point startPoint1 = new Point(6, 300); // 起点
+Point endPoint1 = new Point(6, 25);     // 终点
+centerPoints1.add(startPoint1);
+centerPoints1.add(endPoint1);
+// 设置每条车道的宽度（从左到右）
+ArrayList<Double> laneWidths = new ArrayList<>();
+laneWidths.add(3.5);
+laneWidths.add(3.0);
+laneWidths.add(3.0);
+String linkName = "南进口creatlinkWithLaneWidth"; // 路段名称
+boolean bAddToScene = true;                       // 是否添加到场景
+ILink s_approach = netiface.createLinkWithLaneWidth(centerPoints1, laneWidths, linkName, bAddToScene,UnitOfMeasure.Metric);
+```
+
+ **ILink createLink3DWithLaneWidth(ArrayList<Point3D> lCenterV3, ArrayList<Double> lLaneWidth, String linkName, boolean bAddToScene, UnitOfMeasure unit)**
+
+创建指定车道宽度的3D路段, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] lCenterV3: 路段中心线断点序列, 每个断点均为三维空间的点  
+[ in ] lLaneWidth: 车道宽度列表  
+[ in ] linkName: 路段名  
+[ in ] bAddToScene: 是否加入场景, 默认为True  
+[ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 路段对象。  
+注: 如传入米制参数, 请勿遗忘传入linkName与bAddToScene参数。   
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+ArrayList<Point3D> centerPoints3D = new ArrayList<>();
+Point3D startPoint3D = new Point3D(6, 300, 0); // 起点 (x, y, z)
+Point3D endPoint3D = new Point3D(6, 25, 5);    // 终点 (x, y, z)
+centerPoints3D.add(startPoint3D);
+centerPoints3D.add(endPoint3D);
+// 设置每条车道的宽度（从左到右）
+ArrayList<Double> laneWidths = new ArrayList<>();
+laneWidths.add(3.5);
+laneWidths.add(3.0);
+laneWidths.add(3.0);
+String linkName = "南进口creatlink3dWithLaneWidth"; // 路段名称
+boolean bAddToScene = true;                       // 是否添加到场景
+// 创建带有自定义车道宽度的3D路段
+ILink s_approach = netiface.createLink3DWithLaneWidth(centerPoints3D, laneWidths, linkName, bAddToScene, UnitOfMeasure.Metric);
+if (s_approach != null) {
+    System.out.println("3D路段创建成功，ID: " + s_approach.id());
+} else {
+    System.out.println("3D路段创建失败");
+}
+```
+
+ **ILink createLink3DWithLanePoints(ArrayList<Point3D> lCenterLineV3, ArrayList<TreeMap<String, ArrayList<Point3D>>> lanesWithPoints, String linkName, boolean bAddToScene, UnitOfMeasure unit)**
+
+创建指定车道断点的3D路段, 默认单位: 像素
+
+参数: 
+[ in ] lCenterLineV3: 路段中心点集(对应TESSNG路段中心点), 每个点均为三维空间的  
+[ in ] lanesWithPoints: 车道数据集合, 每个成员是QMap< QString, QList< QVector3D>>类型数据, 有三个key, 分别是“left”、“center”、“right”、分别表示一条车道左、中、右侧断点序列。  
+[ in ] linkName: 路段名, 默认为路段ID  
+[ in ] bAddToScene: 是否加入路网, 默认True表示加入  
+[ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 路段对象  
+注: 如传入米制参数, 请勿遗忘传入linkName与bAddToScene参数。
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+// 定义起点和终点
+Point3D startPoint = new Point3D(-6, -300, 0);
+Point3D endPoint = new Point3D(-6, -25, 5);
+ArrayList<Point3D> lPoint = new ArrayList<>();
+lPoint.add(startPoint);
+lPoint.add(endPoint);
+
+// 定义每条车道的左右和中心线点集
+ArrayList<Point3D> lane3_left = new ArrayList<>();
+lane3_left.add(new Point3D(-3, -300, 0));
+lane3_left.add(new Point3D(-3, -25, 0));
+
+ArrayList<Point3D> lane3_mid = new ArrayList<>();
+lane3_mid.add(new Point3D(-1.5, -300, 0));
+lane3_mid.add(new Point3D(-1.5, -25, 0));
+
+ArrayList<Point3D> lane3_right = new ArrayList<>();
+lane3_right.add(new Point3D(0, -300, 0));
+lane3_right.add(new Point3D(0, -25, 0));
+
+ArrayList<Point3D> lane2_left = new ArrayList<>();
+lane2_left.add(new Point3D(-6, -300, 0));
+lane2_left.add(new Point3D(-6, -25, 0));
+
+ArrayList<Point3D> lane2_mid = new ArrayList<>();
+lane2_mid.add(new Point3D(-4.5, -300, 0));
+lane2_mid.add(new Point3D(-4.5, -25, 0));
+
+ArrayList<Point3D> lane2_right = new ArrayList<>();
+lane2_right.add(new Point3D(-3, -300, 0));
+lane2_right.add(new Point3D(-3, -25, 0));
+
+ArrayList<Point3D> lane1_left = new ArrayList<>();
+lane1_left.add(new Point3D(-9, -300, 0));
+lane1_left.add(new Point3D(-9, -25, 0));
+
+ArrayList<Point3D> lane1_mid = new ArrayList<>();
+lane1_mid.add(new Point3D(-7.5, -300, 0));
+lane1_mid.add(new Point3D(-7.5, -25, 0));
+
+ArrayList<Point3D> lane1_right = new ArrayList<>();
+lane1_right.add(new Point3D(-6, -300, 0));
+lane1_right.add(new Point3D(-6, -25, 0));
+ArrayList<TreeMap<String, ArrayList<Point3D>>> lanes = new ArrayList<>();
+// 车道1
+TreeMap<String, ArrayList<Point3D>> lane1 = new TreeMap<>();
+lane1.put("left", lane1_left);
+lane1.put("center", lane1_mid);
+lane1.put("right", lane1_right);
+// 车道2
+TreeMap<String, ArrayList<Point3D>> lane2 = new TreeMap<>();
+lane2.put("left", lane2_left);
+lane2.put("center", lane2_mid);
+lane2.put("right", lane2_right);
+// 车道3
+TreeMap<String, ArrayList<Point3D>> lane3 = new TreeMap<>();
+lane3.put("left", lane3_left);
+lane3.put("center", lane3_mid);
+lane3.put("right", lane3_right);
+// 添加到列表
+lanes.add(lane1);
+lanes.add(lane2);
+lanes.add(lane3);
+// 创建带有自定义车道点集的3D路段
+String linkName = "北进口createLink3DWithLanePoints";
+boolean bAddToScene = true;
+ILink n_approach = netiface.createLink3DWithLanePoints(lPoint, lanes, linkName, bAddToScene, UnitOfMeasure.Metric);
+```
+
+ **IConnector createConnector(int fromLinkId, int toLinkId, ArrayList<Integer> lFromLaneNumber, ArrayList<Integer> lToLaneNumber, String connName, boolean bAddToScene)**
+
+创建连接段
+
+参数: 
+
+[ in ] fromLinkId: 起始路段ID  
+[ in ] toLinkId: 目标路段ID  
+[ in ] lFromLaneNumber: 连接段起始车道序号集  
+[ in ] lToLaneNumber: 连接段目标车道序号集   
+[ in ] connName: 连接段名, 默认为空, 以两条路段的ID连接起来作为名称   
+[ in ] bAddToScene: 创建后是否放入路网场景, 默认为True  
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+// 创建西进口路段
+// 定义起点和终点
+Point startPoint = new Point(-300, 6);
+Point endPoint = new Point(-25, 6);
+ArrayList<Point> lPoint = new ArrayList<>();
+lPoint.add(startPoint);
+lPoint.add(endPoint);
+int laneCount = 3;
+String linkName1 = "西进口";
+boolean bAddToScene1 = true;
+ILink w_approach = netiface.createLink(lPoint, laneCount, linkName1, bAddToScene1);
+// 创建东进口 3D 路段
+// 定义 3D 起点和终点
+Vector3D startPoint3D = new Vector3D(300, -6, 0);
+Vector3D endPoint3D = new Vector3D(25, -6, 5);
+ArrayList<Vector3D> lPoint3D = new ArrayList<>();
+lPoint3D.add(startPoint3D);
+lPoint3D.add(endPoint3D);
+String linkName2 = "东进口creatlink3d";
+boolean bAddToScene2 = true;
+ILink e_approach = netiface.createLink3D(lPoint3D, laneCount, linkName2, bAddToScene2);
+// 定义车道编号列表
+ArrayList<Integer> lFromLaneNumber = new ArrayList<>();
+lFromLaneNumber.add(2);
+ArrayList<Integer> lToLaneNumber = new ArrayList<>();
+lToLaneNumber.add(2);
+// 创建连接段
+String connectorName = "东西直行";
+boolean bAddToScene3 = true;
+IConnector w_e_straight_connector = netiface.createConnector(w_approach.id(), e_approach.id(), lFromLaneNumber, lToLaneNumber, connectorName, bAddToScene3);
+```
+
+ **IConnector createConnector3DWithPoints(long fromLinkId, long toLinkId, ArrayList<Integer> lFromLaneNumber, ArrayList<Integer> lToLaneNumber, ArrayList<TreeMap<String, ArrayList<Point3D>>> laneConnectorWithPoints, String connName, boolean bAddToScene, UnitOfMeasure unit)**
+
+创建连接段, 创建连接段后将“车道连接”中自动计算的断点集用参数laneConnectorWithPoints断点替换; 即创建指定断点的3D连接段, 默认单位: 像素, 可通过unit参数设置单位  
+
+参数: 
+[ in ] fromLinkId: 起始路段ID  
+[ in ] toLinkId: 目标路段ID  
+[ in ] lFromLaneNumber: 起始路段参于连接的车道序号  
+[ in ] lToLaneNumber: 目标路段参于连接的车道序号  
+[ in ] laneConnectorWithPoints: “车道连接”数据列表, 成员是TreeMap<String, ArrayList<Point3D>>类型数据, 有三种key, 分别是“left”、“center”、“right”, 表示一条“车道连接”左、中、右侧断点序列   
+[ in ] connName: 连接段名, 默认将起始路段ID和目标路段ID用“_”连接表示连接段名, 如“100_101”。  
+[ in ] bAddToScene: 是否加入到场景, 默认为True  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+返回: 连接段对象  
+
+注: 如传入米制参数, 请勿遗忘传入connName与bAddToScene参数。  
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+// 创建西进口路段
+// 定义起点和终点
+Point startPoint = new Point(-300, 6);
+Point endPoint = new Point(-25, 6);
+ArrayList<Point> lPoint = new ArrayList<>();
+lPoint.add(startPoint);
+lPoint.add(endPoint);
+int laneCount = 3;
+String linkName1 = "西进口";
+boolean bAddToScene1 = true;
+ILink w_approach = netiface.createLink(lPoint, laneCount, linkName1, bAddToScene1);
+// 创建东进口 3D 路段
+// 定义 3D 起点和终点
+Vector3D startPoint3D = new Vector3D(300, -6, 0);
+Vector3D endPoint3D = new Vector3D(25, -6, 5);
+ArrayList<Vector3D> lPoint3D = new ArrayList<>();
+lPoint3D.add(startPoint3D);
+lPoint3D.add(endPoint3D);
+String linkName2 = "东进口creatlink3d";
+boolean bAddToScene2 = true;
+ILink e_approach = netiface.createLink3D(lPoint3D, laneCount, linkName2, bAddToScene2);
+// 定义车道编号列表
+ArrayList<Integer> lFromLaneNumber = new ArrayList<>();
+lFromLaneNumber.add(2);
+ArrayList<Integer> lToLaneNumber = new ArrayList<>();
+lToLaneNumber.add(2);
+// 定义车道点集，这里假设每个车道有一个点集
+ArrayList<Point3D> lane1Points = new ArrayList<>();
+lane1Points.add(new Point3D(0, 0, 0));
+lane1Points.add(new Point3D(1, 1, 1));
+// 创建车道结构
+TreeMap<String, ArrayList<Point3D>> laneMap = new TreeMap<>();
+laneMap.put("center", lane1Points);
+// 创建车道列表
+ArrayList<TreeMap<String, ArrayList<Point3D>>> laneConnectorWithPoints = new ArrayList<>();
+laneConnectorWithPoints.add(laneMap);
+String connectorName = "直行";
+boolean bAddToScene3 = true;
+IConnector connector = netiface.createConnector3DWithPoints(w_approach.id(), e_approach.id(), lFromLaneNumber, lToLaneNumber, laneConnectorWithPoints, connectorName, bAddToScene3, UnitOfMeasure.Metric);
+```
+
+ **IDispatchPoint createDispatchPoint(ILink pLink, String dpName, boolean bAddToScene)**
+
+创建发车点
+
+参数: 
+[ in ] pLink: 路段, 在其上创建发车点  
+[ in ] dpName: 发车点名称, 默认为空, 将以发车点ID作为名称  
+[ in ] bAddToScene: 创建后是否放入路网场景, 默认为True  
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+// 定义起点和终点
+Point startPoint1 = new Point(TESSNG.m2p(-300), TESSNG.m2p(-200));
+Point endPoint1 = new Point(TESSNG.m2p(-50), TESSNG.m2p(-200));
+ArrayList<Point> lPoint1 = new ArrayList<>();
+lPoint1.add(startPoint1);
+lPoint1.add(endPoint1);
+int laneCount = 3;
+String linkName = "信控编辑路段1";
+// 创建路段
+ILink link1 = netiface.createLink(lPoint1, laneCount, linkName);
+if (link1 != null) {
+    System.out.println("路段创建成功，ID: " + link1.id());
+    // 创建发车点
+    IDispatchPoint dp = netiface.createDispatchPoint(link1);
+    if (dp != null) {
+        System.out.println("发车点创建成功");
+        // 设置发车间隔，含车型组成、时间间隔、发车数
+        dp.addDispatchInterval(1, 3600, 3600);
+    } else {
+        System.out.println("发车点创建失败");
+    }
+} else {
+    System.out.println("路段创建失败");
+}
+```
+
+ **int createVehicleComposition(String name, ArrayList<VehiComposition> lVehiComp)**
+
+创建车型组成, 如果车型组成名已存在或相关车型编码不存在或相关车型占比小于0则返回-1, 否则新建车型组成, 并返回车型组成编码  
+
+参数: 
+[ in ] name: 车型组成名  
+[ in ] lVehiComp: 不同车型占比列表  
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+// 创建车辆组成及指定车辆类型
+ArrayList<VehiComposition> vehiType_proportion_lst = new ArrayList<>();
+// 车型组成: 小客车 0.3, 大客车 0.2, 公交车 0.1, 货车 0.4
+vehiType_proportion_lst.add(new VehiComposition(1, 0.3));
+vehiType_proportion_lst.add(new VehiComposition(2, 0.2));
+vehiType_proportion_lst.add(new VehiComposition(3, 0.1));
+vehiType_proportion_lst.add(new VehiComposition(4, 0.4));
+String compositionName = "动态创建车型组成";
+int vehiCompositionID = netiface.createVehicleComposition(compositionName, vehiType_proportion_lst);
+System.out.println("车辆组成 ID: " + vehiCompositionID);
+```
+
+ **IRouting shortestRouting(ILink pFromLink, ILink pToLink)**
+
+计算最短路径
+
+参数: 
+[ in ] pFromLink: 起始路段  
+[ in ] pToLink: 目标路段  
+返回: 最短路径对象, 包含经过的路段对象序列
+
+ **IRouting createRouting(ArrayList<ILink> lILink)**
+
+用连续通达的路段序列创建路径
+
+参数: 
+[ in ] lILink: 路段对象序列  
+返回: 路径对象  
+
+ **ILink createLink3DWithLanePointsAndAttrs(ArrayList<Point3D> lCenterLineV3, ArrayList<TreeMap<String, ArrayList<Point3D>>> lanesWithPoints, ArrayList<String> lLaneType, SWIGTYPE_p_QListT_QJsonObject_t lAttr, String linkName, boolean bAddToScene, UnitOfMeasure unit)**
+
+创建路段
+
+参数: 
+[ in ] lCenterLineV3: 路段中心点集(对应TESSNG路段中心点)  
+[ in ] lanesWithPoints: 车道点集的集合  
+[ in ] lLaneType: 车道类型集  
+[ in ] lAttr: 车道附加属性集  
+[ in ] linkName: 路段名, 默认为路段ID, 
+[ in ] bAddToScene: 是否加入路网, 默认True表示加入  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 路段对象 
+
+注: 如传入米制参数, 请勿遗忘传入connName与bAddToScene参数。
+
+
+ **IGuidArrow createGuidArrow(ILane pLane, double length, double distToTerminal, GuideArrowType arrowType, UnitOfMeasure unit)**
+
+创建导向箭头, 默认单位: 像素
+
+参数: 
+[ in ] pLane: 车道  
+[ in ] length: 长度, 默认默认单位: 像素, 可通过制定unit更改为米制  
+[ in ] distToTerminal: 到车道终点距离, 默认默认单位: 像素, 可通过制定unit更改为米制  
+[ in ] arrowType: 箭头类型, Online.GuideArrowType 枚举值  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 创建车道箭头    
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+ILink w_approach = netiface.findLink(1001);
+GuideArrowType arrowType = GuideArrowType.StraightRight;
+// 获取路段 w_approach 的第一条车道
+ILane firstLane = w_approach.lanes().get(0);
+// 创建导向箭头
+IGuidArrow straitghtRightArrow = netiface.createGuidArrow(firstLane, 4, 10, arrowType);
+```
+
+**boolean createVehicleType(_VehicleType _vt)**
+
+创建车型, 如果创建成功, 会将新创建的车辆类型存放到全局数据里供使用
+
+参数: 
+[ in ] _vt: 车辆类型数据
+
+**IDecisionPoint createDecisionPoint(ILink pLink, double distance, String name, UnitOfMeasure unit)**
+
+创建决策点, 默认单位: 像素
+
+参数: 
+[ in ] pLink: 决策点所在的路段  
+[ in ] distance: 决策点距离路段起点的距离, 默认单位: 像素  
+[ in ] name: 决策点的名称  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 决策点对象  
+注: 如传入米制参数, 请勿遗忘传入name参数。  
+
+举例: 
+
+```java
+IDecisionPoint createDecisionPoint(link3, 30, "Decesion Point", UnitOfMeasure.Metric);
+```
+
+ **IRouting createDeciRouting(IDecisionPoint pDeciPoint, ArrayList<ILink> lILink)**
+
+创建决策路径
+
+参数: 
+[ in ] pDeciPoint: 决策点
+[ in ] lILink: 决策路径所包含的路段集合
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+// 创建决策点（参数：路段，距离路段起点的位置）
+IDecisionPoint decisionPoint = netiface.createDecisionPoint(link3, m2p(30));
+// 创建路径(左, 直, 右)
+ArrayList<ILink> route1Links = new ArrayList<>(Arrays.asList(link3, link5, link6));
+IRouting decisionRouting1 = netiface.createDeciRouting(decisionPoint, route1Links);
+ArrayList<ILink> route2Links = new ArrayList<>(Arrays.asList(link3, link5, link8));
+IRouting decisionRouting2 = netiface.createDeciRouting(decisionPoint, route2Links);
+ArrayList<ILink> route3Links = new ArrayList<>(Arrays.asList(link3, link5, link7));
+IRouting decisionRouting3 = netiface.createDeciRouting(decisionPoint, route3Links);
+System.out.println("创建决策路径成功");
+```
+
+ **IVehicleDrivInfoCollector createVehiCollectorOnLink(ILane pLane, double dist, UnitOfMeasure unit)**
+
+在路段的车道上创建车辆采集器, 默认单位: 像素
+
+参数: 
+[ in ] pLane: 车道对象  
+[ in ] dist: 路车道起点距离, 默认单位: 像素  
+[ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 车辆采集器    
+
+举例: 
+
+```java
+// 获取TESSNG接口
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+// 查找路段9
+ILink link = netiface.findLink(9);
+// 获取最左侧车道（Java中列表索引从0开始，最后一个元素为 lanes().size()-1）
+ILane leftLane = link.lanes().get(link.lanes().size() - 1);
+// 初始位置（可能不需要，后续会设置到400米处）
+double initialDist = m2p(100);
+// 创建车辆采集器
+IVehicleDrivInfoCollector collector = netiface.createVehiCollectorOnLink(leftLane, initialDist);
+// 将采集器设置到距路段起点400米处
+collector.setDistToStart(m2p(400));
+```
+
+ **IVehicleDrivInfoCollector createVehiCollectorOnConnector(ILaneConnector pLaneConnector, double dist, UnitOfMeasure unit)**
+
+在连接段的“车道连接”上创建采集器
+
+参数: 
+[ in ] pLaneConnector: “车道连接”对象  
+[ in ] dist: 距“车道连接”起点距离, 默认单位: 像素  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位     
+
+ **IVehicleQueueCounter createVehiQueueCounterOnLink(ILane pLane, double dist, UnitOfMeasure unit)**
+
+在路段的车道上创建车辆排队计数器
+
+参数: 
+[ in ] pLane: 车道对象  
+[ in ] dist: 默认单位: 像素  
+[ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位 
+返回: 排队计数器对象   
+
+举例: 
+
+```java
+// 获取TESSNG接口并查找路段9
+ILink link = TESSNG.tessngIFace().netInterface().findLink(9);
+// 获取最左侧车道（假设路段存在且至少有1个车道）
+ILane leftLane = link.lanes().get(link.lanes().size() - 1);
+// 创建排队计数器（假设方法存在且参数正确）
+IVehicleQueueCounter counter = TESSNG.tessngIFace().netInterface().createVehiQueueCounterOnLink(leftLane, m2p(100));
+// 输出计数器位置（假设counter不为null）
+Point point = counter.point();
+System.out.printf("计数器所在点坐标为: (%.2f, %.2f)%n", point.getX(), point.getY());
+```
+
+ **IVehicleQueueCounter createVehiQueueCounterOnConnector(ILaneConnector pLaneConnector, double dist, UnitOfMeasure unit)**
+
+在连接段的车道连接上创建车辆排队计数器, 默认单位: 像素
+
+参数: 
+[ in ] pLaneConnector: “车道连接”对象  
+[ in ] dist: 距“车道连接”起点距离, 默认单位: 像素  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 排队计数器对象  
+
+ **ArrayList<IVehicleTravelDetector> createVehicleTravelDetector_link2link(ILink pStartLink, ILink pEndLink, double dist1, double dist2, UnitOfMeasure unit)**
+
+创建行程时间检测器, 起点和终点均在路段上; 默认单位: 像素
+
+参数: 
+[ in ] pStartLink: 检测器起点所在路段对象  
+[ in ] pEndLaneConnector: 检测器终点所在“车道连接”对象  
+[ in ] dist1: 检测器起点距所在路段起始点距离, 默认单位: 像素  
+[ in ] dist2: 检测器终点距所在“车道连接”起始点距离, 默认单位: 像素  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位    
+
+举例: 
+
+```java
+// 获取TESSNG接口并查找路段9
+ILink link = TESSNG.tessngIFace().netInterface().findLink(9);
+// 创建行程检测器
+ArrayList<IVehicleTravelDetector> detectors =
+    TESSNG.tessngIFace().netInterface().createVehicleTravelDetector_link2link(link, link, m2p(50), m2p(550));
+// 设置检测时间范围
+for (IVehicleTravelDetector detector : detectors) {
+    detector.setFromTime(10);
+    detector.setToTime(60);
+}
+System.out.println("成功创建行程检测器");
+```
+
+ **ArrayList<IVehicleTravelDetector> createVehicleTravelDetector_link2conn(ILink pStartLink, ILaneConnector pEndLaneConnector, double dist1, double dist2, UnitOfMeasure unit)**
+
+创建路段到连接段的行程时间检测器, 起点在路段上, 终点均在连接段的“车道连接”上; 默认单位: 像素 
+
+参数: 
+[ in ] pStartLink: 检测器起点所在路段对象  
+[ in ] pEndLaneConnector: 检测器终点所在“车道连接”对象  
+[ in ] dist1: 检测器起点距所在路段起始点距离, 默认单位: 像素  
+[ in ] dist2: 检测器终点距所在“车道连接”起始点距离, 默认单位: 像素  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 行程时间检测器对象  
+
+ **ArrayList<IVehicleTravelDetector> createVehicleTravelDetector_conn2link(ILaneConnector pStartLaneConnector, ILink pEndLink, double dist1, double dist2, UnitOfMeasure unit)**
+
+创建连接段到路段的行程时间检测器, 起点在连接段的“车道连接”上, 终点在路段上
+
+参数: 
+[ in ] pStartLaneConnector: 检测器起点所在“车道连接”对象  
+[ in ] pEndLink: 检测器终点所在路段对象  
+[ in ] dist1: 检测器起点距所在"车道连接”起始点距离, 默认单位: 像素  
+[ in ] dist2: 检测器终点距所在路段起始点距离, 默认单位: 像素  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 行程时间检测器对象    
+
+ **ArrayList<IVehicleTravelDetector> createVehicleTravelDetector_conn2conn(ILaneConnector pStartLaneConnector, ILaneConnector pEndLaneConnector, double dist1, double dist2, UnitOfMeasure unit)**
+
+创建连接段到连接段的行程时间检测器, , 起点和终点均在连接段的“车道连接”上; 默认单位: 像素
+
+参数: 
+[ in ] pStartLaneConnector: 检测器起点所在“车道连接”对象  
+[ in ] pEndLaneConnector: 检测器终点所在“车道连接”对象  
+[ in ] dist1: 检测器起点距所在"车道连接”起始点距离, 默认单位: 像素  
+[ in ] dist2: 检测器终点距所在“车道连接”起始点距离, 默认单位: 像素  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 行程时间检测器对象    
+
+ **ISignalPhase createSignalPlanSignalPhase(ISignalPlan SignalPlan, String name, ArrayList<ColorInterval> lColor)**
+
+创建相位, 参数 SignalPlan: 信控方案, name: 相位名称, lColor: 相位灯色序列, 新建相位排在已有相位序列的最后
+
+参数: 
+[ in ] SignalPlan: 信号方案  
+[ in ] name: 相位名称  
+[ in ] lColor: 相位灯色序列, 新建相位排在已有相位序列的最后  
+
+返回: 信号相位对象
+
+举例: 
+
+```java
+public void createSignalControl(NetInterface netInterface, ILink w_approach, ILink e_approach,
+                                ILink n_approach, ILink s_approach, IPedestrianCrossWalkRegion n_crosswalk,
+                                IPedestrianCrossWalkRegion s_crosswalk, IPedestrianCrossWalkRegion w_crosswalk, IPedestrianCrossWalkRegion e_crosswalk) {
+
+    // 创建信号机
+    ISignalController signalController = netInterface.createSignalController("交叉口1");
+    System.out.println("信号机创建成功，ID: " + signalController.id());
+    // 创建信控方案（周期150秒，绿信比50%，相位差0，开始时间1800秒）
+    ISignalPlan signalPlan = netInterface.createSignalPlan(
+        signalController, "早高峰", 150, 50, 0, 1800);
+
+    // 创建东西直行相位
+    ArrayList<ColorInterval> w_e_straight_phasecolor = new ArrayList<>();
+    w_e_straight_phasecolor.add(new ColorInterval("绿", 50));
+    w_e_straight_phasecolor.add(new ColorInterval("黄", 3));
+    w_e_straight_phasecolor.add(new ColorInterval("红", 97));
+    ISignalPhase w_e_straight_phase = netInterface.createSignalPlanSignalPhase(
+        signalPlan, "东西直行", w_e_straight_phasecolor);
+    System.out.println("东西直行相位创建成功，ID: " + w_e_straight_phase.id());
+    // 创建东西直行行人相位
+    ISignalPhase we_ped_phase = netInterface.createSignalPlanSignalPhase(
+        signalPlan, "东西直行行人", w_e_straight_phasecolor);
+
+    // 创建东西左转相位
+    ArrayList<ColorInterval> w_e_left_phasecolor = new ArrayList<>();
+    w_e_left_phasecolor.add(new ColorInterval("红", 53));
+    w_e_left_phasecolor.add(new ColorInterval("绿", 30));
+    w_e_left_phasecolor.add(new ColorInterval("黄", 3));
+    w_e_left_phasecolor.add(new ColorInterval("红", 64));
+    ISignalPhase w_e_left_phase = netInterface.createSignalPlanSignalPhase(
+        signalPlan, "东西左转", w_e_left_phasecolor);
+
+    // 创建南北直行相位
+    ArrayList<ColorInterval> s_n_straight_phasecolor = new ArrayList<>();
+    s_n_straight_phasecolor.add(new ColorInterval("红", 86));
+    s_n_straight_phasecolor.add(new ColorInterval("绿", 30));
+    s_n_straight_phasecolor.add(new ColorInterval("黄", 3));
+    s_n_straight_phasecolor.add(new ColorInterval("红", 31));
+    ISignalPhase s_n_straight_phase = netInterface.createSignalPlanSignalPhase(
+        signalPlan, "南北直行", s_n_straight_phasecolor);
+
+    // 创建南北直行行人相位
+    ISignalPhase ns_ped_phase = netInterface.createSignalPlanSignalPhase(
+        signalPlan, "南北直行行人", s_n_straight_phasecolor);
+    System.out.println("s_n_straight_phase:" + s_n_straight_phase.id());
+    // 创建南北左转相位
+    ArrayList<ColorInterval> s_n_left_phasecolor = new ArrayList<>();
+    s_n_left_phasecolor.add(new ColorInterval("红", 119));
+    s_n_left_phasecolor.add(new ColorInterval("绿", 29));
+    s_n_left_phasecolor.add(new ColorInterval("黄", 3));
+    ISignalPhase s_n_left_phase = netInterface.createSignalPlanSignalPhase(
+        signalPlan, "南北左转", s_n_left_phasecolor);
+    System.out.println("s_n_left_phase:" + s_n_left_phase.id());
+    // 创建东西直行机动车信号灯
+    ArrayList<ISignalLamp> w_e_straight_lamps = new ArrayList<>();
+    for (ILane lane : w_approach.lanes()) {
+        if (lane.number() < w_approach.laneCount() - 1 && lane.number() > 0) {
+            ISignalLamp signalLamp = netInterface.createSignalLamp(
+                w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length() - 0.5);
+            w_e_straight_lamps.add(signalLamp);
+        }
+    }
+    for (ILane lane : e_approach.lanes()) {
+        if (lane.number() < e_approach.laneCount() - 1 && lane.number() > 0) {
+            ISignalLamp signalLamp = netInterface.createSignalLamp(
+                w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length() - 0.5);
+            w_e_straight_lamps.add(signalLamp);
+        }
+    }
+
+    // 创建东西左转机动车信号灯
+    ArrayList<ISignalLamp> w_e_left_lamps = new ArrayList<>();
+    for (ILane lane : w_approach.lanes()) {
+        if (lane.number() == w_approach.laneCount() - 1) {
+            ISignalLamp signalLamp = netInterface.createSignalLamp(
+                w_e_left_phase, "东西左转信号灯", lane.id(), -1, lane.length() - 0.5);
+            w_e_left_lamps.add(signalLamp);
+        }
+    }
+    for (ILane lane : e_approach.lanes()) {
+        if (lane.number() == e_approach.laneCount() - 1) {
+            ISignalLamp signalLamp = netInterface.createSignalLamp(
+                w_e_left_phase, "东西左转信号灯", lane.id(), -1, lane.length() - 0.5);
+            w_e_left_lamps.add(signalLamp);
+        }
+    }
+
+    // 创建南北直行机动车信号灯
+    ArrayList<ISignalLamp> n_s_straight_lamps = new ArrayList<>();
+    for (ILane lane : n_approach.lanes()) {
+        if (lane.number() < n_approach.laneCount() - 1 && lane.number() > 0) {
+            ISignalLamp signalLamp = netInterface.createSignalLamp(
+                s_n_straight_phase, "南北直行信号灯", lane.id(), -1, lane.length() - 0.5);
+            n_s_straight_lamps.add(signalLamp);
+        }
+    }
+    for (ILane lane : s_approach.lanes()) {
+        if (lane.number() < s_approach.laneCount() - 1 && lane.number() > 0) {
+            ISignalLamp signalLamp = netInterface.createSignalLamp(
+                s_n_straight_phase, "南北直行信号灯", lane.id(), -1, lane.length() - 0.5);
+            n_s_straight_lamps.add(signalLamp);
+        }
+    }
+
+    // 创建南北左转机动车信号灯
+    ArrayList<ISignalLamp> n_s_left_lamps = new ArrayList<>();
+    for (ILane lane : n_approach.lanes()) {
+        if (lane.number() == n_approach.laneCount() - 1) {
+            ISignalLamp signalLamp = netInterface.createSignalLamp(
+                s_n_left_phase, "南北左转信号灯", lane.id(), -1, lane.length() - 0.5);
+            n_s_left_lamps.add(signalLamp);
+        }
+    }
+    for (ILane lane : s_approach.lanes()) {
+        if (lane.number() == s_approach.laneCount() - 1) {
+            ISignalLamp signalLamp = netInterface.createSignalLamp(
+                s_n_left_phase, "南北左转信号灯", lane.id(), -1, lane.length() - 0.5);
+            n_s_left_lamps.add(signalLamp);
+        }
+    }
+    System.out.println("w_e_straight_phase:" + w_e_straight_phase.id());
+    // 创建行人信号灯并关联相位
+    // 南斑马线信号灯
+    ICrosswalkSignalLamp signalLamp1_positive = netInterface.createCrossWalkSignalLamp(
+        signalController, "南斑马线信号灯", s_crosswalk.getId(), new Point(m2p(0), m2p(0)), true);
+    ICrosswalkSignalLamp signalLamp1_negetive = netInterface.createCrossWalkSignalLamp(
+        signalController, "南斑马线信号灯", s_crosswalk.getId(), new Point(m2p(0), m2p(0)), false);
+    signalLamp1_positive.setSignalPhase(we_ped_phase);
+    signalLamp1_negetive.setSignalPhase(we_ped_phase);
+    System.out.println("we_ped_phase:" + we_ped_phase.id());
+    // 北斑马线信号灯
+    ICrosswalkSignalLamp signalLamp2_positive = netInterface.createCrossWalkSignalLamp(
+        signalController, "北斑马线信号灯", n_crosswalk.getId(), new Point(m2p(0), m2p(0)), true);
+    ICrosswalkSignalLamp signalLamp2_negetive = netInterface.createCrossWalkSignalLamp(
+        signalController, "北斑马线信号灯", n_crosswalk.getId(), new Point(m2p(0), m2p(0)), false);
+    signalLamp2_positive.setSignalPhase(we_ped_phase);
+    signalLamp2_negetive.setSignalPhase(we_ped_phase);
+
+    // 东斑马线信号灯
+    ICrosswalkSignalLamp signalLamp3_positive = netInterface.createCrossWalkSignalLamp(
+        signalController, "东斑马线信号灯", e_crosswalk.getId(), new Point(m2p(0), m2p(0)), true);
+    ICrosswalkSignalLamp signalLamp3_negetive = netInterface.createCrossWalkSignalLamp(
+        signalController, "东斑马线信号灯", e_crosswalk.getId(), new Point(m2p(0), m2p(0)), false);
+    signalLamp3_positive.setSignalPhase(ns_ped_phase);
+    signalLamp3_negetive.setSignalPhase(ns_ped_phase);
+
+    // 西斑马线信号灯
+    ICrosswalkSignalLamp signalLamp4_positive = netInterface.createCrossWalkSignalLamp(
+        signalController, "西斑马线信号灯", w_crosswalk.getId(), new Point(m2p(0), m2p(0)), true);
+    ICrosswalkSignalLamp signalLamp4_negetive = netInterface.createCrossWalkSignalLamp(
+        signalController, "西斑马线信号灯", w_crosswalk.getId(), new Point(m2p(0), m2p(0)), false);
+    signalLamp4_positive.setSignalPhase(ns_ped_phase);
+    signalLamp4_negetive.setSignalPhase(ns_ped_phase);}
+```
+
+ **ISignalLamp createSignalLamp(ISignalPhase pPhase, String name, int laneId, int toLaneId, double distance)**
+
+创建信号灯
+
+参数: 
+[ in ] pPhase: 相位对象  
+[ in ] name: 信号灯名称  
+[ in ] laneId: 信号灯所在车道ID, 或所在“车道连接”上游车道ID  
+[ in ] toLaneId: 信号灯所在“车道连接”下游车道ID, 如果放到连接器上需要该参数, 如果在非连接器上, 此值赋值为-1  
+[ in ] distance: 信号灯距车道或“车道连接”起点距离, 默认单位: 像素  
+
+返回: 信号灯对象
+
+举例: 
+
+```java
+for (int index = 0; index < lLaneObjects.size(); index++) {
+    ILaneObject laneObj = lLaneObjects.get(index);
+    // 创建信号灯
+    ISignalLamp signalLamp = netInterface.createSignalLamp(
+        signalPhase,                     // 关联信号相位
+        "信号灯" + (index + 1),         // 名称
+        laneObj.fromLaneObject().id(),        // 来源车道ID
+        laneObj.toLaneObject().id(),          // 目标车道ID
+        m2p(2.0)                      // 位置
+    );
+}
+```
+
+ **ISignalLamp createSignalLamp(ISignalPhase pPhase, String name, int laneId, int toLaneId, double distance)**
+
+创建信号灯
+
+参数: 
+[ in ] ISignalController: 信号控制机
+[ in ] pPhase: 相位对象  
+[ in ] name: 信号灯名称  
+[ in ] laneId: 信号灯所在车道ID, 或所在“车道连接”上游车道ID  
+[ in ] toLaneId: 信号灯所在“车道连接”下游车道ID, 如果放到连接器上需要该参数, 如果在非连接器上, 此值赋值为-1  
+[ in ] distance: 信号灯距车道或“车道连接”起点距离, 默认单位: 像素  
+
+返回: 信号灯对象
+
+举例: 
+
+```java
+for (int index = 0; index < lLaneObjects.size(); index++) {
+    ILaneObject laneObj = lLaneObjects.get(index);
+    // 创建信号灯
+    ISignalLamp signalLamp = netInterface.createSignalLamp(
+        signalController,                     // 信号控制器
+        "信号灯" + (index + 1),         // 名称
+        laneObj.fromLaneObject().id(),        // 来源车道ID
+        laneObj.toLaneObject().id(),          // 目标车道ID
+        m2p(2.0)                      // 位置
+    );
+}
+```
+
+ **ISignalController createSignalController(String name)**
+
+创建信号机
+
+参数: 
+[ in ] name: 信号灯名称  
+
+ **ISignalPlan createSignalPlan(ISignalController pITrafficLight, String name, int cycle, int offset, int startTime, int endTime)**
+
+创建信控方案
+
+参数: 
+[ in ] signalController: 信号控制器
+[ in ] name: 信控方案名称
+[ in ] cycleTime: 信控 方案周期, 秒
+[ in ] offset: 信控方案相位差  
+[ in ] startTime: 信控方案开始时间, 秒  
+[ in ] endTime: 信控方案结束时间, 秒   
+
+ **addSignalPhaseToLamp(int SignalPhaseId, ISignalLamp signalLamp)**
+
+将信号灯与相位绑定, 不允许跨越信号机绑定
+
+参数: 
+[ in ] signalPhaseId: 相位id
+[ in ] signalLamp: 信号灯对象
+
+ **void addCrossWalkSignalPhaseToLamp(int SignalPhaseId, ICrosswalkSignalLamp signalLamp)**
+
+将人行横道与相位绑定, 不允许跨越信号机绑定
+
+参数: 
+[ in ] signalPhaseId: 相位id
+[ in ] signalLamp: 信号灯对象
+
+ **void transferSignalPhase(ISignalPhase pFromISignalPhase, ISignalPhase pToISignalPhase, ISignalLamp signalLamp)**
+
+更换信号灯绑定的信控相位, 不允许跨越信号机
+
+参数: 
+[ in ] pFromISignalPhase: 原相位
+[ in ] pToISignalPhase: 新相位
+[ in ] signalLamp: 信号灯对象
+
+ **IBusLine createBusLine(ArrayList<ILink> lLink)**
+
+创建公交线路, lLink列表中相邻两路段可以是路网上相邻两路段, 也可以不相邻, 如果不相邻, TESSNG会在它们之间创建一条最短路径。如果lLink列表中相邻路段在路网上不相邻并且二者之间不存在最短路径, 则相邻的第二条路段及后续路段无效。
+
+参数: 
+[ in ] lLink, 公交线路经过的路段对象集
+
+返回: 公交线路对象
+
+举例: 
+
+```java
+// 获取TESSNG核心接口
+TessInterface tessInterface = TESSNG.tessngIFace();
+NetInterface netInterface = tessInterface.netInterface();
+// 创建两个路段
+ArrayList<Point> points1 = new ArrayList<>();
+points1.add(new Point(TESSNG.m2p(-100), TESSNG.m2p(25)));
+points1.add(new Point(TESSNG.m2p(100), TESSNG.m2p(25)));
+ILink link10 = netInterface.createLink(points1, 3, "路段10");
+ArrayList<Point> points2 = new ArrayList<>();
+points2.add(new Point(TESSNG.m2p(100), TESSNG.m2p(25)));
+points2.add(new Point(TESSNG.m2p(300), TESSNG.m2p(25)));
+ILink link11 = netInterface.createLink(points2, 3, "路段11");
+if (link10 != null && link11 != null) {
+    ArrayList<ILink> linksForBusLine = new ArrayList<>();
+    linksForBusLine.add(link10);
+    linksForBusLine.add(link11);
+    IBusLine busLine = netInterface.createBusLine(linksForBusLine);
+    if (busLine != null) {
+        busLine.setDesirSpeed(TESSNG.m2p(60));
+        System.out.println("公交线路创建成功，期望速度设置为: " + busLine.desirSpeed());
+    }
+}
+```
+
+  **IBusStation createBusStation(ILane pLane, double length, double dist, String name, UnitOfMeasure unit)**
+
+创建公交站点, 默认单位: 像素
+
+参数: 
+[ in ] pLane: 车道  
+[ in ] length: 站点长度(默认单位: 像素)  
+[ in ] dist: 站点起始点距车道起点距离(默认单位: 像素)  
+[ in ] name: 站点名称  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 公交站点对象  
+
+举例: 
+
+```java
+// 获取 TESS NG 接口
+TessInterface tessInterface = TESSNG.tessngIFace();
+NetInterface netInterface = tessInterface.netInterface();
+// 创建两个路段
+ArrayList<Point> points1 = new ArrayList<>();
+points1.add(new Point(TESSNG.m2p(-100), TESSNG.m2p(25)));
+points1.add(new Point(TESSNG.m2p(100), TESSNG.m2p(25)));
+ILink link10 = netInterface.createLink(points1, 3, "路段10");
+ArrayList<Point> points2 = new ArrayList<>();
+points2.add(new Point(TESSNG.m2p(100), TESSNG.m2p(25)));
+points2.add(new Point(TESSNG.m2p(300), TESSNG.m2p(25)));
+ILink link11 = netInterface.createLink(points2, 3, "路段11");
+if (link10 == null || link11 == null) {
+    System.out.println("路段 link10 或 link11 创建失败");
+    return;
+}
+// 创建公交线路
+ArrayList<ILink> linksForBusLine = new ArrayList<>();
+linksForBusLine.add(link10);
+linksForBusLine.add(link11);
+IBusLine busLine = netInterface.createBusLine(linksForBusLine);
+if (busLine != null) {
+    // 设置公交线路期望速度为 60 km/h，转换为 TESS NG 内部单位
+    busLine.setDesirSpeed(TESSNG.m2p(60));
+    System.out.println("公交线路创建成功，期望速度设置为: " + busLine.desirSpeed());
+    // 获取路段的车道
+    List<ILane> lanes10 = link10.lanes();
+    List<ILane> lanes11 = link11.lanes();
+    if (lanes10 != null && !lanes10.isEmpty() &&
+        lanes11 != null && !lanes11.isEmpty()) {
+        ILane lane10 = lanes10.get(0);  // 第一个车道
+        ILane lane11 = lanes11.get(0);  // 第一个车道
+        // 创建公交站点
+        IBusStation busStation1 = netInterface.createBusStation(
+            lane10,
+            TESSNG.m2p(30),  // 站点位置在车道上 30 米处
+            TESSNG.m2p(50),  // 停靠点距离车道中心线 50 米
+            "公交站1"
+        );
+        IBusStation busStation2 = netInterface.createBusStation(
+            lane11,
+            TESSNG.m2p(15),  // 站点位置在车道上 15 米处
+            TESSNG.m2p(50),  // 停靠点距离车道中心线 50 米
+            "公交站2"
+        );
+        if (busStation1 != null && busStation2 != null) {
+            System.out.println("公交站点创建成功");
+        } else {
+            System.out.println("公交站点创建失败");
+        }
+    } else {
+        System.out.println("路段车道为空");
+    }
+} else {
+    System.out.println("公交线路创建失败");
+}
+```
+
+ **boolean addBusStationToLine(IBusLine pBusLine, IBusStation pStation)**
+
+将公交站点关联到公交线路上
+
+参数: 
+[ in ] pBusLine: 公交线路
+[ in ] pStation: 公交站点
+
+举例: 
+
+```java
+TessInterface tessInterface = TESSNG.tessngIFace();
+NetInterface netInterface = tessInterface.netInterface();
+ArrayList<Point> points1 = new ArrayList<>();
+points1.add(new Point(TESSNG.m2p(-100), TESSNG.m2p(25)));
+points1.add(new Point(TESSNG.m2p(100), TESSNG.m2p(25)));
+ILink link10 = netInterface.createLink(points1, 3, "路段10");
+ArrayList<Point> points2 = new ArrayList<>();
+points2.add(new Point(TESSNG.m2p(100), TESSNG.m2p(25)));
+points2.add(new Point(TESSNG.m2p(300), TESSNG.m2p(25)));
+ILink link11 = netInterface.createLink(points2, 3, "路段11");
+if (link10 == null || link11 == null) {
+    System.out.println("路段 link10 或 link11 创建失败");
+    return;
+}
+ArrayList<ILink> linksForBusLine = new ArrayList<>();
+linksForBusLine.add(link10);
+linksForBusLine.add(link11);
+IBusLine busLine = netInterface.createBusLine(linksForBusLine);
+if (busLine != null) {
+    busLine.setDesirSpeed(TESSNG.m2p(60));
+    System.out.println("公交线路创建成功，期望速度设置为: " + busLine.desirSpeed());
+    List<ILane> lanes10 = link10.lanes();
+    List<ILane> lanes11 = link11.lanes();
+    if (lanes10 != null && !lanes10.isEmpty() &&
+        lanes11 != null && !lanes11.isEmpty()) {
+        ILane lane10 = lanes10.get(0);  
+        ILane lane11 = lanes11.get(0); 
+        IBusStation busStation1 = netInterface.createBusStation(
+            lane10,
+            TESSNG.m2p(30),  
+            TESSNG.m2p(50),  
+            "公交站1"
+        );
+        IBusStation busStation2 = netInterface.createBusStation(
+            lane11,
+            TESSNG.m2p(15),  
+            TESSNG.m2p(50),  
+            "公交站2"
+        );
+        if (busStation1 != null && busStation2 != null) {
+            System.out.println("公交站点创建成功");
+            if (netInterface.addBusStationToLine(busLine, busStation1)) {
+                busStation1.setType(2);  // 设置为上客站
+                System.out.println("公交站1已关联到公交线路");
+            }
+            if (netInterface.addBusStationToLine(busLine, busStation2)) {
+                System.out.println("公交站2已关联到公交线路");
+            }
+
+        } else {
+            System.out.println("公交站点创建失败");
+        }
+    } else {
+        System.out.println("路段车道为空");
+    }
+}
+```
+
+  **IRoadWorkZone createRoadWorkZone(DynaRoadWorkZoneParam param, UnitOfMeasure unit)**
+
+创建施工区, 默认单位: 像素
+
+参数: 
+[ in ] param: 动态施工区信息  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+举例: 
+
+```java
+public IRoadWorkZone createRoadWorkZone(NetInterface netInterface, ILink upstreamLink) {
+    // 创建施工区参数对象
+    DynaRoadWorkZoneParam param = new DynaRoadWorkZoneParam();
+    // 设置施工区参数
+    param.setName("施工区");
+    param.setRoadId(upstreamLink.id());
+    param.setLocation(TESSNG.m2p(0));           // 位置
+    param.setLength(TESSNG.m2p(100));             // 长度
+    param.setUpCautionLength(TESSNG.m2p(70));     // 提前警示长度
+    param.setUpTransitionLength(TESSNG.m2p(50));  // 过渡区长度
+    param.setUpBufferLength(TESSNG.m2p(50));      // 缓冲区长度
+    param.setDownTransitionLength(TESSNG.m2p(40));// 下游过渡区长度
+    param.setDownTerminationLength(TESSNG.m2p(40));// 终止区长度
+    // 设置车道编号
+    ArrayList<Integer> fromLaneNumbers = new ArrayList<>();
+    fromLaneNumbers.add(1);
+    param.setMlFromLaneNumber(fromLaneNumbers);  // 设置施工影响的车道编号
+    param.setStartTime(0);                       // 开始时间（秒）
+    param.setDuration(3600);                    // 持续时间（秒）
+    param.setLimitSpeed(TESSNG.m2p(42));         // 限速，转换为 TESS NG 内部单位
+    // 创建施工区
+    IRoadWorkZone workZone = netInterface.createRoadWorkZone(param, UnitOfMeasure.Metric); // Metric 单位制
+    if (workZone != null) {
+        System.out.println("施工区创建成功: " + workZone.name());
+    } else {
+        System.out.println("施工区创建失败");
+    }
+    return workZone;
+}
+```
+
+  **IAccidentZone createAccidentZone(DynaAccidentZoneParam param)**
+
+创建事故区
+
+参数: 
+[ in ] param: 动态事故区信息, 用于封装创建事故区所需的参数
+
+举例: 
+
+```java
+TessInterface tessInterface = TESSNG.tessngIFace();
+NetInterface netInterface = tessInterface.netInterface();
+// 创建路段
+ArrayList<Point> points = new ArrayList<>();
+points.add(new Point(TESSNG.m2p(-300), TESSNG.m2p(25)));
+points.add(new Point(TESSNG.m2p(300), TESSNG.m2p(25)));
+ILink link = netInterface.createLink(points, 4, "主干道");
+// 创建事故区参数对象
+DynaAccidentZoneParam accidentZoneParam = new DynaAccidentZoneParam();
+// 设置事故区参数
+accidentZoneParam.setRoadId(link.id());               // 使用创建的 link 的 ID
+accidentZoneParam.setName("最左侧车道发生事故");
+accidentZoneParam.setLocation(TESSNG.m2p(700));       // 位置
+accidentZoneParam.setLength(TESSNG.m2p(50));         // 事故区长度
+accidentZoneParam.setStartTime(0);                   // 开始时间（秒）
+accidentZoneParam.setDuration(500);                  // 持续时间（秒）
+accidentZoneParam.setNeedStayed(true);               // 是否需要停留
+accidentZoneParam.setLimitSpeed(TESSNG.m2p(55));      // 限速
+accidentZoneParam.setControlLength(TESSNG.m2p(100));   // 控制区长度
+ArrayList<Integer> fromLaneNumbers = new ArrayList<>();
+fromLaneNumbers.add(2);
+accidentZoneParam.setMlFromLaneNumber(fromLaneNumbers);
+// 创建事故区
+IAccidentZone accidentZone = netInterface.createAccidentZone(accidentZoneParam);
+// 创建事故区时间段参数
+DynaAccidentZoneIntervalParam intervalParam = new DynaAccidentZoneIntervalParam();
+intervalParam.setAccidentZoneId(accidentZone.id());
+intervalParam.setStartTime(501);
+intervalParam.setEndTime(1000);
+intervalParam.setLocation(TESSNG.m2p(200));
+intervalParam.setLength(TESSNG.m2p(50));
+intervalParam.setLimitedSpeed(TESSNG.m2p(10));
+intervalParam.setControlLength(TESSNG.m2p(100));
+ArrayList<Integer> intervalLaneNumbers = new ArrayList<>();
+intervalLaneNumbers.add(0);
+intervalLaneNumbers.add(1);
+intervalLaneNumbers.add(3);
+intervalParam.setMlFromLaneNumber(intervalLaneNumbers);
+IAccidentZoneInterval added = accidentZone.addAccidentZoneInterval(intervalParam);
+if (added != null) {
+    System.out.println("事故区时间段信息添加成功");
+} else {
+    System.out.println("事故区时间段信息添加失败");
+}
+```
+
+ **ILimitedZone createLimitedZone(DynaLimitedZoneParam param, UnitOfMeasure unit)**
+
+创建限行区, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] param: 动态限行区信息, 用于封装创建限行区所需的参数  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+
+举例: 
+
+
+```java
+// 获取 TESS NG 接口
+TessInterface tessInterface = TESSNG.tessngIFace();
+NetInterface netInterface = tessInterface.netInterface();
+// 创建限行区参数对象
+DynaLimitedZoneParam param = new DynaLimitedZoneParam();
+// 设置限行区参数
+param.setName("限行区测试");                // 名称
+param.setRoadId(1);                         // 道路ID
+param.setLocation(m2p(50));                 // 限行区起始位置
+param.setLength(m2p(100));                  // 限行区长度
+param.setLimitSpeed(m2p(40));               // 限速
+param.setDuration(3600);                    // 持续时间
+// 设置限行车道编号
+ArrayList<Integer> fromLaneNumbers = new ArrayList<>();
+fromLaneNumbers.add(0);  // 本例限行右侧第一车道
+param.setMlFromLaneNumber(fromLaneNumbers);
+// 创建限行区
+ILimitedZone limitedZone = netInterface.createLimitedZone(param);
+if (limitedZone != null) {
+    System.out.println("限行区创建成功: " + limitedZone.name());
+} else {
+    System.out.println("限行区创建失败");
+}
+```
+
+ **IReconstruction createReconstruction(DynaReconstructionParam param, UnitOfMeasure unit)**
+
+创建改扩建, 默认单位: 像素
+[ in ] param: 动态改扩建信息, 用于封装创建改扩建所需的参数  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位 
+
+举例:
+
+```java
+// 获取 TESS NG 接口
+TessInterface tessInterface = TESSNG.tessngIFace();
+NetInterface netInterface = tessInterface.netInterface();
+// 创建上游路段（upstreamLink）
+ArrayList<Point> upstreamPoints = new ArrayList<>();
+upstreamPoints.add(new Point(TESSNG.m2p(-100), TESSNG.m2p(25)));
+upstreamPoints.add(new Point(TESSNG.m2p(100), TESSNG.m2p(25)));
+ILink upstreamLink = netInterface.createLink(upstreamPoints, 3, "上游路段");
+// 创建下游路段（downstreamLink）
+ArrayList<Point> downstreamPoints = new ArrayList<>();
+downstreamPoints.add(new Point(TESSNG.m2p(100), TESSNG.m2p(25)));
+downstreamPoints.add(new Point(TESSNG.m2p(300), TESSNG.m2p(25)));
+ILink downstreamLink = netInterface.createLink(downstreamPoints, 3, "下游路段");
+// 创建施工区参数对象
+DynaRoadWorkZoneParam param = new DynaRoadWorkZoneParam();
+// 设置施工区参数
+param.setName("施工区");
+param.setRoadId(upstreamLink.id());
+param.setLocation(TESSNG.m2p(200));           // 位置
+param.setLength(TESSNG.m2p(100));             // 长度
+param.setUpCautionLength(TESSNG.m2p(70));     // 提前警示长度
+param.setUpTransitionLength(TESSNG.m2p(50));  // 过渡区长度
+param.setUpBufferLength(TESSNG.m2p(50));      // 缓冲区长度
+param.setDownTransitionLength(TESSNG.m2p(40));// 下游过渡区长度
+param.setDownTerminationLength(TESSNG.m2p(40));// 终止区长度
+// 设置车道编号（注意：Java 中使用 List<Integer>）
+ArrayList<Integer> fromLaneNumbers = new ArrayList<>();
+fromLaneNumbers.add(3);
+param.setMlFromLaneNumber(fromLaneNumbers);  // 设置施工影响的车道编号
+param.setStartTime(0);                       // 开始时间（秒）
+param.setDuration(3600);                    // 持续时间（秒）
+param.setLimitSpeed(TESSNG.m2p(42));         // 限速，转换为 TESS NG 内部单位
+// 创建施工区
+IRoadWorkZone workZone = netInterface.createRoadWorkZone(param, UnitOfMeasure.Metric); // Metric 单位制
+if (workZone != null) {
+    System.out.println("施工区创建成功: " + workZone.name());
+} else {
+    System.out.println("施工区创建失败");
+}
+```
+
+ **double reCalcPassagewayLength(DynaReconstructionParam param, UnitOfMeasure unit)**
+
+重新计算保通开口长度, 可根据保通详细参数计算出保通开口长度, 默认单位: 像素
+
+参数: 
+[ in ] param:用于描述重建区的参数类，定义了重建区所需的各类配置信息  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+ **IReduceSpeedArea createReduceSpeedArea(DynaReduceSpeedAreaParam param)**
+
+创建限速区 
+
+参数: 
+[ in ] param: 用于描述限速区的参数类，定义了限速区所需的各类配置信息, 其属性有: 
+
+name: 限速区名称
+location: 距起点距离, 默认单位: 像素
+areaLength: 限速区长度, 默认单位: 像素
+roadId: 路段或连接段ID
+laneNumber: 车道序号, 从0开始
+toLaneNumber: 目标车道序号, 如果大于等于0, roadID是连接段ID, 否则是路段ID
+fromTime: 起始时间
+toTime: 结束时间
+lSpeedVehiType: 限速车型列表
+
+```python
+print("创建限速区")
+type1 = Online.DynaReduceSpeedVehiTypeParam()
+type1.vehicleTypeCode = 1
+type1.avgSpeed = 10
+type1.speedSD = 5
+type2 = Online.DynaReduceSpeedVehiTypeParam()
+type2.vehicleTypeCode = 2
+type2.avgSpeed = 20
+type2.speedSD = 0
+
+reduceSpeedIntervalParam = Online.DynaReduceSpeedIntervalParam()
+reduceSpeedIntervalParam.startTime = 0
+reduceSpeedIntervalParam.endTime = 50
+reduceSpeedIntervalParam.mlReduceSpeedVehicleTypeParam = [type1, type2]
+#
+#
+param1 = Online.DynaReduceSpeedAreaParam()
+param1.name="限速区"
+param1.location = 2500
+param1.areaLength =100
+param1.roadId=upstream.id()
+param1.laneNumber = 0
+param1.toLaneNumber = -1
+param1.mlReduceSpeedIntervalParam = [reduceSpeedIntervalParam]
+reduceSpeedArea = netiface.createReduceSpeedArea(param)
+print(reduceSpeedArea)
+```
+
+ **def createTollLane(param: Online.TollStation.DynaTollLaneg) ->Tessng.ITollLane: ...**
+
+创建收费车道  
+
+参数: 
+[ in ]  param: 动态收费车道信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化  Online.TollStation.DynaTollLane的示例代码如下: 
+
+```python
+def create_toll_lane(netiface, link_id: int, location: float, length: float, lane_number: int, start_time: float, end_time: float, toll_point_list: list, toll_point_length: float = 8): 
+    """创建收费车道"""
+    toll_lane_param = Online.TollStation.DynaTollLane()
+    # toll_lane_param.name = "123"
+    # 路段ID
+    toll_lane_param.roadId = link_id
+    # 距离路段起点的距离, 单位: m
+    toll_lane_param.location = location
+    # 收费车道长度, 单位: m
+    toll_lane_param.length = length
+    # 车道序号, 从右向左, 从0开始
+    toll_lane_param.laneNumber = lane_number
+    # 开始时间, 单位: 秒
+    toll_lane_param.startTime = start_time
+    # 结束时间, 单位: 秒
+    toll_lane_param.endTime = end_time
+    # 收费区域列表
+    toll_lane_param.tollPoint = toll_point_list
+    # 收费区域长度
+    toll_lane_param.tollPointLen = toll_point_length
+    # 创建收费车道
+    toll_lane = netiface.createTollLane(toll_lane_param)
+    return toll_lane
+```
+
+ **def createParkingRegion(param: Online.ParkingLot.DynaParkingRegion) ->Tessng.IParkingRegion: ...**
+
+创建停车区
+
+参数: 
+[ in ]  param: 动态停车区信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化
+
+Online.ParkingLot.DynaParkingRegion的示例代码如下: 
+
+```python
+
+def create_parking(netiface, downstream): 
+
+    print(f"创建停车时间分布")
+    new_pt = Online.ParkingLot.DynaParkingParkTime()
+    new_pt.time = 3
+    new_pt.prop = 100
+    new_pt1 = Online.ParkingLot.DynaParkingParkTime()
+    new_pt1.time = 5
+    new_pt1.prop = 100
+    new_ptd = Online.ParkingLot.DynaParkingTimeDis()
+    new_ptd.name = "新增停车时间分布"
+    new_ptd.parkingTimeList = [new_pt, new_pt1]
+    netiface.createParkingTimeDis(new_ptd)
+
+    print(f"创建停车区域")
+    dynaParkingRegion = Online.ParkingLot.DynaParkingRegion()
+    dynaParkingRegion.name = "test Parking region"
+    dynaParkingRegion.location = 7800
+    dynaParkingRegion.length = 100
+    dynaParkingRegion.roadId = downstream.id()
+    dynaParkingRegion.laneNumber = 0
+    dynaParkingRegion.findParkingStallStrategy = 1
+    # 0 - 车道内; 1 - 车道右侧; 2 - 车道左侧
+    dynaParkingRegion.parkingStallPos = 1
+    dynaParkingRegion.arrangeType = 1
+    # 车位吸引力
+    dynaParkingRegion.firstParkingStallAttract = 1
+    dynaParkingRegion.middleParkingStallAttract = 1
+    dynaParkingRegion.lastParkingStallAttract = 1
+    # 停车运动参数
+    dynaParkingRegion.menaValue = 0 #  均值
+    dynaParkingRegion.variance = 1.0 # 方差
+    dynaParkingRegion.parkingSpeed = 5.0 # 泊车速度
+    dynaParkingRegion.joinGap = 5.0 # 汇入间隙
+    # 0 - 前进->前进; 1 - 前进->后退; 2 - 后退->前进
+    dynaParkingRegion.parkingType = 1
+    # 运营参数
+    dynaParkingRegion.attract = 0 #吸引力
+    dynaParkingRegion.startTime = 0 # 开始时间
+    dynaParkingRegion.endTime = 999999 #结束时间
+    dynaParkingRegion.stallLength = 6 # 车位长度单位米
+    dynaParkingRegion.stallWidth = 3 # 车位宽度单位米
+    # 根据区域长度和车位长度, 创建停车位
+    stallLen = 6
+    parkingStalls= []
+    for i in range(int(dynaParkingRegion.length/stallLen)-1): 
+        parkingStall = Online.ParkingLot.DynaParkingStall()
+        parkingStall.location = dynaParkingRegion.location + stallLen * i
+        parkingStall.linkID = dynaParkingRegion.roadId
+        parkingStall.laneNumber = dynaParkingRegion.laneNumber
+        # 0 - 车道内; 1 - 车道右侧; 2 - 车道左侧
+        parkingStall.parkingStallPos = 1
+        # 0 - 垂直式; 1 - 倾斜式 - 30°; 2 - 倾斜式 - 45°; 3 - 倾斜式 - 60°; 4 - 平行式
+        parkingStall.arrangeType = 0
+        # 停车位类型
+        parkingStall.parkingStallType = 1 # 小客车 / 大客车 / 其他
+        parkingStalls.append(parkingStall)
+    dynaParkingRegion.parkingStalls = parkingStalls
+
+    parkingRegion = netiface.createParkingRegion(dynaParkingRegion)
+
+    distance = 7500
+    new_pdp = netiface.createParkingDecisionPoint(downstream, distance, "上游路段停车场")
+    new_pr = netiface.createParkingRouting(new_pdp, parkingRegion)
+
+
+    # 更新停车时间分布
+    origin_ptd = netiface.parkingTimeDis()[-1]
+    origin_ptl = origin_ptd.parkingTimeList
+    print(origin_ptd.id, [(i.parkingTimeDisId, i.time, i.prop) for i in origin_ptl])
+    update_ptd = Online.ParkingLot.DynaParkingTimeDis()
+    update_ptd.id = origin_ptd.id
+    pt = Online.ParkingLot.DynaParkingParkTime()
+    pt.time = 60
+    pt.prop = 0.5
+    new_ptl = origin_ptl + [pt]
+    update_ptd.parkingTimeList = new_ptl
+    netiface.updateParkingTimeDis(update_ptd)
+
+    # 更新停车决策分配
+    pdp = netiface.parkingDecisionPoints()[-1]
+    pdi = pdp.parkDisInfoList()[-1]
+    print(f'len(pdi.disVehiclsInfoList): {len(pdi.disVehiclsInfoList)}')
+    dvi = pdi.disVehiclsInfoList[-1]
+    dvi.startTime = 0
+    dvi.endTime = 1800
+    pdi.disVehiclsInfoList = [dvi]
+    print(f"len(pdi.disVehiclsInfoList): {len(pdi.disVehiclsInfoList)}")
+    for i in pdi.disVehiclsInfoList: 
+        print(f"{i.startTime}-{i.endTime}")
+    print(f"{pdi.disVehiclsInfoList[0].startTime}-{pdi.disVehiclsInfoList[0].endTime}")
+    pdp.updateParkDisInfo([pdi])
+
+    # 移除
+    # last_pr = netiface.parkingDecisionPoints()[-1].routings()[-1]
+    # netiface.removeParkingRouting(last_pr)
+    # pr = netiface.findParkingRegion(2)
+    # netiface.removeParkingRegion(pr)    # 停车区相关的路径会被同步移除
+    # last_ptd = netiface.parkingTimeDis()[-1]
+    # netiface.removeParkingTimeDis(last_ptd.id)
+
+    # 停车测试
+    parkingRegions = netiface.parkingRegions()
+    print(netiface.vehicleTypes())
+    for pr in parkingRegions: 
+        print(f"id: {pr.id()}")
+        print(f"name: {pr.name()}")
+        print(f"parkingStalls: {pr.parkingStalls()}")
+        pr.setName(f'停车区{pr.name()+"_new"}')
+        parkingStalls = pr.parkingStalls()
+        for ps in parkingStalls: 
+            print(dir(ps))
+            print(f"id: {ps.id()}")
+            print(f"distance: {ps.distance()}")
+            print(f"parkingRegion: {ps.parkingRegionId()}")
+            print(f"type: {ps.stallType()}")
+
+    parkingDecisionPoints = netiface.parkingDecisionPoints()
+    # 停车决策点
+    for pdp in parkingDecisionPoints: 
+        print(dir(pdp))
+        print(f"id: {pdp.id()}")
+        print(f"distance: {pdp.distance()}")
+        print(f"link: {pdp.link().id()}")
+        print(f"name: {pdp.name()}")
+        print(f"parkDisInfoList: {pdp.parkDisInfoList()}")
+        # 静态决策路径
+        for pdi in pdp.parkDisInfoList(): 
+            print(type(pdi), dir(pdi))
+            print(f"disVehiclsInfoList: {pdi.disVehiclsInfoList}")
+            # 静态路径时间段
+            for dvi in pdi.disVehiclsInfoList: 
+                # print(type(dvi), dir(dvi))
+                print(f"startTime: {dvi.startTime}")
+                print(f"endTime: {dvi.endTime}")
+                print(f"vehicleDisDetailList: {dvi.vehicleDisDetailList}")
+                # 停车分配详细信息
+                for vdd in dvi.vehicleDisDetailList: 
+                    print(type(vdd), dir(vdd))
+                    print(f"parkingRegionID: {vdd.parkingRegionID}")
+                    print(f"parkingRoutingID: {vdd.parkingRoutingID}")
+                    print(f"parkingSelection: {vdd.parkingSelection}")
+                    print(f"parkingTimeDisId: {vdd.parkingTimeDisId}")
+                    print(f"prop: {vdd.prop}")
+                    print(f"vehicleType: {vdd.vehicleType}")
+            print(f"pIRouting: {pdi.pIRouting}")
+        print(f"polygon: {pdp.polygon()}")
+        print(f"routings: {pdp.routings()}")
+    for routing in pdp.routings(): 
+        # print(type(routing), dir(routing))
+        print(f"routingId: {routing.id()}")
+        print(f"routingLinks: {routing.getLinks()}")
+        link = netiface.findLink(21)
+        print(f"nextRoad: {routing.nextRoad(link)}")
+        print(f"deciPoint: {routing.parkingDeciPointId()}")
+        print(f"contain: {routing.contain(link)}")
+        print(f"length: {routing.calcuLength()}")
+
+    parkingTimeDisArray = netiface.parkingTimeDis()
+```
+
+
+ **ITollDecisionPoint createTollDecisionPoint(ILink pLink, double distance, String name)**
+
+创建收费决策点  
+
+参数: 
+[ in ]  pLink: 收费决策点所在的路段  
+[ in ]  distance: 收费决策点距离路段起点的距离, 默认单位: 像素  
+[ in ]  pLink: 收费决策点的名称, 可选参数
+
+```java
+public ITollDecisionPoint createTollDecisionPoint(
+    NetInterface netInterface,
+    int linkId,
+    double location,
+    String name) {
+
+    // 查找路段
+    ILink link = netInterface.findLink(linkId);
+    if (link == null) {
+        System.out.println("路段未找到，ID: " + linkId);
+        return null;
+    }
+
+    // 创建收费路径决策点
+    ITollDecisionPoint tollDecisionPoint = netInterface.createTollDecisionPoint(link, m2p(location), name);
+
+    if (tollDecisionPoint != null) {
+        System.out.println("收费路径决策点创建成功: " + tollDecisionPoint.name());
+    } else {
+        System.out.println("收费路径决策点创建失败");
+    }
+
+    return tollDecisionPoint;
+}
+```
+
+ **ITollRouting createTollRouting(ITollDecisionPoint pDeciPoint, ITollLane pITollLane)**
+
+创建收费路径  
+
+参数: 
+[ in ] pDeciPoint: 收费决策点  
+[ in ] pITollLane: 收费车道  
+
+```java
+public ITollRouting createTollRouting(
+    NetInterface netInterface,
+    ITollDecisionPoint tollDecisionPoint,
+    ITollLane tollLane) {
+
+    // 创建收费路径
+    ITollRouting tollRouting = netInterface.createTollRouting(tollDecisionPoint, tollLane);
+    if (tollRouting != null) {
+        System.out.println("收费路径创建成功");
+    } else {
+        System.out.println("收费路径创建失败");
+    }
+    return tollRouting;
+}
+```
+
+ **IParkingDecisionPoint createParkingDecisionPoint(ILink pLink, double distance, String name)**
+
+创建停车决策点  
+
+参数: 
+[ in ] pLink: 停车决策点所在的路tollDisInfoList段  
+[ in ] distance: 停车决策点距离路段起点的距离, 默认单位: 米  
+[ in ] name: 停车决策点的名称, 可选参数  
+
+ **IParkingRouting createParkingRouting(IParkingDecisionPoint pDeciPoint, IParkingRegion pIParkingRegion)**
+
+创建停车路径  
+
+参数: 
+[ in ] pDeciPoint: 停车决策点  
+[ in ] pIParkingRegion: 停车区  
+
+ **DynaTollParkingTimeDis createTollParkingTimeDis(DynaTollParkingTimeDis param)**
+
+创建收费站停车时距分布
+
+参数: 
+[ in ]  param: 停车时距分布参数
+
+ **DynaParkingTimeDis createParkingTimeDis(DynaParkingTimeDis param)**
+
+更新收费站停车时距分布  
+
+参数: 
+[ in ]  param: 停车时距分布参数
+
+```java
+// 创建停车时间分布对象
+DynaParkingTimeDis new_ptd = new DynaParkingTimeDis();
+new_ptd.setName("新增停车时间分布");
+// 创建第一个停车时间对象
+DynaParkingParkTime new_pt = new DynaParkingParkTime();
+new_pt.setTime(3);   // 设置时间为 3 秒
+new_pt.setProp(100); // 设置比例为 100%
+// 创建第二个停车时间对象
+DynaParkingParkTime new_pt1 = new DynaParkingParkTime();
+new_pt1.setTime(5);   // 设置时间为 5 秒
+new_pt1.setProp(100); // 设置比例为 100%
+// 设置停车时间列表
+ArrayList<DynaParkingParkTime> parkingTimeList = new ArrayList<>();
+parkingTimeList.add(new_pt);
+parkingTimeList.add(new_pt1);
+// 将列表设置到停车时间分布对象中
+new_ptd.setParkingTimeList(parkingTimeList);
+// 调用接口创建停车时间分布
+netiface.createParkingTimeDis(new_ptd);
+```
+
+
+ **def createJunction (startPoint: QPointF, endPoint: QPointF, name: str) ->Tessng.IJunction: ...**
+
+创建节点  
+
+参数: 
+[ in ] startPoint: 左上角起始点坐标  
+[ in ] endPoint: 右下角起始点坐标  
+[ in ] name: 节点名字  
+
+```python
+def createJunctionNode(netiface): 
+    # # step1: 创建节点
+    x1 = -500
+    y1 = 500
+    x2 = 500
+    y2 = -500
+    junctionName = 'newJunction'
+    netiface.createJunction(QPointF(m2p(x1), m2p(y1)), QPointF(m2p(x2), m2p(y2)), junctionName)
+
+    # # step2: 创建静态路径
+    netiface.buildAndApplyPaths(3)    # 设置每个OD最多搜索3条路径
+    netiface.reSetDeciPoint()    # 优化决策点位置
+    for dp in netiface.decisionPoints(): 
+        for routing in dp.routings(): 
+            netiface.reSetLaneConnector(routing)    # 优化路径中的车道连接
+
+
+    # # step3: 为节点中每个转向设置流量
+    # 由于没有已知值, 这里针对不同转向类型为其赋流量初值
+    turnVolumeReduct = {'左转': 400, '直行': 1200, '右转': 200, '掉头': 0}
+    # # step3-1: 添加流量时间段
+    timeInterval = netiface.addFlowTimeInterval()
+    timeId = timeInterval.timeId
+    startTime = 0
+    endTime = 3600
+    netiface.updateFlowTimeInterval(timeId, startTime, endTime)
+    # # step3-2: 遍历转向, 为其设置流量
+    junctions = netiface.getAllJunctions()
+    for junction in junctions: 
+        junctionId = junction.getId()
+        for turning in junction.getAllTurnningInfo(): 
+            turningId = turning.turningId
+            turnType = turning.strTurnType
+            inputVolume = turnVolumeReduct.get(turnType, 0)
+            # 为该转向设置输入流量
+            netiface.updateFlow(timeId, junctionId, turningId, inputVolume)
+
+
+    # # step4: 进行流量分配计算
+    # 设置BPR路阻函数参数, 流量分配算法参数
+    theta = 0.1
+    bpra = 0.15
+    bprb = 4
+    maxIterateNum = 300
+    netiface.updateFlowAlgorithmParams(theta, bpra, bprb, maxIterateNum)    # 更新计算参数
+    result = netiface.calculateFlows()    # 计算路径流量分配并应用, 返回分配结果
+
+    # 取流量分配结果
+    resultJson = collections.defaultdict(list)
+    for timeId, turningFlow in result.items(): 
+        for i in turningFlow: 
+            junction = i.pJunction.getId()
+            turning = f"{i.turningBaseInfo.strDirection}-{i.turningBaseInfo.strTurnType}"
+            inputVolume = i.inputFlowValue    # 该转向输入流量
+            realVolume = i.realFlow    # 该转向实际分配到的流量
+            relativeError = i.relativeError    # 分配的相对误差
+            interval = i.flowTimeInterval
+            startTime = interval.startTime
+            endTime = interval.endTime
+            resultJson[f"{startTime}-{endTime}"].append({'junction': junction, 'turning': turning, 'inputVolume': inputVolume, 'realVolume': realVolume, 'relativerror': relativeError})
+    print(f"result: {resultJson}")
+
+
+```
+
+ **long createPedestrianComposition(String name, SWIGTYPE_p_QMapT_int_qreal_t mpCompositionRatio)**
+
+创建行人组成  
+
+参数: 
+[ in ] name: 组成名称  
+[ in ] mpCompositionRatio: 组成明细, key为行人类型编码, value为行人类型占比 , 
+[ out ] 返回: 组成ID, 如果创建失败返回-1
+
+```java
+// 创建行人组成
+Map<Integer, Double> compostion = new HashMap<>();
+compostion.put(1, 0.8);  // 类型 1，占比 0.8
+compostion.put(2, 0.2);  // 类型 2，占比 0.2
+// 调用接口创建行人组成
+long pedComposition = netiface.createPedestrianComposition("自定义1", compostion);
+```
+
+
+ **LayerInfo addLayerInfo(String name, double height, boolean visible, boolean locked)**
+
+新增层级, 返回新增的层级信息  
+
+参数: 
+[ in ] name: 层级名称  
+[ in ] height: 层级高度  
+[ in ] visible: 是否可见  
+[ in ] locked: 是否锁定, 锁定后面域不可以修改  
+[ out ] 返回: 图层对象  
+
+```java
+LayerInfo pedLayer = netInterface.addLayerInfo("行人图层", 0.0, true, false);
+System.out.println("图层创建成功: " + pedLayer.getId());
+```
+
+ **IPedestrianRectRegion createPedestrianRectRegion(Point startPoint, Point endPoint)**
+
+创建矩形行人面域   
+
+参数: 
+[ in ] startPoint: 左上角  
+[ in ] endPoint: 右下角  
+[ out ] 矩形行人面域对象  
+
+```java
+// 创建第一个行人矩形面域
+Point point1 = new Point(-300, -300);
+Point point2 = new Point(-400, -400);
+IPedestrianRectRegion leftupArea = netInterface.createPedestrianRectRegion(point1, point2);
+// 创建第二个行人矩形面域
+Point point3 = new Point(-400, -400);
+Point point4 = new Point(-500, -500);
+IPedestrianRectRegion leftupArea1 = netInterface.createPedestrianRectRegion(point3, point4);
+// 删除第二个面域
+netInterface.removePedestrianRectRegion(leftupArea1);
+```
+
+ **IPedestrianEllipseRegion createPedestrianEllipseRegion(Point startPoint, Point endPoint)** 
+
+创建椭圆行人面域  
+
+参数: 
+[ in ] startPoint: 左上角  
+[ in ] endPoint: 右下角  
+[ out ] 椭圆行人面域对象
+
+ **IPedestrianTriangleRegion createPedestrianTriangleRegion(Point startPoint, Point endPoint)**
+
+创建三角形行人面域  
+
+参数: 
+[ in ] startPoint: 左上角  
+[ in ] endPoint: 右下角  
+[ out ] 三角形行人面域对象  
+
+
+ **IPedestrianFanShapeRegion createPedestrianFanShapeRegion(Point startPoint, Point endPoint)**
+
+创建扇形行人面域  
+
+参数: 
+[ in ] startPoint: 左上角  
+[ in ] endPoint: 右下角  
+[ out ] 扇形行人面域对象  
+
+
+ **IPedestrianPolygonRegion createPedestrianPolygonRegion(Vector<Point> polygon)**
+
+创建多边形行人面域  
+
+参数: 
+[ in ] polygon: 多边形顶点  
+[ out ]多边形行人面域对象
+
+
+ **IPedestrianSideWalkRegion createPedestrianSideWalkRegion(ArrayList<Point> vertexs)**
+
+创建人行道  
+
+参数: 
+[ in ] vertexs: 顶点列表  
+[ out ] 人行道对象
+
+
+ **IPedestrianCrossWalkRegion createPedestrianCrossWalkRegion(Point startPoint, Point endPoint)**
+
+创建人行横道  
+
+参数: 
+[ in ] startPoint: 左上角  
+[ in ] endPoint: 右下角  
+[ out ] 人行横道对象
+
+
+ **IPedestrianStairRegion createPedestrianStairRegion(Point startPoint, Point endPoint)**
+
+创建人行横道  
+
+参数: 
+[ in ] startPoint: 起点  
+[ in ] endPoint: 终点  
+[ out ] 楼梯对象
+
+
+ **IPedestrianPathPoint createPedestrianPathStartPoint(Point scenePos)**
+
+创建行人发生点  
+
+参数: 
+[ in ] scenePos: 场景坐标, 
+[ out ] 行人发生点对象
+
+
+ **IPedestrianPathPoint createPedestrianPathEndPoint(Point scenePos)**
+
+创建行人结束点  
+
+参数: 
+[ in ] scenePos: 场景坐标  
+[ out ] 行人结束点对象
+
+
+ **IPedestrianPathPoint createPedestrianDecisionPoint(Point scenePos)**
+
+创建行人决策点  
+
+参数: 
+[ in ] scenePos: 场景坐标  
+[ out ] 创建行人决策点  
+
+
+ **IPedestrianPath createPedestrianPath(IPedestrianPathPoint pStartPoint, IPedestrianPathPoint pEndPoint, ArrayList<Point> middlePoints)**
+
+创建行人路径（或行人局部路径）  
+
+参数: 
+[ in ] pStartPoint: 行人发生点（或行人决策点）  
+[ in ] pEndPoint: 行人结束点  
+[ in ] middlePoints: 一组中间必经点  
+[ out ] 行人路径对象
+
+
+ **def createCrossWalkSignalLamp(psignalController: Tessng.ISignalController, name: str, crosswalkid: str, scenePos: QPointF, isPositive: bool) -> Tessng.ICrosswalkSignalLamp: ...**
+
+创建人行横道信号灯   
+
+参数: 
+[ in ]  psignalController: 信号机  
+[ in ] name: 名称  
+[ in ] crosswalkId: 人行横道ID  
+[ in ] scenePos: 位于人行横道内的场景坐标  
+[ in ] isPositive: 信号灯管控方向是否为正向  
+[ out ]人行横道信号灯对象  
+
+```python
+signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() , QPointF(13, 22), True)
+```
+
+ **ILink updateLink(_Link link, ArrayList<_Lane> lLane, ArrayList<Point> lPoint)**
+
+更新路段, 更新后返回路段对象 
+
+参数: 
+[ in ] link: 更新的路段数据  
+[ in ] lLink: 更新的车道列表数据  
+[ in ] lPoint: 更新的断点集合  
+
+ **IConnector updateConnector(_Connector connector)**
+
+更新连接段, 更新后返回连接段对象
+
+参数: 
+[ in ] connector: 连接段数据
+
+返回: 更新后的连接段对象
+
+ **IDecisionPoint updateDecipointPoint(_DecisionPoint deciPoint, ArrayList<_RoutingFLowRatio> lFlowRatio)**
+
+更新决策点及其各路径不同时间段流量比
+
+参数: 
+[ in ] deciPoint: 决策点数据
+[ in ] lFlowRatio: 各路径按时间段流量比的数据集合
+
+返回: 更新后的决策点
+
+举例: 
+
+```java
+public IDecisionPoint updateDecisionPointWithFlowRatio(
+    NetInterface netInterface,
+    IDecisionPoint decisionPoint,
+    IRouting decisionRouting1,
+    IRouting decisionRouting2,
+    IRouting decisionRouting3) {
+
+    // 分配左、直、右流量比
+    List<_RoutingFLowRatio> flowRatios = new ArrayList<>();
+
+    _RoutingFLowRatio flowRatioLeft = new _RoutingFLowRatio();
+    flowRatioLeft.setRoutingFLowRatioID(1);
+    flowRatioLeft.setRoutingID(decisionRouting1.id());
+    flowRatioLeft.setStartDateTime(0);
+    flowRatioLeft.setEndDateTime(999999);
+    flowRatioLeft.setRatio(2.0);
+    flowRatios.add(flowRatioLeft);
+
+    _RoutingFLowRatio flowRatioStraight = new _RoutingFLowRatio();
+    flowRatioStraight.setRoutingFLowRatioID(2);
+    flowRatioStraight.setRoutingID(decisionRouting2.id());
+    flowRatioStraight.setStartDateTime(0);
+    flowRatioStraight.setEndDateTime(999999);
+    flowRatioStraight.setRatio(3.0);
+    flowRatios.add(flowRatioStraight);
+
+    _RoutingFLowRatio flowRatioRight = new _RoutingFLowRatio();
+    flowRatioRight.setRoutingFLowRatioID(3);
+    flowRatioRight.setRoutingID(decisionRouting3.id());
+    flowRatioRight.setStartDateTime(0);
+    flowRatioRight.setEndDateTime(999999);
+    flowRatioRight.setRatio(1.0);
+    flowRatios.add(flowRatioRight);
+
+    // 构建决策点数据
+    _DecisionPoint decisionPointData = new _DecisionPoint();
+    decisionPointData.setDeciPointID(decisionPoint.id());
+    decisionPointData.setDeciPointName(decisionPoint.name());
+
+    // 获取决策点坐标
+    QPointF decisionPointPos = new QPointF();
+    boolean gotPoint = decisionPoint.link().getPointByDist(decisionPoint.distance(), decisionPointPos);
+
+    if (gotPoint) {
+        decisionPointData.setX(decisionPointPos.x());
+        decisionPointData.setY(decisionPointPos.y());
+        decisionPointData.setZ(decisionPoint.link().z());
+    } else {
+        System.out.println("无法获取决策点坐标");
+        return null;
+    }
+
+    // 更新决策点及其路径流量比
+    IDecisionPoint updatedDecisionPoint = netInterface.updateDecipointPoint(decisionPointData, flowRatios);
+
+    if (updatedDecisionPoint != null) {
+        System.out.println("决策点更新成功: " + updatedDecisionPoint.name());
+    } else {
+        System.out.println("决策点更新失败");
+    }
+
+    return updatedDecisionPoint;
+}
+```
+
+  **boolean updateRoadWorkZone(DynaRoadWorkZoneParam param, UnitOfMeasure unit)**
+
+更新施工区, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] pIRoadWorkZone: 将要移除的施工区对象  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+
+ **boolean updateLimitedZone(DynaLimitedZoneParam param)**
+
+更新限行区
+
+参数: 
+[ in ] param: 限行区信息, 用于封装更新限行区所需的参数
+
+ **boolean updateReconStruction(DynaReconstructionParam param, UnitOfMeasure unit)**
+
+更新改扩建
+
+参数: 
+[ in ] param: 扩建区信息, 用于封装更新扩建区所需的参数  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位    
+
+ **void removeReconstruction(IReconstruction pIReconstruction)**
+
+移除改扩建
+
+参数: 
+[ in ] pIReconstruction: 将要移除的改扩建对象引用
+
+ **boolean updateReduceSpeedArea(DynaReduceSpeedAreaParam param)**
+
+更新限速区  
+
+参数: 
+[ in ] param: 限速区信息, 用于封装更新限速区所需的参数  
+
+ **ITollLane updateTollLane(DynaTollLane param)**
+
+更新收费车道  
+
+参数: 
+[ in ]  param: 动态收费车道信息, 用于封装更新收费车道所需的参数  
+
+ **IParkingRegion updateParkingRegion(DynaParkingRegion param)**
+
+更新停车区  
+
+参数: 
+[ in ]  param: 动态停车区信息, 用于封装更新停车区所需的参数  
+
+ **DynaTollParkingTimeDis updateTollParkingTimeDis(DynaTollParkingTimeDis param)**
+
+更新收费站停车时距分布  
+
+参数: 
+[ in ]  param: 停车时距分布参数
+
+ **DynaParkingTimeDis updateParkingTimeDis(DynaParkingTimeDis param)**
+
+更新停车场停车时距分布  
+
+参数: 
+[ in ]  param: 停车时距分布参数
+
+ **boolean updateJunctionName(int junctionId, String name)**
+
+更新节点名字  
+
+参数: 
+[ in ] id: 节点ID  
+[ in ] name: 节点名字
+
+ **FlowTimeInterval updateFlowTimeInterval(int timeId, int startTime, int endTime)**
+
+更新时间段(节点的流量时间段)  
+
+参数: 
+[ in ]timeId: 时间段ID  
+[ in ]startTime: 开始时间(秒)  
+[ in ]endTime: 结束时间(秒)
+
+ **boolean updateFlow(int timeId, int junctionId, int turningId, int inputFlowValue)**
+
+更新节点流向流量  
+
+参数: 
+[ in ]timeId: 时间段ID  
+[ in ]junctionId: 节点ID  
+[ in ]turningId: 转向ID  
+[ in ]inputFlowValue: 输入流量值（辆/小时）
+
+ **boolean updateFlowAlgorithmParams(double theta, double bpra, double bprb, int maxIterateNum)**
+
+更新流量算法参数  
+
+参数: 
+[ in ]theta: 参数θ(0.01-1)  
+[ in ]BPR路阻参数A(0.05-0.5)   
+[ in ]bprb: BPR路阻参数B(1-10)  
+[ in ]maxIterateNum: 最大迭代次数(1-5000)  
+
+ **boolean updatePedestrianComposition(int compositionId, SWIGTYPE_p_QMapT_int_qreal_t mpCompositionRatio)**
+
+创建行人组成  
+
+参数: 
+[ in ] compositionId: 组成Id  
+[ in ] mpCompositionRatio: 组成明细, key为行人类型编码, value为行人类型占比 , 
+[ out ] 返回: True表示更新成功, False表示更新失败
+
+ **boolean updateLayerInfo(int layerId, String name, double height, boolean visible, boolean locked)**
+
+更新层级信息  
+
+参数: 
+[ in ] id: 层级ID  
+[ in ] name: 层级名称  
+[ in ] height: 层级高度  
+[ in ] visible: 是否可见  
+[ in ] locked: 是否锁定, 锁定后面域不可以修改  
+[ out ] 返回: 是否更新成功  
+
+ **boolean updatePedestrianStartPointConfigInfo(PedestrianPathStartPointConfigInfo info)**
+
+更新行人发生点配置信息  
+
+参数: 
+[ in ] info: 行人发生点配置信息  
+[ out ] 返回: 是否更新成功  
+
+ **boolean updatePedestrianDecisionPointConfigInfo(PedestrianDecisionPointConfigInfo info)**
+
+更新行人决策点配置信息  
+
+参数: 
+[ in ] info: 行人决策点配置信息  
+[ out ] 返回: 是否更新成功  
+
+ **void removeLink(ILink pLink)**
+
+移除路段, 从场景中移除pLink, 但不从文件中删除, 保存路网后才会从路网文件中删除 
+
+参数: 
+[ in ] pLink: 将要移除的路段
+
+ **void removeConnector(IConnector pConnector)**
+
+移除连接段, 从场景中移除pLink, 但不从文件中删除, 保存路网后才会从路网文件中删除
+
+参数: 
+[ in ] pConnector: 连接段对象
+
+ **void removeGuidArrow(IGuidArrow pArrow)**
+
+移除导向箭头
+
+参数: 
+[ in ] pArrow: 导向箭头对象
+
+
+ **boolean removeDispatchPoint(IDispatchPoint pDispPoint)**
+
+移除发车点
+
+参数: 
+[ in ] pDispPoint: 发车点对象
+
+ **boolean removeVehicleComposition(int vehiCompId)**
+
+移除车型组成
+
+参数: 
+[ in ] vehiCompId: 车型组成ID
+
+ **boolean removeDeciRouting(IDecisionPoint pDeciPoint, IRouting pRouting)**
+
+删除决策路径
+
+参数: 
+[ in ] pDeciPoint: 决策点
+[ in ] pRouting: 将要删除的路径
+
+举例: 
+
+```java
+if (netiface.removeDeciRouting(decisionPoint, decisionRouting3)) {
+    System.out.println("删除右转路径成功。");
+}
+```
+
+ **boolean removeVehiCollector(IVehicleDrivInfoCollector pCollector)**
+
+移除车辆信息采集器
+
+参数: 
+[ in ] pCollector: 车辆信息采集器
+
+ **void removeSignalPhase(ISignalPlan pPlan, int phaseId)**
+
+移除已有相位, 相位移除后, 原相位序列自动重排, 
+
+参数: 
+[ in ] pPlan: 信控方案
+[ in ] phaseId: 将要移除的相位ID
+
+ **void removeSignalPhaseFromLamp(int SignalPhaseId, ISignalLamp signalLamp)**
+
+为信号灯移除指定的（已绑定的）相位(如果相位列表只存在一个相位则将关联的相位设置为nu11)
+
+ **boolean removeBusLine(IBusLine pBusLine)**
+
+移除公交线路
+
+参数: 
+[ in ] pBusLine: 将要移除的公交线路对象
+
+ **boolean removeBusStation(IBusStation pStation)**
+
+移除公交站点
+
+参数: 
+[ in ] pStation: 公交站点对象
+
+ **boolean removeBusStationFromLine(IBusLine pBusLine, IBusStation pStation)**
+
+将公交站点与公交线路的关联关系解除
+
+参数: 
+[ in ] pBusLine: 公交线路
+[ in ] pStation: 公交站点
+
+```java
+public void createAndManageBusLine(NetInterface netiface, ILink w_approach, ILink e_outgoing, ILink s_outgoing) {
+    // 创建公交线路
+    ArrayList<ILink> busLineLinks1 = new ArrayList<>();
+    busLineLinks1.add(w_approach);
+    busLineLinks1.add(e_outgoing);
+    IBusLine busline = netiface.createBusLine(busLineLinks1);
+    ArrayList<ILink> busLineLinks2 = new ArrayList<>();
+    busLineLinks2.add(w_approach);
+    busLineLinks2.add(s_outgoing);
+    IBusLine busline1 = netiface.createBusLine(busLineLinks2);
+    // 删除公交线路 busline1
+    netiface.removeBusLine(busline1);
+
+    // 设置公交线路期望速度
+    if (busline != null) {
+        busline.setDesirSpeed(TESSNG.m2p(60));
+    }
+    // 创建公交站点
+    ILane lane_w_approach = w_approach.lanes().get(0);
+    IBusStation busstation1 = netiface.createBusStation(lane_w_approach, TESSNG.m2p(30), TESSNG.m2p(100), "西进口公交站点1", UnitOfMeasure.Metric);
+    IBusStation busstation2 = netiface.createBusStation(lane_w_approach, TESSNG.m2p(30), TESSNG.m2p(200), "西进口公交站点2", UnitOfMeasure.Metric);
+    ILane lane_e_outgoing = e_outgoing.lanes().get(0);
+    IBusStation busstation3 = netiface.createBusStation(lane_e_outgoing, TESSNG.m2p(30), TESSNG.m2p(200), "东出口公交站点1", UnitOfMeasure.Metric);
+    // 将公交站点关联到公交线路上
+    if (busline != null && busstation1 != null) {
+        netiface.addBusStationToLine(busline, busstation1);
+    }
+    if (busline != null && busstation2 != null) {
+        netiface.addBusStationToLine(busline, busstation2);
+    }
+    if (busline != null && busstation3 != null) {
+        netiface.addBusStationToLine(busline, busstation3);
+    }
+    // 删除公交线路中的一个站点
+    if (busline != null && busstation2 != null) {
+        netiface.removeBusStationFromLine(busline, busstation2);
+    }
+}
+```
+
+ **void removeAccidentZone(IAccidentZone pIAccidentZone)**
+
+移除事故区
+
+ **void removeRoadWorkZone(IRoadWorkZone pIRoadWorkZone)**
+
+移除施工区
+
+参数: 
+[ in ] pIRoadWorkZone: 将要移除的施工区对象
+
+ **void removeLimitedZone(ILimitedZone pILimitedZone)**
+
+移除限行区 Tessng.ILimitedZone 还是 Online.ILimitedZone
+
+参数: 
+[ in ] pILimitedZone: 将要移除的限行区对象, 数据类型在文件 Plugin/_datastruct.h中定义, python 构造限行区参数 Online.DynaLimitedZoneParam的案例见createLimitedZone
+
+ **void removeReduceSpeedArea(IReduceSpeedArea pIReduceSpeedArea)**
+
+移除限速区
+
+参数: 
+[ in ] pIReduceSpeedArea: 限速区对象
+
+ **void removeTollLane(ITollLane pITollLane)**
+
+移除收费车道
+
+参数: 
+[ in ] pITollLane: 收费车道对象
+
+ **void removeTollDecisionPoint(ITollDecisionPoint pITollDecisionPoint)**
+
+移除收费决策点
+
+参数: 
+[ in ] pITollDecisionPoint: 收费决策点对象
+
+ **void removeParkingRegion(IParkingRegion pIParkingRegion)**
+
+移除停车区
+
+参数: 
+[ in ] pIParkingRegion: 停车区对象
+
+ **void removeParkingDecisionPoint(IParkingDecisionPoint pIParkingDecisionPoint)**
+
+移除收费决策点
+
+参数: 
+[ in ] pIParkingDecisionPoint: 收费决策点对象
+
+ **void removeTollRouting(ITollRouting pITollRouting)**
+
+移除收费路径
+
+参数: 
+[ in ] pITollRouting: 收费路径对象
+
+ **void removeParkingRouting(IParkingRouting pIParkingRouting)**
+
+移除停车路径
+
+参数: 
+[ in ] pIParkingRouting: 停车路径对象
+
+ **void removeTollLaneById(int id)**
+
+通过ID移除收费车道
+
+参数: 
+[ in ] id: 收费车道ID
+
+ **void removeTollDecisionPointById(int id)**
+
+通过ID移除收费决策点
+
+参数: 
+[ in ] id: 收费决策点ID
+
+ **void removeParkingRegionById(int id)**
+
+通过ID移除停车区
+
+参数: 
+[ in ] id: 停车区ID
+
+ **void removeParkingDecisionPointById(int id)**
+
+通过ID移除停车决策点
+
+参数: 
+[ in ] id: 停车决策点ID
+
+ **void removeTollRoutingById(int id)**
+
+通过ID移除收费路径
+
+参数: 
+[ in ] id: 收费路径ID
+
+ **void removeParkingRoutingById(int id)**
+
+通过ID移除停车路径
+
+参数: 
+[ in ] id: 停车路径ID
+
+ **void removeTollParkingTimeDis(int id)**
+
+移除收费站停车时距分布  
+
+参数: 
+[ in ]  id : 停车时距分布参数的Id
+
+ **void removeParkingTimeDis(int id)**
+
+移除停车场停车时距分布  
+
+参数: 
+[ in ]  id : 停车时距分布ID
+
+ **boolean removeJunction(int junctionId)**
+
+删除节点  
+
+参数: 
+[ in ] id: 节点ID
+
+ **boolean deleteFlowTimeInterval(int timeId)**
+
+删除时间段(节点的流量时间段)  
+
+参数: 
+[ in ] timeId: 时间段ID
+
+ **boolean removePedestrianComposition(int compositionId)**
+
+移除行人组成  
+
+参数: 
+[ in ] compositionId: 组成Id  
+[ out ] 返回: True表示成功, False表示失败
+
+ **void removeLayerInfo(int layerId)**
+
+删除某个层级, 会删除层级当中的所有元素 
+
+参数: 
+[ in ] layerId: 层级Id
+
+ **void removePedestrianEllipseRegion(IPedestrianEllipseRegion pIPedestrianEllipseRegion)**
+
+删除椭圆行人面域  
+
+参数: 
+[ in ] pIPedestrianEllipseRegion: 椭圆行人面域对象
+
+ **void removePedestrianRectRegion(IPedestrianRectRegion pIPedestrianRectRegion)** 
+
+删除矩形行人面域  
+
+参数: 
+[ in ] pIPedestrianRectRegion: 矩形行人面域对象
+
+ **void removePedestrianTriangleRegion(IPedestrianTriangleRegion pIPedestrianTriangleRegion)**
+
+删除三角形行人面域  
+
+参数: 
+[ in ] pIPedestrianEllipseRegion: 三角形行人面域对象  
+
+ **void removePedestrianFanShapeRegion(IPedestrianFanShapeRegion pIPedestrianFanShapeRegion)**  
+
+删除扇形行人面域  
+
+参数: 
+[ in ] IPedestrianFanRegion: 扇形行人面域对象
+
+ **void removePedestrianPolygonRegion(IPedestrianPolygonRegion pIPedestrianPolygonRegion)**
+
+删除多边形行人面域  
+
+参数: 
+[ in ] pIPedestrianPolygonRegion: 多边形行人面域对象
+
+ **void removePedestrianSideWalkRegion(IPedestrianSideWalkRegion pIPedestrianSideWalkRegion)**
+
+删除人行道  
+
+参数: 
+[ in ]  pIPedestrianSideWalkRegion: 人行道对象
+
+ **void removePedestrianStairRegion(IPedestrianStairRegion pIPedestrianStairRegion)**
+
+删除楼梯  
+
+参数: 
+[ in ] pIPedestrianStairRegion: 楼梯对象  
+
+ **void removePedestrianPathStartPoint(IPedestrianPathPoint pIPedestrianPathStartPoint)**
+
+删除行人发生点 
+
+参数: 
+[ in ] pIPedestrianPathStartPoint: 行人发生点对象
+
+ **void removePedestrianPathEndPoint(IPedestrianPathPoint pIPedestrianPathEndPoint)**
+
+删除行人结束点 
+
+参数: 
+[ in ] pIPedestrianPathStartPoint: 删除行人结束点
+
+ **void removePedestrianDecisionPoint(IPedestrianPathPoint pIPedestrianDecisionPoint)**
+
+删除行人决策点 
+
+参数: 
+[ in ] pIPedestrianPathStartPoint: 行人决策点对象 
+
+ **void removePedestrianPath(IPedestrianPath pIPedestrianPath)**
+
+删除行人路径 
+
+参数: 
+[ in ] pIPedestrianPath: 行人路径对象
+
+ **void removeCrossWalkSignalLamp(ICrosswalkSignalLamp pICrosswalkSignalLamp)**
+
+删除人行横道信号灯 
+
+参数: 
+[ in ]  pICrosswalkSignalLamp: 人行横道信号灯对象
+
+ **void removePedestrianCrossWalkRegion(IPedestrianCrossWalkRegion pIPedestrianCrossWalkRegion)**
+
+删除人行横道 
+
+参数: 
+[ in ] pIPedestrianCrossWalkRegion: 人行横道对象
+
+ **boolean createEmptyNetFile(String filePath, int dbver)**
+
+创建空白路网
+
+参数: 
+[ in ] filePath: 空白路网全路径名
+[ in ] dbver: : 数据库版本
+
+ **boolean initSequence(String schemaName)**
+
+初始化数据库序列, 对保存路网的专业数据库序列进行初始化, 目前支持PostgreSql
+
+参数: 
+[ in ] schemaName: 数据库的schema名称
+
+ **void buildNetGrid(double width, UnitOfMeasure unit)**
+
+路网网格化, 默认单位: 像素
+
+参数: 
+[ in ] width: 单元格宽度, 默认单位: 米  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位    
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+NetInterface netiface = iface.netInterface();
+netiface.buildNetGrid(10, UnitOfMeasure.Metric);
+```
+
+ **ArrayList<ISection> findSectionOn1Cell(Point point, UnitOfMeasure unit)**
+
+根据point查询所在单元格所有Section, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] point: 路网场景中的点  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: ISection列表   
+
+ **ArrayList<ISection> findSectionOn4Cell(Point point, UnitOfMeasure unit)**
+
+根据point查询最近4个单元格所有经过的ISection, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] point: 路网场景中的一个点  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: ISection列表
+
+ **ArrayList<ISection> findSectionOn9Cell(Point point, UnitOfMeasure unit)**
+
+根据point查询最近9个单元格所有经过的ISection, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] point: 路网场景中的一个点  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: ISection列表  
+
+ **ArrayList<Location> locateOnSections(Point point, ArrayList<ISection> lSection, double referDistance, UnitOfMeasure unit)**
+
+根据point对lSection列表中每一个Section所有LaneObject求最短距离, 返回Location列表, 列表按最短距离排序, 从小到大, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] point: 路网场景中的一个点  
+[ in ] lSection: section列表  
+[ in ] referDistance: LaneObject上与point最近的点到LaneObject起点距离, 默认单位: 像素, 是大约数, 只为提高计算效率, 默认值为0  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: Online.Location列表  
+
+举例: 
+
+```java
+// 获取 TESS NG 接口
+TessInterface tessng = TESSNG.tessngIFace();
+NetInterface netInterface = tessng.netInterface();
+// 获取所有分段
+ArrayList<ISection> sections = netInterface.sections();
+// 创建一个点对象
+Point point = new Point(0, 0);
+// 在所有分段上定位该点，获取位置信息
+ArrayList<Location> locations = netInterface.locateOnSections(point, sections);
+// 遍历结果并输出信息
+if (locations != null && !locations.isEmpty()) {
+    for (Location location : locations) {
+        // 输出相关车道或车道连接的 ID
+        System.out.println("相关车道或车道连接为: " + location.getPLaneObject().id());
+        // 输出最近点的坐标
+        Point nearestPoint = location.getPoint();
+        System.out.println("最近点坐标: (" + nearestPoint.getX() + ", " + nearestPoint.getY() + ")");
+        // 输出到最近点的距离
+        System.out.println("到最近点的最短距离: " + location.getLeastDist());
+        // 输出最近点到起点的里程
+        System.out.println("最近点到起点的里程: " + location.getDistToStart());
+        // 输出最近点所在分段序号
+        System.out.println("最近点所在分段序号: " + location.getSegmIndex());
+        System.out.println(); // 换行
+    }
+} else {
+    System.out.println("未找到任何匹配的车道或车道连接。");
+}
+```
+
+ **ArrayList<Location> locateOnCrid(Point point, int cellCount, UnitOfMeasure unit)**
+
+point周围若干个单元格里查询LaneObject, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] point: 路网场景中的一个点  
+[ in ] cellCount: 单元格数, 小于1时默认为1, 大于1小于4时默认为4, 大于4时默认为9  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: Location列表
+
+ **RectF boundingRect()**
+
+路网外围Rect, 用以获取路网边界
+
+ **int getIDByItemName(String name)**
+
+根据路网元素名获取自增ID
+
+参数: 
+[ in ] name: 路网元素名
+
+**void moveLinks(ArrayList<ILink> lLink, Point offset, UnitOfMeasure unit)**
+
+移动路段及相关连接段, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] lLink: 要移动的路段列表  
+[ in ] offset: 移动的偏移量, 即沿着坐标系向X向Y轴各自移动的偏移量  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
+
+```java
+// 获取 TESS NG 接口
+TessInterface tessng = TESSNG.tessngIFace();
+NetInterface netiface = tessng.netInterface();
+// 创建起点和终点坐标
+Point startPoint = new Point(-300, 6);
+Point endPoint = new Point(-25, 6);
+// 创建点列表
+ArrayList<Point> lPoint = new ArrayList<>();
+lPoint.add(startPoint);
+lPoint.add(endPoint);
+// 创建路段
+ILink w_approach = netiface.createLink(lPoint, 3, "西进口", true, UnitOfMeasure.Metric);
+if (w_approach != null) {
+    System.out.println("路段创建成功: " + w_approach.name());
+    // 创建要移动的路段列表
+    ArrayList<ILink> linksToMove = new ArrayList<>();
+    linksToMove.add(w_approach);
+    // 移动路段
+    Point offset = new Point(0, 12);
+    netiface.moveLinks(linksToMove, offset, UnitOfMeasure.Metric);
+}
+```
+
+
+
+
+
+
+
+### 4.2. SimuInterface
+
+SimuInterface是TessInterface的子接口, 通过此接口可以启动、暂停、停止仿真, 可以设置仿真精度, 获取仿真过程车辆对象、车辆状态（包括位置信息）, 获取几种检测器检测的样本数据和集计数据, 等等。
+
+下面对SimuInterface接口方法作详细解释。
+
+ **boolean byCpuTime()**
+
+仿真时间是否由现实时间确定。
+
+一个计算周期存在两种时间, 一种是现实经历的时间, 另一种是由仿真精度决定的仿真时间, 如果仿真精度为每秒20次, 仿真一次相当于仿真了50毫秒。默认情况下, 一个计算周期的仿真时间是由仿真精度决定的。在线仿真时如果算力不够, 按仿真精度确定的仿真时间会与现实时间存在时差。
+
+ **boolean setByCpuTime(boolean bByCpuTime)**
+
+设置是否由现实时间确定仿真时间, 如果设为True, 每个仿真周期现实经历的时间作为仿真时间, 这样仿真时间与现实时间相吻合。
+
+参数: 
+[ in ] bByCpuTime: 是否由现实时间确定仿真时间
+
+ **void startSimu()**
+
+启动仿真
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuInterface = iface.simuInterface();
+simuInterface.startSimu();
+```
+
+ **void pauseSimu()**
+
+暂停仿真
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuInterface = iface.simuInterface();
+simuInterface.pauseSimu();
+```
+
+ **void stopSimu()**
+
+停止仿真运行 
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuInterface = iface.simuInterface();
+simuInterface.stopSimu();
+```
+
+ **void pauseSimuOrNot()**
+
+暂停或恢复仿真。如果当前处于仿真运行状态, 此方法暂停仿真, 如果当前处于暂停状态, 此方法继续仿真
+
+举例: 
+
+```java
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuInterface = iface.simuInterface();
+simuInterface.pauseSimuOrNot();
+```
+
+ **boolean isRunning()**
+
+仿真是否在进行
+
+ **boolean isPausing()**
+
+仿真是否处于暂停状态
+
+ **boolean isRecordTrace()**
+
+仿真是否记录车辆轨迹
+
+ **void setIsRecordTrace(boolean bRecord)**
+
+设置是否记录车辆轨迹
+
+参数: 
+[ in ] bRecord: 是否记录车辆轨迹
+
+ **long simuIntervalScheming()**
+
+预期仿真时长, 即仿真设置窗口设置的仿真时间
+
+ **long simuIntervalScheming()**
+
+设置预期仿真时长
+
+参数: 
+[ in ] interval: 预期仿真时长, 默认单位: 秒
+
+ **int simuAccuracy()**
+
+获取仿真精度
+
+ **void setSimuAccuracy(int accuracy)**
+
+设置仿真精度, 即每秒计算次数
+
+参数: 
+[ in ] accuracy: 每秒计算次数
+
+ **int acceMultiples()**
+
+获取加速倍数
+
+ **void setAcceMultiples(int multiples)**
+
+设置加速倍数
+
+参数: 
+[ in ] multiples 加速倍数
+
+ **void setThreadCount(int count)**
+
+设置工作线程数
+
+ **long batchNumber()**
+
+当前仿真批次
+
+ **double batchIntervalReally()**
+
+当前批次实际时间
+
+ **SWIGTYPE_p_qint64 startMSecsSinceEpoch()**
+
+获取仿真开始的现实时间
+
+ **SWIGTYPE_p_qint64 stopMSecsSinceEpoch()**
+
+仿真结束的现实时间
+
+ **long simuTimeIntervalWithAcceMutiples()**
+
+获取当前已仿真时间
+
+ **long vehiCountTotal()**
+
+车辆总数, 包括已创建尚未进入路网的车辆、正在运行的车辆、已驶出路网的车辆
+
+ **long vehiCountRunning()**
+
+正在运行车辆数
+
+ **IVehicle getVehicle(long vehiId)**
+
+根据车辆ID获取车辆对象
+
+参数: 
+[ in ] vehiId: 车辆ID
+
+ **ArrayList<IVehicle> allVehiStarted()**
+
+所有正在运行车辆
+
+```java
+// 获取 TESS NG 顶层接口实例
+TessInterface iface = TessInterface.getInstance();
+// 获取仿真子接口
+SimuInterface simuInterface = iface.simuInterface();
+// 获取所有已启动的车辆列表
+List<IVehicle> startedVehicles = simuInterface.allVehiStarted();
+```
+
+ **ArrayList<IVehicle> allVehicle()**
+
+所有车辆, 包括已创建尚未进入路网的车辆、正在运行的车辆、已驶出路网的车辆
+
+ **ArrayList<VehicleStatus> getVehisStatus(long batchNumber, UnitOfMeasure unit)**
+
+获取所有正在运行的车辆状态, 包括轨迹
+
+参数: 
+[ in ] batchNumber: 批次号  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 车辆状态（包括轨迹）VehicleStatus列表  
+注: 如使用米制单位, 请勿遗忘传入unit参数  
+
+ **ArrayList<VehiclePosition> getVehiTrace(long vehiId, UnitOfMeasure unit)**
+
+获取指定车辆运行轨迹, 默认单位: 像素, 可通过unit参数设置单位
+
+参数: 
+[ in ] vehiId: 车辆ID  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+返回: 车辆运行轨迹, 即VehiclePosition列表  
+
+ **ArrayList<SignalPhaseColor> getSignalPhasesColor()**
+
+获取当前所有信号灯组相位颜色
+
+返回: 当前相位颜色SignalPhaseColor列表, 包括各相位当前颜色设置的时间和已持续时间。 
+
+ **ArrayList<VehiInfoCollected> getVehisInfoCollected()**
+
+获取当前完成穿越车辆数据采集器的所有车辆信息
+
+返回: 采集的车辆信息列表。
+
+举例: 
+
+```java
+// 获取 TESS NG 顶层接口实例
+TessInterface tessng = TessInterface.getInstance();
+// 获取仿真子接口
+SimuInterface simuInterface = tessng.simuInterface();
+// 获取当前仿真时间完成穿越采集器的所有车辆信息
+ArrayList<VehiInfoCollected> collectedVehicles = simuInterface.getVehisInfoCollected();
+```
+
+
+ **ArrayList<VehiInfoAggregated> getVehisInfoAggregated()**
+
+获取最近集计时间段内采集器采集的所有车辆集计信息
+
+返回: 采集器集计数据VehiInfoAggregated列表
+
+ **ArrayList<VehiQueueCounted> getVehisQueueCounted()**
+
+获取当前排队计数器计数的车辆排队信息
+
+返回: 车辆排队信息VehiQueueCounted列表
+
+ **ArrayList<VehiQueueAggregated> getVehisQueueAggregated()**
+
+获取最近集计时间段内排队计数器集计数据
+
+返回: 排队计数器集计数据VehiQueueAggregated列表
+
+ **ArrayList<VehiTravelDetected> getVehisTravelDetected()**
+
+获取当前行程时间检测器完成的行程时间检测信息
+
+返回: 行程时间检测器数据VehiTravelDetected列表
+
+ **ArrayList<VehiTravelAggregated> getVehisTravelAggregated()**
+
+获取最近集计时间段内行程时间检测器集计数据
+
+返回: 行程时间集计数据VehiTravelAggregated列表
+
+ **IVehicle createGVehicle(DynaVehiParam dynaVehi)**
+
+动态创建车辆
+
+参数: 
+[ in ] dynaVehi: 动态车辆信息
+
+举例: 
+
+```java
+// 获取 TESS NG 接口
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuInterface = iface.simuInterface();
+// 示例 link ID，实际应使用真实路段对象或 ID
+long link3Id = 3; // 示例路段 ID，替换为你实际创建的路段 ID
+long link4Id = 4;
+// 创建车道 0 的车辆参数
+DynaVehiParam dvp_lane0 = new DynaVehiParam();
+dvp_lane0.setVehiTypeCode(1);           // 设置车辆类型代码
+dvp_lane0.setRoadId(link3Id);           // 设置路段 ID
+dvp_lane0.setLaneNumber(0);             // 设置车道编号
+dvp_lane0.setDist(TESSNG.m2p(50));      // 设置距离路段起点位置（转换为像素）
+dvp_lane0.setSpeed(TESSNG.m2p(20));     // 设置速度（转换为像素/秒）
+dvp_lane0.setColor("#FF0000");          // 设置颜色：红色
+// 创建车道 1 的车辆参数
+DynaVehiParam dvp_lane1 = new DynaVehiParam();
+dvp_lane1.setVehiTypeCode(2);           // 设置车辆类型代码
+dvp_lane1.setRoadId(link3Id);           // 设置路段 ID
+dvp_lane1.setLaneNumber(1);             // 设置车道编号
+dvp_lane1.setDist(TESSNG.m2p(100));     // 设置距离路段起点位置
+dvp_lane1.setSpeed(TESSNG.m2p(30));     // 设置速度
+dvp_lane1.setColor("#008000");          // 设置颜色：绿色
+// 创建车道 2 的车辆参数
+DynaVehiParam dvp_lane2 = new DynaVehiParam();
+dvp_lane2.setVehiTypeCode(3);           // 设置车辆类型代码
+dvp_lane2.setRoadId(link4Id);           // 设置路段 ID
+dvp_lane2.setLaneNumber(2);             // 设置车道编号
+dvp_lane2.setDist(TESSNG.m2p(50));      // 设置距离路段起点位置
+dvp_lane2.setSpeed(TESSNG.m2p(40));     // 设置速度
+dvp_lane2.setColor("#0000FF");          // 设置颜色：蓝色
+// 动态创建车辆
+IVehicle vehi_lane0 = simuInterface.createGVehicle(dvp_lane0);
+IVehicle vehi_lane1 = simuInterface.createGVehicle(dvp_lane1);
+IVehicle vehi_lane2 = simuInterface.createGVehicle(dvp_lane2);
+// 检查是否创建成功
+if (vehi_lane0 != null) {
+    System.out.println("车道0车辆创建成功，ID: " + vehi_lane0.id());
+} else {
+    System.out.println("车道0车辆创建失败");
+}
+if (vehi_lane1 != null) {
+    System.out.println("车道1车辆创建成功，ID: " + vehi_lane1.id());
+} else {
+    System.out.println("车道1车辆创建失败");
+}
+if (vehi_lane2 != null) {
+    System.out.println("车道2车辆创建成功，ID: " + vehi_lane2.id());
+} else {
+    System.out.println("车道2车辆创建失败");
+}
+```
+
+ **IVehicle createBus(IBusLine pBusLine, double startSimuDateTime)**
+
+动态创建公交车
+
+参数: 
+[ in ] pBusLine: 公交线路
+[ in ] startSimuDateTime: 发车时间, 单位毫秒
+
+举例: 
+
+```java
+// 获取 TESS NG 接口
+TessInterface iface = TESSNG.tessngIFace();
+SimuInterface simuInterface = iface.simuInterface();
+// 假设 busLine 已经创建成功
+// 动态创建公交车，延迟 10 秒（单位：毫秒）
+long delayMs = 10 * 1000; // 10 秒后发车
+IVehicle bus = simuInterface.createBus(busLine, delayMs);
+```
+
+ **ArrayList<IVehicle> vehisInLink(long linkId)**
+
+指定ID路段上的车辆
+
+参数
+
+[ in ] linkId: 路段ID
+
+返回: 车辆列表
+
+举例: 
+
+```java
+public List<IVehicle> getVehiclesInLink(long linkId) {
+    // 获取 TESS NG 顶层接口实例
+    TessInterface iface = TessInterface.getInstance();
+    // 获取仿真子接口
+    SimuInterface simuInterface = iface.simuInterface();
+    // 获取指定路段上的车辆列表
+    List<IVehicle> vehicleList = simuInterface.vehisInLink(linkId);
+    return vehicleList;
+}
+```
+
+ **ArrayList<IVehicle> vehisInLane(long laneId)**
+
+指定ID车道上的车辆
+
+参数: 
+[ in ] laneId: 车道ID
+
+返回: 车辆列表
+
+ **ArrayList<IVehicle> vehisInConnector(long connectorId)**
+
+指定ID连接段上的车辆
+
+参数: 
+[ in ] connectorId: 连接段ID
+
+返回: 车辆列表
+
+ **ArrayList<IVehicle> vehisInLaneConnector(long connectorId, long fromLaneId, long toLaneId)**
+
+指定连接段ID及上游车道ID和下游车道ID相关“车道连接”上的车辆
+
+参数: 
+[ in ] connectorId: 连接段ID
+[ in ] fromLaneId: 上游车道ID
+[ in ] toLaneId: 下游车道ID
+
+ **boolean queueRecently(long queueCounterId, ObjReal queueLength, ObjInt vehiCount, UnitOfMeasure unit)**
+
+获取排队计数器最近一次排队信息, 返回值为是否成功的标签, 具体的排队和流量信息见入参ref_queueLength, ref_vehiCount。  
+该函数的入参为引用, 函数直接修改入参数据  
+参数: 
+[ in ] queueCounterId: 排队计数器ID  
+\[in & out\] queueLength: 排队长度, 默认单位: 像素, 可通过unit参数设置单位  
+\[in & out\] vehiCount: 排队车辆数, 默认单位: 像素, 可通过unit参数设置单位  
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
+[ out ] 是否获取成功  
+
+ **SWIGTYPE_p_QListT_Online__Pedestrian__PedestrianStatus_t getPedestriansStatusByRegionId(long regionId)**
+
+根据行人面域id获取当前时间面域上所有行人的状态信息  
+参数: 
+[ in ]  regionId: 面域ID  
+[ out ] 行人状态信息列表
+
+ **ArrayList<IPedestrian> allPedestrianStarted()**
+
+获取所有正在运行的行人; , 因为此函数可能会影响仿真效率, 仿真默认关闭, 如需要可在config配置里添加配置开启  
+参数: 
+[ out ] 行人对象列表
+
+
+
+
+
+### 4.3.  GuiInterface
+
+GuiInterface是TessInterface的子接口, 通过此接口可以访问控制TESSNG主窗体, 在主窗体上创建菜单、自定义窗体等。
+
+ **SWIGTYPE_p_QMainWindow mainWindow()**
+
+获取TESS NG主窗体
+
+
+
+
+
+
+## 5. 自定义插件TessPlugin
+
+TessPlugin是用户开发的插件顶级接口, 下面有三个子接口: PyCustomerNet、PyCustomerSimulator、CustomerGui。TESS NG通过这三个子接口分别在路网、仿真过程、窗体这三个方面与用户插件进行交互。
+
+获取插件顶层接口的方法: tessngPlugin()。
+
+虽然用户可以通过接口TessInterface下的三个子接口访问控制TESS NG的路网、仿真过程及窗体, 但用户只能调用TESS NG接口方法, 不能深入接口方法内部改变运行逻辑。通过实现接口TessPlugin子接口的方法, 用户可以在TESS NG的方法内部施加影响, 改变运行逻辑。
+
+TessPlugin下的子接口PyCustomerNet、PyCustomerSimulator可以让用户较多地参于加载路网及仿真过程, 改变TESSNG内部运行逻辑。比如, 通过实现PyCustomerNet、PyCustomerSimulator接口方法可以让用户加载路网后进行必要的处理, 点击仿真按钮后根据需要确定是否继续仿真或者放弃, 还可以在仿真过程对部分或全部车辆的速度施加影响, 主动干预车辆的自由变道, 等等。
+
+插件的三个子接口PyCustomerNet、PyCustomerSimulator、CustomerGui的所有方法均有默认实现, 用户可以根据需要实现其中部分方法或全部方法, 这些方法均由TESSNG在加载并初始化插件、打开路网前后、仿真前、仿真过程中、仿真结束后进行调用, 正是通过TESS NG对这些接口方法的调用达到控制或影响TESS NG运行的目的。
+
+由于插件接口方法调用的场景、目的均不一样, 为了尽可尽可能统一对插件接口方法理解, 很多方法采用如下结构形式: 
+
+```java
+boolean method(type outParam)
+```
+
+TESS NG在调用这些方法时作以下理解: 如果返加值为False, 视为用户没有反应, 忽略。如果返回值为True, 表明用户有反应, 这时再视参数outParam值进行处理。举范例中的一个例子, 曹安路上的车辆排成方正, 飞机后的车辆速度重新设置, 保持与飞机相同的速度。PyCustomerSimulator的子类MySimulator实现了reSetSpeed方法如下: 
+
+```java
+public boolean ref_reSetSpeed(IVehicle vehi, ObjReal ref_inOutSpeed) {
+    long tmpId = vehi.id() % 100000;
+    String roadName = vehi.roadName();
+    if ("曹安公路".equals(roadName)) {
+        if (tmpId == 1) {
+            this.mrSpeedOfPlane = vehi.currSpeed();
+        } else if (tmpId >= 2 && tmpId <= this.mrSquareVehiCount) {
+            ref_inOutSpeed.setValue(this.mrSpeedOfPlane);
+        }
+        return true;
+    }
+    return false;
+}
+```
+
+TESS NG在计算车辆的速度后会调用插件的reSetSpeed方法, 如果该方法返回True, 视插件对此方法作出响应, 这时再用outSpeed值取代原先计算的车速。
+
+下面对PyCustomerNet、PyCustomerSimulator两个子接口进行说明
+
+### 5.1. JCustomerNet
+
+PyCustomerNet是TessPlugin子接口, 用户实现这个接口, TESSNG在加载路网前后会调用用户实现的接口方法。范例在加载临时路网后创建路段、连接段和发车点。TESSNG在绘制部分路网元素时也会调用PyCustomerNet实现类相关方法。范例通过实现方法labelNameAndFont让部分路段和连接段用路段名（默认为ID）绘制标签。
+
+下面对PyCustomerNet接口方法作详细解释。
+
+
+
+ **boolean ref_netFileSuffix(ObjString ref_suffix)**
+
+路网文件后缀, 由用户通过参数suffix设置
+
+参数: 
+[ out ] suffix: 路网文件后缀名
+
+ **TreeMap<String, String> customerTableDDL()**
+
+添加用户设计的表
+
+返回: 用户数据库的表定义TreeMap, key为表名, value为表的定义
+
+ **void insertCustomerData()**
+
+插入用户插件创建的表数据
+
+ **void deleteCustomerData()**
+
+删除用户插件创建的表数据
+
+ **void beforeLoadNet()**
+
+打开路网前调用, 用户可以通过此方法在加载路网前作必要的初始化准备工作
+
+ **void afterLoadNet()**
+
+加载路网后调用。
+
+举例: 
+
+加载路网后读路段数, 如果路段数为0则创建路段、连接段和发车点: 
+
+```java
+public void afterLoadNet(){
+    //代表TESS NG的接口
+    TessInterface iface = TESSNG.tessngIFace();
+    //代表TESS NG的路网子接口
+    NetInterface netiface = iface.netInterface();
+    int count = netiface.linkCount();
+    if (count == 0) {
+        createNet();
+    }
+}
+```
+
+ **boolean linkType(SWIGTYPE_p_QListT_QString_t lType)**
+
+路段类型
+
+参数: 
+
+[ out ] lType: 用户定义的路段类型列表
+
+ **def laneType(self, lType: typing.Sequence) -> bool: ...**
+
+车道类型
+
+参数: 
+
+[ out ] lType: 用户定义的车道类型列表
+
+ **boolean linkBuildGLanes(ILink pILink)**
+
+创建车道
+
+参数: 
+
+[ in ] pILink: 路段对象
+
+返回: 如果返回True, 表示用户已创建了车道, TESSNG不再创建
+
+ **boolean isPermitForCustDraw()**
+
+在绘制路网过程中是否允许调用客户绘制逻辑, 默认为False。本方法的目的是在python环境减少不必要的对python代码调用, 消除对运行效率的负面影响。可参数范例。
+
+ **void ref_labelNameAndFont(int itemType, long itemId, ObjInt ref_outPropName, ObjReal ref_outFontSize)**
+
+根据路网元素类型及ID确定用标签用ID或名称作为绘制内容。
+
+参数: 
+
+[ in ] itemType: 路段元素类型; 
+
+[ in ] itemId: 路网元素ID; 
+
+[ out ] outPropName: 枚举值, 选择用ID或路网元素名作为绘制内容; 
+
+[ out ] outFontSize: 字体大小, 单位: 米。假设车道宽度是3米, 如果赋给outFontSize的值是6, 绘出的文字将占用两个车道的宽度。
+
+返回: False 忽略, True 则根据设定的outPropName 值确定用ID或名称绘制标签, 并且用指定大小绘制。
+
+举例: 
+
+范例中的路段和连接段的标签内容部分是名称, 部分是ID。
+
+```java
+public void ref_labelNameAndFont(int itemType, long itemId, ObjInt ref_outPropName, ObjReal ref_outFontSize) {
+    // 代表TESS NG的接口
+    TessInterface iface = TESSNG.tessngIFace();
+    // 代表TESS NG仿真子接口
+    SimuInterface simuiface = iface.simuInterface();
+    // 如果仿真正在进行，设置 ref_outPropName 为 None，路段和车道均不绘制标签
+    if (simuiface.isRunning()) {
+        ref_outPropName.setValue(GraphicsItemPropName.None.swigValue());
+    }
+    // 默认绘制 ID
+    ref_outPropName.setValue(GraphicsItemPropName.Name.swigValue());
+    // 标签大小为 6 米
+    ref_outFontSize.setValue(6);
+    // 如果是连接段，一律绘制名称
+    if (itemType == NetItemType.getGConnectorType()) {
+        ref_outPropName.setValue(GraphicsItemPropName.Name.swigValue());
+    } else if (itemType == NetItemType.getGLinkType()) {
+        if (itemId == 1 || itemId == 5 || itemId == 6) {
+            ref_outPropName.setValue(GraphicsItemPropName.Name.swigValue());
+        }
+    }
+}
+```
+
+ **boolean isDrawLinkCenterLine(long linkId)**
+
+是否绘制路段中心线
+
+参数: 
+
+[ in ] linkId: 路段ID; 
+
+返回值: True绘制, False不绘制。
+
+ **boolean isDrawLinkCorner(long linkId)**
+
+是否绘制路段四个拐角的圆形和正方型。
+
+参数: 
+
+[ in ] linkId: 路段ID; 
+
+返回值: True绘制, False不绘制。
+
+ **boolean isDrawLaneCenterLine(long laneId)**
+
+是否绘制车道中心线。
+
+参数: 
+
+[ in ] laneId: 车道ID; 
+
+返回值: True绘制, False不绘制。
+
+ **void afterViewKeyReleaseEvent(SWIGTYPE_p_QKeyEvent event)**
+
+QGraphicsView的keyReleaseEvent事件后行为, 用户可以根据自己的需要接入键盘事件, 实现自身业务逻辑。
+
+ **void afterViewMouseDoubleClickEvent(SWIGTYPE_p_QMouseEvent event)**
+
+QGraphicsView的mouseDoubleClickEvent事件后的行为, 用户可以根据自己的需要编写鼠标双击事件响应代码。
+
+ **void afterViewMouseMoveEvent(SWIGTYPE_p_QMouseEvent event)**
+
+QGraphicsView的mouseMoveEvent事件后的行为, 用户可以根据自己的需要编写鼠标移动事件响应代码。
+
+ **void afterViewMousePressEvent(SWIGTYPE_p_QMouseEvent event)**
+
+QGraphicsView的mousePressEvent事件后的行为, 用户可以根据自己的需要编写鼠标点击事件响应代码。
+
+ **void afterViewMouseReleaseEvent(SWIGTYPE_p_QMouseEvent event)**
+
+QGraphicsView的mouseReleaseEvent事件后的行为, 用户可以根据自己的需要编写鼠标释放事件响应代码。
+
+ **void afterViewResizeEvent(SWIGTYPE_p_QResizeEvent event)**
+
+QGraphicsView的resizeEvent事件后的行为, 用户可以根据自己的需要编写屏幕缩放事件响应代码。
+
+ **void afterViewWheelEvent(SWIGTYPE_p_QWheelEvent event)**
+
+QGraphicsView的鼠标滚动事件后的行为, 用户可以根据自己的需要编写鼠标滚动事件后响应代码。
+
+ **void afterViewScrollContentsBy(int dx, int dy)**
+
+QGraphicsView滚动条移动事件后的行为, 用户可以根据自己的需要实现视窗滚动条移动后响应代码。
+
+
+
+
+
+### 5.2. JCustomerSimulator
+
+PyCustomerSimulator是TessPlugin子接口, 用户实现这个接口。TESS NG在仿真前后以及仿真过程中调用这个接口实现的方法, 达到与插件交互的目的, 用户可以通过这个接口的实现在仿真前后以及仿真运算过程中对TESS NG的仿真进行干预, 大到可以控制仿真是否进行, 小到干预某一车辆的驾驶行为。
+
+用户对车辆驾驶行为的干预主要通过车速和变道来实现。对车速的干预主要有以下几个方法: 
+
+1）重新计算车速; 
+
+2）修改路段限速; 
+
+3）重新计算加速度; 
+
+4）修改跟驰安全距离和安全时距、重新设置前车距
+
+以上几个方法的优先级依次降低。在没有插件干预的情况下, 车辆行驶的最高速度受到道路的最高速度限制; 在有插件的干预下, 如果直接修改了车速, 则不受道路最高限速的限制。
+
+下面对PyCustomerSimulator接口方法作详细解释。
+
+ **void ref_beforeStart(ObjBool ref_keepOn)**
+
+仿真前的准备。如果需要, 用户可通过设置keepOn为False来放弃仿真。
+
+参数: 
+
+[ out ] ref_keepOn: 是否继续, 默认为True; 
+
+ **void afterStart()**
+
+启动仿真后的操作。这个方法的处理时间尽量短, 否则影响仿真时长的计算, 因为调用这个方法的过程仿真已经计时。仿真前的操作尽可能放到beforeStart方法中处理。
+
+ **void afterStop()**
+
+ 仿真结束后的操作, 如果需要, 用户可以在此方法释放资源。
+
+**ArrayList<DispatchInterval> calcDynaDispatchParameters()**
+
+计算动态发车信息, 用来修改发车点相关参数, 此方法可以用来实现实时动态仿真。
+
+返回: 动态发车信息DispatchInterval列表。
+
+举例: 
+
+```java
+public ArrayList<DispatchInterval> calcDynaDispatchParameters() {
+    // 获取 TESSNG 顶层接口
+    TessInterface iface = TESSNG.tessngIFace();
+    SimuInterface simuInterface = iface.simuInterface();
+    // 获取当前仿真时间（单位：毫秒）
+    long currSimuTime = simuInterface.simuTimeIntervalWithAcceMutiples();
+    // 每10秒执行一次，且仿真时间小于60秒
+    if (currSimuTime % (10 * 1000) == 0 && currSimuTime < 60 * 1000) {
+        // 获取 ID 等于 5 的路段上的车辆
+        List<IVehicle> lVehi = simuInterface.vehisInLink(5);
+        if (currSimuTime < 1000 * 30 || lVehi.size() > 0) {
+            return new ArrayList<>();
+        } else {
+            // 获取当前时间
+            LocalDateTime now = LocalDateTime.now();
+            // 当前时间换算为秒
+            int currSecs = now.getHour() * 3600 + now.getMinute() * 60 + now.getSecond();
+            // 创建发车间隔对象
+            DispatchInterval di = new DispatchInterval();
+            // 动作控制案例 - 机动车交叉口 L5 路段发车点 ID 为 11
+            di.setDispatchId(11);
+            di.setFromTime(currSecs);
+            di.setToTime(currSecs + 300 - 1);
+            di.setVehiCount(300);
+            // 设置车辆组成详情
+            List<VehiComposition> vehiConsDetail = new ArrayList<>();
+            vehiConsDetail.add(new VehiComposition(1, 60)); // 小客车 60%
+            vehiConsDetail.add(new VehiComposition(2, 40)); // 大客车 40%
+            di.setMlVehicleConsDetail(vehiConsDetail);
+            System.out.println("流量修改完成，当前时间为" + currSimuTime);
+            ArrayList<DispatchInterval> result = new ArrayList<>();
+            result.add(di);
+            return result;
+        }
+    }
+
+    return new ArrayList<>();
+}
+```
+
+ **ArrayList<DecipointFlowRatioByInterval> calcDynaFlowRatioParameters()**
+
+一个或一次数据来源里保存的所有决策点在一个时间间隔的路径流量分配信息, 此方法可以用来实现实时动态仿真。
+
+返回: 决策点流量分配信息DecipointFlowRatioByInterval列表。
+
+ **ArrayList<SignalContralParam> calcDynaSignalContralParameters()**
+
+一个或一次数据来源里保存的所有信号灯组的信号控制信息。
+
+返回: 信号灯组控制参数SignalContralParam列表。
+
+ **void initVehicle(IVehicle pIVehicle)**
+
+初始化车辆, 此方法在车辆起动加入路网时被调用, 用户可以在这个方法里调用IVehicle的setVehiType方法重新设置类型, 调用initLane或initLaneConnector方法对车辆的车道序号、起始位置、车辆大小进行初始化。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+举例: 
+
+```java
+public void initVehicle(IVehicle vehi){
+    // 车辆 ID，不含首位数，首位数与车辆来源有关，如发车点、公交线路
+    int tmpId = (int)(vehi.id() % 100000);
+    // 车辆所在路段名或连接段名
+    String roadName = vehi.roadName();
+    // 车辆所在路段 ID 或连接段 ID
+    int roadId = (int)(vehi.roadId());
+    if ("曹安公路".equals(roadName)) {
+        // 飞机
+        if (tmpId == 1) {
+            vehi.setVehiType(12);
+            vehi.initLane(3, TESSNG.m2p(105), 0);
+        }
+        // 工程车
+        else if (tmpId >= 2 && tmpId <= 8) {
+            vehi.setVehiType(8);
+            vehi.initLane((tmpId - 2) % 7, TESSNG.m2p(80), 0);
+        }
+        // 消防车
+        else if (tmpId >= 9 && tmpId <= 15) {
+            vehi.setVehiType(9);
+            vehi.initLane((tmpId - 2) % 7, TESSNG.m2p(65), 0);
+        }
+        // 消防车
+        else if (tmpId >= 16 && tmpId <= 22) {
+            vehi.setVehiType(10);
+            vehi.initLane((tmpId - 2) % 7, TESSNG.m2p(50), 0);
+        }
+        // 最后两队列小车
+        else if (tmpId == 23) {
+            vehi.setVehiType(1);
+            vehi.initLane(1, TESSNG.m2p(35), 0);
+        } else if (tmpId == 24) {
+            vehi.setVehiType(1);
+            vehi.initLane(5, TESSNG.m2p(35), 0);
+        } else if (tmpId == 25) {
+            vehi.setVehiType(1);
+            vehi.initLane(1, TESSNG.m2p(20), 0);
+        } else if (tmpId == 26) {
+            vehi.setVehiType(1);
+            vehi.initLane(5, TESSNG.m2p(20), 0);
+        } else if (tmpId == 27) {
+            vehi.setVehiType(1);
+            vehi.initLane(1, TESSNG.m2p(5), 0);
+        } else if (tmpId == 28) {
+            vehi.setVehiType(1);
+            vehi.initLane(5, TESSNG.m2p(5), 0);
+        }
+        // 最后两列小车的长度设为一样长，这个很重要，如果车长不一样长，加上导致的前车距就不一样，会使它们变道轨迹长度不一样，就会乱掉
+        if (tmpId >= 23 && tmpId <= 28) {
+            vehi.setLength(TESSNG.m2p(4.5), true);
+        }
+    }
+}
+```
+
+ **void ref_beforeCreateGVehiclesForBusLine(IBusLine pBusLine, ObjBool ref_keepOn)**
+
+创建公交车辆前的预处理
+
+参数: 
+
+[ in ] pBusLine: 公交线路
+
+[ in、out ] ref_keepOn: 是否继续执行创建公交车辆, 如果ref_keepOn被赋值为False, TESSNG不再创建公交车辆
+
+ **boolean shape(IVehicle pIVehicle, SWIGTYPE_p_QPainterPath outShape)**
+
+车辆外型, 用户可以用此方法改变车辆外观
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ in、out ] outShape: 车辆外形
+
+返回: 如果返回False, 则忽略
+
+ **boolean ref_beforeCalcLampColor(ObjBool ref_keepOn)**
+
+计算信号灯色前的预处理。
+
+参数: 
+
+[ in、out ] 是否断续计算
+
+返回: 如果返回 True, 且keepOn等于False, TESS NG不再计算信号灯色。
+
+ **boolean calcLampColor(ISignalLamp pSignalLamp)**
+
+计算信号灯的灯色。ISignalLamp有设置信号灯颜色方法。
+
+参数: 
+
+[ in ] pSignalLamp: 信号灯对象; 
+
+返回值: 
+
+如果返回True, 表明用户已修改了信号灯颜色, TESS NG不再计算灯色。
+
+ **boolean reCalcToLeftLane(IVehicle pIVehicle)**
+
+计算是否要左强制变道, TESS NG在移动车辆时计算强制左变道的条件, 当条件不足时让插件计算, 如果返回值为True, 强制左变道。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象。
+
+返回: False: 忽略, True: 强制左变道
+
+ **boolean reCalcToRightLane(IVehicle pIVehicle)**
+
+计算是否要右强制变道, TESS NG在先移动车辆时计算强制右变道的条件, 当条件不足时让插件计算, 如果返回值为True, 强制右变道。 
+用户通过此函数设置是车辆是否有强制右边道的动机, 但是否变道还要看是否满足变道条件。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+返回: False: 忽略, True: 强制右变道
+
+ **void ref_beforeToLeftFreely(IVehicle pIVehicle, ObjBool ref_keepOn)**
+
+自由左变道前处理, 如果ref_keepOn被赋值为False, TESSNG不再计算是否自由左变道
+用户通过此函数设置车辆是否在后续的仿真中屏蔽自由左变道的动机生成
+
+参数: 
+
+[ in ] pIVehicle: 车辆
+
+[ in、out ] ref_keepOn: 是否继续, 如果设为False, 不再计算是否可以左自由变道
+
+ **void ref_beforeToRightFreely(IVehicle pIVehicle, ObjBool ref_keepOn)**
+
+自由右变道前处理, 如果ref_keepOn被赋值为False, TESSNG不再计算是否自由右变道
+用户通过此函数设置车辆是否在后续的仿真中屏蔽自由右变道的动机生成
+
+参数: 
+
+[ in ] pIVehicle: 车辆
+
+[ in、out ] ref_keepOn: 是否继续, 如果设为False, 不再计算是否可以右自由变道
+
+举例: 
+
+```java
+// 自由左变道前预处理
+public void ref_beforeToLeftFreely(IVehicle pIVehicle, ObjBool ref_keepOn) {
+    if (pIVehicle.roadId() == 9) {
+        pIVehicle.setColor("#0000FF"); // 蓝色
+    }
+}
+// 自由右变道前预处理
+public void ref_beforeToRightFreely(IVehicle pIVehicle, ObjBool ref_keepOn) {
+    if (pIVehicle.roadId() == 9) {
+        pIVehicle.setColor("#EE0000"); // 红色
+    }
+}
+```
+
+ **boolean reCalcToLeftFreely(IVehicle pIVehicle)**
+
+重新计算是否要自由左变道。TESS NG在移动车辆时计算自由左变道条件, 当条件不足时让插件计算, 如果返回值为True, 自由左变道。
+用户可以调用此函数在需要的时候让TESSNG再次计算自由左变道的判断逻辑; 但不保证计算结果满足变道条件
+
+[ in ] pIVehicle: 车辆
+
+返回: False: 忽略, True: 左自由変道, 但在一些特殊场景也会放弃变道, 如危险
+
+ **boolean reCalcToRightFreely(IVehicle pIVehicle)**
+
+重新计算是否要自由右变道。TESS NG在移动车辆时计算自由右变道条件, 当条件不足时让插件计算, 如果返回值为True, 自由右变道。
+用户可以调用此函数在需要的时候让TESSNG再次计算自由右变道的判断逻辑; 但不保证计算结果满足变道条件
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+返回: False: 忽略, True: 右自由変道, 但在一些特殊场景也会放弃变道, 如危险
+
+ **boolean reCalcDismissChangeLane(IVehicle pIVehicle)**
+
+重新计算是否撤销变道, 通过pIVehicle获取到自身条件数据及当前周边环境条件数据, 判断是否要撤销正在进行的变道。
+
+参数: 
+
+[ in ] pIVehicle: 车辆
+
+返回: True 如果当前变道完成度不超过三分之一, 则撤销当前变道行为; False 忽略。
+
+ **boolean ref_reCalcdesirSpeed(IVehicle pIVehicle, ObjReal ref_desirSpeed)**
+
+重新计算期望速度, TESS NG调用此方法时将车辆当前期望速度赋给inOutDesirSpeed, 如果需要, 用户可在此方法重新计算期望速度, 并赋给inOutDesirSpeed。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] ref_desirSpeed: 重新设置前后的车辆期望速度, 默认单位: 像素/秒; 
+
+举例: 
+
+```java
+public boolean ref_reCalcdesirSpeed(IVehicle vehi, ObjReal ref_desirSpeed) {
+    long tmpId = vehi.id() % 100000;
+    String roadName = vehi.roadName();
+    if ("曹安公路".equals(roadName)) {
+        if (tmpId <= this.mrSquareVehiCount) {
+            TessInterface iface = TESSNG.tessngIFace();
+            SimuInterface simuIFace = iface.simuInterface();
+            long simuTime = simuIFace.simuTimeIntervalWithAcceMutiples();
+            if (simuTime < 5 * 1000) {
+                ref_desirSpeed.setValue(0);
+            } else if (simuTime < 10 * 1000) {
+                ref_desirSpeed.setValue(TESSNG.m2p(20 / 3.6));
+            } else {
+                ref_desirSpeed.setValue(TESSNG.m2p(40 / 3.6));
+            }
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+  **boolean ref_reCalcdesirSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutDesirSpeed, objUnitOfMeasure ref_unit)**
+
+重新计算期望速度, TESS NG调用此方法时将车辆当前期望速度赋给inOutDesirSpeed, 如果需要, 用户可在此方法重新计算期望速度, 并赋给inOutDesirSpeed。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] inOutDesirSpeed: 重新设置前后的车辆期望速度, 默认单位: 像素/秒; 
+
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+举例：
+
+```java
+public boolean ref_reCalcdesirSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutDesirSpeed, objUnitOfMeasure ref_unit) {
+    // 设置单位为米（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 打印调试信息
+    System.out.println("test: " + ref_inOutDesirSpeed.getValue() + ", " + pIVehicle.currSpeed() + ", " + pIVehicle.currSpeed(UnitOfMeasure.Metric));
+    // 设置期望速度为 20 m/s
+    ref_inOutDesirSpeed.setValue(20);
+    // 返回 true 表示采用修改后的值
+    return true;
+}
+```
+
+**boolean ref_reSetFollowingType(IVehicle pIVehicle, ObjInt ref_outTypeValue)**
+
+重新设置跟驰类型, 在计算加速度的过程中被调用
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ out ] ref_outTypeValue: 跟驰类型, 0: 停车, 1: 正常, 5: 急减速, 6: 急加速, 7: 汇入, 8: 穿越, 9: 协作减速, 10: 协作加速, 11: 减速待转, 12: 加速待转
+
+返回: False: 忽略, True: 用ref_outTypeValue设置车辆驾驶行为的跟驰类型
+
+ **boolean ref_reSetFollowingParam(IVehicle pIVehicle, ObjReal ref_inOutSafeInterval, ObjReal ref_inOutSafeDistance)**
+
+重新设置跟驰模型的安全间距和安全时距。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] ref_inOutSafeInterval: 安全时距, 单位: 秒; 
+
+[ in、out ] ref_inOutSafeDistance: 安全间距: 单位: 像素; 
+
+举例: 
+
+```java
+public boolean ref_reSetFollowingParam(IVehicle vehi, ObjReal ref_inOutSi, ObjReal ref_inOutSd) {
+    String roadName = vehi.roadName();
+    if ("连接段2".equals(roadName)) {
+        ref_inOutSd.setValue(TESSNG.m2p(30));
+        return true;
+    }
+    return false;
+}
+```
+
+**boolean ref_reSetFollowingParam_unit(IVehicle pIVehicle, ObjReal ref_inOutSafeInterval, ObjReal ref_inOutSafeDistance, objUnitOfMeasure ref_unit)**
+
+重新设置跟驰模型的安全间距和安全时距（支持单位参数）。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] ref_inOutSafeInterval: 安全时距, 单位: 秒; 
+
+[ in、out ] ref_inOutSafeDistance: 安全间距: 单位: 像素; 
+
+[ in ] ref_unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+返回: false: 忽略, true: 用ref_inOutSafeInterval设置安全时距, 用ref_inOutSafeDistance设置安全间距
+
+举例：
+
+```java
+public boolean ref_reSetFollowingParam_unit(IVehicle pIVehicle, ObjReal ref_inOutSafeInterval, ObjReal ref_inOutSafeDistance, objUnitOfMeasure ref_unit) {
+    // 设置单位为米制
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置安全距离为 10 米
+    ref_inOutSafeDistance.setValue(10);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **ArrayList<FollowingModelParam> reSetFollowingParams()**
+
+重新设置跟驰模型参数, 影响所有车辆。此方法被TESS NG调用, 用返回的跟驰模型取代当前仿真正在采用的跟驰模型。
+
+返回: 跟驰参数列表, 可对机动车和非机车的跟驰参数重新设置, 设置以后会被采用, 直到被新的参数所代替。
+
+ **boolean ref_reSetDistanceFront(IVehicle pIVehicle, ObjReal distance, ObjReal s0)**
+
+重新设置前车距及安全跟车距离
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ in、out ] distance: 当前车辆与前车的距离, 默认单位: 像素
+
+[ in、out ] s0: 安全跟车距离, 默认单位: 像素
+
+返回: False: 忽略, True: 用distance设置前车距, 用s0设置安全跟车距离
+
+ **boolean ref_reSetDistanceFront_unit(IVehicle pIVehicle, ObjReal ref_distance, ObjReal ref_s0, objUnitOfMeasure ref_unit)**
+
+重新设置前车距及安全跟车距离
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ in、out ] ref_distance: 当前车辆与前车的距离, 默认单位: 像素
+
+[ in、out ] ref_s0: 安全跟车距离, 默认单位: 像素
+
+[ in ] ref_unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+返回: False: 忽略, True: 用ref_distance设置前车距, 用ref_s0设置安全跟车距离
+
+举例：
+```java
+public boolean ref_reSetDistanceFront_unit(IVehicle pIVehicle, ObjReal ref_distance, ObjReal ref_s0, objUnitOfMeasure ref_unit){
+    // 设置单位为米制（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置前车间距为 10 米
+    ref_distance.setValue(10);
+    // 设置 s0（静止时最小间距）为 10 米
+    ref_s0.setValue(10);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **boolean ref_reSetSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutSpeed)**
+
+重新设置车速。TESS NG调用此方法时将当前计算所得车速赋给ref_inOutSpeed的value, 如果需要, 用户可以在此方法重新计算车速并赋给ref_inOutSpeed的value。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] ref_inOutSpeed: 重新计算前后的车速, 默认单位: 像素/秒。
+
+返回: False: 忽略, True: 用ref_inOutSpeed设置车辆当前速度
+
+举例: 
+
+```java
+public boolean ref_reSetSpeed(IVehicle vehi, ObjReal ref_inOutSpeed) {
+    long tmpId = vehi.id() % 100000;
+    String roadName = vehi.roadName();
+    if ("曹安公路".equals(roadName)) {
+        if (tmpId == 1) {
+            this.mrSpeedOfPlane = vehi.currSpeed();
+        } else if (tmpId >= 2 && tmpId <= this.mrSquareVehiCount) {
+            ref_inOutSpeed.setValue(this.mrSpeedOfPlane);
+        }
+        return true;
+    }
+    return false;
+}
+```
+
+ **boolean ref_reSetSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutSpeed, objUnitOfMeasure ref_unit)**
+
+重新设置车速。TESS NG调用此方法时将当前计算所得车速赋给ref_inOutSpeed的value, 如果需要, 用户可以在此方法重新计算车速并赋给ref_inOutSpeed的value。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] ref_inOutSpeed: 重新计算前后的车速, 默认单位: 像素/秒。
+
+[ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+返回: False: 忽略, True: 用ref_inOutSpeed设置车辆当前速度
+
+举例：
+```java
+public boolean ref_reSetSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutSpeed, objUnitOfMeasure ref_unit){
+    // 设置单位为米制（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置车辆速度为 20 m/s
+    ref_inOutSpeed.setValue(20);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **void ref_beforeMergingToLane(IVehicle pIVehicle, ObjBool ref_keepOn)**
+
+在“车道连接”上汇入车道前的计算, 可以让TESS NG放弃汇入计算, 以便于用户实现自己的汇入逻辑。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ out ] ref_keepOn: 是否放弃, 默认为True。赋值ref_keepOn.value为False, TESSNG则放弃汇入。
+
+ **def afterOneStep(self) -> None: ...**
+
+一个计算批次后的计算, 这个时候所有车辆均完成同一个批次的计算。通常在这个方法中获取所有车辆轨迹、检测器数据、进行必要的小计等。在这个方法中进行的计算基本不影响仿真结果的一致性, 但效率不高, 如果计算量大对仿真效率会有影响。
+
+举例: 
+
+```java
+public void afterOneStep() {
+    // 获取 TESSNG 顶层接口
+    TessInterface iface = TESSNG.tessngIFace();
+    // 获取 TESSNG 仿真子接口
+    SimuInterface simuiface = iface.simuInterface();
+    // 获取 TESSNG 路网子接口
+    NetInterface netiface = iface.netInterface();
+    // 当前仿真计算批次
+    long batchNum = simuiface.batchNumber();
+    // 当前已仿真时间，单位：毫秒
+    long simuTime = simuiface.simuTimeIntervalWithAcceMutiples();
+    // 获取当前正在运行的车辆列表
+    List<IVehicle> vehis = simuiface.allVehiStarted();
+    System.out.println("仿真批次: " + batchNum);
+    System.out.println("当前仿真时间: " + simuTime + " ms");
+    System.out.println("当前运行车辆数量: " + vehis.size());
+}
+```
+
+
+ **void duringOneStep()**
+
+该方法在各个线程进行同一批次的计算过程中调用, 这时存在部分车辆计算完成, 部分车辆仍在计算过程中。这个方法中的计算不够安全, 但效率较高。
+
+ **void ref_beforeNextRoad(IVehicle pIVehicle, SWIGTYPE_p_QGraphicsItem pRoad, ObjBool ref_keepOn)**
+
+计算下一道路前的处理
+
+参数: 
+
+[ in ] pIVehicle: 车辆
+
+[ in ] pRoad: 暂不使用
+
+[ in、out ] ref_keepOn: 是否继续计算, False: TESSNG不再计算后续道路, True: 继续计算
+
+ **def candidateLaneConnectors(self, pIVehicle: Tessng.IVehicle, lInLC: typing.Sequence) -> typing.List: ...**
+
+计算当车辆离开路段时后续可经过的“车道连接”, lInLC是已计算出的当前车道可达的所有“车道连接”, 用户可以从中筛选或重新计算。如果车辆有路径, 则忽略
+
+参数: 
+
+[ in ] pIVehicle 当前车辆
+
+[ in ] lInLC: TESS NG计算出的后续可达“车道连接”列表
+
+返回: 用户确定的后续可达“车道连接”列表
+
+ **def candidateLaneConnector(self, pIVehicle: Tessng.IVehicle, lInLC: typing.Sequence) -> typing.List: ...**
+
+计算车辆后续“车道连接”, 此时车辆正跨出当前路段, 将驶到pCurrLaneConnector。此方法可以改变后续“车道连接”。如果返回的“车道连接”为空, TESSNG会忽略此方法的调用。如果返回的“车道连接”不在原有路径上, 或者此方法设置了新路径且新路径不经过返回的“车道连接”, TESSNG调用此方法后会将路径设为空。
+
+ **void ref_beforeNextPoint(IVehicle pIVehicle, ObjBool ref_keepOn)**
+
+计算车辆移动到下一点前的操作, 用户可以通过此方法让TESSNG放弃对指定车辆到下一点的计算。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ out ] ref_keepOn: 是否继续, 默认为True, 如果keepOn赋值为False, TESSNG放弃移动到下一点的计算, 但不移出路网。
+
+ **ArrayList<Integer> calcLimitedLaneNumber(IVehicle pIVehicle)**
+
+计算限制车道序号: 如管制、危险等, 最右侧编号为0。
+
+参数: 
+
+[ in ] pVehicle: 车辆对象; 
+
+返回: 车道序号集, 保存车辆不可以驰入的车道序号。
+
+ **boolean ref_calcSpeedLimitByLane(ILink pILink, int laneNumber, ObjReal ref_outSpeed)**
+
+由车道确定的限制车速（最高速度, 公里/小时）
+
+参数: 
+
+[ in ] pILink: 路段
+
+[ in ] laneNumber: , laneNumber: 车道序号, 最右侧编号为0
+
+[ in、out ] ref_outSpeed: 限制速度, 公里/小时
+
+返回: False: 忽略, True: 用ref_outSpeed限制指定车道速度
+
+ **boolean ref_calcSpeedLimitByLane_unit(ILink pILink, int laneNumber, ObjReal ref_outSpeed, objUnitOfMeasure ref_unit)**
+
+由车道确定的限制车速（最高速度, 公里/小时）
+
+参数: 
+
+[ in ] pILink: 路段
+
+[ in ] laneNumber: , laneNumber: 车道序号, 最右侧编号为0
+
+[ in、out ] ref_outSpeed: 限制速度, 公里/小时
+
+[ in ] ref_unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+返回: False: 忽略, True: 用ref_outSpeed限制指定车道速度
+
+举例：
+
+```java
+public boolean ref_calcSpeedLimitByLane_unit(ILink pILink, int laneNumber, ObjReal ref_outSpeed, objUnitOfMeasure ref_unit) {
+    // 设置单位为米制（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置车道限速为 10 m/s
+    ref_outSpeed.setValue(10);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **boolean ref_calcMaxLimitedSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutLimitedSpeed)**
+
+重新计算车辆当前最大限速, 不受道路限速的影响。在没有插件干预的情况下, 车辆速度大于道路限度时按道路最大限速行驶, 在此方法的干预下, 可以提高限速, 让车辆大于道路限速行驶。
+
+TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需要, 用户可以在方法里重新设置inOutLimitedSpeed值。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] inOutLimitedSpeed: 计算前后的最大限速, 默认单位: 像素/秒。
+
+返回结果: 
+
+如果返回False则忽略, 否则取inOutLimitedSpeed为当前道路最大限速。
+
+ **boolean ref_calcMaxLimitedSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutLimitedSpeed, objUnitOfMeasure ref_unit)**
+
+重新计算车辆当前最大限速, 不受道路限速的影响。在没有插件干预的情况下, 车辆速度大于道路限度时按道路最大限速行驶, 在此方法的干预下, 可以提高限速, 让车辆大于道路限速行驶。
+
+TESS NG调用此方法时将当前最高限速赋给inOutLimitedSpeed, 如果需要, 用户可以在方法里重新设置inOutLimitedSpeed值。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] inOutLimitedSpeed: 计算前后的最大限速, 默认单位: 像素/秒。
+
+[ in ] ref_unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+返回结果: 
+
+如果返回False则忽略, 否则取inOutLimitedSpeed为当前道路最大限速。
+
+举例：
+
+```java
+public boolean ref_calcMaxLimitedSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutLimitedSpeed, objUnitOfMeasure ref_unit){
+    // 设置单位为米制（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置车辆最大限速为 10 m/s
+    ref_inOutLimitedSpeed.setValue(10);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **boolean ref_calcDistToEventObj_unit(IVehicle pIVehicle, ObjReal ref_dist)**
+
+计算到事件对象距离, 如到事故区、施工区的距离
+
+参数: 
+
+[ in ] pIVehicle: 车辆
+
+[ in、out ] ref_dist: 车辆中心点距事件对象距离, 默认单位: 像素
+
+返回: False: 忽略, True: 用ref_dist计算安全变道距离等
+
+ **boolean ref_calcDistToEventObj_unit(IVehicle pIVehicle, ObjReal ref_dist, objUnitOfMeasure ref_unit)**
+
+计算到事件对象距离, 如到事故区、施工区的距离
+
+参数: 
+
+[ in ] pIVehicle: 车辆
+
+[ in、out ] ref_dist: 车辆中心点距事件对象距离, 默认单位: 像素
+
+[ in ] ref_unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+返回: False: 忽略, True: 用ref_dist计算安全变道距离等
+
+举例：
+
+```java
+public boolean ref_calcDistToEventObj_unit(IVehicle pIVehicle, ObjReal ref_dist, objUnitOfMeasure ref_unit) {
+    // 设置单位为米制（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置距离为 10 米
+    ref_dist.setValue(10);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **boolean ref_calcChangeLaneSafeDist_unit(IVehicle pIVehicle, ObjReal ref_dist)**
+
+计算安全变道距离。
+
+参数: 
+
+[ in ] pIVehicle: 车辆, 计算该车辆安全变道距离。
+
+[ in、out ] ref_dist: 安全变道距离, ref_dist.value保存了TESSNG已算得的安全变道距离, 用户可以在此方法重新计算。
+
+ 返回: False 忽略, True TESS NG取ref_dist.value作为安全变道距离
+
+ **boolean ref_calcChangeLaneSafeDist_unit(IVehicle pIVehicle, ObjReal ref_dist, objUnitOfMeasure ref_unit)**
+
+ 计算安全变道距离(支持单位参数)。
+
+ 参数: 
+
+[ in ] pIVehicle: 车辆, 计算该车辆安全变道距离。
+
+[ in、out ] ref_dist: 安全变道距离, ref_dist.value保存了TESSNG已算得的安全变道距离, 用户可以在此方法重新计算。
+
+[ in ] ref_unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+ 返回: False 忽略, True TESS NG取ref_dist.value作为安全变道距离
+
+ 举例：
+
+```java
+public boolean ref_calcChangeLaneSafeDist_unit(IVehicle pIVehicle, ObjReal ref_dist, objUnitOfMeasure ref_unit){
+    // 设置单位为米制（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置变道安全距离为 10 米
+    ref_dist.setValue(10);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **void afterStep(IVehicle pIVehicle)**
+
+完成车辆pIVehicle“一个批次计算”后的处理。可以在此获取车辆当前信息, 如当前道路、位置、方向角、速度、期望速度、前后左右车辆等。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+ **boolean ref_calcAcce(IVehicle pIVehicle, ObjReal acce)**
+
+计算加速度; tessng的车辆按照此加速度进行下一步状态更新
+
+[ in ] pIVehicle: 待计算加速度的车辆
+
+[ out ] acce: 计算结果, 默认单位: 像素/秒^2
+
+返回: False 忽略, True 则TES NG用调用此方法后所得acce.value作为当前车辆的加速度。
+
+ **boolean ref_calcAcce_unit(IVehicle pIVehicle, ObjReal ref_acce, objUnitOfMeasure ref_unit)**
+
+计算加速度; tessng的车辆按照此加速度进行下一步状态更新
+
+[ in ] pIVehicle: 待计算加速度的车辆
+
+[ out ] ref_acce: 计算结果, 默认单位: 像素/秒^2
+
+[ in ] ref_unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+返回: False 忽略, True 则TES NG用调用此方法后所得ref_acce.value作为当前车辆的加速度。
+
+ 举例：
+
+```java
+public boolean ref_calcAcce_unit(IVehicle pIVehicle, ObjReal ref_acce, objUnitOfMeasure ref_unit) {
+    // 设置单位为米制（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置车辆加速度为 2.0 m/s²
+    ref_acce.setValue(2);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **boolean isCalcVehicleVector3D()**
+
+是否计算车辆3D属性, 如欧拉角等
+
+ **Point3D calcVehicleEuler(IVehicle pIVehicle, boolean bPosiDire)**
+
+计算欧拉角
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ in ] bPosiDire: 车头方向是否正向计算, 如果bPosiDire为False则反向计算
+
+ **boolean ref_reSetAcce(IVehicle pIVehicle, ObjReal ref_inOutAcce)**
+
+重新计算加速度。TESS NG调用此方法时将当前计算所得加速度赋给ref_inOutAcce, 如果需要, 用户可以在此方法中重新计算加速度并赋给ref_inOutAcce.value。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ in、out ] ref_inOutAcce: 重新计算前及计算后的加速度, 默认单位: 像素/秒^2
+
+返回结果: 
+
+如果返回False则忽略, 如果返回True, 则将ref_inOutAcce作为当前加速度。
+
+举例: 
+
+```java
+public boolean ref_reSetAcce(IVehicle vehi, ObjReal inOutAcce) {
+    String roadName = vehi.roadName();
+    if ("曹安公路".equals(roadName)) {
+        if (vehi.currSpeed() > TESSNG.m2p(20 / 3.6)) {
+            inOutAcce.setValue(TESSNG.m2p(-5));
+            return true;
+        }
+    }
+    return false;
+}
+```
+
+  **boolean ref_reSetAcce_unit(IVehicle pIVehicle, ObjReal ref_inOutAcce, objUnitOfMeasure ref_unit)**
+
+重新计算加速度。TESS NG调用此方法时将当前计算所得加速度赋给inOutAcce, 如果需要, 用户可以在此方法中重新计算加速度并赋给ref_inOutAcce.value。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ in、out ] ref_inOutAcce: 重新计算前及计算后的加速度, 默认单位: 像素/秒^2
+
+[ in ] ref_unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示无单位限制
+
+返回结果: 
+
+如果返回False则忽略, 如果返回True, 则将ref_inOutAcce作为当前加速度。
+
+ 举例: 
+
+```java
+public boolean ref_reSetAcce_unit(IVehicle pIVehicle, ObjReal ref_inOutAcce, objUnitOfMeasure ref_unit) {
+    // 设置单位为米制（Metric）
+    ref_unit.setValue(UnitOfMeasure.Metric);
+    // 设置车辆加速度为 2.0 m/s²
+    ref_inOutAcce.setValue(2);
+    // 返回 true 表示 TESS NG 应采用修改后的值
+    return true;
+}
+```
+
+ **void afterCalcTracingType(IVehicle pIVehicle)**
+
+计算跟驰类型后处理
+
+参数: 
+
+[ in ] pIVehicle: 车辆
+
+ **boolean travelOnChangingTrace(IVehicle pIVehicle)**
+
+是否在变轨迹上
+
+参数: 
+
+[ in ] pIVehicle: 车辆
+
+ **boolean boundingRect(IVehicle pIVehicle, SWIGTYPE_p_QRectF outRect)**
+
+获取车辆边界矩形; 矩形顶点坐标是以车辆中心点为原点的, 是车辆坐标系下的像素点
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ out ] outRect: 车辆边界矩形
+
+ **boolean shape(IVehicle pIVehicle, SWIGTYPE_p_QPainterPath outShape)**
+
+获取车辆图形路径
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ out ] outShape: 车辆形状路径
+
+ **void rePaintVehicle(IVehicle pIVehicle, SWIGTYPE_p_QPainter painter)**
+
+绘制车辆
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+[ in ] painter: 笔刷
+
+返回: True, TESSNG不再绘制车辆, False, TESSNG认为用户没有绘制, 继续绘制
+
+ **boolean ref_paintVehicleWithRotation(IVehicle pIVehicle, SWIGTYPE_p_QPainter painter, ObjReal ref_inOutRotation)**
+
+以设定的角度绘制车辆
+
+参数: 
+
+[ in ] pIVehicle, 车辆对象
+
+[ in ] painter: QT的QPainter对象
+
+[ in、out ] ref_inOutRotation: 角度, TESS NG在调用此方法时传入车辆的旋转角, 这个方法内部可以修改这个角度, 改变TESS NG计算结果
+
+返回: 如果True, TESS NG不再绘制, 否则TESS NG按原有规则绘制车辆。
+
+ **boolean paintVehicle(IVehicle pIVehicle, SWIGTYPE_p_QPainter painter)**
+
+绘制车辆
+
+参数: 
+
+[ in ] pIVehicle, 要重绘制的车辆
+
+[ in ] painter, QPainter对象
+
+返回: 如果返回True, TESS NG不再绘制, 否则TESS NG按原有规则绘制车辆。
+
+ **void rePaintVehicle(IVehicle pIVehicle, SWIGTYPE_p_QPainter painter)**
+
+绘制车辆后的再绘制, 客户可在此方法增加绘制内容
+
+参数: 
+
+[ in ] pIVehicle, 要重绘制的车辆
+
+[ in ] painter, QPainter对象
+
+ **boolean ref_reCalcAngle(IVehicle pIVehicle, ObjReal ref_outAngle)**
+
+重新计算角度。TESS NG调用此方法时将当前算得的角度赋给ref_outAngle.value, 如果需要, 用户可在此方法中重新计算车辆角度, 并将算得的角度赋给ref_outAngle.value。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+[ in、out ] ref_outAngle: 重新计算前后角度, 北向0度顺时针, 一周360度
+
+ **boolean isStopDriving(IVehicle pIVehicle)**
+
+是否停车运行, TESS NG在计算下一点位置后调用, 判断是否要停止车辆pIVehicle的运行。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+返回结果: 
+
+如果返回True, 则停止该车辆运行, 移出路网。
+
+ **boolean isPassbyEventZone(IVehicle pIVehicle)**
+
+是否正在经过事件区（如: 施工区、限速区等）
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象
+
+ **void beforeStopVehicle(IVehicle pIVehicle)**
+
+车辆停止运行前的处理。
+
+参数: 
+
+[ in ] pIVehicle: 车辆对象; 
+
+ **void afterStopVehicle(IVehicle pIVehicle)**
+
+车辆停止运行后的处理
+
+参数: 
+
+[ in ]pIVehicle: 车辆对象。
+
+ **def recoveredSnapshot(self) -> bool: ...**
+
+用快照恢复仿真场景, 分布式环境可用
+
+ **def vehiRunInfo(self, pIVehicle: Tessng.IVehicle) -> str: ...**
+
+车辆运行信息。在仿真过程中如果某辆车被单选, 按ctrl+i 会弹出被单选车辆运行状态, 文本框中的“其它信息”就是当前方法返回的字符串, 开发者可以借此对实现的业务逻辑进行了解, 用户可以了解仿真过程中具体车辆的一些特殊信息。
+
+
+
+
+
+<!-- ex_nonav -->
+
+
