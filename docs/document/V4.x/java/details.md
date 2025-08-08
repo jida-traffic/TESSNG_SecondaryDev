@@ -127,7 +127,7 @@ TESSNG调用插件方法的频次是指对插件实现的CustomerSimulator接口
 
 举例: 
 
-```python
+```java
 # 获取路网ID
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -141,7 +141,7 @@ System.out.println("路网ID=" + netAttrs.id());
 
 举例: 
 
-```python
+```java
 // 获取路网名称
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -155,7 +155,7 @@ System.out.println("路网名称=" + netAttrs.netName());
 
 举例: 
 
-```python
+```java
 // 获取源数据路径
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -169,7 +169,7 @@ System.out.println("源数据路径=" + netAttrs.url());
 
 举例: 
 
-```python
+```java
 // 获取来源分类
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -183,7 +183,7 @@ System.out.println("来源分类=" + netAttrs.type());
 
 举例: 
 
-```python
+```java
 // 获取背景路径
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -197,7 +197,7 @@ System.out.println("背景路径=" + netAttrs.bkgUrl());
 
 举例: 
 
-```python
+```java
 // 获取其它属性数据
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -211,7 +211,7 @@ System.out.println("其它属性数据=" + netAttrs.otherAttrs());
 
 举例: 
 
-```python
+```java
 // 获取路网说明
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -219,7 +219,7 @@ IRoadNet netAttrs = netiface.netAttrs();
 System.out.println("路网说明=" + netAttrs.explain());
 ```
 
- **PySide2.QtCore.QPointF centerPoint(Tess.UnitOfMeasure unit);**
+ **Point centerPoint(UnitOfMeasure unit);**
 
 获取路网中心点位置, 默认单位: 像素, 可通过可选参数: unit设置单位, （用户也可以根据需求通过m2p转成米制单位坐标, 并注意y轴的正负号）
 
@@ -230,18 +230,18 @@ System.out.println("路网说明=" + netAttrs.explain());
 
 举例: 
 
-```python
+```java
 // 获取路网中心点位置
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
 IRoadNet netAttrs = netiface.netAttrs();
 System.out.println("路网中心点位置=" + netAttrs.centerPoint());
-System.out.println("路网中心点位置(米制)=" + netAttrs.centerPoint());
+System.out.println("路网中心点位置(米制)=" + netAttrs.centerPoint(UnitOfMeasure.Metric));
 ```
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 // 代表TESS NG的路网子接口
 NetInterface netiface = iface.netInterface();
@@ -254,7 +254,7 @@ public void showRoadNetAttr(NetInterface netiface) {
     System.out.println("路网属性netAttrs=" + netiface.netAttrs());
     System.out.println("===获取当前路网基本信息: id=" + roadNet.id() + ", netName=" + roadNet.netName() + ", url=" + roadNet.url() + ", "
             + "路网来源type=" + roadNet.type() + ", 背景图片路径=" + roadNet.bkgUrl() + ", 其他属性=" + roadNet.otherAttrs() + ", "
-            + "路网说明=" + roadNet.explain() + ", 路网中心点位置(像素)=" + roadNet.centerPoint() + ", 路网中心点位置(米制)=" + roadNet.centerPoint() + " ");
+            + "路网说明=" + roadNet.explain() + ", 路网中心点位置(像素)=" + roadNet.centerPoint() + ", 路网中心点位置(米制)=" + roadNet.centerPoint(UnitOfMeasure.Metric) + " ");
 
     System.out.println("===获取场景信息");
     Object graphicScene = netiface.graphicsScene();
@@ -280,7 +280,7 @@ public void showRoadNetAttr(NetInterface netiface) {
 
 举例: 
 
-```python
+```java
 # 获取Section类型
 // 获取Section类型
 TessInterface iface = TESSNG.tessngIFace();
@@ -298,7 +298,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section类型
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -319,7 +319,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section的ID
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -337,7 +337,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section的ID
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -354,7 +354,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section名称
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -371,7 +371,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 # 设置Section名称
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -383,7 +383,7 @@ for (ISection section : sections) {
 }
 ```
 
- **double v3z();**
+ **double v3z(UnitOfMeasure unit);**
 
 获取Section高程, 默认单位: 像素, 可通过可选参数: unit设置单位, 
 
@@ -392,7 +392,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section高程
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -400,11 +400,11 @@ NetInterface netiface = iface.netInterface();
 List<ISection> sections = netiface.sections();
 for (ISection section : sections) {
     System.out.println("id为" + section.id() + "的Section的高程是" + section.v3z());
-    System.out.println("id为" + section.id() + "的Section的高程(米制)是" + section.v3z());
+    System.out.println("id为" + section.id() + "的Section的高程(米制)是" + section.v3z(UnitOfMeasure.Metric));
 }
 ```
 
- **double length();**
+ **double length(UnitOfMeasure unit);**
 
 获取Section长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -413,7 +413,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section长度
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -421,7 +421,7 @@ NetInterface netiface = iface.netInterface();
 List<ISection> sections = netiface.sections();
 for (ISection section : sections) {
     System.out.println("id为" + section.id() + "的Section的长度是" + section.length());
-    System.out.println("id为" + section.id() + "的Section的长度(米制)是" + section.length());
+    System.out.println("id为" + section.id() + "的Section的长度(米制)是" + section.length(UnitOfMeasure.Metric));
 }
 ```
 
@@ -431,7 +431,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section的车道与“车道连接”的父类接口列表
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -451,7 +451,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section的上游Section
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -471,7 +471,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section的下游Section
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -490,7 +490,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 设置Section的其它属性
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -510,7 +510,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 将当前Section转换成其子类ILink
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -527,7 +527,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 将当前Section转换成其子类IConnector
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -544,7 +544,7 @@ for (ISection section : sections) {
 
 举例: 
 
-```python
+```java
 // 获取Section的轮廓
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -557,7 +557,7 @@ for (ISection section : sections) {
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 // 代表TESS NG的路网子接口
 NetInterface netiface = iface.netInterface();
@@ -614,7 +614,7 @@ private double p2m(double value) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的类型
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -635,7 +635,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 判断ILaneObject是否是车道
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -655,7 +655,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的ID
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -669,7 +669,7 @@ for (ISection section : lSections) {
 }
 ```
 
- **double length(Tess.UnitOfMeasure unit);**
+ **double length( UnitOfMeasure unit);**
 
 获取车道或“车道连接”长度, 默认单位: 像素, 可通过可选参数: unit设置单位, 
 
@@ -678,7 +678,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的长度
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -699,7 +699,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject所属的ISection
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -720,7 +720,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的上游LaneObject
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -742,7 +742,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的下游LaneObject
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -758,7 +758,7 @@ for (ISection section : lSections) {
 }
 ```
 
- **java.util.List<?> centerBreakPoints();**
+ **ArrayList<Point> centerBreakPoints(UnitOfMeasure unit);**
 
 获取laneObject的中心线断点列表, 即车道或“车道连接”中心线断点集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -767,7 +767,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的中心线断点列表
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -776,16 +776,20 @@ List< ISection> lSections = netiface.sections();
 for (ISection section : lSections) {
     List< ILaneObject> lLaneObjects = section.laneObjects();
     for (ILaneObject laneObject : lLaneObjects) {
-        List<?> lCenterBreakPoints = laneObject.centerBreakPoints();
+        List<Point> lCenterBreakPoints = laneObject.centerBreakPoints();
         for (Object centerBreakPoint : lCenterBreakPoints) {
             System.out.println("id为" + laneObject.id() + "的ILaneObject的中心线断点列表是" + centerBreakPoint);
+        }
+        List<Point> lCenterBreakPoints1 = laneObject.centerBreakPoints(UnitOfMeasure.Metric);
+        for (Object centerBreakPoint : lCenterBreakPoints1) {
+            System.out.println("id为" + laneObject.id() + "的ILaneObject的中心线断点列表(米制)是" + centerBreakPoint);
         }
         
     }
 }
 ```
 
- **ArrayList<Point>  leftBreakPoints(Tess.UnitOfMeasure unit);**
+ **ArrayList<Point>  leftBreakPoints(UnitOfMeasure unit);**
 
 获取laneObject的左侧边线断点列表; 即车道或“车道连接”左侧线断点集; 断点均为像素坐标下的点 
 
@@ -794,7 +798,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的左侧边线断点列表
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -803,16 +807,20 @@ List< ISection> lSections = netiface.sections();
 for (ISection section : lSections) {
     List< ILaneObject> lLaneObjects = section.laneObjects();
     for (ILaneObject laneObject : lLaneObjects) {
-        List<?> lLeftBreakPoints = laneObject.leftBreakPoints();
+        List<Point> lLeftBreakPoints = laneObject.leftBreakPoints();
         for (Object leftBreakPoint : lLeftBreakPoints) {
             System.out.println("id为" + laneObject.id() + "的ILaneObject的左侧边线断点列表是" + leftBreakPoint);
+        }
+        List<Point> lLeftBreakPoints1 = laneObject.leftBreakPoints(UnitOfMeasure.Metric);
+        for (Object leftBreakPoint : lLeftBreakPoints1) {
+            System.out.println("id为" + laneObject.id() + "的ILaneObject的左侧边线断点列表(米制)是" + leftBreakPoint);
         }
         
     }
 }
 ```
 
- **ArrayList<Point> rightBreakPoints(Tess.UnitOfMeasure unit);**
+ **ArrayList<Point> rightBreakPoints(UnitOfMeasure unit);**
 
 获取laneObject的右侧边线断点列表; 车道或“车道连接”右侧线断点集; 断点均为像素坐标下的点 
 
@@ -821,7 +829,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的右侧边线断点列表
 TessInterface iface = TESSNG.tessngIFace();
 NetInterface netiface = iface.netInterface();
@@ -834,7 +842,7 @@ for (ISection section : lSections) {
         for (Object rightBreakPoint : lRightBreakPoints) {
             System.out.println("id为" + laneObject.id() + "的ILaneObject的右侧边线断点列表是" + rightBreakPoint);
         }
-        lRightBreakPoints = laneObject.rightBreakPoints(SWIGTYPE_UnitOfMeasure.swigToEnum(1));
+        lRightBreakPoints = laneObject.rightBreakPoints(UnitOfMeasure.Metric);
         for (Object rightBreakPoint : lRightBreakPoints) {
             System.out.println("id为" + laneObject.id() + "的ILaneObject的右侧边线断点列表(米制)是" + rightBreakPoint);
         }
@@ -842,7 +850,7 @@ for (ISection section : lSections) {
 }
 ```
 
- **ArrayList<Point3D> centerBreakPoint3Ds(Tess.UnitOfMeasure unit);**
+ **ArrayList<Point3D> centerBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取laneObject的右侧边线断点列表; 车道或“车道连接”中心线断点(三维)集（包含高程v3z属性的点）除高程是米制单位, x/y均为像素坐标, 像素单位  
 
@@ -851,7 +859,7 @@ for (ISection section : lSections) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的中心线断点列表
 TessInterface iface = TESSNG.tessngIFace();
 if(iface!=null) {
@@ -862,9 +870,13 @@ if(iface!=null) {
         for (ISection section : lSections) {
             List<ILaneObject> lLaneObjects = section.laneObjects();
             for (ILaneObject laneObject : lLaneObjects) {
-                List<?> lCenterBreakPoint3Ds = laneObject.centerBreakPoint3Ds();
+                List<Point3D> lCenterBreakPoint3Ds = laneObject.centerBreakPoint3Ds();
                 for (Object centerBreakPoint3D : lCenterBreakPoint3Ds) {
                     System.out.println("id为" + laneObject.id() + "的ILaneObject的中心线断点列表(三维)是" + centerBreakPoint3D);
+                }
+                lCenterBreakPoint3Ds = laneObject.centerBreakPoint3Ds(UnitOfMeasure.Metric);
+                for (Object centerBreakPoint3D : lCenterBreakPoint3Ds) {
+                    System.out.println("id为" + laneObject.id() + "的ILaneObject的中心线断点列表(三维，米制)是" + centerBreakPoint3D);
                 }
                 
             }
@@ -873,7 +885,7 @@ if(iface!=null) {
 }
 ```
 
- **ArrayList<Point3D> leftBreakPoint3Ds(SWIGTYPE_UnitOfMeasure unit);**
+ **ArrayList<Point3D> leftBreakPoint3Ds( UnitOfMeasure unit);**
 
 获取laneObject的左侧边线断点列表; 车道或“车道连接”左侧线断点(三维)集; （包含高程v3z属性的点）除高程是米制单位, x/y均为像素坐标, 像素单位  
 
@@ -882,7 +894,7 @@ if(iface!=null) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的左侧边线断点列表 
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -893,9 +905,13 @@ if (iface != null) {
         for (ISection section : lSections) {
             List<ILaneObject> lLaneObjects = section.laneObjects();
             for (ILaneObject laneObject : lLaneObjects) {
-                List<?> lLeftBreakPoint3Ds = laneObject.leftBreakPoint3Ds();
+                List<Point3D> lLeftBreakPoint3Ds = laneObject.leftBreakPoint3Ds();
                 for (Object leftBreakPoint3D : lLeftBreakPoint3Ds) {
                     System.out.println("id为" + laneObject.id() + "的ILaneObject的左侧边线断点列表(三维)是" + leftBreakPoint3D);
+                }
+                lLeftBreakPoint3Ds = laneObject.leftBreakPoint3Ds(UnitOfMeasure.Metric);
+                for (Object leftBreakPoint3D : lLeftBreakPoint3Ds) {
+                    System.out.println("id为" + laneObject.id() + "的ILaneObject的左侧边线断点列表(三维,米制)是" + leftBreakPoint3D);
                 }
                 
             }
@@ -904,7 +920,7 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<Point3D> rightBreakPoint3Ds(SWIGTYPE_UnitOfMeasure unit); **  
+ **ArrayList<Point3D> rightBreakPoint3Ds( UnitOfMeasure unit); **  
 
 获取laneObject的右侧边线断点列表; 车道或“车道连接”右侧线断点(三维)集; （包含高程v3z属性的点）除高程是米制单位, x/y均为像素坐标, 像素单位  
 
@@ -913,7 +929,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的右侧边线断点列表 
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -928,7 +944,7 @@ if (iface != null) {
                 for (Object rightBreakPoint3D : lRightBreakPoint3Ds) {
                     System.out.println("id为" + laneObject.id() + "的ILaneObject的右侧边线断点列表(三维)是" + rightBreakPoint3D);
                 }
-                lRightBreakPoint3Ds = laneObject.rightBreakPoint3Ds(SWIGTYPE_UnitOfMeasure.swigToEnum(1));
+                lRightBreakPoint3Ds = laneObject.rightBreakPoint3Ds(UnitOfMeasure.Metric);
                 for (Object rightBreakPoint3D : lRightBreakPoint3Ds) {
                     System.out.println("id为" + laneObject.id() + "的ILaneObject的右侧边线断点列表(三维, 米制)是" + rightBreakPoint3D);
                 }
@@ -938,7 +954,7 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<Point3D> leftBreak3DsPartly(Point fromPoint, Point toPoint);**
+ **ArrayList<Point3D> leftBreak3DsPartly(Point fromPoint, Point toPoint, UnitOfMeasure unit);**
 
 通过起终止断点, 获取该范围内laneObject的左侧边线断点集; 即车道或“车道连接”左侧部分断点(三维)集; 入参出参均为像素单位 
 
@@ -949,7 +965,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的左侧边线部分断点列表(三维)
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -967,9 +983,9 @@ if (iface != null) {
                         System.out.println("id为" + laneObject.id() + "的ILaneObject的左侧边线断点列表(三维)是" + leftBreak3D);
                     }
                     lLeftBreak3Ds = laneObject.leftBreak3DsPartly(
-                            laneObject.leftBreakPoints(SWIGTYPE_UnitOfMeasure.swigToEnum(1)).get(0),
-                            laneObject.leftBreakPoints(SWIGTYPE_UnitOfMeasure.swigToEnum(1)).get(2),
-                            SWIGTYPE_UnitOfMeasure.swigToEnum(1)
+                            laneObject.leftBreakPoints(UnitOfMeasure.Metric).get(0),
+                            laneObject.leftBreakPoints(UnitOfMeasure.Metric).get(2),
+                            UnitOfMeasure.Metric
                     );
                     for (Object leftBreak3D : lLeftBreak3Ds) {
                         System.out.println("id为" + laneObject.id() + "的ILaneObject的左侧边线断点列表(三维, 米制)是" + leftBreak3D);
@@ -981,18 +997,18 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<Point3D> rightBreak3DsPartly(Point fromPoint, Point toPoint, SWIGTYPE_UnitOfMeasure unit);**
+ **ArrayList<Point3D> rightBreak3DsPartly(Point fromPoint, Point toPoint, UnitOfMeasure unit);**
 
 通过起终止断点, 获取该范围内laneObject的右侧边线断点集; 即车道或“车道连接”右侧部分断点(三维)集; 入参出参均为像素单位  
 
 参数: 
-[ in ] fromPoint: 中心线上某一点作为起点; QPointF类型, 且是像素坐标  
-[ in ] toPoint: 中心线上某一点作为终点; QPointF类型, 且是像素坐标  
+[ in ] fromPoint: 中心线上某一点作为起点; Point类型, 且是像素坐标  
+[ in ] toPoint: 中心线上某一点作为终点; Point类型, 且是像素坐标  
 [ in ] unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的右侧边线部分断点列表(三维)
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1010,9 +1026,9 @@ if (iface != null) {
                         System.out.println("id为" + laneObject.id() + "的ILaneObject的右侧边线断点列表(三维)是" + rightBreak3D);
                     }
                     lRightBreak3Ds = laneObject.rightBreak3DsPartly(
-                            laneObject.rightBreakPoints(SWIGTYPE_UnitOfMeasure.swigToEnum(1)).get(0),
-                            laneObject.rightBreakPoints(SWIGTYPE_UnitOfMeasure.swigToEnum(1)).get(2),
-                            SWIGTYPE_UnitOfMeasure.swigToEnum(1)
+                            laneObject.rightBreakPoints(UnitOfMeasure.Metric).get(0),
+                            laneObject.rightBreakPoints(UnitOfMeasure.Metric).get(2),
+                            UnitOfMeasure.Metric
                     );
                     for (Object rightBreak3D : lRightBreak3Ds) {
                         System.out.println("id为" + laneObject.id() + "的ILaneObject的右侧边线断点列表(三维, 米制)是" + rightBreak3D);
@@ -1024,7 +1040,7 @@ if (iface != null) {
 }
 ```
 
- **double distToStartPoint(Point p);**
+ **double distToStartPoint(Point p, UnitOfMeasure unit);**
 
 中心线上一点到laneObject对象起点的距离; 默认单位: 像素  
 
@@ -1034,7 +1050,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject距中心线起点距离
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1050,6 +1066,11 @@ if (iface != null) {
                     double dist = laneObject.distToStartPoint(new Point(TESSNG.m2p(-300), -100));
                     System.out.println("id为" + laneObject.id() + "的ILaneObject的距中心线起点距离为" + dist);
                 }
+                centerBreakPoints = laneObject.centerBreakPoints(UnitOfMeasure.Metric);
+                if (!centerBreakPoints.isEmpty() && centerBreakPoints.size() > 1) {
+                    double dist = laneObject.distToStartPoint(new Point(TESSNG.m2p(-300), -100));
+                    System.out.println("id为" + laneObject.id() + "的ILaneObject的距中心线起点距离(米制)为" + dist);
+                }
                 
             }
         }
@@ -1062,7 +1083,7 @@ if (iface != null) {
 laneObject中心线上一点到起点的距离, 默认单位: 像素, 附加条件是该点所在车道上的分段序号; 其中分段是指两个断点之间的部分。往往可以根据当前车辆所在的segmIndex信息, 调用该函数, 这样比distToStartPoint函数效率要高一些 
 
 参数: 
-[ in ] p: 当前中心线上点或附近点的坐标; QPointF类型, 且是像素坐标  
+[ in ] p: 当前中心线上点或附近点的坐标; Point类型, 且是像素坐标  
 [ in ] segmIndex: 参数p点所在车道上的分段序号; 两个断点组成一个分段, 分段序号从0开始, 沿着道路方向递增  
 [ in ] bOnCentLine: 参数p点是否在中心线上  
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位
@@ -1071,26 +1092,29 @@ laneObject中心线上一点到起点的距离, 默认单位: 像素, 附加条�
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject带分段索引的距中心线起点距离
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
-    NetInterface netiface = iface.netInterface();
-    if (netiface != null) {
-        // 获取路网中的所有ILaneObject
-        List<ISection> lSections = netiface.sections();
-        for (ISection section : lSections) {
-            List<ILaneObject> lLaneObjects = section.laneObjects();
-            for (ILaneObject laneObject : lLaneObjects) {
-                List<?> centerBreakPoints = laneObject.centerBreakPoints();
-                if (!centerBreakPoints.isEmpty() && centerBreakPoints.size() > 1) {
-                    double dist = laneObject.distToStartPointWithSegmIndex(new Point(TESSNG.m2p(-300), -100), 1);
-                    System.out.println("id为" + laneObject.id() + "的ILaneObject的距中心线起点距离为" + dist);
-                }
-                
+NetInterface netiface = iface.netInterface();
+if (netiface != null) {
+    // 获取路网中的所有ILaneObject
+    List<ISection> lSections = netiface.sections();
+    for (ISection section : lSections) {
+        List<ILaneObject> lLaneObjects = section.laneObjects();
+        for (ILaneObject laneObject : lLaneObjects) {
+            List<?> centerBreakPoints = laneObject.centerBreakPoints();
+            if (!centerBreakPoints.isEmpty() && centerBreakPoints.size() > 1) {
+                double dist = laneObject.distToStartPointWithSegmIndex(new Point(TESSNG.m2p(-300), -100), 1);
+                System.out.println("id为" + laneObject.id() + "的ILaneObject的距中心线起点距离为" + dist);
+                double dist1 = laneObject.distToStartPointWithSegmIndex(new Point(TESSNG.m2p(-300), -100), 1,true,UnitOfMeasure.Metric);
+                System.out.println("id为" + laneObject.id() + "的ILaneObject的距中心线起点距离(米制)为" + dist);
+            
+
             }
         }
     }
+}
 }
 ```
 
@@ -1106,37 +1130,38 @@ if (iface != null) {
 
 举例: 
 
-```python
-# 路段5最左侧车道向前延伸140米后所在点及分段序号, 返回像素
+```java
 TessInterface iface = TESSNG.tessngIFace();
-if (iface != null) {
-    NetInterface netiface = iface.netInterface();
-    if (netiface != null) {
-        // 像素制
-        ILink link = netiface.findLink(5);
-        if (link != null) {
-            List<ILaneObject> laneObjects = link.laneObjects();
-            if (!laneObjects.isEmpty()) {
-                ILaneObject laneObjLeft = laneObjects.get(laneObjects.size() - 1); // 最左侧车道
-                QPointF outPoint = new QPointF();
-                int outIndex = 0;
-                double dist = m2p(140); // 假设m2p方法已实现
-                if (laneObjLeft.getPointAndIndexByDist(dist, outPoint, outIndex) != null) {
-                    System.out.println("路段5最左侧车道向前延伸140米后所在点坐标为: (" + outPoint.x() + ", " + outPoint.y() + "), 分段序号为: " + outIndex);
+        if (iface != null) {
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                // 像素制
+                ILink link = netiface.findLink(5);
+                if (link != null) {
+                    List<ILaneObject> laneObjects = link.laneObjects();
+                    if (!laneObjects.isEmpty()) {
+                        ILaneObject laneObjLeft = laneObjects.get(laneObjects.size() - 1); // 最左侧车道
+                        Point outPoint = new Point();
+                        ObjInt outIndex = new ObjInt(0);
+                        double dist = m2p(140);
+                        if (laneObjLeft.getPointAndIndexByDist(dist, outPoint, outIndex)) {
+                            System.out.println("路段5最左侧车道向前延伸140米后所在点坐标为: (" + outPoint.getX() + ", " + outPoint.getY() + "), 分段序号为: " + outIndex);
+                        }
+                    }
                 }
-            }
-        }
-# 路段5最左侧车道向前延伸140米后所在点及分段序号, 返回米制
-        link = netiface.findLink(5);
-        if (link != null) {
-            List<ILaneObject> laneObjects = link.laneObjects();
-            if (!laneObjects.isEmpty()) {
-                ILaneObject laneObjLeft = laneObjects.get(laneObjects.size() - 1); // 最左侧车道
-                QPointF outPoint = new QPointF();
-                int outIndex = 0;
-                double dist = 140;
-                if (laneObjLeft.getPointAndIndexByDist(dist, outPoint, outIndex, UnitOfMeasure.Metric) != null) {
-                    System.out.println("路段5最左侧车道向前延伸140米后所在点坐标为: (" + outPoint.x() + ", " + outPoint.y() + "), 分段序号为: " + outIndex);
+                //# 路段5最左侧车道向前延伸140米后所在点及分段序号, 返回米制
+                link = netiface.findLink(5);
+                if (link != null) {
+                    List<ILaneObject> laneObjects = link.laneObjects();
+                    if (!laneObjects.isEmpty()) {
+                        ILaneObject laneObjLeft = laneObjects.get(laneObjects.size() - 1); // 最左侧车道
+                        Point outPoint = new Point();
+                        ObjInt outIndex = new ObjInt(0);
+                        double dist = m2p(140);
+                        if (laneObjLeft.getPointAndIndexByDist(dist, outPoint, outIndex, UnitOfMeasure.Metric)) {
+                            System.out.println("路段5最左侧车道向前延伸140米后所在点坐标为: (" + outPoint.getX() + ", " + outPoint.getY() + "), 分段序号为: " + outIndex);
+                        }
+                    }
                 }
             }
         }
@@ -1145,7 +1170,7 @@ if (iface != null) {
 
  
 
- **boolean getPointByDist(double dist, Point outPoint, SWIGTYPE_UnitOfMeasure unit);**
+ **boolean getPointByDist(double dist, Point outPoint, UnitOfMeasure unit);**
 
 获取距离中心线起点向下游延伸dist处的点, 如果目标点不在中心线上返回False, 否则返回True; 默认单位: 像素, 可通过可选参数: unit设置单位, 
 
@@ -1156,7 +1181,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILaneObject的中心线断点列表
 TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -1171,7 +1196,7 @@ TessInterface iface = TESSNG.tessngIFace();
                         boolean dist = laneObject.getPointByDist(50, outPoint);
                         System.out.println("id为" + laneObject.id() + "的ILaneObject的距离中心线起点向下游延伸的点为" + outPoint);
 
-                        QPointF metricOutPoint = new QPointF();
+                        Point metricOutPoint = new Point();
                         dist = laneObject.getPointByDist(50, metricOutPoint, UnitOfMeasure.Metric);
                         System.out.println("id为" + laneObject.id() + "的ILaneObject的距离中心线起点向下游延伸的点(米制)为" + metricOutPoint);
                     }
@@ -1187,7 +1212,7 @@ TessInterface iface = TESSNG.tessngIFace();
 
 举例: 
 
-```python
+```java
 // 设置ILaneObject的其它属性
 TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -1214,7 +1239,7 @@ TessInterface iface = TESSNG.tessngIFace();
 
 举例: 
 
-```python
+```java
 // 将ILaneObject转换为子类ILane
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1239,7 +1264,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 private static void showLaneObjectAttr(NetInterface netiface) {
         // 获取第一个路段
         ILink section = netiface.findLink(netiface.sections().get(0).id());
@@ -1336,7 +1361,7 @@ private static void showLaneObjectAttr(NetInterface netiface) {
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     // 代表TESS NG的路网子接口
@@ -1454,7 +1479,7 @@ private static void showLaneObjectAttr(NetInterface netiface) {
 
 举例: 
 
-```python
+```java
 // 获取ILink的类型
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1475,7 +1500,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILink的ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1490,7 +1515,7 @@ if (iface != null) {
 }
 ```
 
- **double length(SWIGTYPE_UnitOfMeasure unit);**
+ **double length(UnitOfMeasure unit);**
 
 获取路段长度, 默认单位: 像素, 可通过可选参数unit设置单位 
 
@@ -1499,7 +1524,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILink的长度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1515,7 +1540,7 @@ if (iface != null) {
 }
 ```
 
- **double width(SWIGTYPE_UnitOfMeasure unit);**
+ **double width(UnitOfMeasure unit);**
 
 获取路段宽度, 默认单位: 像素; 可通过可选参数unit设置单位
 
@@ -1524,7 +1549,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILink的宽度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1540,7 +1565,7 @@ if (iface != null) {
 }
 ```
 
- **double z(SWIGTYPE_UnitOfMeasure unit)**
+ **double z(UnitOfMeasure unit);**
 
 获取路段高程, 默认单位: 像素, 可通过可选参数unit设置单位
 
@@ -1549,7 +1574,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
             NetInterface netiface = iface.netInterface();
@@ -1564,7 +1589,7 @@ TessInterface iface = TESSNG.tessngIFace();
         }
 ```
 
- **double v3z(SWIGTYPE_UnitOfMeasure unit) **
+ **double v3z(UnitOfMeasure unit);**
 
 获取路段高程, 过载ISection的方法  
 
@@ -1573,7 +1598,7 @@ TessInterface iface = TESSNG.tessngIFace();
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     NetInterface netiface = iface.netInterface();
@@ -1588,13 +1613,13 @@ if (iface != null) {
 }
 ```
 
- **String name()** 
+ **String name();** 
 
 获取路段名称
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     NetInterface netiface = iface.netInterface();
@@ -1608,13 +1633,13 @@ if (iface != null) {
 }
 ```
 
- **void setName(String name)**
+ **void setName(String name);**
 
 设置路段名称
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     NetInterface netiface = iface.netInterface();
@@ -1629,13 +1654,13 @@ if (iface != null) {
 }
 ```
 
- **String linkType()**
+ **String linkType();**
 
 获取路段类型, 出参为字符串枚举: 城市主干道、城市次干道、人行道。
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     NetInterface netiface = iface.netInterface();
@@ -1649,13 +1674,13 @@ if (iface != null) {
 }
 ```
 
- **void setType(String type)**
+ **void setType(String type);**
 
 设置路段类型, 路段类型有10种, 入参可以为: 高速路、城市快速路、匝道、城市主要干道、次要干道、地方街道、非机动车道、人行道、公交专用道、机非共享; 其中的任意一个, 其他类型暂不支持
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     NetInterface netiface = iface.netInterface();
@@ -1670,13 +1695,13 @@ if (iface != null) {
 }
 ```
 
- **int laneCount()**
+ **int laneCount();**
 
 获取车道数
 
 举例: 
 
-```python
+```java
 // 获取ILink的车道数
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1691,7 +1716,7 @@ if (iface != null) {
 }
 ```
 
- **double limitSpeed(SWIGTYPE_UnitOfMeasure unit)**
+ **double limitSpeed(UnitOfMeasure unit);**
 
 获取路段最高限速, 默认单位: 千米/小时  
 
@@ -1700,7 +1725,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILink的最高限速
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1716,7 +1741,7 @@ if (iface != null) {
 }
 ```
 
- **void setLimitSpeed(double speed);**
+ **void setLimitSpeed(double speed,UnitOfMeasure unit);**
 
 设置最高限速, 默认单位: 千米/小时 
 
@@ -1726,7 +1751,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 # 设置ILink的最高限速
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1737,13 +1762,14 @@ if (iface != null) {
         for (ILink link : lLinks) {
             link.setLimitSpeed(link.limitSpeed() * 1.2);
             System.out.println("id为" + link.id() + "的ILink的最高限速为" + link.limitSpeed());
+            link.setLimitSpeed(link.limitSpeed(UnitOfMeasure.Metric) * 1.2);
             System.out.println("id为" + link.id() + "的ILink的最高限速(米制)为" + link.limitSpeed(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **double minSpeed(SWIGTYPE_UnitOfMeasure unit)**
+ **double minSpeed(UnitOfMeasure unit);**
 
 获取最低限速, 单位: 千米/小时 
 
@@ -1752,7 +1778,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 # 获取ILink的最低限速
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1768,14 +1794,14 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<ILane> lanes()**
+ **ArrayList<ILane> lanes();**
 
 获取ILink上的车道列表, 列表按照从右到左的顺序排列; 列表元素为ILane对象
 
 举例: 
 
-```python
-# 获取ILink上的车道列表
+```java
+// 获取ILink上的车道列表
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     NetInterface netiface = iface.netInterface();
@@ -1792,13 +1818,13 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<ILaneObject> laneObjects()**
+ **ArrayList<ILaneObject> laneObjects();**
 
 获取ILink下所有LaneObject对象, 列表类型, LaneObject可以是车道, 也可以是“车道连接”的父对象
 
 举例: 
 
-```python
+```java
 # 获取ILink下的所有LaneObject对象
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1816,7 +1842,7 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<Point> centerBreakPoints(SWIGTYPE_UnitOfMeasure unit)**
+ **ArrayList<Point> centerBreakPoints(UnitOfMeasure unit);**
 
 获取路段中心线断点集, 默认单位: 像素
 
@@ -1825,8 +1851,9 @@ if (iface != null) {
 
 举例: 
 
-```python
-# 获取ILink的中心线断点集
+```java
+
+// 获取ILink的中心线断点集)
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     NetInterface netiface = iface.netInterface();
@@ -1834,17 +1861,21 @@ if (iface != null) {
         // 获取路网中的所有ILink
         List<ILink> lLinks = netiface.links();
         for (ILink link : lLinks) {
-            List<?> centerBreakPoints = link.centerBreakPoints();
+            List<Point> centerBreakPoints = link.centerBreakPoints();
             for (Object centerBreakPoint : centerBreakPoints) {
                 System.out.println("路段id为" + link.id() + "的中心线断点为" + centerBreakPoint);
             }
-            
+            centerBreakPoints = link.centerBreakPoints(UnitOfMeasure.Metric);
+            for (Object centerBreakPoint : centerBreakPoints) {
+                System.out.println("路段id为" + link.id() + "的中心线断点（米制）为" + centerBreakPoint);
+            }
+
         }
     }
 }
 ```
 
- **ArrayList<Point> leftBreakPoints(SWIGTYPE_UnitOfMeasure unit)**
+ **ArrayList<Point> leftBreakPoints(UnitOfMeasure unit);**
 
 获取路段左侧线断点集, 默认单位: 像素   
 
@@ -1853,26 +1884,30 @@ if (iface != null) {
 
 举例: 
 
-```python
-# 获取ILink的左侧线断点集
+```java
+                //获取ILink的左侧线断点集
 TessInterface iface = TESSNG.tessngIFace();
-if (iface != null) {
-    NetInterface netiface = iface.netInterface();
-    if (netiface != null) {
-        // 获取路网中的所有ILink
-        List<ILink> lLinks = netiface.links();
-        for (ILink link : lLinks) {
-            List<?> leftBreakPoints = link.leftBreakPoints();
-            for (Object leftBreakPoint : leftBreakPoints) {
-                System.out.println("路段id为" + link.id() + "的左侧线断点为" + leftBreakPoint);
+        if (iface != null) {
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                // 获取路网中的所有ILink
+                List<ILink> lLinks = netiface.links();
+                for (ILink link : lLinks) {
+                    List<Point> leftBreakPoints = link.leftBreakPoints();
+                    for (Object leftBreakPoint : leftBreakPoints) {
+                        System.out.println("路段id为" + link.id() + "的左侧线断点为" + leftBreakPoint);
+                    }
+                    leftBreakPoints = link.leftBreakPoints(UnitOfMeasure.Metric);
+                    for (Object leftBreakPoint : leftBreakPoints) {
+                        System.out.println("路段id为" + link.id() + "的左侧线断点（米制）为" + leftBreakPoint);
+                    }
+
+                }
             }
-            
         }
-    }
-}
 ```
 
- **ArrayList<Point> rightBreakPoints(SWIGTYPE_UnitOfMeasure unit)**
+ **ArrayList<Point> rightBreakPoints(UnitOfMeasure unit);**
 
 获取路段右侧线断点集, 默认单位: 像素  
 
@@ -1881,26 +1916,30 @@ if (iface != null) {
 
 举例: 
 
-```python
-# 获取ILink的右侧线断点集
+```java
+// 获取ILink的右侧线断点集
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
-    NetInterface netiface = iface.netInterface();
-    if (netiface != null) {
-        // 获取路网中的所有ILink
-        List<ILink> lLinks = netiface.links();
-        for (ILink link : lLinks) {
-            List<?> rightBreakPoints = link.rightBreakPoints();
-            for (Object rightBreakPoint : rightBreakPoints) {
-                System.out.println("路段id为" + link.id() + "的右侧线断点为" + rightBreakPoint);
-            }
-            
+NetInterface netiface = iface.netInterface();
+if (netiface != null) {
+    // 获取路网中的所有ILink
+    List<ILink> lLinks = netiface.links();
+    for (ILink link : lLinks) {
+        List<?> rightBreakPoints = link.rightBreakPoints();
+        for (Object rightBreakPoint : rightBreakPoints) {
+            System.out.println("路段id为" + link.id() + "的右侧线断点为" + rightBreakPoint);
         }
+        rightBreakPoints = link.rightBreakPoints(UnitOfMeasure.Metric);
+        for (Object rightBreakPoint : rightBreakPoints) {
+            System.out.println("路段id为" + link.id() + "的右侧线断点（米制）为" + rightBreakPoint);
+        }
+
     }
+}
 }
 ```
 
- **ArrayList<Point3D> centerBreakPoint3Ds(SWIGTYPE_UnitOfMeasure unit)**
+ **ArrayList<Point3D> centerBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取路段中心线断点(三维)集, 默认单位: 像素
 
@@ -1909,26 +1948,30 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILink的中心线断点(三维)集
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
-    NetInterface netiface = iface.netInterface();
-    if (netiface != null) {
-        // 获取路网中的所有ILink
-        List<ILink> lLinks = netiface.links();
-        for (ILink link : lLinks) {
-            List<?> centerBreakPoint3Ds = link.centerBreakPoint3Ds();
-            for (Object centerBreakPoint3D : centerBreakPoint3Ds) {
-                System.out.println("路段id为" + link.id() + "的中心线断点(三维)为" + centerBreakPoint3D);
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                // 获取路网中的所有ILink
+                List<ILink> lLinks = netiface.links();
+                for (ILink link : lLinks) {
+                    List<?> centerBreakPoint3Ds = link.centerBreakPoint3Ds();
+                    for (Object centerBreakPoint3D : centerBreakPoint3Ds) {
+                        System.out.println("路段id为" + link.id() + "的中心线断点(三维)为" + centerBreakPoint3D);
+                    }
+                    centerBreakPoint3Ds = link.centerBreakPoint3Ds(UnitOfMeasure.Metric);
+                    for (Object centerBreakPoint3D : centerBreakPoint3Ds) {
+                        System.out.println("路段id为" + link.id() + "的中心线断点(三维，米制)为" + centerBreakPoint3D);
+                    }
+
+                }
             }
-            
         }
-    }
-}
 ```
 
- **ArrayList<Point3D> leftBreakPoint3Ds(SWIGTYPE_UnitOfMeasure unit)**
+ **ArrayList<Point3D> leftBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取路段左侧线断点(三维)集, 默认单位: 像素
 
@@ -1937,7 +1980,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILink的左侧线断点(三维)集
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1950,13 +1993,17 @@ if (iface != null) {
             for (Object leftBreakPoint3D : leftBreakPoint3Ds) {
                 System.out.println("路段id为" + link.id() + "的左侧线断点(三维)为" + leftBreakPoint3D);
             }
+            leftBreakPoint3Ds = link.leftBreakPoint3Ds(UnitOfMeasure.Metric);
+            for (Object leftBreakPoint3D : leftBreakPoint3Ds) {
+                System.out.println("路段id为" + link.id() + "的左侧线断点(三维，米制)为" + leftBreakPoint3D);
+            }
             
         }
     }
 }
 ```
 
- **ArrayList<Point3D> rightBreakPoint3Ds()**
+ **ArrayList<Point3D> rightBreakPoint3Ds();**
 
 获取路段右侧线断点(三维)集, 默认单位: 像素
 
@@ -1965,7 +2012,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILink的右侧线断点(三维)集
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -1978,19 +2025,23 @@ if (iface != null) {
             for (Object rightBreakPoint3D : rightBreakPoint3Ds) {
                 System.out.println("路段id为" + link.id() + "的右侧线断点(三维)为" + rightBreakPoint3D);
             }
+            rightBreakPoint3Ds = link.rightBreakPoint3Ds(UnitOfMeasure.Metric);
+            for (Object rightBreakPoint3D : rightBreakPoint3Ds) {
+                System.out.println("路段id为" + link.id() + "的右侧线断点(三维,米制)为" + rightBreakPoint3D);
+            }
             
         }
     }
 }
 ```
 
- **ArrayList<IConnector> fromConnectors()**
+ **ArrayList<IConnector> fromConnectors();**
 
 获取ILink的上游连接段, 其可能有多个, 返回类型为列表, 列表元素为IConnector对象
 
 举例: 
 
-```python
+```java
 // 获取ILink的上游连接段
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2009,13 +2060,13 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<IConnector> toConnectors()**
+ **ArrayList<IConnector> toConnectors();**
 
 获取ILink的下游连接段, 其可能有多个, 返回类型为列表, 列表元素为IConnector对象
 
 举例: 
 
-```python
+```java
 // 获取ILink的下游连接段
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2034,13 +2085,13 @@ if (iface != null) {
 }
 ```
 
- **void setOtherAttr(JsonObject otherAttr)**
+ **void setOtherAttr(JsonObject otherAttr);**
 
 设置路段的其它属性, TESSNG仿真过程中仅记录拓展的属性, 方便用户拓展, 并自定义使用
 
 举例: 
 
-```python
+```java
 // 设置ILink的其它属性
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2059,13 +2110,13 @@ if (iface != null) {
         }
 ```
 
- **JsonObject otherAttr()**
+ **JsonObject otherAttr();**
 
 获取路段的其它属性, TESSNG仿真过程中仅记录拓展的属性, 方便用户拓展, 并自定义使用
 
 举例: 
 
-```python
+```java
 // 获取ILink的其它属性
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2080,13 +2131,13 @@ if (iface != null) {
 }
 ```
 
- **void setLaneTypes(ArrayList<String> lType)**
+ **void setLaneTypes(ArrayList<String> lType);**
 
 依次为ILink下所有车道设置车道属性（列表顺序为从右到左的车道顺序）, 入参为序列类型（列表, 元组等）, 其中元素的类型从这四种常量字符串中获取: "机动车道"、"机非共享"、"非机动车道"、"公交专用道"
 
 举例: 
 
-```python
+```java
 // 依次为ILink下所有车道设置车道属性
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2107,25 +2158,34 @@ if (iface != null) {
         }
 ```
 
- **void setLaneOtherAtrrs(SWIGTYPE_p_QListT_QJsonObject_t lAttrs)**
+ **void setLaneOtherAtrrs(ArrayList<JsonObject> lAttrs);**
 
 依次为ILink下所有车道设置车道其它属性
 
 举例: 
 
-```python
+```java
 # 依次为ILink下所有车道设置车道其它属性
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILink
-lLinks = netiface.links()
-for link in lLinks: 
-    if link.laneCount() == 3: 
-        link.setLaneOtherAtrrs([{'new_name': '自定义机动车道'}, {'new_name': '自定义非机动车道'}, {'new_name': '自定义公交专用道'}])
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ILink> lLinks = netiface.links();
+        for(ILink link:lLinks){
+            if(link.laneCount() == 3){
+                link.setLaneOtherAtrrs(new ArrayList<>(Arrays.asList(
+                        Json.createObjectBuilder().add("new_name", "自定义机动车道").build(),
+                        Json.createObjectBuilder().add("new_name", "自定义非机动车道").build(),
+                        Json.createObjectBuilder().add("new_name", "自定义公交专用道").build()
+                )));
+            }
+        }
+    }
+}
 
 ```
 
- **double distToStartPoint(Point p)**
+ **double distToStartPoint(Point p, UnitOfMeasure unit);**
 
 ILink中心线上任意一点到ILink起点的距离, 默认单位: 像素  
 
@@ -2135,7 +2195,7 @@ ILink中心线上任意一点到ILink起点的距离, 默认单位: 像素
 
 举例: 
 
-```python
+```java
 // 获取ILink中心线上任意一点到ILink起点的距离
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2148,13 +2208,17 @@ ILink中心线上任意一点到ILink起点的距离, 默认单位: 像素
                     if (centerBreakPoints.size() > 1) {
                         System.out.println("id为" + link.id() + "的路段的中心线到起点的距离为" + link.distToStartPoint(centerBreakPoints.get(1)));
                     }
+                    centerBreakPoints = link.centerBreakPoints();
+                    if (centerBreakPoints.size() > 1) {
+                        System.out.println("id为" + link.id() + "的路段的中心线到起点的距离为" + link.distToStartPoint(centerBreakPoints.get(1),UnitOfMeasure.Metric));
+                    }
 
                 }
             }
         }
 ```
 
- **def getPointAndIndexByDist(self, dist: double, outPoint: PySide2.QtCore.QPointF, outIndex: int, unit: Tess.UnitOfMeasure) -> bool: ...**
+ **boolean getPointAndIndexByDist(double dist, Point outPoint, ObjInt outIndex);**
 
 获取ILink中心线起点下游dist距离处的点及其所属分段序号, 如果目标点不在中心线上返回False, 否则返回True, 默认单位: 像素, 可通过unit参数设置单位 
 
@@ -2166,24 +2230,32 @@ ILink中心线上任意一点到ILink起点的距离, 默认单位: 像素
 
 举例: 
 
-```python
-# 获取ILink中心线起点下游dist距离处的点及其所属分段序号
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILink
-lLinks = netiface.links()
-for link in lLinks: 
-    outPoint = QPointF()
-    outIndex = 0
-    link.getPointAndIndexByDist(50, outPoint, outIndex)
-    print(f"id为{link.id()}的路段的中心线起点向下游延伸dist米处的点为{outPoint}, 所属分段序号为{outIndex}")
-    outPoint1 = QPointF()
-    outIndex1 = 0
-    link.getPointAndIndexByDist(50, outPoint1, outIndex1, UnitOfMeasure.Metric)
-    print(f"id为{link.id()}的路段的中心线起点向下游延伸dist米处的点(米制单位)为{outPoint1}, 所属分段序号为{outIndex1}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        // 获取路网中的所有ILink
+        List<ILink> lLinks = netiface.links();
+        for (ILink link : lLinks) {
+            Point outPoint = new Point();
+            ObjInt outIndex = new ObjInt(0);
+            boolean result = link.getPointAndIndexByDist(50, outPoint, outIndex);
+            if (result) {
+                System.out.printf("id为%d的路段的中心线起点向下游延伸50像素处的点为(%f, %f), 所属分段序号为%d%n",
+                        link.id(), outPoint.getX(), outPoint.getY(), outIndex.getValue());
+            }
+            result = link.getPointAndIndexByDist(50, outPoint, outIndex, UnitOfMeasure.Metric);
+            if (result) {
+                System.out.printf("id为%d的路段的中心线起点向下游延伸50像素处的点为(%f, %f), 所属分段序号为%d%n",
+                        link.id(), outPoint.getX(), outPoint.getY(), outIndex.getValue());
+            }
+        }
+    }
+}
 ```
 
- **def getPointByDist(self, dist: double, outPoint: PySide2.QtCore.QPointF, unit: Tess.UnitOfMeasure) -> bool: ...**
+ **boolean getPointByDist(double dist, Point outPoint, UnitOfMeasure unit);**
 
 求ILink中心线起点向前延伸dist距离后所在点, 如果目标点不在中心线上返回False, 否则返回True, 默认单位: 像素, 可通过unit参数设置单位  
 
@@ -2194,28 +2266,38 @@ for link in lLinks:
 
 举例: 
 
-```python
+```java
 # 获取ILink中心线起点向前延伸dist距离后所在点
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILink
-lLinks = netiface.links()
-for link in lLinks: 
-    outPoint = QPointF()
-    link.getPointByDist(50, outPoint)
-    print(f"id为{link.id()}的路段的中心线起点向前延伸dist米处的点(像素制)为{outPoint}")
-    outPoint1 = QPointF()
-    link.getPointByDist(50, outPoint1, UnitOfMeasure.Metric)
-    print(f"id为{link.id()}的路段的中心线起点向前延伸dist米处的点(米制单位)为{outPoint1}")
+TessInterface iface = TESSNG.tessngIFace();
+        if (iface != null) {
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                // 获取路网中的所有ILink
+                List<ILink> lLinks = netiface.links();
+                for (ILink link : lLinks) {
+                    Point outPoint1 = new Point();
+                    boolean result1 = link.getPointByDist(50, outPoint1 );
+                    if (result1) {
+                        System.out.printf("id为%d的路段的中心线起点向下游延伸50像素处的点为(%f, %f), 所属分段序号为%d%n",
+                                link.id(), outPoint1.getX(), outPoint1.getY() );
+                    }
+                    result1 = link.getPointByDist(50, outPoint1, UnitOfMeasure.Metric );
+                    if (result1) {
+                        System.out.printf("id为%d的路段的中心线起点向下游延伸50米处的点为(%f, %f), 所属分段序号为%d%n",
+                                link.id(), outPoint1.getX(), outPoint1.getY() );
+                    }
+                }
+            }
+        }
 ```
 
- **Vector<Point> polygon()**
+ **Vector<Point> polygon();**
 
-获取路段的多边型轮廓, 返回值类型QPolygonF, 默认单位: 像素
+获取路段的多边型轮廓, 返回值类型 Vector<Point> , 默认单位: 像素
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
             NetInterface netiface = iface.netInterface();
@@ -2231,54 +2313,91 @@ TessInterface iface = TESSNG.tessngIFace();
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-showLinkAttr(netiface)
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showLinkAttr(netiface)
+    }
+}
 
-def showLinkAttr(netiface): 
-    print(f"===场景中的link总数={netiface.linkCount()}, 第一个link的id={netiface.linkIds()[0]}")
-    link = netiface.findLink(netiface.linkIds()[0])
-    link1 = netiface.links()[0]
-    print(link1)
-    print(f"该link的属性: id={link.id()}, ")
-    print(f"link.fromConnectors()={link.fromConnectors()}")
-    print(f"该link: id={link.id()}, 其属性为: 路段类型={link.gtype()}, 路段长度（像素制）={link.length()}, 米制={link.length(UnitOfMeasure.Metric)}, "
-          f"宽度（像素制）={link.width()}, 米制={link.width(UnitOfMeasure.Metric)}, 高程（像素制）={link.z()}, 米制={link.z(UnitOfMeasure.Metric)}, "
-          f"高程v3z(像素制)={link.v3z()}, 米制={link.v3z(UnitOfMeasure.Metric)}, 设置新名字={link.setName('test_name')}name={link.name()}, linkType={link.linkType()}, "
-          f"设置路段类型为城市次干道={link.setType('次要干道')}, 再次获取城市类型={link.linkType()}, 车道数={link.laneCount()}, "
-          f"路段最高限速(像素制)={link.limitSpeed()}, 米制（km/h）={link.limitSpeed(UnitOfMeasure.Metric)}, 路段最低限速(像素制)={link.minSpeed()}, 米制（km/h）={link.minSpeed(UnitOfMeasure.Metric)}, "
-          f"将路段最高限速提高百分之20={link.setLimitSpeed(link.limitSpeed()*1.2)} or {link.setLimitSpeed(link.limitSpeed(UnitOfMeasure.Metric)*1.2, UnitOfMeasure.Metric)}, "
-          f"路段最高限速(像素制)={link.limitSpeed()}, 米制（km/h）={link.limitSpeed(UnitOfMeasure.Metric)}, 路段包含的车道对象={link.lanes()}, "
-          f"路段包含的laneObject对象={link.laneObjects()}, "
-          f"路段中心线（像素制）={link.centerBreakPoints()}, 米制={link.centerBreakPoints(UnitOfMeasure.Metric)}, "
-          f"路段左侧线（像素制）={link.leftBreakPoints()}, 米制={link.leftBreakPoints(UnitOfMeasure.Metric)}, "
-          f"路段右侧线（像素制）={link.rightBreakPoints()}, 米制={link.rightBreakPoints(UnitOfMeasure.Metric)}, "
-          f"路段中心线3D（像素制）={link.centerBreakPoint3Ds()}, 米制={link.centerBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"路段左侧线3D（像素制）={link.leftBreakPoint3Ds()}, 米制={link.leftBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"路段右侧线3D（像素制）={link.rightBreakPoint3Ds()}, 米制={link.rightBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"fromConnector={link.fromConnectors()}, toConnectors={link.toConnectors()}, "
-          f"fromSection={link.fromConnectors()[0].id() if link.fromConnectors() is not None and len(link.fromConnectors()) > 0 else 0}, "
-          f"toSection={link.toSection(link.toConnectors()[0].id() if link.toConnectors() is not None and len(link.toConnectors() )> 0 else 0)}, "
-          f"自定义其他属性: setOtherAttr={link.setOtherAttr({'new_msg': 'this is a av car'})}, "
-          f"从右到左依次为车道设置类别={link.setLaneTypes(['公交专用道', '机动车道', '机动车道'])}, 为车道设置其他属性={link.setLaneOtherAtrrs([{'new_name': '自定义公交专用车道'}, {'new_name': '自定义机动车道'}, {'new_name': '自定义机动车道'}])}, "
-          f"distToStartPoint距离起点长度（像素制）={link.distToStartPoint(link.centerBreakPoints()[-1])}, 米制={link.distToStartPoint(link.centerBreakPoints(UnitOfMeasure.Metric)[-1], UnitOfMeasure.Metric)}, "
-          f"polygon={link.polygon()}"
-          )
-    outPoint = QPointF()
-    outIndex = 0
-    outPoint1 = QPointF()
-    outIndex1 = 0
-    link.getPointAndIndexByDist(2.0, outPoint, outIndex)
-    link.getPointAndIndexByDist(2.0, outPoint1, outIndex1, UnitOfMeasure.Metric)
-    print(f"getPointAndIndexByDist(像素制)={outPoint, outIndex}, getPointAndIndexByDist(米制)={outPoint1, outIndex1}")
+public static void showLinkAttr(NetInterface netiface) {
+        System.out.printf("===场景中的link总数=%d, 第一个link的id=%d%n",
+                netiface.linkCount(), netiface.linkIds().get(0));
 
-    outPoint2 = QPointF()
-    outPoint3 = QPointF()
-    link.getPointByDist(2.0, outPoint2)
-    link.getPointByDist(2.0, outPoint3, UnitOfMeasure.Metric)
-    print(f"getPointByDist(像素制)={outPoint2}, getPointByDist(米制)={outPoint3}")
+        ILink link = netiface.findLink(netiface.linkIds().get(0));
+        ILink link1 = netiface.links().get(0);
+        System.out.println(link1);
+
+        System.out.printf("该link的属性: id=%d, %n", link.id());
+        System.out.printf("link.fromConnectors()=%s%n", link.fromConnectors());
+
+        // 构建其他属性的JSON对象
+        JsonObjectBuilder otherAttrBuilder = Json.createObjectBuilder();
+        otherAttrBuilder.add("new_msg", "this is a av car");
+        JsonObject otherAttr = otherAttrBuilder.build();
+
+        // 设置车道类型和属性
+        ArrayList<String> laneTypes = new ArrayList<>();
+        laneTypes.add("公交专用道");
+        laneTypes.add("机动车道");
+
+        // 输出路段属性信息
+        System.out.printf(
+                "该link: id=%d, 其属性为: 路段类型=%s, 路段长度=%.2f, "
+                        + "宽度=%.2f, 高程=%.2f, 高程v3z=%.2f, "
+                        + "名称=%s, linkType=%s, 车道数=%d, "
+                        + "路段最高限速=%.2f, 路段最低限速=%.2f, "
+                        + "更新后最高限速=%.2f, "
+                        + "路段包含的车道对象=%s, "
+                        + "路段包含的laneObject对象=%s, "
+                        + "路段中心线=%s, "
+                        + "路段左侧线=%s, "
+                        + "路段右侧线=%s, "
+                        + "路段中心线3D=%s, "
+                        + "路段左侧线3D=%s, "
+                        + "路段右侧线3D=%s, "
+                        + "自定义其他属性=%s, "
+                        + "车道类型设置=%s "
+                        + "polygon=%s%n",
+
+                link.id(),                  // %d（id）
+                link.gtype(),               // %s（路段类型）
+                link.length(),              // %.2f（长度）
+                link.width(),               // %.2f（宽度）
+                link.z(),                   // %.2f（高程）
+                link.v3z(),                 // %.2f（高程v3z）
+                link.name(),                // %s（名称）
+                link.linkType(),            // %s（linkType）
+                link.laneCount(),           // %d（车道数）
+                link.limitSpeed(),          // %.2f（最高限速）
+                link.minSpeed(),            // %.2f（最低限速）
+                link.limitSpeed(),          // %.2f（更新后最高限速）
+                link.lanes(),               // %s（车道对象）
+                link.laneObjects(),         // %s（laneObject对象）
+                link.centerBreakPoints(),   // %s（中心线）
+                link.leftBreakPoints(),     // %s（左侧线）
+                link.rightBreakPoints(),    // %s（右侧线）
+                link.centerBreakPoint3Ds(), // %s（中心线3D）
+                link.leftBreakPoint3Ds(),   // %s（左侧线3D）
+                link.rightBreakPoint3Ds(),  // %s（右侧线3D）
+                
+                otherAttr,                  // %s（自定义其他属性）
+                laneTypes,                  // %s（车道类型设置）
+                link.polygon()              // %s（polygon）
+        );
+        // 获取指定距离处的点和分段序号
+        Point outPoint = new Point();
+        ObjInt outIndex = new ObjInt(0);
+        link.getPointAndIndexByDist(2.0, outPoint, outIndex);
+        System.out.printf("getPointAndIndexByDist=%s, %d%n", outPoint, outIndex.getValue());
+
+        // 获取指定距离处的点
+        Point outPoint2 = new Point( );
+        link.getPointByDist(2.0, outPoint2);
+        System.out.printf("getPointByDist=%s%n", outPoint2);
+    }
 ```
 
 
@@ -2290,13 +2409,13 @@ def showLinkAttr(netiface):
 
 车道接口, 方法如下: 
 
- **int gtype()**
+ **int gtype();**
 
 类型, 车道类型为GLaneType
 
 举例: 
 
-```python
+```java
 // 获取ILane的类型
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2314,13 +2433,13 @@ if (iface != null) {
 }
 ```
 
- **int id()**
+ **int id();**
 
 获取车道ID
 
 举例: 
 
-```python
+```java
 // 获取ILane的ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2338,13 +2457,13 @@ if (iface != null) {
 }
 ```
 
- **ILink link()**
+ **ILink link();**
 
 获取车道所属路段, 返回路段对象
 
 举例: 
 
-```python
+```java
 // 获取ILane所属路段
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2361,13 +2480,13 @@ if (iface != null) {
         }
 ```
 
- **ISection section()**
+ **ISection section();**
 
 获取车道所属Section, 返回Section对象, 其为ILink的父对象
 
 举例: 
 
-```python
+```java
 // 获取ILane所属Section
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2384,7 +2503,7 @@ if (iface != null) {
 }
 ```
 
- **double length(SWIGTYPE_UnitOfMeasure unit)**
+ **double length(UnitOfMeasure unit);**
 
 获取车道长度, 默认单位: 像素 , 可通过unit参数设置单位
 
@@ -2393,25 +2512,25 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
-        if (iface != null) {
-            NetInterface netiface = iface.netInterface();
-            if (netiface != null) {
-                // 获取路网中的所有ILane
-                List<ILink> lLinks = netiface.links();
-                for (ILink link : lLinks) {
-                    List<ILane> lLanes = link.lanes();
-                    for (ILane lane : lLanes) {
-                        System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道长度为" + lane.length());
-                        System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道长度(米制单位)为" + lane.length(SWIGTYPE_UnitOfMeasure.swigToEnum(0)));
-                    }
-                }
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        // 获取路网中的所有ILane
+        List<ILink> lLinks = netiface.links();
+        for (ILink link : lLinks) {
+            List<ILane> lLanes = link.lanes();
+            for (ILane lane : lLanes) {
+                System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道长度为" + lane.length());
+                System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道长度(米制单位)为" + lane.length(UnitOfMeasure.Metric));
             }
         }
+    }
+}
 ```
 
- **double width(SWIGTYPE_UnitOfMeasure unit)**
+ **double width(UnitOfMeasure unit);**
 
 获取车道宽度, 默认单位: 像素 , 可通过unit参数设置单位
 
@@ -2420,7 +2539,7 @@ TessInterface iface = TESSNG.tessngIFace();
 
 举例: 
 
-```python
+```java
 // 获取ILane的宽度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2431,20 +2550,20 @@ if (iface != null) {
             List<ILane> lLanes = link.lanes();
             for (ILane lane : lLanes) {
                 System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道宽度为" + lane.width());
-                System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道宽度(米制单位)为" + lane.width(UnitOfMeasure.Metric));
+                System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道宽度（米制）为" + lane.width(UnitOfMeasure.Metric));
             }
         }
     }
 }
 ```
 
- **int number()**
+ **int number();**
 
 获取车道序号, 从0开始（自外侧往内侧, 即自右向左依次编号）
 
 举例: 
 
-```python
+```java
 // 获取ILane的序号
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2461,13 +2580,13 @@ if (iface != null) {
         }
 ```
 
- **String actionType()**
+ **String actionType();**
 
 获取车道的行为类型, 返回的为行为类型常量字符串, 包括: "机动车道"、“非机动车道”、“公交专用道”
 
 举例: 
 
-```python
+```java
 // 获取ILane的行为类型
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2484,13 +2603,13 @@ if (iface != null) {
 }
 ```
 
-**ArrayList<ILaneConnector> fromLaneConnectors()**
+**ArrayList<ILaneConnector> fromLaneConnectors();**
 
 获取上游车道连接列表
 
 举例: 
 
-```python
+```java
 // 获取ILane的上游车道连接列表
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2510,13 +2629,13 @@ if (iface != null) {
 }
 ```
 
-**ArrayList<ILaneConnector> toLaneConnectors()**
+**ArrayList<ILaneConnector> toLaneConnectors();**
 
 获取下游车道连接列表
 
 举例: 
 
-```python
+```java
 // 获取ILane的下游车道连接列表
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2536,7 +2655,7 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<Point> centerBreakPoints()**
+ **ArrayList<Point> centerBreakPoints(UnitOfMeasure unit);**
 
 获取车道中心点断点集, 默认单位: 像素 , 可通过unit参数设置单位
 
@@ -2545,31 +2664,33 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的中心点断点集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
             NetInterface netiface = iface.netInterface();
             if (netiface != null) {
+                // 获取路网中的所有ILink
                 List<ILink> lLinks = netiface.links();
                 for (ILink link : lLinks) {
                     List<ILane> lLanes = link.lanes();
                     for (ILane lane : lLanes) {
                         List<Point> lCenterBreakPoints = lane.centerBreakPoints();
-                        for (Object centerBreakPoint : lCenterBreakPoints) {
+                        for (Point centerBreakPoint : lCenterBreakPoints) {
                             System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心点断点集为" + "(" +  centerBreakPoint.getX() + "," +centerBreakPoint.getY() +")" );
                         }
-                        List<Point> lCenterBreakPointsMeter = lane.centerBreakPoints(UnitOfMeasure.Metric);
-                        for (Point centerBreakPointMeter : lCenterBreakPointsMeter) {
-                            System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心点断点集(米制单位)为" + "(" +  centerBreakPointMeter.getX() + "," +centerBreakPointMeter.getY() +")" );
+                        lCenterBreakPoints = lane.centerBreakPoints(UnitOfMeasure.Metric);
+                        for (Point centerBreakPoint : lCenterBreakPoints) {
+                            System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心点断点集为" + "(" +  centerBreakPoint.getX() + "," +centerBreakPoint.getY() +")" );
                         }
+
                     }
                 }
             }
         }
 ```
 
- **ArrayList<Point> leftBreakPoints()**
+ **ArrayList<Point> leftBreakPoints(UnitOfMeasure unit);**
 
 获取车道左侧线断点集, 默认单位: 像素 , 可通过unit参数设置单位
 
@@ -2578,7 +2699,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的左侧线断点集
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2592,13 +2713,17 @@ if (iface != null) {
                 for (Point leftBreakPoint : lLeftBreakPoints) {
                     System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧线断点集为" + "(" +  leftBreakPoint.getX() + "," +leftBreakPoint.getY() +")" );
                 }
+                lLeftBreakPoints = lane.leftBreakPoints(UnitOfMeasure.Metric);
+                for (Point leftBreakPoint : lLeftBreakPoints) {
+                    System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧线断点集(米制)为" + "(" +  leftBreakPoint.getX() + "," +leftBreakPoint.getY() +")" );
+                }
             }
         }
     }
 }
 ```
 
- **ArrayList<Point> rightBreakPoints()**
+ **ArrayList<Point> rightBreakPoints(UnitOfMeasure unit);**
 
 获取车道右侧线断点集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -2607,7 +2732,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的右侧线断点集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2621,13 +2746,17 @@ if (iface != null) {
                         for (Point rightBreakPoint : lRightBreakPoints) {
                             System.out.println("id为" + lane.id() + "的车道的右侧线断点集为" + "(" +  rightBreakPoint.getX() + "," +rightBreakPoint.getY() +")");
                         }
+                        lRightBreakPoints = lane.rightBreakPoints(UnitOfMeasure.Metric);
+                        for (Point rightBreakPoint : lRightBreakPoints) {
+                            System.out.println("id为" + lane.id() + "的车道的右侧线断点集(米制)为" + "(" +  rightBreakPoint.getX() + "," +rightBreakPoint.getY() +")");
+                        }
                     }
                 }
             }
         }
 ```
 
- **ArrayList<Point3D> centerBreakPoint3Ds()**
+ **ArrayList<Point3D> centerBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取车道中心线断点(三维)集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -2636,7 +2765,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的中心线断点(三维)集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2650,13 +2779,17 @@ if (iface != null) {
                         for (Point3D centerBreakPoint3D : lCenterBreakPoint3Ds) {
                             System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心线断点(三维)集为" + "(" +  centerBreakPoint3D.getX() + "," +centerBreakPoint3D.getY() + ","  + centerBreakPoint3D.getZ() + ")");
                         }
+                        lCenterBreakPoint3Ds = lane.centerBreakPoint3Ds(UnitOfMeasure.Metric);
+                        for (Point3D centerBreakPoint3D : lCenterBreakPoint3Ds) {
+                            System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心线断点(三维,米制)集为" + "(" +  centerBreakPoint3D.getX() + "," +centerBreakPoint3D.getY() + ","  + centerBreakPoint3D.getZ() + ")");
+                        }
                     }
                 }
             }
         }
 ```
 
- **ArrayList<Point3D> leftBreakPoint3Ds()**
+ **ArrayList<Point3D> leftBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取车道左侧线断点(三维)集, 默认单位: 像素,  可通过unit参数设置单位
 
@@ -2665,7 +2798,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的左侧线断点(三维)集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2679,13 +2812,17 @@ if (iface != null) {
                         for (Point3D leftBreakPoint3D : lLeftBreakPoint3Ds) {
                             System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧线断点(三维)集为" + "(" +  leftBreakPoint3D.getX() + "," +leftBreakPoint3D.getY() + ","  + leftBreakPoint3D.getZ() + ")");
                         }
+                        lLeftBreakPoint3Ds = lane.leftBreakPoint3Ds(UnitOfMeasure.Metric);
+                        for (Point3D leftBreakPoint3D : lLeftBreakPoint3Ds) {
+                            System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧线断点(三维,米制)集为" + "(" +  leftBreakPoint3D.getX() + "," +leftBreakPoint3D.getY() + ","  + leftBreakPoint3D.getZ() + ")");
+                        }
                     }
                 }
             }
         }
 ```
 
- **ArrayList<Point3D> rightBreakPoint3Ds()**
+ **ArrayList<Point3D> rightBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取车道右侧线断点(三维)集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -2694,27 +2831,31 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的右侧线断点(三维)集
-        TessInterface iface = TESSNG.tessngIFace();
-        if (iface != null) {
-            NetInterface netiface = iface.netInterface();
-            if (netiface != null) {
-                List<ILink> lLinks = netiface.links();
-                for (ILink link : lLinks) {
-                    List<ILane> lLanes = link.lanes();
-                    for (ILane lane : lLanes) {
-                        List<Point3D> lRightBreakPoint3Ds = lane.rightBreakPoint3Ds();
-                        for (Point3D rightBreakPoint3D : lRightBreakPoint3Ds) {
-                            System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧线断点(三维)集为" + "(" +  rightBreakPoint3D.getX() + "," +rightBreakPoint3D.getY() + ","  + rightBreakPoint3D.getZ() + ")");
-                        }
-                    }
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ILink> lLinks = netiface.links();
+        for (ILink link : lLinks) {
+            List<ILane> lLanes = link.lanes();
+            for (ILane lane : lLanes) {
+                List<Point3D> lRightBreakPoint3Ds = lane.rightBreakPoint3Ds();
+                for (Point3D rightBreakPoint3D : lRightBreakPoint3Ds) {
+                    System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧线断点(三维)集为" + "(" +  rightBreakPoint3D.getX() + "," +rightBreakPoint3D.getY() + ","  + rightBreakPoint3D.getZ() + ")");
+                }
+                lRightBreakPoint3Ds = lane.rightBreakPoint3Ds(UnitOfMeasure.Metric);
+                for (Point3D rightBreakPoint3D : lRightBreakPoint3Ds) {
+                    System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧线断点(三维,米制)集为" + "(" +  rightBreakPoint3D.getX() + "," +rightBreakPoint3D.getY() + ","  + rightBreakPoint3D.getZ() + ")");
                 }
             }
         }
+    }
+}
 ```
 
- **ArrayList<Point3D> leftBreak3DsPartly(Point fromPoint, Point toPoint)**
+ **ArrayList<Point3D> leftBreak3DsPartly(Point fromPoint, Point toPoint,UnitOfMeasure unit);**
 
 根据指定起终点断点, 获取车道左侧部分断点(三维)集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -2725,7 +2866,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的左侧部分断点(三维)集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2741,6 +2882,11 @@ if (iface != null) {
                             for (Point3D leftBreak3DPartly : lLeftBreak3DsPartly) {
                                 System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧部分断点(三维)集为" + "(" + leftBreak3DPartly.getX() + "," + leftBreak3DPartly.getY() + "," + leftBreak3DPartly.getZ() + ")");
                             }
+                            
+                             lLeftBreak3DsPartly = lane.leftBreak3DsPartly(lLeftBreakPoints.get(0), lLeftBreakPoints.get(2),UnitOfMeasure.Metric);
+                            for (Point3D leftBreak3DPartly : lLeftBreak3DsPartly) {
+                                System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧部分断点(三维，米制)集为" + "(" + leftBreak3DPartly.getX() + "," + leftBreak3DPartly.getY() + "," + leftBreak3DPartly.getZ() + ")");
+                            }
                         }
                     }
                 }
@@ -2748,7 +2894,7 @@ if (iface != null) {
         }
 ```
 
- **ArrayList<Point3D> rightBreak3DsPartly(Point fromPoint, Point toPoint)**
+ **ArrayList<Point3D> rightBreak3DsPartly(Point fromPoint, Point toPoint, UnitOfMeasure unit);**
 
 根据指定起终点断点, 获取车道右侧部分断点(三维)集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -2759,7 +2905,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的右侧部分断点(三维)集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2775,6 +2921,10 @@ if (iface != null) {
                             for (Point3D RightBreak3DPartly : lRightBreak3DsPartly) {
                                 System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧部分断点(三维)集为" + "(" + RightBreak3DPartly.getX() + "," + RightBreak3DPartly.getY() + "," + RightBreak3DPartly.getZ() + ")");
                             }
+                            lRightBreak3DsPartly = lane.rightBreak3DsPartly(lRightBreakPoints.get(0), lRightBreakPoints.get(2),UnitOfMeasure.Metric);
+                            for (Point3D RightBreak3DPartly : lRightBreak3DsPartly) {
+                                System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的左侧部分断点(三维,米制)集为" + "(" + RightBreak3DPartly.getX() + "," + RightBreak3DPartly.getY() + "," + RightBreak3DPartly.getZ() + ")");
+                            }
                         }
                     }
                 }
@@ -2782,7 +2932,7 @@ if (iface != null) {
         }
 ```
 
- **double distToStartPoint(Point p)**
+ **double distToStartPoint(Point p，UnitOfMeasure unit);**
 
 获取中心线上一点到起点的距离, 默认单位: 像素 , 可通过unit参数设置单位
 
@@ -2792,13 +2942,13 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的中心线上一点到起点的距离
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
             NetInterface netiface = iface.netInterface();
             if (netiface != null) {
-                List<ILink> lLinks = netiface.links();
+                List<ILink> lLinks = netiface.links(); 
                 for (ILink link : lLinks) {
                     List<ILane> lLanes = link.lanes();
                     for (ILane lane : lLanes) {
@@ -2806,6 +2956,8 @@ if (iface != null) {
                         if (centerBreakPoints.size() > 1) {
                             double lDistToStartPoint = lane.distToStartPoint(centerBreakPoints.get(1));
                             System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心线上一点到起点的距离为" + lDistToStartPoint);
+                              lDistToStartPoint = lane.distToStartPoint(centerBreakPoints.get(1),UnitOfMeasure.Metric);
+                            System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心线上一点到起点的距离(米制)为" + lDistToStartPoint);
                         }
 
 
@@ -2815,7 +2967,7 @@ if (iface != null) {
         }
 ```
 
- **double distToStartPointWithSegmIndex(Point p, int segmIndex)**
+ **double distToStartPointWithSegmIndex(Point p, int segmIndex, UnitOfMeasure unit);**
 
 根据中心线上任意点所处的车道分段号和该点本身信息, 计算该点到车道起点的距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -2827,7 +2979,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取ILane的中心线上一点到起点的距离（带分段索引）
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2841,6 +2993,8 @@ if (iface != null) {
                         if (centerBreakPoints.size() > 1) {
                             double lDistToStartPoint = lane.distToStartPointWithSegmIndex(centerBreakPoints.get(1), 1);
                             System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心线上一点到起点的距离为" + lDistToStartPoint);
+                            lDistToStartPoint = lane.distToStartPointWithSegmIndex(centerBreakPoints.get(1), 1, true,UnitOfMeasure.Metric);
+                            System.out.println("路段id为" + link.id() + "的车道id为" + lane.id() + "的车道的中心线上一点到起点的距离（米制）为" + lDistToStartPoint);
                         }
 
                     }
@@ -2849,7 +3003,7 @@ if (iface != null) {
         }
 ```
 
- **def getPointAndIndexByDist(self, dist: double, outPoint: PySide2.QtCore.QPointF, outIndex: int, unit: Tess.UnitOfMeasure) -> bool: ...**
+ **boolean getPointAndIndexByDist(double dist, Point outPoint, ObjInt outIndex,UnitOfMeasure unit);**
 
 获取车道中心线起点下游dist距离处的点及其所属分段序号; 如果目标点不在中心线上返回False, 否则返回True, 默认单位: 像素, 可通过unit参数设置单位  
 
@@ -2862,23 +3016,38 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 # 获取ILane的中心线上一点到起点的距离
-iface = tessngIFace()
-netiface = iface.netInterface()
-lLinks = netiface.links()
-for link in lLinks: 
-    lLanes = link.lanes()
-    for lane in lLanes: 
-        outPoint = QPointF()
-        outIndex = 0
-        lDistToStartPoint = lane.getPointAndIndexByDist(50, outPoint, outIndex)
-        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道中心线起点下游dist距离处的点为{outPoint}, 分段序号为{outIndex}")
-        lDistToStartPointMeter = lane.getPointAndIndexByDist(50, outPoint, outIndex, UnitOfMeasure.Metric)
-        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道中心线起点下游dist距离处的点为{outPoint}, 分段序号为{outIndex}")
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (iface != null) {
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                List<ILink> lLinks = netiface.links();
+                for (ILink link : lLinks) {
+                    List<ILane> lLanes = link.lanes();
+                    for (ILane lane : lLanes) {
+                        // 创建用于存储结果的Point对象
+                        Point outPoint = new Point();
+                        ObjInt outIndex = new ObjInt(0);
+                        boolean result = lane.getPointAndIndexByDist(50, outPoint,outIndex);
+                        if (result) {
+                            System.out.printf("路段id为%d的车道id为%d的车道中心线起点下游50像素处的点为(%f, %f)%n",
+                                    link.id(), lane.id(), outPoint.getX(), outPoint.getY());
+                        }
+                        result = lane.getPointAndIndexByDist(50, outPoint,outIndex,UnitOfMeasure.Metric);
+                        if (result) {
+                            System.out.printf("路段id为%d的车道id为%d的车道中心线起点下游50米处的点为(%f, %f)%n",
+                                    link.id(), lane.id(), outPoint.getX(), outPoint.getY());
+                        }
+                    }
+                }
+            }
+        }
+                }
 ```
 
- **def getPointByDist(self, dist: double, outPoint: PySide2.QtCore.QPointF, unit: Tess.UnitOfMeasure) -> bool: ...**
+ **boolean getPointByDist(double dist, Point outPoint, UnitOfMeasure unit);**
 
 获取车道中心线起点下游dist距离处的点; 如果目标点不在中心线上返回False, 否则返回True, 默认单位: 像素, 可通过unit参数设置单位 
 
@@ -2889,28 +3058,40 @@ for link in lLinks:
 
 举例: 
 
-```python
+```java
 # 获取ILane的中心线上一点到起点的距离
-iface = tessngIFace()
-netiface = iface.netInterface()
-lLinks = netiface.links()
-for link in lLinks: 
-    lLanes = link.lanes()
-    for lane in lLanes: 
-        outPoint = QPointF()
-        lDistToStartPoint = lane.getPointByDist(50, outPoint)
-        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道中心线起点下游dist距离处的点为{outPoint}")
-        lDistToStartPointMeter = lane.getPointByDist(50, outPoint, UnitOfMeasure.Metric)
-        print(f"路段id为{link.id()}的车道id为{lane.id()}的车道中心线起点下游dist距离处的点为{outPoint}")
+if (iface != null) {
+NetInterface netiface = iface.netInterface();
+if (netiface != null) {
+List<ILink> lLinks = netiface.links();
+for (ILink link : lLinks) {
+List<ILane> lLanes = link.lanes();
+for (ILane lane : lLanes) {
+    // 创建用于存储结果的Point对象
+    Point outPoint = new Point();
+    boolean result = lane.getPointByDist(50, outPoint);
+    if (result) {
+        System.out.printf("路段id为%d的车道id为%d的车道中心线起点下游dist距离处的点为(%f, %f)%n",
+                link.id(), lane.id(), outPoint.getX(), outPoint.getY());
+    }
+    result = lane.getPointByDist(50, outPoint, UnitOfMeasure.Metric);
+    if (result) {
+        System.out.printf("路段id为%d的车道id为%d的车道中心线起点下游dist米距离处的点为(%f, %f)%n",
+                link.id(), lane.id(), outPoint.getX(), outPoint.getY());
+    }
+}
+}
+}
+}
 ```
 
- **void setOtherAttr(JsonObject attr)**
+ **void setOtherAttr(JsonObject attr);**
 
 设置车道的其它属性, 方便用户拓展车道属性; 类型: 字典形式
 
 举例: 
 
-```python
+```java
 // 设置ILane的其它属性
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -2931,7 +3112,7 @@ for link in lLinks:
         }
 ```
 
- **void setLaneType(String type)**
+ **void setLaneType(String type);**
 
 设置车道的类型; 车道类型常量范围: "机动车道"、"机非共享"、"非机动车道"、 "公交专用道"
 
@@ -2941,7 +3122,7 @@ for link in lLinks:
 
 举例: 
 
-```python
+```java
 // 设置ILane的类型
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2958,13 +3139,13 @@ if (iface != null) {
 }
 ```
 
- **Vector<Point> polygon()**
+ **Vector<Point> polygon();**
 
 获取车道的多边型轮廓顶点, 默认单位: 像素
 
 举例: 
 
-```python
+```java
 // 获取ILane的多边型轮廓顶点
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -2983,49 +3164,120 @@ if (iface != null) {
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-showLaneAttr(netiface)
-def showLaneAttr(netiface): 
-    link = netiface.links()[0]
-    lane = link.lanes()[0]
-    for i in link.lanes(): 
-        if i.number() == 0: 
-            lane = i
-            break
-    print(f"===link中的第一个lane(最右侧) id={lane.id()}, 类型gtype={lane.gtype()}, "
-          f"是否为lane={lane.isLane()}, 所属link={lane.link()}, 所属section={lane.section()}, 长度length（像素制）={lane.length()}, 米制={lane.length(UnitOfMeasure.Metric)}, "
-          f"宽度width（像素制）={lane.width()}, 米制={lane.width(UnitOfMeasure.Metric)}, 车道序号number={lane.number()}, 行为类型={lane.actionType()}"
-          f"fromLaneObject={lane.fromLaneObject()}, toLaneObject={lane.toLaneObject()}, "
-          f"centerBreakPoints(像素制)={lane.centerBreakPoints()}, centerBreakPoints(米制)={lane.centerBreakPoints(UnitOfMeasure.Metric)}, "
-          f"leftBreakPoints(像素制)={lane.leftBreakPoints()}, leftBreakPoints(米制)={lane.leftBreakPoints(UnitOfMeasure.Metric)}, "
-          f"rightBreakPoints(像素制)={lane.rightBreakPoints()}, rightBreakPoints(米制)={lane.rightBreakPoints(UnitOfMeasure.Metric)}, "
-          f"centerBreakPoint3Ds(像素制)={lane.centerBreakPoint3Ds()}, centerBreakPoint3Ds(米制)={lane.centerBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"leftBreakPoint3Ds(像素制)={lane.leftBreakPoint3Ds()}, leftBreakPoint3Ds(米制)={lane.leftBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"rightBreakPoint3Ds(像素制)={lane.rightBreakPoint3Ds()}, rightBreakPoint3Ds(米制)={lane.rightBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"leftBreak3DsPartly(像素制)={lane.leftBreak3DsPartly(lane.leftBreakPoints()[1], lane.leftBreakPoints()[-1])}, "
-          f"leftBreak3DsPartly(米制)={lane.leftBreak3DsPartly(lane.leftBreakPoints(UnitOfMeasure.Metric)[1], lane.leftBreakPoints(UnitOfMeasure.Metric)[-1], UnitOfMeasure.Metric)}, "
-          f"rightBreak3DsPartly(像素制)={lane.leftBreak3DsPartly(lane.leftBreakPoints()[1], lane.leftBreakPoints()[-1])}, "
-          f"rightBreak3DsPartly(米制)={lane.leftBreak3DsPartly(lane.leftBreakPoints(UnitOfMeasure.Metric)[1], lane.leftBreakPoints(UnitOfMeasure.Metric)[-1], UnitOfMeasure.Metric)}, "
-          f"distToStartPoint(像素制)={lane.distToStartPoint(lane.centerBreakPoints()[0])}, distToStartPoint(米制)={lane.distToStartPoint(lane.centerBreakPoints(UnitOfMeasure.Metric)[0], UnitOfMeasure.Metric)}, "
-          f"设置自定义属性setOtherAttr={lane.setOtherAttr({'newAttr': 'add a new attr'})}, setLaneType={lane.setLaneType('机动车道')}, action Type={lane.actionType()}"
-          f"polygon={lane.polygon()}")
-    outPoint = QPointF()
-    outIndex = 0
-    outPoint1 = QPointF()
-    outIndex1 = 0
-    lane.getPointAndIndexByDist(2.0, outPoint, outIndex)
-    lane.getPointAndIndexByDist(2.0, outPoint1, outIndex1, UnitOfMeasure.Metric)
-    print(f"getPointAndIndexByDist(像素制)={outPoint, outIndex}, getPointAndIndexByDist(米制)={outPoint1, outIndex1}")
+```java
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showLaneAttr(netiface);
+    }
+}
+public static void showLaneAttr(NetInterface netiface) {
+        // 获取第一个路段
+        ILink link = netiface.links().get(0);
+        // 初始化目标车道（默认取第一个车道）
+        ILane lane = link.lanes().get(0);
 
-    outPoint2 = QPointF()
-    outPoint3 = QPointF()
-    lane.getPointByDist(2.0, outPoint2)
-    lane.getPointByDist(2.0, outPoint3, UnitOfMeasure.Metric)
-    print(f"getPointByDist(像素制)={outPoint2}, getPointByDist(米制)={outPoint3}")
+        // 查找序号为0的车道（最右侧车道）
+        List<ILane> lanes = link.lanes();
+        for (ILane currentLane : lanes) {
+            if (currentLane.number() == 0) {
+                lane = currentLane;
+                break;
+            }
+        }
 
+        JsonObject otherAttr = Json.createObjectBuilder()
+                .add("newAttr", "add a new attr")
+                .build();
+
+        lane.setOtherAttr(otherAttr);
+        lane.setLaneType("机动车道");
+
+        List<Point> centerBreakPointsPixel = lane.centerBreakPoints();
+        List<Point> centerBreakPointsMetric = lane.centerBreakPoints(UnitOfMeasure.Pixel);
+        List<Point> leftBreakPointsPixel = lane.leftBreakPoints();
+        List<Point> leftBreakPointsMetric = lane.leftBreakPoints(UnitOfMeasure.Metric);
+
+        // 输出车道基础属性
+        System.out.printf(
+                "===link中的第一个lane(最右侧) id=%d, 类型gtype=%s, %n" +
+                        "所属link=%s, 所属section=%s, %n" +
+                        "长度length（像素制）=%.2f, 米制=%.2f, %n" +
+                        "宽度width（像素制）=%.2f, 米制=%.2f, %n" +
+                        "车道序号number=%d, 行为类型=%s, %n" +
+                        "fromLaneObject=%s, toLaneObject=%s, %n" +
+                        "centerBreakPoints(像素制)=%s, centerBreakPoints(米制)=%s, %n" +
+                        "leftBreakPoints(像素制)=%s, leftBreakPoints(米制)=%s, %n" +
+                        "rightBreakPoints(像素制)=%s, rightBreakPoints(米制)=%s, %n" +
+                        "centerBreakPoint3Ds(像素制)=%s, centerBreakPoint3Ds(米制)=%s, %n" +
+                        "leftBreakPoint3Ds(像素制)=%s, leftBreakPoint3Ds(米制)=%s, %n" +
+                        "rightBreakPoint3Ds(像素制)=%s, rightBreakPoint3Ds(米制)=%s, %n",
+                lane.id(), lane.gtype(),
+                lane.link(), lane.section(),
+                lane.length(), lane.length(),
+                lane.width(), lane.width(UnitOfMeasure.Metric),
+                lane.number(), lane.actionType(),
+                lane.fromLaneObject(), lane.toLaneObject(),
+                centerBreakPointsPixel, centerBreakPointsMetric,
+                leftBreakPointsPixel, leftBreakPointsMetric,
+                lane.rightBreakPoints(), lane.rightBreakPoints(UnitOfMeasure.Metric),
+                lane.centerBreakPoint3Ds(), lane.centerBreakPoint3Ds(UnitOfMeasure.Metric),
+                lane.leftBreakPoint3Ds(), lane.leftBreakPoint3Ds(UnitOfMeasure.Metric),
+                lane.rightBreakPoint3Ds(), lane.rightBreakPoint3Ds(UnitOfMeasure.Metric)
+        );
+
+        // 输出部分断点集和距离信息
+        System.out.printf(
+                "leftBreak3DsPartly(像素制)=%s, %n" +
+                        "leftBreak3DsPartly(米制)=%s, %n" +
+                        "rightBreak3DsPartly(像素制)=%s, %n" +
+                        "rightBreak3DsPartly(米制)=%s, %n" +
+                        "distToStartPoint(像素制)=%.2f, distToStartPoint(米制)=%.2f, %n" +
+                        "设置自定义属性结果=成功, 设置车道类型结果=成功, 行为类型=%s, polygon=%s%n",
+                (leftBreakPointsPixel.size() >= 2) ? lane.leftBreak3DsPartly(leftBreakPointsPixel.get(1), leftBreakPointsPixel.get(leftBreakPointsPixel.size() - 1)) : "无有效断点",
+                (leftBreakPointsMetric.size() >= 2) ? lane.leftBreak3DsPartly(leftBreakPointsMetric.get(1), leftBreakPointsMetric.get(leftBreakPointsMetric.size() - 1), UnitOfMeasure.Metric) : "无有效断点",
+                (leftBreakPointsPixel.size() >= 2) ? lane.rightBreak3DsPartly(leftBreakPointsPixel.get(1), leftBreakPointsPixel.get(leftBreakPointsPixel.size() - 1)) : "无有效断点",
+                (leftBreakPointsMetric.size() >= 2) ? lane.rightBreak3DsPartly(leftBreakPointsMetric.get(1), leftBreakPointsMetric.get(leftBreakPointsMetric.size() - 1), UnitOfMeasure.Metric) : "无有效断点",
+                (!centerBreakPointsPixel.isEmpty()) ? lane.distToStartPoint(centerBreakPointsPixel.get(0)) : 0.0,
+                (!centerBreakPointsMetric.isEmpty()) ? lane.distToStartPoint(centerBreakPointsMetric.get(0), UnitOfMeasure.Metric) : 0.0,
+                lane.actionType(),
+                lane.polygon()
+        );
+
+        // 调用getPointAndIndexByDist方法（像素制）
+        Point outPoint = new Point();
+        ObjInt outIndex = new ObjInt(0);
+        boolean isSuccessPixel = lane.getPointAndIndexByDist(2.0, outPoint, outIndex);
+        // 米制
+        Point outPoint1 = new Point( );
+        ObjInt outIndex1 = new ObjInt(0);
+        boolean isSuccessMetric = lane.getPointAndIndexByDist(2.0, outPoint1, outIndex1, UnitOfMeasure.Metric);
+
+        // 输出getPointAndIndexByDist结果
+        if (isSuccessPixel) {
+            System.out.printf("getPointAndIndexByDist(像素制)=(%f, %f), 分段序号=%d%n",
+                    outPoint.getX(), outPoint.getY(), outIndex.getValue());
+        }
+        if (isSuccessMetric) {
+            System.out.printf("getPointAndIndexByDist(米制)=(%f, %f), 分段序号=%d%n",
+                    outPoint1.getX(), outPoint1.getY(), outIndex1.getValue());
+        }
+
+        // 调用getPointByDist方法（像素制）
+        Point outPoint2 = new Point();
+        boolean isSuccessByDistPixel = lane.getPointByDist(2.0, outPoint2);
+        // 米制
+        Point outPoint3 = new Point();
+        boolean isSuccessByDistMetric = lane.getPointByDist(2.0, outPoint3, UnitOfMeasure.Metric);
+
+        // 输出getPointByDist结果
+        if (isSuccessByDistPixel) {
+            System.out.printf("getPointByDist(像素制)=(%f, %f)%n", outPoint2.getX(), outPoint2.getY());
+        }
+        if (isSuccessByDistMetric) {
+            System.out.printf("getPointByDist(米制)=(%f, %f)%n", outPoint3.getX(), outPoint3.getY());
+        }
+    }
 ```
 
 
@@ -3036,13 +3288,13 @@ def showLaneAttr(netiface):
 
 连接段接口, 方法如下: 
 
- **int gtype()**
+ **int gtype();**
 
 类型, 连接段类型为GConnectorType, GConnectorType是一种整数型常量。
 
 举例: 
 
-```python
+```java
 // 获取IConnector的类型
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3057,13 +3309,13 @@ def showLaneAttr(netiface):
         }
 ```
 
- **int id()**
+ **int id();**
 
 获取连接段ID; 因为连接段ID和路段ID是相互独立的, 所以可能两者的ID之间会有重复
 
 举例: 
 
-```python
+```java
 // 获取IConnector的ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3078,7 +3330,7 @@ if (iface != null) {
 }
 ```
 
- **double length()**
+ **double length(UnitOfMeasure unit);**
 
 获取连接段长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -3087,7 +3339,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取IConnector的长度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3097,12 +3349,14 @@ if (iface != null) {
         List<IConnector> lConnectors = netiface.connectors();
         for (IConnector connector : lConnectors) {
             System.out.println("id为" + connector.id() + "的连接段的长度为" + connector.length());
+            System.out.println("id为" + connector.id() + "的连接段的长度（米）为" + connector.length(UnitOfMeasure.Metric));
         }
+        
     }
 }
 ```
 
- **double z()**
+ **double z(UnitOfMeasure unit);**
 
 获取连接段高程, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -3111,7 +3365,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取IConnector的高程
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3121,12 +3375,13 @@ if (iface != null) {
         List<IConnector> lConnectors = netiface.connectors();
         for (IConnector connector : lConnectors) {
             System.out.println("id为" + connector.id() + "的连接段的高程为" + connector.z());
+            System.out.println("id为" + connector.id() + "的连接段的高程(米)为" + connector.z(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **double v3z()**
+ **double v3z(UnitOfMeasure unit);**
 
 获取连接段高程, 过载自ISection的方法, 与z()方法作用相同, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -3135,7 +3390,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取IConnector的高程
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3145,18 +3400,20 @@ if (iface != null) {
                 List<IConnector> lConnectors = netiface.connectors();
                 for (IConnector connector : lConnectors) {
                     System.out.println("id为" + connector.id() + "的连接段的高程为" + connector.v3z());
+                    System.out.println("id为" + connector.id() + "的连接段的高程(米)为" + connector.v3z(UnitOfMeasure.Metric));
+                    
                 }
             }
         }
 ```
 
- **String name()**
+ **String name();**
 
 获取连接段名称
 
 举例: 
 
-```python
+```java
 // 获取IConnector的名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3171,13 +3428,13 @@ if (iface != null) {
 }
 ```
 
- **void setName(String name)**
+ **void setName(String name);**
 
 设置连接段名称
 
 举例: 
 
-```python
+```java
 // 设置IConnector的名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3192,13 +3449,13 @@ if (iface != null) {
 }
 ```
 
- **ILink fromLink()**
+ **ILink fromLink();**
 
 获取当前connector的起始路段, 返回路段对象
 
 举例: 
 
-```python
+```java
 // 获取IConnector的起始路段
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3213,13 +3470,13 @@ if (iface != null) {
         }
 ```
 
- **ILink toLink()**
+ **ILink toLink();**
 
 获取当前connector的目标路段（出口路段）, 返回路段对象
 
 举例: 
 
-```python
+```java
 // 获取IConnector的目标路段
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3234,7 +3491,7 @@ if (iface != null) {
 }
 ```
 
- **double limitSpeed()**
+ **double limitSpeed(UnitOfMeasure unit);**
 
 获取连接器的最高限速, 因为连接器没有最高限速这一属性, 因此该函数返回连接器的起始路段最高限速作为连接段的最高限速, 默认单位: 千米/小时, 可通过unit参数设置单位
 
@@ -3243,7 +3500,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取IConnector的最高限速
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3253,12 +3510,13 @@ if (iface != null) {
         List<IConnector> lConnectors = netiface.connectors();
         for (IConnector connector : lConnectors) {
             System.out.println("id为" + connector.id() + "的连接段的最高限速为" + connector.limitSpeed());
+            System.out.println("id为" + connector.id() + "的连接段的最高限速(米)为" + connector.limitSpeed(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **double minSpeed()**
+ **double minSpeed(UnitOfMeasure unit);**
 
 获取连接器的最低限速, 因为连接器没有最低限速这一属性, 因此返回连接器起始路段的最低限速作为连接段的最低限速, 默认单位: 千米/小时, 可通过unit参数设置单位
 
@@ -3267,7 +3525,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取IConnector的最低限速
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3277,18 +3535,19 @@ if (iface != null) {
         List<IConnector> lConnectors = netiface.connectors();
         for (IConnector connector : lConnectors) {
             System.out.println("id为" + connector.id() + "的连接段的最低限速为" + connector.minSpeed());
+            System.out.println("id为" + connector.id() + "的连接段的最低限速（米）为" + connector.minSpeed(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **ArrayList<ILaneConnector> laneConnectors()**
+ **ArrayList<ILaneConnector> laneConnectors();**
 
 获取连接器下的所有“车道连接”对象, 列表形式, 列表元素为ILaneConnector对象
 
 举例: 
 
-```python
+```java
 // 获取IConnector的车道连接
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3303,13 +3562,13 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<ILaneObject> laneObjects()**
+ **ArrayList<ILaneObject> laneObjects();**
 
 车道及“车道连接”的接口列表
 
 举例: 
 
-```python
+```java
 // 获取IConnector的车道连接
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3324,37 +3583,41 @@ if (iface != null) {
 }
 ```
 
- **def setLaneConnectorOtherAtrrs(self, lAttrs: typing.Sequence) -> None: ...**
+ **void setLaneConnectorOtherAtrrs(ArrayList<JsonObject> lAttrs);**
 
 设置包含的“车道连接”其它属性
 
 举例: 
 
-```python
+```java
 // 设置IConnector的其它属性
-        TessInterface iface = TESSNG.tessngIFace();
-        if (iface != null) {
-            NetInterface netiface = iface.netInterface();
-            if (netiface != null) {
-                // 获取路网中的所有IConnector
-                List<IConnector> lConnectors = netiface.connectors();
-                for (IConnector connector : lConnectors) {
-                    JsonObjectBuilder builder = Json.createObjectBuilder();
-                    builder.add("newAttr", "add a new attr");
-                    JsonObject otherAttr = builder.build();
-                    connector.setOtherAttr(otherAttr);
-                }
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IConnector> lConnectors = netiface.connectors();
+        for (IConnector connector : lConnectors) {
+            int laneCount = connector.laneConnectors().size();
+            ArrayList<JsonObject> attributes = new ArrayList<>();
+            for (int i = 0; i < laneCount; i++) {
+                JsonObject attribute = Json.createObjectBuilder()
+                        .add("newAttr", i)
+                        .build();
+                attributes.add(attribute);
             }
+            connector.setLaneConnectorOtherAtrrs(attributes);
         }
+    }
+}
 ```
 
- **def setOtherAttr(self, otherAttr: typing.Dict) -> None: ...**
+ **void setOtherAttr(JsonObject otherAttr);**
 
 设置连接段其它属性
 
 举例: 
 
-```python
+```java
 // 获取ILane的多边型轮廓顶点
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3374,13 +3637,13 @@ if (iface != null) {
         }
 ```
 
- **Vector<Point> polygon()**
+ **Vector<Point> polygon();**
 
 获取连接段的多边型轮廓顶点
 
 举例: 
 
-```python
+```java
 // 获取ILane的多边型轮廓顶点
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3397,29 +3660,94 @@ if (iface != null) {
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-showConnectorAttr(netiface)
-def showConnectorAttr(netiface): 
-    print(
-        f"===场景中的connector个数（连接段对象）={len(netiface.connectors())}, {netiface.connectorCount()}, {len(netiface.connectorIds())}, "
-        f"第一个connector的属性={netiface.connectors()[0].id()}")
-    connector = netiface.connectors()[0]
-    connector1 = netiface.findConnector(netiface.connectorIds()[0])
-    print(type(connector), dir(connector))
-    print(f"该connectors的属性: id(连接段和路段ID是独立的, 因此两者ID可能会重复)={connector.id()}, 类型gtype={connector.gtype()}, "
-          f"name={connector.name()}, setName={connector.setName('new connector')} "
-          f"长度length（像素制）={connector.length()}, 米制={connector.length(UnitOfMeasure.Metric)}, "
-          f"高程={connector.z()}, toLaneObject={connector.v3z()}, "
-          f"fromLink={connector.fromLink()}, toLink={connector.toLink()}, fromSection={connector.fromSection(id=0)}, toSection={connector.toSection(id=0)}, "
-          f"最高限速(像素制)={connector.limitSpeed()}, 最高限速(米制)={connector.limitSpeed(UnitOfMeasure.Metric)}, "
-          f"最低限速(像素制)={connector.minSpeed()}, 最低限速(米制)={connector.minSpeed(UnitOfMeasure.Metric)}, "
-          f"laneConnectors={connector.laneConnectors()}, laneObjects={connector.laneObjects()}, "
-          f"设置自定义属性setLaneConnectorOtherAtrrs={connector.setLaneConnectorOtherAtrrs([{'newAttr': i} for i in range(len(connector.laneConnectors()))])}, "
-          f"设置自定义属性setOtherAttr={connector.setOtherAttr({'newAttr': 'add a new attr'})}, "
-          f"polygon={connector.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    // 获取路网子接口
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        // 调用方法展示连接段属性
+        showConnectorAttr(netiface);
+    }
+}
+public static void showConnectorAttr(NetInterface netiface) {
+        List<IConnector> connectors = netiface.connectors();
+        int connectorCount = netiface.connectorCount();
+        List<Long> connectorIds = netiface.connectorIds();
+        long firstConnectorId = (connectors != null && !connectors.isEmpty()) ? connectors.get(0).id() : 0;
+
+        System.out.printf(
+                "===场景中的connector个数（连接段对象）=%d, %d, %d, " +
+                        "第一个connector的属性=%d%n",
+                (connectors != null ? connectors.size() : 0),  
+                connectorCount,                                
+                (connectorIds != null ? connectorIds.size() : 0),  
+                firstConnectorId
+        );
+
+        IConnector connector = null;
+        IConnector connector1 = null;
+        if (connectors != null && !connectors.isEmpty()) {
+            connector = connectors.get(0);
+        }
+        if (connectorIds != null && !connectorIds.isEmpty()) {
+            connector1 = netiface.findConnector(connectorIds.get(0));
+        }
+
+        if (connector == null) {
+            System.out.println("未找到有效的connector对象");
+            return;
+        }
+
+        System.out.println("connector类型: " + connector.getClass().getName());
+        System.out.println("connector可用方法/属性: " + java.util.Arrays.toString(connector.getClass().getMethods()));
+
+        connector.setName("new connector");  
+
+        List<ILaneConnector> laneConnectors = connector.laneConnectors();
+        JsonArrayBuilder laneConnectorAttrsBuilder = Json.createArrayBuilder();
+        if (laneConnectors != null) {
+            for (int i = 0; i < laneConnectors.size(); i++) {
+                laneConnectorAttrsBuilder.add(Json.createObjectBuilder().add("newAttr", i));
+            }
+        }
+
+        JsonObjectBuilder builder = Json.createObjectBuilder();
+        builder.add("newAttr", "add a new attr");
+        JsonObject otherAttr = builder.build();
+        connector.setOtherAttr(otherAttr);  // 设置连接段其他属性
+
+        // 输出连接段详细属性
+        System.out.printf(
+                "该connectors的属性: id(连接段和路段ID是独立的, 因此两者ID可能会重复)=%d, 类型gtype=%s, %n" +
+                        "name=%s, %n" +
+                        "长度length（像素制）=%.2f, 米制=%.2f, %n" +
+                        "高程=%.2f, v3z=%.2f, %n" +
+                        "fromLink=%s, toLink=%s, fromSection=%s, toSection=%s, %n" +
+                        "最高限速(像素制)=%.2f, 最高限速(米制)=%.2f, %n" +
+                        "最低限速(像素制)=%.2f, 最低限速(米制)=%.2f, %n" +
+                        "laneConnectors=%s, laneObjects=%s, %n" +
+                        "polygon=%s%n",
+                connector.id(),
+                connector.gtype(),
+                connector.name(),  // 已通过setName设置为"new connector"
+                connector.length(),
+                connector.length(UnitOfMeasure.Metric),  // 米制
+                connector.z(),
+                connector.v3z(),
+                connector.fromLink(),
+                connector.toLink(),
+                connector.fromSection(0),  // id=0
+                connector.toSection(0),    // id=0
+                connector.limitSpeed(),
+                connector.limitSpeed(UnitOfMeasure.Metric),  // 米制
+                connector.minSpeed(),
+                connector.minSpeed(UnitOfMeasure.Metric),    // 米制
+                connector.laneConnectors(),
+                connector.laneObjects(),
+                connector.polygon()
+        );
+    }
 ```
 
 
@@ -3430,13 +3758,13 @@ def showConnectorAttr(netiface):
 
 “车道连接”接口, 方法如下: 
 
- **int gtype()**
+ **int gtype();**
 
 类型, GLaneType或GLaneConnectorType, 车道连接段为GLaneConnectorType , 这里的返回值只可能是GLaneConnectorType
 
 举例: 
 
-```python
+```java
 // 获取IConnector的类型
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3454,13 +3782,13 @@ if (iface != null) {
 }
 ```
 
- **int id()**
+ **int id();**
 
 获取车道连接ID
 
 举例: 
 
-```python
+```java
 // 获取车道连接ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3478,13 +3806,13 @@ if (iface != null) {
 }
 ```
 
- **IConnector connector()**
+ **IConnector connector();**
 
 获取车道连接所属的连接段Connector对象, 返回类型IConnector
 
 举例: 
 
-```python
+```java
 // 获取车道连接所属的连接段Connector对象
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3502,13 +3830,13 @@ if (iface != null) {
         }
 ```
 
- **ISection section()**
+ **ISection section();**
 
 获取车道所属Section, Section为 IConnector的父类
 
 举例: 
 
-```python
+```java
 // 获取车道连接所属的Section
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3526,13 +3854,13 @@ if (iface != null) {
         }
 ```
 
- **ILane fromLane()**
+ **ILane fromLane();**
 
 获取当前车道链接的上游车道对象
 
 举例: 
 
-```python
+```java
 // 获取车道连接的上游车道对象
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3550,13 +3878,13 @@ if (iface != null) {
         }
 ```
 
- **ILane toLane()**
+ **ILane toLane();**
 
 获取当前车道链接的下游车道对象
 
 举例: 
 
-```python
+```java
 // 获取车道连接的下游车道对象
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3574,7 +3902,7 @@ if (iface != null) {
         }
 ```
 
- **double length()**
+ **double length(UnitOfMeasure unit);**
 
 获取“车道连接”的长度, 是指中心线的长度, 默认单位: 像素, 可通过unit参数设置单位 
 
@@ -3583,7 +3911,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的长度
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3595,13 +3923,14 @@ if (iface != null) {
                     List<ILaneConnector> laneConnectors = connector.laneConnectors();
                     for (ILaneConnector laneConnector : laneConnectors) {
                         System.out.println("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的长度为" + laneConnector.length());
+                        System.out.println("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的长度(米)为" + laneConnector.length(UnitOfMeasure.Metric));
                     }
                 }
             }
         }
 ```
 
- **ArrayList<Point> centerBreakPoints()**
+ **ArrayList<Point> centerBreakPoints(UnitOfMeasure unit);**
 
 获取“车道连接”的中心线断点集, 默认单位: 像素, 可通过unit参数设置单位  
 
@@ -3610,7 +3939,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的中心线断点集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3627,6 +3956,12 @@ if (iface != null) {
                             System.out.print("(" +  point.getX() + "," +point.getY() + ")," );
                         }
                         System.out.println();
+                        centerBPs= laneConnector.centerBreakPoints(UnitOfMeasure.Metric);
+                        System.out.print("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的中心线断点集（米制）为"  );
+                        for(Point point:centerBPs){
+                            System.out.print("(" +  point.getX() + "," +point.getY() + ")," );
+                        }
+                        System.out.println();
 
                     }
                 }
@@ -3634,7 +3969,7 @@ if (iface != null) {
         }
 ```
 
- **ArrayList<Point> leftBreakPoints()**
+ **ArrayList<Point> leftBreakPoints(UnitOfMeasure unit);**
 
 获取“车道连接”左侧线断点集, 默认单位: 像素, 可通过unit参数设置单位  
 
@@ -3643,7 +3978,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的中心线断点集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3660,6 +3995,12 @@ if (iface != null) {
                             System.out.print("(" +  point.getX() + "," +point.getY() + ")," );
                         }
                         System.out.println();
+                        leftBPs= laneConnector.leftBreakPoints(UnitOfMeasure.Metric);
+                        System.out.print("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的左侧线断点集（米）为"  );
+                        for(Point point:leftBPs){
+                            System.out.print("(" +  point.getX() + "," +point.getY() + ")," );
+                        }
+                        System.out.println();
 
                     }
                 }
@@ -3667,7 +4008,7 @@ if (iface != null) {
         }
 ```
 
- **ArrayList<Point> rightBreakPoints()**
+ **ArrayList<Point> rightBreakPoints(UnitOfMeasure unit);**
 
 获取“车道连接”右侧线断点集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -3676,7 +4017,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的中心线断点集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3693,6 +4034,12 @@ if (iface != null) {
                             System.out.print("(" +  point.getX() + "," +point.getY() + ")," );
                         }
                         System.out.println();
+                        rightBPs= laneConnector.rightBreakPoints(UnitOfMeasure.Metric);
+                        System.out.print("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的右侧线断点集（米）为"  );
+                        for(Point point:rightBPs){
+                            System.out.print("(" +  point.getX() + "," +point.getY() + ")," );
+                        }
+                        System.out.println();
 
                     }
                 }
@@ -3700,7 +4047,7 @@ if (iface != null) {
         }
 ```
 
- **ArrayList<Point3D> centerBreakPoint3Ds()**
+ **ArrayList<Point3D> centerBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取“车道连接”中心线断点(三维)集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -3709,7 +4056,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的中心线断点集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3726,6 +4073,12 @@ if (iface != null) {
                             System.out.print("(" +  point.getX() + "," +point.getY() + "," +point.getZ() + ")," );
                         }
                         System.out.println();
+                        centerBPs= laneConnector.centerBreakPoint3Ds(UnitOfMeasure.Metric);
+                        System.out.print("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的中心线断点(三维，米)集为"  );
+                        for(Point3D point:centerBPs){
+                            System.out.print("(" +  point.getX() + "," +point.getY() + "," +point.getZ() + ")," );
+                        }
+                        System.out.println();
 
                     }
                 }
@@ -3733,7 +4086,7 @@ if (iface != null) {
         }
 ```
 
- **ArrayList<Point3D> leftBreakPoint3Ds()**
+ **ArrayList<Point3D> leftBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取“车道连接”左侧线断点(三维)集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -3742,7 +4095,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的中心线断点集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3759,6 +4112,12 @@ if (iface != null) {
                             System.out.print("(" +  point.getX() + "," +point.getY() + "," +point.getZ() + ")," );
                         }
                         System.out.println();
+                        leftBPs= laneConnector.leftBreakPoint3Ds(UnitOfMeasure.Metric);
+                        System.out.print("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的左侧线断点(三维,米)集为"  );
+                        for(Point3D point:leftBPs){
+                            System.out.print("(" +  point.getX() + "," +point.getY() + "," +point.getZ() + ")," );
+                        }
+                        System.out.println();
 
                     }
                 }
@@ -3766,7 +4125,7 @@ if (iface != null) {
         }
 ```
 
- **ArrayList<Point3D> rightBreakPoint3Ds()**
+ **ArrayList<Point3D> rightBreakPoint3Ds(UnitOfMeasure unit);**
 
 获取“车道连接”右侧线断点(三维)集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -3775,7 +4134,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的中心线断点集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3792,6 +4151,12 @@ if (iface != null) {
                             System.out.print("(" +  point.getX() + "," +point.getY() + "," +point.getZ() + ")," );
                         }
                         System.out.println();
+                        rightBPs= laneConnector.rightBreakPoint3Ds(UnitOfMeasure.Metric);
+                        System.out.print("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的右侧线断点(三维，米)集为"  );
+                        for(Point3D point:rightBPs){
+                            System.out.print("(" +  point.getX() + "," +point.getY() + "," +point.getZ() + ")," );
+                        }
+                        System.out.println();
 
                     }
                 }
@@ -3799,7 +4164,7 @@ if (iface != null) {
         }
 ```
 
- **ArrayList<Point3D> leftBreak3DsPartly(Point fromPoint, Point toPoint)**
+ **ArrayList<Point3D> leftBreak3DsPartly(Point fromPoint, Point toPoint,UnitOfMeasure unit);**
 
 根据指定的起终止点获取“车道连接”左侧部分断点(三维)集, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -3810,7 +4175,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的左侧部分断点(三维)集
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3826,6 +4191,7 @@ if (iface != null) {
                             Point startPoint = leftBreakPoints.get(0);
                             Point endPoint = leftBreakPoints.get(leftBreakPoints.size() - 1);
                             System.out.println("id为" + connector.id() + "的连接段的车道连接的左侧部分断点(三维)集为" + laneConnector.leftBreak3DsPartly(startPoint, endPoint));
+                            System.out.println("id为" + connector.id() + "的连接段的车道连接的左侧部分断点(三维,米)集为" + laneConnector.leftBreak3DsPartly(startPoint, endPoint, UnitOfMeasure.Metric));
                         }
 
                     }
@@ -3834,7 +4200,7 @@ if (iface != null) {
         }
 ```
 
- **ArrayList<Point3D> rightBreak3DsPartly(Point fromPoint, Point toPoint)**
+ **ArrayList<Point3D> rightBreak3DsPartly(Point fromPoint, Point toPoint, UnitOfMeasure unit);**
 
 根据指定的起终止点获取“车道连接”右侧部分断点(三维)集, 默认单位: 像素, 高程Z默认单位: 像素
 
@@ -3845,7 +4211,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取车道连接的右侧部分断点(三维)集
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3861,6 +4227,7 @@ if (iface != null) {
                     Point startPoint = leftBreakPoints.get(0);
                     Point endPoint = leftBreakPoints.get(leftBreakPoints.size() - 1);
                     System.out.println("id为" + connector.id() + "的连接段的车道连接的右侧部分断点(三维)集为" + laneConnector.rightBreak3DsPartly(startPoint, endPoint));
+                    System.out.println("id为" + connector.id() + "的连接段的车道连接的右侧部分断点(三维，米)集为" + laneConnector.rightBreak3DsPartly(startPoint, endPoint,UnitOfMeasure.Metric));
                 }
 
             }
@@ -3869,7 +4236,7 @@ if (iface != null) {
 }
 ```
 
- **double distToStartPoint(Point p)**
+ **double distToStartPoint(Point p, UnitOfMeasure unit);**
 
 计算车道链接中心线上任意点到起点的距离, 默认单位: 像素, 可通过unit参数设置单位  
 
@@ -3878,7 +4245,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 计算车道连接中心线上任意点到起点的距离
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -3893,6 +4260,9 @@ if (iface != null) {
                 if (centerBreakPoints.size() > 1) {
                     double distance = laneConnector.distToStartPoint(centerBreakPoints.get(1));
                     System.out.println("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的中心线上任意点到起点的距离为" + distance);
+                    distance = laneConnector.distToStartPoint(centerBreakPoints.get(1),UnitOfMeasure.Metric);
+                    System.out.println("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的中心线上任意点到起点的距离（米）为" + distance);
+                    
                 }
 
             }
@@ -3901,7 +4271,7 @@ if (iface != null) {
 }
 ```
 
- **double distToStartPointWithSegmIndex(Point p, int segmIndex)**
+ **double distToStartPointWithSegmIndex(Point p, int segmIndex, boolean bOnCentLine, UnitOfMeasure unit);**
 
 计算中心线上任意点到起点的距离, 附加条件是该点所在车道上的分段序号, 默认单位为像素; 可通过unit参数设置单位  
 
@@ -3914,7 +4284,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 计算中心线上任意点到起点的距离
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3928,6 +4298,7 @@ if (iface != null) {
                         List<Point> centerBreakPoints = laneConnector.centerBreakPoints();
                         if (centerBreakPoints.size() > 1) {
                             System.out.println("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的中心线上任意点到起点的距离为" + laneConnector.distToStartPointWithSegmIndex(centerBreakPoints.get(1), 1));
+                            System.out.println("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的中心线上任意点到起点的距离为" + laneConnector.distToStartPointWithSegmIndex(centerBreakPoints.get(1), 1,true,UnitOfMeasure.Metric));
                         }
 
                     }
@@ -3936,7 +4307,7 @@ if (iface != null) {
         }
 ```
 
- **def getPointAndIndexByDist(self, dist: double, outPoint: PySide2.QtCore.QPointF, outIndex: int, unit: Tess.UnitOfMeasure) -> bool: ...**
+ **boolean getPointAndIndexByDist(double dist, Point outPoint, ObjInt outIndex, UnitOfMeasure unit);**
 
 求中心线起点下游dist距离处的点及分段序号, 如果目标点不在中心线上返回False, 否则返回True, 默认单位: 像素, 可通过unit参数设置单位  
 
@@ -3949,26 +4320,46 @@ if (iface != null) {
 
 举例: 
 
-```python
-# 求中心线起点下游dist距离处的点及分段序号
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IConnector
-lConnectors = netiface.connectors()
-for connector in lConnectors: 
-    laneConnectors = connector.laneConnectors()
-    for laneConnector in laneConnectors: 
-        outPoint = QPointF()
-        outIndex = 0
-        if laneConnector.getPointAndIndexByDist(50, outPoint, outIndex): 
-            print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线起点向前延伸dist距离后所在点为{outPoint}, 分段序号为{outIndex}")
-        if laneConnector.getPointAndIndexByDist(50, outPoint, outIndex, UnitOfMeasure.Metric): 
-            print(f"id为{connector.id()}的连接段的车道连接{laneConnector.id()}的中心线起点向前延伸dist距离后所在点(米制单位)为{outPoint}, 分段序号为{outIndex}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+        if (iface != null) {
+            // 获取路网子接口
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                // 获取路网中的所有IConnector
+                List<IConnector> lConnectors = netiface.connectors();
+                for (IConnector connector : lConnectors) {
+                    // 获取当前连接段的所有车道连接
+                    List<ILaneConnector> laneConnectors = connector.laneConnectors();
+                    for (ILaneConnector laneConnector : laneConnectors) {
+                        // 创建用于存储结果的Point对象和分段序号引用
+                        Point outPoint = new Point();
+                        ObjInt outIndex = new ObjInt(0);
+
+                        // 调用getPointAndIndexByDist方法（像素单位）
+                        boolean result = laneConnector.getPointAndIndexByDist(50, outPoint, outIndex);
+                        if (result) {
+                            System.out.printf("id为%d的连接段的车道连接%d的中心线起点向前延伸50像素后所在点为(%f, %f), 分段序号为%d%n",
+                                    connector.id(), laneConnector.id(), outPoint.getX(), outPoint.getY(), outIndex.getValue());
+                        }
+
+                        // 调用getPointAndIndexByDist方法（米制单位）
+                        Point outPointMeter = new Point();
+                        ObjInt outIndexMeter = new ObjInt();
+                        boolean resultMeter = laneConnector.getPointAndIndexByDist(50, outPointMeter, outIndexMeter, UnitOfMeasure.Metric);
+                        if (resultMeter) {
+                            System.out.printf("id为%d的连接段的车道连接%d的中心线起点向前延伸50米后所在点为(%f, %f), 分段序号为%d%n",
+                                    connector.id(), laneConnector.id(), outPointMeter.getX(), outPointMeter.getY(), outIndexMeter.getValue());
+                        }
+                    }
+                }
+            }
+        }
 ```
 
 
 
- **boolean getPointByDist(double dist, Point outPoint)**
+ **boolean getPointByDist(double dist, Point outPoint, UnitOfMeasure unit);**
 
 求中心线起始点下游dist距离处的点, 如果目标点不在中心线上返回False, 否则返回True, 默认单位: 像素, 可通过unit参数设置单位 
 
@@ -3979,7 +4370,7 @@ for connector in lConnectors:
 
 举例: 
 
-```python
+```java
 // 求中心线起始点下游dist距离处的点
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -3994,6 +4385,9 @@ for connector in lConnectors:
                         if (laneConnector.getPointByDist(50, outPoint)) {
                             System.out.println("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的中心线起点向前延伸dist距离后所在点为" + outPoint);
                         }
+                        if (laneConnector.getPointByDist(50, outPoint,UnitOfMeasure.Metric)) {
+                            System.out.println("id为" + connector.id() + "的连接段的车道连接" + laneConnector.id() + "的中心线起点向前延伸dist米距离后所在点为" + outPoint);
+                        }
 
                     }
                 }
@@ -4003,13 +4397,13 @@ for connector in lConnectors:
 
 
 
- **void setOtherAttr(JsonObject attr)**
+ **void setOtherAttr(JsonObject attr);**
 
 设置车道连接其它属性, 方便二次开发过程中使用
 
 举例: 
 
-```python
+```java
 // 设置车道连接其它属性
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4034,50 +4428,151 @@ if (iface != null) {
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-showLaneConnectorAttr(netiface)
-def showLaneConnectorAttr(self, netiface): 
-    connector = netiface.findConnector(netiface.connectorIds()[0])
-    laneConnector = connector.laneConnectors()[0]
-    print(f"===laneConnector id={laneConnector.id()}, 类型gtype={laneConnector.gtype()}, "
-          f"其所属的连接段={laneConnector.connector()}, 所属section={laneConnector.section()}, "
-          f"fromLane={laneConnector.fromLane()}, toLane={laneConnector.toLane()}, "
-          f"fromLaneObject={laneConnector.fromLaneObject()}, toLaneObject={laneConnector.toLaneObject()}, "
-          f"长度length（像素制）={laneConnector.length()}, 米制={laneConnector.length(UnitOfMeasure.Metric)}, "
-          f"centerBreakPoints(像素制)={laneConnector.centerBreakPoints()}, centerBreakPoints(米制)={laneConnector.centerBreakPoints(UnitOfMeasure.Metric)}, "
-          f"leftBreakPoints(像素制)={laneConnector.leftBreakPoints()}, leftBreakPoints(米制)={laneConnector.leftBreakPoints(UnitOfMeasure.Metric)}, "
-          f"rightBreakPoints(像素制)={laneConnector.rightBreakPoints()}, rightBreakPoints(米制)={laneConnector.rightBreakPoints(UnitOfMeasure.Metric)}, "
-          f"centerBreakPoint3Ds(像素制)={laneConnector.centerBreakPoint3Ds()}, centerBreakPoint3Ds(米制)={laneConnector.centerBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"leftBreakPoint3Ds(像素制)={laneConnector.leftBreakPoint3Ds()}, leftBreakPoint3Ds(米制)={laneConnector.leftBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"rightBreakPoint3Ds(像素制)={laneConnector.rightBreakPoint3Ds()}, rightBreakPoint3Ds(米制)={laneConnector.rightBreakPoint3Ds(UnitOfMeasure.Metric)}, "
-          f"leftBreak3DsPartly(像素制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints()[1], laneConnector.leftBreakPoints()[-1])}, "
-          f"leftBreak3DsPartly(米制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[1], laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[-1], UnitOfMeasure.Metric)}, "
-          f"rightBreak3DsPartly(像素制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints()[1], laneConnector.leftBreakPoints()[-1])}, "
-          f"rightBreak3DsPartly(米制)={laneConnector.leftBreak3DsPartly(laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[1], laneConnector.leftBreakPoints(UnitOfMeasure.Metric)[-1], UnitOfMeasure.Metric)}, "
-          f"distToStartPoint(像素制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints()[0])}, distToStartPoint(米制)={laneConnector.distToStartPoint(laneConnector.centerBreakPoints(UnitOfMeasure.Metric)[0], UnitOfMeasure.Metric)}, "
-          f"设置自定义属性setOtherAttr={laneConnector.setOtherAttr({'newAttr': 'add a new attr'})}")
-    outPoint = QPointF()
-    outIndex = 0
-    outPoint1 = QPointF()
-    outIndex1 = 0
-    laneConnector.getPointAndIndexByDist(2.0, outPoint, outIndex)
-    laneConnector.getPointAndIndexByDist(2.0, outPoint1, outIndex1, UnitOfMeasure.Metric)
-    print(f"getPointAndIndexByDist(像素制)={outPoint, outIndex}, getPointAndIndexByDist(米制)={outPoint1, outIndex1}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    // 获取路网子接口
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        // 调用方法展示连接段属性
+        showConnectorAttr(netiface);
+    }
+}
+ 
+public static void showLaneConnectorAttr(NetInterface netiface) {
+        // 获取第一个连接段（通过ID查找）
+        List<Long> connectorIds = netiface.connectorIds();
+        if (connectorIds == null || connectorIds.isEmpty()) {
+            System.out.println("未找到有效的连接段ID");
+            return;
+        }
+        IConnector connector = netiface.findConnector(connectorIds.get(0));
+        if (connector == null) {
+            System.out.println("未找到ID对应的连接段");
+            return;
+        }
 
-    outPoint2 = QPointF()
-    outPoint3 = QPointF()
-    laneConnector.getPointByDist(2.0, outPoint2)
-    laneConnector.getPointByDist(2.0, outPoint3, UnitOfMeasure.Metric)
-    print(f"getPointByDist(像素制)={outPoint2}, getPointByDist(米制)={outPoint3}")
+        // 获取第一个车道连接段
+        List<ILaneConnector> laneConnectors = connector.laneConnectors();
+        if (laneConnectors == null || laneConnectors.isEmpty()) {
+            System.out.println("当前连接段无车道连接段");
+            return;
+        }
+        ILaneConnector laneConnector = laneConnectors.get(0);
 
+        // 构建自定义属性（JSON格式）
+        JsonObject otherAttr = Json.createObjectBuilder()
+                .add("newAttr", "add a new attr")
+                .build();
+        // 执行设置操作（返回void的方法单独调用）
+        laneConnector.setOtherAttr(otherAttr);
 
-    dist = laneConnector.distToStartPointWithSegmIndex(outPoint, outIndex)
-    dist1 = laneConnector.distToStartPointWithSegmIndex(outPoint1, outIndex1, UnitOfMeasure.Metric)
-    print(f"distToStartPointWithSegmIndex(像素制)={dist}, distToStartPointWithSegmIndex(米制)={dist1}")
+        // 预获取断点集（避免重复调用，提升效率）
+        List<Point> leftBreakPointsPixel = laneConnector.leftBreakPoints();
+        List<Point> leftBreakPointsMetric = laneConnector.leftBreakPoints(UnitOfMeasure.Metric);
+        List<Point> centerBreakPointsPixel = laneConnector.centerBreakPoints();
+        List<Point> centerBreakPointsMetric = laneConnector.centerBreakPoints(UnitOfMeasure.Metric);
 
+        // 输出车道连接段基础属性
+        System.out.printf(
+                "===laneConnector id=%d, 类型gtype=%s, %n" +
+                        "其所属的连接段=%s, 所属section=%s, %n" +
+                        "fromLane=%s, toLane=%s, %n" +
+                        "fromLaneObject=%s, toLaneObject=%s, %n" +
+                        "长度length（像素制）=%.2f, 米制=%.2f, %n" +
+                        "centerBreakPoints(像素制)=%s, centerBreakPoints(米制)=%s, %n" +
+                        "leftBreakPoints(像素制)=%s, leftBreakPoints(米制)=%s, %n" +
+                        "rightBreakPoints(像素制)=%s, rightBreakPoints(米制)=%s, %n" +
+                        "centerBreakPoint3Ds(像素制)=%s, centerBreakPoint3Ds(米制)=%s, %n" +
+                        "leftBreakPoint3Ds(像素制)=%s, leftBreakPoint3Ds(米制)=%s, %n" +
+                        "rightBreakPoint3Ds(像素制)=%s, rightBreakPoint3Ds(米制)=%s, %n",
+                laneConnector.id(),
+                laneConnector.gtype(),
+                laneConnector.connector(),
+                laneConnector.section(),
+                laneConnector.fromLane(),
+                laneConnector.toLane(),
+                laneConnector.fromLaneObject(),
+                laneConnector.toLaneObject(),
+                laneConnector.length(),
+                laneConnector.length(UnitOfMeasure.Metric),  // 米制
+                centerBreakPointsPixel,
+                centerBreakPointsMetric,
+                leftBreakPointsPixel,
+                leftBreakPointsMetric,
+                laneConnector.rightBreakPoints(),
+                laneConnector.rightBreakPoints(UnitOfMeasure.Metric),  // 米制
+                laneConnector.centerBreakPoint3Ds(),
+                laneConnector.centerBreakPoint3Ds(UnitOfMeasure.Metric),  // 米制
+                laneConnector.leftBreakPoint3Ds(),
+                laneConnector.leftBreakPoint3Ds(UnitOfMeasure.Metric),  // 米制
+                laneConnector.rightBreakPoint3Ds(),
+                laneConnector.rightBreakPoint3Ds(UnitOfMeasure.Metric)   // 米制
+        );
+
+        // 输出部分断点集及距离信息（处理可能的空集合）
+        System.out.printf(
+                "leftBreak3DsPartly(像素制)=%s, %n" +
+                        "leftBreak3DsPartly(米制)=%s, %n" +
+                        "rightBreak3DsPartly(像素制)=%s, %n" +
+                        "rightBreak3DsPartly(米制)=%s, %n" +
+                        "distToStartPoint(像素制)=%.2f, distToStartPoint(米制)=%.2f, %n" +
+                        "设置自定义属性setOtherAttr=成功%n",
+                // 左侧部分断点（像素制）：需至少2个断点
+                (leftBreakPointsPixel.size() >= 2) ? laneConnector.leftBreak3DsPartly(leftBreakPointsPixel.get(1), leftBreakPointsPixel.get(leftBreakPointsPixel.size() - 1)) : "断点不足",
+                // 左侧部分断点（米制）
+                (leftBreakPointsMetric.size() >= 2) ? laneConnector.leftBreak3DsPartly(leftBreakPointsMetric.get(1), leftBreakPointsMetric.get(leftBreakPointsMetric.size() - 1), UnitOfMeasure.Metric) : "断点不足",
+                // 右侧部分断点（像素制）
+                (leftBreakPointsPixel.size() >= 2) ? laneConnector.rightBreak3DsPartly(leftBreakPointsPixel.get(1), leftBreakPointsPixel.get(leftBreakPointsPixel.size() - 1)) : "断点不足",
+                // 右侧部分断点（米制）
+                (leftBreakPointsMetric.size() >= 2) ? laneConnector.rightBreak3DsPartly(leftBreakPointsMetric.get(1), leftBreakPointsMetric.get(leftBreakPointsMetric.size() - 1), UnitOfMeasure.Metric) : "断点不足",
+                // 到起点的距离（像素制）：需至少1个断点
+                (centerBreakPointsPixel.size() >= 1) ? laneConnector.distToStartPoint(centerBreakPointsPixel.get(0)) : 0.0,
+                // 到起点的距离（米制）
+                (centerBreakPointsMetric.size() >= 1) ? laneConnector.distToStartPoint(centerBreakPointsMetric.get(0), UnitOfMeasure.Metric) : 0.0
+        );
+
+        // 1. 调用getPointAndIndexByDist方法（获取指定距离的点及分段序号）
+        // 像素制
+        Point outPoint = new Point();
+        ObjInt outIndex = new ObjInt(0);
+        laneConnector.getPointAndIndexByDist(2.0, outPoint, outIndex);
+        // 米制
+        Point outPoint1 = new Point();
+        ObjInt outIndex1 = new ObjInt(0);
+        laneConnector.getPointAndIndexByDist(2.0, outPoint1, outIndex1, UnitOfMeasure.Metric);
+        // 输出结果
+        System.out.printf(
+                "getPointAndIndexByDist(像素制)=(%d, %d), 分段序号=%d; getPointAndIndexByDist(米制)=(%d, %d), 分段序号=%d%n",
+                outPoint.getX(), outPoint.getY(), outIndex.getValue(),
+                outPoint1.getX(), outPoint1.getY(), outIndex1.getValue()
+        );
+
+        // 2. 调用getPointByDist方法（获取指定距离的点）
+        // 像素制
+        Point outPoint2 = new Point();
+        laneConnector.getPointByDist(2.0, outPoint2);
+        // 米制
+        Point outPoint3 = new Point();
+        laneConnector.getPointByDist(2.0, outPoint3, UnitOfMeasure.Metric);
+        // 输出结果
+        System.out.printf(
+                "getPointByDist(像素制)=(%d, %d); getPointByDist(米制)=(%d, %d)%n",
+                outPoint2.getX(), outPoint2.getY(),
+                outPoint3.getX(), outPoint3.getY()
+        );
+
+        // 3. 调用distToStartPointWithSegmIndex方法（获取点到起点的距离及分段序号）
+        // 像素制
+        double dist = laneConnector.distToStartPointWithSegmIndex(outPoint, 0);
+        // 米制
+        double dist1 = laneConnector.distToStartPointWithSegmIndex(outPoint1, 0,false);
+        // 输出结果
+        System.out.printf(
+                "distToStartPointWithSegmIndex(像素制)=%.2f; distToStartPointWithSegmIndex(米制)=%.2f%n",
+                dist, dist1
+        );
+    }
 ```
 
 
@@ -4088,13 +4583,13 @@ def showLaneConnectorAttr(self, netiface):
 
 面域接口, 方法如下: 
 
- **int id()**
+ **int id();**
 
 获取面域ID, 面域是指若干Connector重叠形成的区域
 
 举例: 
 
-```python
+```java
 // 获取面域ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4109,13 +4604,13 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<IConnector> allConnector()**
+ **ArrayList<IConnector> allConnector();**
 
 获取当前面域包含的所有连接段, 返回类型列表, 元素为IConnector对象
 
 举例: 
 
-```python
+```java
 // 获取当前面域包含的所有连接段
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -4133,7 +4628,7 @@ if (iface != null) {
         }
 ```
 
- **Point centerPoint()**
+ **Point centerPoint(UnitOfMeasure unit);**
 
 获取面域中心点, 默认单位: 像素; 可通过unit参数设置单位
 
@@ -4142,7 +4637,7 @@ if (iface != null) {
 
  举例: 
 
-```python
+```java
 // 获取面域中心点
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -4152,6 +4647,7 @@ if (iface != null) {
                 List<IConnectorArea> lConnectorAreas = netiface.allConnectorArea();
                 for (IConnectorArea connectorArea : lConnectorAreas) {
                     System.out.println("id为" + connectorArea.id() + "的面域中心点为" + connectorArea.centerPoint());
+                    System.out.println("id为" + connectorArea.id() + "的面域中心点为" + connectorArea.centerPoint(UnitOfMeasure.Metric));
                 }
             }
         }
@@ -4159,7 +4655,7 @@ if (iface != null) {
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
             // 代表TESS NG的路网子接口
@@ -4191,13 +4687,13 @@ private static void showConnectorAreaAttr(NetInterface netiface) {
 
 发车点接口, 方法如下: 
 
- **int id()**
+ **int id();**
 
 获取发车点ID
 
 举例: 
 
-```python
+```java
 // 获取发车点ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4212,13 +4708,13 @@ if (iface != null) {
 }
 ```
 
- **String name()**
+ **String name();**
 
 获取发车名称
 
 举例: 
 
-```python
+```java
 // 获取发车名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4233,13 +4729,13 @@ if (iface != null) {
 }
 ```
 
- **ILink link()**
+ **ILink link();**
 
 获取发车点所在路段
 
 举例: 
 
-```python
+```java
 // 获取发车点所在路段
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4257,7 +4753,7 @@ if (iface != null) {
 }
 ```
 
- **int addDispatchInterval(int vehiCompId, int interval, int vehiCount)**
+ **int addDispatchInterval(int vehiCompId, int interval, int vehiCount);**
 
 为发车点增加发点间隔
 
@@ -4272,7 +4768,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 新建发车点, 车型组成ID为动态创建的, 600秒发300辆车
 
     if (link != null) {
@@ -4285,13 +4781,13 @@ if (iface != null) {
 
 ```
 
- **Vector<Point> polygon()**
+ **Vector<Point> polygon();**
 
 获取发车点多边型轮廓
 
 举例: 
 
-```python
+```java
 // 获取发车点多边型轮廓
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -4311,7 +4807,7 @@ if (iface != null) {
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     // 代表TESS NG的路网子接口
@@ -4348,13 +4844,13 @@ private static void showDispatchPointAttr(NetInterface netiface) {
 
 决策点接口, 方法如下: 
 
- **int id()**
+ **int id();**
 
 获取决策点ID
 
 举例: 
 
-```python
+```java
 // 获取决策点ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4369,13 +4865,13 @@ if (iface != null) {
 }
 ```
 
- **String name( )**
+ **String name( );**
 
 获取决策点名称
 
 举例: 
 
-```python
+```java
 // 获取决策点名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4390,13 +4886,13 @@ if (iface != null) {
 }
 ```
 
- **ILink link()**
+ **ILink link();**
 
 获取决策点所在路段
 
 举例: 
 
-```python
+```java
 // 获取决策点所在路段
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4414,7 +4910,7 @@ if (iface != null) {
 }
 ```
 
- **double distance()**
+ **double distance(UnitOfMeasure unit);**
 
 获取距路段起点距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -4423,7 +4919,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取距路段起点距离
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -4433,18 +4929,19 @@ if (iface != null) {
                 List<IDecisionPoint> lDecisionPoints = netiface.decisionPoints();
                 for (IDecisionPoint decisionPoint : lDecisionPoints) {
                     System.out.println("决策点" + decisionPoint.id() + "距路段起点距离=" + decisionPoint.distance());
+                    System.out.println("决策点" + decisionPoint.id() + "距路段起点距离(米)=" + decisionPoint.distance(UnitOfMeasure.Metric));
                 }
             }
         }
 ```
 
- **ArrayList<IRouting> routings()**
+ **ArrayList<IRouting> routings();**
 
 获取决策点控制的所有决策路径, 返回类型列表, 元素为IRouting对象
 
 举例: 
 
-```python
+```java
 // 获取决策点控制的所有决策路径
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4462,13 +4959,13 @@ if (iface != null) {
 }
 ```
 
- **Vector<Point> polygon()**
+ **Vector<Point> polygon();**
 
 获取决策点多边型轮廓
 
 举例: 
 
-```python
+```java
 // 获取决策点多边型轮廓
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4486,7 +4983,7 @@ if (iface != null) {
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
             // 代表TESS NG的路网子接口
@@ -4546,13 +5043,13 @@ private static void showDecisionPointAttr(NetInterface netiface) {
 
 路径接口, 方法如下: 
 
- **int id()**
+ **int id();**
 
 获取路径ID
 
 举例: 
 
-```python
+```java
 // 获取路径ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4570,7 +5067,7 @@ if (iface != null) {
 }
 ```
 
- **double calcuLength()**
+ **double calcuLength(UnitOfMeasure unit);**
 
 计算路径长度, 默认单位: 像素, 可通过unit参数设置单位  
 
@@ -4579,7 +5076,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
             NetInterface netiface = iface.netInterface();
@@ -4589,19 +5086,20 @@ TessInterface iface = TESSNG.tessngIFace();
                     List<IRouting> lRoutings = decisionPoint.routings();
                     for (IRouting routing : lRoutings) {
                         System.out.println("决策点" + decisionPoint.id() + "的决策路径" + routing.id() + "长度=" + routing.calcuLength());
+                        System.out.println("决策点" + decisionPoint.id() + "的决策路径" + routing.id() + "长度(米)=" + routing.calcuLength(UnitOfMeasure.Metric));
                     }
                 }
             }
         }
 ```
 
- **ArrayList<ILink> getLinks()**
+ **ArrayList<ILink> getLinks();**
 
 获取当前路径的路段序列, 不包含连接段
 
 举例: 
 
-```python
+```java
 // 获取当前路径的路段序列
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -4621,13 +5119,13 @@ TessInterface iface = TESSNG.tessngIFace();
         }
 ```
 
- **int deciPointId()**
+ **int deciPointId();**
 
 获取当前路径所属的决策点ID
 
 举例: 
 
-```python
+```java
 // 获取当前路径所属的决策点ID
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -4644,7 +5142,7 @@ TessInterface iface = TESSNG.tessngIFace();
         }
 ```
 
- **boolean contain(ISection pRoad)**
+ **boolean contain(ISection pRoad);**
 
 判定道路是否在当前路径上, 入参需是ISection对象
 
@@ -4653,7 +5151,7 @@ TessInterface iface = TESSNG.tessngIFace();
 
 举例: 
 
-```python
+```java
 // 判定道路是否在当前路径上
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4673,7 +5171,7 @@ if (iface != null) {
 }
 ```
 
- **ISection nextRoad(ISection pRoad)**
+ **ISection nextRoad(ISection pRoad);**
 
 根据当前路径, 获取所给道路的下一条道路, 返回类型为ISection, 即下一条路段可能是Link也可能是Connector
 
@@ -4683,7 +5181,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 根据当前路径, 获取所给道路的下一条道路
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -4705,7 +5203,7 @@ if (iface != null) {
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     // 代表TESS NG的路网子接口
@@ -4765,39 +5263,48 @@ private static void showRoutingAttr(NetInterface netiface) {
 
 信号机接口
 
- **def id(self) -> int: ...**
+ **ArrayList<Long> signalControllerIds();**
 
 获取信控机ID 
 
 举例: 
 
-```python
+```java
 # 获取信控机ID
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    print(f"信控机ID为{signalController.id()}")
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<Long> lSignalControllerIds= netiface.signalControllerIds();
+        for(long signalControllerId : lSignalControllerIds){
+            System.out.println("信控机ID为"+signalControllerId);
+        }
+    }
+}
 ```
 
- **def name(self) -> str: ...**
+ **String name();**
 
 获取信控机名称
 
 举例: 
 
-```python
+```java
 # 获取信控机名称
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers:
-    print(f"信控机{signalController.id()}名称={signalController.name()}")
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<Long> lSignalControllerIds= netiface.signalControllerIds();
+        for(long signalControllerId : lSignalControllerIds){
+            System.out.println("信控机 "+signalControllerId+"名称="+netiface.findSignalControllerById(signalControllerId).name());
+        }
+    }
+}
 ```
 
- **def setName(name: str) -> None: ...**
+ **void setName(String name);**
 
 设置信控机名称  
 
@@ -4806,18 +5313,23 @@ for signalController in lSignalControllers:
 
 举例: 
 
-```python
-# 设置信控机名称
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    print(f"设置信控机{signalController.id()}名称, 返回值={signalController.setName('new_'+signalController.name())}")
-    print(f"获取信控机{signalController.id()}名称={signalController.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<Long> lSignalControllerIds= netiface.signalControllerIds();
+            for(long signalControllerId : lSignalControllerIds){
+                ISignalController signalController =  netiface.findSignalControllerById(signalControllerId);
+                signalController.setName("new_name");
+                System.out.println("设置信控机"+signalControllerId+"名称="+signalController.name());
+            }
+        }
+    }
 ```
 
- **def addPlan(plan: Tessng.ISignalPlan) -> None: ...**
+ **void addPlan(ISignalPlan plan);**
 
  为信号机添加信控方案  
 
@@ -4826,21 +5338,24 @@ for signalController in lSignalControllers:
 
 举例: 
 
-```python
+```java
 # 为信号机添加信控方案
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    print(f"移除/删除信号机{signalController.id()}的信控方案")
-    signalController.removePlan(plans[0])
-    print(f"为信号机{signalController.id()}添加信控方案")
-    signalController.addPlan(plans[0])
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<Long> lSignalControllerIds= netiface.signalControllerIds();
+            for(long signalControllerId : lSignalControllerIds){
+                ISignalController signalController =  netiface.findSignalControllerById(signalControllerId);
+                ArrayList<ISignalPlan>  signalPlans= signalController.plans();
+                System.out.println("为信号机"+signalControllerId+"添加信控方案" );
+                signalController.addPlan(signalPlans.get(0));
+            }
+        }
+    }
 ```
 
- **def removePlan(plan: Tessng.ISignalPlan) -> None: ...**
+ **void removePlan(ISignalPlan plan);**
 
  移除/删除信号机的信控方案  
 
@@ -4849,75 +5364,109 @@ for signalController in lSignalControllers:
 
 举例: 
 
-```python
-# 移除/删除信号机的信控方案
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    print(f"移除/删除信号机{signalController.id()}的信控方案")
-    signalController.removePlan(plans[0])
+```java
+//移除/删除信号机的信控方案
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+NetInterface netiface = iface.netInterface();
+if (netiface != null) {
+    List<Long> lSignalControllerIds= netiface.signalControllerIds();
+    for(long signalControllerId : lSignalControllerIds){
+        ISignalController signalController =  netiface.findSignalControllerById(signalControllerId);
+        ArrayList<ISignalPlan>  signalPlans= signalController.plans();
+        System.out.println("移除/删除信号机"+signalControllerId+"的信控方案" );
+        signalController.removePlan(signalPlans.get(0));
+    }
+}
+}
 ```
 
- **def IPlans(self) -> typing.List<Tessng.ISignalPlan>: ...**
+ **ArrayList<ISignalPlan> plans();**
 
  获取当前信号机中所有的信控方案  
 
 举例: 
 
-```python
-# 获取当前信号机中所有的信控方案
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    print(f"获取信号机{signalController.id()}中所有的信控方案={signalController.IPlans()}")
+```java
+// 获取当前信号机中所有的信控方案
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<Long> lSignalControllerIds= netiface.signalControllerIds();
+        for(long signalControllerId : lSignalControllerIds){
+            ISignalController signalController =  netiface.findSignalControllerById(signalControllerId);
+            System.out.println("获取当前信号机"+signalControllerId+"中所有的信控方案"+signalController.plans() );
+        }
+    }
+}
 ```
 
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-# 创建信控方案
-signalPlan = netiface.createSignalPlan(signalController, "早高峰", 150, 50, 0, 1800) # createSignalPlan
-# 创建方向详情--相位
-green = Online.ColorInterval("绿", 50)
-yellow = Online.ColorInterval("黄", 3)
-red = Online.ColorInterval("红", 97)
-w_e_straight_phasecolor = [green, yellow, red]
-w_e_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行", w_e_straight_phasecolor)
-we_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行行人", w_e_straight_phasecolor)
-w_e_straight_lamps = []
-for lane in w_approach.lanes(): 
-    if lane.number()< w_approach.laneCount()-1 and lane.number()>0: 
-        signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
-        w_e_straight_lamps.append(signalLamp)
-for lane in e_approach.lanes(): 
-    if lane.number()< e_approach.laneCount()-1 and lane.number()>0: 
-        signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
-        w_e_straight_lamps.append(signalLamp)
+```java
+TessInterface iface = TESSNG.tessngIFace();
 
-signalController = netiface.createSignalController("交叉口1")
-showSignalControllerAttr(netiface)
-def showSignalControllerAttr(netiface): 
-    controllers = netiface.signalControllers()
-    controllerCount = netiface.signalControllerCount()
-    signalControllerIds = netiface.signalControllerIds()
-    controller = netiface.findSignalControllerById(signalControllerIds[0])
-    controller = netiface.findSignalControllerByName(controllers[0].name())
-    print(f"路网中的信号机总数={controllerCount}, 所有的信号机id列表={signalControllerIds}, 信号机编号={signalControllerIds[0]}的具体信息: "
-          f"编号={controller.id()}, 名称={controller.name()}, 设置新名字={controller.setName('new_'+controller.name())}, "
-          f"获取信号机的信控方案={controller.IPlans()}")
-    IPlans = controller.IPlans()
-    print(f"移除/删除信号机的信控方案={controller.removePlan(IPlans[0])}")
-    print(f"为信号机添加信控方案, 添加回原有信控方案={controller.addPlan(IPlans[0])}")
-    print(f"信号机当前信控方案={controller.IPlans()}")
+if (iface != null) {
+NetInterface netiface = iface.netInterface();
+if (netiface != null) {
+    ISignalController signalController = netiface.createSignalController("交叉口1");
+
+    ISignalPlan signalPlan = netiface.createSignalPlan(signalController, "早高峰", 150, 50, 0, 1800);
+
+    ColorInterval green = new ColorInterval("绿", 50);
+    ColorInterval yellow = new ColorInterval("黄", 3);
+    ColorInterval red = new ColorInterval("红", 97);
+    ArrayList<ColorInterval>   w_e_straight_phasecolor = new ArrayList<>
+        (Arrays.asList(green, yellow, red));
+    ISignalPhase w_e_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行", w_e_straight_phasecolor);
+    ISignalPhase we_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行行人", w_e_straight_phasecolor);
+
+    Point startPoint = new Point(-300, 6);
+    Point endPoint = new Point(-25, 6);
+    ArrayList<Point> lPoint = new ArrayList<>(Arrays.asList(startPoint, endPoint));
+
+    ILink w_approach = netiface.createLink(lPoint,3,"西进口",true,UnitOfMeasure.Metric);
+
+    Point3D startPoint1 = new Point3D(300, -6, 0);
+    Point3D endPoint1 = new Point3D(25, -6, 0);
+    ArrayList<Point3D> lPoint1 = new ArrayList<>(Arrays.asList(startPoint1, endPoint1));
+    ILink e_approach = netiface.createLink3D(lPoint1,3,"西进口",true,UnitOfMeasure.Metric);
+
+    java.util.ArrayList<ISignalLamp> w_e_straight_lamps = new java.util.ArrayList<>();
+    for (ILane lane : w_approach.lanes()) {
+        if (lane.number() < w_approach.laneCount() - 1 && lane.number() > 0) {
+            ISignalLamp signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length() - 0.5);
+            w_e_straight_lamps.add(signalLamp);
+        }
+    }
+    for (ILane lane : e_approach.lanes()) {
+        if (lane.number() < e_approach.laneCount() - 1 && lane.number() > 0) {
+            ISignalLamp signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length() - 0.5);
+            w_e_straight_lamps.add(signalLamp);
+        }
+    }
+
+    // 展示信号控制器属性
+    showSignalControllerAttr(netiface);
+}
+}
+private static void showSignalControllerAttr(NetInterface netiface) {
+        int controllerCount = netiface.signalControllerCount();
+        
+        List<Long> signalControllerIds = netiface.signalControllerIds();
+        ISignalController controller = netiface.findSignalControllerById(signalControllerIds.get(0));
+        System.out.println("路网中的信号机总数=" + controllerCount + ", 所有的信号机id列表=" + signalControllerIds + ", 信号机编号=" + signalControllerIds.get(0) + "的具体信息: "
+                + "编号=" + controller.id() + ", 名称=" + controller.name());
+        controller.setName("new_name");
+        System.out.println(", 设置新名字=new_" + controller.name()+ ", "+ "获取信号机的信控方案=" + controller.plans() );
+        List<Long> lsignalPlanIds= netiface.signalPlanIds();
+        for(long signalControllerId : signalControllerIds){
+            ISignalController signalController =  netiface.findSignalControllerById(signalControllerId);
+            System.out.println("移除/删除信号机"+signalControllerId+"的信控方案" );
+            signalController.removePlan(signalController.plans().get(0));
+        }
+    }
 ```
 
 
@@ -4926,127 +5475,166 @@ def showSignalControllerAttr(netiface):
 
 信号控制方案接口
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取信控方案ID 
 
 举例: 
 
-```python
-# 获取当前信号机中所有的信控方案
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"信控方案ID={signalPlan.id()}")
+```java
+// 获取当前信号机中所有的信控方案
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<ISignalController> lSignalControllers = netiface.signalControllers();
+            for (ISignalController signalController : lSignalControllers) {
+                List<ISignalPlan> plans = signalController.plans();
+                for (ISignalPlan signalPlan : plans) {
+                    System.out.println("信控方案ID=" + signalPlan.id());
+                }
+            }
+        }
+    }
 ```
 
- **def name(self) -> str: ...**
+ **String name();**
 
 获取信控方案名称（V3版本的信号灯组名称） 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"信控方案名称={signalPlan.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+NetInterface netiface = iface.netInterface();
+if (netiface != null) {
+    List<ISignalController> lSignalControllers = netiface.signalControllers();
+    for (ISignalController signalController : lSignalControllers) {
+        List<ISignalPlan> plans = signalController.plans();
+        for (ISignalPlan signalPlan : plans) {
+            System.out.println("信控方案名称=" + signalPlan.name());
+        }
+    }
+}
+}
 ```
 
- **def trafficName(self) -> str: ...**
+ **String trafficName();**
 
 获取信号机名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"信号机名称={signalPlan.trafficName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ISignalController> lSignalControllers = netiface.signalControllers();
+        for (ISignalController signalController : lSignalControllers) {
+            List<ISignalPlan> plans = signalController.plans();
+            for (ISignalPlan signalPlan : plans) {
+                System.out.println("信号机名称=" + signalPlan.trafficName());
+            }
+        }
+    }
+}
 ```
 
- **def cycleTime(self) -> int: ...**
+ **int cycleTime();**
 
 获取获取信号周期, 单位: 秒 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"信控方案周期={signalPlan.cycleTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+NetInterface netiface = iface.netInterface();
+if (netiface != null) {
+    List<ISignalController> lSignalControllers = netiface.signalControllers();
+    for (ISignalController signalController : lSignalControllers) {
+        List<ISignalPlan> plans = signalController.plans();
+        for (ISignalPlan signalPlan : plans) {
+            System.out.println("信控方案周期=" + signalPlan.cycleTime());
+        }
+    }
+}
+}
 ```
 
- **def fromTime(self) -> int: ...**
+ **long fromTime();**
 
 获取信控方案起始时间, 单位: 秒 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"信控方案起始时间={signalPlan.fromTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ISignalController> lSignalControllers = netiface.signalControllers();
+                        for (ISignalController signalController : lSignalControllers) {
+                            List<ISignalPlan> plans = signalController.plans();
+                            for (ISignalPlan signalPlan : plans) {
+                                System.out.println("信控方案起始时间=" + signalPlan.fromTime());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def toTime(self) -> int: ...**
+ **long toTime();**
 
 获取信控方案结束时间, 单位: 秒 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"信控方案结束时间={signalPlan.toTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ISignalController> lSignalControllers = netiface.signalControllers();
+        for (ISignalController signalController : lSignalControllers) {
+            List<ISignalPlan> plans = signalController.plans();
+            for (ISignalPlan signalPlan : plans) {
+                System.out.println("信控方案结束时间=" + signalPlan.toTime());
+            }
+        }
+    }
+}
 ```
 
- **def phases(self) -> typing.List<Tessng.ISignalPhase>: ...**
+ **ArrayList<ISignalPhase> phases();**
 
 获取信控方案中的相位列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"信控方案中的相位列表={signalPlan.phases()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ISignalController> lSignalControllers = netiface.signalControllers();
+        for (ISignalController signalController : lSignalControllers) {
+            List<ISignalPlan> plans = signalController.plans();
+            for (ISignalPlan signalPlan : plans) {
+                System.out.println("信控方案中的相位列表=" + signalPlan.phases());
+            }
+        }
+    }
+}
 ```
 
- **def setName( name: str) -> None: ...**
+ **void setName(String name);**
 
 设置信控方案（V3版本的信号灯组）名称 
 
@@ -5056,19 +5644,25 @@ for signalController in lSignalControllers:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"设置信控方案名称={signalPlan.setName('new_'+signalPlan.name())}")
-        print(f"获取信控方案名称={signalPlan.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ISignalController> lSignalControllers = netiface.signalControllers();
+        for (ISignalController signalController : lSignalControllers) {
+            List<ISignalPlan> plans = signalController.plans();
+            for (ISignalPlan signalPlan : plans) {
+                signalPlan.setName("new_" + signalPlan.name());
+                System.out.println("获取信控方案名称=" + signalPlan.name());
+            }
+        }
+    }
+}
 ```
 
- **def setCycleTime(period: int) -> None: ...**
+ **void setCycleTime(int period);**
 
 设置信控方案（V3版本的信号灯组）的信号周期, 单位: 秒 
 
@@ -5078,19 +5672,25 @@ for signalController in lSignalControllers:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"设置信控方案周期={signalPlan.setCycleTime(100)}")
-        print(f"获取信控方案周期={signalPlan.cycleTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ISignalController> lSignalControllers = netiface.signalControllers();
+        for (ISignalController signalController : lSignalControllers) {
+            List<ISignalPlan> plans = signalController.plans();
+            for (ISignalPlan signalPlan : plans) {
+                signalPlan.setCycleTime(100); // 执行设置
+                System.out.println("获取信控方案周期=" + signalPlan.cycleTime());
+            }
+        }
+    }
+}
 ```
 
- **def setFromTime(time: int) -> None: ...**
+ **void setFromTime(long time);**
 
 设置信控方案（V3版本的信号灯组）起作用时段的起始时间, 单位: 秒 
 
@@ -5100,19 +5700,25 @@ for signalController in lSignalControllers:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"设置信控方案起始时间={signalPlan.setFromTime(100)}")
-        print(f"获取信控方案起始时间={signalPlan.fromTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ISignalController> lSignalControllers = netiface.signalControllers();
+        for (ISignalController signalController : lSignalControllers) {
+            List<ISignalPlan> plans = signalController.plans();
+            for (ISignalPlan signalPlan : plans) {
+                signalPlan.setFromTime(100); // 执行设置
+                System.out.println("获取信控方案起始时间=" + signalPlan.fromTime());
+            }
+        }
+    }
+}
 ```
 
- **def setToTime(time: int) -> None: ...**
+ **void setToTime(long time);**
 
 设置信控方案（V3版本的信号灯组）起作用时段的结束时间, 单位: 秒
 
@@ -5122,45 +5728,119 @@ for signalController in lSignalControllers:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        print(f"设置信控方案结束时间={signalPlan.setToTime(100)}")
-        print(f"获取信控方案结束时间={signalPlan.toTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<ISignalController> lSignalControllers = netiface.signalControllers();
+        for (ISignalController signalController : lSignalControllers) {
+            List<ISignalPlan> plans = signalController.plans();
+            for (ISignalPlan signalPlan : plans) {
+                signalPlan.setToTime(100); // 执行设置
+                System.out.println("获取信控方案结束时间=" + signalPlan.toTime());
+            }
+        }
+    }
+}
 ```
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-# 创建信控方案
-signalPlan = netiface.createSignalPlan(signalController, "早高峰", 150, 50, 0, 1800) # createSignalPlan
-# 创建方向详情--相位
-green = Online.ColorInterval("绿", 50)
-yellow = Online.ColorInterval("黄", 3)
-red = Online.ColorInterval("红", 97)
-w_e_straight_phasecolor = [green, yellow, red]
-w_e_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行", w_e_straight_phasecolor)
-we_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行行人", w_e_straight_phasecolor)
-showSignalPlanAttr(netiface)
-def showSignalPlanAttr(netiface): 
-    signalPlans = netiface.signalPlans()
-    signalPlanCount = netiface.signalPlanCount()
-    signalPlanIds = netiface.signalPlanIds()
-    signalPlan = netiface.findSignalPlanById(signalPlanIds[0])
-    signalPlan = netiface.findSignalPlanByName(signalPlans[0].name())
-    print(
-        f"路网中的信控方案总数={signalPlanCount}, 所有信控方案列表={signalPlanIds}, 信控方案编号={signalPlanIds[0]}的具体信息: "
-        f"编号={signalPlan.id()}, 名称={signalPlan.name()}, 所属信号机名称={signalPlan.trafficName()}, 设置新名字={signalPlan.setName('new_' + signalPlan.name())}, "
-        f"获取信控方案信控周期={signalPlan.cycleTime()}, 开始时间-结束时间={signalPlan.fromTime()}-{signalPlan.toTime()}, "
-        f"所有相位信息={signalPlan.phases()}")
+```java
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+    // 1. 获取信号控制器（此处取第一个信号控制器作为示例）
+    List<ISignalController> signalControllers = netiface.signalControllers();
+    if (signalControllers == null || signalControllers.isEmpty()) {
+        System.out.println("无可用信号控制器，无法创建信控方案");
+        break;
+    }
+    ISignalController signalController = signalControllers.get(0);
+    
+    // 2. 创建信控方案（参数对应：信号控制器、名称、周期、基础绿灯时长、偏移量、生效时长）
+    ISignalPlan signalPlan = netiface.createSignalPlan(
+            signalController,
+            "早高峰",  // 信控方案名称
+            150,       // 周期（150秒）
+            50,        // 基础绿灯时长（50秒）
+            0,         // 偏移量
+            1800       // 生效时长（1800秒）
+    );
+    if (signalPlan == null) {
+        System.out.println("信控方案创建失败");
+        break;
+    }
+    System.out.println("信控方案创建成功：ID=" + signalPlan.id() + "，名称=" + signalPlan.name());
+    
+    // 3. 创建灯色周期（绿-黄-红）
+    ColorInterval green = new ColorInterval("绿", 50);   // 绿灯50秒
+    ColorInterval yellow = new ColorInterval("黄", 3);  // 黄灯3秒
+    ColorInterval red = new ColorInterval("红", 97);     // 红灯97秒
+    ArrayList<ColorInterval> w_e_straight_phasecolor = new ArrayList<>(Arrays.asList(green, yellow, red));  // 灯色序列
+    
+    // 4. 创建相位（东西直行机动车相位）
+    ISignalPhase w_e_straight_phase = netiface.createSignalPlanSignalPhase(
+            signalPlan,        // 所属信控方案
+            "东西直行",        // 相位名称
+            w_e_straight_phasecolor  // 关联灯色周期
+    );
+    // 创建行人相位（东西直行行人相位，复用灯色周期）
+    ISignalPhase we_ped_phase = netiface.createSignalPlanSignalPhase(
+            signalPlan,
+            "东西直行行人",
+            w_e_straight_phasecolor
+    );
+    
+    // 输出创建结果
+    if (w_e_straight_phase != null && we_ped_phase != null) {
+        System.out.println("相位创建成功：");
+        System.out.println(" - 东西直行相位：ID=" + w_e_straight_phase.id() + "，名称=" + w_e_straight_phase.phaseName());
+        System.out.println(" - 东西直行行人相位：ID=" + we_ped_phase.id() + "，名称=" + we_ped_phase.phaseName());
+    } else {
+        System.out.println("相位创建失败");
+    }
+    showSignalPlanAttr(netiface);
+    
+    }
+    }
+    private  static  void showSignalPlanAttr(NetInterface netiface){
+        List<ISignalPlan> signalPlans = netiface.signalPlans();
+        int signalPlanCount = netiface.signalPlanCount();
+        List<Long> signalPlanIds = netiface.signalPlanIds();
+
+        if (signalPlanIds != null && !signalPlanIds.isEmpty()) {
+            ISignalPlan signalPlan = netiface.findSignalPlanById(signalPlanIds.get(0));
+            if (signalPlans != null && !signalPlans.isEmpty()) {
+                signalPlan = netiface.findSignalPlanByName(signalPlans.get(0).name());
+            }
+
+            if (signalPlan != null) {
+                // 单独执行名称设置
+                String originalName = signalPlan.name();
+                signalPlan.setName("new_" + originalName);
+
+                // 打印详细属性
+                System.out.printf(
+                        "路网中的信控方案总数=%d, 所有信控方案列表=%s, 信控方案编号=%d的具体信息: " +
+                                "编号=%d, 名称=%s, 所属信号机名称=%s, " +
+                                "获取信控方案信控周期=%d, 开始时间-结束时间=%d-%d, 所有相位信息=%s%n",
+                        signalPlanCount,
+                        signalPlanIds,
+                        signalPlanIds.get(0),
+                        signalPlan.id(),
+                        signalPlan.name(),
+                        signalPlan.trafficName(),
+                        signalPlan.cycleTime(),
+                        signalPlan.fromTime(),
+                        signalPlan.toTime(),
+                        signalPlan.phases()
+                );
+            }
+        }
+    }
 ```
 
 
@@ -5169,83 +5849,112 @@ def showSignalPlanAttr(netiface):
 
 信号灯相位, 接口方法: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取当前相位的相位ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        phases = signalPlan.phases()
-        for signalPhase in phases: 
-            print(f"相位ID={signalPhase.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<ISignalController> lSignalControllers = netiface.signalControllers();
+            for (ISignalController signalController : lSignalControllers) {
+                List<ISignalPlan> plans = signalController.plans();
+
+                for (ISignalPlan signalPlan : plans) {
+                    List<ISignalPhase> phases = signalPlan.phases();
+                    for (ISignalPhase signalPhase : phases) {
+                        System.out.println("相位ID=" + signalPhase.id());
+                    }
+                        
+
+                }
+            }
+        }
+    }
 ```
 
- **def phaseName(self) -> str: ...**
+ **String phaseName();**
 
 获取当前相位的相位名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        phases = signalPlan.phases()
-        for signalPhase in phases: 
-            print(f"相位名称={signalPhase.phaseName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ISignalController> lSignalControllers = netiface.signalControllers();
+                        for (ISignalController signalController : lSignalControllers) {
+                            List<ISignalPlan> plans = signalController.plans();
+                                for (ISignalPlan signalPlan : plans) {
+                                List<ISignalPhase> phases = signalPlan.phases();
+                                for (ISignalPhase signalPhase : phases) {
+                                    System.out.println("相位名称=" + signalPhase.phaseName());
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def signalLamps(self) -> typing.List: ...**
+ **ArrayList<ISignalLamp> signalLamps();**
 
 获取本相位下的信号灯列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        phases = signalPlan.phases()
-        for signalPhase in phases: 
-            print(f"本相位下的信号灯列表={signalPhase.signalLamps()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ISignalController> lSignalControllers = netiface.signalControllers();
+                        for (ISignalController signalController : lSignalControllers) {
+                            List<ISignalPlan> plans = signalController.plans();
+                                for (ISignalPlan signalPlan : plans) {
+                                List<ISignalPhase> phases = signalPlan.phases();
+                                for (ISignalPhase signalPhase : phases) {
+                                    System.out.println("本相位下的信号灯列表=" + signalPhase.signalLamps());
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def listColor(self) -> typing.List: ...**
+ **ArrayList<ColorInterval> listColor();**
 
 获取本相位的相位灯色列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        phases = signalPlan.phases()
-        for signalPhase in phases: 
-            print(f"本相位的相位灯色列表={signalPhase.listColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ISignalController> lSignalControllers = netiface.signalControllers();
+                        for (ISignalController signalController : lSignalControllers) {
+                            List<ISignalPlan> plans = signalController.plans();
+                                for (ISignalPlan signalPlan : plans) {
+                                List<ISignalPhase> phases = signalPlan.phases();
+                                for (ISignalPhase signalPhase : phases) {
+                                    System.out.println("本相位的相位灯色列表=" + signalPhase.listColor());
+                                }
+                            }
+
+                        }
+                    }
+                }
 ```
 
- **def setColorList(self, lColor: typing.List<Online.ColorInterval>) -> None: ...**
+ **void setColorList(ArrayList<ColorInterval> lColor);**
 
 设置当前相位的信号灯色信息列表
 
@@ -5254,20 +5963,33 @@ for signalController in lSignalControllers:
 [ in ] lColor: 灯色时长信息, 包含信号灯颜色和信号灯色时长
 举例: 
 
-```python
-#以L12路段相位直行信号灯相位为例（ID为7）, 由红90绿32黄3红25改为红10绿110黄3红28
-if method_number == 3: 
-    signalPhase_L12_7 = netiface.findSignalPhase(7)
-    color_list = []  # 按照红灯、绿灯、黄灯、红灯顺序计算
-    color_list.append(Online.ColorInterval('红', 10))
-    color_list.append(Online.ColorInterval('绿', 110))
-    color_list.append(Online.ColorInterval('黄', 3))
-    color_list.append(Online.ColorInterval('红', 28))
-    signalPhase_L12_7.setColorList(color_list)
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        // 查找ID为7的相位
+        ISignalPhase signalPhaseL127 = netiface.findSignalPhase(7);
+        if (signalPhaseL127 != null) {
+            // 创建新的灯色列表（红→绿→黄→红）
+            ArrayList<ColorInterval> colorList = new java.util.ArrayList<>();
+            colorList.add(new ColorInterval("红", 10));
+            colorList.add(new ColorInterval("绿", 110));
+            colorList.add(new ColorInterval("黄", 3));
+            colorList.add(new ColorInterval("红", 28));
+            // 设置灯色列表
+            signalPhaseL127.setColorList(colorList);
+            System.out.println("相位ID=7的灯色列表已修改为：" + signalPhaseL127.listColor());
+        } else {
+            System.out.println("未找到ID=7的相位");
+        }
+    }
+}
 
 ```
 
- **def setPhaseName(self, name: str) -> None: ...**
+ **void setPhaseName(String name);**
 
 设置当前相位名称
 
@@ -5277,117 +5999,189 @@ if method_number == 3:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        phases = signalPlan.phases()
-        for signalPhase in phases: 
-            print(f"设置当前相位名称={signalPhase.setPhaseName('new_'+signalPhase.phaseName())}")
-            print(f"获取当前相位名称={signalPhase.phaseName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+NetInterface netiface = iface.netInterface();
+if (netiface != null) {
+    List<ISignalController> lSignalControllers = netiface.signalControllers();
+        for (ISignalController signalController : lSignalControllers) {
+            List<ISignalPlan> plans = signalController.plans();
+            for (ISignalPlan signalPlan : plans) {
+                List<ISignalPhase> phases = signalPlan.phases();
+                for (ISignalPhase signalPhase : phases) {
+                    // 先设置新名称（setPhaseName返回void，单独执行）
+                    signalPhase.setPhaseName("new_" + signalPhase.phaseName());
+                    // 再打印结果
+                    System.out.println("获取当前相位名称=" + signalPhase.phaseName());
+                }
+            }
+        }
+    }
+}
 ```
 
- **def cycleTime(self) -> int: ...**
+ **int cycleTime();**
 
 获取相位周期, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        phases = signalPlan.phases()
-        for signalPhase in phases: 
-            print(f"相位周期={signalPhase.cycleTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ISignalController> lSignalControllers = netiface.signalControllers();
+                            for (ISignalController signalController : lSignalControllers) {
+                                List<ISignalPlan> plans = signalController.plans();
+                                for (ISignalPlan signalPlan : plans) {
+                                    List<ISignalPhase> phases = signalPlan.phases();
+                                    for (ISignalPhase signalPhase : phases) {
+                                        System.out.println("相位周期=" + signalPhase.cycleTime());
+                                    }
+                                }
+                            }
+                    }
+                }
 ```
 
- **def phaseColor(self) -> Online.SignalPhaseColor: ...**
+ **SignalPhaseColor phaseColor();**
 
 获取当前相位灯色, Online.SignalPhaseColor
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        phases = signalPlan.phases()
-        for signalPhase in phases: 
-            print(f"当前相位灯色={signalPhase.phaseColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ISignalController> lSignalControllers = netiface.signalControllers();
+                        
+                            for (ISignalController signalController : lSignalControllers) {
+                                List<ISignalPlan> plans = signalController.plans();
+                                for (ISignalPlan signalPlan : plans) {
+                                    List<ISignalPhase> phases = signalPlan.phases();
+                                    for (ISignalPhase signalPhase : phases) {
+                                        System.out.println("当前相位灯色=" + signalPhase.phaseColor());
+                                    }
+                                }
+                        }
+                    }
+                }
 ```
 
- **def signalPlan(self) -> Tess.ISignalPlan: ...**
+ **ISignalPlan signalPlan();**
 
 获取相位所在信控方案
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ISignalController
-lSignalControllers = netiface.signalControllers()
-for signalController in lSignalControllers: 
-    plans = signalController.IPlans()
-    for signalPlan in plans: 
-        phases = signalPlan.phases()
-        for signalPhase in phases: 
-            print(f"相位所在信控方案={signalPhase.signalPlan()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ISignalController> lSignalControllers = netiface.signalControllers();
+                            for (ISignalController signalController : lSignalControllers) {
+                                List<ISignalPlan> plans = signalController.plans();
+                                for (ISignalPlan signalPlan : plans) {
+                                    List<ISignalPhase> phases = signalPlan.phases();
+
+                                    for (ISignalPhase signalPhase : phases) {
+                                        System.out.println("相位所在信控方案=" + signalPhase.signalPlan());
+                                    }
+                                }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-# 创建信控方案
-signalPlan = netiface.creatSignalPlan(signalController, "早高峰", 150, 50, 0, 1800) # createSignalPlan
-# 创建方向详情--相位
-green = Online.ColorInterval("绿", 50)
-yellow = Online.ColorInterval("黄", 3)
-red = Online.ColorInterval("红", 97)
-w_e_straight_phasecolor = [green, yellow, red]
-w_e_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行", w_e_straight_phasecolor)
-we_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行行人", w_e_straight_phasecolor)
-showSignalPlanAttr(netiface)
-def showSignalPlanAttr(netiface): 
-    signalPlans = netiface.signalPlans()
-    signalPlanCount = netiface.signalPlanCount()
-    signalPlanIds = netiface.signalPlanIds()
-    signalPlan = netiface.findSignalPlanById(signalPlanIds[0])
-    signalPlan = netiface.findSignalPlanByName(signalPlans[0].name())
-    print(
-        f"路网中的信控方案总数={signalPlanCount}, 所有信控方案列表={signalPlanIds}, 信控方案编号={signalPlanIds[0]}的具体信息: "
-        f"编号={signalPlan.id()}, 名称={signalPlan.name()}, 所属信号机名称={signalPlan.trafficName()}, 设置新名字={signalPlan.setName('new_' + signalPlan.name())}, "
-        f"获取信控方案信控周期={signalPlan.cycleTime()}, 开始时间-结束时间={signalPlan.fromTime()}-{signalPlan.toTime()}, "
-        f"所有相位信息={signalPlan.phases()}")
-showSignalPhaseAttr(netiface)
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ISignalController> signalControllers = netiface.signalControllers();
+                        if (signalControllers == null || signalControllers.isEmpty()) {
+                            System.out.println("无可用信号控制器，无法创建信控方案");
+                            break;
+                        }
+                        ISignalController signalController = signalControllers.get(0);
 
-def showSignalPhaseAttr(netiface): 
-    signalPlans = netiface.signalPlans()
-    signalPlan = netiface.findSignalPlanById(signalPlans[0].name())
-    signalPhases = signalPlan.phases()
-    signalPhase = signalPhases[0]
-    print(
-        f"信控方案={signalPlans[0].name()}, 的所有相位列表={signalPhases}, 第一相位={signalPhase.id()}的具体信息: "
-        f"编号={signalPhase.id()}, 名称={signalPhase.phaseName()}, 获取本相位下的信号灯列表={signalPhase.signalLamps()}, "
-        f"获取本相位的相位灯色列表={signalPhase.listColor()}, "
-        f"相位周期, 单位: 秒={signalPhase.cycleTime()}, 当前相位灯色, Online.SignalPhaseColor={signalPhase.phaseColor()}, "
-        f"所在信控方案={signalPhase.signalPlan()}")
+                        ISignalPlan signalPlan = netiface.createSignalPlan(
+                                signalController,
+                                "早高峰",  
+                                150,      
+                                50,       
+                                0,     
+                                1800       
+                        );
+                        if (signalPlan == null) {
+                            System.out.println("信控方案创建失败");
+                            break;
+                        }
+                        System.out.println("信控方案创建成功：ID=" + signalPlan.id());
+
+                        ColorInterval green = new ColorInterval("绿", 50);  
+                        ColorInterval yellow = new ColorInterval("黄", 3);  
+                        ColorInterval red = new ColorInterval("红", 97);     
+                        ArrayList<ColorInterval> w_e_straight_phasecolor = new ArrayList<>(Arrays.asList(green, yellow, red));  
+
+                        ISignalPhase w_e_straight_phase = netiface.createSignalPlanSignalPhase(
+                                signalPlan,
+                                "东西直行",
+                                w_e_straight_phasecolor
+                        );
+                        ISignalPhase we_ped_phase = netiface.createSignalPlanSignalPhase(
+                                signalPlan,
+                                "东西直行行人",
+                                w_e_straight_phasecolor
+                        );
+                        if (w_e_straight_phase != null && we_ped_phase != null) {
+                            System.out.println("相位创建成功：东西直行（ID=" + w_e_straight_phase.id() + "）、东西直行行人（ID=" + we_ped_phase.id() + "）");
+                        } else {
+                            System.out.println("相位创建失败");
+                        }
+                        showSignalPhaseAttr(netiface);
+
+                    }
+                }
+
+private static void showSignalPhaseAttr(NetInterface netiface){
+        List<ISignalPlan> signalPlans = netiface.signalPlans();
+        if (signalPlans != null && !signalPlans.isEmpty()) {
+            ISignalPlan signalPlan = signalPlans.get(0);
+            List<ISignalPhase> signalPhases = signalPlan.phases();
+            if (signalPhases != null && !signalPhases.isEmpty()) {
+                ISignalPhase signalPhase = signalPhases.get(0);
+                System.out.printf(
+                        "信控方案=%s, 的所有相位列表=%s, 第一相位=%d的具体信息: %n" +
+                                "编号=%d, 名称=%s, 本相位下的信号灯列表=%s, %n" +
+                                "相位灯色列表=%s, 相位周期(秒)=%d, 当前相位灯色=%s, %n" +
+                                "所在信控方案=%s%n",
+                        signalPlan.name(),
+                        signalPhases,
+                        signalPhase.id(),
+                        signalPhase.id(),
+                        signalPhase.phaseName(),
+                        signalPhase.signalLamps(),
+                        signalPhase.listColor(),
+                        signalPhase.cycleTime(),
+                        signalPhase.phaseColor(),
+                        signalPhase.signalPlan()
+                );
+            } else {
+                System.out.println("当前信控方案无相位数据");
+            }
+        } else {
+            System.out.println("无信控方案数据");
+        }
+    }
 ```
 
 
@@ -5398,13 +6192,13 @@ def showSignalPhaseAttr(netiface):
 
 信号灯接口, 方法如下: 
 
- **int id()**
+ **int id();**
 
 获取信号灯ID
 
 举例: 
 
-```python
+```java
 // 获取信号灯ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5419,13 +6213,13 @@ if (iface != null) {
 }
 ```
 
- **String color()**
+ **String color();**
 
 获取信号灯当前信号灯色, "R"、“G”、“Y”、“gray”分别表示"红"、"绿"、"黄"、"灰"
 
 举例: 
 
-```python
+```java
 // 获取信号灯当前信号灯色
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5440,13 +6234,13 @@ if (iface != null) {
 }
 ```
 
- **String name()**
+ **String name();**
 
 获取信号灯名称
 
 举例: 
 
-```python
+```java
 // 获取信号灯名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5461,13 +6255,13 @@ if (iface != null) {
 }
 ```
 
- **void setName(String name)**
+ **void setName(String name);**
 
 设置信号灯名称
 
 举例: 
 
-```python
+```java
 // 设置并获取信号灯名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5486,7 +6280,7 @@ if (iface != null) {
 }
 ```
 
- **void setLampColor(String colorStr)**
+ **void setLampColor(String colorStr);**
 
 设置信号灯颜色
 
@@ -5496,7 +6290,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取信号灯颜色
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5514,13 +6308,13 @@ if (iface != null) {
 }
 ```
 
- **ISignalPhase signalPhase()**
+ **ISignalPhase signalPhase();**
 
 获取当前信号灯所在的相位
 
 举例: 
 
-```python
+```java
 // 获取当前信号灯所在的相位
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5535,7 +6329,7 @@ if (iface != null) {
 }
 ```
 
- **void setSignalPhase(ISignalPhase pPhase)**
+ **void setSignalPhase(ISignalPhase pPhase);**
 
 设置信号灯相位
 
@@ -5545,7 +6339,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 为信号灯设置相位
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5565,13 +6359,13 @@ if (iface != null) {
 }
 ```
 
- **ISignalPlan signalPlan()**
+ **ISignalPlan signalPlan();**
 
 获取当前信号灯所在的灯组, 这里灯组类似于一个信号机种的某个信控方案
 
 举例: 
 
-```python
+```java
 // 获取当前信号灯所在的灯组
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5586,7 +6380,7 @@ if (iface != null) {
 }
 ```
 
- **void setDistToStart(double dist)**
+ **void setDistToStart(double dist,UnitOfMeasure unit);**
 
 设置信号灯距路段起点距离, 默认单位: 像素, 可通过unit参数设置单位  
 
@@ -5596,7 +6390,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取信号灯距路段起点距离
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5605,22 +6399,25 @@ if (iface != null) {
         // 获取路网中的所有ISignalLamp
         List<ISignalLamp> lSignalLamps = netiface.signalLamps();
         for (ISignalLamp signalLamp : lSignalLamps) {
-            // 处理void方法：先执行设置操作
             signalLamp.setDistToStart(100);
             System.out.println("设置信号灯距路段起点距离=执行成功");
             System.out.println("获取信号灯距路段起点距离=" + signalLamp);
+            
+            signalLamp.setDistToStart(100,UnitOfMeasure.Metric);
+            System.out.println("设置信号灯距路段起点距离=执行成功");
+            System.out.println("获取信号灯距路段起点距离(米)=" + signalLamp);
         }
     }
 }
 ```
 
- **ILaneObject laneObject()**
+ **ILaneObject laneObject();**
 
 获取所在车道或车道连接
 
 举例: 
 
-```python
+```java
 // 获取信号灯所在车道或车道连接
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5635,13 +6432,13 @@ if (iface != null) {
 }
 ```
 
- **Vector<Point> polygon()**
+ **Vector<Point> polygon();**
 
 获取信号灯多边型轮廓
 
 举例: 
 
-```python
+```java
 // 获取信号灯多边型轮廓
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5656,13 +6453,13 @@ if (iface != null) {
 }
 ```
 
-**double angle()**
+**double angle();**
 
 获取信号灯角度, 正北为0顺时针方向
 
 举例: 
 
-```python
+```java
 // 获取信号灯角度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5679,135 +6476,333 @@ if (iface != null) {
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-# 创建信控方案
-signalPlan = netiface.creatSignalPlan(signalController, "早高峰", 150, 50, 0, 1800) # createSignalPlan
-# 创建方向详情--相位
-green = Online.ColorInterval("绿", 50)
-yellow = Online.ColorInterval("黄", 3)
-red = Online.ColorInterval("红", 97)
-w_e_straight_phasecolor = [green, yellow, red]
-w_e_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行", w_e_straight_phasecolor)
-we_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西直行行人", w_e_straight_phasecolor)
+```java
+if (iface == null) {
+                    System.err.println("无法获取TessInterface实例");
+                    return;
+                }
+                NetInterface netiface = iface.netInterface();
+                if (netiface == null) {
+                    System.err.println("无法获取NetInterface实例");
+                    return;
+                }
 
-red = Online.ColorInterval("红", 53)
-green = Online.ColorInterval("绿", 30)
-yellow = Online.ColorInterval("黄", 3)
-red1 = Online.ColorInterval("红", 64)
-w_e_left_phasecolor = [red, green, yellow, red1]
-w_e_left_phase = netiface.createSignalPlanSignalPhase(signalPlan, "东西左转", w_e_left_phasecolor)
+                ISignalController signalController = netiface.createSignalController("交叉口信号控制器");
+
+                ISignalPlan signalPlan = netiface.createSignalPlan(
+                        signalController,
+                        "早高峰",
+                        150,
+                        50,
+                        0,
+                        1800
+                );
+
+                ColorInterval green = new ColorInterval("绿", 50);
+                ColorInterval yellow = new ColorInterval("黄", 3);
+                ColorInterval red = new ColorInterval("红", 97);
+                ArrayList<ColorInterval> weStraightPhaseColors = new ArrayList<>(Arrays.asList(green, yellow, red));
+
+                ISignalPhase weStraightPhase = netiface.createSignalPlanSignalPhase(
+                        signalPlan, "东西直行", weStraightPhaseColors
+                );
+                ISignalPhase wePedPhase = netiface.createSignalPlanSignalPhase(
+                        signalPlan, "东西直行行人", weStraightPhaseColors
+                );
+
+                ColorInterval red1 = new ColorInterval("红", 53);
+                ColorInterval greenLeft = new ColorInterval("绿", 30);
+                ColorInterval yellowLeft = new ColorInterval("黄", 3);
+                ColorInterval red2 = new ColorInterval("红", 64);
+                ArrayList<ColorInterval> weLeftPhaseColors = new ArrayList<>(Arrays.asList(red1, greenLeft, yellowLeft, red2));
+                ISignalPhase weLeftPhase = netiface.createSignalPlanSignalPhase(
+                        signalPlan, "东西左转", weLeftPhaseColors
+                );
+
+                ColorInterval red3 = new ColorInterval("红", 86);
+                ColorInterval greenNs = new ColorInterval("绿", 30);
+                ColorInterval yellowNs = new ColorInterval("黄", 3);
+                ColorInterval red4 = new ColorInterval("红", 31);
+                ArrayList<ColorInterval> nsStraightPhaseColors = new ArrayList<>(Arrays.asList(red3, greenNs, yellowNs, red4));
+                ISignalPhase nsStraightPhase = netiface.createSignalPlanSignalPhase(
+                        signalPlan, "南北直行", nsStraightPhaseColors
+                );
+                ISignalPhase nsPedPhase = netiface.createSignalPlanSignalPhase(
+                        signalPlan, "南北直行行人", nsStraightPhaseColors
+                );
+
+                ColorInterval red5 = new ColorInterval("红", 119);
+                ColorInterval greenNsLeft = new ColorInterval("绿", 29);
+                ColorInterval yellowNsLeft = new ColorInterval("黄", 3);
+                ArrayList<ColorInterval> nsLeftPhaseColors = new ArrayList<>(Arrays.asList(red5, greenNsLeft, yellowNsLeft));
+                ISignalPhase nsLeftPhase = netiface.createSignalPlanSignalPhase(
+                        signalPlan, "南北左转", nsLeftPhaseColors
+                );
+
+                Point startPoint = new Point(-300, 6);
+                Point endPoint = new Point(-25, 6);
+                ArrayList<Point> lPoint = new ArrayList<>(Arrays.asList(startPoint, endPoint));
+                ILink wApproach = netiface.createLink(lPoint, 3, "西进口道", true, UnitOfMeasure.Metric);
+
+                Point3D startPoint1 = new Point3D(300, -6, 0);
+                Point3D endPoint1 = new Point3D(25, -6, 0);
+                ArrayList<Point3D> lPoint1 = new ArrayList<>(Arrays.asList(startPoint1, endPoint1));
+                ILink eApproach = netiface.createLink3D(lPoint1, 3, "东进口道", true, UnitOfMeasure.Metric);
+
+                Point3D startPoint2 = new Point3D(-6, -300, 0);
+                Point3D endPoint2 = new Point3D(-6, -25, 0);
+                ArrayList<Point3D> lPoint2 = new ArrayList<>(Arrays.asList(startPoint2, endPoint2));
+                ILink nApproach = netiface.createLink3D(lPoint2, 3, "北进口道", true, UnitOfMeasure.Metric);
+
+                Point3D startPoint3 = new Point3D(6, 300, 0);
+                Point3D endPoint3 = new Point3D(6, 25, 0);
+                ArrayList<Point3D> lPoint3 = new ArrayList<>(Arrays.asList(startPoint3, endPoint3));
+                ILink sApproach = netiface.createLink3D(lPoint3, 3, "南进口道", true, UnitOfMeasure.Metric);
 
 
-red = Online.ColorInterval("红", 86)
-green = Online.ColorInterval("绿", 30)
-yellow = Online.ColorInterval("黄", 3)
-red1 = Online.ColorInterval("红", 31)
-s_n_straight_phasecolor = [red, green, yellow, red1]
-s_n_straight_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北直行", s_n_straight_phasecolor)
-ns_ped_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北直行行人", s_n_straight_phasecolor)
+                List<ISignalLamp> weStraightLamps = new java.util.ArrayList<>();
+                if (wApproach != null) {
+                    for (ILane lane : wApproach.lanes()) {
+                        if (lane.number() < wApproach.laneCount() - 1 && lane.number() > 0) {
+                            ISignalLamp signalLamp = netiface.createSignalLamp(
+                                    weStraightPhase,
+                                    "东西直行信号灯",
+                                    lane.id(),
+                                    -1,
+                                    lane.length() - 0.5
+                            );
+                            weStraightLamps.add(signalLamp);
+                        }
+                    }
+                }
+                if (eApproach != null) {
+                    for (ILane lane : eApproach.lanes()) {
+                        if (lane.number() < eApproach.laneCount() - 1 && lane.number() > 0) {
+                            ISignalLamp signalLamp = netiface.createSignalLamp(
+                                    weStraightPhase,
+                                    "东西直行信号灯",
+                                    lane.id(),
+                                    -1,
+                                    lane.length() - 0.5
+                            );
+                            weStraightLamps.add(signalLamp);
+                        }
+                    }
+                }
 
-red = Online.ColorInterval("红", 119)
-green = Online.ColorInterval("绿", 29)
-yellow = Online.ColorInterval("黄", 3)
-s_n_left_phasecolor = [red, green, yellow]
-s_n_left_phase = netiface.createSignalPlanSignalPhase(signalPlan, "南北左转", s_n_left_phasecolor)
+                List<ISignalLamp> weLeftLamps = new java.util.ArrayList<>();
+                if (wApproach != null) {
+                    for (ILane lane : wApproach.lanes()) {
+                        if (lane.number() == wApproach.laneCount() - 1) {
+                            ISignalLamp signalLamp = netiface.createSignalLamp(
+                                    weLeftPhase,
+                                    "东西左转信号灯",
+                                    lane.id(),
+                                    -1,
+                                    lane.length() - 0.5
+                            );
+                            weLeftLamps.add(signalLamp);
+                        }
+                    }
+                }
+                if (eApproach != null) {
+                    for (ILane lane : eApproach.lanes()) {
+                        if (lane.number() == eApproach.laneCount() - 1) {
+                            ISignalLamp signalLamp = netiface.createSignalLamp(
+                                    weLeftPhase,
+                                    "东西左转信号灯",
+                                    lane.id(),
+                                    -1,
+                                    lane.length() - 0.5
+                            );
+                            weLeftLamps.add(signalLamp);
+                        }
+                    }
+                }
 
-# 创建机动车信号灯
-w_e_straight_lamps = []
-for lane in w_approach.lanes(): 
-    if lane.number()< w_approach.laneCount()-1 and lane.number()>0: 
-        signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
-        w_e_straight_lamps.append(signalLamp)
-for lane in e_approach.lanes(): 
-    if lane.number()< e_approach.laneCount()-1 and lane.number()>0: 
-        signalLamp = netiface.createSignalLamp(w_e_straight_phase, "东西直行信号灯", lane.id(), -1, lane.length()-0.5)
-        w_e_straight_lamps.append(signalLamp)
+                List<ISignalLamp> nsStraightLamps = new java.util.ArrayList<>();
+                if (nApproach != null) {
+                    for (ILane lane : nApproach.lanes()) {
+                        if (lane.number() < nApproach.laneCount() - 1 && lane.number() > 0) {
+                            ISignalLamp signalLamp = netiface.createSignalLamp(
+                                    nsStraightPhase,
+                                    "南北直行信号灯",
+                                    lane.id(),
+                                    -1,
+                                    lane.length() - 0.5
+                            );
+                            nsStraightLamps.add(signalLamp);
+                        }
+                    }
+                }
+                if (sApproach != null) {
+                    for (ILane lane : sApproach.lanes()) {
+                        if (lane.number() < sApproach.laneCount() - 1 && lane.number() > 0) {
+                            ISignalLamp signalLamp = netiface.createSignalLamp(
+                                    nsStraightPhase,
+                                    "南北直行信号灯",
+                                    lane.id(),
+                                    -1,
+                                    lane.length() - 0.5
+                            );
+                            nsStraightLamps.add(signalLamp);
+                        }
+                    }
+                }
 
+                List<ISignalLamp> nsLeftLamps = new java.util.ArrayList<>();
+                if (nApproach != null) {
+                    for (ILane lane : nApproach.lanes()) {
+                        if (lane.number() == nApproach.laneCount() - 1) {
+                            ISignalLamp signalLamp = netiface.createSignalLamp(
+                                    nsLeftPhase,
+                                    "南北左转信号灯",
+                                    lane.id(),
+                                    -1,
+                                    lane.length() - 0.5
+                            );
+                            nsLeftLamps.add(signalLamp);
+                        }
+                    }
+                }
+                if (sApproach != null) {
+                    for (ILane lane : sApproach.lanes()) {
+                        if (lane.number() == sApproach.laneCount() - 1) {
+                            ISignalLamp signalLamp = netiface.createSignalLamp(
+                                    nsLeftPhase,
+                                    "南北左转信号灯",
+                                    lane.id(),
+                                    -1,
+                                    lane.length() - 0.5
+                            );
+                            nsLeftLamps.add(signalLamp);
+                        }
+                    }
+                }
 
-w_e_left_lamps = []
-for lane in w_approach.lanes(): 
-    if lane.number()== w_approach.laneCount()-1: 
-        signalLamp = netiface.createSignalLamp(w_e_left_phase, "东西左转信号灯", lane.id(), -1, 
-                                               lane.length() - 0.5)
-        w_e_left_lamps.append(signalLamp)
-for lane in e_approach.lanes(): 
-    if lane.number()== e_approach.laneCount()-1: 
-        signalLamp = netiface.createSignalLamp(w_e_left_phase, "东西左转信号灯", lane.id(), -1, 
-                                               lane.length() - 0.5)
-        w_e_left_lamps.append(signalLamp)
+                IPedestrianCrossWalkRegion nCrosswalk = netiface.createPedestrianCrossWalkRegion(new Point(14, -22), new Point(-14, -22));
+                IPedestrianCrossWalkRegion sCrosswalk = netiface.createPedestrianCrossWalkRegion(new Point(14, 22), new Point(-14, 22));
+                IPedestrianCrossWalkRegion wCrosswalk = netiface.createPedestrianCrossWalkRegion(new Point(-22, -14), new Point(-22, 14));
+                IPedestrianCrossWalkRegion eCrosswalk = netiface.createPedestrianCrossWalkRegion(new Point(22, -14), new Point(22, 14));
 
-n_s_straight_lamps = []
-for lane in n_approach.lanes(): 
-    if lane.number()< n_approach.laneCount()-1 and lane.number()>0: 
-        signalLamp = netiface.createSignalLamp(s_n_straight_phase, "南北直行信号灯", lane.id(), -1, 
-                                               lane.length() - 0.5)
-        n_s_straight_lamps.append(signalLamp)
-for lane in s_approach.lanes(): 
-    if lane.number()< s_approach.laneCount()-1 and lane.number()>0: 
-        signalLamp = netiface.createSignalLamp(s_n_straight_phase, "南北直行信号灯", lane.id(), -1, 
-                                               lane.length() - 0.5)
-        n_s_straight_lamps.append(signalLamp)
+                if (sCrosswalk != null) {
+                    ISignalLamp signalLamp1Positive = netiface.createCrossWalkSignalLamp(
+                            signalController,
+                            "南斑马线信号灯",
+                            sCrosswalk.getId(),
+                            new Point(13, 22),
+                            true
+                    );
+                    ISignalLamp signalLamp1Negative = netiface.createCrossWalkSignalLamp(
+                            signalController,
+                            "南斑马线信号灯",
+                            sCrosswalk.getId(),
+                            new Point(-13, 22),
+                            false
+                    );
+                    signalLamp1Positive.setSignalPhase(wePedPhase);
+                    signalLamp1Negative.setSignalPhase(wePedPhase);
+                }
 
-n_s_left_lamps = []
-for lane in n_approach.lanes(): 
-    if lane.number()== n_approach.laneCount()-1: 
-        signalLamp = netiface.createSignalLamp(s_n_left_phase, "南北左转信号灯", lane.id(), -1, 
-                                               lane.length() - 0.5)
-        n_s_left_lamps.append(signalLamp)
-for lane in s_approach.lanes(): 
-        if lane.number()== s_approach.laneCount()-1: 
-            signalLamp = netiface.createSignalLamp(s_n_left_phase, "南北左转信号灯", lane.id(), -1, 
-                                                   lane.length() - 0.5)
-            n_s_left_lamps.append(signalLamp)
+                if (nCrosswalk != null) {
+                    ISignalLamp signalLamp2Positive = netiface.createCrossWalkSignalLamp(
+                            signalController,
+                            "北斑马线信号灯",
+                            nCrosswalk.getId(),
+                            new Point(13, -22),
+                            true
+                    );
+                    ISignalLamp signalLamp2Negative = netiface.createCrossWalkSignalLamp(
+                            signalController,
+                            "北斑马线信号灯",
+                            nCrosswalk.getId(),
+                            new Point(-13, -22),
+                            false
+                    );
+                    signalLamp2Positive.setSignalPhase(wePedPhase);
+                    signalLamp2Negative.setSignalPhase(wePedPhase);
+                }
 
+                if (eCrosswalk != null) {
+                    ISignalLamp signalLamp3Positive = netiface.createCrossWalkSignalLamp(
+                            signalController,
+                            "东斑马线信号灯",
+                            eCrosswalk.getId(),
+                            new Point(22, -13),
+                            true
+                    );
+                    ISignalLamp signalLamp3Negative = netiface.createCrossWalkSignalLamp(
+                            signalController,
+                            "东斑马线信号灯",
+                            eCrosswalk.getId(),
+                            new Point(22, 13),
+                            false
+                    );
+                    signalLamp3Positive.setSignalPhase(nsPedPhase);
+                    signalLamp3Negative.setSignalPhase(nsPedPhase);
+                }
 
-# 创建行人信号灯, 并行人信号灯关联相位
-signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() , QPointF(13, 22), True)
-signalLamp1_negetive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() , QPointF(-13, 22), False)
-signalLamp1_positive.setSignalPhase(we_ped_phase)
-signalLamp1_negetive.setSignalPhase(we_ped_phase)
-# netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp1_positive)
-# netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp1_negetive)
+                if (wCrosswalk != null) {
+                    ISignalLamp signalLamp4Positive = netiface.createCrossWalkSignalLamp(
+                            signalController,
+                            "西斑马线信号灯",
+                            wCrosswalk.getId(),
+                            new Point(-22, -13),
+                            true
+                    );
+                    ISignalLamp signalLamp4Negative = netiface.createCrossWalkSignalLamp(
+                            signalController,
+                            "西斑马线信号灯",
+                            wCrosswalk.getId(),
+                            new Point(-22, 13),
+                            false
+                    );
+                    signalLamp4Positive.setSignalPhase(nsPedPhase);
+                    signalLamp4Negative.setSignalPhase(nsPedPhase);
+                }
 
-signalLamp2_positive = netiface.createCrossWalkSignalLamp(signalController, "北斑马线信号灯", n_crosswalk.getId() , QPointF(13, -22), True)
-signalLamp2_negetive = netiface.createCrossWalkSignalLamp(signalController, "北斑马线信号灯", n_crosswalk.getId(), QPointF(-13, -22), False)
-signalLamp2_positive.setSignalPhase(we_ped_phase)
-signalLamp2_negetive.setSignalPhase(we_ped_phase)
-# netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp2_positive)
-# netiface.addSignalPhaseToLamp(we_ped_phase.id(), signalLamp2_negetive)
+                showSignalLampAttr(netiface);
 
-signalLamp3_positive = netiface.createCrossWalkSignalLamp(signalController, "东斑马线信号灯", e_crosswalk.getId() , QPointF(22, -13), True)
-signalLamp3_negetive = netiface.createCrossWalkSignalLamp(signalController, "东斑马线信号灯", e_crosswalk.getId() , QPointF(22, 13), False)
-signalLamp3_positive.setSignalPhase(ns_ped_phase)
-signalLamp3_negetive.setSignalPhase(ns_ped_phase)
-# netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp3_positive)
-# netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp3_negetive)
+private static void showSignalLampAttr(NetInterface netiface){
+        int signalLampCount = netiface.signalLampCount();
+        List<Long> signalLampIds = netiface.signalLampIds();
+        List<ISignalLamp> signalLamps = netiface.signalLamps();
 
-signalLamp4_positive = netiface.createCrossWalkSignalLamp(signalController, "西斑马线信号灯", w_crosswalk.getId() , QPointF(-22, -13), True)
-signalLamp4_negetive = netiface.createCrossWalkSignalLamp(signalController, "西斑马线信号灯", w_crosswalk.getId() , QPointF(-22, 13), False)
-signalLamp4_positive.setSignalPhase(ns_ped_phase)
-signalLamp4_negetive.setSignalPhase(ns_ped_phase)
-# netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp4_positive)
-# netiface.addSignalPhaseToLamp(ns_ped_phase.id(), signalLamp4_negetive)
-        
-showSignalLampAttr(netiface)
-    
-def showSignalLampAttr(netiface): 
-    signalLampCount = netiface.signalLampCount()
-    signalLampIds = netiface.signalLampIds()
-    signalLamps = netiface.signalLamps()
-    signalLamp = netiface.findSignalLamp(signalLampIds[0])
+        if (signalLampIds.isEmpty()) {
+            System.out.println("无信号灯数据");
+            return;
+        }
 
-    print(
-        f"机动车信号灯总数={signalLampCount}, 编号列表={signalLampIds}, {signalLamp.id()}的具体信息: "
-        f"编号={signalLamp.id()}, 获取信号灯当前信号灯色={signalLamp.color()}, 名称={signalLamp.name()}, "
-        f"设置信号灯名称={signalLamp.setName('new_' + signalLamp.name())}, "
-        f"获取当前信号灯所在的相位={signalLamp.signalPhase()}, 获取当前信号灯所在的灯组={signalLamp.signalPlan()}, "
-        f"获取所在车道或车道连接={signalLamp.laneObject()}, 获取信号灯多边型轮廓={signalLamp.polygon()}, "
-        f"获取信号灯角度, 正北为0顺时针方向={signalLamp.angle()}")
+        ISignalLamp signalLamp = netiface.findSignalLamp(signalLampIds.get(0));
+        if (signalLamp == null) {
+            System.out.println("未找到指定ID的信号灯");
+            return;
+        }
+
+        String originalName = signalLamp.name();
+        signalLamp.setName("new_name");
+        String newName = signalLamp.name();
+
+        System.out.printf(
+                "机动车信号灯总数=%d, 编号列表=%s, %d的具体信息: %n" +
+                        "编号=%d, 获取信号灯当前灯色=%s, 原名称=%s, %n" +
+                        "新名称=%s, 获取当前信号灯所在的相位=%s, %n" +
+                        "获取当前信号灯所在的灯组=%s, 获取所在车道或车道连接=%s, %n" +
+                        "获取信号灯多边形轮廓=%s, 获取信号灯角度(正北为0顺时针)=%f%n",
+                signalLampCount,
+                signalLampIds,
+                signalLampIds.get(0),
+                signalLamp.id(),
+                signalLamp.color(),
+                originalName,  // 原名称
+                newName,       // 设置后的新名称
+                signalLamp.signalPhase(),
+                signalLamp.signalPlan(),
+                signalLamp.laneObject(),
+                signalLamp.polygon(),
+                signalLamp.angle()
+        );
+    }
 ```
 
 
@@ -5816,13 +6811,13 @@ def showSignalLampAttr(netiface):
 
 公交线路接口, 接口方法: 
 
- **int id()**
+ **int id();**
 
 获取当前公交线路的ID
 
 举例: 
 
-```python
+```java
 // 获取当前公交线路的ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5838,13 +6833,13 @@ if (iface != null) {
 
 ```
 
- **String name()**
+ **String name();**
 
 获取当前公交线路的名称
 
 举例: 
 
-```python
+```java
 // 获取当前公交线路的ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5859,7 +6854,7 @@ if (iface != null) {
 }
 ```
 
- **double length()**
+ **double length(UnitOfMeasure unit);**
 
 获取当前公交线路长度, 默认单位: 像素, 可通过unit参数设置单位 
 
@@ -5868,7 +6863,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取公交线路长度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5878,18 +6873,19 @@ if (iface != null) {
         List<IBusLine> lBusLines = netiface.buslines();
         for (IBusLine busLine : lBusLines) {
             System.out.println("公交线路长度=" + busLine.length());
+            System.out.println("公交线路长度=" + busLine.length(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **int dispatchFreq()**
+ **int dispatchFreq();**
 
 获取当前公交线路的发车间隔, 单位: 秒
 
 举例: 
 
-```python
+```java
 // 获取公交线路发车间隔
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -5904,13 +6900,13 @@ if (iface != null) {
         }
 ```
 
- **int dispatchStartTime()**
+ **int dispatchStartTime();**
 
 获取当前公交线路的发车开始时间, 单位: 秒
 
 举例: 
 
-```python
+```java
 // 获取公交线路发车开始时间
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5925,13 +6921,13 @@ if (iface != null) {
 }
 ```
 
- **int dispatchEndTime()**
+ **int dispatchEndTime();**
 
 获取当前公交线路的发车结束时间, 单位: 秒, 即当前线路的公交调度表的结束时刻
 
 举例: 
 
-```python
+```java
 // 获取公交线路发车结束时间
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5946,7 +6942,7 @@ if (iface != null) {
 }
 ```
 
- **double desirSpeed()**
+ **double desirSpeed(UnitOfMeasure unit);**
 
 获取当前公交线路的期望速度, 默认单位: 像素/秒, 可通过unit参数设置单位
 
@@ -5955,7 +6951,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取公交线路期望速度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5965,18 +6961,19 @@ if (iface != null) {
         List<IBusLine> lBusLines = netiface.buslines();
         for (IBusLine busLine : lBusLines) {
             System.out.println("公交线路期望速度=" + busLine.desirSpeed());
+            System.out.println("公交线路期望速度=" + busLine.desirSpeed(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **int passCountAtStartTime()**
+ **int passCountAtStartTime();**
 
 公交线路中公交车的起始载客人数
 
 举例: 
 
-```python
+```java
 // 获取公交线路中公交车的起始载客人数
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -5991,13 +6988,13 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<ILink> links()**
+ **ArrayList<ILink> links();**
 
 获取公交线路经过的路段序列
 
 举例: 
 
-```python
+```java
 // 获取公交线路经过的路段序列
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6012,13 +7009,13 @@ if (iface != null) {
 }
 ```
 
- **ArrayList<IBusStation> stations()**
+ **ArrayList<IBusStation> stations();**
 
 获取公交线路上的所有站点 
 
 举例: 
 
-```python
+```java
 // 获取公交线路上的所有站点
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6033,13 +7030,13 @@ if (iface != null) {
 }
 ```
 
- **SWIGTYPE_p_QListT_IBusStationLine_p_t stationLines()**
+ **SWIGTYPE_p_QListT_IBusStationLine_p_t stationLines();**
 
 公交站点线路, 当前线路相关站点的上下客等参数, 所有参数的列表
 
 举例: 
 
-```python
+```java
 // 获取公交站点线路相关参数列表
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -6054,13 +7051,13 @@ if (iface != null) {
         }
 ```
 
- **void setName(String name)**
+ **void setName(String name);**
 
 设置当前公交线路的名称
 
 举例: 
 
-```python
+```java
 // 设置并获取公交线路名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6077,7 +7074,7 @@ if (iface != null) {
 }
 ```
 
- **void setDispatchFreq(int freq)**
+ **void setDispatchFreq(int freq);**
 
 设置当前公交线路的发车间隔, 单位: 秒
 
@@ -6086,7 +7083,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取公交线路发车间隔
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -6103,7 +7100,7 @@ if (iface != null) {
         }
 ```
 
- **void setDispatchStartTime(int startTime)**
+ **void setDispatchStartTime(int startTime);**
 
 设置当前公交线路上的公交首班车辆的开始发车时间
 
@@ -6112,7 +7109,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取公交线路首班车发车时间
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6129,7 +7126,7 @@ if (iface != null) {
 }
 ```
 
- **void setDispatchEndTime(int endTime)**
+ **void setDispatchEndTime(int endTime);**
 
 设置当前公交线路上的公交末班车的发车时间
 
@@ -6138,7 +7135,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取公交线路末班车发车时间
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -6155,7 +7152,7 @@ if (iface != null) {
         }
 ```
 
- **void setDesirSpeed(double desirSpeed)**
+ **void setDesirSpeed(double desirSpeed,UnitOfMeasure unit);**
 
 设置当前公交线路的期望速度, 默认单位：像素, 可通过unit参数设置单位
 
@@ -6165,7 +7162,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取公交线路期望速度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6174,22 +7171,22 @@ if (iface != null) {
         // 获取路网中的所有IBusLine
         List<IBusLine> lBusLines = netiface.buslines();
         for (IBusLine busLine : lBusLines) {
-            System.out.println("设置当前公交线路期望速度(米制)=" + "40");
             busLine.setDesirSpeed(40);
-            System.out.println("获取当前公交线路期望速度=" + busLine.desirSpeed());
-            System.out.println("获取当前公交线路期望速度(米制)=" + busLine.desirSpeed());
+            System.out.println("获取当前公交线路期望速度(像素)=" + busLine.desirSpeed());
+            busLine.setDesirSpeed(40,UnitOfMeasure.Metric);
+            System.out.println("获取当前公交线路期望速度(米制)=" + busLine.desirSpeed(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **void setPassCountAtStartTime(int count)**
+ **void setPassCountAtStartTime(int count);**
 
 设置当前公交线路的起始载客人数
 
 举例: 
 
-```python
+```java
 // 设置并获取公交线路起始载客人数
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6208,7 +7205,7 @@ if (iface != null) {
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
             NetInterface netiface = iface.netInterface();
@@ -6283,13 +7280,13 @@ private static void showBusLineAttr(NetInterface netiface) {
 
 公交站点接口, 接口方法: 
 
- **int id()**
+ **int id();**
 
 获取当前公交站点ID
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点ID
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6304,13 +7301,13 @@ if (iface != null) {
 }
 ```
 
- **String name()**
+ **String name();**
 
 获取当前公交站点名称
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6325,13 +7322,13 @@ if (iface != null) {
 }
 ```
 
- **int laneNumber()**
+ **int laneNumber();**
 
 获取当前公交站点所在车道序号
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点所在车道序号
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6346,7 +7343,7 @@ if (iface != null) {
 }
 ```
 
- **double x()**
+ **double x(UnitOfMeasure unit);**
 
 获取当前公交站点的中心点的位置, X坐标, 默认单位: 像素, 可通过unit参数设置单位  
 参数: 
@@ -6354,7 +7351,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点的中心点X坐标
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6364,12 +7361,13 @@ if (iface != null) {
         List<IBusStation> lBusStations = netiface.busStations();
         for (IBusStation busStation : lBusStations) {
             System.out.println("获取当前公交站点的中心点的位置, X坐标=" + busStation.x());
+            System.out.println("获取当前公交站点的中心点的位置, X坐标(米制)=" + busStation.x(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **double y()**
+ **double y(UnitOfMeasure unit);**
 
 获取当前公交站点的中心点的位置, Y坐标, 默认单位: 像素, 可通过unit参数设置单位  
 参数: 
@@ -6377,7 +7375,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点的中心点X坐标
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6387,12 +7385,13 @@ if (iface != null) {
         List<IBusStation> lBusStations = netiface.busStations();
         for (IBusStation busStation : lBusStations) {
             System.out.println("获取当前公交站点的中心点的位置, Y坐标=" + busStation.y());
+            System.out.println("获取当前公交站点的中心点的位置, Y坐标(米)=" + busStation.y(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **double length()**
+ **double length(UnitOfMeasure unit);**
 
 获取当前公交站点的长度, 默认单位: 像素, 默认单位: 像素, 可通过unit参数设置单位  
 参数: 
@@ -6400,7 +7399,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点的长度
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6410,18 +7409,19 @@ if (iface != null) {
         List<IBusStation> lBusStations = netiface.busStations();
         for (IBusStation busStation : lBusStations) {
             System.out.println("获取当前公交站点的长度(像素)=" + busStation.length());
+            System.out.println("获取当前公交站点的长度(米)=" + busStation.length(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **int stationType()**
+ **int stationType();**
 
 获取当前公交站点的类型: 站点类型 1: 路边式、2: 港湾式
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点的类型
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6436,13 +7436,13 @@ if (iface != null) {
 }
 ```
 
- **ILink link()**
+ **ILink link();**
 
 获取当前公交站点所在路段
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点所在路段
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6457,13 +7457,13 @@ if (iface != null) {
 }
 ```
 
- **ILane lane()**
+ **ILane lane();**
 
 获取当前公交站点所在车道
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点所在车道
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6478,7 +7478,7 @@ if (iface != null) {
 }
 ```
 
- **double distance()**
+ **double distance(UnitOfMeasure unit);**
 
 获取当前公交站点的起始位置距路段起点的距离, 默认单位: 像素, 可通过unit参数设置单位 
 参数: 
@@ -6486,7 +7486,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 获取当前公交站点的起始位置距路段起点的距离
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6496,12 +7496,13 @@ if (iface != null) {
         List<IBusStation> lBusStations = netiface.busStations();
         for (IBusStation busStation : lBusStations) {
             System.out.println("获取当前公交站点的起始位置距路段起点的距离(像素)=" + busStation.distance());
+            System.out.println("获取当前公交站点的起始位置距路段起点的距离(米)=" + busStation.distance(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **void setName(String name)**
+ **void setName(String name);**
 
 设置当前公交站点名称
 
@@ -6510,7 +7511,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取公交站点名称
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6528,7 +7529,7 @@ if (iface != null) {
 }
 ```
 
- **void setDistToStart(double dist)**
+ **void setDistToStart(double dist,UnitOfMeasure unit);**
 
 设置站点起始点距车道起点距离, 默认单位: 像素, 可通过unit参数设置单位 
 参数: 
@@ -6537,7 +7538,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取公交站点起始点距车道起点距离
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6550,12 +7551,16 @@ if (iface != null) {
             busStation.setDistToStart(100);
             System.out.println("设置站点起始点距车道起点距离(像素)=执行成功");
             System.out.println("获取当前公交站点的起始位置距路段起点的距离(像素)=" + busStation.distance());
+            
+            busStation.setDistToStart(100,UnitOfMeasure.Metric);
+            System.out.println("设置站点起始点距车道起点距离(米)=执行成功");
+            System.out.println("获取当前公交站点的起始位置距路段起点的距离(米)=" + busStation.distance(UnitOfMeasure.Metric));
         }
     }
 }
 ```
 
- **void setLength(double length)**
+ **void setLength(double length,UnitOfMeasure unit);**
 
 设置当前公交站点的长度, 默认单位: 像素, 可通过unit参数设置单位  
 参数: 
@@ -6563,7 +7568,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取公交站点长度
         TessInterface iface = TESSNG.tessngIFace();
         if (iface != null) {
@@ -6576,12 +7581,16 @@ if (iface != null) {
                     busStation.setLength(100);
                     System.out.println("设置当前公交站点的长度(像素)=执行成功");
                     System.out.println("获取当前公交站点的长度(像素)=" + busStation.length());
+                    
+                    busStation.setLength(100,UnitOfMeasure.Metric);
+                    System.out.println("设置当前公交站点的长度(米)=执行成功");
+                    System.out.println("获取当前公交站点的长度(米)=" + busStation.length(UnitOfMeasure.Metric));
                 }
             }
         }
 ```
 
- **void setType(int type)**
+ **void setType(int type);**
 
 设置当前公交站点类型
 
@@ -6591,7 +7600,7 @@ if (iface != null) {
 
 举例: 
 
-```python
+```java
 // 设置并获取公交站点类型
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6609,13 +7618,13 @@ if (iface != null) {
 }
 ```
 
- **Vector<Point> polygon()**
+ **Vector<Point> polygon();**
 
 获取 公交站点多边型轮廓的顶点
 
 举例: 
 
-```python
+```java
 // 获取公交站点多边型轮廓的顶点
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
@@ -6634,7 +7643,7 @@ if (iface != null) {
 
 **案例代码**
 
-```python
+```java
 TessInterface iface = TESSNG.tessngIFace();
 if (iface != null) {
     NetInterface netiface = iface.netInterface();
@@ -6697,126 +7706,189 @@ private static void showBusStationAttr(NetInterface netiface) {
 
 接口方法: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取公交“站点-线路”ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"获取公交“站点-线路”ID={busStationLine.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IBusLine> buslines = netiface.buslines();
+            if (buslines != null) {
+                for (IBusLine busLine : buslines) {
+                    List<IBusStationLine> busStationLines = busLine.stationLines();
+                    if (busStationLines != null) {
+                        for (IBusStationLine busStationLine : busStationLines) {
+                            System.out.println("获取公交“站点-线路”ID=" + busStationLine.id());
+                        }
+                    }
+                }
+            }
+        }
+    }
 ```
 
- **def stationId(self) -> int: ...**
+ **long stationId();**
 
 获取当前公交站点的ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"获取当前公交站点的ID={busStationLine.stationId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                List<IBusLine> buslines = netiface.buslines();
+                if (buslines != null) {
+                    for (IBusLine busLine : buslines) {
+                        List<IBusStationLine> busStationLines = busLine.stationLines();
+                        if (busStationLines != null) {
+                            for (IBusStationLine busStationLine : busStationLines) {
+                                System.out.println("获取当前公交站点的ID=" + busStationLine.stationId());
+                            }
+                        }
+                    }
+                }
+            }
+        }
 ```
 
- **def lineId(self) -> int: ...**
+ **long lineId();**
 
 获取当前公交站台所属的公交线路ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"获取当前公交站台所属的公交线路ID={busStationLine.lineId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IBusLine> buslines = netiface.buslines();
+                        if (buslines != null) {
+                            for (IBusLine busLine : buslines) {
+                                List<IBusStationLine> busStationLines = busLine.stationLines();
+                                if (busStationLines != null) {
+                                    for (IBusStationLine busStationLine : busStationLines) {
+                                        System.out.println("获取当前公交站台所属的公交线路ID=" + busStationLine.lineId());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def busParkingTime(self) -> int: ...**
+ **int busParkingTime();**
 
 获取当前公交线路下该站台的公交车辆停靠时间(秒)
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"获取当前公交线路下该站台的公交车辆停靠时间(秒)={busStationLine.busParkingTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IBusLine> buslines = netiface.buslines();
+                        if (buslines != null) {
+                            for (IBusLine busLine : buslines) {
+                                List<IBusStationLine> busStationLines = busLine.stationLines();
+                                if (busStationLines != null) {
+                                    for (IBusStationLine busStationLine : busStationLines) {
+                                        System.out.println("获取当前公交线路下该站台的公交车辆停靠时间(秒)=" + busStationLine.busParkingTime());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def getOutPercent(self) -> double: ...**
+ **double getOutPercent();**
 
 获取当前公交线路下该站台的下客百分比
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"获取当前公交线路下该站台的下客百分比={busStationLine.getOutPercent()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IBusLine> buslines = netiface.buslines();
+                        if (buslines != null) {
+                            for (IBusLine busLine : buslines) {
+                                List<IBusStationLine> busStationLines = busLine.stationLines();
+                                if (busStationLines != null) {
+                                    for (IBusStationLine busStationLine : busStationLines) {
+                                        System.out.println("获取当前公交线路下该站台的下客百分比=" + busStationLine.getOutPercent());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def getOnTimePerPerson(self) -> double: ...**
+ **double getOnTimePerPerson();**
 
 获取当前公交线路下该站台下的平均每位乘客上车时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"获取当前公交线路下该站台下的平均每位乘客上车时间, 单位: 秒={busStationLine.getOnTimePerPerson()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IBusLine> buslines = netiface.buslines();
+                        if (buslines != null) {
+                            for (IBusLine busLine : buslines) {
+                                List<IBusStationLine> busStationLines = busLine.stationLines();
+                                if (busStationLines != null) {
+                                    for (IBusStationLine busStationLine : busStationLines) {
+                                        System.out.println("获取当前公交线路下该站台的平均每位乘客上车时间(秒)=" + busStationLine.getOnTimePerPerson());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def getOutTimePerPerson(self) -> double: ...**
+ **double getOutTimePerPerson();**
 
 获取当前公交线路下该站台下的平均每位乘客下车时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"获取当前公交线路下该站台下的平均每位乘客下车时间, 单位: 秒={busStationLine.getOutTimePerPerson()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IBusLine> buslines = netiface.buslines();
+                        if (buslines != null) {
+                            for (IBusLine busLine : buslines) {
+                                List<IBusStationLine> busStationLines = busLine.stationLines();
+                                if (busStationLines != null) {
+                                    for (IBusStationLine busStationLine : busStationLines) {
+                                        System.out.println("获取当前公交线路下该站台的平均每位乘客下车时间(秒)=" + busStationLine.getOutTimePerPerson());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setBusParkingTime(self, time: int) -> None: ...**
+ **void setBusParkingTime(int time);**
 
 设置当前公交线路下该站台下的车辆停靠时间(秒)
 
@@ -6825,19 +7897,28 @@ for busLine in buslines:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"设置当前公交线路下的该站台下的车辆停靠时间(秒)={busStationLine.setBusParkingTime(20)}")
-        print(f"获取当前公交线路下的该站台下的车辆停靠时间(秒)={busStationLine.busParkingTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IBusLine> buslines = netiface.buslines();
+                        if (buslines != null) {
+                            for (IBusLine busLine : buslines) {
+                                List<IBusStationLine> busStationLines = busLine.stationLines();
+                                if (busStationLines != null) {
+                                    for (IBusStationLine busStationLine : busStationLines) {
+                                        busStationLine.setBusParkingTime(20);
+                                        System.out.println("获取当前公交线路下该站台的车辆停靠时间(秒)=" + busStationLine.busParkingTime());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setGetOutPercent(self, percent: double) -> None: ..**
+ **void setGetOutPercent(double percent);**
 
 设置当前公交线路下的该站台的下客百分比
 
@@ -6846,19 +7927,28 @@ for busLine in buslines:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"设置当前公交线路下的该站台的下客百分比={busStationLine.setGetOutPercent(20)}")
-        print(f"获取当前公交线路下的该站台的下客百分比={busStationLine.getOutPercent()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IBusLine> buslines = netiface.buslines();
+                        if (buslines != null) {
+                            for (IBusLine busLine : buslines) {
+                                List<IBusStationLine> busStationLines = busLine.stationLines();
+                                if (busStationLines != null) {
+                                    for (IBusStationLine busStationLine : busStationLines) {
+                                        busStationLine.setGetOutPercent(20);
+                                        System.out.println("获取当前公交线路下该站台的下客百分比=" + busStationLine.getOutPercent());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setGetOnTimePerPerson(self, time: double) -> None: ...**
+ **void setGetOnTimePerPerson(double time);**
 
 设置当前公交线路下的该站台的平均每位乘客上车时间
 
@@ -6867,19 +7957,28 @@ for busLine in buslines:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"设置当前公交线路下的该站台的平均每位乘客上车时间={busStationLine.setGetOnTimePerPerson(5.0)}")
-        print(f"获取当前公交线路下的该站台的平均每位乘客上车时间={busStationLine.getOnTimePerPerson()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IBusLine> buslines = netiface.buslines();
+                        if (buslines != null) {
+                            for (IBusLine busLine : buslines) {
+                                List<IBusStationLine> busStationLines = busLine.stationLines();
+                                if (busStationLines != null) {
+                                    for (IBusStationLine busStationLine : busStationLines) {
+                                        busStationLine.setGetOnTimePerPerson(5.0);
+                                        System.out.println("获取当前公交线路下该站台的平均每位乘客上车时间=" + busStationLine.getOnTimePerPerson());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setGetOutTimePerPerson(self, time: double) -> None: ...**
+ **void setGetOutTimePerPerson(double time);**
 
 设置当前公交线路下的该站台的平均每位乘客下车时间
 
@@ -6888,42 +7987,75 @@ for busLine in buslines:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IBusLine
-buslines = netiface.buslines()
-for busLine in buslines: 
-    busStationLines = busLine.stationLines()
-    for busStationLine in busStationLines: 
-        print(f"设置当前公交线路下的该站台的平均每位乘客下车时间={busStationLine.setGetOutTimePerPerson(1.0)}")
-        print(f"获取当前公交线路下的该站台的平均每位乘客下车时间={busStationLine.getOutTimePerPerson()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IBusLine> buslines = netiface.buslines();
+            if (buslines != null) {
+                for (IBusLine busLine : buslines) {
+                    List<IBusStationLine> busStationLines = busLine.stationLines();
+                    if (busStationLines != null) {
+                        for (IBusStationLine busStationLine : busStationLines) {
+                            busStationLine.setGetOutTimePerPerson(1.0);
+                            System.out.println("获取当前公交线路下该站台的平均每位乘客下车时间=" + busStationLine.getOutTimePerPerson());
+                        }
+                    }
+                }
+            }
+        }
+    }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showBusStationLineAttr(netiface)
+```java
+netTessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            showBusStationLineAttr(netiface);
+        }
+    }
 
-def showBusStationLineAttr(netiface): 
-    busStations = netiface.busStations()
-    if len(busStations) > 0: 
-        busStation = busStations[0]
-        busStationLines = netiface.findBusStationLineByStationId(busStation.id())
-        if len(busStationLines)>0: 
-            busStationLine = busStationLines[0]
-            print(f"获取公交“站点-线路”ID={busStationLine.id()}, 获取当前公交站点的ID={busStationLine.stationId()}, "
-                  f"获取当前公交站台所属的公交线路ID={busStationLine.lineId()}, "
-                  f"获取当前公交线路下该站台的公交车辆停靠时间(秒)={busStationLine.busParkingTime()}, "
-                  f"获取当前公交线路下该站台的下客百分比={busStationLine.getOutPercent()}, "
-                  f"获取当前公交线路下该站台下的平均每位乘客上车时间, 单位: 秒={busStationLine.getOnTimePerPerson()}, "
-                  f"获取当前公交线路下该站台下的平均每位乘客下车时间, 单位: 秒={busStationLine.getOutTimePerPerson()}, "
-                  f"设置当前公交线路下该站台下的车辆停靠时间(秒)={busStationLine.setBusParkingTime(20)}, "
-                  f"设置当前公交线路下的该站台的下客百分比={busStationLine.setGetOutPercent(0.60)}, "
-                  f"设置当前公交线路下的该站台的平均每位乘客上车时间={busStationLine.setGetOnTimePerPerson(2.0)}, "
-                  f"设置当前公交线路下的该站台的平均每位乘客下车时间: ={busStationLine.setGetOutTimePerPerson(1.0)}"
-                  )
+private static void showBusStationLineAttr(NetInterface netiface) {
+        List<IBusStation> busStations = netiface.busStations();
+        if (busStations == null || busStations.isEmpty()) {
+            System.out.println("无公交站点数据");
+            return;
+        }
+
+        IBusStation busStation = busStations.get(0);
+        List<IBusStationLine> busStationLines = netiface.findBusStationLineByStationId(busStation.id());
+        if (busStationLines == null || busStationLines.isEmpty()) {
+            System.out.println("当前公交站点无关联的“站点-线路”数据");
+            return;
+        }
+
+        IBusStationLine busStationLine = busStationLines.get(0);
+
+        busStationLine.setBusParkingTime(20);
+        busStationLine.setGetOutPercent(0.60);
+        busStationLine.setGetOnTimePerPerson(2.0);
+        busStationLine.setGetOutTimePerPerson(1.0);
+
+        System.out.printf(
+                "获取公交“站点-线路”ID=%d, 获取当前公交站点的ID=%d, %n" +
+                        "获取当前公交站台所属的公交线路ID=%d, %n" +
+                        "获取当前公交线路下该站台的公交车辆停靠时间(秒)=%d, %n" +
+                        "获取当前公交线路下该站台的下客百分比=%.2f, %n" +
+                        "获取当前公交线路下该站台的平均每位乘客上车时间(秒)=%.1f, %n" +
+                        "获取当前公交线路下该站台的平均每位乘客下车时间(秒)=%.1f%n",
+                busStationLine.id(),
+                busStationLine.stationId(),
+                busStationLine.lineId(),
+                busStationLine.busParkingTime(),
+                busStationLine.getOutPercent(),
+                busStationLine.getOnTimePerPerson(),
+                busStationLine.getOutTimePerPerson()
+        );
+    }
 ```
 
 
@@ -6934,112 +8066,154 @@ def showBusStationLineAttr(netiface):
 
 数据采集器接口, 方法如下: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取采集器ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器ID: {vehicleDrivInfoCollector.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+        if (collectors != null) {
+            for (IVehicleDrivInfoCollector collector : collectors) {
+                System.out.println("采集器ID: " + collector.id());
+            }
+        }
+    }
+}
 ```
 
- **def collName(self) -> str: ...**
+ **String collName();**
 
 获取采集器名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}名称: {vehicleDrivInfoCollector.collName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+        if (collectors != null) {
+            for (IVehicleDrivInfoCollector collector : collectors) {
+                System.out.printf("采集器%d名称: %s%n", collector.id(), collector.collName());
+            }
+        }
+    }
+}
 ```
 
- **def onLink(self) -> bool: ...**
+ **boolean onLink();**
 
 判断当前数据采集器是否在路段上, 返回值为True表示检测器在路段上, 返回值False则表示在connector上
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}是否在路段上: {vehicleDrivInfoCollector.onLink()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+            if (collectors != null) {
+                for (IVehicleDrivInfoCollector collector : collectors) {
+                    System.out.printf("采集器%d是否在路段上: %b%n", collector.id(), collector.onLink());
+                }
+            }
+        }
+    }
 ```
 
- **def link(self) -> Tessng.ILink: ...**
+ **ILink link();**
 
 获取采集器所在的路段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}所在的路段: {vehicleDrivInfoCollector.link()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+                        if (collectors != null) {
+                            for (IVehicleDrivInfoCollector collector : collectors) {
+                                System.out.printf("采集器%d所在的路段: %s%n", collector.id(), collector.link());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def connector(self) -> Tessng.IConnector: ...**
+ **IConnector connector();**
 
 获取采集器所在的连接段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}所在的连接段: {vehicleDrivInfoCollector.connector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+            if (collectors != null) {
+                for (IVehicleDrivInfoCollector collector : collectors) {
+                    System.out.printf("采集器%d所在的连接段: %s%n", collector.id(), collector.connector());
+                }
+            }
+        }
+    }
 ```
 
- **def lane(self) -> Tessng.ILane: ...**
+ **ILane lane();**
 
 如果采集器在路段上, 则返回ILane对象, 否则范围None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}所在的车道: {vehicleDrivInfoCollector.lane()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+            if (collectors != null) {
+                for (IVehicleDrivInfoCollector collector : collectors) {
+                    System.out.printf("采集器%d所在的车道: %s%n", collector.id(), collector.lane());
+                }
+            }
+        }
+    }
 ```
 
- **def laneConnector(self) -> Tessng.ILaneConnector: ...**
+ **ILaneConnector laneConnector();**
 
 如果采集器在连接段上, 则返回laneConnector“车道连接”对象, 否则返回None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}所在的车道连接: {vehicleDrivInfoCollector.laneConnector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+            if (collectors != null) {
+                for (IVehicleDrivInfoCollector collector : collectors) {
+                    System.out.printf("采集器%d所在的车道连接: %s%n", collector.id(), collector.laneConnector());
+                }
+            }
+        }
+    }
 ```
 
- **def distToStart(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double distToStart(UnitOfMeasure unit);**
 
 获取采集器距离路段或连接段起点的距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -7048,17 +8222,25 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}距离路段|连接段起点的距离为{vehicleDrivInfoCollector.distToStart()}")
-    print(f"采集器{vehicleDrivInfoCollector.id()}距离路段|连接段起点的距离（米制）为{vehicleDrivInfoCollector.distToStart(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+        if (collectors != null) {
+            for (IVehicleDrivInfoCollector collector : collectors) {
+                System.out.printf("采集器%d距离路段|连接段起点的距离为%s%n",
+                        collector.id(), collector.distToStart());
+                System.out.printf("采集器%d距离路段|连接段起点的距离（米制）为%s%n",
+                        collector.id(), collector.distToStart(UnitOfMeasure.Metric));
+            }
+        }
+    }
+}
 ```
 
- **def point(self, unit: Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **Point point(UnitOfMeasure unit);**
 
 获取采集器所在点, 像素坐标, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -7067,62 +8249,91 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}所在点, 坐标为{vehicleDrivInfoCollector.point()}")
-    print(f"采集器{vehicleDrivInfoCollector.id()}所在点, 米制坐标为{vehicleDrivInfoCollector.point(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+            if (collectors != null) {
+                for (IVehicleDrivInfoCollector collector : collectors) {
+                    System.out.printf("采集器%d所在点, 坐标为%s%n",
+                            collector.id(), collector.point());
+                    System.out.printf("采集器%d所在点, 米制坐标为%s%n",
+                            collector.id(), collector.point(UnitOfMeasure.Metric));
+                }
+            }
+        }
+    }
 ```
 
- **def fromTime(self) -> int: ...**
+ **long fromTime();**
 
 获取采集器的工作起始时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}的工作起始时间, 为{vehicleDrivInfoCollector.fromTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                NetInterface netiface = iface.netInterface();
+                if (netiface != null) {
+                    List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+                    if (collectors != null) {
+                        for (IVehicleDrivInfoCollector collector : collectors) {
+                            System.out.printf("采集器%d的工作起始时间, 为%d秒%n",
+                                    collector.id(), collector.fromTime());
+                        }
+                    }
+                }
+            }
 ```
 
- **def toTime(self) -> int: ...**
+ **long toTime();**
 
 获取采集器的工作停止时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}的工作停止时间, 为{vehicleDrivInfoCollector.toTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+            if (collectors != null) {
+                for (IVehicleDrivInfoCollector collector : collectors) {
+                    System.out.printf("采集器%d的工作停止时间, 为%d秒%n",
+                            collector.id(), collector.toTime());
+                }
+            }
+        }
+    }
 ```
 
- **def aggregateInterval(self) -> int: ...**
+ **long aggregateInterval();**
 
 获取数据集计的时间间隔, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}数据集计的时间间隔, 为{vehicleDrivInfoCollector.aggregateInterval()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                NetInterface netiface = iface.netInterface();
+                if (netiface != null) {
+                    List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+                    if (collectors != null) {
+                        for (IVehicleDrivInfoCollector collector : collectors) {
+                            System.out.printf("采集器%d数据集计的时间间隔, 为%d秒%n",
+                                    collector.id(), collector.aggregateInterval());
+                        }
+                    }
+                }
+            }
 ```
 
- **def setName(self, name: str) -> None: ...**
+ **void setName(String name);**
 
 设置采集器名称
 
@@ -7131,17 +8342,24 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    vehicleDrivInfoCollector.setName("采集器名称")
-    print(f"采集器{vehicleDrivInfoCollector.id()}的名称, 为{vehicleDrivInfoCollector.collName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+                        if (collectors != null) {
+                            for (IVehicleDrivInfoCollector collector : collectors) {
+                                collector.setName("采集器名称");
+                                System.out.printf("采集器%d的名称, 为%s%n",
+                                        collector.id(), collector.collName());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setDistToStart(self, dist: double, unit: Tess.UnitOfMeasure) -> None: ...**
+ **void setDistToStart(double dist, UnitOfMeasure unit);**
 
 设置采集器距车道起点（或“车道连接”起点）的距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -7151,19 +8369,28 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    vehicleDrivInfoCollector.setDistToStart(400)
-    print(f"采集器{vehicleDrivInfoCollector.id()}距车道起点（或“车道连接”起点）的距离, 为{vehicleDrivInfoCollector.distToStart()}像素")
-    vehicleDrivInfoCollector.setDistToStart(400, UnitOfMeasure.Metric)
-    print(f"采集器{vehicleDrivInfoCollector.id()}距车道起点（或“车道连接”起点）的距离（米制）, 为{vehicleDrivInfoCollector.distToStart(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+            if (collectors != null) {
+                for (IVehicleDrivInfoCollector collector : collectors) {
+                    collector.setDistToStart(400);
+                    System.out.printf("采集器%d距车道起点的距离, 为%s像素%n",
+                            collector.id(), collector.distToStart());
+
+                    collector.setDistToStart(400, UnitOfMeasure.Metric);
+                    System.out.printf("采集器%d距车道起点的距离（米制）, 为%s米%n",
+                            collector.id(), collector.distToStart(UnitOfMeasure.Metric));
+                }
+            }
+        }
+    }
 ```
 
- **def setFromTime(self, time: int) -> None: ...**
+ **void setFromTime(long time);**
 
 设置工作起始时间(秒)
 
@@ -7172,17 +8399,24 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    vehicleDrivInfoCollector.setFromTime(10)
-    print(f"采集器{vehicleDrivInfoCollector.id()}的工作起始时间, 为{vehicleDrivInfoCollector.fromTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+                        if (collectors != null) {
+                            for (IVehicleDrivInfoCollector collector : collectors) {
+                                collector.setFromTime(10);
+                                System.out.printf("采集器%d的工作起始时间, 为%d秒%n",
+                                        collector.id(), collector.fromTime());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setToTime(self, time: int) -> None: ...**
+ **void setToTime(long time);**
 
 设置工作结束时间(秒)
 
@@ -7191,17 +8425,24 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    vehicleDrivInfoCollector.setToTime(60)
-    print(f"采集器{vehicleDrivInfoCollector.id()}的工作停止时间, 为{vehicleDrivInfoCollector.toTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+                if (collectors != null) {
+                    for (IVehicleDrivInfoCollector collector : collectors) {
+                        collector.setToTime(60);
+                        System.out.printf("采集器%d的工作停止时间, 为%d秒%n",
+                                collector.id(), collector.toTime());
+                    }
+                }
+            }
+        }
 ```
 
- **def setAggregateInterval(self, interval: int) -> None: ...**
+ **void setAggregateInterval(int interval);**
 
 设置集计数据时间间隔(秒)
 
@@ -7210,50 +8451,92 @@ for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    vehicleDrivInfoCollector.setAggregateInterval(10)
-    print(f"采集器{vehicleDrivInfoCollector.id()}数据集计的时间间隔, 为{vehicleDrivInfoCollector.aggregateInterval()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+                        if (collectors != null) {
+                            for (IVehicleDrivInfoCollector collector : collectors) {
+                                collector.setAggregateInterval(10);
+                                System.out.printf("采集器%d数据集计的时间间隔, 为%d秒%n",
+                                        collector.id(), collector.aggregateInterval());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
+ **Vector<Point> polygon();**
 
 获取采集器的多边型轮廓顶点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleDrivInfoCollector
-lVehicleDrivInfoCollectors = netiface.vehiInfoCollectors()
-for vehicleDrivInfoCollector in lVehicleDrivInfoCollectors: 
-    print(f"采集器{vehicleDrivInfoCollector.id()}的多边型轮廓顶点为{vehicleDrivInfoCollector.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+                        if (collectors != null) {
+                            for (IVehicleDrivInfoCollector collector : collectors) {
+                                System.out.printf("采集器%d的多边型轮廓顶点为%s%n",
+                                        collector.id(), collector.polygon());
+                            }
+                        }
+                    }
+                }
 ```
 
 
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showBusStationLineAttr(netiface)
-showVehicleDrivInfoCounter(netiface)
-def showVehicleDrivInfoCounter(netiface): 
-    collectors = netiface.vehiInfoCollectors()
-    if len(collectors)>0: 
-        collector = netiface.findVehiInfoCollector(collectors[0].id())
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showVehicleDrivInfoCounter(netiface);
+                    }
+                }
+                private static void showVehicleDrivInfoCounter(NetInterface netiface) {
+        List<IVehicleDrivInfoCollector> collectors = netiface.vehiInfoCollectors();
+        if (collectors == null || collectors.isEmpty()) {
+            System.out.println("无车辆行驶信息采集器数据");
+            return;
+        }
 
-        print(
-            f"获取采集器ID={collector.id()}, 获取采集器名称={collector.collName()}, 判断当前数据采集器是否在路段上, 返回值为True表示检测器在路段上, 返回值False则表示在connector上={controller.onLink()}"
-            f"获取采集器所在的路段={collector.link()}, 获取采集器所在的连接段={collector.connector()}, "
-            f"如果采集器在路段上, 则返回ILane对象, 否则范围None={collector.lane()}, 如果采集器在连接段上, 则返回laneConnector“车道连接”对象, 否则返回None={collector.laneConnector()}"
-            f" 获取采集器的工作起始时间, 工作停止时间={collector.fromTime()}-{collector.toTime()}, 采集器所在点, 像素坐标={collector.point()}"
-            f"获取采集器距离路段|连接段起点的距离={collector.distToStart()}")
+        // 获取第一个采集器
+        IVehicleDrivInfoCollector collector = netiface.findVehiInfoCollector(collectors.get(0).id());
+        if (collector == null) {
+            System.out.println("未找到目标采集器");
+            return;
+        }
+
+        // 打印详细属性
+        System.out.printf(
+                "获取采集器ID=%d, 获取采集器名称=%s, %n" +
+                        "判断当前数据采集器是否在路段上（True=路段, False=连接段）=%b, %n" +
+                        "获取采集器所在的路段=%s, 获取采集器所在的连接段=%s, %n" +
+                        "采集器所在车道（路段上有效）=%s, 采集器所在车道连接（连接段上有效）=%s, %n" +
+                        "采集器工作时间范围=%d-%d秒, 所在点像素坐标=%s, %n" +
+                        "采集器距离路段|连接段起点的距离=%s%n",
+                collector.id(),
+                collector.collName(),
+                collector.onLink(),
+                collector.link(),
+                collector.connector(),
+                collector.lane(),
+                collector.laneConnector(),
+                collector.fromTime(),
+                collector.toTime(),
+                collector.point(),
+                collector.distToStart()
+        );
+    }
 ```
 
 
@@ -7264,112 +8547,140 @@ def showVehicleDrivInfoCounter(netiface):
 
 排队计数器接口, 方法如下: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取当前排队计数器ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}的ID为{vehicleQueueCounter.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+            for (IVehicleQueueCounter counter : counters) {
+                System.out.printf("排队计数器%s的ID为%s%n", counter.id(), counter.id());
+            }
+        }
+    }
 ```
 
- **def counterName(self) -> str: ...**
+ **String counterName();**
 
 获取当前排队计数器名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}的名称为{vehicleQueueCounter.counterName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s的名称为%s%n", counter.id(), counter.counterName());
+                        }
+                    }
+                }
 ```
 
- **def onLink(self) -> bool: ...**
+ **boolean onLink();**
 
 是否在路段上, 如果True则connector()返回None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}是否在路段上为{vehicleQueueCounter.onLink()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s是否在路段上为%b%n", counter.id(), counter.onLink());
+                        }
+                    }
+                }
 ```
 
- **def link(self) -> Tessng.ILink: ...**
+ **ILink link();**
 
 获取当前排队计数器所在路段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}所在路段为{vehicleQueueCounter.link()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s所在路段为%s%n", counter.id(), counter.link());
+                        }
+                    }
+                }
 ```
 
- **def connector(self) -> Tessng.IConnector: ...**
+ **IConnector connector();**
 
 获取当前计数器所在连接段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}所在连接段为{vehicleQueueCounter.connector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s所在连接段为%s%n", counter.id(), counter.connector());
+                        }
+                    }
+                }
 ```
 
- **def lane(self) -> Tessng.ILane: ...**
+ **ILane lane();**
 
 如果计数器在路段上则lane()返回所在车道, laneConnector()返回None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}所在车道为{vehicleQueueCounter.lane()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s所在车道为%s%n", counter.id(), counter.lane());
+                        }
+                    }
+                }
 ```
 
- **def laneConnector(self) -> Tessng.ILaneConnector: ...**
+ **ILaneConnector laneConnector();**
 
 如果计数器在连接段上则laneConnector返回“车道连接”, lane()返回None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}所在车道连接为{vehicleQueueCounter.laneConnector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+            for (IVehicleQueueCounter counter : counters) {
+                System.out.printf("排队计数器%s所在车道连接为%s%n", counter.id(), counter.laneConnector());
+            }
+        }
+    }
 ```
 
- **def distToStart(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double distToStart(UnitOfMeasure unit);**
 
 计数器距离起点距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -7378,79 +8689,99 @@ for vehicleQueueCounter in lVehicleQueueCounters:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离为{vehicleQueueCounter.distToStart()}")
-    print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离（米制）为{vehicleQueueCounter.distToStart(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s距离起点距离为%s%n", counter.id(), counter.distToStart());
+                            System.out.printf("排队计数器%s距离起点距离（米制）为%s%n", counter.id(), counter.distToStart(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def point(self, unit: Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **Point point(UnitOfMeasure unit);**
 
 计数器所在点, 像素坐标, 默认单位: 像素, 可通过unit参数设置单位
 参数: 
 [ in ]  unit: 单位参数, 默认为Default, Metric表示米制单位, Default表示不指定单位返回接口默认的单位  
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}所在点坐标为{vehicleQueueCounter.point()}")
-    print(f"排队计数器{vehicleQueueCounter.id()}所在点坐标（米制）为{vehicleQueueCounter.point(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s所在点坐标为%s%n", counter.id(), counter.point());
+                            System.out.printf("排队计数器%s所在点坐标（米制）为%s%n", counter.id(), counter.point(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def fromTime(self) -> int: ...**
+ **long fromTime();**
 
 获取当前计数器工作起始时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}的工作起始时间, 为{vehicleQueueCounter.fromTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s的工作起始时间, 为%d秒%n", counter.id(), counter.fromTime());
+                        }
+                    }
+                }
 ```
 
- **def toTime(self) -> int: ...**
+ **long toTime();**
 
 获取当前计数器工作停止时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}的工作停止时间, 为{vehicleQueueCounter.toTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                for (IVehicleQueueCounter counter : counters) {
+                    System.out.printf("排队计数器%s的工作停止时间, 为%d秒%n", counter.id(), counter.toTime());
+                }
+            }
+        }
 ```
 
- **def aggregateInterval(self) -> int: ...**
+ **long aggregateInterval();**
 
 计数集计数据时间间隔, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}数据集计的时间间隔, 为{vehicleQueueCounter.aggregateInterval()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+            for (IVehicleQueueCounter counter : counters) {
+                System.out.printf("排队计数器%s数据集计的时间间隔, 为%d秒%n", counter.id(), counter.aggregateInterval());
+            }
+        }
+    }
 ```
 
- **def setName(self, name: str) -> None: ...**
+ **void setName(String name);**
 
 设置计数器名称
 
@@ -7459,17 +8790,21 @@ for vehicleQueueCounter in lVehicleQueueCounters:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    vehicleQueueCounter.setName("计数器名称")
-    print(f"排队计数器{vehicleQueueCounter.id()}的名称, 为{vehicleQueueCounter.counterName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            counter.setName("计数器名称");
+                            System.out.printf("排队计数器%s的名称, 为%s%n", counter.id(), counter.counterName());
+                        }
+                    }
+                }
 ```
 
- **def setDistToStart(self, dist: double, unit: Tess.UnitOfMeasure) -> None: ...**
+ **void setDistToStart(double dist, UnitOfMeasure unit);**
 
 设置当前计数器距车道起点（或“车道连接”起点）距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -7479,101 +8814,137 @@ for vehicleQueueCounter in lVehicleQueueCounters:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    vehicleQueueCounter.setDistToStart(100)
-    print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离, 为{vehicleQueueCounter.distToStart()}")
-    vehicleQueueCounter.setDistToStart(100, UnitOfMeasure.Metric)
-    print(f"排队计数器{vehicleQueueCounter.id()}距离起点距离（米制）, 为{vehicleQueueCounter.distToStart(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            counter.setDistToStart(100);
+                            System.out.printf("排队计数器%s距离起点距离, 为%s%n", counter.id(), counter.distToStart());
+
+                            counter.setDistToStart(100, UnitOfMeasure.Metric);
+                            System.out.printf("排队计数器%s距离起点距离（米制）, 为%s米%n", counter.id(), counter.distToStart(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setFromTime(self, time: int) -> None: ...**
+ **void setFromTime(long time);**
 
 设置工作起始时间(秒)
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    vehicleQueueCounter.setFromTime(10)
-    print(f"排队计数器{vehicleQueueCounter.id()}的工作起始时间, 为{vehicleQueueCounter.fromTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            counter.setFromTime(10);
+                            System.out.printf("排队计数器%s的工作起始时间, 为%d秒%n", counter.id(), counter.fromTime());
+                        }
+                    }
+                }
 ```
 
- **def setToTime(self, time: int) -> None: ...**
+ **void setToTime(long time);**
 
 设置工作结束时间(秒)
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    vehicleQueueCounter.setToTime(60)
-    print(f"排队计数器{vehicleQueueCounter.id()}的工作结束时间, 为{vehicleQueueCounter.toTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            counter.setToTime(60);
+                            System.out.printf("排队计数器%s的工作结束时间, 为%d秒%n", counter.id(), counter.toTime());
+                        }
+                    }
+                }
 ```
 
- **def setAggregateInterval(self, interval: int) -> None: ...**
+ **void setAggregateInterval(int interval);**
 
 设置集计数据时间间隔(秒)
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    vehicleQueueCounter.setAggregateInterval(10)
-    print(f"排队计数器{vehicleQueueCounter.id()}数据集计的时间间隔, 为{vehicleQueueCounter.aggregateInterval()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            counter.setAggregateInterval(10);
+                            System.out.printf("排队计数器%s数据集计的时间间隔, 为%d秒%n", counter.id(), counter.aggregateInterval());
+                        }
+                    }
+                }
 ```
 
- **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
+ **Vector<Point> polygon();**
 
 获取计数器的多边型轮廓顶点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleQueueCounter
-lVehicleQueueCounters = netiface.vehiQueueCounters()
-for vehicleQueueCounter in lVehicleQueueCounters: 
-    print(f"排队计数器{vehicleQueueCounter.id()}的多边型轮廓顶点为{vehicleQueueCounter.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+                        for (IVehicleQueueCounter counter : counters) {
+                            System.out.printf("排队计数器%s的多边型轮廓顶点为%s%n", counter.id(), counter.polygon());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showVehicleQueueCounter(netiface)
+```java
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showVehicleQueueCounter(netiface);
+    }
+}
 
-def showVehicleQueueCounter(netiface): 
-    collectors = netiface.vehiQueueCounters()
-    if len(collectors)>0: 
-        collector = netiface.findVehiQueueCounter(collectors[0].id())
+private static void showVehicleQueueCounter(NetInterface netiface) {
+        List<IVehicleQueueCounter> counters = netiface.vehiQueueCounters();
+        IVehicleQueueCounter counter = netiface.findVehiQueueCounter(counters.get(0).id());
 
-        print(
-            f"获取当前排队计数器ID={collector.id()}, 获取当前排队计数器名称={collector.counterName()}, "
-            f"判断当前数据采集器是否在路段上, 返回值为True表示检测器在路段上, 返回值False则表示在connector上={collector.onLink()}, "
-            f"获取当前排队计数器所在路段={collector.link()}, 获取当前排队计数器所在连接段={collector.connector()}, "
-            f"如果计数器在路段上则lane()返回所在车道, laneConnector()返回None={collector.lane()}, "
-            f"如果计数器在连接段上则laneConnector返回“车道连接”, lane()返回None={collector.laneConnector()}"
-            f" 获取当前计数器工作起始时间, 工作停止时间={collector.fromTime()}-{collector.toTime()}, "
-            f"计数器所在点, 像素坐标={collector.point()}, 计数集计数据时间间隔={collector.aggregateInterval()}"
-            f"计数器距离起点距离, 默认单位: 像素 ={collector.distToStart()}")
+        System.out.printf(
+                "获取当前排队计数器ID=%s, 获取当前排队计数器名称=%s, %n" +
+                        "判断当前数据采集器是否在路段上（True=路段, False=连接段）=%b, %n" +
+                        "获取当前排队计数器所在路段=%s, 获取当前排队计数器所在连接段=%s, %n" +
+                        "计数器所在车道（路段上有效）=%s, 计数器所在车道连接（连接段上有效）=%s, %n" +
+                        "计数器工作时间范围=%d-%d秒, 所在点像素坐标=%s, %n" +
+                        "计数集计数据时间间隔=%d秒, 计数器距离起点距离（像素）=%s%n",
+                counter.id(),
+                counter.counterName(),
+                counter.onLink(),
+                counter.link(),
+                counter.connector(),
+                counter.lane(),
+                counter.laneConnector(),
+                counter.fromTime(),
+                counter.toTime(),
+                counter.point(),
+                counter.aggregateInterval(),
+                counter.distToStart()
+        );
+    }
 ```
 
 
@@ -7583,142 +8954,177 @@ def showVehicleQueueCounter(netiface):
 
 行程时间检测器接口, 方法如下: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取检测器ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的ID为{vehicleTravelDetector.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器%s的ID为%s%n", detector.id(), detector.id());
+            }
+        }
+    }
 ```
 
- **def detectorName(self) -> str: ...**
+ **String detectorName();**
 
 获取检测器名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的名称, 为{vehicleTravelDetector.detectorName()}")
+```java
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器%s的名称, 为%s%n", detector.id(), detector.detectorName());
+            }
+        }
+    }
 ```
 
- **def isStartDetector(self) -> bool: ...**
+ **boolean isStartDetector();**
 
 是否检测器起始点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}是否为起始点, 为{vehicleTravelDetector.isStartDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            System.out.printf("行程时间检测器%s是否为起始点, 为%b%n", detector.id(), detector.isStartDetector());
+                        }
+                    }
+                }
 ```
 
- **def isOnLink_startDetector(self) -> bool: ...**
+ **boolean isOnLink_startDetector();**
 
 检测器起点是否在路段上, 如果否, 则起点在连接段上
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器起点{vehicleTravelDetector.id()}是否在路段上, 为{vehicleTravelDetector.isOnLink_startDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+        for (IVehicleTravelDetector detector : detectors) {
+            System.out.printf("行程时间检测器起点%s是否在路段上, 为%b%n", detector.id(), detector.isOnLink_startDetector());
+        }
+    }
+}
 ```
 
- **def isOnLink_endDetector(self) -> bool: ...**
+ **boolean isOnLink_endDetector();**
 
 检测器终点是否在路段上, 如果否, 则终点在连接段上
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器终点{vehicleTravelDetector.id()}是否在路段上, 为{vehicleTravelDetector.isOnLink_endDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器终点%s是否在路段上, 为%b%n", detector.id(), detector.isOnLink_endDetector());
+            }
+        }
+    }
 ```
 
- **def link_startDetector(self) -> Tessng.ILink: ...**
+ **ILink link_startDetector();**
 
 如果检测器起点在路段上则link_startDetector()返回起点所在路段, laneConnector_startDetector()返回None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器起点{vehicleTravelDetector.id()}所在路段, 为{vehicleTravelDetector.link_startDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器起点%s所在路段, 为%s%n", detector.id(), detector.link_startDetector());
+            }
+        }
+    }
 ```
 
- **def laneConnector_startDetector(self) -> Tessng.ILaneConnector: ...**
+ **ILaneConnector laneConnector_startDetector();**
 
 如果检测器起点在连接段上则laneConnector_startDetector()返回起点“车道连接”, link_startDetector()返回None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器起点{vehicleTravelDetector.id()}所在连接段, 为{vehicleTravelDetector.laneConnector_startDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+            NetInterface netiface = iface.netInterface();
+            if (netiface != null) {
+                List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                for (IVehicleTravelDetector detector : detectors) {
+                    System.out.printf("行程时间检测器起点%s所在连接段, 为%s%n", detector.id(), detector.laneConnector_startDetector());
+                }
+            }
+        }
 ```
 
- **def link_endDetector(self) -> Tessng.ILink: ...**
+ **ILink link_endDetector();**
 
 如果检测器终点在路段上则link_endDetector()返回终点所在路段, laneConnector_endDetector()返回None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器终点{vehicleTravelDetector.id()}所在路段, 为{vehicleTravelDetector.link_endDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            System.out.printf("行程时间检测器终点%s所在路段, 为%s%n", detector.id(), detector.link_endDetector());
+                        }
+                    }
+                }
 ```
 
- **def laneConnector_endDetector(self) -> Tessng.ILaneConnector: ...**
+ **ILaneConnector laneConnector_endDetector();**
 
 如果检测器终点在连接段上则laneConnector_endDetector()返回终点“车道连接”, link_endDetector()返回None
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器终点{vehicleTravelDetector.id()}所在连接段, 为{vehicleTravelDetector.laneConnector_endDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器终点%s所在连接段, 为%s%n", detector.id(), detector.laneConnector_endDetector());
+            }
+        }
+    }
 ```
 
- **def distance_startDetector(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double distance_startDetector(UnitOfMeasure unit);**
 
 检测器起点距离所在车道起点或“车道连接”起点距离, 默认单位: 像素, 可通过unit参数设置单位
 参数: 
@@ -7726,17 +9132,21 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离, 为{vehicleTravelDetector.distance_startDetector()}")
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离（米制）, 为{vehicleTravelDetector.distance_startDetector(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器%s的起点距离所在车道起点距离, 为%s%n", detector.id(), detector.distance_startDetector());
+                System.out.printf("行程时间检测器%s的起点距离（米制）, 为%s米%n", detector.id(), detector.distance_startDetector(UnitOfMeasure.Metric));
+            }
+        }
+    }
 ```
 
- **def distance_endDetector(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double distance_endDetector(UnitOfMeasure unit);**
 
 检测器终点距离所在车道起点或“车道连接”起点距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -7745,17 +9155,21 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离, 为{vehicleTravelDetector.distance_endDetector()}")
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离（米制）, 为{vehicleTravelDetector.distance_endDetector(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器%s的终点距离所在车道起点距离, 为%s%n", detector.id(), detector.distance_endDetector());
+                System.out.printf("行程时间检测器%s的终点距离（米制）, 为%s米%n", detector.id(), detector.distance_endDetector(UnitOfMeasure.Metric));
+            }
+        }
+    }
 ```
 
- **def point_startDetector(self, unit: Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **Point point_startDetector(UnitOfMeasure unit);**
 
 检测器起点位置, 默认单位: 像素, 可通过可选参数: unit设置单位
 
@@ -7764,17 +9178,21 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点位置, 为{vehicleTravelDetector.point_startDetector()}")
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点位置（米制）, 为{vehicleTravelDetector.point_startDetector(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器%s的起点位置, 为%s%n", detector.id(), detector.point_startDetector());
+                System.out.printf("行程时间检测器%s的起点位置（米制）, 为%s米%n", detector.id(), detector.point_startDetector(UnitOfMeasure.Metric));
+            }
+        }
+    }
 ```
 
- **def point_endDetector(self, unit: Tess.UnitOfMeasure) -> PySide2.QtCore.QPointF: ...**
+ **Point point_endDetector(UnitOfMeasure unit);**
 
 检测器终点位置, 默认单位: 像素, 可通过可选参数: unit设置单位
 
@@ -7783,78 +9201,100 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点位置, 为{vehicleTravelDetector.point_endDetector()}")
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点位置（米制）, 为{vehicleTravelDetector.point_endDetector(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            System.out.printf("行程时间检测器%s的终点位置, 为%s%n", detector.id(), detector.point_endDetector());
+                            System.out.printf("行程时间检测器%s的终点位置（米制）, 为%s米%n", detector.id(), detector.point_endDetector(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def fromTime(self) -> int: ...**
+ **long fromTime();**
 
 获取检测器工作起始时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作起始时间, 为{vehicleTravelDetector.fromTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            System.out.printf("行程时间检测器%s的工作起始时间, 为%s%n", detector.id(), detector.fromTime());
+                        }
+                    }
+                }
 ```
 
- **def toTime(self) -> int: ...**
+ **long toTime();**
 
 检测器工作停止时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作停止时间, 为{vehicleTravelDetector.toTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            System.out.printf("行程时间检测器%s的工作停止时间, 为%s%n", detector.id(), detector.toTime());
+                        }
+                    }
+                }
+
 ```
 
- **def aggregateInterval(self) -> int: ...**
+ **long aggregateInterval();**
 
 集计数据时间间隔, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的集计数据时间间隔, 为{vehicleTravelDetector.aggregateInterval()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器%s的集计数据时间间隔, 为%s%n", detector.id(), detector.aggregateInterval());
+            }
+        }
+    }
+}
+                }
 ```
 
- **def setName(self, name: str) -> None: ...**
+ **void setName(String name);**
 
 设置检测器名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    vehicleTravelDetector.setName("检测器名称")
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的名称, 为{vehicleTravelDetector.detectorName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            detector.setName("检测器名称");
+                            System.out.printf("行程时间检测器%s的名称, 为%s%n", detector.id(), detector.detectorName());
+                        }
+                    
 ```
 
- **def setDistance_startDetector(self, dist: double) -> None: ...**
+ **void setDistance_startDetector**
 
 设置检测器起点距车道起点（或“车道连接”起点）距离, 默认单位: 像素, 可通过unit参数设置单位
 参数: 
@@ -7862,18 +9302,23 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    vehicleTravelDetector.setDistance_startDetector(100)
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离, 为{vehicleTravelDetector.distance_startDetector()}")
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点距离所在车道起点或“车道连接”起点距离（米制）, 为{vehicleTravelDetector.distance_startDetector(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            detector.setDistance_startDetector(100);
+                            System.out.printf("行程时间检测器%s的起点距离, 为%s%n", detector.id(), detector.distance_startDetector());
+                            System.out.printf("行程时间检测器%s的起点距离（米制）, 为%s米%n", detector.id(), detector.distance_startDetector(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
+
 ```
 
- **def setDistance_endDetector(self, dist: double) -> None: ...**
+ **void setDistance_startDetector(double dist, UnitOfMeasure unit);**
 
 设置检测器终点距车道起点（或“车道连接”起点）距离, 默认单位: 像素, 可通过unit参数设置单位
 参数: 
@@ -7881,18 +9326,23 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    vehicleTravelDetector.setDistance_endDetector(100)
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离, 为{vehicleTravelDetector.distance_endDetector()}")
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点距离所在车道起点或“车道连接”起点距离（米制）, 为{vehicleTravelDetector.distance_endDetector(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            detector.setDistance_endDetector(100);
+                            System.out.printf("行程时间检测器%s的终点距离, 为%s%n", detector.id(), detector.distance_endDetector());
+                            System.out.printf("行程时间检测器%s的终点距离（米制）, 为%s米%n", detector.id(), detector.distance_endDetector(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
+
 ```
 
- **def setFromTime(self, time: int) -> None: ...**
+ **void setFromTime(long time);**
 
 设置检测器工作起始时间, 单位: 秒
 
@@ -7901,21 +9351,25 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    vehicleTravelDetector.setFromTime(10)
-    vehicleTravelDetector.setToTime(60)
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作起始时间, 为{vehicleTravelDetector.fromTime()}秒")
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作结束时间, 为{vehicleTravelDetector.toTime()}秒")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            detector.setFromTime(10);
+                            detector.setToTime(60);
+                            System.out.printf("行程时间检测器%s的工作起始时间, 为%d秒%n", detector.id(), detector.fromTime());
+                            System.out.printf("行程时间检测器%s的工作结束时间, 为%d秒%n", detector.id(), detector.toTime());
+                        }
+                    }
+                }
 ```
 
  
 
- **def setToTime(self, time: int) -> None: ...**
+ **void setToTime(long time);**
 
 设置检测器工作结束时间, 单位: 秒
 
@@ -7924,17 +9378,23 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    vehicleTravelDetector.setToTime(60)
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的工作结束时间, 为{vehicleTravelDetector.toTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+                        for (IVehicleTravelDetector detector : detectors) {
+                            detector.setFromTime(10);
+                            detector.setToTime(60);
+                            System.out.printf("行程时间检测器%s的工作起始时间, 为%d秒%n", detector.id(), detector.fromTime());
+                            System.out.printf("行程时间检测器%s的工作结束时间, 为%d秒%n", detector.id(), detector.toTime());
+                        }
+                    }
+                }
 ```
 
- **def setAggregateInterval(self) -> int: ...**
+ **void setAggregateInterval(int interval);**
 
 设置检测器集计数据时间间隔, 单位: 秒
 
@@ -7943,74 +9403,106 @@ for vehicleTravelDetector in lVehicleTravelDetectors:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    vehicleTravelDetector.setAggregateInterval(10)
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的集计数据时间间隔, 为{vehicleTravelDetector.aggregateInterval()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+        for (IVehicleTravelDetector detector : detectors) {
+            detector.setAggregateInterval(10);
+            System.out.printf("行程时间检测器%s的集计数据时间间隔, 为%s%n", detector.id(), detector.aggregateInterval());
+        }
+    }
+}
 ```
 
- **def polygon_startDetector(self) -> PySide2.QtGui.QPolygonF: ...**
+ **Vector<Point> polygon_startDetector();**
 
 获取行程时间检测器起始点多边型轮廓的顶点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的起点多边型轮廓的顶点, 为{vehicleTravelDetector.polygon_startDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+        for (IVehicleTravelDetector detector : detectors) {
+            System.out.printf("行程时间检测器%s的起点多边型轮廓的顶点, 为%s%n", detector.id(), detector.polygon_startDetector());
+        }
+    }
+}
 ```
 
- **def polygon_endDetector(self) -> PySide2.QtGui.QPolygonF: ...**
+ **Vector<Point> polygon_endDetector();**
 
 获取行程时间检测器终止点多边型轮廓的顶点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lVehicleTravelDetectors = netiface.vehiTravelDetectors()
-for vehicleTravelDetector in lVehicleTravelDetectors: 
-    print(f"行程时间检测器{vehicleTravelDetector.id()}的终点多边型轮廓的顶点, 为{vehicleTravelDetector.polygon_endDetector()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+            for (IVehicleTravelDetector detector : detectors) {
+                System.out.printf("行程时间检测器%s的终点多边型轮廓的顶点, 为%s%n", detector.id(), detector.polygon_endDetector());
+            }
+        }
+    }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showVehicleTravelDetector(netiface)
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showVehicleTravelDetector(netiface);
+    }
+}
 
-def showVehicleTravelDetector(netiface): 
-    collectors = netiface.vehiTravelDetectors()
-    if len(collectors) > 0: 
-        collector = netiface.findVehiTravelDetector(collectors[0].id())
+private static void showVehicleTravelDetector(NetInterface netiface) {
+        List<IVehicleTravelDetector> detectors = netiface.vehiTravelDetectors();
+        IVehicleTravelDetector detector = netiface.findVehiTravelDetector(detectors.get(0).id());
 
-        print(
-            f"获取检测器ID={collector.id()}, 获取检测器名称={collector.detectorName()}, 是否检测器起始点={collector.isStartDetector()}, "
-            f"判断当前数据采集器是否在路段上, 返回值为True表示检测器在路段上, 返回值False则表示在connector上={collector.onLink()}, "
-            f"检测器起点是否在路段上, 如果否, 则起点在连接段上={collector.isOnLink_startDetector()}, "
-            f"检测器终点是否在路段上, 如果否, 则终点在连接段上={collector.isOnLink_endDetector()}, "
-            f"如果检测器起点在路段上则link_startDetector()返回起点所在路段, laneConnector_startDetector()返回None={collector.link_startDetector()}, "
-            f"如果检测器起点在连接段上则laneConnector_startDetector()返回起点“车道连接”, link_startDetector()返回None={collector.laneConnector_startDetector()}"
-            f"如果检测器终点在路段上则link_endDetector()返回终点所在路段, laneConnector_endDetector()返回None={collector.link_endDetector()}, "
-            f"如果检测器终点在连接段上则laneConnector_endDetector()返回终点“车道连接”, link_endDetector()返回None={collector.laneConnector_endDetector()}, "
-            f"检测器起点距离所在车道起点或“车道连接”起点距离, 默认单位: 像素={collector.distance_startDetector()}, "
-            f"检测器终点距离所在车道起点或“车道连接”起点距离, 默认单位: 像素={collector.distance_endDetector()}, "
-            f"检测器起点位置, 默认单位: 像素, 可通过可选参数: unit设置单位, ={collector.point_startDetector()}, "
-            f"检测器终点位置, 默认单位: 像素, 可通过可选参数: unit设置单位, ={collector.point_endDetector()}, "
-            f"检测器工作起始时间, 单位: 秒={collector.fromTime()}, 检测器工作停止时间, 单位: 秒={collector.toTime()}, "
-            f"集计数据时间间隔, 单位: 秒={collector.aggregateInterval()}, "
-            f"获取行程时间检测器起始点多边型轮廓的顶点={collector.polygon_startDetector()}, "
-            f"获取行程时间检测器终止点多边型轮廓的顶点={collector.polygon_endDetector()}")
+        System.out.printf(
+                "获取检测器ID=%s, 获取检测器名称=%s, 是否检测器起始点=%b, %n" +
+//                        "判断当前数据采集器是否在路段上（True=路段, False=连接段）=%b, %n" +
+                        "检测器起点是否在路段上=%b, 检测器终点是否在路段上=%b, %n" +
+                        "起点所在路段（路段上有效）=%s, 起点所在车道连接（连接段上有效）=%s, %n" +
+                        "终点所在路段（路段上有效）=%s, 终点所在车道连接（连接段上有效）=%s, %n" +
+                        "起点距离（像素）=%s, 终点距离（像素）=%s, %n" +
+                        "起点位置（像素）=%s, 终点位置（像素）=%s, %n" +
+                        "工作起始时间（秒）=%d, 工作停止时间（秒）=%d, %n" +
+                        "集计数据时间间隔（秒）=%s, %n" +
+                        "起点多边形轮廓顶点=%s, 终点多边形轮廓顶点=%s%n",
+                detector.id(),
+                detector.detectorName(),
+//                detector.onLink(),
+                detector.isStartDetector(),
+                detector.isOnLink_startDetector(),
+                detector.isOnLink_endDetector(),
+                detector.link_startDetector(),
+                detector.laneConnector_startDetector(),
+                detector.link_endDetector(),
+                detector.laneConnector_endDetector(),
+                detector.distance_startDetector(),
+                detector.distance_endDetector(),
+                detector.point_startDetector(),
+                detector.point_endDetector(),
+                detector.fromTime(),
+                detector.toTime(),
+                detector.aggregateInterval(),
+                detector.polygon_startDetector(),
+                detector.polygon_endDetector()
+        );
+    }
 ```
 
 
@@ -8022,37 +9514,45 @@ def showVehicleTravelDetector(netiface):
 
 导向箭头接口, 方法如下: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取导向箭头ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lGuidArrows = netiface.guidArrows()
-for guidArrow in lGuidArrows: 
-    print(f"导向箭头的ID为{guidArrow.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IGuidArrow> lGuidArrows = netiface.guidArrows();
+        for (IGuidArrow guidArrow : lGuidArrows) {
+            System.out.printf("导向箭头的ID为%s%n", guidArrow.id());
+        }
+    }
+}
 ```
 
- **def lane(self) -> Tessng.ILane: ...**
+ **ILane lane();**
 
 获取导向箭头所在的车道
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lGuidArrows = netiface.guidArrows()
-for guidArrow in lGuidArrows: 
-    print(f"导向箭头{guidArrow.id()}所在的车道为{guidArrow.lane()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IGuidArrow> lGuidArrows = netiface.guidArrows();
+        for (IGuidArrow guidArrow : lGuidArrows) {
+            System.out.printf("导向箭头%s所在的车道为%s%n", guidArrow.id(), guidArrow.lane());
+        }
+    }
+    }
 ```
 
- **def length(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double length(UnitOfMeasure unit);**
 
 获取导向箭头的长度, 默认单位: 像素, 可通过可选参数: unit设置单位
 
@@ -8061,17 +9561,21 @@ for guidArrow in lGuidArrows:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lGuidArrows = netiface.guidArrows()
-for guidArrow in lGuidArrows: 
-    print(f"导向箭头{guidArrow.id()}的长度, 为{guidArrow.length()}")
-    print(f"导向箭头{guidArrow.id()}的长度（米制）, 为{guidArrow.length(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IGuidArrow> lGuidArrows = netiface.guidArrows();
+                        for (IGuidArrow guidArrow : lGuidArrows) {
+                            System.out.printf("导向箭头%s的长度, 为%s%n", guidArrow.id(), guidArrow.length());
+                            System.out.printf("导向箭头%s的长度（米制）, 为%s米%n", guidArrow.id(), guidArrow.length(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def distToTerminal(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double distToTerminal(UnitOfMeasure unit);**
 
 获取导向箭头到的终点距离, 默认单位: 像素, 可通过可选参数: unit设置单位
 
@@ -8080,60 +9584,90 @@ for guidArrow in lGuidArrows:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lGuidArrows = netiface.guidArrows()
-for guidArrow in lGuidArrows: 
-    print(f"导向箭头{guidArrow.id()}的终点距离, 为{guidArrow.distToTerminal()}")
-    print(f"导向箭头{guidArrow.id()}的终点距离（米制）, 为{guidArrow.distToTerminal(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IGuidArrow> lGuidArrows = netiface.guidArrows();
+            for (IGuidArrow guidArrow : lGuidArrows) {
+                System.out.printf("导向箭头%s的终点距离, 为%s%n", guidArrow.id(), guidArrow.distToTerminal());
+                System.out.printf("导向箭头%s的终点距离（米制）, 为%s米%n", guidArrow.id(), guidArrow.distToTerminal(UnitOfMeasure.Metric));
+            }
+        }
+    }
 ```
- **def arrowType(self) -> Tess.Online.GuideArrowType: ...**
+ **GuideArrowType arrowType();**
 
 获取导向箭头的类型, 导向箭头的类型分为: 直行、左转、右转、直行或左转、直行或右转、直行左转或右转、左转或右转、掉头、直行或掉头和左转或掉头
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lGuidArrows = netiface.guidArrows()
-for guidArrow in lGuidArrows: 
-    print(f"导向箭头{guidArrow.id()}的类型, 为{guidArrow.arrowType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IGuidArrow> lGuidArrows = netiface.guidArrows();
+        for (IGuidArrow guidArrow : lGuidArrows) {
+            System.out.printf("导向箭头%s的类型, 为%s%n", guidArrow.id(), guidArrow.arrowType());
+        }
+    }
+}
 ```
 
- **def polygon(self) -> PySide2.QtGui.QPolygonF: ...**
+ **Vector<Point> polygon();**
 
 获取导向箭头的多边型轮廓的顶点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IVehicleTravelDetector
-lGuidArrows = netiface.guidArrows()
-for guidArrow in lGuidArrows: 
-    print(f"导向箭头{guidArrow.id()}的多边型轮廓的顶点, 为{guidArrow.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IGuidArrow> lGuidArrows = netiface.guidArrows();
+            for (IGuidArrow guidArrow : lGuidArrows) {
+                System.out.printf("导向箭头%s的多边型轮廓的顶点, 为%s%n", guidArrow.id(), guidArrow.polygon());
+            }
+        }
+    }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showGuidArrowAttr(netiface)
-def showGuidArrowAttr(netiface): 
-    guidArrow = netiface.findGuidArrow(netiface.guidArrows()[0].id())
-    print(f"导向箭头数={netiface.guidArrowCount()}, 导向箭头集={netiface.guidArrows()}, ")
-    print(f"导向箭头ID={guidArrow.id()}, "
-          f"获取导向箭头所在的车道={guidArrow.lane()}, "
-          f"获取导向箭头长度, 像素制={guidArrow.length()}, 米制={guidArrow.length(UnitOfMeasure.Metric)}, "
-          f"获取导向箭头到终点距离, 像素制, 米制={guidArrow.distToTerminal()}, 米制={guidArrow.distToTerminal(UnitOfMeasure.Metric)}, "
-          f"获取导向箭头的类型, 导向箭头的类型分为: 直行、左转、右转、直行或左转、直行或右转、"
-          f"直行左转或右转、左转或右转、掉头、直行或掉头和左转或掉头={guidArrow.arrowType()}, "
-          f"获取导向箭头的多边型轮廓的顶点={guidArrow.polygon()}")
+```java
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            showGuidArrowAttr(netiface);
+        }
+    }
+private static void showGuidArrowAttr(NetInterface netiface) {
+        List<IGuidArrow> guidArrows = netiface.guidArrows();
+        IGuidArrow guidArrow = netiface.findGuidArrow(guidArrows.get(0).id());
+
+        System.out.printf(
+                "导向箭头数=%d, 导向箭头集=%s, %n" +
+                        "导向箭头ID=%s, %n" +
+                        "获取导向箭头所在的车道=%s, %n" +
+                        "获取导向箭头长度（像素制）=%s, 米制=%s米, %n" +
+                        "获取导向箭头到终点距离（像素制）=%s, 米制=%s米, %n" +
+                        "获取导向箭头的类型（直行/左转/右转等）=%s, %n" +
+                        "获取导向箭头的多边型轮廓的顶点=%s%n",
+                netiface.guidArrowCount(),
+                guidArrows,
+                guidArrow.id(),
+                guidArrow.lane(),
+                guidArrow.length(),
+                guidArrow.length(UnitOfMeasure.Metric),
+                guidArrow.distToTerminal(),
+                guidArrow.distToTerminal(UnitOfMeasure.Metric),
+                guidArrow.arrowType(),
+                guidArrow.polygon()
+        );
+    }
 ```
 
 
@@ -8144,37 +9678,45 @@ def showGuidArrowAttr(netiface):
 
 事故区接口, 方法如下: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取事故区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区的ID为{accidentZone.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区的ID为%s%n", accidentZone.id());
+                        }
+                    }
+                }
 ```
 
- **def name(self) -> str: ...**
+ **String name();**
 
 获取事故区名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区的名称为{accidentZone.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区的名称为%s%n", accidentZone.name());
+                        }
+                    }
+                }
 ```
 
- **def location(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double location(UnitOfMeasure unit);**
 
 获取事故区距所在路段起点的距离, 默认单位: 像素, 可通过可选参数: unit设置单位
 
@@ -8183,17 +9725,21 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}距所在路段起点的距离, 为{accidentZone.location()}")
-    print(f"事故区{accidentZone.id()}距所在路段起点的距离（米制）, 为{accidentZone.location(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区%s距所在路段起点的距离, 为%s%n", accidentZone.id(), accidentZone.location());
+                            System.out.printf("事故区%s距所在路段起点的距离（米制）, 为%s米%n", accidentZone.id(), accidentZone.location(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def zoneLength(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double zoneLength(UnitOfMeasure unit);**
 
 获取事故区长度, 默认单位: 像素, 可通过可选参数: unit设置单位
 参数: 
@@ -8201,17 +9747,21 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}的长度, 为{accidentZone.zoneLength()}")
-    print(f"事故区{accidentZone.id()}的长度（米制）, 为{accidentZone.zoneLength(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+        for (IAccidentZone accidentZone : lAccidentZones) {
+            System.out.printf("事故区%s的长度, 为%s%n", accidentZone.id(), accidentZone.zoneLength());
+            System.out.printf("事故区%s的长度（米制）, 为%s米%n", accidentZone.id(), accidentZone.zoneLength(UnitOfMeasure.Metric));
+        }
+    }
+}
 ```
 
- **def limitedSpeed(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double limitedSpeed(UnitOfMeasure unit);**
 
 获取事故区当前时段限速, 默认单位: 像素(km/h), 可通过可选参数: unit设置单位
 
@@ -8220,77 +9770,97 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}的限速, 为{accidentZone.limitedSpeed()}")
-    print(f"事故区{accidentZone.id()}的限速（米制）, 为{accidentZone.limitedSpeed(UnitOfMeasure.Metric)}km/h")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区%s的限速, 为%s%n", accidentZone.id(), accidentZone.limitedSpeed());
+                            System.out.printf("事故区%s的限速（米制）, 为%skm/h%n", accidentZone.id(), accidentZone.limitedSpeed(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def section(self) -> Tessng.ISection: ...**
+ **ISection section();**
 
 获取事故区所在的路段或连接段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}所在的路段或连接段, 为{accidentZone.section()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区%s所在的路段或连接段, 为%s%n", accidentZone.id(), accidentZone.section());
+                        }
+                    }
+                }
 ```
 
- **def roadId(self) -> int: ...**
+ **long roadId();**
 
 获取事故区所在路段的ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}所在路段的ID为{accidentZone.roadId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区%s所在路段的ID为%s%n", accidentZone.id(), accidentZone.roadId());
+                        }
+                    }
+                }
 ```
 
- **def roadType(self) -> str: ...**
+ **String roadType();**
 
 获取事故区所在的道路类型(路段或连接段)
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}所在的道路类型为{accidentZone.roadType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区%s所在的道路类型为%s%n", accidentZone.id(), accidentZone.roadType());
+                        }
+                    }
+                }
 ```
 
- **def laneObjects(self) -> typing.List< Tess.ILaneObjects >: ...**
+ **ArrayList<ILaneObject> laneObjects();**
 
 获取事故区当前时段占用的车道列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}当前时段占用的车道列表为{accidentZone.laneObjects()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区%s当前时段占用的车道列表为%s%n", accidentZone.id(), accidentZone.laneObjects());
+                        }
+                    }
+                }
 ```
 
- **def controlLength(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double controlLength(UnitOfMeasure unit);**
 
 获取事故区当前时段控制距离（车辆距离事故区起点该距离内, 强制变道）, 默认单位: 像素, 可通过可选参数: unit设置单位
 参数: 
@@ -8298,17 +9868,21 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}当前时段控制距离, 为{accidentZone.controlLength()}")
-    print(f"事故区{accidentZone.id()}当前时段控制距离（米制）, 为{accidentZone.controlLength(UnitOfMeasure.Metric)}米")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区%s当前时段控制距离, 为%s%n", accidentZone.id(), accidentZone.controlLength());
+                            System.out.printf("事故区%s当前时段控制距离（米制）, 为%s米%n", accidentZone.id(), accidentZone.controlLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def addAccidentZoneInterval(self, param: Tess.Online.DynaAccidentZoneIntervalParam) -> Tess.IAccidentZoneInterval: ...**
+ **IAccidentZoneInterval addAccidentZoneInterval(DynaAccidentZoneIntervalParam param);**
 
 添加事故时段
 
@@ -8317,31 +9891,44 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    accidentZoneIntervals=accidentZone.accidentZoneIntervals()
-    param = accidentZoneIntervals[-1]
-    accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
-    accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
-    accidentZoneIntervalParam.startTime = param.endTime()
-    accidentZoneIntervalParam.endTime = param.endTime() + 300
-    accidentZoneIntervalParam.length = param.length()
-    accidentZoneIntervalParam.location = param.location()
-    accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
-    accidentZoneIntervalParam.controlLength = param.controlLength()
-    laneNumbers =  [lane.number() for lane in netiface.findLink(accidentZone.roadId()).lanes()]
-    accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> accidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            if (!accidentZoneIntervals.isEmpty()) {
+                                IAccidentZoneInterval param = accidentZoneIntervals.get(accidentZoneIntervals.size() - 1);
+                                DynaAccidentZoneIntervalParam accidentZoneIntervalParam = new DynaAccidentZoneIntervalParam();
+                                accidentZoneIntervalParam.setAccidentZoneId(param.accidentZoneId()) ;
+                                accidentZoneIntervalParam.setStartTime(param.endTime()) ;
+                                accidentZoneIntervalParam.setEndTime(param.endTime() + 300);
+                                accidentZoneIntervalParam.setLength(param.length());
+                                accidentZoneIntervalParam.setLocation(param.location());
+                                accidentZoneIntervalParam.setLimitedSpeed(param.limitedSpeed());
+                                accidentZoneIntervalParam.setControlLength(param.controlLength()) ;
 
-    print(f"添加前事故时段列表{accidentZone.accidentZoneIntervals()}")
-    accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
-    print(f"添加后事故时段列表{accidentZone.accidentZoneIntervals()}")
+                                ILink link = netiface.findLink(accidentZone.roadId());
+                                ArrayList<Integer> laneNumbers = new java.util.ArrayList<>();
+                                for (ILane lane : link.lanes()) {
+                                    laneNumbers.add(lane.number());
+                                }
+                                ArrayList<Integer> paramLaneNumbers = param.laneNumbers();
+                                laneNumbers.removeAll(paramLaneNumbers);
+                                accidentZoneIntervalParam.setMlFromLaneNumber(laneNumbers);
+
+                                System.out.printf("添加前事故时段列表%s%n", accidentZone.accidentZoneIntervals());
+                                IAccidentZoneInterval accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam);
+                                System.out.printf("添加后事故时段列表%s%n", accidentZone.accidentZoneIntervals());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def removeAccidentZoneInterval(self, accidentZoneIntervalId: int) -> None: ...**
+ **void removeAccidentZoneInterval(long accidentZoneIntervalId);**
 
 移除事故时段 
 
@@ -8350,39 +9937,52 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    accidentZoneIntervals=accidentZone.accidentZoneIntervals()
-    param = accidentZoneIntervals[-1]
-    accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
-    accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
-    accidentZoneIntervalParam.startTime =param.endTime()
-    accidentZoneIntervalParam.endTime = param.endTime()+300
-    accidentZoneIntervalParam.length = param.length()
-    accidentZoneIntervalParam.location = param.location()
-    accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
-    accidentZoneIntervalParam.controlLength = param.controlLength()
-    laneNumbers =  [lane.number() for lane in netiface.findLink(accidentZone.roadId()).lanes()]
-    accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> accidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            if (!accidentZoneIntervals.isEmpty()) {
+                                IAccidentZoneInterval param = accidentZoneIntervals.get(accidentZoneIntervals.size() - 1);
+                                DynaAccidentZoneIntervalParam accidentZoneIntervalParam = new DynaAccidentZoneIntervalParam();
+                                accidentZoneIntervalParam.setAccidentZoneId(param.accidentZoneId()) ;
+                                accidentZoneIntervalParam.setStartTime(param.endTime()) ;
+                                accidentZoneIntervalParam.setEndTime(param.endTime() + 300);
+                                accidentZoneIntervalParam.setLength(param.length());
+                                accidentZoneIntervalParam.setLocation(param.location());
+                                accidentZoneIntervalParam.setLimitedSpeed(param.limitedSpeed());
+                                accidentZoneIntervalParam.setControlLength(param.controlLength()) ;
 
-    accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
+                                ILink link = netiface.findLink(accidentZone.roadId());
+                                ArrayList<Integer> laneNumbers = new java.util.ArrayList<>();
+                                for (ILane lane : link.lanes()) {
+                                    laneNumbers.add(lane.number());
+                                }
+                                ArrayList<Integer> paramLaneNumbers = param.laneNumbers();
+                                laneNumbers.removeAll(paramLaneNumbers);
+                                accidentZoneIntervalParam.setMlFromLaneNumber(laneNumbers);
 
-    accidentZoneIntervalParam1 = accidentZoneIntervalParam
-    accidentZoneIntervalParam1.startTime =accidentZoneIntervalParam1.endTime
-    accidentZoneIntervalParam1.endTime = accidentZoneIntervalParam1.endTime+300
-    accidentZoneInterval1 = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
+                                // 添加两个事故时段
+                                IAccidentZoneInterval accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam);
+                                DynaAccidentZoneIntervalParam accidentZoneIntervalParam1 = accidentZoneIntervalParam;
+                                accidentZoneIntervalParam1.setStartTime(accidentZoneIntervalParam1.getEndTime());
+                                accidentZoneIntervalParam1.setEndTime(accidentZoneIntervalParam1.getEndTime() + 300);
+                                IAccidentZoneInterval accidentZoneInterval1 = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam);
 
-    # 移除刚添加的事故时段accidentZoneInterval1
-    print(f"移除前事故时段列表{accidentZone.accidentZoneIntervals()}")
-    accidentZone.removeAccidentZoneInterval(accidentZoneInterval1.intervalId())
-    print(f"移除后事故时段列表{accidentZone.accidentZoneIntervals()}")
+                                // 移除刚添加的第二个时段
+                                System.out.printf("移除前事故时段列表%s%n", accidentZone.accidentZoneIntervals());
+                                accidentZone.removeAccidentZoneInterval(accidentZoneInterval1.intervalId());
+                                System.out.printf("移除后事故时段列表%s%n", accidentZone.accidentZoneIntervals());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def updateAccidentZoneInterval(self, param: Tess.Online.DynaAccidentZoneIntervalParam) -> bool: ...**
+ **boolean updateAccidentZoneInterval(DynaAccidentZoneIntervalParam param);**
 
 更新事故时段
 
@@ -8391,52 +9991,64 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    accidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    param = accidentZoneIntervals[-1]
-    accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
-    accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
-    accidentZoneIntervalParam.startTime = param.endTime()
-    accidentZoneIntervalParam.endTime = param.endTime() + 300
-    accidentZoneIntervalParam.length = param.length()
-    accidentZoneIntervalParam.location = param.location()
-    accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
-    accidentZoneIntervalParam.controlLength = param.controlLength()
-    laneNumbers =  [lane.number() for lane in netiface.findLink(accidentZone.roadId()).lanes()]
-    accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> accidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            if (!accidentZoneIntervals.isEmpty()) {
+                                IAccidentZoneInterval param = accidentZoneIntervals.get(accidentZoneIntervals.size() - 1);
+                                DynaAccidentZoneIntervalParam accidentZoneIntervalParam = new DynaAccidentZoneIntervalParam();
+                                accidentZoneIntervalParam.setAccidentZoneId(param.accidentZoneId()) ;
+                                accidentZoneIntervalParam.setStartTime(param.endTime()) ;
+                                accidentZoneIntervalParam.setEndTime(param.endTime() + 300);
+                                accidentZoneIntervalParam.setLength(param.length());
+                                accidentZoneIntervalParam.setLocation(param.location());
+                                accidentZoneIntervalParam.setLimitedSpeed(param.limitedSpeed());
+                                accidentZoneIntervalParam.setControlLength(param.controlLength()) ;
 
-    accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
+                                ILink link = netiface.findLink(accidentZone.roadId());
+                                ArrayList<Integer> laneNumbers = new java.util.ArrayList<>();
+                                for (ILane lane : link.lanes()) {
+                                    laneNumbers.add(lane.number());
+                                }
+                                ArrayList<Integer> paramLaneNumbers = param.laneNumbers();
+                                laneNumbers.removeAll(paramLaneNumbers);
+                                accidentZoneIntervalParam.setMlFromLaneNumber(laneNumbers);
 
-    accidentZoneIntervalParam1 = accidentZoneIntervalParam
-    accidentZoneIntervalParam1.startTime =accidentZoneIntervalParam1.endTime
-    accidentZoneIntervalParam1.endTime = accidentZoneIntervalParam1.endTime+300
-    accidentZoneInterval1 = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam)
-
-    accidentZoneIntervalParam.controlLength = param.controlLength() + 10
-    accidentZone.updateAccidentZoneInterval(accidentZoneIntervalParam)
+                                IAccidentZoneInterval accidentZoneInterval = accidentZone.addAccidentZoneInterval(accidentZoneIntervalParam);
+                                accidentZoneIntervalParam.setControlLength(param.controlLength() + 10);
+                                accidentZone.updateAccidentZoneInterval(accidentZoneIntervalParam);
+                                System.out.printf("更新后事故时段参数（控制距离）：%s%n", accidentZone.findAccidentZoneIntervalById(accidentZoneInterval.intervalId()).controlLength());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def accidentZoneIntervals(self) -> typing.List<Tess.IAccidentZoneInterval>: ...**
+ **ArrayList<IAccidentZoneInterval> accidentZoneIntervals();**
 
 获取所有事故时段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    print(f"事故区{accidentZone.id()}的事故时段, 为{accidentZone.accidentZoneIntervals()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            System.out.printf("事故区%s的事故时段, 为%s%n", accidentZone.id(), accidentZone.accidentZoneIntervals());
+                        }
+                    }
+                }
 ```
 
- **def findAccidentZoneIntervalById(self, accidentZoneIntervalId: int) -> Tess.IAccidentZoneInterval: ...**
+ **IAccidentZoneInterval findAccidentZoneIntervalById(long accidentZoneIntervalId);**
 
 根据ID查询事故时段
 
@@ -8445,18 +10057,23 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    accidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in accidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段, 为{accidentZone.findAccidentZoneIntervalById(accidentZoneInterval.intervalId())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> accidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : accidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段（ID查询）, 为%s%n", accidentZone.id(), accidentZone.findAccidentZoneIntervalById(interval.intervalId()));
+                            }
+                        }
+                    }
+                }
 ```
 
-**def findAccidentZoneIntervalByStartTime(self, startTime: int) -> Tess.IAccidentZoneInterval: ...**
+**IAccidentZoneInterval findAccidentZoneIntervalByStartTime(long startTime);**
 
 根据开始时间查询事故时段
 
@@ -8465,63 +10082,112 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    accidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in accidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段, 为{accidentZone.findAccidentZoneIntervalByStartTime(accidentZoneInterval.startTime())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> accidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : accidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段（开始时间查询）, 为%s%n", accidentZone.id(), accidentZone.findAccidentZoneIntervalByStartTime(interval.startTime()));
+                            }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showAccidentZoneAttr(netiface)
+```java
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showAccidentZoneAttr(netiface);
+    }
+}
 
-def showAccidentZoneAttr(self, netiface): 
-    acczones = netiface.accidentZones()
-    acczone = netiface.findAccidentZone(acczones[0].id())
-    print(f"获取事故区ID={acczone.id()}, 获取事故区名称={acczone.name()}, "
-          f"获取事故区当前时段距所在路段起点的距离, 像素制={acczone.location()}, 米制={acczone.location(UnitOfMeasure.Metric)}, "
-          f"获取事故区当前时段长度, 像素制={acczone.zoneLength()}, 米制={acczone.zoneLength(UnitOfMeasure.Metric)}, "
-          f"获取事故区当前时段限速, 像素制 km/h={acczone.limitedSpeed()}, 米制={acczone.limitedSpeed(UnitOfMeasure.Metric)}, "
-          f"获取事故区所在的路段或连接段={acczone.section()}, 获取事故区所在路段的ID={acczone.roadId()}, "
-          f"获取事故区所在的道路类型(路段或连接段)={acczone.roadType()}, "
-          f"获取事故区当前时段占用的车道列表={acczone.laneObjects()}, "
-          f"获取事故区当前时段控制距离（车辆距离事故区起点该距离内, 强制变道, 像素制={acczone.controlLength()}, 米制={acczone.controlLength(UnitOfMeasure.Metric)}, "
-          )
-    print("添加事故时段")
+private static void showAccidentZoneAttr(NetInterface netiface) {
+        List<IAccidentZone> accZones = netiface.accidentZones();
+        if (accZones.isEmpty()) {
+            System.out.println("没有找到事故区");
+            return;
+        }
 
-    accidentZoneIntervals=acczone.accidentZoneIntervals()
-    param = accidentZoneIntervals[-1]
-    accidentZoneIntervalParam = Online.DynaAccidentZoneIntervalParam()
-    accidentZoneIntervalParam.accidentZoneId = param.accidentZoneId()
-    accidentZoneIntervalParam.startTime =param.endTime()
-    accidentZoneIntervalParam.endTime = param.endTime()+300
-    accidentZoneIntervalParam.length = param.length()
-    accidentZoneIntervalParam.location = param.location()
-    accidentZoneIntervalParam.limitedSpeed = param.limitedSpeed()
-    accidentZoneIntervalParam.controlLength = param.controlLength()
-    laneNumbers =  [lane.number() for lane in netiface.findLink(acczone.roadId()).lanes()]
-    accidentZoneIntervalParam.mlFromLaneNumber = list(set(laneNumbers) - set( param.laneNumbers()))
+        IAccidentZone accZone = netiface.findAccidentZone(accZones.get(0).id());
 
-    accidentZoneInterval = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+        System.out.printf("获取事故区ID=%s, 获取事故区名称=%s, " +
+                        "获取事故区当前时段距所在路段起点的距离, 像素制=%s, 米制=%s, " +
+                        "获取事故区当前时段长度, 像素制=%s, 米制=%s, " +
+                        "获取事故区当前时段限速, 像素制 km/h=%s, 米制=%s, " +
+                        "获取事故区所在的路段或连接段=%s, 获取事故区所在路段的ID=%s, " +
+                        "获取事故区所在的道路类型(路段或连接段)=%s, " +
+                        "获取事故区当前时段占用的车道列表=%s, " +
+                        "获取事故区当前时段控制距离（车辆距离事故区起点该距离内, 强制变道, 像素制=%s, 米制=%s%n",
+                accZone.id(), accZone.name(),
+                accZone.location(), accZone.location(UnitOfMeasure.Metric),
+                accZone.zoneLength(), accZone.zoneLength(UnitOfMeasure.Metric),
+                accZone.limitedSpeed(), accZone.limitedSpeed(UnitOfMeasure.Metric),
+                accZone.section(), accZone.roadId(),
+                accZone.roadType(),
+                accZone.laneObjects(),
+                accZone.controlLength(), accZone.controlLength(UnitOfMeasure.Metric));
 
-    accidentZoneIntervalParam1 = accidentZoneIntervalParam
-    accidentZoneIntervalParam1.startTime =accidentZoneIntervalParam1.endTime
-    accidentZoneIntervalParam1.endTime = accidentZoneIntervalParam1.endTime+300
-    accidentZoneInterval1 = acczone.addAccidentZoneInterval(accidentZoneIntervalParam)
+        System.out.println("添加事故时段");
 
-    # acczone.removeAccidentZoneInterval(accidentZoneInterval1.intervalId())
-    accidentZoneIntervalParam.controlLength = param.controlLength() + 10
-    acczone.updateAccidentZoneInterval(accidentZoneIntervalParam)
-    print(f"获取所有事故时段={acczone.accidentZoneIntervals()}, "
-          # f"根据ID查询事故时段={acczone.findAccidentZoneIntervalById(accidentZoneInterval.intervalId())}, "
-          f"根据开始时间查询事故时段={acczone.findAccidentZoneIntervalByStartTime(accidentZoneInterval.startTime())}")
+        List<IAccidentZoneInterval> accidentZoneIntervals = accZone.accidentZoneIntervals();
+        if (accidentZoneIntervals.isEmpty()) {
+            System.out.println("没有找到事故时段");
+            return;
+        }
+
+        IAccidentZoneInterval lastInterval = accidentZoneIntervals.get(accidentZoneIntervals.size() - 1);
+        DynaAccidentZoneIntervalParam accidentZoneIntervalParam = new DynaAccidentZoneIntervalParam();
+
+        accidentZoneIntervalParam.setAccidentZoneId(lastInterval.accidentZoneId());
+        accidentZoneIntervalParam.setStartTime(lastInterval.endTime());
+        accidentZoneIntervalParam.setEndTime(lastInterval.endTime() + 300);
+        accidentZoneIntervalParam.setLength(lastInterval.length());
+        accidentZoneIntervalParam.setLocation(lastInterval.location());
+        accidentZoneIntervalParam.setLimitedSpeed(lastInterval.limitedSpeed());
+        accidentZoneIntervalParam.setControlLength(lastInterval.controlLength());
+
+        ILink link = netiface.findLink(accZone.roadId());
+        List<Integer> laneNumbers = link.lanes().stream()
+                .map(ILane::number)
+                .collect(Collectors.toList());
+
+        Set<Integer> allLanes = new HashSet<>(laneNumbers);
+        Set<Integer> occupiedLanes = new HashSet<>(lastInterval.laneNumbers());
+        allLanes.removeAll(occupiedLanes);
+
+        accidentZoneIntervalParam.setMlFromLaneNumber(new ArrayList<>(allLanes));
+
+        IAccidentZoneInterval accidentZoneInterval = accZone.addAccidentZoneInterval(accidentZoneIntervalParam);
+
+        DynaAccidentZoneIntervalParam accidentZoneIntervalParam1 = new DynaAccidentZoneIntervalParam();
+        accidentZoneIntervalParam1.setAccidentZoneId(accidentZoneIntervalParam.getAccidentZoneId());
+        accidentZoneIntervalParam1.setStartTime(accidentZoneIntervalParam.getEndTime());
+        accidentZoneIntervalParam1.setEndTime(accidentZoneIntervalParam.getEndTime() + 300);
+        accidentZoneIntervalParam1.setLength(accidentZoneIntervalParam.getLength());
+        accidentZoneIntervalParam1.setLocation(accidentZoneIntervalParam.getLocation());
+        accidentZoneIntervalParam1.setLimitedSpeed(accidentZoneIntervalParam.getLimitedSpeed());
+        accidentZoneIntervalParam1.setControlLength(accidentZoneIntervalParam.getControlLength());
+        accidentZoneIntervalParam1.setMlFromLaneNumber(accidentZoneIntervalParam.getMlFromLaneNumber());
+
+        IAccidentZoneInterval accidentZoneInterval1 = accZone.addAccidentZoneInterval(accidentZoneIntervalParam1);
+
+        accidentZoneIntervalParam.setControlLength(lastInterval.controlLength() + 10);
+        accZone.updateAccidentZoneInterval(accidentZoneIntervalParam);
+
+        System.out.printf("获取所有事故时段=%s, " +
+                        "根据开始时间查询事故时段=%s%n",
+                accZone.accidentZoneIntervals(),
+                accZone.findAccidentZoneIntervalByStartTime(accidentZoneInterval.startTime()));
+
+
+    }
 
 ```
 
@@ -8531,75 +10197,95 @@ def showAccidentZoneAttr(self, netiface):
 
 事故时段接口, 方法如下: 
 
- **def intervalId(self) -> int: ...**
+ **long intervalId();**
 
 获取事故时段ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段ID为{accidentZoneInterval.intervalId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段ID为%s%n", accidentZone.id(), interval.intervalId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def accidentZoneId(self) -> int: ...**
+ **long accidentZoneId();**
 
 获取所属事故区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段所属事故区ID为{accidentZoneInterval.accidentZoneId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段所属事故区ID为%s%n", accidentZone.id(), interval.accidentZoneId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def startTime(self) -> int: ...**
+ **long startTime();**
 
 获取事故区开始时间
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段开始时间为{accidentZoneInterval.startTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段开始时间为%s%n", accidentZone.id(), interval.startTime());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def endTime(self) -> int: ...**
+ **long endTime();**
 
 获取事故区结束时间
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段结束时间为{accidentZoneInterval.endTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段结束时间为%s%n", accidentZone.id(), interval.endTime());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def length(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double length(UnitOfMeasure unit);**
 
 获取事故区在该时段的长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -8608,19 +10294,24 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段长度为{accidentZoneInterval.length()}")
-        print(f"事故区{accidentZone.id()}的事故时段长度为{accidentZoneInterval.length(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段长度为%s%n", accidentZone.id(), interval.length());
+                                System.out.printf("事故区%s的事故时段长度（米制）为%s%n", accidentZone.id(), interval.length(UnitOfMeasure.Metric));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def location(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double location(UnitOfMeasure unit);**
 
 获取事故区在该时段的距起点距离, 默认单位: 像素, 可通过可选参数: unit设置单位
 
@@ -8629,19 +10320,24 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段距起点距离为{accidentZoneInterval.location()}")
-        print(f"事故区{accidentZone.id()}的事故时段距起点距离为{accidentZoneInterval.location(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段距起点距离为%s%n", accidentZone.id(), interval.location());
+                                System.out.printf("事故区%s的事故时段距起点距离（米制）为%s%n", accidentZone.id(), interval.location(UnitOfMeasure.Metric));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def limitedSpeed(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double limitedSpeed(UnitOfMeasure unit);**
 
 获取事故区在该时段的限速, 默认单位: 像素(km/h), 可通过unit参数设置单位
 
@@ -8650,19 +10346,24 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段限速为{accidentZoneInterval.limitedSpeed()}")
-        print(f"事故区{accidentZone.id()}的事故时段限速为{accidentZoneInterval.limitedSpeed(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段限速为%s%n", accidentZone.id(), interval.limitedSpeed());
+                                System.out.printf("事故区%s的事故时段限速（米制）为%s%n", accidentZone.id(), interval.limitedSpeed(UnitOfMeasure.Metric));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def controlLength(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double controlLength(UnitOfMeasure unit);**
 
 获取事故区在该时段的控制距离（车辆距离事故区起点该距离内, 强制变道）, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -8671,53 +10372,85 @@ for accidentZone in lAccidentZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段控制距离为{accidentZoneInterval.controlLength()}")
-        print(f"事故区{accidentZone.id()}的事故时段控制距离为{accidentZoneInterval.controlLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段控制距离为%s%n", accidentZone.id(), interval.controlLength());
+                                System.out.printf("事故区%s的事故时段控制距离（米制）为%s%n", accidentZone.id(), interval.controlLength(UnitOfMeasure.Metric));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def laneNumbers(self) -> int: ...**
+ **ArrayList<Integer> laneNumbers();**
 
 获取事故区在该时段的占用车道序号
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IAccidentZone
-lAccidentZones = netiface.accidentZones()
-for accidentZone in lAccidentZones: 
-    lAccidentZoneIntervals = accidentZone.accidentZoneIntervals()
-    for accidentZoneInterval in lAccidentZoneIntervals: 
-        print(f"事故区{accidentZone.id()}的事故时段占用车道序号为{accidentZoneInterval.laneNumbers()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> lAccidentZones = netiface.accidentZones();
+                        for (IAccidentZone accidentZone : lAccidentZones) {
+                            List<IAccidentZoneInterval> lAccidentZoneIntervals = accidentZone.accidentZoneIntervals();
+                            for (IAccidentZoneInterval interval : lAccidentZoneIntervals) {
+                                System.out.printf("事故区%s的事故时段占用车道序号为%s%n", accidentZone.id(), interval.laneNumbers());
+                            }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-acczones = netiface.accidentZones()
-acczone = netiface.findAccidentZone(acczones[0].id())
-_showAccidentZoneIntervalAttr(netiface)
-def _showAccidentZoneIntervalAttr(acczone): 
-    interval = acczone.accidentZoneIntervals()[0]
-    print(
-        # f"获取事故时段ID={interval.intervalId()}, "
-          f"获取所属事故区ID={interval.accidentZoneId()}, "
-          f"获取事故时段开始时间={interval.startTime()}, 获取事故时段结束时间={interval.endTime()}, "
-          f"获取事故区在该时段的长度, 像素制={interval.location()}, 米制={interval.location(UnitOfMeasure.Metric)}, "
-          f"获取事故区在该时段的限速, 像素制 km/h={interval.limitedSpeed()}, 米制={interval.limitedSpeed(UnitOfMeasure.Metric)}, "
-          f"获取事故区在该时段的控制距离（车辆距离事故区起点该距离内, 强制变道）, 像素制 km/h={interval.controlLength()}, "
-          f"米制={interval.controlLength(UnitOfMeasure.Metric)}, "
-          f"获取事故区在该时段的占用车道序号={interval.laneNumbers()}")
+```java
+TessInterface iface = TESSNG.tessngIFace(); 
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IAccidentZone> acczones = netiface.accidentZones();
+                        if (!acczones.isEmpty()) {
+                            IAccidentZone acczone = netiface.findAccidentZone(acczones.get(0).id());
+                            showAccidentZoneIntervalAttr(acczone);
+                        }
+                    }
+                }
+private static void showAccidentZoneIntervalAttr(IAccidentZone acczone) {
+        List<IAccidentZoneInterval> intervals = acczone.accidentZoneIntervals();
+        if (!intervals.isEmpty()) {
+            IAccidentZoneInterval interval = intervals.get(0);
+            System.out.printf(
+                    "获取所属事故区ID=%s, %n" +
+                            "获取事故时段开始时间=%s, 获取事故时段结束时间=%s, %n" +
+                            "获取事故区该时段长度（像素制）=%s, 米制=%s, %n" +
+                            "获取事故区该时段限速（像素制）=%s km/h, 米制=%s, %n" +
+                            "获取事故区该时段控制距离（像素制）=%s, 米制=%s, %n" +
+                            "获取事故区该时段占用车道序号=%s%n",
+                    interval.accidentZoneId(),
+                    interval.startTime(),
+                    interval.endTime(),
+                    interval.location(),
+                    interval.location(UnitOfMeasure.Metric),
+                    interval.limitedSpeed(),
+                    interval.limitedSpeed(UnitOfMeasure.Metric),
+                    interval.controlLength(),
+                    interval.controlLength(UnitOfMeasure.Metric),
+                    interval.laneNumbers()
+            );
+        } else {
+            System.out.println("当前事故区无事故时段数据");
+        }
+    }
 ```
 
 
@@ -8728,37 +10461,45 @@ def _showAccidentZoneIntervalAttr(acczone):
 
 施工区接口, 方法如下: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取当前施工区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区ID为{roadWorkZone.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+            System.out.printf("施工区ID为%s%n", roadWorkZone.id());
+        }
+    }
+}
 ```
 
- **def name(self) -> str: ...**
+ **String name();**
 
 获取施工区名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区名称={roadWorkZone.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区名称=%s%n", roadWorkZone.name());
+                        }
+                    }
+                }
 ```
 
- **def location(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double location(UnitOfMeasure unit);**
 
 获取施工区距所在路段起点的距离, 默认单位: 像素, 可通过可选参数: unit设置单位
 参数: 
@@ -8766,17 +10507,21 @@ for roadWorkZone in lRoadWorkZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区距所在路段起点的距离={roadWorkZone.location()}")
-    print(f"施工区距所在路段起点的距离={roadWorkZone.location(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区距所在路段起点的距离=%s%n", roadWorkZone.location());
+                            System.out.printf("施工区距所在路段起点的距离（米制）=%s%n", roadWorkZone.location(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def zoneLength(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double zoneLength(UnitOfMeasure unit);**
 
 获取施工区长度, 默认单位: 像素, 可通过可选参数: unit设置单位
 参数: 
@@ -8784,17 +10529,21 @@ for roadWorkZone in lRoadWorkZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区长度={roadWorkZone.zoneLength()}")
-    print(f"施工区长度={roadWorkZone.zoneLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区长度=%s%n", roadWorkZone.zoneLength());
+                            System.out.printf("施工区长度（米制）=%s%n", roadWorkZone.zoneLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def limitSpeed(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double limitSpeed(UnitOfMeasure unit);**
 
 施工区限速 , 默认单位: 像素（km/h）, 可通过可选参数: unit设置单位
 
@@ -8803,92 +10552,116 @@ for roadWorkZone in lRoadWorkZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区限速={roadWorkZone.limitSpeed()}")
-    print(f"施工区限速={roadWorkZone.limitSpeed(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区限速=%s%n", roadWorkZone.limitSpeed());
+                            System.out.printf("施工区限速（米制）=%s%n", roadWorkZone.limitSpeed(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def sectionId(self) -> int: ...**
+ **long sectionId();**
 
 获取施工区所在路段或连接段的ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区所在路段或连接段ID为{roadWorkZone.sectionId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区所在路段或连接段ID为%s%n", roadWorkZone.sectionId());
+                        }
+                    }
+                }
 ```
 
- **def sectionName(self) -> str: ...**
+ **String sectionName();**
 
 获取施工区所在路段或连接段的名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区所在路段或连接段名称={roadWorkZone.sectionName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区所在路段或连接段名称=%s%n", roadWorkZone.sectionName());
+                        }
+                    }
+                }
 ```
 
- **def sectionType(self) -> str: ...**
+ **String sectionType();**
 
 获取施工区所在道路的道路类型, link: 路段, connector: 连接段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区所在道路的道路类型={roadWorkZone.sectionType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区所在道路的道路类型=%s%n", roadWorkZone.sectionType());
+                        }
+                    }
+                }
 ```
 
- **def laneObjects(self) -> typing.List<Tess.LaneObject>: ...**
+ ** ArrayList<ILaneObject> laneObjects();**
 
 获取施工区所占的车道列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区所占的车道列表={roadWorkZone.laneObjects()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区所占的车道列表=%s%n", roadWorkZone.laneObjects());
+                        }
+                    }
+                }
 ```
 
- **def laneObjectIds(self) -> typing.List<int>: ...**
+ **ArrayList<Long> laneObjectIds();**
 
 获取施工区所占的车道ID列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区所占的车道ID列表={roadWorkZone.laneObjectIds()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区所占的车道ID列表=%s%n", roadWorkZone.laneObjectIds());
+                        }
+                    }
+                }
 ```
 
- **def upCautionLength(self, unit: UnitOfMeasure) ->double: ...**
+ **double upCautionLength(UnitOfMeasure unit);**
 
 获取施工区上游警示区长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -8897,17 +10670,21 @@ for roadWorkZone in lRoadWorkZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区上游警示区长度={roadWorkZone.upCautionLength()}")
-    print(f"施工区上游警示区长度={roadWorkZone.upCautionLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区上游警示区长度=%s%n", roadWorkZone.upCautionLength());
+                            System.out.printf("施工区上游警示区长度（米制）=%s%n", roadWorkZone.upCautionLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def upTransitionLength(self, unit: UnitOfMeasure) ->double: ...**
+ **double upTransitionLength(UnitOfMeasure unit);**
 
 获取施工区上游过渡区长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -8916,17 +10693,21 @@ for roadWorkZone in lRoadWorkZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区上游过渡区长度={roadWorkZone.upTransitionLength()}")
-    print(f"施工区上游过渡区长度={roadWorkZone.upTransitionLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区上游过渡区长度=%s%n", roadWorkZone.upTransitionLength());
+                            System.out.printf("施工区上游过渡区长度（米制）=%s%n", roadWorkZone.upTransitionLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def upBufferLength(self, unit: UnitOfMeasure) ->double: ...**
+ **double upBufferLength(UnitOfMeasure unit);**
 
 获取施工区上游缓冲区长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -8935,17 +10716,21 @@ for roadWorkZone in lRoadWorkZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区上游缓冲区长度={roadWorkZone.upBufferLength()}")
-    print(f"施工区上游缓冲区长度={roadWorkZone.upBufferLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区上游缓冲区长度=%s%n", roadWorkZone.upBufferLength());
+                            System.out.printf("施工区上游缓冲区长度（米制）=%s%n", roadWorkZone.upBufferLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def downTransitionLength(self, unit: UnitOfMeasure) ->double: ...**
+ **double downTransitionLength(UnitOfMeasure unit);**
 
 获取施工区下游过渡区长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -8954,17 +10739,21 @@ for roadWorkZone in lRoadWorkZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区下游过渡区长度={roadWorkZone.downTransitionLength()}")
-    print(f"施工区下游过渡区长度={roadWorkZone.downTransitionLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区下游过渡区长度=%s%n", roadWorkZone.downTransitionLength());
+                            System.out.printf("施工区下游过渡区长度（米制）=%s%n", roadWorkZone.downTransitionLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def downTerminationLength(self, unit: UnitOfMeasure) ->double: ...**
+ **double downTerminationLength(UnitOfMeasure unit);**
 
 获取施工区下游终止区长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -8973,70 +10762,113 @@ for roadWorkZone in lRoadWorkZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区下游终止区长度={roadWorkZone.downTerminationLength()}")
-    print(f"施工区下游终止区长度={roadWorkZone.downTerminationLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区下游终止区长度=%s%n", roadWorkZone.downTerminationLength());
+                            System.out.printf("施工区下游终止区长度（米制）=%s%n", roadWorkZone.downTerminationLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def duration(self) -> int: ...**
+ **long duration();**
 
 施工持续时间, 单位: 秒。自仿真过程创建后, 持续时间大于此值, 则移除
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工持续时间={roadWorkZone.duration()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工持续时间=%s%n", roadWorkZone.duration());
+                        }
+                    }
+                }
 ```
 
- **def isBorrowed(self) -> bool: ...**
+ **boolean isBorrowed();**
 
 获取施工区是否被借道
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lRoadWorkZones = netiface.roadWorkZones()
-for roadWorkZone in lRoadWorkZones: 
-    print(f"施工区是否被借道={roadWorkZone.isBorrowed()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IRoadWorkZone> lRoadWorkZones = netiface.roadWorkZones();
+                        for (IRoadWorkZone roadWorkZone : lRoadWorkZones) {
+                            System.out.printf("施工区是否被借道=%b%n", roadWorkZone.isBorrowed());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showRoadWorkZoneAttr(netiface)
-def showRoadWorkZoneAttr(self, netiface): 
-    roadworkzones = netiface.roadWorkZones()
-    roadworkzone = roadworkzones[0]
-
-    print(f"roadWorkZones={roadworkzone.id()}, 获取施工区名称={roadworkzone.name()}"
-          f", 获取施工区距所在路段起点的距离, 像素制={roadworkzone.location()}, 米制={roadworkzone.location(UnitOfMeasure.Metric)}, "
-          f"获取施工区长度, 像素制={roadworkzone.zoneLength()}, 米制={roadworkzone.zoneLength(UnitOfMeasure.Metric)}, "
-          f"获取施工区限速, 像素制={roadworkzone.limitSpeed()}, 米制={roadworkzone.limitSpeed(UnitOfMeasure.Metric)}, "
-          f"获取施工区所在路段或连接段的ID={roadworkzone.sectionId()}, "
-          f"获取施工区所在路段或连接段的名称={roadworkzone.sectionName()}, "
-          f"获取施工区所在道路的道路类型, link: 路段, connector: 连接段={roadworkzone.sectionType()}, "
-          f"获取施工区所占的车道列表={roadworkzone.laneObjects()}, "
-          f"获取施工区所占的车道ID列表={roadworkzone.laneObjectIds()}, "
-          f"获取施工区上游警示区长度, 像素制={roadworkzone.upCautionLength()}, 米制={roadworkzone.upCautionLength(UnitOfMeasure.Metric)}, "
-          f"获取施工区上游过渡区长度, 像素制={roadworkzone.upTransitionLength()}, 米制={roadworkzone.upTransitionLength(UnitOfMeasure.Metric)}, "
-          f"获取施工区上游缓冲区长度, 像素制={roadworkzone.upBufferLength()}, 米制={roadworkzone.upBufferLength(UnitOfMeasure.Metric)}, "
-          f"获取施工区下游过渡区长度, , 像素制={roadworkzone.downTransitionLength()}, 米制={roadworkzone.downTransitionLength(UnitOfMeasure.Metric)}, "
-          f"施工持续时间, 单位: 秒。自仿真过程创建后, 持续时间大于此值, 则移除={roadworkzone.duration()}, "
-          f"获取施工区是否被借道={roadworkzone.isBorrowed()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showRoadWorkZoneAttr(netiface);
+    }
+}
+private static void showRoadWorkZoneAttr(NetInterface netiface) {
+        List<IRoadWorkZone> roadworkzones = netiface.roadWorkZones();
+        if (!roadworkzones.isEmpty()) {
+            IRoadWorkZone roadworkzone = roadworkzones.get(0);
+            System.out.printf(
+                    "施工区ID=%s, 获取施工区名称=%s, %n" +
+                            "获取施工区距路段起点距离（像素制）=%s, 米制=%s, %n" +
+                            "获取施工区长度（像素制）=%s, 米制=%s, %n" +
+                            "获取施工区限速（像素制）=%s, 米制=%s, %n" +
+                            "获取施工区所在路段/连接段ID=%s, 名称=%s, %n" +
+                            "获取施工区所在道路类型=%s, %n" +
+                            "获取施工区所占车道列表=%s, 车道ID列表=%s, %n" +
+                            "获取上游警示区长度（像素制）=%s, 米制=%s, %n" +
+                            "获取上游过渡区长度（像素制）=%s, 米制=%s, %n" +
+                            "获取上游缓冲区长度（像素制）=%s, 米制=%s, %n" +
+                            "获取下游过渡区长度（像素制）=%s, 米制=%s, %n" +
+                            "施工持续时间（秒）=%s, 获取施工区是否被借道=%b%n",
+                    roadworkzone.id(),
+                    roadworkzone.name(),
+                    roadworkzone.location(),
+                    roadworkzone.location(UnitOfMeasure.Metric),
+                    roadworkzone.zoneLength(),
+                    roadworkzone.zoneLength(UnitOfMeasure.Metric),
+                    roadworkzone.limitSpeed(),
+                    roadworkzone.limitSpeed(UnitOfMeasure.Metric),
+                    roadworkzone.sectionId(),
+                    roadworkzone.sectionName(),
+                    roadworkzone.sectionType(),
+                    roadworkzone.laneObjects(),
+                    roadworkzone.laneObjectIds(),
+                    roadworkzone.upCautionLength(),
+                    roadworkzone.upCautionLength(UnitOfMeasure.Metric),
+                    roadworkzone.upTransitionLength(),
+                    roadworkzone.upTransitionLength(UnitOfMeasure.Metric),
+                    roadworkzone.upBufferLength(),
+                    roadworkzone.upBufferLength(UnitOfMeasure.Metric),
+                    roadworkzone.downTransitionLength(),
+                    roadworkzone.downTransitionLength(UnitOfMeasure.Metric),
+                    roadworkzone.duration(),
+                    roadworkzone.isBorrowed()
+            );
+        } else {
+            System.out.println("无施工区数据");
+        }
+    }
 ```
 
 
@@ -9047,37 +10879,45 @@ def showRoadWorkZoneAttr(self, netiface):
 
 限行区接口（借道施工的被借车道, 限制对向车辆行走的区域）, 方法如下: 
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取限行区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区ID={limitedZone.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区ID=%s%n", limitedZone.id());
+                        }
+                    }
+                }
 ```
 
- **def name(self) -> str: ...**
+ **String name();**
 
 获取限行区名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区名称={limitedZone.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区名称=%s%n", limitedZone.name());
+                        }
+                    }
+                }
 ```
 
- **def location(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double location(UnitOfMeasure unit);**
 
 获取距起点距离, 默认单位: 像素, 可通过可选参数: unit设置单位
 参数: 
@@ -9085,17 +10925,21 @@ for limitedZone in lLimitedZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区距起点距离={limitedZone.location()}")
-    print(f"限行区距起点距离={limitedZone.location(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区距起点距离=%s%n", limitedZone.location());
+                            System.out.printf("限行区距起点距离（米制）=%s%n", limitedZone.location(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def zoneLength(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double zoneLength(UnitOfMeasure unit);**
 
 获取限行区长度, 默认单位: 像素, 可通过可选参数: unit设置单位
 
@@ -9104,17 +10948,21 @@ for limitedZone in lLimitedZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区长度={limitedZone.zoneLength()}")
-    print(f"限行区长度={limitedZone.zoneLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区长度=%s%n", limitedZone.zoneLength());
+                            System.out.printf("限行区长度（米制）=%s%n", limitedZone.zoneLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def limitSpeed(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double limitSpeed(UnitOfMeasure unit);**
 
 获取限行区限速, 默认单位: 像素(km/h), 可通过可选参数: unit设置单位
 
@@ -9123,111 +10971,156 @@ for limitedZone in lLimitedZones:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区限速={limitedZone.limitSpeed()}")
-    print(f"限行区限速={limitedZone.limitSpeed(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区限速=%s%n", limitedZone.limitSpeed());
+                            System.out.printf("限行区限速（米制）=%s%n", limitedZone.limitSpeed(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def sectionId(self) -> int: ...**
+ **long sectionId();**
 
 获取限行区所在路段或连接段ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区所在路段或连接段ID={limitedZone.sectionId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区所在路段或连接段ID=%s%n", limitedZone.sectionId());
+                        }
+                    }
+                }
 ```
 
- **def sectionName(self) -> str: ...**
+ **String sectionName();**
 
 获取限行区所在路段或连接段的名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区所在路段或连接段名称={limitedZone.sectionName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区所在路段或连接段名称=%s%n", limitedZone.sectionName());
+                        }
+                    }
+                }
 ```
 
- **def sectionType(self) -> str: ...**
+ **String sectionType();**
 
 获取限行区所在道路的类型: "link"表示路段, "connector"表示连接段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区所在道路的类型={limitedZone.sectionType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区所在道路的类型=%s%n", limitedZone.sectionType());
+                        }
+                    }
+                }
 ```
 
- **def laneObjects(self) -> typing.List< Tessng.ILaneObject >: ...**
+ **ArrayList<ILaneObject> laneObjects();**
 
 获取限行区所在车道对象列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区所在车道对象列表={limitedZone.laneObjects()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区所在车道对象列表=%s%n", limitedZone.laneObjects());
+                        }
+                    }
+                }
 ```
 
- **def duration(self) -> int: ...**
+ **long duration();**
 
 获取限行区的持续时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ILimitedZone
-lLimitedZones = netiface.limitedZones()
-for limitedZone in lLimitedZones: 
-    print(f"限行区持续时间={limitedZone.duration()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ILimitedZone> lLimitedZones = netiface.limitedZones();
+                        for (ILimitedZone limitedZone : lLimitedZones) {
+                            System.out.printf("限行区持续时间=%s%n", limitedZone.duration());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showLimitZoneAttr(netiface)
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showLimitZoneAttr(netiface);
+                    }
+                }
 
-def showLimitZoneAttr(self, netiface): 
-    limitedZones = netiface.limitedZones()
-    limitedZone = limitedZones[0]
-    limitedZone1 = netiface.findLimitedZone(limitedZone.id())
-    print(type(limitedZone), dir(limitedZone))
-    print(f"获取限行区ID={limitedZone.id()}, 获取限行区名称={limitedZone.name()}"
-          f", 获取限行区距所在路段起点的距离, 像素制={limitedZone.location()}, 米制={limitedZone.location(UnitOfMeasure.Metric)}, "
-          f"获取限行区长度, 像素制={limitedZone.zoneLength()}, 米制={limitedZone.zoneLength(UnitOfMeasure.Metric)}, "
-          f"获取限行区限速, 像素制={limitedZone.limitSpeed()}, 米制={limitedZone.limitSpeed(UnitOfMeasure.Metric)}, "
-          f"获取路段或连接段ID={limitedZone.sectionId()}, "
-          f"获取Section名称={limitedZone.sectionName()}, "
-          f"获取道路类型, link表示路段, connector表示连接段={limitedZone.sectionType()}, "
-          f"获取相关车道对象列表={limitedZone.laneObjects()}, "
-          f"获取限行持续时间, 单位: 秒。自仿真过程创建后, 持续时间大于此值则删除={limitedZone.duration()}, ")
+private static void showLimitZoneAttr(NetInterface netiface) {
+        List<ILimitedZone> limitedZones = netiface.limitedZones();
+        ILimitedZone limitedZone = limitedZones.get(0);
+        ILimitedZone limitedZone1 = netiface.findLimitedZone(limitedZone.id()); // 按ID查找限行区
+
+        // 打印详细属性
+        System.out.printf(
+                "获取限行区ID=%s, 获取限行区名称=%s, %n" +
+                        "获取限行区距路段起点距离（像素制）=%s, 米制=%s, %n" +
+                        "获取限行区长度（像素制）=%s, 米制=%s, %n" +
+                        "获取限行区限速（像素制）=%s, 米制=%s, %n" +
+                        "获取路段或连接段ID=%s, 名称=%s, %n" +
+                        "获取道路类型（link=路段, connector=连接段）=%s, %n" +
+                        "获取相关车道对象列表=%s, %n" +
+                        "获取限行持续时间（秒）=%s%n",
+                limitedZone.id(),
+                limitedZone.name(),
+                limitedZone.location(),
+                limitedZone.location(UnitOfMeasure.Metric),
+                limitedZone.zoneLength(),
+                limitedZone.zoneLength(UnitOfMeasure.Metric),
+                limitedZone.limitSpeed(),
+                limitedZone.limitSpeed(UnitOfMeasure.Metric),
+                limitedZone.sectionId(),
+                limitedZone.sectionName(),
+                limitedZone.sectionType(),
+                limitedZone.laneObjects(),
+                limitedZone.duration()
+        );
+    }
 ```
 
 
@@ -9240,52 +11133,64 @@ def showLimitZoneAttr(self, netiface):
 
 改扩建接口, 此接口最好是在构造路网的最后调用, 避免后续其他接口调用原因导致创建施工区的路段线性被更改
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取改扩建对象ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lReconstructions = netiface.reconstructions()
-for reconstruction in lReconstructions: 
-    print(f"改扩建对象ID={reconstruction.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReconstruction> lReconstructions = netiface.reconstructions();
+                        for (IReconstruction reconstruction : lReconstructions) {
+                            System.out.printf("改扩建对象ID=%s%n", reconstruction.id());
+                        }
+                    }
+                }
 ```
 
- **def roadWorkZoneId(self) -> int: ...**
+ **long roadWorkZoneId();**
 
 获取改扩建对象的起始施工区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lReconstructions = netiface.reconstructions()
-for reconstruction in lReconstructions: 
-    print(f"改扩建对象的起始施工区ID={reconstruction.roadWorkZoneId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReconstruction> lReconstructions = netiface.reconstructions();
+                        for (IReconstruction reconstruction : lReconstructions) {
+                            System.out.printf("改扩建对象的起始施工区ID=%s%n", reconstruction.roadWorkZoneId());
+                        }
+                    }
+                }
 ```
 
- **def limitedZoneId(self) -> int: ...**
+ **long limitedZoneId();**
 
 获取改扩建对象的被借道限行区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lReconstructions = netiface.reconstructions()
-for reconstruction in lReconstructions: 
-    print(f"改扩建对象的被借道限行区ID={reconstruction.limitedZoneId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReconstruction> lReconstructions = netiface.reconstructions();
+                        for (IReconstruction reconstruction : lReconstructions) {
+                            System.out.printf("改扩建对象的被借道限行区ID=%s%n", reconstruction.limitedZoneId());
+                        }
+                    }
+                }
 ```
 
- **def passagewayLength(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double passagewayLength(UnitOfMeasure unit);**
 
 获取改扩建对象的保通长度, 默认单位: 像素, 可通过可选参数: unit设置单位
 
@@ -9294,47 +11199,59 @@ for reconstruction in lReconstructions:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lReconstructions = netiface.reconstructions()
-for reconstruction in lReconstructions: 
-    print(f"改扩建对象的保通长度={reconstruction.passagewayLength()}")
-    print(f"改扩建对象的保通长度={reconstruction.passagewayLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReconstruction> lReconstructions = netiface.reconstructions();
+                        for (IReconstruction reconstruction : lReconstructions) {
+                            System.out.printf("改扩建对象的保通长度=%s%n", reconstruction.passagewayLength());
+                            System.out.printf("改扩建对象的保通长度（米制）=%s%n", reconstruction.passagewayLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def duration(self) -> int: ...**
+ **long duration();**
 
 获取改扩建的持续时间, 单位: 秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lReconstructions = netiface.reconstructions()
-for reconstruction in lReconstructions: 
-    print(f"改扩建的持续时间={reconstruction.duration()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReconstruction> lReconstructions = netiface.reconstructions();
+                        for (IReconstruction reconstruction : lReconstructions) {
+                            System.out.printf("改扩建的持续时间=%s%n", reconstruction.duration());
+                        }
+                    }
+                }
 ```
 
- **def borrowedNum(self) -> int: ...**
+ **int borrowedNum();**
 
 获取改扩建的借道车道数量
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lReconstructions = netiface.reconstructions()
-for reconstruction in lReconstructions: 
-    print(f"改扩建的借道车道数量={reconstruction.borrowedNum()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReconstruction> lReconstructions = netiface.reconstructions();
+                        for (IReconstruction reconstruction : lReconstructions) {
+                            System.out.printf("改扩建的借道车道数量=%s%n", reconstruction.borrowedNum());
+                        }
+                    }
+                }
 ```
 
- **def passagewayLimitedSpeed(self, unit: Tess.UnitOfMeasure) -> double: ...**
+ **double passagewayLimitedSpeed(UnitOfMeasure unit);**
 
 获取保通开口限速, 默认单位: 像素（km/h）, 可通过unit参数设置单位
 
@@ -9343,49 +11260,77 @@ for reconstruction in lReconstructions:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lReconstructions = netiface.reconstructions()
-for reconstruction in lReconstructions: 
-    print(f"保通开口限速={reconstruction.passagewayLimitedSpeed()}")
-    print(f"保通开口限速={reconstruction.passagewayLimitedSpeed(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReconstruction> lReconstructions = netiface.reconstructions();
+                        for (IReconstruction reconstruction : lReconstructions) {
+                            System.out.printf("保通开口限速=%s%n", reconstruction.passagewayLimitedSpeed());
+                            System.out.printf("保通开口限速（米制）=%s%n", reconstruction.passagewayLimitedSpeed(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def dynaReconstructionParam(self) -> Online.DynaReconstructionParam: ...**
+ **DynaReconstructionParam dynaReconstructionParam();**
 
 获取改扩建动态参数; 入参数据结构见pyi文件的 Online.DynaReconstructionParam类 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IRoadWorkZone
-lReconstructions = netiface.reconstructions()
-for reconstruction in lReconstructions: 
-    print(f"获取改扩建动态参数={reconstruction.dynaReconstructionParam()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReconstruction> lReconstructions = netiface.reconstructions();
+                        for (IReconstruction reconstruction : lReconstructions) {
+                            System.out.printf("获取改扩建动态参数=%s%n", reconstruction.dynaReconstructionParam());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showReconstructionAttr(netiface)
-def showReconstructionAttr(self, netiface): 
-    reconstructions = netiface.reconstructions()
-    if len(reconstructions) > 0: 
-        reconstruction = reconstructions[0]
-        reconstruction1 = netiface.findReconstruction(reconstruction.id())
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showReconstructionAttr(netiface);
+                    }
+                }
+private static void showReconstructionAttr(NetInterface netiface) {
+        List<IReconstruction> reconstructions = netiface.reconstructions();
+        if (!reconstructions.isEmpty()) {
+            IReconstruction reconstruction = reconstructions.get(0);
+            IReconstruction reconstruction1 = netiface.findReconstruction(reconstruction.id()); // 按ID查找改扩建对象
 
-        print(f"获取改扩建ID={reconstruction.id()}, 获取改扩建起始施工区ID={reconstruction.roadWorkZoneId()}"
-              f", 获取被借道限行区ID={reconstruction.limitedZoneId()}, "
-              f"获取保通长度, 像素制={reconstruction.passagewayLength()}, 米制={reconstruction.passagewayLength(UnitOfMeasure.Metric)}, "
-              f"获取保通开口限速, 像素制={reconstruction.passagewayLimitedSpeed()}, 米制={reconstruction.passagewayLimitedSpeed(UnitOfMeasure.Metric)}, "
-              f"获取改扩建持续时间={reconstruction.duration()}, "
-              f"获取借道数量={reconstruction.borrowedNum()}, "
-              f"获取改扩建动态参数, 返回参数为米制={reconstruction.dynaReconstructionParam()}, ")
+            System.out.printf(
+                    "获取改扩建ID=%s, 获取改扩建起始施工区ID=%s, %n" +
+                            "获取被借道限行区ID=%s, %n" +
+                            "获取保通长度（像素制）=%s, 米制=%s, %n" +
+                            "获取保通开口限速（像素制）=%s, 米制=%s, %n" +
+                            "获取改扩建持续时间=%s, 获取借道数量=%s, %n" +
+                            "获取改扩建动态参数（米制）=%s%n",
+                    reconstruction.id(),
+                    reconstruction.roadWorkZoneId(),
+                    reconstruction.limitedZoneId(),
+                    reconstruction.passagewayLength(),
+                    reconstruction.passagewayLength(UnitOfMeasure.Metric),
+                    reconstruction.passagewayLimitedSpeed(),
+                    reconstruction.passagewayLimitedSpeed(UnitOfMeasure.Metric),
+                    reconstruction.duration(),
+                    reconstruction.borrowedNum(),
+                    reconstruction.dynaReconstructionParam()
+            );
+        } else {
+            System.out.println("无改扩建对象数据");
+        }
+    }
 ```
 
 
@@ -9394,37 +11339,45 @@ def showReconstructionAttr(self, netiface):
 
 限速区接口
 
- **def id(self) -> int: ...**
+ **long id()**
 
 获取限速区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"限速区ID={reduceSpeedArea.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("限速区ID=%s%n", reduceSpeedArea.id());
+                        }
+                    }
+                }
 ```
 
- **def name(self) -> str: ...**
+ **String name()**
 
 获取限速区名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"限速区名称={reduceSpeedArea.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("限速区名称=%s%n", reduceSpeedArea.name());
+                        }
+                    }
+                }
 ```
 
- **def location(self, unit: UnitOfMeasure) -> double: ...**
+ **double location(UnitOfMeasure unit)**
 
 获取距起点距离, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -9433,17 +11386,21 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"限速区距起点距离={reduceSpeedArea.location()}")
-    print(f"限速区距起点距离={reduceSpeedArea.location(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("限速区距起点距离=%s%n", reduceSpeedArea.location());
+                            System.out.printf("限速区距起点距离（米制）=%s%n", reduceSpeedArea.location(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def areaLength(self, unit: UnitOfMeasure) -> double: ...**
+ **double areaLength(UnitOfMeasure unit)**
 
 获取限速区长度, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -9452,62 +11409,78 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"限速区长度={reduceSpeedArea.areaLength()}")
-    print(f"限速区长度={reduceSpeedArea.areaLength(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("限速区长度=%s%n", reduceSpeedArea.areaLength());
+                            System.out.printf("限速区长度（米制）=%s%n", reduceSpeedArea.areaLength(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def sectionId(self) -> int: ...**
+ **long sectionId()**
 
 获取限速区所在路段或连接段ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"限速区所在路段或连接段ID={reduceSpeedArea.sectionId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("限速区所在路段或连接段ID=%s%n", reduceSpeedArea.sectionId());
+                        }
+                    }
+                }
 ```
 
- **def laneNumber(self) -> int: ...**
+ **int laneNumber()**
 
 获取限速区车道序号
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"限速区车道序号={reduceSpeedArea.laneNumber()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("限速区车道序号=%s%n", reduceSpeedArea.laneNumber());
+                        }
+                    }
+                }
 ```
 
- **def toLaneNumber(self) -> int: ...**
+ **int toLaneNumber()**
 
 获取限速区获取目标车道序号（当限速区设置在连接段时, 返回值非空）
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"限速区获取目标车道序号={reduceSpeedArea.toLaneNumber()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("限速区获取目标车道序号=%s%n", reduceSpeedArea.toLaneNumber());
+                        }
+                    }
+                }
 ```
 
- **def addReduceSpeedInterval(self, param: Online.DynaReduceSpeedIntervalParam) -> Tess.IReduceSpeedInterval: ...**
+ **IReduceSpeedInterval addReduceSpeedInterval(DynaReduceSpeedIntervalParam param)**
 
 添加限速时段
 
@@ -9516,26 +11489,32 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    param = Online.DynaReduceSpeedIntervalParam()
-    param.startTime = 3601 # 需要注意新增的时段要和已有时段不冲突
-    param.endTime = 7200
-    type1 = Online.DynaReduceSpeedVehiTypeParam()
-    type1.vehicleTypeCode = 2
-    type1.avgSpeed = 10
-    type1.speedSD = 5
-    param.mlReduceSpeedVehicleTypeParam = [type1]
-    print(f"添加前限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
-    interval = reduceSpeedArea.addReduceSpeedInterval(param)
-    print(f"添加后限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            DynaReduceSpeedIntervalParam param = new DynaReduceSpeedIntervalParam();
+                            param.setStartTime(3600);
+                            param.setEndTime (7200);
+
+                            DynaReduceSpeedVehiTypeParam type1 = new DynaReduceSpeedVehiTypeParam();
+                            type1.setVehicleTypeCode(2);
+                            type1.setAvgSpeed(10);
+                            type1.setSpeedSD(5);
+                            param.setReduceSpeedVehicleTypeParams(new ArrayList<>(Arrays.asList(type1)));
+
+                            System.out.printf("添加前限速时段列表=%s%n", reduceSpeedArea.reduceSpeedIntervals());
+                            IReduceSpeedInterval interval = reduceSpeedArea.addReduceSpeedInterval(param);
+                            System.out.printf("添加后限速时段列表=%s%n", reduceSpeedArea.reduceSpeedIntervals());
+                        }
+                    }
+                }
 ```
 
- **def removeReduceSpeedInterval(self, id: int) -> None: ...**
+ **void removeReduceSpeedInterval(long id)**
 
 移除限速时段
 
@@ -9544,27 +11523,36 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    param = Online.DynaReduceSpeedIntervalParam()
-    param.startTime = 3601 # 需要注意新增的时段要和已有时段不冲突
-    param.endTime = 7200
-    type1 = Online.DynaReduceSpeedVehiTypeParam()
-    type1.vehicleTypeCode = 2
-    type1.avgSpeed = 10
-    type1.speedSD = 5
-    param.mlReduceSpeedVehicleTypeParam = [type1]
-    interval = reduceSpeedArea.addReduceSpeedInterval(param)
-    print(f"移除前限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
-    reduceSpeedArea.removeReduceSpeedInterval(interval.id())
-    print(f"移除后限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            DynaReduceSpeedIntervalParam param = new DynaReduceSpeedIntervalParam();
+
+                            param.setStartTime(3601);
+                            param.setEndTime (7200);
+
+                            DynaReduceSpeedVehiTypeParam type1 = new DynaReduceSpeedVehiTypeParam();
+                            type1.setVehicleTypeCode(2);
+                            type1.setAvgSpeed(10);
+                            type1.setSpeedSD(5);
+
+                            param.setReduceSpeedVehicleTypeParams(new ArrayList<>(Arrays.asList(type1)));
+
+                            IReduceSpeedInterval interval = reduceSpeedArea.addReduceSpeedInterval(param);
+                            System.out.printf("移除前限速时段列表=%s%n", reduceSpeedArea.reduceSpeedIntervals());
+                            // 移除刚添加的时段
+                            reduceSpeedArea.removeReduceSpeedInterval(interval.id());
+                            System.out.printf("移除后限速时段列表=%s%n", reduceSpeedArea.reduceSpeedIntervals());
+                        }
+                    }
+                }
 ```
 
- **def updateReduceSpeedInterval(self, param: Online.DynaReduceSpeedIntervalParam) -> bool: ...**
+ **boolean updateReduceSpeedInterval(DynaReduceSpeedIntervalParam param)**
 
 更新限速时段
 
@@ -9573,48 +11561,63 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    param = Online.DynaReduceSpeedIntervalParam()
-    param.startTime = 3601  # 需要注意新增的时段要和已有时段不冲突
-    param.endTime = 7200
-    type1 = Online.DynaReduceSpeedVehiTypeParam()
-    type1.vehicleTypeCode = 2
-    type1.avgSpeed = 10
-    type1.speedSD = 5
-    param.mlReduceSpeedVehicleTypeParam = [type1]
-    interval = reduceSpeedArea.addReduceSpeedInterval(param)
-    reduceSpeedArea.removeReduceSpeedInterval(interval.id())
-    interval1 = reduceSpeedArea.addReduceSpeedInterval(param)
-    print(f" reduceSpeedArea.addReduceSpeedInterval(param) 添加成功={interval1}")
-    param.id = interval1.id()
-    param.reduceSpeedAreaId = reduceSpeedArea.id()
-    param.startTime = 7200
-    param.endTime = 10000
-    flag = reduceSpeedArea.updateReduceSpeedInterval(param)
-    print(f" reduceSpeedArea.updateReduceSpeedInterval(param) 更新成功={flag}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            DynaReduceSpeedIntervalParam param = new DynaReduceSpeedIntervalParam();
+
+                            param.setStartTime(3601);
+                            param.setEndTime (7200);
+
+                            DynaReduceSpeedVehiTypeParam type1 = new DynaReduceSpeedVehiTypeParam();
+                            type1.setVehicleTypeCode(2);
+                            type1.setAvgSpeed(10);
+                            type1.setSpeedSD(5);
+
+                            param.setReduceSpeedVehicleTypeParams(new ArrayList<>(Arrays.asList(type1)));
+
+                            // 添加并移除时段
+                            IReduceSpeedInterval interval = reduceSpeedArea.addReduceSpeedInterval(param);
+                            reduceSpeedArea.removeReduceSpeedInterval(interval.id());
+                            // 重新添加时段
+                            IReduceSpeedInterval interval1 = reduceSpeedArea.addReduceSpeedInterval(param);
+                            System.out.printf("reduceSpeedArea.addReduceSpeedInterval(param) 添加成功=%s%n", interval1 != null);
+
+                            param.setId(interval1.id());
+                            param.setReduceSpeedAreaId(reduceSpeedArea.id());
+                            param.setStartTime(7200);
+                            param.setEndTime(10000);
+                            boolean flag = reduceSpeedArea.updateReduceSpeedInterval(param);
+                            System.out.printf("reduceSpeedArea.updateReduceSpeedInterval(param) 更新成功=%b%n", flag);
+                        }
+                    }
+                }
 ```
 
- **def reduceSpeedIntervals(self) -> Type.List< Tess.IReduceSpeedInterval >: ...**
+ **ArrayList<IReduceSpeedInterval> reduceSpeedIntervals()**
 
 获取限速时段列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"获取限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("获取限速时段列表=%s%n", reduceSpeedArea.reduceSpeedIntervals());
+                        }
+                    }
+                }
 ```
 
- **def findReduceSpeedIntervalById(self, id: int) -> Tess.IReduceSpeedInterval: ...**
+ **IReduceSpeedInterval findReduceSpeedIntervalById(long id)**
 
 根据ID获取限速时段
 
@@ -9623,16 +11626,23 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"根据ID获取限速时段={reduceSpeedArea.findReduceSpeedIntervalById(reduceSpeedArea.reduceSpeedIntervals()[0].id())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> intervals = reduceSpeedArea.reduceSpeedIntervals();
+                            if (!intervals.isEmpty()) {
+                                System.out.printf("根据ID获取限速时段=%s%n", reduceSpeedArea.findReduceSpeedIntervalById(intervals.get(0).id()));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def findReduceSpeedIntervalByStartTime(self, startTime: int) -> Tess.IReduceSpeedInterval: ...**
+ **IReduceSpeedInterval findReduceSpeedIntervalByStartTime(long startTime)**
 
 根据起始时间获取限速时段
 
@@ -9642,103 +11652,134 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"根据起始时间获取限速时段={reduceSpeedArea.findReduceSpeedIntervalByStartTime(reduceSpeedArea.reduceSpeedIntervals()[0].intervalStartTime())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> intervals = reduceSpeedArea.reduceSpeedIntervals();
+                            if (!intervals.isEmpty()) {
+                                System.out.printf("根据起始时间获取限速时段=%s%n", reduceSpeedArea.findReduceSpeedIntervalByStartTime(intervals.get(0).intervalStartTime()));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def polygon(self) -> QPolygonF : ...**
+ **Vector<Point> polygon()**
 
 获取限速区获取多边型轮廓
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    print(f"获取限速区获取多边型轮廓={reduceSpeedArea.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            System.out.printf("获取限速区获取多边型轮廓=%s%n", reduceSpeedArea.polygon());
+                        }
+                    }
+                }
 ```
 
 ### 2.29. IReduceSpeedInterval
 
 限速时段接口
 
- **def id(self) -> int: ...**
+ **long id()**
 
 获取限速时段ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        print(f"获取限速时段ID={reduceSpeedInterval.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                System.out.printf("获取限速时段ID=%s%n", reduceSpeedInterval.id());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def reduceSpeedAreaId(self) -> int: ...**
+ **long reduceSpeedAreaId()**
 
 获取所属限速区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        print(f"获取所属限速区ID={reduceSpeedInterval.reduceSpeedAreaId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                System.out.printf("获取所属限速区ID=%s%n", reduceSpeedInterval.reduceSpeedAreaId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def intervalStartTime(self) -> int: ...**
+ **long intervalStartTime()**
 
 获取开始时间
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        print(f"获取开始时间={reduceSpeedInterval.intervalStartTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                System.out.printf("获取开始时间=%s%n", reduceSpeedInterval.intervalStartTime());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def intervalEndTime(self) -> int: ...**
+ **long intervalEndTime()**
 
 获取结束时间
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        print(f"获取结束时间={reduceSpeedInterval.intervalEndTime()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                System.out.printf("获取结束时间=%s%n", reduceSpeedInterval.intervalEndTime());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def addReduceSpeedVehiType(self, param: Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
+ **IReduceSpeedVehiType addReduceSpeedVehiType(DynaReduceSpeedVehiTypeParam param)**
 
 添加限速车型
 
@@ -9747,23 +11788,28 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        param = Online.DynaReduceSpeedVehiTypeParam()
-        param.vehicleTypeCode = 13
-        param.avgSpeed = 10
-        param.speedSD = 5
-        interval = reduceSpeedInterval.addReduceSpeedVehiType(param)
-        print(f"添加限速车型成功={interval}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                DynaReduceSpeedVehiTypeParam param = new DynaReduceSpeedVehiTypeParam();
+                                param.setVehicleTypeCode(13);
+                                param.setAvgSpeed(10);
+                                param.setSpeedSD(5);
+                                IReduceSpeedVehiType interval = reduceSpeedInterval.addReduceSpeedVehiType(param);
+                                System.out.printf("添加限速车型成功=%s%n", interval != null);
+                            }
+                        }
+                    }
+                }
 ```
 
- **def removeReduceSpeedVehiType(self, id: int) -> bool: ...**
+ **void removeReduceSpeedVehiType(long id)**
 
 移除限速车型
 
@@ -9772,21 +11818,27 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        for reduceSpeedVehiType in lReduceSpeedVehiTypes: 
-            print(f"移除限速车型{reduceSpeedVehiType.id()}")
-            reduceSpeedInterval.removeReduceSpeedVehiType(reduceSpeedVehiType.id())
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes();
+                                for (IReduceSpeedVehiType reduceSpeedVehiType : lReduceSpeedVehiTypes) {
+                                    System.out.printf("移除限速车型%s%n", reduceSpeedVehiType.id());
+                                    reduceSpeedInterval.removeReduceSpeedVehiType(reduceSpeedVehiType.id());
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def updateReduceSpeedVehiType(self, param: Online.DynaReduceSpeedVehiTypeParam) -> Tess.IReduceSpeedVehiType: ...**
+ **boolean updateReduceSpeedVehiType(DynaReduceSpeedVehiTypeParam param)**
 
 更新限速车型
 
@@ -9795,46 +11847,59 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        vehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        vehiType = vehiTypes[-1]
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> vehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes();
+                                if (!vehiTypes.isEmpty()) {
+                                    IReduceSpeedVehiType vehiType = vehiTypes.get(vehiTypes.size() - 1);
 
-        param = Online.DynaReduceSpeedVehiTypeParam()
-        param.vehicleTypeCode = vehiType.vehiTypeCode()
-        param.avgSpeed = vehiType.averageSpeed() + 10
-        param.speedSD = vehiType.speedStandardDeviation() + 5
-        param.reduceSpeedAreaId = reduceSpeedArea.id()
-        param.reduceSpeedIntervalId = reduceSpeedInterval.id()
-        param.id = vehiType.id()
-        b = reduceSpeedInterval.updateReduceSpeedVehiType(param)
-        print(f"更新限速车型成功={b}")
+                                    DynaReduceSpeedVehiTypeParam param = new DynaReduceSpeedVehiTypeParam();
+                                    param.setVehicleTypeCode(vehiType.vehiTypeCode());
+                                    param.setAvgSpeed(vehiType.averageSpeed() + 10);
+                                    param.setSpeedSD(vehiType.speedStandardDeviation() + 5);
+                                    param.setReduceSpeedAreaId(reduceSpeedArea.id());
+                                    param.setReduceSpeedIntervalId(reduceSpeedInterval.id());
+                                    param.setId(vehiType.id());
+
+                                    boolean b = reduceSpeedInterval.updateReduceSpeedVehiType(param);
+                                    System.out.printf("更新限速车型成功=%b%n", b);
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def reduceSpeedVehiTypes(self) -> Type.List< Tess.IReduceSpeedVehiType >: ...**
+ **ArrayList<IReduceSpeedVehiType> reduceSpeedVehiTypes()**
 
 获取本时段限速车型及限速参数列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        print(f"获取本时段限速车型及限速参数列表={reduceSpeedInterval.reduceSpeedVehiTypes()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                System.out.printf("获取本时段限速车型及限速参数列表=%s%n", reduceSpeedInterval.reduceSpeedVehiTypes());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def findReduceSpeedVehiTypeById(self, id: int) -> Tess.IReduceSpeedVehiType: ...**
+ **IReduceSpeedVehiType findReduceSpeedVehiTypeById(long id)**
 
 根据车型代码获取限速车型
 
@@ -9843,57 +11908,102 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        for reduceSpeedVehiType in lReduceSpeedVehiTypes: 
-            print(f"根据ID获取限速车型={reduceSpeedInterval.findReduceSpeedVehiTypeById(reduceSpeedVehiType.id())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> lReduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : lReduceSpeedAreas) {
+                            List<IReduceSpeedInterval> lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval reduceSpeedInterval : lReduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes();
+                                for (IReduceSpeedVehiType reduceSpeedVehiType : lReduceSpeedVehiTypes) {
+                                    System.out.printf("根据ID获取限速车型=%s%n", reduceSpeedInterval.findReduceSpeedVehiTypeById(reduceSpeedVehiType.id()));
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showLimitZoneAttr(netiface)
-def showReduceSpeedAreaAttr(netiface): 
-    reduceSpeedAreas = netiface.reduceSpeedAreas()
-    if len(reduceSpeedAreas) > 0: 
-        reduceSpeedArea = reduceSpeedAreas[0]
-        reduceSpeedArea1 = netiface.findReduceSpeedArea(reduceSpeedAreas[0].id())
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showReduceSpeedAreaAttr(netiface);
+                    }
+                }
+private static void showReduceSpeedAreaAttr(NetInterface netiface) {
+        List<IReduceSpeedArea> reduceSpeedAreas = netiface.reduceSpeedAreas();
+        if (!reduceSpeedAreas.isEmpty()) {
+            IReduceSpeedArea reduceSpeedArea = reduceSpeedAreas.get(0);
+            IReduceSpeedArea reduceSpeedArea1 = netiface.findReduceSpeedArea(reduceSpeedAreas.get(0).id());
 
-        print(f"获取限速区ID={reduceSpeedArea.id()}, 获取限速区名称={reduceSpeedArea.name()}"
-              f", 获取距起点距离, ={reduceSpeedArea.location()}, 米制={reduceSpeedArea.location(UnitOfMeasure.Metric)}"
-              f"获取限速区长度, 像素制={reduceSpeedArea.areaLength()}, 米制={reduceSpeedArea.areaLength(UnitOfMeasure.Metric)}, "
-              f"获取路段或连接段ID={reduceSpeedArea.sectionId()}, "
-              f"获取车道序号={reduceSpeedArea.laneNumber()}, "
-              f"获取目标车道序号={reduceSpeedArea.toLaneNumber()}, "
-              f"获取限速时段列表={reduceSpeedArea.reduceSpeedIntervals()}, "
-              f"获取多边型轮廓={reduceSpeedArea.polygon()}")
-        print("添加限速时段时段")
-        print(f"获取所有限速时段={reduceSpeedArea.reduceSpeedIntervals()}, "
-              f"根据ID获取限速时段 ={reduceSpeedArea.findReduceSpeedIntervalById(reduceSpeedArea.reduceSpeedIntervals()[0].id())}, "
-              f"根据开始时间查询事故时段={reduceSpeedArea.findReduceSpeedIntervalByStartTime(reduceSpeedArea.reduceSpeedIntervals()[0].intervalStartTime())}")
+            // 打印限速区基础属性
+            System.out.printf(
+                    "获取限速区ID=%s, 获取限速区名称=%s, %n" +
+                            "获取距起点距离=%s, 米制=%s, %n" +
+                            "获取限速区长度（像素制）=%s, 米制=%s, %n" +
+                            "获取路段或连接段ID=%s, %n" +
+                            "获取车道序号=%s, 获取目标车道序号=%s, %n" +
+                            "获取限速时段列表=%s, %n" +
+                            "获取多边型轮廓=%s%n",
+                    reduceSpeedArea.id(),
+                    reduceSpeedArea.name(),
+                    reduceSpeedArea.location(),
+                    reduceSpeedArea.location(UnitOfMeasure.Metric),
+                    reduceSpeedArea.areaLength(),
+                    reduceSpeedArea.areaLength(UnitOfMeasure.Metric),
+                    reduceSpeedArea.sectionId(),
+                    reduceSpeedArea.laneNumber(),
+                    reduceSpeedArea.toLaneNumber(),
+                    reduceSpeedArea.reduceSpeedIntervals(),
+                    reduceSpeedArea.polygon()
+            );
 
-    param = Online.DynaReduceSpeedIntervalParam()
-    param.startTime = 100 # 需要注意新增的时段要和已有时段不冲突
-    param.endTime = 500
-    type1 = Online.DynaReduceSpeedVehiTypeParam()
-    type1.vehicleTypeCode = 2
-    type1.avgSpeed = 10
-    type1.speedSD = 5
-    param.mlReduceSpeedVehicleTypeParam = [type1, ]
-    interval = reduceSpeedArea.addReduceSpeedInterval(param)
-    reduceSpeedArea.removeReduceSpeedInterval(interval.id())
-    interval1 = reduceSpeedArea.addReduceSpeedInterval(param)
-    print(f" reduceSpeedArea.addReduceSpeedInterval(param) 添加成功={interval1}")
-    flag = reduceSpeedArea.updateReduceSpeedInterval(param)
-    print(f" reduceSpeedArea.updateReduceSpeedInterval(param) 更新成功={flag}")
+            System.out.println("添加限速时段时段");
+            List<IReduceSpeedInterval> intervals = reduceSpeedArea.reduceSpeedIntervals();
+            if (!intervals.isEmpty()) {
+                System.out.printf(
+                        "获取所有限速时段=%s, %n" +
+                                "根据ID获取限速时段=%s, %n" +
+                                "根据开始时间查询限速时段=%s%n",
+                        intervals,
+                        reduceSpeedArea.findReduceSpeedIntervalById(intervals.get(0).id()),
+                        reduceSpeedArea.findReduceSpeedIntervalByStartTime(intervals.get(0).intervalStartTime())
+                );
+            }
+
+            // 演示限速时段添加、移除、更新操作
+            DynaReduceSpeedIntervalParam param = new DynaReduceSpeedIntervalParam();
+            param.setStartTime(100); // 新增时段需与已有时段不冲突
+            param.setEndTime(500);
+
+            DynaReduceSpeedVehiTypeParam type1 = new DynaReduceSpeedVehiTypeParam();
+            type1.setVehicleTypeCode(2);
+            type1.setAvgSpeed(10);
+            type1.setSpeedSD(5);
+
+            param.setReduceSpeedVehicleTypeParams(new java.util.ArrayList<>(Arrays.asList(type1)));
+
+            // 添加并移除时段
+            IReduceSpeedInterval interval = reduceSpeedArea.addReduceSpeedInterval(param);
+            reduceSpeedArea.removeReduceSpeedInterval(interval.id());
+            // 重新添加时段
+            IReduceSpeedInterval interval1 = reduceSpeedArea.addReduceSpeedInterval(param);
+            System.out.printf("reduceSpeedArea.addReduceSpeedInterval(param) 添加成功=%s%n", interval1 != null);
+
+            // 更新时段
+            boolean flag = reduceSpeedArea.updateReduceSpeedInterval(param);
+            System.out.printf("reduceSpeedArea.updateReduceSpeedInterval(param) 更新成功=%b%n", flag);
+        } else {
+            System.out.println("无限速区数据");
+        }
+    }            
 ```
 
 
@@ -9904,83 +12014,107 @@ def showReduceSpeedAreaAttr(netiface):
 
 限速车型接口
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取限速车型ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        for reduceSpeedVehiType in lReduceSpeedVehiTypes: 
-            print(f"获取限速车型ID={reduceSpeedVehiType.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> reduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : reduceSpeedAreas) {
+                            List<IReduceSpeedInterval> reduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval interval : reduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> vehiTypes = interval.reduceSpeedVehiTypes();
+                                for (IReduceSpeedVehiType vehiType : vehiTypes) {
+                                    System.out.printf("获取限速车型ID=%s%n", vehiType.id());
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def intervalId(self) -> int: ...**
+ **long intervalId();**
 
 获取所属限速时段ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        for reduceSpeedVehiType in lReduceSpeedVehiTypes: 
-            print(f"获取所属限速时段ID={reduceSpeedVehiType.intervalId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> reduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : reduceSpeedAreas) {
+                            List<IReduceSpeedInterval> reduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval interval : reduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> vehiTypes = interval.reduceSpeedVehiTypes();
+                                for (IReduceSpeedVehiType vehiType : vehiTypes) {
+                                    System.out.printf("获取所属限速时段ID=%s%n", vehiType.intervalId());
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def reduceSpeedAreaId(self) -> int: ...**
+ **long reduceSpeedAreaId();**
 
 获取所属限速区ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        for reduceSpeedVehiType in lReduceSpeedVehiTypes: 
-            print(f"获取所属限速区ID={reduceSpeedVehiType.reduceSpeedAreaId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> reduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : reduceSpeedAreas) {
+                            List<IReduceSpeedInterval> reduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval interval : reduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> vehiTypes = interval.reduceSpeedVehiTypes();
+                                for (IReduceSpeedVehiType vehiType : vehiTypes) {
+                                    System.out.printf("获取所属限速区ID=%s%n", vehiType.reduceSpeedAreaId());
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def vehiTypeCode(self) -> int: ...**
+ **long vehiTypeCode();**
 
 获取车型编码
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        for reduceSpeedVehiType in lReduceSpeedVehiTypes: 
-            print(f"获取车型编码={reduceSpeedVehiType.vehiTypeCode()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> reduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : reduceSpeedAreas) {
+                            List<IReduceSpeedInterval> reduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval interval : reduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> vehiTypes = interval.reduceSpeedVehiTypes();
+                                for (IReduceSpeedVehiType vehiType : vehiTypes) {
+                                    System.out.printf("获取车型编码=%s%n", vehiType.vehiTypeCode());
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def averageSpeed(self, unit: UnitOfMeasure) -> double: ...**
+ **double averageSpeed(UnitOfMeasure unit);**
 
 获取平均车速, 默认单位: 像素/秒, 可通过unit参数设置单位 
 
@@ -9989,21 +12123,27 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        for reduceSpeedVehiType in lReduceSpeedVehiTypes: 
-            print(f"获取平均车速={reduceSpeedVehiType.averageSpeed()}")
-            print(f"获取平均车速, 单位: 米/秒={reduceSpeedVehiType.averageSpeed(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> reduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : reduceSpeedAreas) {
+                            List<IReduceSpeedInterval> reduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval interval : reduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> vehiTypes = interval.reduceSpeedVehiTypes();
+                                for (IReduceSpeedVehiType vehiType : vehiTypes) {
+                                    System.out.printf("获取平均车速=%s%n", vehiType.averageSpeed());
+                                    System.out.printf("获取平均车速, 单位: 米/秒=%s%n", vehiType.averageSpeed(UnitOfMeasure.Metric));
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
- **def speedStandardDeviation(self, unit: UnitOfMeasure) -> double: ...**
+ **double speedStandardDeviation(UnitOfMeasure unit);**
 
 获取车速标准差, 默认单位: 像素/秒, 可通过unit参数设置单位
 
@@ -10012,39 +12152,67 @@ for reduceSpeedArea in lReduceSpeedAreas:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有IReduceSpeedArea
-lReduceSpeedAreas = netiface.reduceSpeedAreas()
-for reduceSpeedArea in lReduceSpeedAreas: 
-    lReduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals()
-    for reduceSpeedInterval in lReduceSpeedIntervals: 
-        lReduceSpeedVehiTypes = reduceSpeedInterval.reduceSpeedVehiTypes()
-        for reduceSpeedVehiType in lReduceSpeedVehiTypes: 
-            print(f"获取车速标准差={reduceSpeedVehiType.speedStandardDeviation()}")
-            print(f"获取车速标准差, 单位: 米/秒={reduceSpeedVehiType.speedStandardDeviation(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> reduceSpeedAreas = netiface.reduceSpeedAreas();
+                        for (IReduceSpeedArea reduceSpeedArea : reduceSpeedAreas) {
+                            List<IReduceSpeedInterval> reduceSpeedIntervals = reduceSpeedArea.reduceSpeedIntervals();
+                            for (IReduceSpeedInterval interval : reduceSpeedIntervals) {
+                                List<IReduceSpeedVehiType> vehiTypes = interval.reduceSpeedVehiTypes();
+                                for (IReduceSpeedVehiType vehiType : vehiTypes) {
+                                    System.out.printf("获取车速标准差=%s%n", vehiType.speedStandardDeviation());
+                                    System.out.printf("获取车速标准差, 单位: 米/秒=%s%n", vehiType.speedStandardDeviation(UnitOfMeasure.Metric));
+                                }
+                            }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-_showReduceSpeedAreaIntervalAttr(netiface)
-reduceSpeedAreas = netiface.reduceSpeedAreas()
-if len(reduceSpeedAreas) > 0: 
-    reduceSpeedArea = reduceSpeedAreas[0]
-    _showReduceSpeedAreaIntervalAttr(reduceSpeedArea)
-    
-def _showReduceSpeedAreaIntervalAttr(reduceSpeedArea): 
-    interval = reduceSpeedArea.reduceSpeedIntervals()[0]
-    print(f"获取限速时段ID={interval.id()}, 获取所属限速区ID={interval.reduceSpeedAreaId()}, "
-          f"获取开始时间={interval.intervalStartTime()}, 获取结束时间={interval.intervalEndTime()}, ")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IReduceSpeedArea> reduceSpeedAreas = netiface.reduceSpeedAreas();
+                        if (!reduceSpeedAreas.isEmpty()) {
+                            IReduceSpeedArea reduceSpeedArea = reduceSpeedAreas.get(0);
+                            showReduceSpeedAreaIntervalAttr(reduceSpeedArea);
+                        } else {
+                            System.out.println("无可用限速区数据");
+                        }
+                    }
+                }
+private static void showReduceSpeedAreaIntervalAttr(IReduceSpeedArea reduceSpeedArea) {
+        List<IReduceSpeedInterval> intervals = reduceSpeedArea.reduceSpeedIntervals();
+        if (!intervals.isEmpty()) {
+            IReduceSpeedInterval interval = intervals.get(0);
+            System.out.printf("获取限速时段ID=%s, 获取所属限速区ID=%s, " +
+                            "获取开始时间=%s, 获取结束时间=%s%n",
+                    interval.id(), interval.reduceSpeedAreaId(),
+                    interval.intervalStartTime(), interval.intervalEndTime());
 
-    reduceSpeedVehiTypes = interval.reduceSpeedVehiTypes()
-    reduceSpeedVehiType = interval.findReduceSpeedVehiTypeById(reduceSpeedVehiTypes[0].id())
+            List<IReduceSpeedVehiType> vehiTypes = interval.reduceSpeedVehiTypes();
+            if (!vehiTypes.isEmpty()) {
+                IReduceSpeedVehiType firstVehiType = vehiTypes.get(0);
+                IReduceSpeedVehiType vehiTypeById = interval.findReduceSpeedVehiTypeById(firstVehiType.id());
+                IReduceSpeedVehiType vehiTypeByCode = interval.findReduceSpeedVehiTypeByCode(firstVehiType.vehiTypeCode());
 
-    reduceSpeedVehiType1 = interval.findReduceSpeedVehiTypeByCode(reduceSpeedVehiTypes[0].vehiTypeCode())
+                System.out.printf("按ID查询到的限速车型: %s, 按编码查询到的限速车型: %s%n",
+                        vehiTypeById != null ? vehiTypeById.vehiTypeCode() : "未找到",
+                        vehiTypeByCode != null ? vehiTypeByCode.id() : "未找到");
+            } else {
+                System.out.println("当前限速时段无关联限速车型");
+            }
+        } else {
+            System.out.println("当前限速区无可用时段数据");
+        }
+    }               
 ```
 
 
@@ -10055,52 +12223,64 @@ def _showReduceSpeedAreaIntervalAttr(reduceSpeedArea):
 
 收费车道接口
 
- **def id(self) -> int: ...**
+ **long id()**
 
 获取收费车道ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollLane
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    print(f"获取收费车道ID={tollLane.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<ITollLane> tollLanes = netiface.tollLanes();
+            for (ITollLane tollLane : tollLanes) {
+                System.out.printf("获取收费车道ID=%s%n", tollLane.id());
+            }
+        }
+    }
 ```
 
- **def name(self) -> str: ...**
+ **String name()**
 
 获取收费车道名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollLane
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    print(f"获取收费车道名称={tollLane.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            System.out.printf("获取收费车道名称=%s%n", tollLane.name());
+                        }
+                    }
+                }
 ```
 
- **def distance(self) -> double: ...**
+ **double distance()**
 
 获取收费车道起点距当前所在路段起始位置的距离。单位: 米 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollLane
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    print(f"获取收费车道起点距当前所在路段起始位置的距离={tollLane.distance()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            System.out.printf("获取收费车道起点距当前所在路段起始位置的距离=%s%n", tollLane.distance());
+                        }
+                    }
+                }
 ```
 
- **def setName(self, name: str) -> None: ...**
+ **void setName(String name)**
 
 设置收费车道名称 
 
@@ -10109,17 +12289,23 @@ for tollLane in tollLanes:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollLane
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    print(f"设置收费车道名称={tollLane.setName('test lane toll')}")
-    print(f"获取收费车道名称={tollLane.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            // 先执行设置名称（setName返回void，单独调用）
+                            tollLane.setName("test lane toll");
+                            // 再打印结果
+                            System.out.printf("获取收费车道名称=%s%n", tollLane.name());
+                        }
+                    }
+                }
 ```
 
- **def setWorkTime(self, startTime: int, endTime: int) -> None: ...**
+ **void setWorkTime(long startTime, long endTime)**
 
 设置收费车道的工作时间, 不设置时, 默认与仿真时间对应 
 
@@ -10129,60 +12315,94 @@ for tollLane in tollLanes:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollLane
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    print(f"设置收费车道的工作时间={tollLane.setWorkTime(0, 3000)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            tollLane.setWorkTime(0, 3000);
+                            System.out.printf("收费车道%s工作时间已设置为0-3000秒%n", tollLane.id());
+                        }
+                    }
+                }
 ```
 
- **def dynaTollLane(self) -> typing.List<Online.TollStation.DynaTollLane>: ...**
+ **DynaTollLane dynaTollLane()**
 
 获取动态收费车道信息, 具体数据结构见Online.TollStation.DynaTollLane  
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollLane
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    print(f"获取动态收费车道信息={tollLane.dynaTollLane()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            System.out.printf("获取动态收费车道信息=%s%n", tollLane.dynaTollLane());
+                        }
+                    }
+                }
 ```
 
- **def tollPoints(self) -> typing.List<Tessng.ITollPoint>: ...**
+ **ArrayList<ITollPoint> tollPoints()**
 
 获取收费车道所有收费点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollLane
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    print(f"获取收费车道所有收费点={tollLane.tollPoints()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            System.out.printf("获取收费车道所有收费点=%s%n", tollLane.tollPoints());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showTollLaneAttr(netiface)
-def showTollLaneAttr(netiface): 
-    rs = netiface.tollLanes()
-    r = rs[0]
-    r1 = netiface.findTollLane(rs[0].id())
-    print(f"获取收费车道ID={r.id()}, 获取收费车道名称={r.name()}"
-          f", 获取距路段起始位置, 单位: 米={r.distance()}, "
-          f"设置收费车道名称={r.setName('test lane toll')}, "
-          f"设置工作时间, 工作时间与仿真时间对应={r.setWorkTime(0, 3000)}, "
-          f"获取动态收费车道信息={r.dynaTollLane()}, "
-          f"获取收费车道所有收费点={r.tollPoints()}, ")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showTollLaneAttr(netiface);
+                    }
+                }
+private static void showTollLaneAttr(NetInterface netiface) {
+        List<ITollLane> rs = netiface.tollLanes();
+        if (!rs.isEmpty()) {
+            ITollLane r = rs.get(0);
+            ITollLane r1 = netiface.findTollLane(rs.get(0).id()); // 按ID查找收费车道
+
+            // 执行设置操作（set方法返回void，单独调用）
+            r.setName("test lane toll");
+            r.setWorkTime(0, 3000);
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取收费车道ID=%s, 获取收费车道名称=%s, %n" +
+                            "获取距路段起始位置（米）=%s, %n" +
+                            "获取动态收费车道信息=%s, %n" +
+                            "获取收费车道所有收费点=%s%n",
+                    r.id(),
+                    r.name(), // 打印设置后的名称
+                    r.distance(),
+                    r.dynaTollLane(),
+                    r.tollPoints()
+            );
+        } else {
+            System.out.println("无收费车道数据");
+        }
+    }
 ```
 
 
@@ -10194,97 +12414,121 @@ def showTollLaneAttr(netiface):
 
 收费决策点接口
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取收费决策点ID 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollDecisionPoint
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    print(f"获取收费决策点ID={tollDecisionPoint.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            System.out.printf("获取收费决策点ID=%s%n", tollDecisionPoint.id());
+                        }
+                    }
+                }
 ```
 
- **def name(self) -> str: ...**
+ **String name();**
 
 获取收费决策点名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollDecisionPoint
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    print(f"获取收费决策点名称={tollDecisionPoint.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            System.out.printf("获取收费决策点名称=%s%n", tollDecisionPoint.name());
+                        }
+                    }
+                }
 ```
 
- **def link(self) -> Tessng.ILink: ...**
+ **ILink link();**
 
 获取收费决策点所在路段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollDecisionPoint
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    print(f"获取收费决策点所在路段={tollDecisionPoint.link()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            System.out.printf("获取收费决策点所在路段=%s%n", tollDecisionPoint.link());
+                        }
+                    }
+                }
 ```
 
- **def distance(self) ->double: ...**
+ **double distance();**
 
 获取收费决策点距离所在路段起点的距离, 默认单位为米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollDecisionPoint
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    print(f"获取收费决策点距离所在路段起点的距离={tollDecisionPoint.distance()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            System.out.printf("获取收费决策点距离所在路段起点的距离=%s%n", tollDecisionPoint.distance());
+                        }
+                    }
+                }
 ```
 
- **def routings(self) ->Type.List<Tess.ITollRouting>: ...**
+ **ArrayList<ITollRouting> routings();**
 
 获取收费决策点的所有收费路径
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollDecisionPoint
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    print(f"获取收费决策点的所有收费路径={tollDecisionPoint.routings()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            System.out.printf("获取收费决策点的所有收费路径=%s%n", tollDecisionPoint.routings());
+                        }
+                    }
+                }
 ```
 
- **def tollDisInfoList(self) ->Type.List<Online.TollStation.TollDisInfo>: ...**
+ **ArrayList<DynaTollDisInfo> tollDisInfoList();**
 
 获取收费决策点收费路径分配信息列表, 返回值为 TollDisInfo; 数据结构见Online.TollStation.TollDisInfo
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollDecisionPoint
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    print(f"获取收费决策点收费路径分配信息列表={tollDecisionPoint.tollDisInfoList()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            System.out.printf("获取收费决策点收费路径分配信息列表=%s%n", tollDecisionPoint.tollDisInfoList());
+                        }
+                    }
+                }
 ```
 
- **def updateTollDisInfoList(self, tollDisInfoList: Type.List<Online.TollStation.DynaTollDisInfo>) ->None: ...**
+ **void updateTollDisInfoList(ArrayList<DynaTollDisInfo> arg0);**
 
 更新收费分配信息列表, 先创建决策点, 再更新决策点的车道分配信息 
 
@@ -10293,46 +12537,77 @@ for tollDecisionPoint in tollDecisionPoints:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollDecisionPoint
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    print(f"更新收费分配信息列表={tollDecisionPoint.updateTollDisInfoList(tollDecisionPoint.tollDisInfoList())}")
+```java
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            tollDecisionPoint.updateTollDisInfoList(tollDecisionPoint.tollDisInfoList());
+                            System.out.print("更新收费分配信息列表 ");
+                        }
+                    }
+                }
 ```
 
- **def polygon(self) -> QPolygonF: ...**
+ **Vector<Point> polygon();**
 
 获取收费决策点多边形轮廓
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-# 获取路网中的所有ITollDecisionPoint
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    print(f"获取收费决策点多边形轮廓={tollDecisionPoint.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            System.out.printf("获取收费决策点多边形轮廓=%s%n", tollDecisionPoint.polygon());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showTollDecisionPointAttr(netiface)
-def showTollDecisionPointAttr(netiface): 
-    rs = netiface.tollDecisionPoints()
-    r = rs[0]
-    r1 = netiface.findDecisionPoint(rs[0].id())
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showTollDecisionPointAttr(netiface);
+    }
+}
+private static void showTollDecisionPointAttr(NetInterface netiface) {
+        List<ITollDecisionPoint> rs = netiface.tollDecisionPoints();
+        if (!rs.isEmpty()) {
+            ITollDecisionPoint r = rs.get(0);
+            IDecisionPoint r1 = netiface.findDecisionPoint(rs.get(0).id()); // 按ID查找收费决策点
 
-    print(f"获取收费决策点ID={r.id()}, 获取收费决策点名称={r.name()}, 获取收费决策点所在路段={r.link()}, "
-          f", 获取距路段起始位置, 单位: 米={r.distance()}, "
-          f"获取相关收费路径={r.routings()}, "
-          f"获取收费分配信息列表={r.tollDisInfoList()}, "
-          f"更新收费分配信息列表={r.updateTollDisInfoList(r.tollDisInfoList())}, " 
-          f"获取收费决策点多边型轮廓={r.polygon()}, ")
+            // 更新收费分配信息列表（原逻辑中直接使用现有列表更新）
+              r.updateTollDisInfoList(r.tollDisInfoList());
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取收费决策点ID=%s, 获取收费决策点名称=%s, %n" +
+                            "获取收费决策点所在路段=%s, %n" +
+                            "获取距路段起始位置（米）=%s, %n" +
+                            "获取相关收费路径=%s, %n" +
+                            "获取收费分配信息列表=%s, %n" +
+                            "获取收费决策点多边型轮廓=%s%n",
+                    r.id(),
+                    r.name(),
+                    r.link(),
+                    r.distance(),
+                    r.routings(),
+                    r.tollDisInfoList(),
+                    r.polygon()
+            );
+        } else {
+            System.out.println("无收费决策点数据");
+        }
+    }
 ```
 
 
@@ -10343,75 +12618,95 @@ def showTollDecisionPointAttr(netiface):
 
 收费路径接口
 
- **def id(self) -> int: ...** 
+ **long id();** 
 
 获取收费路径ID 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    # 获取路网中的所有ITollRouting
-    tollRoutings = tollDecisionPoint.routings()
-    for tollRouting in tollRoutings: 
-    print(f"获取收费路径ID={tollRouting.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            List<ITollRouting> tollRoutings = tollDecisionPoint.routings();
+                            for (ITollRouting tollRouting : tollRoutings) {
+                                System.out.printf("获取收费路径ID=%s%n", tollRouting.id());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def tollDeciPointId(self) -> int: ...**
+ **long tollDeciPointId();**
 
 获取收费路径所属收费决策点ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    # 获取路网中的所有ITollRouting
-    tollRoutings = tollDecisionPoint.routings()
-    for tollRouting in tollRoutings: 
-    print(f"获取收费路径所属收费决策点ID={tollRouting.tollDeciPointId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            List<ITollRouting> tollRoutings = tollDecisionPoint.routings();
+                            for (ITollRouting tollRouting : tollRoutings) {
+                                System.out.printf("获取收费路径所属收费决策点ID=%s%n", tollRouting.tollDeciPointId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def tollLaneId(self) -> int: ...**
+ **long tollLaneId();**
 
 获取路径到达的收费区域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    # 获取路网中的所有ITollRouting
-    tollRoutings = tollDecisionPoint.routings()
-    for tollRouting in tollRoutings: 
-    print(f"获取路径到达的收费区域id={tollRouting.tollLaneId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            List<ITollRouting> tollRoutings = tollDecisionPoint.routings();
+                            for (ITollRouting tollRouting : tollRoutings) {
+                                System.out.printf("获取路径到达的收费区域id=%s%n", tollRouting.tollLaneId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def calcuLength(self) -> double: ...**
+ **double calcuLength();**
 
 获取收费决策路径长度, 单位: 米; 收费路径长度是指: 收费决策点到收费车道
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    # 获取路网中的所有ITollRouting
-    tollRoutings = tollDecisionPoint.routings()
-    for tollRouting in tollRoutings: 
-    print(f"获取收费决策路径长度, 单位: 米={tollRouting.calcuLength()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            List<ITollRouting> tollRoutings = tollDecisionPoint.routings();
+                            for (ITollRouting tollRouting : tollRoutings) {
+                                System.out.printf("获取收费决策路径长度, 单位: 米=%s%n", tollRouting.calcuLength());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def contain(self, pRoad: Tessng.ISection) -> boolen: ...**
+ **boolean contain(ISection pRoad);**
 
 判断输入的路段是否在当前路径上 
 
@@ -10420,18 +12715,24 @@ for tollDecisionPoint in tollDecisionPoints:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    # 获取路网中的所有ITollRouting
-    tollRoutings = tollDecisionPoint.routings()
-    for tollRouting in tollRoutings: 
-    print(f"判断输入的路段是否在当前路径上={tollRouting.contain(tollDecisionPoint.link())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            List<ITollRouting> tollRoutings = tollDecisionPoint.routings();
+                            for (ITollRouting tollRouting : tollRoutings) {
+                                boolean isContained = tollRouting.contain(tollDecisionPoint.link().toSection());
+                                System.out.printf("判断输入的路段是否在当前路径上=%b%n", isContained);
+                            }
+                        }
+                    }
+                }
 ```
 
- **def nextRoad(self, pRoad: Tessng.ISection) -> Tessng.ISection: ...**
+ **ISection nextRoad(ISection pRoad);**
 
 获取输入路段的紧邻下游道路 
 
@@ -10440,49 +12741,82 @@ for tollDecisionPoint in tollDecisionPoints:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    # 获取路网中的所有ITollRouting
-    tollRoutings = tollDecisionPoint.routings()
-    for tollRouting in tollRoutings: 
-    print(f"获取输入路段的紧邻下游道路={tollRouting.nextRoad(tollDecisionPoint.link())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            List<ITollRouting> tollRoutings = tollDecisionPoint.routings();
+                            for (ITollRouting tollRouting : tollRoutings) {
+                                System.out.printf("获取输入路段的紧邻下游道路=%s%n", tollRouting.nextRoad(tollDecisionPoint.link().toSection()));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def getLinks(self) -> Type.List<Tess.ILink>: ...**
+ **ArrayList<ILink> getLinks();**
 
 获取当前收费路径的有序路段序列
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollDecisionPoints = netiface.tollDecisionPoints()
-for tollDecisionPoint in tollDecisionPoints: 
-    # 获取路网中的所有ITollRouting
-    tollRoutings = tollDecisionPoint.routings()
-    for tollRouting in tollRoutings: 
-    print(f"获取当前收费路径的有序路段序列={tollRouting.getLinks()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+                        for (ITollDecisionPoint tollDecisionPoint : tollDecisionPoints) {
+                            List<ITollRouting> tollRoutings = tollDecisionPoint.routings();
+                            for (ITollRouting tollRouting : tollRoutings) {
+                                System.out.printf("获取当前收费路径的有序路段序列=%s%n", tollRouting.getLinks());
+                            }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showTollRoutingAttr(netiface)
-def showTollRoutingAttr(netiface): 
-    tollDecisionPoints = netiface.tollDecisionPoints()
-    tollDecisionPoint = tollDecisionPoints[0]
-    routes = tollDecisionPoint.routings()
-    r = routes[0]
-    print(f"获取路径ID={r.id()}, 获取所属收费决策点ID={r.tollDeciPointId()}, "
-          f", 计算路径长度, 单位: 米={r.calcuLength()}, "
-          f"根据所给道路判断是否在当前路径上={r.contain(tollDecisionPoint.link())}, "
-          f"根据所给道路求下一条道路={r.nextRoad(tollDecisionPoint.link())}, "
-          f"获取路段序列={r.getLinks()}, ")
+```java
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showTollRoutingAttr(netiface);
+    }
+}
+private static void showTollRoutingAttr(NetInterface netiface) {
+        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+        if (!tollDecisionPoints.isEmpty()) {
+            ITollDecisionPoint tollDecisionPoint = tollDecisionPoints.get(0);
+            List<ITollRouting> routes = tollDecisionPoint.routings();
+            if (!routes.isEmpty()) {
+                ITollRouting r = routes.get(0);
+
+                // 打印详细属性
+                System.out.printf(
+                        "获取路径ID=%s, 获取所属收费决策点ID=%s, %n" +
+                                "计算路径长度（米）=%s, %n" +
+                                "根据所给道路判断是否在当前路径上=%b, %n" +
+                                "根据所给道路求下一条道路=%s, %n" +
+                                "获取路段序列=%s%n",
+                        r.id(),
+                        r.tollDeciPointId(),
+                        r.calcuLength(),
+                        r.contain(tollDecisionPoint.link().toSection()),
+                        r.nextRoad(tollDecisionPoint.link().toSection()),
+                        r.getLinks()
+                );
+            } else {
+                System.out.println("当前收费决策点无收费路径数据");
+            }
+        } else {
+            System.out.println("无收费决策点数据");
+        }
+    }
 ```
 
 
@@ -10493,87 +12827,117 @@ def showTollRoutingAttr(netiface):
 
 收费站停车点接口
 
- **def id(self) -> int: ...**
+ **long id()**
 
 获取收费站停车点位ID 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"获取收费站停车点位ID={tollPoint.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("获取收费站停车点位ID=%s%n", tollPoint.id());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def distance(self) -> double: ...**
+ **double distance()**
 
 获取收费站停车点距离路段起始位置的距离, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"获取收费站停车点距离路段起始位置的距离, 单位: 米={tollPoint.distance()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("获取收费站停车点距离路段起始位置的距离, 单位: 米=%s%n", tollPoint.distance());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def tollLaneId(self) -> int: ...**
+ **long tollLaneId()**
 
 获取收费站停车点所在的车道ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"获取收费站停车点所在的车道ID={tollPoint.tollLaneId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("获取收费站停车点所在的车道ID=%s%n", tollPoint.tollLaneId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def tollLane(self) -> TypeList<Tess.ITollLane>: ...**
+ **ITollLane tollLane()**
 
 获取所属收费车道
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"获取所属收费车道={tollPoint.tollLane()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("获取所属收费车道=%s%n", tollPoint.tollLane());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def isEnabled() -> bool: ...**
+ **boolean isEnabled()**
 
 获取是否启用的状态
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"获取是否启用的状态={tollPoint.isEnabled()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("获取是否启用的状态=%s%n", tollPoint.isEnabled());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setEnabled(self, enabled: bool) -> bool: ...**
+ **boolean setEnabled(boolean enabled)**
 
 设置当前收费站停车点是否启用, 返回是否设置成功的标签 
 
@@ -10582,34 +12946,45 @@ for tollLane in tollLanes:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"设置当前收费站停车点是否启用={tollPoint.setEnabled(False)}")
-    print(f"获取当前收费站停车点是否启用={tollPoint.isEnabled()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("设置当前收费站停车点是否启用=%s%n", tollPoint.setEnabled(false));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def tollType(self) -> int: ...**
+ **int tollType()**
 
 获取收费类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"获取收费类型={tollPoint.tollType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("获取收费类型=%s%n", tollPoint.tollType());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setTollType(self, tollType: int) -> bool: ...**
+ **boolean setTollType(int tollType)**
 
 设置收费类型 
 
@@ -10618,34 +12993,45 @@ for tollLane in tollLanes:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"设置收费类型={tollPoint.setTollType(tollPoint.tollType())}")
-    print(f"获取收费类型={tollPoint.tollType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("设置收费类型=%s%n", tollPoint.setTollType(tollPoint.tollType()));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def timeDisId(self) -> int: ...**
+ **int timeDisId()**
 
 获取停车时间分布ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"获取停车时间分布ID={tollPoint.timeDisId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("获取停车时间分布ID=%s%n", tollPoint.timeDisId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def setTimeDisId(self, timeDisId: int) -> bool: ...**
+ **boolean setTimeDisId(int timeDisId)**
 
 设置停车时间分布ID 
 
@@ -10654,33 +13040,61 @@ for tollLane in tollLanes:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-tollLanes = netiface.tollLanes()
-for tollLane in tollLanes: 
-    tollPoints = tollLane.tollPoints()
-    for tollPoint in tollPoints: 
-    print(f"设置停车时间分布ID={tollPoint.setTimeDisId(tollPoint.timeDisId())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ITollLane> tollLanes = netiface.tollLanes();
+                        for (ITollLane tollLane : tollLanes) {
+                            ArrayList<ITollPoint> tollPoints = tollLane.tollPoints();
+                            for (ITollPoint tollPoint : tollPoints) {
+                                System.out.printf("设置停车时间分布IDID=%s%n", tollPoint.setTimeDisId(tollPoint.timeDisId()));
+                            }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showTollPointAttr(netiface)
-def showTollPointAttr(netiface): 
-    tollLanes = netiface.tollLanes()
-    tollLane = tollLanes[0]
-    rs= tollLane.tollPoints()
-    r = rs[0]
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showTollRoutingAttr(netiface);
+                    }
+                }
+private static void showTollRoutingAttr(NetInterface netiface) {
+        List<ITollDecisionPoint> tollDecisionPoints = netiface.tollDecisionPoints();
+        if (!tollDecisionPoints.isEmpty()) {
+            ITollDecisionPoint tollDecisionPoint = tollDecisionPoints.get(0);
+            List<ITollRouting> routes = tollDecisionPoint.routings();
+            if (!routes.isEmpty()) {
+                ITollRouting r = routes.get(0);
 
-    print(f"获取收费点ID={r.id()}, 获取所属收费车道ID={r.tollLaneId()}"
-          f", 获取距路段起始位置, 单位: 米={r.distance()}, "
-          f"获取是否启用={r.isEnabled()}, "
-          f"设置启用状态={r.setEnabled(True)}, "
-          f"获取收费类型={r.tollType()}, 设置收费类型={r.setTollType(r.tollType())}, "
-          f"获取停车时间分布ID={r.timeDisId()}, 设置停车时间分布ID={r.setTimeDisId(r.timeDisId())}")
+                // 打印详细属性
+                System.out.printf(
+                        "获取路径ID=%s, 获取所属收费决策点ID=%s, %n" +
+                                "计算路径长度（米）=%s, %n" +
+                                "根据所给道路判断是否在当前路径上=%b, %n" +
+                                "根据所给道路求下一条道路=%s, %n" +
+                                "获取路段序列=%s%n",
+                        r.id(),
+                        r.tollDeciPointId(),
+                        r.calcuLength(),
+                        r.contain(tollDecisionPoint.link().toSection()),
+                        r.nextRoad(tollDecisionPoint.link().toSection()),
+                        r.getLinks()
+                );
+            } else {
+                System.out.println("当前收费决策点无收费路径数据");
+            }
+        } else {
+            System.out.println("无收费决策点数据");
+        }
+    }
 ```
 
 
@@ -10689,100 +13103,148 @@ def showTollPointAttr(netiface):
 
 停车位接口
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取停车位ID 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    parkingStalls = parkingRegion.parkingStalls()
-    for parkingStall in parkingStalls: 
-        print(f"获取停车位ID={parkingStall.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+                        for (IParkingRegion parkingRegion : parkingRegions) {
+                            List<IParkingStall> parkingStalls = parkingRegion.parkingStalls();
+                            for (IParkingStall parkingStall : parkingStalls) {
+                                System.out.printf("获取停车位ID=%s%n", parkingStall.id());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def parkingRegionId(self) -> int: ...**
+ **long parkingRegionId();**
 
 获取所属停车区域ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    parkingStalls = parkingRegion.parkingStalls()
-    for parkingStall in parkingStalls: 
-        print(f"获取所属停车区域ID={parkingStall.parkingRegionId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+                        for (IParkingRegion parkingRegion : parkingRegions) {
+                            List<IParkingStall> parkingStalls = parkingRegion.parkingStalls();
+                            for (IParkingStall parkingStall : parkingStalls) {
+                                System.out.printf("获取所属停车区域ID=%s%n", parkingStall.parkingRegionId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def parkingRegion(self) -> Tess.IParkingRegion: ...**
+ **IParkingRegion parkingRegion();**
 
 获取所属停车区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    parkingStalls = parkingRegion.parkingStalls()
-    for parkingStall in parkingStalls: 
-        print(f"获取所属停车区域={parkingStall.parkingRegion()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+                        for (IParkingRegion parkingRegion : parkingRegions) {
+                            List<IParkingStall> parkingStalls = parkingRegion.parkingStalls();
+                            for (IParkingStall parkingStall : parkingStalls) {
+                                // 假设IParkingRegion的toString()方法已实现，可输出区域标识
+                                System.out.printf("获取所属停车区域=%s%n", parkingStall.parkingRegion());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def distance(self) -> double: ...**
+ **double distance();**
 
 获取距路段起始位置, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    parkingStalls = parkingRegion.parkingStalls()
-    for parkingStall in parkingStalls: 
-        print(f"获取距路段起始位置, 单位: 米={parkingStall.distance()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+                        for (IParkingRegion parkingRegion : parkingRegions) {
+                            List<IParkingStall> parkingStalls = parkingRegion.parkingStalls();
+                            for (IParkingStall parkingStall : parkingStalls) {
+                                System.out.printf("获取距路段起始位置, 单位: 米=%s%n", parkingStall.distance());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def stallType(self) -> int: ...**
+ **int stallType();**
 
 获取车位类型, 与车辆类型编码一致
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    parkingStalls = parkingRegion.parkingStalls()
-    for parkingStall in parkingStalls: 
-        print(f"获取车位类型, 与车辆类型编码一致={parkingStall.stallType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+                        for (IParkingRegion parkingRegion : parkingRegions) {
+                            List<IParkingStall> parkingStalls = parkingRegion.parkingStalls();
+                            for (IParkingStall parkingStall : parkingStalls) {
+                                System.out.printf("获取车位类型, 与车辆类型编码一致=%s%n", parkingStall.stallType());
+                            }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showParkingStallAttr(netiface)
-def showParkingStallAttr(netiface): 
-    parkingRegions = netiface.parkingRegions()
-    parkingRegion = parkingRegions[0]
-    rs = parkingRegion.parkingStalls()
-    if len(rs) > 0: 
-        r = rs[0]
-        print(f"获取停车位ID={r.id()}, 获取所属停车区域ID={r.parkingRegionId()}, "
-              f"获取距路段起始位置, 单位: 米={r.distance()}, "
-              f"获取车位类型, 与车辆类型编码一致={r.stallType()}, ")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showParkingStallAttr(netiface);
+                    }
+                }
+private static void showParkingStallAttr(NetInterface netiface) {
+        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+        if (!parkingRegions.isEmpty()) {
+            IParkingRegion parkingRegion = parkingRegions.get(0);
+            List<IParkingStall> parkingStalls = parkingRegion.parkingStalls();
+            if (!parkingStalls.isEmpty()) {
+                IParkingStall parkingStall = parkingStalls.get(0);
+                System.out.printf("获取停车位ID=%s, 获取所属停车区域ID=%s, " +
+                                "获取距路段起始位置, 单位: 米=%s, " +
+                                "获取车位类型, 与车辆类型编码一致=%s%n",
+                        parkingStall.id(),
+                        parkingStall.parkingRegionId(),
+                        parkingStall.distance(),
+                        parkingStall.stallType());
+            } else {
+                System.out.println("当前停车区域无停车位数据");
+            }
+        } else {
+            System.out.println("无停车区域数据");
+        }
+    }
 ```
 
 
@@ -10792,35 +13254,45 @@ def showParkingStallAttr(netiface):
 
 停车区域接口
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取停车区域ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    print(f"获取停车区域ID={parkingRegion.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+            for (IParkingRegion parkingRegion : parkingRegions) {
+                System.out.printf("获取停车区域ID=%s%n", parkingRegion.id());
+            }
+        }
+    }
 ```
 
- **def name(self) -> str: ...**
+ **String name();**
 
 获取所属停车区域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    print(f"获取停车区域名称={parkingRegion.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+            for (IParkingRegion parkingRegion : parkingRegions) {
+                System.out.printf("获取停车区域名称=%s%n", parkingRegion.name());
+            }
+        }
+    }
 ```
 
- **def setName(self, name: str) -> None: ...**
+ **void setName(String name);**
 
 设置停车区域名称 
 
@@ -10829,59 +13301,94 @@ for parkingRegion in parkingRegions:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    print(f"设置停车区域名称={parkingRegion.setName('test parking name')}")
-    print(f"获取停车区域名称={parkingRegion.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+                        for (IParkingRegion parkingRegion : parkingRegions) {
+                            // 先执行设置名称操作（setName返回void）
+                            parkingRegion.setName("test parking name");
+                            // 再打印设置后的名称
+                            System.out.printf("获取停车区域名称=%s%n", parkingRegion.name());
+                        }
+                    }
+                }
 ```
 
- **def parkingStalls(self) -> Type.List<Tess.IParkingStall>: ...**
+ **ArrayList<IParkingStall> parkingStalls();**
 
 获取所有停车位, 返回列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    print(f"获取所有停车位, 返回列表={parkingRegion.parkingStalls()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+                        for (IParkingRegion parkingRegion : parkingRegions) {
+                            System.out.printf("获取所有停车位, 返回列表=%s%n", parkingRegion.parkingStalls());
+                        }
+                    }
+                }
 ```
 
- **def dynaParkingRegion(self) -> Online.ParkingLot.DynaParkingRegion : ...**
+ **DynaParkingRegion dynaParkingRegion();**
 
 获取动态停车区域信息
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingRegions = netiface.parkingRegions()
-for parkingRegion in parkingRegions: 
-    print(f"获取动态停车区域信息={parkingRegion.dynaParkingRegion()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+                        for (IParkingRegion parkingRegion : parkingRegions) {
+                            System.out.printf("获取动态停车区域信息=%s%n", parkingRegion.dynaParkingRegion());
+                        }
+                    }
+                }
 ```
 
- 数据结构见pyi文件的Online.ParkingLot.DynaParkingRegion 
+ 数据结构见jar文件的com.jidatraffic.tessng.DynaParkingRegion 
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showParkingRegionAttr(netiface)
-def showParkingRegionAttr(netiface): 
-    parkingRegions = netiface.parkingRegions()
-    parkingRegion = parkingRegions[0]
-    r1 = netiface.findParkingRegion(parkingRegion.id())
-    r = parkingRegion
-    print(f"获取停车区域ID={r.id()}, 获取停车区域名称={r.name()}"
-          f", 获取所有停车位={r.parkingStalls()}, "
-          f"设置停车区域名称={r.setName('test parking name')}, "
-          f"获取动态停车区域信息={r.dynaParkingRegion()}, ")
+```java
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            showParkingRegionAttr(netiface);
+        }
+    }
+private static void showParkingRegionAttr(NetInterface netiface) {
+        List<IParkingRegion> parkingRegions = netiface.parkingRegions();
+        if (!parkingRegions.isEmpty()) {
+            IParkingRegion parkingRegion = parkingRegions.get(0);
+            IParkingRegion r1 = netiface.findParkingRegion(parkingRegion.id()); // 按ID查找停车区域
+
+            // 执行设置名称操作
+            parkingRegion.setName("test parking name");
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取停车区域ID=%s, 获取停车区域名称=%s, %n" +
+                            "获取所有停车位=%s, %n" +
+                            "获取动态停车区域信息=%s%n",
+                    parkingRegion.id(),
+                    parkingRegion.name(), // 打印设置后的名称
+                    parkingRegion.parkingStalls(),
+                    parkingRegion.dynaParkingRegion()
+            );
+        } else {
+            System.out.println("无停车区域数据");
+        }
+    }
 ```
 
 
@@ -10891,77 +13398,102 @@ def showParkingRegionAttr(netiface):
 
 停车决策点接口
 
- **def id(self) -> int: ...**
+ **long id();**
 
 获取停车决策点ID 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    print(f"获取停车决策点ID={parkingDecisionPoint.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+            for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                System.out.printf("获取停车决策点ID=%s%n", parkingDecisionPoint.id());
+            }
+        }
+    }
 ```
 
- **def name(self) -> str: ...**
+ **String name();**
 
 获取停车决策点名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    print(f"获取停车决策点名称={parkingDecisionPoint.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+            for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                System.out.printf("获取停车决策点名称=%s%n", parkingDecisionPoint.name());
+            }
+        }
+    }
 ```
 
- **def link(self) -> Tessng.ILink: ...**
+ **ILink link();**
 
 获取停车决策点所在路段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    print(f"获取停车决策点所在路段={parkingDecisionPoint.link()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+            for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                System.out.printf("获取停车决策点所在路段=%s%n", parkingDecisionPoint.link());
+            }
+        }
+    }
 ```
 
- **def distance(self) -> double: ...**
+ **double distance();**
 
 获取停车决策点距离所在路段起点的距离, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    print(f"获取停车决策点距离所在路段起点的距离, 单位: 米={parkingDecisionPoint.distance()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            System.out.printf("获取停车决策点距离所在路段起点的距离, 单位: 米=%s%n", parkingDecisionPoint.distance());
+                        }
+                    }
+                }
 ```
 
- **def routings(self) -> Type.List<Tessng.IParkingRouting>: ...**
+ **ArrayList<IParkingRouting> routings();**
 
 获取当前停车决策点对应的所有停车路径
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    print(f"获取当前停车决策点对应的所有停车路径={parkingDecisionPoint.routings()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            System.out.printf("获取当前停车决策点对应的所有停车路径=%s%n", parkingDecisionPoint.routings());
+                        }
+                    }
+                }
 ```
 
-**def updateParkDisInfo(self, tollDisInfoList: Type.List<Online.ParkingLot.DynaParkDisInfo>)->bool**
+**boolean updateParkDisInfo(ArrayList<DynaParkDisInfo> tollDisInfoList)**
 
 更新停车分配信息, 先构建停车决策点, 再通过此更新方法补充完善停车分配信息
 
@@ -10970,57 +13502,99 @@ for parkingDecisionPoint in parkingDecisionPoints:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    print(f"更新停车分配信息={parkingDecisionPoint.updateParkDisInfo(parkingDecisionPoint.parkDisInfoList())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            boolean updateResult = parkingDecisionPoint.updateParkDisInfo(parkingDecisionPoint.parkDisInfoList());
+                            System.out.printf("更新停车分配信息=%b%n", updateResult);
+                        }
+                    }
+                }
 ```
 
-**def parkDisInfoList()->Type.List<Online.ParkingLot.DynaParkDisInfo >**
+**ArrayList<DynaParkDisInfo> parkDisInfoList()**
 
 获取停车分配信息列表
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    print(f"获取停车分配信息列表={parkingDecisionPoint.parkDisInfoList()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            System.out.printf("获取停车分配信息列表=%s%n", parkingDecisionPoint.parkDisInfoList());
+                        }
+                    }
+                }
 ```
 
- **def polygon(self) -> QPolygonF: ...**
+ **Vector<Point> polygon();**
 
 获取当前停车决策点多边形轮廓
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    print(f"获取当前停车决策点多边形轮廓={parkingDecisionPoint.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            System.out.printf("获取当前停车决策点多边形轮廓=%s%n", parkingDecisionPoint.polygon());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showParkingDecisionPointAttr(netiface)
-def showParkingDecisionPointAttr(netiface): 
-    parkingDecisionPoints = netiface.parkingDecisionPoints()
-    parkingDecisionPoint = parkingDecisionPoints[0]
-    r1 = netiface.findParkingDecisionPoint(parkingDecisionPoint.id())
-    r = parkingDecisionPoint
-    print(f"获取停车决策点ID={r.id()}, 获取停车决策点名称={r.name()}"
-          f", 获取停车决策点所在路段={r.link()}, "
-          f"获取停车决策点距路段起点距离, 单位: 米={r.distance()}, 获取停车分配信息列表={r.parkDisInfoList()}, "
-          f"获取相关停车路径={r.routings()}, 更新停车分配信息={r.updateParkDisInfo(r.parkDisInfoList())}, "
-          f"获取停车决策点多边型轮廓={r.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showParkingDecisionPointAttr(netiface);
+    }
+}
+private static void showParkingDecisionPointAttr(NetInterface netiface) {
+        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+        if (!parkingDecisionPoints.isEmpty()) {
+            IParkingDecisionPoint parkingDecisionPoint = parkingDecisionPoints.get(0);
+            IParkingDecisionPoint r1 = netiface.findParkingDecisionPoint(parkingDecisionPoint.id()); // 按ID查找停车决策点
+
+            // 执行停车分配信息更新操作
+            boolean updateResult = parkingDecisionPoint.updateParkDisInfo(parkingDecisionPoint.parkDisInfoList());
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取停车决策点ID=%s, 获取停车决策点名称=%s, %n" +
+                            "获取停车决策点所在路段=%s, %n" +
+                            "获取停车决策点距路段起点距离（米）=%s, %n" +
+                            "获取停车分配信息列表=%s, %n" +
+                            "获取相关停车路径=%s, %n" +
+                            "更新停车分配信息=%b, %n" +
+                            "获取停车决策点多边型轮廓=%s%n",
+                    parkingDecisionPoint.id(),
+                    parkingDecisionPoint.name(),
+                    parkingDecisionPoint.link(),
+                    parkingDecisionPoint.distance(),
+                    parkingDecisionPoint.parkDisInfoList(),
+                    parkingDecisionPoint.routings(),
+                    updateResult,
+                    parkingDecisionPoint.polygon()
+            );
+        } else {
+            System.out.println("无停车决策点数据");
+        }
+    }
 ```
 
 
@@ -11030,71 +13604,95 @@ def showParkingDecisionPointAttr(netiface):
 
 停车决策路径接口
 
- **def id(self) -> int: ...**
+ **long id()**
 
 获取停车决策路径ID 
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    parkingDecisionPoint.routings()
-    for parkingRouting in parkingDecisionPoint.routings(): 
-        print(f"获取停车决策路径ID={parkingRouting.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            List<IParkingRouting> parkingRoutings = parkingDecisionPoint.routings();
+                            for (IParkingRouting parkingRouting : parkingRoutings) {
+                                System.out.printf("获取停车决策路径ID=%s%n", parkingRouting.id());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def parkingDeciPointId(self) -> int: ...**
+ **long parkingDeciPointId()**
 
 获取停车决策路径所属停车决策点的ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    parkingDecisionPoint.routings()
-    for parkingRouting in parkingDecisionPoint.routings(): 
-        print(f"获取停车决策路径所属停车决策点的ID={parkingRouting.parkingDeciPointId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            List<IParkingRouting> parkingRoutings = parkingDecisionPoint.routings();
+                            for (IParkingRouting parkingRouting : parkingRoutings) {
+                                System.out.printf("获取停车决策路径所属停车决策点的ID=%s%n", parkingRouting.parkingDeciPointId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def parkingRegionId(self) -> int: ...**
+ **long parkingRegionId()**
 
 获取路径到达的停车区域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    parkingDecisionPoint.routings()
-    for parkingRouting in parkingDecisionPoint.routings(): 
-        print(f"获取路径到达的停车区域id={parkingRouting.parkingRegionId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            List<IParkingRouting> parkingRoutings = parkingDecisionPoint.routings();
+                            for (IParkingRouting parkingRouting : parkingRoutings) {
+                                System.out.printf("获取路径到达的停车区域id=%s%n", parkingRouting.parkingRegionId());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def calcuLength(self) -> double: ...**
+ **double calcuLength(**
 
 获取停车决策路径的长度, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    parkingDecisionPoint.routings()
-    for parkingRouting in parkingDecisionPoint.routings(): 
-        print(f"获取停车决策路径的长度, 单位: 米={parkingRouting.calcuLength()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            List<IParkingRouting> parkingRoutings = parkingDecisionPoint.routings();
+                            for (IParkingRouting parkingRouting : parkingRoutings) {
+                                System.out.printf("获取停车决策路径的长度, 单位: 米=%s%n", parkingRouting.calcuLength());
+                            }
+                        }
+                    }
+                }
 ```
 
- **def contain(self, pRoad: Tessng.ISection) -> boolen: ...**
+ **boolean contain(ISection pRoad)**
 
 判断输入的道路（ 路段或连接段）是否在当前停车决策路径上 
 
@@ -11103,17 +13701,24 @@ for parkingDecisionPoint in parkingDecisionPoints:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    parkingDecisionPoint.routings()
-    for parkingRouting in parkingDecisionPoint.routings(): 
-        print(f"判断输入的道路（ 路段或连接段）是否在当前停车决策路径上={parkingRouting.contain(parkingDecisionPoint.link())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            List<IParkingRouting> parkingRoutings = parkingDecisionPoint.routings();
+                            for (IParkingRouting parkingRouting : parkingRoutings) {
+                                boolean isContained = parkingRouting.contain(parkingDecisionPoint.link().toSection());
+                                System.out.printf("判断输入的道路是否在当前停车决策路径上=%b%n", isContained);
+                            }
+                        }
+                    }
+                }
 ```
 
- **def nextRoad(self, pRoad: Tessng.ISection) -> Tessng.ISection: ...**
+ **ISection nextRoad(ISection pRoad)**
 
 获取输入道路的紧邻下游道路 
 
@@ -11122,47 +13727,83 @@ for parkingDecisionPoint in parkingDecisionPoints:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    parkingDecisionPoint.routings()
-    for parkingRouting in parkingDecisionPoint.routings(): 
-        print(f"获取输入道路的紧邻下游道路={parkingRouting.nextRoad(parkingDecisionPoint.link())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            List<IParkingRouting> parkingRoutings = parkingDecisionPoint.routings();
+                            for (IParkingRouting parkingRouting : parkingRoutings) {
+                                System.out.printf("获取输入道路的紧邻下游道路=%s%n", parkingRouting.nextRoad(parkingDecisionPoint.link().toSection()));
+                            }
+                        }
+                    }
+                }
 ```
 
- **def getLinks(self) -> Type.List<Tessng.ILink>: ...**
+ **ArrayList<ILink> getLinks()**
 
 获取当前停车路径的有序路段序列
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-parkingDecisionPoints = netiface.parkingDecisionPoints()
-for parkingDecisionPoint in parkingDecisionPoints: 
-    parkingDecisionPoint.routings()
-    for parkingRouting in parkingDecisionPoint.routings(): 
-        print(f"获取当前停车路径的有序路段序列={parkingRouting.getLinks()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+                        for (IParkingDecisionPoint parkingDecisionPoint : parkingDecisionPoints) {
+                            List<IParkingRouting> parkingRoutings = parkingDecisionPoint.routings();
+                            for (IParkingRouting parkingRouting : parkingRoutings) {
+                                System.out.printf("获取当前停车路径的有序路段序列=%s%n", parkingRouting.getLinks());
+                            }
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showParkingRoutingAttr(netiface)
-def showParkingRoutingAttr(netiface): 
-    parkingDecisionPoints = netiface.parkingDecisionPoints()
-    parkingDecisionPoint = parkingDecisionPoints[0]
-    r1 = parkingDecisionPoint.routings()
-    r = r1[0]
-    print(f"获取路径ID={r.id()}, 获取所属决策点ID={r.parkingDeciPointId()}"
-          f", 计算路径长度={r.calcuLength()}, "
-          f"根据所给道路判断是否在当前路径上={r.contain(parkingDecisionPoint.link())}, "
-          f"根据所给道路求下一条道路={r.nextRoad(parkingDecisionPoint.link())}, "
-          f"获取路段序列={r.getLinks()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showParkingRoutingAttr(netiface);
+                    }
+                }
+private static void showParkingRoutingAttr(NetInterface netiface) {
+        List<IParkingDecisionPoint> parkingDecisionPoints = netiface.parkingDecisionPoints();
+        if (!parkingDecisionPoints.isEmpty()) {
+            IParkingDecisionPoint parkingDecisionPoint = parkingDecisionPoints.get(0);
+            List<IParkingRouting> r1 = parkingDecisionPoint.routings();
+            if (!r1.isEmpty()) {
+                IParkingRouting r = r1.get(0);
+
+                // 打印详细属性
+                System.out.printf(
+                        "获取路径ID=%s, 获取所属决策点ID=%s, %n" +
+                                "计算路径长度（米）=%s, %n" +
+                                "根据所给道路判断是否在当前路径上=%b, %n" +
+                                "根据所给道路求下一条道路=%s, %n" +
+                                "获取路段序列=%s%n",
+                        r.id(),
+                        r.parkingDeciPointId(),
+                        r.calcuLength(),
+                        r.contain(parkingDecisionPoint.link().toSection()),
+                        r.nextRoad(parkingDecisionPoint.link().toSection()),
+                        r.getLinks()
+                );
+            } else {
+                System.out.println("当前停车决策点无停车路径数据");
+            }
+        } else {
+            System.out.println("无停车决策点数据");
+        }
+    }
 ```
 
 
@@ -11171,93 +13812,123 @@ def showParkingRoutingAttr(netiface):
 
 节点接口
 
- **def getId(self) -> int: ...**
+ **long getId()**
 
 获取节点ID   
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-nodes = netiface.getAllJunctions()
-for node in nodes: 
-    print(f"获取节点ID={node.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IJunction> nodes = netiface.getAllJunctions();
+        for (IJunction node : nodes) {
+            System.out.printf("获取节点ID=%s%n", node.getId());
+        }
+    }
+}
 ```
 
- **def name(self) -> int: ...**
+ **String name()**
 
 获取节点名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-nodes = netiface.getAllJunctions()
-for node in nodes: 
-    print(f"获取节点名称={node.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IJunction> nodes = netiface.getAllJunctions();
+                        for (IJunction node : nodes) {
+                            System.out.printf("获取节点名称=%s%n", node.name());
+                        }
+                    }
+                }
 ```
 
- **def setName(strName: str) -> int: ...**
+ **void setName(String strName)**
 
 设置节点名称  
 [ in ] strName : 节点名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-nodes = netiface.getAllJunctions()
-for node in nodes: 
-    print(f"设置节点名称={node.setName('new_' + node.name())}")
-    print(f"获取节点名称={node.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IJunction> nodes = netiface.getAllJunctions();
+                        for (IJunction node : nodes) {
+                            node.setName("new_" + node.name());
+                            System.out.printf("获取节点名称=%s%n", node.name());
+                        }
+                    }
+                }
 ```
 
- **def getJunctionLinks(self) -> Tess.ILink: ...**
+ **ArrayList<ILink> getJunctionLinks()**
 
 获取节点内的路段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-nodes = netiface.getAllJunctions()
-for node in nodes: 
-    print(f"获取节点内的路段={node.getJunctionLinks()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IJunction> nodes = netiface.getAllJunctions();
+                        for (IJunction node : nodes) {
+                            System.out.printf("获取节点内的路段=%s%n", node.getJunctionLinks());
+                        }
+                    }
+                }
 ```
 
- **def getJunctionConnectors(self) -> Type.List<Tess.Connector>: ...**
+ **ArrayList<IConnector> getJunctionConnectors()**
 
 获取节点内的连接段
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-nodes = netiface.getAllJunctions()
-for node in nodes: 
-    print(f"获取节点内的连接段={node.getJunctionConnectors()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IJunction> nodes = netiface.getAllJunctions();
+                        for (IJunction node : nodes) {
+                            System.out.printf("获取节点内的连接段=%s%n", node.getJunctionConnectors());
+                        }
+                    }
+                }
 ```
 
- **def getAllTurnningInfo(self) ->Type.List<Online.Junction.TurnningBaseInfo>: ...**
+ **ArrayList<TurnningBaseInfo> getAllTurningInfo()**
 
 获取节点内的流向信息, Online.Junction.TurnningBaseInfo 数据结构见 pyi文件
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-nodes = netiface.getAllJunctions()
-for node in nodes: 
-    print(f"获取节点内的流向信息={node.getAllTurnningInfo()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IJunction> nodes = netiface.getAllJunctions();
+                        for (IJunction node : nodes) {
+                            System.out.printf("获取节点内的流向信息=%s%n", node.getAllTurningInfo());
+                        }
+                    }
+                }
 ```
 
- **def getTurnningInfo(self, turningId) ->Online.Junction.TurnningBaseInfo: ...**
+ **TurnningBaseInfo getTurningInfo(long turningId)**
 
 参数: 
 [ in ] turningId: 转向编号
@@ -11266,30 +13937,60 @@ for node in nodes:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-nodes = netiface.getAllJunctions()
-for node in nodes: 
-    print(f"根据转向编号获取节点内的流向信息={node.getTurnningInfo()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IJunction> nodes = netiface.getAllJunctions();
+                        for (IJunction node : nodes) {
+                            System.out.printf("根据转向编号获取节点内的流向信息=%s%n", node.getTurningInfo(node.getId()));
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showJunctionAttr(netiface)
-def showJunctionAttr(netiface): 
-    nodes = netiface.getAllJunctions()
-    node = netiface.findJunction(nodes[0].id())
-    node = netiface.findSignalControllerByName(node.name())
-    print(
-        f"路网中的节点总数={len(nodes)}, 节点编号={nodes[0].id()}的具体信息: "
-        f"获取节点ID={node.getId()}, 名称={node.name()}, 设置新名字={node.setName('new_' + node.name())}, "
-        f"获取节点内的路段={node.getJunctionLinks()}, "
-        f"获取节点内的连接段={node.getJunctionConnectors()}, "
-        f"获取节点内的流向信息, Online.Junction.TurnningBaseInfo 数据结构见 pyi文件={node.getAllTurnningInfo()}, "
-        f"根据转向编号获取节点内的流向信息, Online.Junction.TurnningBaseInfo 数据结构见 pyi文件={node.getTurnningInfo()}")
+```java
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showJunctionAttr(netiface);
+    }
+}
+private static void showJunctionAttr(NetInterface netiface) {
+        List<IJunction> nodes = netiface.getAllJunctions();
+        if (!nodes.isEmpty()) {
+            IJunction node = netiface.findJunction(nodes.get(0).getId());
+            // 原逻辑中通过名称查找信号控制器，此处保留调用
+            ISignalController signalController = netiface.findSignalControllerByName(node.name());
+
+            // 执行设置名称操作
+            String originalName = node.name();
+            node.setName("new_" + originalName);
+
+            // 打印详细属性
+            System.out.printf(
+                    "路网中的节点总数=%d, 节点编号=%s的具体信息: %n" +
+                            "获取节点ID=%s, 名称=%s, %n" +
+                            "获取节点内的路段=%s, %n" +
+                            "获取节点内的连接段=%s, %n" +
+                            "获取节点内的流向信息（TurnningBaseInfo）=%s, %n" +
+                            "根据转向编号获取节点内的流向信息（TurnningBaseInfo）=%s%n",
+                    nodes.size(),
+                    nodes.get(0).getId(),
+                    node.getId(),
+                    node.name(),
+                    node.getJunctionLinks(),
+                    node.getJunctionConnectors(),
+                    node.getAllTurningInfo(),
+                    node.getTurningInfo(nodes.get(0).getId())
+            );
+        } else {
+            System.out.println("无节点数据");
+        }
+    }
 ```
 
 
@@ -11301,303 +14002,430 @@ def showJunctionAttr(netiface):
 
 行人接口
 
- **def getId(self) -> int: ...**
+ **long getId();**
 
 获取行人ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人ID={ped.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        SimuInterface simuiface = iface.simuInterface();
+        if (simuiface != null) {
+            List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+            for (IPedestrian ped : allPedestrian) {
+                System.out.printf("获取行人ID=%s%n", ped.getId());
+            }
+        }
+    }
 ```
 
- **def getRadius(self) -> double: ...**
+ **double getRadius();**
 
 获取行人半径大小, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人半径大小, 单位: 米={ped.getRadius()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    SimuInterface simuiface = iface.simuInterface();
+                    if (simuiface != null) {
+                        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+                        for (IPedestrian ped : allPedestrian) {
+                            System.out.printf("获取行人半径大小, 单位: 米=%s%n", ped.getRadius());
+                        }
+                    }
+                }
 ```
 
- **def getWeight(self) -> double: ...**
+ **double getWeight();**
 
 获取行人质量, 单位: 千克
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人质量, 单位: 千克={ped.getWeight()}")
+```java
+if (iface != null) {
+                    SimuInterface simuiface = iface.simuInterface();
+                    if (simuiface != null) {
+                        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+                        for (IPedestrian ped : allPedestrian) {
+                            System.out.printf("获取行人质量, 单位: 千克=%s%n", ped.getWeight());
+                        }
+                    }
+                }
 ```
 
- **def getColor(self) -> double: ...**
+ **String getColor();**
 
 获取行人颜色, 十六进制颜色代码, 如"#EE0000"
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人颜色={ped.getColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        for (IPedestrian ped : allPedestrian) {
+            System.out.printf("获取行人颜色=%s%n", ped.getColor());
+        }
+    }
+}
 ```
 
- **def getPos(self) -> QPointF: ...**
+ **Point getPos();**
 
 获取行人当前位置（瞬时位置）, 像素坐标系下的坐标点, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人当前位置（瞬时位置）, 像素坐标系下的坐标点, 单位: 米={ped.getPos()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        for (IPedestrian ped : allPedestrian) {
+            System.out.printf("获取行人当前位置（瞬时位置）, 像素坐标系下的坐标点, 单位: 米=%s%n", ped.getPos());
+        }
+    }
+}
 ```
 
- **def getAngle(self) -> double: ...**
+ **double getAngle();**
 
 获取行人当前角度, QT像素坐标系下, X轴正方向为0, 逆时针为正, 单位: 度 
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人当前角度, QT像素坐标系下, X轴正方向为0, 逆时针为正, 单位: 度={ped.getAngle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        for (IPedestrian ped : allPedestrian) {
+            System.out.printf("获取行人当前角度, QT像素坐标系下, X轴正方向为0, 逆时针为正, 单位: 度=%s%n", ped.getAngle());
+        }
+    }
+}
 ```
 
- **def getDirection(self) -> Array: ...**
+ **Vector2D getDirection()**
 
 获取行人当前方向向量, 二维向量
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人当前方向向量, 二维向量={ped.getDirection()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        for (IPedestrian ped : allPedestrian) {
+            System.out.printf("获取行人当前方向向量, 二维向量=%s%n", ped.getDirection());
+        }
+    }
+}
 ```
 
- **def getElevation(self) -> double: ...**
+ **double getElevation();**
 
 获取行人当前位置的高程, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人当前位置的高程, 单位: 米={ped.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        for (IPedestrian ped : allPedestrian) {
+            System.out.printf("获取行人当前位置的高程, 单位: 米=%s%n", ped.getElevation());
+        }
+    }
+}
 ```
 
- **def getSpeed(self) -> double: ...**
+ **Vector2D getSpeed()**
 
 获取行人当前速度, 单位: 米/秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人当前速度, 单位: 米/秒={ped.getSpeed()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        for (IPedestrian ped : allPedestrian) {
+            System.out.printf("获取行人当前速度, 单位: 米/秒=%s%n", ped.getSpeed());
+        }
+    }
+}
 ```
 
- **def getDesiredSpeed(self) -> double: ...**
+ **double getDesiredSpeed();**
 
 获取行人期望速度, 单位: 米/秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人期望速度, 单位: 米/秒={ped.getDesiredSpeed()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        for (IPedestrian ped : allPedestrian) {
+            System.out.printf("获取行人期望速度, 单位: 米/秒=%s%n", ped.getDesiredSpeed());
+        }
+    }
+}
 ```
 
- **def getMaxSpeed(self) -> double: ...**
+ **double getMaxSpeed();**
 
 获取行人最大速度限制, 单位: 米/秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人最大速度限制, 单位: 米/秒={ped.getMaxSpeed()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        SimuInterface simuiface = iface.simuInterface();
+        if (simuiface != null) {
+            List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+            for (IPedestrian ped : allPedestrian) {
+                System.out.printf("获取行人最大速度限制, 单位: 米/秒=%s%n", ped.getMaxSpeed());
+            }
+        }
+    }
 ```
 
- **def getAcce(self) -> double: ...**
+ **Vector2D getAcce()**
 
 获取行人当前加速度, 单位: 米/秒²
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人当前加速度, 单位: 米/秒²={ped.getAcce()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        SimuInterface simuiface = iface.simuInterface();
+        if (simuiface != null) {
+            List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+            for (IPedestrian ped : allPedestrian) {
+                System.out.printf("获取行人当前加速度, 单位: 米/秒²=%s%n", ped.getAcce());
+            }
+        }
+    }
 ```
 
- **def getMaxAcce(self) -> double: ...**
+ **double getMaxAcce();**
 
 获取行人最大加速度限制, 单位: 米/秒²
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人最大加速度限制, 单位: 米/秒²={ped.getMaxAcce()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        SimuInterface simuiface = iface.simuInterface();
+        if (simuiface != null) {
+            List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+            for (IPedestrian ped : allPedestrian) {
+                System.out.printf("获取行人最大加速度限制, 单位: 米/秒²=%s%n", ped.getMaxAcce());
+            }
+        }
+    }
 ```
 
- **def getEuler(self) -> Type.List: ...**
+ **Point3D getEuler();**
 
 获取行人欧拉角, 单位: 度
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人欧拉角, 用于三维的信息展示和计算, 单位: 度={ped.getEuler()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        SimuInterface simuiface = iface.simuInterface();
+        if (simuiface != null) {
+            List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+            for (IPedestrian ped : allPedestrian) {
+                System.out.printf("获取行人欧拉角, 用于三维的信息展示和计算, 单位: 度=%s%n", ped.getEuler());
+            }
+        }
+    }
 ```
 
- **def getSpeedEuler(self) -> Type.List: ...**
+ **Point3D getSpeedEuler();**
 
 获取行人速度欧拉角, 单位: 度
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人速度欧拉角, 用于三维的信息展示和计算, 单位: 度={ped.getSpeedEuler()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        SimuInterface simuiface = iface.simuInterface();
+        if (simuiface != null) {
+            List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+            for (IPedestrian ped : allPedestrian) {
+                System.out.printf("获取行人速度欧拉角, 用于三维的信息展示和计算, 单位: 度=%s%n", ped.getSpeedEuler());
+            }
+        }
+    }
 ```
 
- **def getWallFDirection(self) ->Type.List: ...**
+ **Vector2D getWallFDirection()**
 
 获取墙壁方向单位向量
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取墙壁方向单位向量={ped.getWallFDirection()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    SimuInterface simuiface = iface.simuInterface();
+                    if (simuiface != null) {
+                        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+                        for (IPedestrian ped : allPedestrian) {
+                            System.out.printf("获取墙壁方向单位向量=%s%n", ped.getWallFDirection());
+                        }
+                    }
+                }
 ```
 
- **def getRegion(self) -> Tess.IPedestrianRegion: ...**
+ **IPedestrianRegion getRegion();**
 
 获取行人当前所在面域
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人当前所在面域={ped.getRegion()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    SimuInterface simuiface = iface.simuInterface();
+                    if (simuiface != null) {
+                        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+                        for (IPedestrian ped : allPedestrian) {
+                            System.out.printf("获取行人当前所在面域=%s%n", ped.getRegion());
+                        }
+                    }
+                }
 ```
 
- **def getPedestrianTypeId(self) -> int: ...**
+ **long getPedestrianTypeId();**
 
 获取行人类型ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"获取行人类型ID={ped.getPedestrianTypeId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    SimuInterface simuiface = iface.simuInterface();
+                    if (simuiface != null) {
+                        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+                        for (IPedestrian ped : allPedestrian) {
+                            System.out.printf("获取行人类型ID=%s%n", ped.getPedestrianTypeId());
+                        }
+                    }
+                }
 ```
 
- **def stop(self) -> None: ...**
+ **void stop();**
 
 停止仿真, 会在下一个仿真批次移除当前行人, 释放资源
 
 举例: 
 
-```python
-iface = tessngIFace()
-simuiface = iface.simuInterface()
-allPedestrian = simuiface.allPedestrianStarted()
-for ped in allPedestrian: 
-    print(f"停止仿真, 会在下一个仿真批次移除当前行人, 释放资源={ped.stop()}")
+```java
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        for (IPedestrian ped : allPedestrian) {
+            ped.stop();
+            System.out.println("停止仿真, 会在下一个仿真批次移除当前行人, 释放资源");
+        }
+    }
+}
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().simuInterface()
-showJunctionAttr(simuiface)
-def showJunctionAttr(simuiface): 
-    allPedestrian = simuiface.allPedestrianStarted()
-    if len(allPedestrian) > 0: 
-        ped = allPedestrian[0]
-        print(
-            f"获取行人ID={ped.getId()}, "
-            f"获取行人半径大小, 单位: 米={ped.getRadius()}, "
-            f"获取行人质量, 单位: 千克={ped.getWeight()}, "
-            f"获取行人颜色, 十六进制颜色代码, 如#EE0000={ped.getColor()}, "
-            f"设置面域颜色={ped.setRegionColor(QColor('red'))}, "
-            f"获取行人当前位置（瞬时位置）, 像素坐标系下的坐标点, 单位: 米; ={ped.getPos()}, "
-            f"获取行人当前角度, QT像素坐标系下, X轴正方向为0, 逆时针为正, 单位: 度; ={ped.getAngle()}, "
-            f"获取行人当前方向向量, 二维向量; ={ped.getDirection()}, "
-            f"获取行人当前位置的高程, 单位: 米={ped.getElevation()}, "
-            f"获取行人当前速度, 单位: 米/秒={ped.getSpeed()}, "
-            f"获取行人期望速度, 单位: 米/秒={ped.getDesiredSpeed()}, "
-            f"获取行人最大速度限制, 单位: 米/秒={ped.getMaxSpeed()}, "
-            f"获取行人当前加速度, 单位: 米/秒²={ped.getAcce()}, "
-            f"获取行人最大加速度限制, 单位: 米/秒²={ped.getMaxAcce()}, "
-            f"获取行人欧拉角, 用于三维的信息展示和计算, 单位: 度={ped.getEuler()}, "
-            f"获取行人速度欧拉角, 用于三维的信息展示和计算, 单位: 度={ped.getSpeedEuler()}, "
-            f"获取墙壁方向单位向量={ped.getWallFDirection()}, "
-            f"获取行人当前所在面域={ped.getRegion()}, "
-            f"获取行人类型ID={ped.getPedestrianTypeId()}, "
-            f"停止当前行人仿真运动, 会在下一个仿真批次移除当前行人, 释放资源={ped.stop()}")
+```java
+TessInterface iface = TESSNG.tessngIFace(); 
+if (iface != null) {
+    SimuInterface simuiface = iface.simuInterface();
+    if (simuiface != null) {
+        showPedestrianAttr(simuiface);
+    }
+}
+private static void showPedestrianAttr(SimuInterface simuiface) {
+        List<IPedestrian> allPedestrian = simuiface.allPedestrianStarted();
+        if (!allPedestrian.isEmpty()) {
+            IPedestrian ped = allPedestrian.get(0);
 
+            // 执行设置面域颜色和停止操作
+//            ped.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+            ped.stop();
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取行人ID=%s, %n" +
+                            "获取行人半径大小（米）=%s, %n" +
+                            "获取行人质量（千克）=%s, %n" +
+                            "获取行人颜色（十六进制）=%s, %n" +
+                            "获取行人当前位置（像素坐标系，米）=%s, %n" +
+                            "获取行人当前角度（度）=%s, %n" +
+                            "获取行人当前方向向量=%s, %n" +
+                            "获取行人当前位置高程（米）=%s, %n" +
+                            "获取行人当前速度（米/秒）=%s, %n" +
+                            "获取行人期望速度（米/秒）=%s, %n" +
+                            "获取行人最大速度限制（米/秒）=%s, %n" +
+                            "获取行人当前加速度（米/秒²）=%s, %n" +
+                            "获取行人最大加速度限制（米/秒²）=%s, %n" +
+                            "获取行人欧拉角（度）=%s, %n" +
+                            "获取行人速度欧拉角（度）=%s, %n" +
+                            "获取墙壁方向单位向量=%s, %n" +
+                            "获取行人当前所在面域=%s, %n" +
+                            "获取行人类型ID=%s, %n" +
+                            "停止当前行人仿真运动（下一批次移除）",
+                    ped.getId(),
+                    ped.getRadius(),
+                    ped.getWeight(),
+                    ped.getColor(),
+                    ped.getPos(),
+                    ped.getAngle(),
+                    ped.getDirection(),
+                    ped.getElevation(),
+                    ped.getSpeed(),
+                    ped.getDesiredSpeed(),
+                    ped.getMaxSpeed(),
+                    ped.getAcce(),
+                    ped.getMaxAcce(),
+                    ped.getEuler(),
+                    ped.getSpeedEuler(),
+                    ped.getWallFDirection(),
+                    ped.getRegion(),
+                    ped.getPedestrianTypeId()
+//                    ,stopResult
+            );
+        } else {
+            System.out.println("无已启动的行人数据");
+        }
+    }
 ```
 
 
@@ -11607,11 +14435,11 @@ def showJunctionAttr(simuiface):
 
 行人可通行路径面域基类接口, 用例见下文子类
 
- **int getId()**
+ **int getId();**
 
 获取面域id
 
- **String getName()**
+ **String getName();**
 
 获取面域名称
 
@@ -11621,11 +14449,11 @@ def showJunctionAttr(simuiface):
 
 [ in ] name: 面域名称
 
- **def setRegionColor(QColor color);**
+ **Color getRegionColor();**
 
 获取面域颜色, 返回pyside2的QColor类型
 
- **def setRegionColor(QColor color);**
+ **void setRegionColor(Color color);**
 
 获取面域颜色, 
 
@@ -11787,35 +14615,45 @@ def showJunctionAttr(simuiface):
 
 人行道区域（面域）接口
 
-**def getId(self) -> int: ...**
+**long getId();**
 
 获取面域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取面域ID={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+        for (IPedestrianSideWalkRegion region : allRegion) {
+            System.out.printf("获取面域ID=%s%n", region.getId());
+        }
+    }
+}
 ```
 
- **def getName(self) ->str: ...**
+ **String getName();**
 
 获取面域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+        for (IPedestrianSideWalkRegion region : allRegion) {
+            System.out.printf("获取面域名称=%s%n", region.getName());
+        }
+    }
+}
 ```
 
- **def setName(self, name) ->None: ...**
+ **void setName(String name);**
 
 设置面域名称
 
@@ -11824,30 +14662,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"设置面域名称={region.setName('new_' + region.getName())}")
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+            for (IPedestrianSideWalkRegion region : allRegion) {
+                region.setName("new_" + region.getName());
+                System.out.printf("获取面域名称=%s%n", region.getName());
+            }
+        }
+    }
 ```
 
- **def getRegionColor(self) ->QColor: ...**
+ **Color getRegionColor();**
 
 获取面域颜色, 返回pyside2的QColor类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def setRegionColor(self, color: QColor) ->None: ...**
+ **void setRegionColor(Color color);**
 
 设置面域颜色
 
@@ -11856,16 +14704,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            region.setRegionColor(new Color(255, 0, 0));
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def getPosition(self, unit: UnitOfMeasure) ->QPointF: ...**
+ **Point getPosition(UnitOfMeasure unit);**
 
 获取面域位置, 默认单位: 像素, 可通过unit设置单位
 
@@ -11874,16 +14727,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setPosition(self, scenePos: QPointF, unit: UnitOfMeasure) ->None: ...**
+ **void setPosition(Point scenePos, UnitOfMeasure unit);**
 
 设置面域位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -11893,44 +14751,60 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"设置面域位置, 像素制={region.setPosition(region.getPosition())}, "
-          f"设置面域位置, 米制={region.setPosition(region.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            region.setPosition(region.getPosition());
+                            region.setPosition(region.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric);
+                            System.out.printf("面域位置（像素+米制）已更新%n");
+                        }
+                    }
+                }
 ```
 
- **def getGType(self) ->int: ...**
+ **int getGType();**
 
 获取面域类型, 面域类型见pyi文件NetItemType类
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取面域类型={region.getGType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取面域类型=%s%n", region.getGType());
+                        }
+                    }
+                }
 ```
 
- **def getExpectSpeedFactor(self) -> double: ...**
+ **double getExpectSpeedFactor();**
 
 获取期望速度系数
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def setExpectSpeedFactor(self, val: double) -> None: ...**
+ **void setExpectSpeedFactor(double val);**
 
 设置期望速度系数
 
@@ -11939,30 +14813,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            region.setExpectSpeedFactor(1.5);
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def getElevation(self) -> double: ...**
+ **double getElevation();**
 
 获取面域高程
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def setElevation(self, elevation: double) -> None: ...**
+ **void setElevation(double elevation);**
 
 设置面域高程
 
@@ -11971,44 +14855,59 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"设置面域高程={region.setElevation(0.1)}")
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            region.setElevation(0.1);
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def getPolygon(self) -> double: ...**
+ **Vector<Point> getPolygon();**
 
 获取面域多边形
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取面域多边形={region.getPolygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取面域多边形=%s%n", region.getPolygon());
+                        }
+                    }
+                }
 ```
 
- **def getLayerId(self) -> double: ...**
+ **long getLayerId();**
 
 获取面域所在图层ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setLayerId(self, elevation: double) -> None: ...**
+ **void setLayerId(long id);**
 
 设置面域所在图层, 如果图层ID非法, 则不做任何改变
 
@@ -12017,30 +14916,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"设置面域所在图层, 如果图层ID非法, 则不做任何改变={region.setLayerId(region.getLayerId())}")
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            region.setLayerId(region.getLayerId());
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def getWidth(self) -> int: ...**
+ **double getWidth();**
 
 获取人行道(面域)宽度, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取人行道(面域)宽度, 单位: 米={region.getWidth()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取人行道宽度（米）=%s%n", region.getWidth());
+                        }
+                    }
+                }
 ```
 
- **def setWidth(self, width: double) -> None: ...**
+ **void setWidth(double width);**
 
 设置人行道(面域)宽度, 单位: 米
 
@@ -12049,72 +14958,97 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"设置人行道(面域)宽度, 单位: 米={region.setWidth(region.getWidth()+0.1)}")
-    print(f"获取人行道(面域)宽度, 单位: 米={region.getWidth()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            region.setWidth(region.getWidth() + 0.1);
+                            System.out.printf("获取人行道宽度（米）=%s%n", region.getWidth());
+                        }
+                    }
+                }
 ```
 
- **def getVetexs(self) ->  Type.List<QGraphicsEllipseItem>: ...**
+ **ArrayList<IHelpModifyPedestrianRegionSizeDotItem> getVetexs()**
 
 获取人行道(面域)顶点, 即初始折线顶点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取人行道(面域)顶点, 即初始折线顶点={region.getVetexs()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取人行道初始折线顶点=%s%n", region.getVetexs());
+                        }
+                    }
+                }
 ```
 
- **def getControl1Vetexs(self) -> Type.List<QGraphicsEllipseItem>: ...**
+ **ArrayList<IHelpModifyPedestrianRegionSizeDotItem> getControl1Vetexs()**
 
 获取人行道(面域)贝塞尔曲线控制点P1
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取人行道(面域)贝塞尔曲线控制点P1={region.getControl1Vetexs()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取人行道贝塞尔曲线控制点P1=%s%n", region.getControl1Vetexs());
+                        }
+                    }
+                }
 ```
 
- **def getControl2Vetexs(self) -> Type.List<QGraphicsEllipseItem>: ...**
+ **ArrayList<IHelpModifyPedestrianRegionSizeDotItem> getControl2Vetexs()**
 
 获取人行道(面域)贝塞尔曲线控制点P2
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取人行道(面域)贝塞尔曲线控制点P2={region.getControl2Vetexs()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取人行道贝塞尔曲线控制点P2=%s%n", region.getControl2Vetexs());
+                        }
+                    }
+                }
 ```
 
- **def getCandidateVetexs(self) -> Type.List<QGraphicsEllipseItem>: ...**
+ **ArrayList<IHelpModifyPedestrianRegionSizeDotItem> getCandidateVetexs()**
 
 获取人行道(面域)候选顶点
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"获取人行道(面域)候选顶点={region.getCandidateVetexs()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            System.out.printf("获取人行道候选顶点=%s%n", region.getCandidateVetexs());
+                        }
+                    }
+                }
 ```
 
- **def removeVetex(self, index: int) ->None: ...**
+ **void removeVetex(int index)**
 
 删除人行道(面域)的第index个顶点: 顺序: 按照人行横道的绘制顺序排列
 
@@ -12123,15 +15057,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianSideWalkRegions()
-for region in allRegion: 
-    print(f"删除人行道(面域)的第index个顶点={region.removeVetex(1)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianSideWalkRegion> allRegion = netiface.pedestrianSideWalkRegions();
+                        for (IPedestrianSideWalkRegion region : allRegion) {
+                            region.removeVetex(1);
+                            System.out.printf("已删除人行道第1个顶点%n");
+                        }
+                    }
+                }
 ```
 
- **def insertVetex(self, pos: QPointF, index: int) ->None: ...**
+ **def insertVetex(Point pos, int index)**
 
 在人行道(面域)的第index的位置插入顶点, 初始位置为pos: 顺序: 按照人行横道的绘制顺序排列
 
@@ -12141,18 +15081,18 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
+```java
+TessInterface iface = TESSNG.tessngIFace();
 netiface = iface.netInterface()
 allRegion = netiface.pedestrianSideWalkRegions()
 for region in allRegion: 
-    print(f"在第index个位置插入顶点, 初始位置为pos={region.insertVetex(QPointF(region.getCandidateVetexs()[0].pos().x()+0.1, region.getCandidateVetexs()[0].pos().y()+0.1), 0)}")
+    print(f"在第index个位置插入顶点, 初始位置为pos={region.insertVetex(Point(region.getCandidateVetexs()[0].pos().x()+0.1, region.getCandidateVetexs()[0].pos().y()+0.1), 0)}")
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
+```java
+TessInterface iface = TESSNG.tessngIFace();
 showPedestrianSideWalkRegionAttr(netiface)
 def showPedestrianSideWalkRegionAttr(netiface): 
     regions = netiface.pedestrianSideWalkRegions()
@@ -12179,10 +15119,10 @@ def showPedestrianSideWalkRegionAttr(netiface):
               f"获取人行道宽度={r.getWidth()}, 设置人行道宽度={r.setWidth(r.getWidth()+0.5)}, "
               f"获取人行道顶点, 即初始折线顶点={r.getVetexs()}, 获取人行道贝塞尔曲线控制点P1={r.getControl1Vetexs()}, "
               f"获取人行道贝塞尔曲线控制点P2={r.getControl2Vetexs()}, 获取候选顶点={r.getCandidateVetexs()}")
-        print(f"在第index个位置插入顶点, 初始位置为pos={r.insertVetex(QPointF(r.getCandidateVetexs()[0].pos().x()+0.1, r.getCandidateVetexs()[0].pos().y()+0.1), 0)}, "
+        print(f"在第index个位置插入顶点, 初始位置为pos={r.insertVetex(Point(r.getCandidateVetexs()[0].pos().x()+0.1, r.getCandidateVetexs()[0].pos().y()+0.1), 0)}, "
               f"删除第index个顶点={r.removeVetex(1)}")
         #
-        print(f"在第index个位置插入顶点, 初始位置为pos={r.insertVetex(QPointF(100, 100), 0)}, "
+        print(f"在第index个位置插入顶点, 初始位置为pos={r.insertVetex(Point(100, 100), 0)}, "
               f"删除第index个顶点={r.removeVetex(1)}")
 
 ```
@@ -12196,35 +15136,45 @@ def showPedestrianSideWalkRegionAttr(netiface):
 
 人行横道区域接口
 
-**def getId(self) -> int: ...**
+**long getId();**
 
 获取面域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取面域id={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+        for (IPedestrianCrossWalkRegion region : allRegion) {
+            System.out.printf("获取面域id=%s%n", region.getId());
+        }
+    }
+}
 ```
 
- **def getName(self) ->str: ...**
+ **String getName();**
 
 获取面域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def setName(self, name) ->None: ...**
+ **void setName(String name);**
 
 设置面域名称
 
@@ -12233,30 +15183,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"设置面域名称={region.setName('test_area')}")
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setName("test_area");
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def getRegionColor(self) ->QColor: ...**
+ **Color getRegionColor();**
 
 获取面域颜色, 返回pyside2的QColor类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def setRegionColor(self, color: QColor) ->None: ...**
+ **void setRegionColor(Color color);**
 
 设置面域颜色
 
@@ -12265,16 +15225,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def getPosition(self, unit: UnitOfMeasure) ->QPointF: ...**
+ **Point getPosition(UnitOfMeasure unit);**
 
 获取面域位置, 默认单位: 像素, 可通过unit设置单位
 
@@ -12283,16 +15248,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setPosition(self, scenePos: QPointF, unit: UnitOfMeasure) ->None: ...**
+ **void setPosition(Point scenePos, UnitOfMeasure unit);**
 
 设置面域位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -12302,46 +15272,61 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    region.setPosition(QPointF(100, 100))
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    region.setPosition(QPointF(100, 100), UnitOfMeasure.Metric)
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setPosition(new Point(100, 100));
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            region.setPosition(new Point(100, 100), UnitOfMeasure.Metric);
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getGType(self) ->int: ...**
+ **int getGType();**
 
 获取面域类型, 面域类型见pyi文件NetItemType类
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取面域类型={region.getGType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取面域类型=%s%n", region.getGType());
+                        }
+                    }
+                }
 ```
 
- **def getExpectSpeedFactor(self) -> double: ...**
+ **double getExpectSpeedFactor();**
 
 获取期望速度系数
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def setExpectSpeedFactor(self, val: double) -> None: ...**
+ **void setExpectSpeedFactor(double val);**
 
 设置期望速度系数
 
@@ -12350,30 +15335,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setExpectSpeedFactor(1.5);
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def getElevation(self) -> double: ...**
+ **double getElevation();**
 
 获取面域高程
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def setElevation(self, elevation: double) -> None: ...**
+ **void setElevation(double elevation);**
 
 设置面域高程
 
@@ -12382,44 +15377,59 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"设置面域高程={region.setElevation(0.1)}")
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setElevation(0.1);
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def getPolygon(self) -> double: ...**
+ **Vector<Point> getPolygon();**
 
 获取面域多边形
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取面域多边形={region.getPolygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+        for (IPedestrianCrossWalkRegion region : allRegion) {
+            System.out.printf("获取面域多边形=%s%n", region.getPolygon());
+        }
+    }
+}
 ```
 
- **def getLayerId(self) -> double: ...**
+ **long getLayerId();**
 
 获取面域所在图层ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setLayerId(self, elevation: double) -> None: ...**
+ **void setLayerId(long id);**
 
 设置面域所在图层, 如果图层ID非法, 则不做任何改变
 
@@ -12428,30 +15438,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"设置面域所在图层={region.setLayerId(1)}")
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setLayerId(1);
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def getWidth(self) -> double: ...**
+ **double getWidth();**
 
 获取人行横道宽度, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道宽度, 单位: 米={region.getWidth()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取人行横道宽度（米）=%s%n", region.getWidth());
+                        }
+                    }
+                }
 ```
 
- **def setWidth(self, width: double) -> double: ...**
+ **void setWidth(double width);**
 
 设置行人横道宽度, 单位: 米
 
@@ -12460,16 +15480,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"设置行人横道宽度, 单位: 米={region.setWidth(1.5)}")
-    print(f"获取行人横道宽度, 单位: 米={region.getWidth()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setWidth(1.5);
+                            System.out.printf("获取人行横道宽度（米）=%s%n", region.getWidth());
+                        }
+                    }
+                }
 ```
 
- **def getSceneLine(self, unit: UnitOfMeasure) -> QLineF: ...**  
+ **SWIGTYPE_p_QLineF getSceneLine();**  
 
 获取人行横道起点到终点的线段, QT场景坐标系, 场景坐标系下, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -12478,30 +15503,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道起点到终点的线段, 场景坐标系, 默认单位: 像素={region.getSceneLine()}")
-    print(f"获取人行横道起点到终点的线段, 场景坐标系, 米制={region.getSceneLine(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取人行横道起点到终点线段（像素制）=%s%n", region.getSceneLine());
+                            System.out.printf("获取人行横道起点到终点线段（米制）=%s%n", region.getSceneLine(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getAngle(self) -> double: ...**  
+ **double getAngle();**  
 
 获取人行横道倾斜角度, 单位: 度, QT像素坐标系下, X轴正方向为0, 逆时针为正
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道倾斜角度, 单位: 度={region.getAngle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取人行横道倾斜角度（度）=%s%n", region.getAngle());
+                        }
+                    }
+                }
 ```
 
- **def setAngle(self, angle: double) -> None: ...**
+ **void setAngle(double angle);**
 
 设置人行横道倾斜角度, 单位: 度, QT像素坐标系下, X轴正方向为0, 逆时针为正
 
@@ -12510,30 +15545,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"设置人行横道倾斜角度, 单位: 度={region.setAngle(5)}")
-    print(f"获取人行横道倾斜角度, 单位: 度={region.getAngle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+ if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setAngle(5);
+                            System.out.printf("获取人行横道倾斜角度（度）=%s%n", region.getAngle());
+                        }
+                    }
+                }
 ```
 
- **def getRedLightSpeedFactor(self) -> double: ...**
+ **double getRedLightSpeedFactor();**
 
 获取人行横道上红灯清尾速度系数
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道上红灯清尾速度系数={region.getRedLightSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取人行横道上红灯清尾速度系数=%s%n", region.getRedLightSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def setRedLightSpeedFactor(self, factor: double) -> None: ...**
+ **void setRedLightSpeedFactor(double factor);**
 
 设置人行横道上红灯清尾速度系数  
 
@@ -12542,196 +15587,298 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"设置人行横道上红灯清尾速度系数={region.setRedLightSpeedFactor(1.5)}")
-    print(f"获取人行横道上红灯清尾速度系数={region.getRedLightSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            region.setRedLightSpeedFactor(1.5);
+                            System.out.printf("获取人行横道上红灯清尾速度系数=%s%n", region.getRedLightSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def getUnitDirectionFromStartToEnd(self) -> Type.List: ...**
+ **Vector2D getUnitDirectionFromStartToEnd()**
 
 获取人行横道起点到终点的在场景坐标系下的单位方向向量, 场景坐标系下
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道起点到终点的在场景坐标系下的单位方向向量={region.getUnitDirectionFromStartToEnd()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取场景坐标系下起点到终点单位方向向量=%s%n", region.getUnitDirectionFromStartToEnd());
+                        }
+                    }
+                }
 ```
 
- **def getLocalUnitDirectionFromStartToEnd(self) -> Type.List: ...**
+ **Vector2D getLocalUnitDirectionFromStartToEnd()**
 
 获取人行横道本身坐标系下从起点到终点的单位方向
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道本身坐标系下从起点到终点的单位方向={region.getLocalUnitDirectionFromStartToEnd()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取自身坐标系下起点到终点单位方向=%s%n", region.getLocalUnitDirectionFromStartToEnd());
+                        }
+                    }
+                }
 ```
 
- **def getStartControlPoint(self) -> QGraphicsEllipseItem: ...**
+ **IHelpModifyPedestrianRegionSizeDotItem getStartControlPoint();**
 
 获取人行横道起点控制点, 场景坐标系
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道起点控制点, 场景坐标系={region.getStartControlPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取人行横道起点控制点=%s%n", region.getStartControlPoint());
+                        }
+                    }
+                }
 ```
 
- **def getEndControlPoint(self) -> QGraphicsEllipseItem: ...**
+ **IHelpModifyPedestrianRegionSizeDotItem getEndControlPoint();**
 
 获取人行横道终点控制点, 场景坐标系
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道终点控制点, 场景坐标系下={region.getEndControlPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取人行横道终点控制点=%s%n", region.getEndControlPoint());
+                        }
+                    }
+                }
 ```
 
- **def getLeftControlPoint(self) -> QGraphicsEllipseItem: ...**
+ **IHelpModifyPedestrianRegionSizeDotItem getLeftControlPoint();**
 
 获取人行横道左侧控制点, 场景坐标系
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道左侧控制点, 场景坐标系={region.getLeftControlPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取人行横道左侧控制点=%s%n", region.getLeftControlPoint());
+                        }
+                    }
+                }
 ```
 
- **def getRightControlPoint(self) -> QGraphicsEllipseItem: ...**
+ **IHelpModifyPedestrianRegionSizeDotItem getRightControlPoint();**
 
 获取人行横道右侧控制点, 场景坐标系
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道右侧控制点, 场景坐标系={region.getRightControlPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取人行横道右侧控制点=%s%n", region.getRightControlPoint());
+                        }
+                    }
+                }
 ```
 
- **def getPositiveDirectionSignalLamp(self) -> Tessng.ICrosswalkSignalLamp: ...**
+ **ICrosswalkSignalLamp getPositiveDirectionSignalLamp();**
 
 获取人行横道上管控正向通行的信号灯对象
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道上管控正向通行的信号灯对象={region.getPositiveDirectionSignalLamp()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("获取正向通行信号灯=%s%n", region.getPositiveDirectionSignalLamp());
+                        }
+                    }
+                }
 ```
 
- **def getNegativeDirectionSignalLamp(self) -> Tessng.ICrosswalkSignalLamp: ...**
+ **ICrosswalkSignalLamp getNegativeDirectionSignalLamp();**
 
 获取人行横道上管控反向通行的信号灯对象
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"获取人行横道上管控反向通行的信号灯对象={region.getNegativeDirectionSignalLamp()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+
+if (iface != null) {
+        NetInterface netiface = iface.netInterface();
+        if (netiface != null) {
+            List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+            for (IPedestrianCrossWalkRegion region : allRegion) {
+                System.out.printf("获取人行横道上管控反向通行的信号灯对象=%s%n", region.getNegativeDirectionSignalLamp());
+            }
+        }
+    }
 ```
 
- **def isPositiveTrafficLightAdded(self) -> boolen: ...**
+ **boolean isPositiveTrafficLightAdded();**
 
 判断人行横道上是否存在管控正向通行的信号灯
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"判断人行横道上是否存在管控正向通行的信号灯={region.isPositiveTrafficLightAdded()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+        for (IPedestrianCrossWalkRegion region : allRegion) {
+            System.out.printf("判断人行横道上是否存在管控正向通行的信号灯=%b%n", region.isPositiveTrafficLightAdded());
+        }
+    }
+}
 ```
 
- **def isReverseTrafficLightAdded(self) -> boolen: ...**
+ **boolean isReverseTrafficLightAdded();**
 
 判断人行横道上是否存在管控反向通行的信号灯
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianCrossWalkRegions()
-for region in allRegion: 
-    print(f"判断人行横道上是否存在管控反向通行的信号灯={region.isReverseTrafficLightAdded()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianCrossWalkRegion> allRegion = netiface.pedestrianCrossWalkRegions();
+                        for (IPedestrianCrossWalkRegion region : allRegion) {
+                            System.out.printf("判断人行横道上是否存在管控反向通行的信号灯=%b%n", region.isReverseTrafficLightAdded());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showPedestrianCrossWalkRegionAttr(netiface)
-def showPedestrianCrossWalkRegionAttr(netiface): 
-    allCrossWalkRegion = netiface.pedestrianCrossWalkRegions()
-    if len(allCrossWalkRegion) > 0: 
-        crossWalkRegion = allCrossWalkRegion[0]
-        print(
-              f"获取面域ID={crossWalkRegion.getId()}, "
-              f"获取面域名称={crossWalkRegion.getName()}, "
-              f"设置面域名称={crossWalkRegion.setName('test_area')}, " 
-              f"获取面域颜色={crossWalkRegion.getRegionColor()}, "
-              f"设置面域颜色={crossWalkRegion.setRegionColor(QColor('red'))}, "
-              f"获取面域位置, 默认单位: 像素={crossWalkRegion.getPosition()}, "
-              f"获取面域位置, 米制={crossWalkRegion.getPosition(UnitOfMeasure.Metric)}, "
-              f"设置面域位置, 像素制={crossWalkRegion.setPosition(crossWalkRegion.getPosition())}, "
-              f"设置面域位置, 米制={crossWalkRegion.setPosition(crossWalkRegion.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}, "
-              f"获取面域类型={crossWalkRegion.getGType()}, "
-              f"获取期望速度系数={crossWalkRegion.getExpectSpeedFactor()}, "
-              f"设置期望速度系数={crossWalkRegion.setExpectSpeedFactor(1.5)}, "
-              f"获取面域高程={crossWalkRegion.getElevation() }, "
-              f"设置面域高程={crossWalkRegion.setElevation(0.1)}, "
-              f"获取面域多边形={crossWalkRegion.getPolygon()}, " 
-              f"获取面域所在图层ID={crossWalkRegion.getLayerId() }, 设置面域所在图层, 如果图层ID非法, 则不做任何改变={crossWalkRegion.setLayerId(crossWalkRegion.getLayerId())}")
-        print(f"仿真路网中人行横道区域总数={len(allCrossWalkRegion)}, "
-              f"获取人行横道宽度, 单位: 米={crossWalkRegion.getWidth()}, 设置人行横道宽度, 单位: 米={crossWalkRegion.setWidth(crossWalkRegion.getWidth()+0.1)}, "
-              f"获取人行横道起点到终点的线段, 场景坐标系下={crossWalkRegion.getSceneLine()}, 获取人行横道倾斜角度={crossWalkRegion.getAngle()}, "
-              f"设置人行横道倾斜角度={crossWalkRegion.setAngle(5)}, 获取红灯清尾速度系数={crossWalkRegion.getRedLightSpeedFactor()}, "
-              f"设置红灯清尾速度系数={crossWalkRegion.setRedLightSpeedFactor(1.5)}, "
-              f"获取场景坐标系下从起点到终点的单位方向向量={crossWalkRegion.getUnitDirectionFromStartToEnd()}, "
-              f"获取人行横道本身坐标系下从起点到终点的单位方向={crossWalkRegion.getLocalUnitDirectionFromStartToEnd()}, "
-              f"获取起点控制点={crossWalkRegion.getStartControlPoint()}, "
-              f"获取终点控制点={crossWalkRegion.getEndControlPoint()}, "
-              f"获取左侧控制点={crossWalkRegion.getLeftControlPoint()}, "
-              f"获取右侧控制点={crossWalkRegion.getRightControlPoint()}, "
-              f"判断是否添加了管控正向通行的信号灯={crossWalkRegion.isPositiveTrafficLightAdded()}, "
-              f"判断是否添加了管控反向通行的信号灯={crossWalkRegion.isReverseTrafficLightAdded()}, "
-              f"获取管控正向通行的信号灯={crossWalkRegion.getPositiveDirectionSignalLamp()}, "
-              f"获取管控反向通行的信号灯={crossWalkRegion.getNegativeDirectionSignalLamp()}, ")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showPedestrianCrossWalkRegionAttr(netiface);
+                    }
+                }
+private static void showPedestrianCrossWalkRegionAttr(NetInterface netiface) {
+        List<IPedestrianCrossWalkRegion> allCrossWalkRegion = netiface.pedestrianCrossWalkRegions();
+        if (!allCrossWalkRegion.isEmpty()) {
+            IPedestrianCrossWalkRegion crossWalkRegion = allCrossWalkRegion.get(0);
+
+            // 执行设置操作
+            crossWalkRegion.setName("test_area");
+            crossWalkRegion.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+            crossWalkRegion.setPosition(crossWalkRegion.getPosition());
+            crossWalkRegion.setPosition(crossWalkRegion.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric);
+            crossWalkRegion.setExpectSpeedFactor(1.5);
+            crossWalkRegion.setElevation(0.1);
+            crossWalkRegion.setLayerId(crossWalkRegion.getLayerId());
+            crossWalkRegion.setWidth(crossWalkRegion.getWidth() + 0.1);
+            crossWalkRegion.setAngle(5);
+            crossWalkRegion.setRedLightSpeedFactor(1.5);
+
+            // 打印详细属性（分两部分保持格式清晰）
+            System.out.printf(
+                    "获取面域ID=%s, " +
+                            "获取面域名称=%s, " +
+                            "获取面域颜色=%s, " +
+                            "获取面域位置（像素制）=%s, " +
+                            "获取面域位置（米制）=%s, " +
+                            "获取面域类型=%s, " +
+                            "获取期望速度系数=%s, " +
+                            "获取面域高程=%s, " +
+                            "获取面域多边形=%s, " +
+                            "获取面域所在图层ID=%s%n",
+                    crossWalkRegion.getId(),
+                    crossWalkRegion.getName(),
+                    crossWalkRegion.getRegionColor(),
+                    crossWalkRegion.getPosition(),
+                    crossWalkRegion.getPosition(UnitOfMeasure.Metric),
+                    crossWalkRegion.getGType(),
+                    crossWalkRegion.getExpectSpeedFactor(),
+                    crossWalkRegion.getElevation(),
+                    crossWalkRegion.getPolygon(),
+                    crossWalkRegion.getLayerId()
+            );
+
+            System.out.printf(
+                    "仿真路网中人行横道区域总数=%d, " +
+                            "获取人行横道宽度（米）=%s, " +
+                            "获取人行横道起点到终点线段=%s, " +
+                            "获取人行横道倾斜角度（度）=%s, " +
+                            "获取红灯清尾速度系数=%s, " +
+                            "获取场景坐标系起点到终点单位方向向量=%s, " +
+                            "获取自身坐标系起点到终点单位方向=%s, " +
+                            "获取起点控制点=%s, " +
+                            "获取终点控制点=%s, " +
+                            "获取左侧控制点=%s, " +
+                            "获取右侧控制点=%s, " +
+                            "是否存在正向通行信号灯=%b, " +
+                            "是否存在反向通行信号灯=%b, " +
+                            "获取正向通行信号灯=%s, " +
+                            "获取反向通行信号灯=%s%n",
+                    allCrossWalkRegion.size(),
+                    crossWalkRegion.getWidth(),
+                    crossWalkRegion.getSceneLine(),
+                    crossWalkRegion.getAngle(),
+                    crossWalkRegion.getRedLightSpeedFactor(),
+                    crossWalkRegion.getUnitDirectionFromStartToEnd(),
+                    crossWalkRegion.getLocalUnitDirectionFromStartToEnd(),
+                    crossWalkRegion.getStartControlPoint(),
+                    crossWalkRegion.getEndControlPoint(),
+                    crossWalkRegion.getLeftControlPoint(),
+                    crossWalkRegion.getRightControlPoint(),
+                    crossWalkRegion.isPositiveTrafficLightAdded(),
+                    crossWalkRegion.isReverseTrafficLightAdded(),
+                    crossWalkRegion.getPositiveDirectionSignalLamp(),
+                    crossWalkRegion.getNegativeDirectionSignalLamp()
+            );
+        } else {
+            System.out.println("无人行横道区域数据");
+        }
+    }              
 ```
 
 
@@ -12741,35 +15888,45 @@ def showPedestrianCrossWalkRegionAttr(netiface):
 
 行人椭圆面域接口
 
- **def getId(self) -> int: ...**
+ **long getId()**
 
 获取面域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域id={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+        for (IPedestrianEllipseRegion region : allRegion) {
+            System.out.printf("获取面域id=%s%n", region.getId());
+        }
+    }
+}
 ```
 
- **def getName(self) ->str: ...**
+ **String getName()**
 
 获取面域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def setName(self, name) ->None: ...**
+ **void setName(String name)**
 
 设置面域名称
 
@@ -12778,30 +15935,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"设置面域名称={region.setName('test_area')}")
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            region.setName("test_area");
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def getRegionColor(self) ->QColor: ...**
+ **Color getRegionColor()**
 
 获取面域颜色, 返回pyside2的QColor类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def setRegionColor(self, color: QColor) ->None: ...**
+ **void setRegionColor(Color color)**
 
 设置面域颜色
 
@@ -12810,16 +15977,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            region.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def getPosition(self, unit: UnitOfMeasure) ->QPointF: ...**
+ **Point getPosition(UnitOfMeasure unit)**
 
 获取面域位置, 默认单位: 像素, 可通过unit设置单位
 
@@ -12828,16 +16000,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setPosition(self, scenePos: QPointF, unit: UnitOfMeasure) ->None: ...**
+ **void setPosition(Point scenePos, UnitOfMeasure unit)**
 
 设置面域位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -12847,46 +16024,61 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    region.setPosition(QPointF(100, 100))
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    region.setPosition(QPointF(100, 100), UnitOfMeasure.Metric)
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            region.setPosition(new Point(100, 100));
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            region.setPosition(new Point(100, 100), UnitOfMeasure.Metric);
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getGType(self) ->int: ...**
+ **int getGType()**
 
 获取面域类型, 面域类型见pyi文件NetItemType类
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域类型={region.getGType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            System.out.printf("获取面域类型=%s%n", region.getGType());
+                        }
+                    }
+                }
 ```
 
- **def getExpectSpeedFactor(self) -> double: ...**
+ **double getExpectSpeedFactor()**
 
 获取期望速度系数
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def setExpectSpeedFactor(self, val: double) -> None: ...**
+ **void setExpectSpeedFactor(double val)**
 
 设置期望速度系数
 
@@ -12895,30 +16087,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            region.setExpectSpeedFactor(1.5);
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def getElevation(self) -> double: ...**
+ **double getElevation()**
 
 获取面域高程
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def setElevation(self, elevation: double) -> None: ...**
+ **void setElevation(double elevation)**
 
 设置面域高程
 
@@ -12927,44 +16129,59 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"设置面域高程={region.setElevation(0.1)}")
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            region.setElevation(0.1);
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def getPolygon(self) -> double: ...**
+ **Vector<Point> getPolygon()**
 
 获取面域多边形
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域多边形={region.getPolygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            System.out.printf("获取面域多边形=%s%n", region.getPolygon());
+                        }
+                    }
+                }
 ```
 
- **def getLayerId(self) -> double: ...**
+ **long getLayerId()    **
 
 获取面域所在图层ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setLayerId(self, elevation: double) -> None: ...**
+ **void setLayerId(long id)**
 
 设置面域所在图层, 如果图层ID非法, 则不做任何改变
 
@@ -12973,30 +16190,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"设置面域所在图层={region.setLayerId(1)}")
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            region.setLayerId(1);
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def isObstacle(self) -> bool: ...**
+ **boolean isObstacle()**
 
 获取面域是否为障碍物
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
- **def setObstacle(self, b: bool) -> None: ...**
+ **void setObstacle(boolean b)**
 
 设置面域是否为障碍物
 
@@ -13005,30 +16234,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+                            iObstacleRegion.setObstacle(true);
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
-**def isBoardingArea(self) -> bool: ...**
+**boolean isBoardingArea()**
 
 获取面域是否为上客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsBoardingArea(self, b: bool) -> None: ...**
+ **void setIsBoardingArea(boolean b)**
 
 设置面域是否为上客区域
 
@@ -13037,30 +16278,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            iPassengerRegion.setIsBoardingArea(true);
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def isAlightingArea(self) -> bool: ...**
+ **boolean isAlightingArea()**
 
 获取面域是否为下客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsAlightingArea(self, b: bool) -> None: ...**
+ **void setIsAlightingArea(boolean b)**
 
 设置面域是否为下客区域 
 
@@ -13069,44 +16322,86 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianEllipseRegions()
-for region in allRegion: 
-    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianEllipseRegion> allRegion = netiface.pedestrianEllipseRegions();
+                        for (IPedestrianEllipseRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            iPedestrianRegion.setIsAlightingArea(true);
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showPedestrianEllipseRegionAttr(netiface)
-def showPedestrianEllipseRegionAttr(netiface): 
-    areas = netiface.pedestrianEllipseRegions()
-    if len(areas) > 0: 
-        r = areas[0]
-        print(
-              f"获取面域ID={r.getId()}, "
-              f"获取面域名称={r.getName()}, "
-              f"设置面域名称={r.setName('test_area')}, " 
-              f"获取面域颜色={r.getRegionColor()}, "
-              f"设置面域颜色={r.setRegionColor(QColor('red'))}, "
-              f"获取面域位置, 默认单位: 像素={r.getPosition()}, "
-              f"获取面域位置, 米制={r.getPosition(UnitOfMeasure.Metric)}, "
-              f"设置面域位置, 像素制={r.setPosition(r.getPosition())}, "
-              f"设置面域位置, 米制={r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}, "
-              f"获取面域类型={r.getGType()}, "
-              f"获取期望速度系数={r.getExpectSpeedFactor()}, "
-              f"设置期望速度系数={r.setExpectSpeedFactor(1.5)}, "
-              f"获取面域高程={r. getElevation() }, "
-              f"设置面域高程={r. setElevation(0.1)}, "
-              f"获取面域多边形={r.getPolygon()}, " 
-              f"获取面域所在图层ID={r.getLayerId() }, 设置面域所在图层, 如果图层ID非法, 则不做任何改变={r.setLayerId(r.getLayerId())}, "
-              f"获取面域是否为障碍物={r.isObstacle()}, 获取面域是否为上客区域={r.isBoardingArea()}, "
-              f"获取面域是否为下客区域={r.isAlightingArea()}" 
-              f"仿真路网中pedestrianEllipseRegions总数={len(areas)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showPedestrianEllipseRegionAttr(netiface);
+                    }
+                }
+private static void showPedestrianEllipseRegionAttr(NetInterface netiface) {
+        List<IPedestrianEllipseRegion> areas = netiface.pedestrianEllipseRegions();
+        if (!areas.isEmpty()) {
+            IPedestrianEllipseRegion r = areas.get(0);
+
+            IPedestrianRegion iPedestrianRegion = r.pedestrianRegion();
+            IPassengerRegion iPassengerRegion = r.passengerRegion();
+            IObstacleRegion iObstacleRegion = r.obstacleRegion();
+
+            // 执行设置操作
+            r.setName("test_area");
+            r.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+            r.setPosition(r.getPosition());
+            r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric);
+            r.setExpectSpeedFactor(1.5);
+            r.setElevation(0.1);
+            r.setLayerId(r.getLayerId());
+            iObstacleRegion.setObstacle(true);
+            iPassengerRegion.setIsBoardingArea(true);
+            iPassengerRegion.setIsAlightingArea(true);
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取面域ID=%s, %n" +
+                            "获取面域名称=%s, %n" +
+                            "获取面域颜色=%s, %n" +
+                            "获取面域位置（像素制）=%s, 米制=%s, %n" +
+                            "获取面域类型=%s, %n" +
+                            "获取期望速度系数=%s, %n" +
+                            "获取面域高程=%s, %n" +
+                            "获取面域多边形=%s, %n" +
+                            "获取面域所在图层ID=%s, %n" +
+                            "获取面域是否为障碍物=%b, %n" +
+                            "获取面域是否为上客区域=%b, %n" +
+                            "获取面域是否为下客区域=%b, %n" +
+                            "仿真路网中pedestrianEllipseRegions总数=%d%n",
+                    r.getId(),
+                    r.getName(),
+                    r.getRegionColor(),
+                    r.getPosition(),
+                    r.getPosition(UnitOfMeasure.Metric),
+                    r.getGType(),
+                    r.getExpectSpeedFactor(),
+                    r.getElevation(),
+                    r.getPolygon(),
+                    r.getLayerId(),
+                    iObstacleRegion.isObstacle(),
+                    iPassengerRegion.isBoardingArea(),
+                    iPassengerRegion.isAlightingArea(),
+                    areas.size()
+            );
+        } else {
+            System.out.println("无椭圆面域数据");
+        }
+    }
 ```
 
 
@@ -13118,35 +16413,45 @@ def showPedestrianEllipseRegionAttr(netiface):
 
 行人扇形面域接口
 
- **def getId(self) -> int: ...**
+ **long getId()**
 
 获取面域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域id={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取面域id=%s%n", region.getId());
+                        }
+                    }
+                }
 ```
 
- **def getName(self) ->str: ...**
+ **String getName()**
 
 获取面域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def setName(self, name) ->None: ...**
+ **void setName(String name)**
 
 设置面域名称
 
@@ -13155,30 +16460,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"设置面域名称={region.setName('test_area')}")
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            region.setName("test_area");
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def getRegionColor(self) ->QColor: ...**
+ **Color getRegionColor()**
 
 获取面域颜色, 返回pyside2的QColor类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def setRegionColor(self, color: QColor) ->None: ...**
+ **void setRegionColor(Color color)**
 
 设置面域颜色
 
@@ -13187,16 +16502,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            region.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def getPosition(self, unit: UnitOfMeasure) ->QPointF: ...**
+ **Point getPosition(UnitOfMeasure unit)**
 
 获取面域位置, 默认单位: 像素, 可通过unit设置单位
 
@@ -13205,16 +16525,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setPosition(self, scenePos: QPointF, unit: UnitOfMeasure) ->None: ...**
+ **void setPosition(Point scenePos, UnitOfMeasure unit)**
 
 设置面域位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -13224,46 +16549,61 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    region.setPosition(QPointF(100, 100))
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    region.setPosition(QPointF(100, 100), UnitOfMeasure.Metric)
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            region.setPosition(new Point(100, 100));
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            region.setPosition(new Point(100, 100), UnitOfMeasure.Metric);
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getGType(self) ->int: ...**
+ **int getGType()**
 
 获取面域类型, 面域类型见pyi文件NetItemType类
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域类型={region.getGType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取面域类型=%s%n", region.getGType());
+                        }
+                    }
+                }
 ```
 
- **def getExpectSpeedFactor(self) -> double: ...**
+ **double getExpectSpeedFactor()**
 
 获取期望速度系数
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def setExpectSpeedFactor(self, val: double) -> None: ...**
+ **void setExpectSpeedFactor(double val)**
 
 设置期望速度系数
 
@@ -13272,30 +16612,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            region.setExpectSpeedFactor(1.5);
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def getElevation(self) -> double: ...**
+ **double getElevation()**
 
 获取面域高程
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def setElevation(self, elevation: double) -> None: ...**
+ **void setElevation(double elevation)**
 
 设置面域高程
 
@@ -13304,44 +16654,59 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"设置面域高程={region.setElevation(0.1)}")
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            region.setElevation(0.1);
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def getPolygon(self) -> double: ...**
+ **Vector<Point> getPolygon()**
 
 获取面域多边形
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域多边形={region.getPolygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取面域多边形=%s%n", region.getPolygon());
+                        }
+                    }
+                }
 ```
 
- **def getLayerId(self) -> double: ...**
+ **long getLayerId()**
 
 获取面域所在图层ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setLayerId(self, elevation: double) -> None: ...**
+ **void setLayerId(long id)**
 
 设置面域所在图层, 如果图层ID非法, 则不做任何改变
 
@@ -13350,30 +16715,41 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"设置面域所在图层={region.setLayerId(1)}")
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            region.setLayerId(1);
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def isObstacle(self) -> bool: ...**
+ **boolean isObstacle()**
 
 获取面域是否为障碍物
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
- **def setObstacle(self, b: bool) -> None: ...**
+ **void setObstacle(boolean b)**
 
 设置面域是否为障碍物
 
@@ -13382,30 +16758,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+                            iObstacleRegion.setObstacle(true);
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
-**def isBoardingArea(self) -> bool: ...**
+**boolean isBoardingArea()**
 
 获取面域是否为上客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsBoardingArea(self, b: bool) -> None: ...**
+ **void setIsBoardingArea(boolean b)**
 
 设置面域是否为上客区域
 
@@ -13414,30 +16802,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            iPassengerRegion.setIsBoardingArea(true);
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def isAlightingArea(self) -> bool: ...**
+ **boolean isAlightingArea()**
 
 获取面域是否为下客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsAlightingArea(self, b: bool) -> None: ...**
+ **void setIsAlightingArea(boolean b)**
 
 设置面域是否为下客区域 
 
@@ -13446,97 +16846,164 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            iPedestrianRegion.setIsAlightingArea(true);
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
-**def getInnerRadius(self) -> double: ...**
+**double getInnerRadius()**
 
 获取扇形面域内半径, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取扇形面域内半径={region.getInnerRadius()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取扇形面域内半径=%s%n", region.getInnerRadius());
+                        }
+                    }
+                }
 ```
 
- **def getOuterRadius(self) -> double: ...**
+ **double getOuterRadius()**
 
 获取扇形面域外半径, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取扇形面域外半径={region.getOuterRadius()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取扇形面域外半径=%s%n", region.getOuterRadius());
+                        }
+                    }
+                }
 ```
 
- **def getStartAngle(self) -> double: ...**
+ **double getStartAngle()**
 
 获取扇形面域起始角度, 单位: 度  QT像素坐标系下, X轴正方向为0, 逆时针为正
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取扇形面域起始角度={region.getStartAngle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取扇形面域起始角度=%s%n", region.getStartAngle());
+                        }
+                    }
+                }
 ```
 
- **def getSweepAngle(self) -> double: ...**
+ **double getSweepAngle()**
 
 获取扇形面域扫过角度, 单位: 度  QT像素坐标系下, X轴正方向为0, 逆时针为正
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianFanShapeRegions()
-for region in allRegion: 
-    print(f"获取扇形面域扫过角度={region.getSweepAngle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianFanShapeRegion> allRegion = netiface.pedestrianFanShapeRegions();
+                        for (IPedestrianFanShapeRegion region : allRegion) {
+                            System.out.printf("获取扇形面域扫过角度=%s%n", region.getSweepAngle());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showPedestrianFanShapRegionAttr(netiface)
-def showPedestrianFanShapRegionAttr(netiface): 
-    areas = netiface.pedestrianFanShapeRegions()
-    if len(areas) > 0: 
-        r = areas[0]
-        print(
-              f"获取面域ID={r.getId()}, "
-              f"获取面域名称={r.getName()}, "
-              f"设置面域名称={r.setName('test_area')}, " 
-              f"获取面域颜色={r.getRegionColor()}, "
-              f"设置面域颜色={r.setRegionColor(QColor('red'))}, "
-              f"获取面域位置, 默认单位: 像素={r.getPosition()}, "
-              f"获取面域位置, 米制={r.getPosition(UnitOfMeasure.Metric)}, "
-              f"设置面域位置, 像素制={r.setPosition(r.getPosition())}, "
-              f"设置面域位置, 米制={r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}, "
-              f"获取面域类型={r.getGType()}, "
-              f"获取期望速度系数={r.getExpectSpeedFactor()}, "
-              f"设置期望速度系数={r.setExpectSpeedFactor(1.5)}, "
-              f"获取面域高程={r. getElevation() }, "
-              f"设置面域高程={r. setElevation(0.1)}, "
-              f"获取面域多边形={r.getPolygon()}, " 
-              f"获取面域所在图层ID={r.getLayerId() }, 设置面域所在图层, 如果图层ID非法, 则不做任何改变={r.setLayerId(r.getLayerId())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showPedestrianFanShapRegionAttr(netiface);
+                    }
+                }
+private static void showPedestrianFanShapRegionAttr(NetInterface netiface) {
+        List<IPedestrianFanShapeRegion> areas = netiface.pedestrianFanShapeRegions();
+        if (!areas.isEmpty()) {
+            IPedestrianFanShapeRegion r = areas.get(0);
+            IPedestrianRegion iPedestrianRegion = r.pedestrianRegion();
+            IPassengerRegion iPassengerRegion = r.passengerRegion();
+            IObstacleRegion iObstacleRegion = r.obstacleRegion();
+            // 执行设置操作
+            r.setName("test_area");
+            r.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+            r.setPosition(r.getPosition());
+            r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric);
+            r.setExpectSpeedFactor(1.5);
+            r.setElevation(0.1);
+            r.setLayerId(r.getLayerId());
+            iObstacleRegion.setObstacle(true);
+            iPassengerRegion.setIsBoardingArea(true);
+            iPassengerRegion.setIsAlightingArea(true);
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取面域ID=%s, %n" +
+                            "获取面域名称=%s, %n" +
+                            "获取面域颜色=%s, %n" +
+                            "获取面域位置（像素制）=%s, 米制=%s, %n" +
+                            "获取面域类型=%s, %n" +
+                            "获取期望速度系数=%s, %n" +
+                            "获取面域高程=%s, %n" +
+                            "获取面域多边形=%s, %n" +
+                            "获取面域所在图层ID=%s, %n" +
+                            "获取面域是否为障碍物=%b, %n" +
+                            "获取面域是否为上客区域=%b, %n" +
+                            "获取面域是否为下客区域=%b, %n" +
+                            "获取扇形面域内半径=%s, %n" +
+                            "获取扇形面域外半径=%s, %n" +
+                            "获取扇形面域起始角度=%s, %n" +
+                            "获取扇形面域扫过角度=%s, %n" +
+                            "仿真路网中pedestrianFanShapeRegions总数=%d%n",
+                    r.getId(),
+                    r.getName(),
+                    r.getRegionColor(),
+                    r.getPosition(),
+                    r.getPosition(UnitOfMeasure.Metric),
+                    r.getGType(),
+                    r.getExpectSpeedFactor(),
+                    r.getElevation(),
+                    r.getPolygon(),
+                    r.getLayerId(),
+                    iObstacleRegion.isObstacle(),
+                    iPassengerRegion.isBoardingArea(),
+                    iPassengerRegion.isAlightingArea(),
+                    areas.size()
+            );
+        } else {
+            System.out.println("无扇形面域数据");
+        }
+    }
 ```
 
 
@@ -13546,35 +17013,45 @@ def showPedestrianFanShapRegionAttr(netiface):
 
 行人多边形面域接口
 
- **def getId(self) -> int: ...**
+ **long getId()**
 
 获取面域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域id={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取面域id=%s%n", region.getId());
+                        }
+                    }
+                }
 ```
 
- **def getName(self) ->str: ...**
+ **String getName()**
 
 获取面域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def setName(self, name) ->None: ...**
+ **void setName(String name)**
 
 设置面域名称
 
@@ -13583,30 +17060,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"设置面域名称={region.setName('test_area')}")
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            region.setName("test_area");
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def getRegionColor(self) ->QColor: ...**
+ **Color getRegionColor()**
 
 获取面域颜色, 返回pyside2的QColor类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def setRegionColor(self, color: QColor) ->None: ...**
+ **void setRegionColor(Color color)**
 
 设置面域颜色
 
@@ -13615,16 +17102,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            region.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def getPosition(self, unit: UnitOfMeasure) ->QPointF: ...**
+ **Point getPosition(UnitOfMeasure unit)**
 
 获取面域位置, 默认单位: 像素, 可通过unit设置单位
 
@@ -13633,16 +17125,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setPosition(self, scenePos: QPointF, unit: UnitOfMeasure) ->None: ...**
+ **void setPosition(Point scenePos, UnitOfMeasure unit)**
 
 设置面域位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -13652,46 +17149,61 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    region.setPosition(QPointF(100, 100))
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    region.setPosition(QPointF(100, 100), UnitOfMeasure.Metric)
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            region.setPosition(new Point(100, 100));
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            region.setPosition(new Point(100, 100), UnitOfMeasure.Metric);
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getGType(self) ->int: ...**
+ **int getGType()**
 
 获取面域类型, 面域类型见pyi文件NetItemType类
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域类型={region.getGType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取面域类型=%s%n", region.getGType());
+                        }
+                    }
+                }
 ```
 
- **def getExpectSpeedFactor(self) -> double: ...**
+ **double getExpectSpeedFactor()**
 
 获取期望速度系数
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def setExpectSpeedFactor(self, val: double) -> None: ...**
+ **void setExpectSpeedFactor(double val)**
 
 设置期望速度系数
 
@@ -13700,30 +17212,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            region.setExpectSpeedFactor(1.5);
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def getElevation(self) -> double: ...**
+ **double getElevation()**
 
 获取面域高程
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def setElevation(self, elevation: double) -> None: ...**
+ **void setElevation(double elevation)**
 
 设置面域高程
 
@@ -13732,44 +17254,59 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"设置面域高程={region.setElevation(0.1)}")
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            region.setElevation(0.1);
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def getPolygon(self) -> double: ...**
+ **Vector<Point> getPolygon()**
 
 获取面域多边形
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域多边形={region.getPolygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取面域多边形=%s%n", region.getPolygon());
+                        }
+                    }
+                }
 ```
 
- **def getLayerId(self) -> double: ...**
+ **long getLayerId()**
 
 获取面域所在图层ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setLayerId(self, elevation: double) -> None: ...**
+ **void setLayerId(long id)**
 
 设置面域所在图层, 如果图层ID非法, 则不做任何改变
 
@@ -13778,30 +17315,41 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"设置面域所在图层={region.setLayerId(1)}")
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            region.setLayerId(1);
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def isObstacle(self) -> bool: ...**
+ **boolean isObstacle()**
 
 获取面域是否为障碍物
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
- **def setObstacle(self, b: bool) -> None: ...**
+ **void setObstacle(boolean b)**
 
 设置面域是否为障碍物
 
@@ -13810,30 +17358,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+                            iObstacleRegion.setObstacle(true);
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
-**def isBoardingArea(self) -> bool: ...**
+**boolean isBoardingArea()**
 
 获取面域是否为上客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsBoardingArea(self, b: bool) -> None: ...**
+ **void setIsBoardingArea(boolean b)**
 
 设置面域是否为上客区域
 
@@ -13842,30 +17402,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            iPassengerRegion.setIsBoardingArea(true);
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def isAlightingArea(self) -> bool: ...**
+ **boolean isAlightingArea()**
 
 获取面域是否为下客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsAlightingArea(self, b: bool) -> None: ...**
+ **void setIsAlightingArea(boolean b)**
 
 设置面域是否为下客区域 
 
@@ -13874,41 +17446,83 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPolygonRegions()
-for region in allRegion: 
-    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPolygonRegion> allRegion = netiface.pedestrianPolygonRegions();
+                        for (IPedestrianPolygonRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            iPedestrianRegion.setIsAlightingArea(true);
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showPedestrianPolygonRegionAttr(netiface)
-def showPedestrianPolygonRegionAttr(netiface): 
-    areas = netiface.pedestrianPolygonRegions()
-    if len(areas) > 0: 
-        r = areas[0]
-        print(
-              f"获取面域ID={r.getId()}, "
-              f"获取面域名称={r.getName()}, "
-              f"设置面域名称={r.setName('test_area')}, " 
-              f"获取面域颜色={r.getRegionColor()}, "
-              f"设置面域颜色={r.setRegionColor(QColor('red'))}, "
-              f"获取面域位置, 默认单位: 像素={r.getPosition()}, "
-              f"获取面域位置, 米制={r.getPosition(UnitOfMeasure.Metric)}, "
-              f"设置面域位置, 像素制={r.setPosition(r.getPosition())}, "
-              f"设置面域位置, 米制={r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}, "
-              f"获取面域类型={r.getGType()}, "
-              f"获取期望速度系数={r.getExpectSpeedFactor()}, "
-              f"设置期望速度系数={r.setExpectSpeedFactor(1.5)}, "
-              f"获取面域高程={r. getElevation() }, "
-              f"设置面域高程={r. setElevation(0.1)}, "
-              f"获取面域多边形={r.getPolygon()}, " 
-              f"获取面域所在图层ID={r.getLayerId() }, 设置面域所在图层, 如果图层ID非法, 则不做任何改变={r.setLayerId(r.getLayerId())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showPedestrianPolygonRegionAttr(netiface);
+                    }
+                }
+private static void showPedestrianPolygonRegionAttr(NetInterface netiface) {
+        List<IPedestrianPolygonRegion> areas = netiface.pedestrianPolygonRegions();
+        if (!areas.isEmpty()) {
+            IPedestrianPolygonRegion r = areas.get(0);
+            IPedestrianRegion iPedestrianRegion = r.pedestrianRegion();
+            IPassengerRegion iPassengerRegion = r.passengerRegion();
+            IObstacleRegion iObstacleRegion = r.obstacleRegion();
+            // 执行设置操作
+            r.setName("test_area");
+            r.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+            r.setPosition(r.getPosition());
+            r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric);
+            r.setExpectSpeedFactor(1.5);
+            r.setElevation(0.1);
+            r.setLayerId(r.getLayerId());
+            iObstacleRegion.setObstacle(true);
+            iPassengerRegion.setIsBoardingArea(true);
+            iPassengerRegion.setIsAlightingArea(true);
+            // 打印详细属性
+            System.out.printf(
+                    "获取面域ID=%s, %n" +
+                            "获取面域名称=%s, %n" +
+                            "获取面域颜色=%s, %n" +
+                            "获取面域位置（像素制）=%s, 米制=%s, %n" +
+                            "获取面域类型=%s, %n" +
+                            "获取期望速度系数=%s, %n" +
+                            "获取面域高程=%s, %n" +
+                            "获取面域多边形=%s, %n" +
+                            "获取面域所在图层ID=%s, %n" +
+                            "获取面域是否为障碍物=%b, %n" +
+                            "获取面域是否为上客区域=%b, %n" +
+                            "获取面域是否为下客区域=%b, %n" +
+                            "仿真路网中pedestrianPolygonRegions总数=%d%n",
+                    r.getId(),
+                    r.getName(),
+                    r.getRegionColor(),
+                    r.getPosition(),
+                    r.getPosition(UnitOfMeasure.Metric),
+                    r.getGType(),
+                    r.getExpectSpeedFactor(),
+                    r.getElevation(),
+                    r.getPolygon(),
+                    r.getLayerId(),
+                    iObstacleRegion.isObstacle(),
+                    iPassengerRegion.isBoardingArea(),
+                    iPassengerRegion.isAlightingArea(),
+                    areas.size()
+            );
+        } else {
+            System.out.println("无多边形面域数据");
+        }
+    }
 ```
 
 
@@ -13919,35 +17533,45 @@ def showPedestrianPolygonRegionAttr(netiface):
 
 行人矩形面域接口
 
- **def getId(self) -> int: ...**
+ **long getId()**
 
 获取面域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域id={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取面域id=%s%n", region.getId());
+                        }
+                    }
+                }
 ```
 
- **def getName(self) ->str: ...**
+ **String getName()**
 
 获取面域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def setName(self, name) ->None: ...**
+ **void setName(String name)**
 
 设置面域名称
 
@@ -13956,30 +17580,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"设置面域名称={region.setName('test_area')}")
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            region.setName("test_area");
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def getRegionColor(self) ->QColor: ...**
+ **Color getRegionColor()**
 
 获取面域颜色, 返回pyside2的QColor类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def setRegionColor(self, color: QColor) ->None: ...**
+ **void setRegionColor(Color color)**
 
 设置面域颜色
 
@@ -13988,16 +17622,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            region.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def getPosition(self, unit: UnitOfMeasure) ->QPointF: ...**
+ **Point getPosition(UnitOfMeasure unit)**
 
 获取面域位置, 默认单位: 像素, 可通过unit设置单位
 
@@ -14006,16 +17645,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setPosition(self, scenePos: QPointF, unit: UnitOfMeasure) ->None: ...**
+ **void setPosition(Point scenePos, UnitOfMeasure unit)**
 
 设置面域位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -14025,46 +17669,61 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    region.setPosition(QPointF(100, 100))
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    region.setPosition(QPointF(100, 100), UnitOfMeasure.Metric)
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            region.setPosition(new Point(100, 100));
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            region.setPosition(new Point(100, 100), UnitOfMeasure.Metric);
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getGType(self) ->int: ...**
+ **int getGType()**
 
 获取面域类型, 面域类型见pyi文件NetItemType类
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域类型={region.getGType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取面域类型=%s%n", region.getGType());
+                        }
+                    }
+                }
 ```
 
- **def getExpectSpeedFactor(self) -> double: ...**
+ **double getExpectSpeedFactor()**
 
 获取期望速度系数
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def setExpectSpeedFactor(self, val: double) -> None: ...**
+ **void setExpectSpeedFactor(double val)**
 
 设置期望速度系数
 
@@ -14073,30 +17732,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            region.setExpectSpeedFactor(1.5);
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def getElevation(self) -> double: ...**
+ **double getElevation()**
 
 获取面域高程
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def setElevation(self, elevation: double) -> None: ...**
+ **void setElevation(double elevation)**
 
 设置面域高程
 
@@ -14105,44 +17774,59 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"设置面域高程={region.setElevation(0.1)}")
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            region.setElevation(0.1);
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def getPolygon(self) -> double: ...**
+ **Vector<Point> getPolygon()**
 
 获取面域多边形
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域多边形={region.getPolygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取面域多边形=%s%n", region.getPolygon());
+                        }
+                    }
+                }
 ```
 
- **def getLayerId(self) -> double: ...**
+ **long getLayerId()**
 
 获取面域所在图层ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setLayerId(self, elevation: double) -> None: ...**
+ **void setLayerId(long id)**
 
 设置面域所在图层, 如果图层ID非法, 则不做任何改变
 
@@ -14151,30 +17835,41 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"设置面域所在图层={region.setLayerId(1)}")
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            region.setLayerId(1);
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def isObstacle(self) -> bool: ...**
+ **boolean isObstacle()**
 
 获取面域是否为障碍物
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
- **def setObstacle(self, b: bool) -> None: ...**
+ **void setObstacle(boolean b)**
 
 设置面域是否为障碍物
 
@@ -14183,30 +17878,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+                            iObstacleRegion.setObstacle(true);
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
-**def isBoardingArea(self) -> bool: ...**
+**boolean isBoardingArea()**
 
 获取面域是否为上客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsBoardingArea(self, b: bool) -> None: ...**
+ **void setIsBoardingArea(boolean b)**
 
 设置面域是否为上客区域
 
@@ -14215,30 +17922,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            iPassengerRegion.setIsBoardingArea(true);
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def isAlightingArea(self) -> bool: ...**
+ **boolean isAlightingArea()**
 
 获取面域是否为下客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsAlightingArea(self, b: bool) -> None: ...**
+ **void setIsAlightingArea(boolean b)**
 
 设置面域是否为下客区域 
 
@@ -14247,76 +17966,130 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianRectRegions()
-for region in allRegion: 
-    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianRectRegion> allRegion = netiface.pedestrianRectRegions();
+                        for (IPedestrianRectRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            iPedestrianRegion.setIsAlightingArea(true);
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showPedestrianPolygonRegionAttr(netiface)
-def showPedestrianRectRegionAttr(netiface): 
-    areas = netiface.pedestrianRectRegions()
-    if len(areas) > 0: 
-        r = areas[0]
-        print(
-              f"获取面域ID={r.getId()}, "
-              f"获取面域名称={r.getName()}, "
-              f"设置面域名称={r.setName('test_area')}, " 
-              f"获取面域颜色={r.getRegionColor()}, "
-              f"设置面域颜色={r.setRegionColor(QColor('red'))}, "
-              f"获取面域位置, 默认单位: 像素={r.getPosition()}, "
-              f"获取面域位置, 米制={r.getPosition(UnitOfMeasure.Metric)}, "
-              f"设置面域位置, 像素制={r.setPosition(r.getPosition())}, "
-              f"设置面域位置, 米制={r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}, "
-              f"获取面域类型={r.getGType()}, "
-              f"获取期望速度系数={r.getExpectSpeedFactor()}, "
-              f"设置期望速度系数={r.setExpectSpeedFactor(1.5)}, "
-              f"获取面域高程={r. getElevation() }, "
-              f"设置面域高程={r. setElevation(0.1)}, "
-              f"获取面域多边形={r.getPolygon()}, " 
-              f"获取面域所在图层ID={r.getLayerId() }, 设置面域所在图层, 如果图层ID非法, 则不做任何改变={r.setLayerId(r.getLayerId())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showPedestrianRectRegionAttr(netiface);
+                    }
+                }
+private static void showPedestrianRectRegionAttr(NetInterface netiface) {
+        List<IPedestrianRectRegion> areas = netiface.pedestrianRectRegions();
+        if (!areas.isEmpty()) {
+            IPedestrianRectRegion r = areas.get(0);
+
+            // 执行设置操作
+            r.setName("test_area");
+            r.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+            r.setPosition(r.getPosition());
+            r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric);
+            r.setExpectSpeedFactor(1.5);
+            r.setElevation(0.1);
+            r.setLayerId(r.getLayerId());
+            IPedestrianRegion iPedestrianRegion = r.pedestrianRegion();
+            IPassengerRegion iPassengerRegion = r.passengerRegion();
+            IObstacleRegion iObstacleRegion = r.obstacleRegion();
+            iObstacleRegion.setObstacle(true);
+            iPassengerRegion.setIsBoardingArea(true);
+            iPassengerRegion.setIsAlightingArea(true);
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取面域ID=%s, %n" +
+                            "获取面域名称=%s, %n" +
+                            "获取面域颜色=%s, %n" +
+                            "获取面域位置（像素制）=%s, 米制=%s, %n" +
+                            "获取面域类型=%s, %n" +
+                            "获取期望速度系数=%s, %n" +
+                            "获取面域高程=%s, %n" +
+                            "获取面域多边形=%s, %n" +
+                            "获取面域所在图层ID=%s, %n" +
+                            "获取面域是否为障碍物=%b, %n" +
+                            "获取面域是否为上客区域=%b, %n" +
+                            "获取面域是否为下客区域=%b, %n" +
+                            "仿真路网中pedestrianRectRegions总数=%d%n",
+                    r.getId(),
+                    r.getName(),
+                    r.getRegionColor(),
+                    r.getPosition(),
+                    r.getPosition(UnitOfMeasure.Metric),
+                    r.getGType(),
+                    r.getExpectSpeedFactor(),
+                    r.getElevation(),
+                    r.getPolygon(),
+                    r.getLayerId(),
+                    iObstacleRegion.isObstacle(),
+                    iPassengerRegion.isBoardingArea(),
+                    iPassengerRegion.isAlightingArea(),
+                    areas.size()
+            );
+        } else {
+            System.out.println("无矩形面域数据");
+        }
+    }
 ```
 
 ### 2.51. IPedestrianTriangleRegion
 
 行人三角形面域接口
 
- **def getId(self) -> int: ...**
+ **long getId()**
 
 获取面域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域id={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取面域id=%s%n", region.getId());
+                        }
+                    }
+                }
 ```
 
- **def getName(self) ->str: ...**
+ **String getName()**
 
 获取面域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def setName(self, name) ->None: ...**
+ **void setName(String name)**
 
 设置面域名称
 
@@ -14325,30 +18098,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"设置面域名称={region.setName('test_area')}")
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            region.setName("test_area");
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def getRegionColor(self) ->QColor: ...**
+ **Color getRegionColor()**
 
 获取面域颜色, 返回pyside2的QColor类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def setRegionColor(self, color: QColor) ->None: ...**
+ **void setRegionColor(Color color)**
 
 设置面域颜色
 
@@ -14357,16 +18140,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            region.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def getPosition(self, unit: UnitOfMeasure) ->QPointF: ...**
+ **Point getPosition(UnitOfMeasure unit)**
 
 获取面域位置, 默认单位: 像素, 可通过unit设置单位
 
@@ -14375,16 +18163,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setPosition(self, scenePos: QPointF, unit: UnitOfMeasure) ->None: ...**
+ **void setPosition(Point scenePos, UnitOfMeasure unit)**
 
 设置面域位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -14394,46 +18187,61 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    region.setPosition(QPointF(100, 100))
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    region.setPosition(QPointF(100, 100), UnitOfMeasure.Metric)
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            region.setPosition(new Point(100, 100));
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            region.setPosition(new Point(100, 100), UnitOfMeasure.Metric);
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getGType(self) ->int: ...**
+ **int getGType()**
 
 获取面域类型, 面域类型见pyi文件NetItemType类
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域类型={region.getGType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取面域类型=%s%n", region.getGType());
+                        }
+                    }
+                }
 ```
 
- **def getExpectSpeedFactor(self) -> double: ...**
+ **double getExpectSpeedFactor()**
 
 获取期望速度系数
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def setExpectSpeedFactor(self, val: double) -> None: ...**
+ **void setExpectSpeedFactor(double val)**
 
 设置期望速度系数
 
@@ -14442,30 +18250,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"设置期望速度系数={region.setExpectSpeedFactor(1.5)}")
-    print(f"获取期望速度系数={region.getExpectSpeedFactor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            region.setExpectSpeedFactor(1.5);
+                            System.out.printf("获取期望速度系数=%s%n", region.getExpectSpeedFactor());
+                        }
+                    }
+                }
 ```
 
- **def getElevation(self) -> double: ...**
+ **double getElevation()**
 
 获取面域高程
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def setElevation(self, elevation: double) -> None: ...**
+ **void setElevation(double elevation)**
 
 设置面域高程
 
@@ -14474,44 +18292,59 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"设置面域高程={region.setElevation(0.1)}")
-    print(f"获取面域高程={region.getElevation()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            region.setElevation(0.1);
+                            System.out.printf("获取面域高程=%s%n", region.getElevation());
+                        }
+                    }
+                }
 ```
 
- **def getPolygon(self) -> double: ...**
+ **Vector<Point> getPolygon()**
 
 获取面域多边形
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域多边形={region.getPolygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取面域多边形=%s%n", region.getPolygon());
+                        }
+                    }
+                }
 ```
 
- **def getLayerId(self) -> double: ...**
+ **long getLayerId()**
 
 获取面域所在图层ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setLayerId(self, elevation: double) -> None: ...**
+ **void setLayerId(long id)**
 
 设置面域所在图层, 如果图层ID非法, 则不做任何改变
 
@@ -14520,30 +18353,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"设置面域所在图层={region.setLayerId(1)}")
-    print(f"获取面域所在图层ID={region.getLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            region.setLayerId(1);
+                            System.out.printf("获取面域所在图层ID=%s%n", region.getLayerId());
+                        }
+                    }
+                }
 ```
 
- **def isObstacle(self) -> bool: ...**
+ **boolean isObstacle()**
 
 获取面域是否为障碍物
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
- **def setObstacle(self, b: bool) -> None: ...**
+ **void setObstacle(boolean b)**
 
 设置面域是否为障碍物
 
@@ -14552,30 +18397,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"设置面域是否为障碍物={region.setObstacle(True)}")
-    print(f"获取面域是否为障碍物={region.isObstacle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            IObstacleRegion iObstacleRegion = region.obstacleRegion();
+                            iObstacleRegion.setObstacle(true);
+                            System.out.printf("获取面域是否为障碍物=%b%n", iObstacleRegion.isObstacle());
+                        }
+                    }
+                }
 ```
 
-**def isBoardingArea(self) -> bool: ...**
+**boolean isBoardingArea()**
 
 获取面域是否为上客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsBoardingArea(self, b: bool) -> None: ...**
+ **void setIsBoardingArea(boolean b)**
 
 设置面域是否为上客区域
 
@@ -14584,30 +18441,42 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"设置面域是否为上客区域={region.setIsBoardingArea(True)}")
-    print(f"获取面域是否为上客区域={region.isBoardingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            IPassengerRegion iPassengerRegion = region.passengerRegion();
+                            iPassengerRegion.setIsBoardingArea(true);
+                            System.out.printf("获取面域是否为上客区域=%b%n", iPassengerRegion.isBoardingArea());
+                        }
+                    }
+                }
 ```
 
- **def isAlightingArea(self) -> bool: ...**
+ **boolean isAlightingArea()**
 
 获取面域是否为下客区域
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
- **def setIsAlightingArea(self, b: bool) -> None: ...**
+ **void setIsAlightingArea(boolean b)**
 
 设置面域是否为下客区域 
 
@@ -14616,44 +18485,86 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianTriangleRegions()
-for region in allRegion: 
-    print(f"设置面域是否为下客区域={region.setIsAlightingArea(True)}")
-    print(f"获取面域是否为下客区域={region.isAlightingArea()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianTriangleRegion> allRegion = netiface.pedestrianTriangleRegions();
+                        for (IPedestrianTriangleRegion region : allRegion) {
+                            IPassengerRegion iPedestrianRegion = region.passengerRegion();
+                            iPedestrianRegion.setIsAlightingArea(true);
+                            System.out.printf("获取面域是否为下客区域=%b%n", iPedestrianRegion.isAlightingArea());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-netiface = tessngIFace().netInterface()
-showPedestrianTriangleRegionAttr(netiface)
-def showPedestrianTriangleRegionAttr(netiface): 
-    areas = netiface.pedestrianTriangleRegions()
-    if len(areas) > 0: 
-        r = areas[0]
-        print(
-              f"获取面域ID={r.getId()}, "
-              f"获取面域名称={r.getName()}, "
-              f"设置面域名称={r.setName('test_area')}, " 
-              f"获取面域颜色={r.getRegionColor()}, "
-              f"设置面域颜色={r.setRegionColor(QColor('red'))}, "
-              f"获取面域位置, 默认单位: 像素={r.getPosition()}, "
-              f"获取面域位置, 米制={r.getPosition(UnitOfMeasure.Metric)}, "
-              f"设置面域位置, 像素制={r.setPosition(r.getPosition())}, "
-              f"设置面域位置, 米制={r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}, "
-              f"获取面域类型={r.getGType()}, "
-              f"获取期望速度系数={r.getExpectSpeedFactor()}, "
-              f"设置期望速度系数={r.setExpectSpeedFactor(1.5)}, "
-              f"获取面域高程={r. getElevation() }, "
-              f"设置面域高程={r. setElevation(0.1)}, "
-              f"获取面域多边形={r.getPolygon()}, " 
-              f"获取面域所在图层ID={r.getLayerId() }, 设置面域所在图层, 如果图层ID非法, 则不做任何改变={r.setLayerId(r.getLayerId())}, "
-              f"获取面域是否为障碍物={r.isObstacle()}, 获取面域是否为上客区域={r.isBoardingArea()}, "
-              f"获取面域是否为下客区域={r.isAlightingArea()}" 
-              f"仿真路网中pedestrianTriangleRegions总数={len(areas)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showPedestrianTriangleRegionAttr(netiface);
+                    }
+                }
+private static void showPedestrianTriangleRegionAttr(NetInterface netiface) {
+        List<IPedestrianTriangleRegion> areas = netiface.pedestrianTriangleRegions();
+        if (!areas.isEmpty()) {
+            IPedestrianTriangleRegion r = areas.get(0);
+
+            IPedestrianRegion iPedestrianRegion = r.pedestrianRegion();
+            IPassengerRegion iPassengerRegion = r.passengerRegion();
+            IObstacleRegion iObstacleRegion = r.obstacleRegion();
+
+            // 执行设置操作
+            r.setName("test_area");
+            r.setRegionColor(new Color(255, 0, 0)); // 对应QColor('red')
+            r.setPosition(r.getPosition());
+            r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric);
+            r.setExpectSpeedFactor(1.5);
+            r.setElevation(0.1);
+            r.setLayerId(r.getLayerId());
+            iObstacleRegion.setObstacle(true);
+            iPassengerRegion.setIsBoardingArea(true);
+            iPassengerRegion.setIsAlightingArea(true);
+
+            // 打印详细属性
+            System.out.printf(
+                    "获取面域ID=%s, %n" +
+                            "获取面域名称=%s, %n" +
+                            "获取面域颜色=%s, %n" +
+                            "获取面域位置（像素制）=%s, 米制=%s, %n" +
+                            "获取面域类型=%s, %n" +
+                            "获取期望速度系数=%s, %n" +
+                            "获取面域高程=%s, %n" +
+                            "获取面域多边形=%s, %n" +
+                            "获取面域所在图层ID=%s, %n" +
+                            "获取面域是否为障碍物=%b, %n" +
+                            "获取面域是否为上客区域=%b, %n" +
+                            "获取面域是否为下客区域=%b, %n" +
+                            "仿真路网中pedestrianTriangleRegions总数=%d%n",
+                    r.getId(),
+                    r.getName(),
+                    r.getRegionColor(),
+                    r.getPosition(),
+                    r.getPosition(UnitOfMeasure.Metric),
+                    r.getGType(),
+                    r.getExpectSpeedFactor(),
+                    r.getElevation(),
+                    r.getPolygon(),
+                    r.getLayerId(),
+                    iObstacleRegion.isObstacle(),
+                    iPassengerRegion.isBoardingArea(),
+                    iPassengerRegion.isAlightingArea(),
+                    areas.size()
+            );
+        } else {
+            System.out.println("无三角形面域数据");
+        }
+    }
 
 ```
 
@@ -14665,35 +18576,45 @@ def showPedestrianTriangleRegionAttr(netiface):
 
 楼梯区域接口
 
- **def getId(self) -> int: ...**
+ **long getId();**
 
 获取面域id
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取面域id={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取面域id=%s%n", region.getId());
+                        }
+                    }
+                }
 ```
 
- **def getName(self) ->str: ...**
+ **String getName();**
 
 获取面域名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def setName(self, name) ->None: ...**
+ **void setName(String name);**
 
 设置面域名称
 
@@ -14702,30 +18623,40 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"设置面域名称={region.setName('test_area')}")
-    print(f"获取面域名称={region.getName()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            region.setName("test_area");
+                            System.out.printf("获取面域名称=%s%n", region.getName());
+                        }
+                    }
+                }
 ```
 
- **def getRegionColor(self) ->QColor: ...**
+ **Color getRegionColor();**
 
 获取面域颜色, 返回pyside2的QColor类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def setRegionColor(self, color: QColor) ->None: ...**
+ **void setRegionColor(Color color);**
 
 设置面域颜色
 
@@ -14734,16 +18665,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"设置面域颜色={region.setRegionColor(QColor('red'))}")
-    print(f"获取面域颜色={region.getRegionColor()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            region.setRegionColor(new Color(255, 0, 0)); 
+                            System.out.printf("获取面域颜色=%s%n", region.getRegionColor());
+                        }
+                    }
+                }
 ```
 
- **def getPosition(self, unit: UnitOfMeasure) ->QPointF: ...**
+ **Point getPosition(UnitOfMeasure unit);**
 
 获取面域位置, 默认单位: 像素, 可通过unit设置单位
 
@@ -14752,16 +18688,21 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def setPosition(self, scenePos: QPointF, unit: UnitOfMeasure) ->None: ...**
+ **void setPosition(Point scenePos);**
 
 设置面域位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -14771,522 +18712,535 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    region.setPosition(QPointF(100, 100))
-    print(f"获取面域位置, 默认单位: 像素={region.getPosition()}")
-    region.setPosition(QPointF(100, 100), UnitOfMeasure.Metric)
-    print(f"获取面域位置, 米制={region.getPosition(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            region.setPosition(new Point(100, 100));
+                            System.out.printf("获取面域位置（像素制）=%s%n", region.getPosition());
+                            region.setPosition(new Point(100, 100), UnitOfMeasure.Metric);
+                            System.out.printf("获取面域位置（米制）=%s%n", region.getPosition(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getGType(self) ->int: ...**
+ **int getGType();**
 
 获取面域类型, 面域类型见pyi文件NetItemType类
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取面域类型={region.getGType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取面域类型=%s%n", region.getGType());
+                        }
+                    }
+                }
+```
 
- **def getWidth(self) -> int: ...**
+ **double getWidth();**
 
 获取楼梯宽度, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯宽度, 单位: 米={region.getWidth()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯宽度（米）=%s%n", region.getWidth());
+                        }
+                    }
+                }
 ```
 
- **def setWidth(self, width: double) -> None: ...**
+ **void setWidth(double width);**
 
 设置楼梯(面域)宽度, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"设置楼梯宽度, 单位: 米={region.setWidth(region.getWidth()+0.2)}")
-    print(f"获取楼梯宽度, 单位: 米={region.getWidth()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            region.setWidth(region.getWidth() + 0.2);
+                            System.out.printf("获取楼梯宽度（米）=%s%n", region.getWidth());
+                        }
+                    }
+                }
 ```
 
- **def getStartPoint(self) -> QPointF: ...**
+ **Point getStartPoint();**
 
 获取楼梯起始点, 场景坐标系下
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯起始点, 场景坐标系下={region.getStartPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯起始点（场景坐标系）=%s%n", region.getStartPoint());
+                        }
+                    }
+                }
 ```
 
- **def getEndPoint(self) -> QPointF: ...**
+ **Point getEndPoint();**
 
 获取楼梯终止点, 场景坐标系下
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯终止点, 场景坐标系下={region.getEndPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯终止点（场景坐标系）=%s%n", region.getEndPoint());
+                        }
+                    }
+                }
 ```
 
- **def getStartConnectionAreaLength(self) -> double: ...**
+ **double getStartConnectionAreaLength();**
 
 获取起始衔接区域长度, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取起始衔接区域长度, 单位: 米={region.getStartConnectionAreaLength()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取起始衔接区域长度（米）=%s%n", region.getStartConnectionAreaLength());
+                        }
+                    }
+                }
 ```
 
- **def getEndConnectionAreaLength(self) -> double: ...**
+ **double getEndConnectionAreaLength();**
 
 获取终止衔接区域长度, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取终止衔接区域长度, 单位: 米={region.getEndConnectionAreaLength()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取终止衔接区域长度（米）=%s%n", region.getEndConnectionAreaLength());
+                        }
+                    }
+                }
 ```
 
- **def getStartRegionCenterPoint(self) -> QPointF: ...**
+ **Point getStartRegionCenterPoint();**
 
 获取起始衔接区域中心, 场景坐标系下
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取起始衔接区域中心, 场景坐标系下={region.getStartRegionCenterPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取起始衔接区域中心（场景坐标系）=%s%n", region.getStartRegionCenterPoint());
+                        }
+                    }
+                }
 ```
 
- **def getEndRegionCenterPoint(self) -> QPointF: ...**
+ **Point getEndRegionCenterPoint();**
 
 获取终止衔接区域中心, 场景坐标系下
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取终止衔接区域中心, 场景坐标系下={region.getEndRegionCenterPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取终止衔接区域中心（场景坐标系）=%s%n", region.getEndRegionCenterPoint());
+                        }
+                    }
+                }
 ```
 
- **def getStartSceneRegion(self) -> QPainterPath: ...**
 
-获取起始衔接区域形状, 场景坐标系下
 
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取起始衔接区域形状, 场景坐标系下={region.getStartSceneRegion()}")
-```
-
- **def getEndSceneRegion(self) -> QPainterPath: ...**
-
-获取终止衔接区域形状, 场景坐标系下
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取终止衔接区域形状, 场景坐标系下={region.getEndSceneRegion()}")
-```
-
- **def getMainQueueRegion(self) -> QPainterPath: ...**
-
-获取楼梯主体形状, 场景坐标系下
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯主体形状, 场景坐标系下={region.getMainQueueRegion()}")
-```
-
- **def getFullQueueregion(self) -> QPainterPath: ...**
-
-获取楼梯整体形状, 场景坐标系下
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯整体形状, 场景坐标系下={region.getFullQueueregion()}")
-```
-
- **def getMainQueuePolygon(self) -> QPolygonF : ...**
+ **Vector<Point> getMainQueuePolygon();**
 
 获取楼梯主体多边形, 场景坐标系下
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯主体多边形, 场景坐标系下={region.getMainQueuePolygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯主体多边形（场景坐标系）=%s%n", region.getMainQueuePolygon());
+                        }
+                    }
+                }
 ```
 
- **def getStairType(self) -> Tessng.StairType: ...**
+ **StairType getStairType();**
 
 获取楼梯类型, 类型枚举说明, 参见pyi的 StariType类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯类型={region.getStairType()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯类型=%s%n", region.getStairType());
+                        }
+                    }
+                }
 ```
 
- **def setStairType(self, type: StairType) -> None: ...**
+ **void setStairType(StairType type);**
 
 设置楼梯类型, 类型枚举说明, 参见pyi的 StariType类型
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"设置楼梯类型={region.setStairType(region.getStairType())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            // 保持原有类型不变（使用当前类型重新设置）
+                            region.setStairType(region.getStairType());
+                            System.out.printf("设置后楼梯类型=%s%n", region.getStairType());
+                        }
+                    }
+                }
 ```
 
- **def getStartLayerId(self) -> int: ...**
+ **long getStartLayerId();**
 
 获取楼梯的起始层级
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯的起始层级={region.getStartLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯的起始层级=%s%n", region.getStartLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setStartLayerId(self, id: int) -> None: ...**
+ **void setStartLayerId(long id);**
 
 设置楼梯的起始层级
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"设置楼梯的起始层级={region.setStartLayerId(region.getStartLayerId())}")
-    print(f"获取楼梯的起始层级={region.getStartLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            // 保持原有起始层级不变
+                            region.setStartLayerId(region.getStartLayerId());
+                            System.out.printf("设置后楼梯的起始层级=%s%n", region.getStartLayerId());
+                        }
+                    }
+                }
 ```
 
- **def getEndLayerId(self) -> int: ...**
+ **long getEndLayerId();**
 
 获取楼梯的终止层级
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯的终止层级={region.getEndLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯的终止层级=%s%n", region.getEndLayerId());
+                        }
+                    }
+                }
 ```
 
- **def setEndLayerId(self, id: int) -> None: ...**
+ **void setEndLayerId(long id);**
 
 设置楼梯的终止层级
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"设置楼梯的终止层级={region.setEndLayerId(region.getEndLayerId())}")
-    print(f"获取楼梯的终止层级={region.getEndLayerId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            region.setEndLayerId(region.getEndLayerId());
+                            System.out.printf("设置后楼梯的终止层级=%s%n", region.getEndLayerId());
+                        }
+                    }
+                }
 ```
 
- **def getTransmissionSpeed(self) -> double: ...**
+ **double getTransmissionSpeed();**
 
 获取楼梯传输速度, 单位米/秒, 如果是步行楼梯, 则返回值应该是0
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯传输速度, 单位米/秒={region.getTransmissionSpeed()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯传输速度（米/秒）=%s%n", region.getTransmissionSpeed());
+                        }
+                    }
+                }
 ```
 
- **def setTransmissionSpeed(self, speed: double) -> None: ...**
+ **void setTransmissionSpeed(double speed);**
 
 设置楼梯传输速度, 单位米/秒
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"设置楼梯传输速度, 单位米/秒={region.setTransmissionSpeed(region.getTransmissionSpeed())}")
-    print(f"获取楼梯传输速度, 单位米/秒={region.getTransmissionSpeed()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            // 保持原有传输速度不变
+                            region.setTransmissionSpeed(region.getTransmissionSpeed());
+                            System.out.printf("设置后楼梯传输速度（米/秒）=%s%n", region.getTransmissionSpeed());
+                        }
+                    }
+                }
 ```
 
- **def getHeadroom(self) -> double: ...**
+ **double getHeadroom();**
 
 获取楼梯净高, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯净高, 单位: 米={region.getHeadroom()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            System.out.printf("获取楼梯净高（米）=%s%n", region.getHeadroom());
+                        }
+                    }
+                }
 ```
 
- **def setHeadroom(self, headroom: double) -> None: ...**
+ **void setHeadroom(double headroom);**
 
 设置楼梯净高, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"设置楼梯净高, 单位: 米={region.setHeadroom(region.getHeadroom() + 0.2)}")
-    print(f"获取楼梯净高, 单位: 米={region.getHeadroom()}")
-```
-
- **def getStartControlPoint(self) -> QGraphicsEllipseItem: ...**
-
-获取楼梯的起点控制点
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯的起点控制点={region.getStartControlPoint()}")
-```
-
- **def getEndControlPoint(self) -> QGraphicsEllipseItem: ...**
-
-获取楼梯的终点控制点
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯的终点控制点={region.getEndControlPoint()}")
-```
-
- **def getLeftControlPoint(self) -> QGraphicsEllipseItem: ...**
-
-获取楼梯的左侧控制点
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯的左侧控制点={region.getLeftControlPoint()}")
-```
-
- **def getRightControlPoint(self) -> QGraphicsEllipseItem: ...**
-
-获取楼梯的右侧控制点
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯的右侧控制点={region.getRightControlPoint()}")
-```
-
- **def getStartConnectionAreaControlPoint(self) -> QGraphicsEllipseItem: ...**
-
-获取楼梯的起始衔接区域长度控制点
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯的起始衔接区域长度控制点={region.getStartConnectionAreaControlPoint()}")
-```
-
- **def getEndConnectionAreaControlPoint(self) -> QGraphicsEllipseItem: ...**
-
-获取楼梯的终止衔接区域长度控制点
-
-举例: 
-
-```python
-iface = tessngIFace()
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianStairRegions()
-for region in allRegion: 
-    print(f"获取楼梯的终止衔接区域长度控制点={region.getEndConnectionAreaControlPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianStairRegion> allRegion = netiface.pedestrianStairRegions();
+                        for (IPedestrianStairRegion region : allRegion) {
+                            // 在原有净高基础上增加0.2米
+                            region.setHeadroom(region.getHeadroom() + 0.2);
+                            System.out.printf("设置后楼梯净高（米）=%s%n", region.getHeadroom());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-showPedestrianStairRegionAttr(netiface)
-def showPedestrianStairRegionAttr(netiface): 
-    stairRegions = netiface.pedestrianStairRegions()
-    if len(stairRegions) > 0: 
-        r = stairRegions[0]
-        print(
-            f"获取面域ID={r.getId()}, "
-            f"获取面域名称={r.getName()}, "
-            f"设置面域名称={r.setName('test_area')}, "
-            f"获取面域颜色={r.getRegionColor()}, "
-            f"设置面域颜色={r.setRegionColor(QColor('red'))}, "
-            f"获取面域位置, 默认单位: 像素={r.getPosition()}, "
-            f"获取面域位置, 米制={r.getPosition(UnitOfMeasure.Metric)}, "
-            f"设置面域位置, 像素制={r.setPosition(r.getPosition())}, "
-            f"设置面域位置, 米制={r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric)}, "
-            f"获取面域类型={r.getGType()}, ")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showPedestrianStairRegionAttr(netiface);
+                    }
+                }
+private static void showPedestrianStairRegionAttr(NetInterface netiface) {
+    List<IPedestrianStairRegion> stairRegions = netiface.pedestrianStairRegions();
+    if (!stairRegions.isEmpty()) {
+        IPedestrianStairRegion r = stairRegions.get(0);
 
-        print(f"仿真路网中楼梯区域总数={len(stairRegions)}, "
-              f"获取楼梯宽度, 单位: 米={r.getWidth()}, 设置楼梯宽度, 单位: 米度={r.setWidth(r.getWidth()+0.2)}, "
-              f"获取起始点, 场景坐标系下={r.getStartPoint()}, 获取终止点, 场景坐标系下={r.getEndPoint()}, "
-              f"获取起始衔接区域长度, 单位: 米={r.getStartConnectionAreaLength()}, 获取终止衔接区域长度, 单位: 米={r.getEndConnectionAreaLength()}, "
-              f"获取起始衔接区域中心, 场景坐标系下={r.getStartRegionCenterPoint()}, 获取终止衔接区域中心, 场景坐标系下={r.getEndRegionCenterPoint()}, "
-              f"获取起始衔接区域形状, 场景坐标系下={r.getStartSceneRegion()}, 获取终止衔接区域形状, 场景坐标系下={r.getEndSceneRegion()}, "
-              f"获取楼梯主体形状, 场景坐标系下={r.getMainQueueRegion()}, 获取楼梯整体形状, 场景坐标系下={r.getFullQueueregion()}, "
-              f"获取楼梯主体多边形, 场景坐标系下={r.getMainQueuePolygon()} "
-              f"获取楼梯类型={r.getStairType()}, 设置楼梯类型={r.setStairType(r.getStairType())}, "
-              f"获取起始层级={r.getStartLayerId()}, 设置起始层级={r.setStartLayerId(r.getStartLayerId())}, "
-              f"获取终止层级={r.getEndLayerId()}, 设置终止层级={r.setEndLayerId(r.getEndLayerId())}, 获取传送速度, 单位: 米/秒={r.getTransmissionSpeed()}, "
-              f"设置传送速度, 单位: 米/秒={r.setTransmissionSpeed(r.getTransmissionSpeed())}, "
-              f"获取楼梯净高={r.getHeadroom()}, 设置楼梯净高={r.setHeadroom(r.getHeadroom())}, 获取起点控制点={r.getStartControlPoint()}, "
-              f"获取终点控制点={r.getEndControlPoint()}, 获取左侧控制点={r.getLeftControlPoint()}, 获取右侧控制点={r.getRightControlPoint()}, "
-              f"获取起始衔接区域长度控制点={r.getStartConnectionAreaControlPoint() }, 获取终止衔接区域长度控制点={r.getEndConnectionAreaControlPoint()}")
+        // 执行所有设置操作
+        r.setName("test_area");
+        r.setRegionColor(new Color(255, 0, 0)); // 红色
+        r.setPosition(r.getPosition());
+        r.setPosition(r.getPosition(UnitOfMeasure.Metric), UnitOfMeasure.Metric);
+        r.setWidth(r.getWidth() + 0.2);
+        r.setStairType(r.getStairType());
+        r.setStartLayerId(r.getStartLayerId());
+        r.setEndLayerId(r.getEndLayerId());
+        r.setTransmissionSpeed(r.getTransmissionSpeed());
+        r.setHeadroom(r.getHeadroom());
 
+        // 打印完整属性（分两部分避免单行过长）
+        System.out.printf(
+                "获取面域ID=%s, 获取面域名称=%s, %n" +
+                        "获取面域颜色=%s, %n" +
+                        "获取面域位置（像素制）=%s, 米制=%s, %n" +
+                        "获取面域类型=%s, %n" +
+                        "仿真路网中楼梯区域总数=%d, %n" +
+                        "获取楼梯宽度（米）=%s, %n" +
+                        "获取起始点（场景坐标系）=%s, 获取终止点（场景坐标系）=%s, %n" +
+                        "获取起始衔接区域长度（米）=%s, 获取终止衔接区域长度（米）=%s%n",
+                r.getId(),
+                r.getName(),
+                r.getRegionColor(),
+                r.getPosition(),
+                r.getPosition(UnitOfMeasure.Metric),
+                r.getGType(),
+                stairRegions.size(),
+                r.getWidth(),
+                r.getStartPoint(),
+                r.getEndPoint(),
+                r.getStartConnectionAreaLength(),
+                r.getEndConnectionAreaLength()
+        );
+
+        System.out.printf(
+                "获取起始衔接区域中心（场景坐标系）=%s, 获取终止衔接区域中心（场景坐标系）=%s, %n" +
+
+                        "获取楼梯主体多边形（场景坐标系）=%s, %n" +
+                        "获取楼梯类型=%s, %n" +
+                        "获取起始层级=%s, 获取终止层级=%s, %n" +
+                        "获取传送速度（米/秒）=%s, 获取楼梯净高（米）=%s, %n" ,
+                r.getStartRegionCenterPoint(),
+                r.getEndRegionCenterPoint(),
+
+                r.getMainQueuePolygon(),
+                r.getStairType(),
+                r.getStartLayerId(),
+                r.getEndLayerId(),
+                r.getTransmissionSpeed(),
+                r.getHeadroom()
+        );
+    } else {
+        System.out.println("无楼梯区域数据");
+    }
+}
 
 ```
-
-
-
 
 
 ### 2.53. ICrosswalkSignalLamp
 
 人行横道信号灯接口
 
- **def id(self) ->int: ...**
+ **long id();**
 
 获取行人信号灯ID
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"获取行人信号灯ID={region.id()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            System.out.printf("获取行人信号灯ID=%s%n", lamp.id());
+                        }
+                    }
+                }
 ```
 
- **def setSignalPhase(self, phase: Tess.ISignalPhase) ->None: ...**
+ **void setSignalPhase(ISignalPhase pPhase);**
 
 设置相位, 所设相位可以是其它信号灯组的相位
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"设置相位, 所设相位可以是其它信号灯组的相位={region.setSignalPhase(region.signalPhase())}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            // 使用当前相位重新设置（原逻辑保持相位不变）
+                            lamp.setSignalPhase(lamp.signalPhase());
+                            System.out.printf("设置后信号灯相位=%s%n", lamp.signalPhase());
+                        }
+                    }
+                }
 ```
 
- **def setLampColor(self, colorStr: str) ->None: ...**
+ **void setLampColor(String colorStr);**
 
 设置信号灯颜色    
 
@@ -15296,156 +19250,214 @@ colorStr: 字符串表达的颜色, 有四种可选, 分别是"红"、"绿"、"�
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"设置信号灯颜色={region.setLampColor('gray')}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            lamp.setLampColor("gray");
+                            System.out.printf("设置后信号灯颜色=%s%n", lamp.color());
+                        }
+                    }
+                }
 ```
 
- **def color(self) -> str: ...**
+ **String color();**
 
 获取信号灯色, "R"、“G”、“Y”、“gray”分别表示"红"、"绿"、"黄"、"灰"
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"获取信号灯色={region.color()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            System.out.printf("获取信号灯色=%s%n", lamp.color());
+                        }
+                    }
+                }
 ```
 
-**def name(self) -> str: ...**
+**String name();**
 
 获取信号灯名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"获取信号灯名称={region.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            System.out.printf("获取信号灯名称=%s%n", lamp.name());
+                        }
+                    }
+                }
 ```
 
-**def setName(self, name) -> None: ...**
+**void setName(String name);**
 
 设置信号灯名称
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"设置信号灯名称={region.setName('new_' + region.name())}")
-    print(f"获取信号灯名称={region.name()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            lamp.setName("new_" + lamp.name());
+                            System.out.printf("设置后信号灯名称=%s%n", lamp.name());
+                        }
+                    }
+                }
 ```
 
- **def signalPlan(self) -> Tessng.ISignalPlan: ...**
+ **ISignalPlan signalPlan();**
 
 获取信控方案
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"获取信控方案={region.signalPlan()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            System.out.printf("获取信控方案=%s%n", lamp.signalPlan());
+                        }
+                    }
+                }
 ```
 
- **def signalPhase(self) -> Tessng.ISignalPhase: ...**
+ **ISignalPhase signalPhase();**
 
 获取相位
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"获取相位={region.signalPhase()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            System.out.printf("获取相位=%s%n", lamp.signalPhase());
+                        }
+                    }
+                }
 ```
 
- **def polygon(self) -> QPolygonF: ...**
+ **Vector<Point> polygon();**
 
 获取信号灯多边型轮廓的顶点
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"获取信号灯多边型轮廓的顶点={region.polygon()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            System.out.printf("获取信号灯多边型轮廓的顶点=%s%n", lamp.polygon());
+                        }
+                    }
+                }
 ```
 
- **def angle(self) -> double: ...**
+ **double angle();**
 
 获取信号灯角度, 正北为0, 顺时针
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"获取信号灯角度, 正北为0, 顺时针={region.angle()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            System.out.printf("获取信号灯角度（正北为0，顺时针）=%s%n", lamp.angle());
+                        }
+                    }
+                }
 ```
 
- **def getICrossWalk(self) -> Tessng.IPedestrianCrossWalkRegion: ...**
+ **IPedestrianCrossWalkRegion getICrossWalk();**
 
 获取行人信号灯所属人行横道
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.crosswalkSignalLamps()
-for region in allRegion: 
-    print(f"获取行人信号灯所属人行横道={region.getICrossWalk()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<ICrosswalkSignalLamp> allLamps = netiface.crosswalkSignalLamps();
+                        for (ICrosswalkSignalLamp lamp : allLamps) {
+                            System.out.printf("获取行人信号灯所属人行横道=%s%n", lamp.getICrossWalk());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-showCrossWalkSignalLampAttr(netiface)
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showCrossWalkSignalLampAttr(netiface);
+    }
+}
+private static void showCrossWalkSignalLampAttr(NetInterface netiface) {
+        List<ICrosswalkSignalLamp> crosswalkSignalLamps = netiface.crosswalkSignalLamps();
+        if (!crosswalkSignalLamps.isEmpty()) {
+            ICrosswalkSignalLamp crosswalkSignalLamp = netiface.findCrosswalkSignalLamp(crosswalkSignalLamps.get(0).id());
 
-def showCrossWalkSignalLampAttr(netiface): 
-    crosswalkSignalLamps = netiface.crosswalkSignalLamps()
-    crosswalkSignalLamp = netiface.findCrosswalkSignalLamp(crosswalkSignalLamps[0].id())
+            // 执行设置操作
+            crosswalkSignalLamp.setName("new_" + crosswalkSignalLamp.name());
 
-    print(
-        f"行人信号灯列表={crosswalkSignalLamps}, 行人信号灯{crosswalkSignalLamp.id()}的具体信息: "
-        f"编号={crosswalkSignalLamp.id()}, 获取信号灯当前信号灯色={crosswalkSignalLamp.color()}, 名称={crosswalkSignalLamp.name()}, "
-        f"设置信号灯名称={crosswalkSignalLamp.setName('new_' + crosswalkSignalLamp.name())}, "
-        f"获取当前信号灯所在的相位={crosswalkSignalLamp.signalPhase()}, 获取当前信号灯所在的灯组={crosswalkSignalLamp.signalPlan()}, "
-        f"获取所在车道或车道连接={crosswalkSignalLamp.getICrossWalk()}, 获取信号灯多边型轮廓={crosswalkSignalLamp.polygon()}, "
-        f"获取信号灯角度, 正北为0顺时针方向={crosswalkSignalLamp.angle()}")
-
+            // 打印详细属性
+            System.out.printf(
+                    "行人信号灯列表=%s, %n" +
+                            "行人信号灯%s的具体信息: %n" +
+                            "编号=%s, 当前信号灯色=%s, 名称=%s, %n" +
+                            "当前所在相位=%s, 当前所在灯组=%s, %n" +
+                            "所属人行横道=%s, 多边形轮廓=%s, %n" +
+                            "信号灯角度（正北为0顺时针）=%s%n",
+                    crosswalkSignalLamps,
+                    crosswalkSignalLamp.id(),
+                    crosswalkSignalLamp.id(),
+                    crosswalkSignalLamp.color(),
+                    crosswalkSignalLamp.name(),
+                    crosswalkSignalLamp.signalPhase(),
+                    crosswalkSignalLamp.signalPlan(),
+                    crosswalkSignalLamp.getICrossWalk(),
+                    crosswalkSignalLamp.polygon(),
+                    crosswalkSignalLamp.angle()
+            );
+        } else {
+            System.out.println("无行人信号灯数据");
+        }
+    }
 ```
 
  
@@ -15455,95 +19467,133 @@ def showCrossWalkSignalLampAttr(netiface):
 
 行人路径接口
 
- **def getId(self) -> int: ...**
+ **long getId();**
 
 获取行人路径ID 
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPaths()
-for region in allRegion: 
-    print(f"获取行人路径ID={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPath> allPaths = netiface.pedestrianPaths();
+                        for (IPedestrianPath path : allPaths) {
+                            System.out.printf("获取行人路径ID=%s%n", path.getId());
+                        }
+                    }
+                }
 ```
 
- **def getPathStartPoint(self) -> Tessng.IPedestrianPathPoint: ...**
+ **IPedestrianPathPoint getPathStartPoint();**
 
 获取行人路径起点
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPaths()
-for region in allRegion: 
-    print(f"获取行人路径起点={region.getPathStartPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPath> allPaths = netiface.pedestrianPaths();
+                        for (IPedestrianPath path : allPaths) {
+                            System.out.printf("获取行人路径起点=%s%n", path.getPathStartPoint());
+                        }
+                    }
+                }
 ```
 
- **def getPathEndPoint(self) -> Tessng.IPedestrianPathPoint: ...**
+ **IPedestrianPathPoint getPathEndPoint();**
 
 获取行人路径终点
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPaths()
-for region in allRegion: 
-    print(f"获取行人路径终点={region.getPathEndPoint()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPath> allPaths = netiface.pedestrianPaths();
+                        for (IPedestrianPath path : allPaths) {
+                            System.out.printf("获取行人路径终点=%s%n", path.getPathEndPoint());
+                        }
+                    }
+                }
 ```
 
- **def getPathMiddlePoints(self) -> Type.List<Tessng.IPedestrianPathPoint>: ...**
+ **ArrayList<IPedestrianPathPoint> getPathMiddlePoints();**
 
 获取行人路径的中间点集合, 有序集合
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPaths()
-for region in allRegion: 
-    print(f"获取行人路径的中间点集合, 有序集合={region.getPathMiddlePoints()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPath> allPaths = netiface.pedestrianPaths();
+                        for (IPedestrianPath path : allPaths) {
+                            System.out.printf("获取行人路径的中间点集合（有序）=%s%n", path.getPathMiddlePoints());
+                        }
+                    }
+                }
 ```
 
- **def isLocalPath(self) ->boolen: ...**
+ **boolean isLocalPath();**
 
 判断当前行人路径是否为行人局部路径
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPaths()
-for region in allRegion: 
-    print(f"判断当前行人路径是否为行人局部路径={region.isLocalPath()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPath> allPaths = netiface.pedestrianPaths();
+                        for (IPedestrianPath path : allPaths) {
+                            System.out.printf("判断当前行人路径是否为行人局部路径=%b%n", path.isLocalPath());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-showPedestrianPathAttr(netiface)
-def showPedestrianPathAttr(netiface): 
-    paths = netiface.pedestrianPaths()
-    if len(paths) > 0: 
-        path = paths[0]
-        print(f"仿真路网中行人路径总数={len(paths)}, "
-              f"获取行人路径起始点={path.getPathStartPoint()}, 获取行人路径终点={path.getPathEndPoint()}, "
-              f"获取行人路径中间点={path.getPathMiddlePoints()}, 判断是否是局部路径={path.isLocalPath()}, ")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+    NetInterface netiface = iface.netInterface();
+    if (netiface != null) {
+        showPedestrianPathAttr(netiface);
+    }
+}
+private static void showPedestrianPathAttr(NetInterface netiface) {
+        List<IPedestrianPath> paths = netiface.pedestrianPaths();
+        if (!paths.isEmpty()) {
+            IPedestrianPath path = paths.get(0);
+
+            // 打印详细属性
+            System.out.printf(
+                    "仿真路网中行人路径总数=%d, %n" +
+                            "获取行人路径起始点=%s, %n" +
+                            "获取行人路径终点=%s, %n" +
+                            "获取行人路径中间点（有序集合）=%s, %n" +
+                            "判断是否是局部路径=%b%n",
+                    paths.size(),
+                    path.getPathStartPoint(),
+                    path.getPathEndPoint(),
+                    path.getPathMiddlePoints(),
+                    path.isLocalPath()
+            );
+        } else {
+            System.out.println("无行人路径数据");
+        }
+    }
 ```
 
 
@@ -15553,22 +19603,26 @@ def showPedestrianPathAttr(netiface):
 
 行人路径点（起点, 终点, 途经点）接口
 
- **def getId(self) -> int: ...**
+ **long getId();**
 
 获取行人路径点ID 
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPathDecisionPoints()
-for region in allRegion: 
-    print(f"获取行人路径点ID={region.getId()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPathPoint> allPoints = netiface.pedestrianPathDecisionPoints();
+                        for (IPedestrianPathPoint point : allPoints) {
+                            System.out.printf("获取行人路径点ID=%s%n", point.getId());
+                        }
+                    }
+                }
 ```
 
- **def getScenePos(self, unit: UnitOfMeasure) -> double: ...**
+ **Point getScenePos(UnitOfMeasure unit);**
 
 获取行人路径点场景坐标系下的位置, 默认单位: 像素, 可通过unit参数设置单位
 
@@ -15577,1276 +19631,75 @@ for region in allRegion:
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPathDecisionPoints()
-for region in allRegion: 
-    print(f"获取行人路径点场景坐标系下的位置, 默认单位: 像素={region.getScenePos()}")
-    print(f"获取行人路径点场景坐标系下的位置, 单位: 米={region.getScenePos(UnitOfMeasure.Metric)}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPathPoint> allPoints = netiface.pedestrianPathDecisionPoints();
+                        for (IPedestrianPathPoint point : allPoints) {
+                            System.out.printf("获取行人路径点场景坐标（像素）=%s%n", point.getScenePos());
+                            System.out.printf("获取行人路径点场景坐标（米）=%s%n", point.getScenePos(UnitOfMeasure.Metric));
+                        }
+                    }
+                }
 ```
 
- **def getRadius(self) -> double: ...**
+ **double getRadius();**
 
 获取行人路径点的半径, 单位: 米
 
 举例: 
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-allRegion = netiface.pedestrianPathDecisionPoints()
-for region in allRegion: 
-    print(f"获取行人路径点的半径, 单位: 米={region.getRadius()}")
+```java
+TessInterface iface = TESSNG.tessngIFace();
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        List<IPedestrianPathPoint> allPoints = netiface.pedestrianPathDecisionPoints();
+                        for (IPedestrianPathPoint point : allPoints) {
+                            System.out.printf("获取行人路径点的半径（米）=%s%n", point.getRadius());
+                        }
+                    }
+                }
 ```
 
 **案例代码**
 
-```python
-iface = tessngIFace()
-# 代表TESS NG的路网子接口
-netiface = iface.netInterface()
-showPedestrianPathPointAttr(netiface)
-def showPedestrianPathPointAttr(netiface): 
-    paths = netiface.pedestrianPaths()
-    if len(paths) > 0: 
-        path = paths[0]
-        sp = path.getPathStartPoint()
-        if sp is not None: 
-            print(f"获取行人路径点ID={sp.getId()}, 获取行人路径点场景坐标系下的位置, 默认单位: 像素={sp.getScenePos()}, "
-                  f"获取行人路径点场景坐标系下的位置, 默认单位: 像素={sp.getScenePos(UnitOfMeasure.Metric)}, 获取行人路径点的半径, 单位: 米={sp.getRadius()}, ")
-
-```
-值），y 为该发车点的车辆序号（从 1 开始递增），如第 1 个发车点的车辆 ID 从 100001 开始递增，第 2 个发车点的车辆 ID 从 200001 开始递增，后续以此类推。
-
-举例: 
-
 ```java
 TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆ID为" + vehi.id());
-}
-```
-
- **ILink startLink() ;**
-
-车辆进入路网时起始路段
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    String startLinkName = vehi.startLink().name();
-    System.out.println("车辆进入路网时起始路段=" + startLinkName);
-}
-```
-
- **int startSimuTime();**
-
-车辆进入路网时起始时间
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆进入路网时起始时间=" + vehi.startSimuTime());
-}
-```
-
- **int roadId();**
-
-车辆所在路段link或connector连接段ID
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在路段link或connector连接段ID=" + vehi.roadId());
-}
-```
-
- **ILink/IConnector road();**
-
-道路, 如果在路段上返回ILink对象, 如果在连接段上返回IConnector对象
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在道路对象=" + vehi.road());
-}
-```
-
- **ISection section();**
-
-车辆所在的Section对象, 即路段或连接段
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在的Section, 即路段或连接段=" + vehi.section().name());
-}
-```
-
- **ILaneObject laneObj();**
-
-车辆所在的车道或“车道连接”对象
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在的车道或“车道连接”ID=" + vehi.laneObj());
-}
-```
-
- **int segmIndex();**
-
-车辆在当前车道上的分段序号
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆在当前车道上的分段序号=" + vehi.segmIndex());
-}
-```
-
- **boolean roadIsLink();**
-
-车辆所在道路是否路段
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在道路是否路段=" + vehi.roadIsLink());
-}
-```
-
- **String roadName();**
-
-道路名
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("道路名=" + vehi.roadName());
-}
-```
-
- **double initSpeed(double speed);**
-
-初始化车速, 默认单位: 像素/秒
-
-参数: 
-[ in ] speed: 车速, 如果大于0, 车辆以指定的速度从发车点出发, 默认单位: 像素/秒  
-返回: 初始化车速, 默认单位: 像素/秒
-
-举例: 
-
-```java
-void initVehicle(IVehicle vehi){
-    return vehi.initSpeed(5);
-}
-```
-
- **void initLane(int laneNumber, double dist, double speed);**
-
-在路段上初始化车辆, 默认单位: 像素
-
-参数: 
-[ in ] laneNumber: 车道序号, 从0开始  
-[ in ] dist: 距离路段起点距离, 默认单位: 像素  
-[ in ] speed: 起动时的速度, 默认单位: 像素/秒  
-
-举例: 
-
-```java
-void initVehicle(IVehicle vehi){
-    if (vehi.id() == 100001){
-        vehi.initLane(3, TESSNG.m2p(105), 0);
-    }
-}
-```
-
- **void initLaneConnector(int laneNumber, int toLaneNumber, double dist, double speed) ;**
-
-初始化车辆, laneNumber: “车道连接”起始车道在所在路段的序号, 从0开始自右往左; toLaneNumber: “车道连接”目标车道在所在路段的序号, 从0开始自右往左, dist, 距起点距离, 默认单位: 像素; speed: 车速, 像素/秒, 默认单位: 像素
-参数: 
-
-[ in ] laneNumber: 车道序号, 从0开始自右侧至左侧  
-[ in ] toLaneNumber: 车道序号, 从0开始自右侧至左侧  
-[ in ] dist: 距离路段起点距离, 单位: : 像素
-[ in ] speed: 起动时的速度, 默认单位: 像素/秒
-
-举例: 
-
-```java
-void initVehicle(IVehicle vehi){
-    if (vehi.id() == 100001){
-        vehi.initLaneConnector(0, 0, 5, 0);
-    }
-}
-```
-
- **void setVehiType(int code);**
-
-设置车辆类型, 车辆被创建时已确定了类型, 通过此方法可以改变车辆类型
-
-参数: 
-
-[ in ] code: 车辆类型编码
-
-举例: 
-
-```java
-void initVehicle(IVehicle vehi){
-    if (vehi.id() == 100001){
-        vehi.setVehiType(12);
-    }
-}
-```
-
- **void setColor(String color) ;**
-
-设置车辆颜色  
-
-参数: 
-[ in ] color: 颜色RGB, 如: "#EE0000"
-
-举例: 
-
-```java
-void initVehicle(IVehicle vehi){
-    if (vehi.roadId() == 2){
-        vehi.setColor("#EE0000");
-    }
-}
-```
-
- **double length(UnitOfMeasure unit);**
-
-获取车辆长度, 默认单位: 像素, 可通过unit参数设置单位
-
-参数: 
-
-返回: 车辆长度, 默认单位: 像素
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆长度="+vehi.length());
-}
-```
-
- **void setLength(double len, bool bRestWidth) ;**
-
-设置车辆长度
-
-参数: 
-[ in ] len: 车辆长度, 默认单位: 像素  
-[ in ] bRestWidth: 是否同比例约束宽度, 默认为False  
-
-举例: 
-
-```java
-void initVehicle(IVehicle vehi){
-    if (vehi.roadId() == 100001){
-        vehi.setLength(10,false);
-    }
-}
-```
-
- **int laneId();**
-
-如果toLaneId() 小于等于0, 那么laneId()获取的是当前所在车道ID, 如果toLaneId()大于0, 则车辆在“车道连接”上, laneId()获取的是上游车道ID
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在车道ID="+vehi.laneId());
-}
-```
-
- **int toLaneId();**
-
-下游车道ID。如果小于等于0, 车辆在路段的车道上, 否则车辆在连接段的“车道连接”上
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆下游车道ID="+vehi.toLaneId());
-}
-```
-
- **ILane lane();**
-
-获取当前车道, 如果车辆在“车道连接”上, 获取的是“车道连接”的上游车道
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆当前车道="+vehi.lane());
-}
-```
-
- **ILane toLane();**
-
-如果车辆在“车道连接”上, 返回“车道连接”的下游车道, 如果当前不在“车道连接”上, 返回对象为空
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆下游车道="+vehi.toLane());
-}
-```
-
- **ILaneConnector laneConnector() ;**
-
-获取当前“车道连接”, 如果在车道上, 返回空
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆当前车道连接="+vehi.laneConnector());
-}
-```
-
-**int currBatchNumber();**
-
-当前仿真计算批次
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("当前仿真计算批次="+vehi.currBatchNumber());
-}
-```
-
- **int roadType();**
-
-车辆所在道路类型。包NetItemType中定义了一批常量, 每一个数值代表路网上一种元素类型。如: GLinkType代表路段、GConnectorType代表连接段。
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在道路类型="+vehi.roadType());
-}
-```
-
- **double limitMaxSpeed();**
-
-车辆所在路段或连接段最大限速, 兼顾到车辆的期望速度, 默认单位: 像素/秒  
-
-参数: 
-
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在路段或连接段最大限速="+vehi.limitMaxSpeed());
-}
-```
-
- **double limitMinSpeed();**
-
-车辆所在路段或连接段最小限速, 兼顾到车辆的期望速度, 默认单位: 像素/秒  
-
-参数: 
-
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface =iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆所在路段或连接段最小限速="+vehi.limitMinSpeed());
-}
-```
-
- **int vehicleTypeCode();**
-
-车辆类型编码。打开TESSNG, 通过菜单“车辆”->“车辆类型”打开车辆类型编辑窗体, 可以看到不同类型车辆的编码
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface = iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.printf("车辆类型编码=%s%n", vehi.vehicleTypeCode());
-}
-```
-
- **String vehicleTypeName();**
-
-获取车辆类型名, 如“小客车”
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuiface = iface.simuInterface();
-List<IVehicle> allVehicleStarted = simuiface.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.printf("车辆类型名=%s%n", vehi.vehicleTypeName());
-}
-```
-
- **String name();**
-
-获取车辆名称
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆名称=" + vehi.name());
-}
-```
-
- **IVehicleDriving vehicleDriving();**
-
-获取车辆驾驶行为接口
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    System.out.println("车辆驾驶行为接口=" + vehi.vehicleDriving());
-}
-```
-
- **void driving()**
-
-驱动车辆。在每个运算周期, 每个在运行的车辆被调用一次该方法; 
-如果用户使用该函数驱动车辆, 那后续整个仿真生命周期均需要用户控制该辆车。即TESSNG将此车辆的控制权移交给用户。
-
- **Point  pos()**
-
-获取当前位置, 默认单位: 像素。
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    Point pos = vehi.pos();
-    System.out.println("车辆当前位置=" + pos);
-}
-```
-
- **doule zValue(Tess.UnitOfMeasure) **
-
-当前高程, 默认单位: 像素。
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double elevation = vehi.zValue();
-    System.out.println("车辆当前高程=" + elevation);
-}
-```
-
- **double acce()**
-
-当前加速度, 默认单位: 像素/秒^2 。
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double acceleration = vehi.acce();
-    System.out.println("车辆当前加速度=" + acceleration);
-    double metricAcceleration = vehi.acce();
-    System.out.println("车辆当前加速度, 单位: 米制=" + metricAcceleration);
-}
-```
-
- **double currSpeed()**
-
-当前速度, 默认单位: 像素/秒。
-
-举例: 
-
-```java
-        TessInterface iface = TESSNG.tessngIFace();
-        SimuInterface simuIFace = iface.simuInterface();
-        ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-        for (IVehicle vehi : allVehicleStarted) {
-            double speed = vehi.currSpeed();
-            System.out.println("车辆当前速度=" + speed);
-            double metricSpeed = vehi.currSpeed();
-            System.out.println("车辆当前速度, 单位: 米制=" + metricSpeed);
+if (iface != null) {
+                    NetInterface netiface = iface.netInterface();
+                    if (netiface != null) {
+                        showPedestrianPathPointAttr(netiface);
+                    }
+                }
+private static void showPedestrianPathPointAttr(NetInterface netiface) {
+        List<IPedestrianPath> paths = netiface.pedestrianPaths();
+        if (!paths.isEmpty()) {
+            IPedestrianPath path = paths.get(0);
+            IPedestrianPathPoint sp = path.getPathStartPoint(); // 获取路径起点（作为路径点示例）
+
+            if (sp != null) {
+                // 打印详细属性
+                System.out.printf(
+                        "获取行人路径点ID=%s, %n" +
+                                "获取行人路径点场景坐标（像素）=%s, %n" +
+                                "获取行人路径点场景坐标（米）=%s, %n" +
+                                "获取行人路径点的半径（米）=%s%n",
+                        sp.getId(),
+                        sp.getScenePos(),
+                        sp.getScenePos(UnitOfMeasure.Metric),
+                        sp.getRadius()
+                );
+            } else {
+                System.out.println("当前行人路径无起点数据");
+            }
+        } else {
+            System.out.println("无行人路径数据");
         }
+    }
 ```
-
- **double angle()**
-
-当前角度, 北向0度顺时针  
-
-返回: 当前角度, 单位: 度
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double angle = vehi.angle();
-    System.out.println("车辆当前角度=" + angle);
-}
-```
-
- **boolean isStarted()**
-
-是否在运行, 如果返回False, 表明车辆已驰出路网或尚未上路
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    boolean isStarted = vehi.isStarted();
-    System.out.println("车辆是否在运行=" + isStarted);
-}
-```
-
- **IVehicle vehicleFront()**
-
-获取前车, 可能为空
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    IVehicle frontVehicle = vehi.vehicleFront();
-    System.out.println("前车=" + (frontVehicle != null ? frontVehicle.id() : "null"));
-}
-```
-
- **IVehicle vehicleRear()**
-
-后车, 可能为空
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    IVehicle rearVehicle = vehi.vehicleRear();
-    System.out.println("后车=" + (rearVehicle != null ? rearVehicle.id() : "null"));
-}
-```
-
- **IVehicle vehicleLFront()**
-
-左前车, 可能为空
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    IVehicle leftFrontVehicle = vehi.vehicleLFront();
-    System.out.println("左前车=" + (leftFrontVehicle != null ? leftFrontVehicle.id() : "null"));
-}
-```
-
- **IVehicle vehicleLRear()**
-
-左后车, 可能为空
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    IVehicle leftRearVehicle = vehi.vehicleLRear();
-    System.out.println("左后车=" + (leftRearVehicle != null ? leftRearVehicle.id() : "null"));
-}
-```
-
- **IVehicle vehicleRFront()**
-
-右前车, 可能为空
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    IVehicle rightFrontVehicle = vehi.vehicleRFront();
-    System.out.println("右前车=" + (rightFrontVehicle != null ? rightFrontVehicle.id() : "null"));
-}
-```
-
- **IVehicle vehicleRRear()**
-
-右后车, 可能为空
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    IVehicle rightRearVehicle = vehi.vehicleRRear();
-    System.out.println("右后车=" + (rightRearVehicle != null ? rightRearVehicle.id() : "null"));
-}
-```
-
- **double vehiDistFront()**
-
-前车间距, 默认单位: 像素; 若无前车, 则范围固定的常量, 默认单位: 像素
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double frontDistance = vehi.vehiDistFront();
-    System.out.println("前车间距=" + frontDistance);
-}
-```
-
- **double vehiSpeedFront()**
-
-前车速度, 默认单位: 像素/秒; 若无前车, 则范围固定的常量, 默认单位: 像素
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double frontSpeed = vehi.vehiSpeedFront();
-    System.out.println("前车速度=" + frontSpeed);
-}
-```
-
- **double vehiHeadwayFront()**
-
-距前车时距, 若无前车, 则范围固定的常量  默认单位: 像素 
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double frontHeadway = vehi.vehiHeadwayFront();
-    System.out.println("距前车时距=" + frontHeadway);
-}
-```
-
- **double vehiDistRear()**
-
-后车间距, 默认单位: 像素, 若无后车, 则范围固定的常量  默认单位: 像素 
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double rearDistance = vehi.vehiDistRear();
-    System.out.println("后车间距=" + rearDistance);
-    double metricRearDistance = vehi.vehiDistRear();
-    System.out.println("后车间距, 单位: 米制=" + metricRearDistance);
-}
-```
-
- **double vehiSpeedRear()**
-
-后车速度, 默认单位: 像素/秒  若无后车, 则范围固定的常量  默认单位: 像素 
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double rearSpeed = vehi.vehiSpeedRear();
-    System.out.println("后车速度=" + rearSpeed);
-}
-```
-
- **double vehiHeadwaytoRear()**
-
-距后车时距, 默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double rearHeadway = vehi.vehiHeadwaytoRear();
-    System.out.println("距后车时距=" + rearHeadway);
-}
-```
-
- **double vehiDistLLaneFront()**
-
-相邻左车道前车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double leftLaneFrontDistance = vehi.vehiDistLLaneFront();
-    System.out.println("相邻左车道前车间距=" + leftLaneFrontDistance);
-}
-```
-
- **double vehiSpeedLLaneFront()**
-
-相邻左车道前车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double leftLaneFrontSpeed = vehi.vehiSpeedLLaneFront();
-    System.out.println("相邻左车道前车速度=" + leftLaneFrontSpeed);
-}
-```
-
- **double vehiDistLLaneRear()**
-
-相邻左车道后车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double leftLaneRearDistance = vehi.vehiDistLLaneRear();
-    System.out.println("相邻左车道后车间距=" + leftLaneRearDistance);
-}
-```
-
- **double vehiSpeedLLaneRear()**
-
-相邻左车道后车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double leftLaneRearSpeed = vehi.vehiSpeedLLaneRear();
-    System.out.println("相邻左车道后车速度=" + leftLaneRearSpeed);
-}
-```
-
- **double vehiDistRLaneFront()**
-
-相邻右车道前车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double rightLaneFrontDistance = vehi.vehiDistRLaneFront();
-    System.out.println("相邻右车道前车间距=" + rightLaneFrontDistance);
-}
-```
-
- **double vehiSpeedRLaneFront()**
-
-相邻右车道前车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double rightLaneFrontSpeed = vehi.vehiSpeedRLaneFront();
-    System.out.println("相邻右车道前车速度=" + rightLaneFrontSpeed);
-}
-```
-
- **double vehiDistRLaneRear()**
-
-相邻右车道后车间距, 默认单位: 像素; 若无目标车, 则返回固定的常量  默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double rightLaneRearDistance = vehi.vehiDistRLaneRear();
-    System.out.println("相邻右车道后车间距=" + rightLaneRearDistance);
-}
-```
-
- **double vehiSpeedRLaneRear()**
-
-相邻右车道后车速度, 默认单位: 像素/秒; 若无目标车, 则返回固定的常量  默认单位: 像素  
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    double rightLaneRearSpeed = vehi.vehiSpeedRLaneRear();
-    System.out.println("相邻右车道后车速度=" + rightLaneRearSpeed);
-}
-```
-
- **void setIsPermitForVehicleDraw()**
-
-设置是否允许插件绘制车辆
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    vehi.setIsPermitForVehicleDraw(true);
-}
-```
-
- **ArrayList<Point> lLaneObjectVertex() **
-
-车道或车道连接中心线内点集, 默认单位: 像素
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    List<Vertex> laneVertices = vehi.lLaneObjectVertex();
-    System.out.println("车道或车道连接中心线内点集=" + laneVertices);
-}
-```
-
- **IRouting routing()**
-
-获取车辆当前路径; 返回的是当前车辆的全局路径, 包括已经行驶过大的路段序列
-
-返回: 车辆当前路径
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    IRouting routing = vehi.routing();
-    System.out.println("车辆当前路径=" + (routing != null ? routing.toString() : "null"));
-}
-```
-
- **SWIGTYPE_p_QPicture picture(self)**
-
-获取车辆图片
-
-返回: 车辆图片
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    String picture = vehi.picture().toString();
-    System.out.println("车辆图片=" + (picture != null ? picture : "null"));
-}
-```
-
- **Vector<Point> boundingPolygon()**
-
-获取车辆由方向和长度决定的四个拐角构成的多边型
-
-返回: 车辆由方向和长度决定的四个拐角构成的多边型
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    Vector<Point> boundingPolygon = vehi.boundingPolygon();
-    System.out.println("车辆由方向和长度决定的四个拐角构成的多边型=" +
-                       (boundingPolygon != null ? boundingPolygon.toString() : "null"));
-}
-```
-
- **void setTag(int tag)**
-
-设置标签表示的状态
-
-参数: 
-[ in ] tag: 标签表示的状态
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    vehi.setTag(1);
-}
-```
-
- **int tag()**
-
-获取标签表示的状态
-
-返回: 标签表示的状态
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    int tag = vehi.tag();
-    System.out.println("标签表示的状态=" + tag);
-}
-```
-
- **void setTextTag(String text)**
-
-设置文本信息, 用于在运行过程保存临时信息, 方便开发
-
-参数: 
-[ in ] text: 文本信息
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    vehi.setTextTag("test");
-}
-```
-
- **String textTag()**
-
-文本信息, 运行过程临时保存的信息, 方便开发
-
-返回: 文本信息
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    String textTag = vehi.textTag();
-    System.out.println("文本信息=" + (textTag != null ? textTag : "null"));
-}
-```
-
- **void setJsonInfo(JsonObject info)**
-
-设置json格式数据
-
-参数: 
-[ in ] info: json格式数据
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-
-JsonObject json = Json.createObjectBuilder()
-.add("test", "test")
-.build();
-
-for (IVehicle vehi : allVehicleStarted) {
-    vehi.setJsonInfo(json);
-}
-```
-
- **JsonObject jsonInfo()**
-
-返回json格式数据
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-
-for (IVehicle vehi : allVehicleStarted) {
-    JsonObject jsonInfo = vehi.jsonInfo();
-    System.out.println("json格式数据=" + (jsonInfo != null ? jsonInfo.toString() : "null"));
-}
-```
-
- **Object jsonProperty(String propName)**
-
-返回json字段值
-
-参数: 
-[ in ] propName: json字段名
-
-返回: json字段值
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-
-for (IVehicle vehi : allVehicleStarted) {
-    Object jsonProperty = vehi.jsonProperty("test");
-    System.out.println("json字段值=" + (jsonProperty != null ? jsonProperty.toString() : "null"));
-}
-```
-
- **void setJsonProperty(String key, Object value)**
-
-设置json数据属性
-
-参数: 
-[ in ] key: json字段名  
-[ in ] value: json字段值
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-
-for (IVehicle vehi : allVehicleStarted) {
-    vehi.setJsonProperty("test", "test");
-}
-```
-
-   **以下方法设置****TESS NG****调用与车辆及驾驶行为相关方法时的调用频次**
-
- **def setSteps_afterCalcTracingType(self, steps: int) -> None: ...**
-
-设置计算跟驰类型后处理方法afterCalcTracing被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_afterStep(self, steps: int) -> None: ...**
-
-设置车辆一个计算周期后的处理方法afterStep被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_beforeMergingToLane(self, steps: int) -> None: ...**
-
-设置车辆在连接段汇入前处理方法beforeMergingToLane被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_beforeNextRoad(self, steps: int) -> None: ...**
-
-设置计算后续道路前处理方法beforeNextRoad被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_calcAcce(self, steps: int) -> None: ...**
-
-设置计算加速度方法calcAcce被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_calcChangeLaneSafeDist(self, steps: int) -> None: ...**
-
-设置计算安全变道距离方法calcChangeLaneSafeDist被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_calcDistToEventObj(self, steps: int) -> None: ...**
-
-设置计算到事件对象距离方法calcDistToEventObj被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_calcLimitedLaneNumber(self, steps: int) -> None: ...**
-
-设置计算限行车道方法calcLinitedLaneNumber被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_calcMaxLimitedSpeed(self, steps: int) -> None: ...**
-
-设置计算最大限速方法calcMaxLinitedSpeed被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_calcSpeedLimitByLane(self, steps: int) -> None: ...**
-
-设置计算车道限速方法calcSpeedLimitByLane被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_isStopDriving(self, steps: int) -> None: ...**
-
-设置是否停止运行方法isStopDriving被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reCalcAngle(self, steps: int) -> None: ...**
-
-设置重新计算角度方法reCalcAngle被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reCalcToLeftFreely(self, steps: int) -> None: ...**
-
-设置计算左自由变道方法reCalcToLeftFreely被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reCalcToLeftLane(self, steps: int) -> None: ...**
-
-设置计算左强制变道方法reCalcToLeftLane被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reCalcToRightFreely(self, steps: int) -> None: ...**
-
-设置计算右自由变道方法reCalcToRightFreely被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reCalcToRightLane(self, steps: int) -> None: ...**
-
-设置计算右强制变道方法reCalcToRightLane被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reCalcdesirSpeed(self, steps: int) -> None: ...**
-
-设置重新计算期望速度方法reCalcdesirSpeed被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reSetAcce(self, steps: int) -> None: ...**
-
-设置重新计算加速度方法reSetAcce被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reSetFollowingType(self, steps: int) -> None: ...**
-
-设置重新计算跟驰类型方法reSetFollowingType被调用频次, 即steps个计算周期调用1次
-
- **def setSteps_reSetSpeed(self, steps: int) -> None: ...**
-
-设置重新计算车速方法reSetSpeed被调用频次, 即steps个计算周期调用1次
-
 
 
 
