@@ -20773,24 +20773,6 @@ for (IVehicle vehi : allVehicleStarted) {
 }
 ```
 
- **SWIGTYPE_p_QPicture picture(self)**
-
-获取车辆图片
-
-返回: 车辆图片
-
-举例: 
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuIFace = iface.simuInterface();
-ArrayList<IVehicle> allVehicleStarted = simuIFace.allVehiStarted();
-for (IVehicle vehi : allVehicleStarted) {
-    String picture = vehi.picture().toString();
-    System.out.println("车辆图片=" + (picture != null ? picture : "null"));
-}
-```
-
  **Vector<Point> boundingPolygon()**
 
 获取车辆由方向和长度决定的四个拐角构成的多边型
@@ -21808,26 +21790,6 @@ NetInterface netIface = iface.netInterface();
 System.out.println("用于访问控制路网的接口NetInterface: " + netIface);
 ```
 
- **def simuInterface(self) -> Tessng.SimuInterface: ...**
-
-返回用于控制仿真过程的接口SimuInterface
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-SimuInterface simuInterface = iface.simuInterface();
-System.out.println("用于控制仿真过程的接口SimuInterface: " + simuInterface);
-```
-
- **def guiInterface(self) -> Tessng.GuiInterface: ...**
-
-返回用于访问控制用户介面的接口GuiInterface
-
-```java
-TessInterface iface = TESSNG.tessngIFace();
-GuiInterface guiIface = iface.guiInterface();
-System.out.println("用于访问控制用户介面的接口GuiInterface: " + guiIface);
-```
-
  **boolean loadPluginFromMem(TessPlugin pPlugin)**
 
 从内存加载插件, 此方法便于用户基于API进行二次开发。
@@ -22059,10 +22021,6 @@ if (connector != null) {
  **ArrayList<ISignalPlan> signalPlans()**
 
 获取信控方案对象列表
-
- **def signalPhases(self) -> typing.List<Tess.ISignalPhase>: ...**
-
-获取所有信控方案的相位信息
 
  **ArrayList<IRoadWorkZone> roadWorkZones()**
 
@@ -23869,212 +23827,6 @@ reduceSpeedArea = netiface.createReduceSpeedArea(param)
 print(reduceSpeedArea)
 ```
 
- **def createTollLane(param: Online.TollStation.DynaTollLaneg) ->Tessng.ITollLane: ...**
-
-创建收费车道  
-
-参数: 
-[ in ]  param: 动态收费车道信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化  Online.TollStation.DynaTollLane的示例代码如下: 
-
-```python
-def create_toll_lane(netiface, link_id: int, location: float, length: float, lane_number: int, start_time: float, end_time: float, toll_point_list: list, toll_point_length: float = 8): 
-    """创建收费车道"""
-    toll_lane_param = Online.TollStation.DynaTollLane()
-    # toll_lane_param.name = "123"
-    # 路段ID
-    toll_lane_param.roadId = link_id
-    # 距离路段起点的距离, 单位: m
-    toll_lane_param.location = location
-    # 收费车道长度, 单位: m
-    toll_lane_param.length = length
-    # 车道序号, 从右向左, 从0开始
-    toll_lane_param.laneNumber = lane_number
-    # 开始时间, 单位: 秒
-    toll_lane_param.startTime = start_time
-    # 结束时间, 单位: 秒
-    toll_lane_param.endTime = end_time
-    # 收费区域列表
-    toll_lane_param.tollPoint = toll_point_list
-    # 收费区域长度
-    toll_lane_param.tollPointLen = toll_point_length
-    # 创建收费车道
-    toll_lane = netiface.createTollLane(toll_lane_param)
-    return toll_lane
-```
-
- **def createParkingRegion(param: Online.ParkingLot.DynaParkingRegion) ->Tessng.IParkingRegion: ...**
-
-创建停车区
-
-参数: 
-[ in ]  param: 动态停车区信息, 数据类型在文件 Plugin/_datastruct.h中定义, python初始化
-
-Online.ParkingLot.DynaParkingRegion的示例代码如下: 
-
-```python
-
-def create_parking(netiface, downstream): 
-
-    print(f"创建停车时间分布")
-    new_pt = Online.ParkingLot.DynaParkingParkTime()
-    new_pt.time = 3
-    new_pt.prop = 100
-    new_pt1 = Online.ParkingLot.DynaParkingParkTime()
-    new_pt1.time = 5
-    new_pt1.prop = 100
-    new_ptd = Online.ParkingLot.DynaParkingTimeDis()
-    new_ptd.name = "新增停车时间分布"
-    new_ptd.parkingTimeList = [new_pt, new_pt1]
-    netiface.createParkingTimeDis(new_ptd)
-
-    print(f"创建停车区域")
-    dynaParkingRegion = Online.ParkingLot.DynaParkingRegion()
-    dynaParkingRegion.name = "test Parking region"
-    dynaParkingRegion.location = 7800
-    dynaParkingRegion.length = 100
-    dynaParkingRegion.roadId = downstream.id()
-    dynaParkingRegion.laneNumber = 0
-    dynaParkingRegion.findParkingStallStrategy = 1
-    # 0 - 车道内; 1 - 车道右侧; 2 - 车道左侧
-    dynaParkingRegion.parkingStallPos = 1
-    dynaParkingRegion.arrangeType = 1
-    # 车位吸引力
-    dynaParkingRegion.firstParkingStallAttract = 1
-    dynaParkingRegion.middleParkingStallAttract = 1
-    dynaParkingRegion.lastParkingStallAttract = 1
-    # 停车运动参数
-    dynaParkingRegion.menaValue = 0 #  均值
-    dynaParkingRegion.variance = 1.0 # 方差
-    dynaParkingRegion.parkingSpeed = 5.0 # 泊车速度
-    dynaParkingRegion.joinGap = 5.0 # 汇入间隙
-    # 0 - 前进->前进; 1 - 前进->后退; 2 - 后退->前进
-    dynaParkingRegion.parkingType = 1
-    # 运营参数
-    dynaParkingRegion.attract = 0 #吸引力
-    dynaParkingRegion.startTime = 0 # 开始时间
-    dynaParkingRegion.endTime = 999999 #结束时间
-    dynaParkingRegion.stallLength = 6 # 车位长度单位米
-    dynaParkingRegion.stallWidth = 3 # 车位宽度单位米
-    # 根据区域长度和车位长度, 创建停车位
-    stallLen = 6
-    parkingStalls= []
-    for i in range(int(dynaParkingRegion.length/stallLen)-1): 
-        parkingStall = Online.ParkingLot.DynaParkingStall()
-        parkingStall.location = dynaParkingRegion.location + stallLen * i
-        parkingStall.linkID = dynaParkingRegion.roadId
-        parkingStall.laneNumber = dynaParkingRegion.laneNumber
-        # 0 - 车道内; 1 - 车道右侧; 2 - 车道左侧
-        parkingStall.parkingStallPos = 1
-        # 0 - 垂直式; 1 - 倾斜式 - 30°; 2 - 倾斜式 - 45°; 3 - 倾斜式 - 60°; 4 - 平行式
-        parkingStall.arrangeType = 0
-        # 停车位类型
-        parkingStall.parkingStallType = 1 # 小客车 / 大客车 / 其他
-        parkingStalls.append(parkingStall)
-    dynaParkingRegion.parkingStalls = parkingStalls
-
-    parkingRegion = netiface.createParkingRegion(dynaParkingRegion)
-
-    distance = 7500
-    new_pdp = netiface.createParkingDecisionPoint(downstream, distance, "上游路段停车场")
-    new_pr = netiface.createParkingRouting(new_pdp, parkingRegion)
-
-
-    # 更新停车时间分布
-    origin_ptd = netiface.parkingTimeDis()[-1]
-    origin_ptl = origin_ptd.parkingTimeList
-    print(origin_ptd.id, [(i.parkingTimeDisId, i.time, i.prop) for i in origin_ptl])
-    update_ptd = Online.ParkingLot.DynaParkingTimeDis()
-    update_ptd.id = origin_ptd.id
-    pt = Online.ParkingLot.DynaParkingParkTime()
-    pt.time = 60
-    pt.prop = 0.5
-    new_ptl = origin_ptl + [pt]
-    update_ptd.parkingTimeList = new_ptl
-    netiface.updateParkingTimeDis(update_ptd)
-
-    # 更新停车决策分配
-    pdp = netiface.parkingDecisionPoints()[-1]
-    pdi = pdp.parkDisInfoList()[-1]
-    print(f'len(pdi.disVehiclsInfoList): {len(pdi.disVehiclsInfoList)}')
-    dvi = pdi.disVehiclsInfoList[-1]
-    dvi.startTime = 0
-    dvi.endTime = 1800
-    pdi.disVehiclsInfoList = [dvi]
-    print(f"len(pdi.disVehiclsInfoList): {len(pdi.disVehiclsInfoList)}")
-    for i in pdi.disVehiclsInfoList: 
-        print(f"{i.startTime}-{i.endTime}")
-    print(f"{pdi.disVehiclsInfoList[0].startTime}-{pdi.disVehiclsInfoList[0].endTime}")
-    pdp.updateParkDisInfo([pdi])
-
-    # 移除
-    # last_pr = netiface.parkingDecisionPoints()[-1].routings()[-1]
-    # netiface.removeParkingRouting(last_pr)
-    # pr = netiface.findParkingRegion(2)
-    # netiface.removeParkingRegion(pr)    # 停车区相关的路径会被同步移除
-    # last_ptd = netiface.parkingTimeDis()[-1]
-    # netiface.removeParkingTimeDis(last_ptd.id)
-
-    # 停车测试
-    parkingRegions = netiface.parkingRegions()
-    print(netiface.vehicleTypes())
-    for pr in parkingRegions: 
-        print(f"id: {pr.id()}")
-        print(f"name: {pr.name()}")
-        print(f"parkingStalls: {pr.parkingStalls()}")
-        pr.setName(f'停车区{pr.name()+"_new"}')
-        parkingStalls = pr.parkingStalls()
-        for ps in parkingStalls: 
-            print(dir(ps))
-            print(f"id: {ps.id()}")
-            print(f"distance: {ps.distance()}")
-            print(f"parkingRegion: {ps.parkingRegionId()}")
-            print(f"type: {ps.stallType()}")
-
-    parkingDecisionPoints = netiface.parkingDecisionPoints()
-    # 停车决策点
-    for pdp in parkingDecisionPoints: 
-        print(dir(pdp))
-        print(f"id: {pdp.id()}")
-        print(f"distance: {pdp.distance()}")
-        print(f"link: {pdp.link().id()}")
-        print(f"name: {pdp.name()}")
-        print(f"parkDisInfoList: {pdp.parkDisInfoList()}")
-        # 静态决策路径
-        for pdi in pdp.parkDisInfoList(): 
-            print(type(pdi), dir(pdi))
-            print(f"disVehiclsInfoList: {pdi.disVehiclsInfoList}")
-            # 静态路径时间段
-            for dvi in pdi.disVehiclsInfoList: 
-                # print(type(dvi), dir(dvi))
-                print(f"startTime: {dvi.startTime}")
-                print(f"endTime: {dvi.endTime}")
-                print(f"vehicleDisDetailList: {dvi.vehicleDisDetailList}")
-                # 停车分配详细信息
-                for vdd in dvi.vehicleDisDetailList: 
-                    print(type(vdd), dir(vdd))
-                    print(f"parkingRegionID: {vdd.parkingRegionID}")
-                    print(f"parkingRoutingID: {vdd.parkingRoutingID}")
-                    print(f"parkingSelection: {vdd.parkingSelection}")
-                    print(f"parkingTimeDisId: {vdd.parkingTimeDisId}")
-                    print(f"prop: {vdd.prop}")
-                    print(f"vehicleType: {vdd.vehicleType}")
-            print(f"pIRouting: {pdi.pIRouting}")
-        print(f"polygon: {pdp.polygon()}")
-        print(f"routings: {pdp.routings()}")
-    for routing in pdp.routings(): 
-        # print(type(routing), dir(routing))
-        print(f"routingId: {routing.id()}")
-        print(f"routingLinks: {routing.getLinks()}")
-        link = netiface.findLink(21)
-        print(f"nextRoad: {routing.nextRoad(link)}")
-        print(f"deciPoint: {routing.parkingDeciPointId()}")
-        print(f"contain: {routing.contain(link)}")
-        print(f"length: {routing.calcuLength()}")
-
-    parkingTimeDisArray = netiface.parkingTimeDis()
-```
-
-
  **ITollDecisionPoint createTollDecisionPoint(ILink pLink, double distance, String name)**
 
 创建收费决策点  
@@ -24187,82 +23939,6 @@ parkingTimeList.add(new_pt1);
 new_ptd.setParkingTimeList(parkingTimeList);
 // 调用接口创建停车时间分布
 netiface.createParkingTimeDis(new_ptd);
-```
-
-
- **def createJunction (startPoint: QPointF, endPoint: QPointF, name: str) ->Tessng.IJunction: ...**
-
-创建节点  
-
-参数: 
-[ in ] startPoint: 左上角起始点坐标  
-[ in ] endPoint: 右下角起始点坐标  
-[ in ] name: 节点名字  
-
-```python
-def createJunctionNode(netiface): 
-    # # step1: 创建节点
-    x1 = -500
-    y1 = 500
-    x2 = 500
-    y2 = -500
-    junctionName = 'newJunction'
-    netiface.createJunction(QPointF(m2p(x1), m2p(y1)), QPointF(m2p(x2), m2p(y2)), junctionName)
-
-    # # step2: 创建静态路径
-    netiface.buildAndApplyPaths(3)    # 设置每个OD最多搜索3条路径
-    netiface.reSetDeciPoint()    # 优化决策点位置
-    for dp in netiface.decisionPoints(): 
-        for routing in dp.routings(): 
-            netiface.reSetLaneConnector(routing)    # 优化路径中的车道连接
-
-
-    # # step3: 为节点中每个转向设置流量
-    # 由于没有已知值, 这里针对不同转向类型为其赋流量初值
-    turnVolumeReduct = {'左转': 400, '直行': 1200, '右转': 200, '掉头': 0}
-    # # step3-1: 添加流量时间段
-    timeInterval = netiface.addFlowTimeInterval()
-    timeId = timeInterval.timeId
-    startTime = 0
-    endTime = 3600
-    netiface.updateFlowTimeInterval(timeId, startTime, endTime)
-    # # step3-2: 遍历转向, 为其设置流量
-    junctions = netiface.getAllJunctions()
-    for junction in junctions: 
-        junctionId = junction.getId()
-        for turning in junction.getAllTurnningInfo(): 
-            turningId = turning.turningId
-            turnType = turning.strTurnType
-            inputVolume = turnVolumeReduct.get(turnType, 0)
-            # 为该转向设置输入流量
-            netiface.updateFlow(timeId, junctionId, turningId, inputVolume)
-
-
-    # # step4: 进行流量分配计算
-    # 设置BPR路阻函数参数, 流量分配算法参数
-    theta = 0.1
-    bpra = 0.15
-    bprb = 4
-    maxIterateNum = 300
-    netiface.updateFlowAlgorithmParams(theta, bpra, bprb, maxIterateNum)    # 更新计算参数
-    result = netiface.calculateFlows()    # 计算路径流量分配并应用, 返回分配结果
-
-    # 取流量分配结果
-    resultJson = collections.defaultdict(list)
-    for timeId, turningFlow in result.items(): 
-        for i in turningFlow: 
-            junction = i.pJunction.getId()
-            turning = f"{i.turningBaseInfo.strDirection}-{i.turningBaseInfo.strTurnType}"
-            inputVolume = i.inputFlowValue    # 该转向输入流量
-            realVolume = i.realFlow    # 该转向实际分配到的流量
-            relativeError = i.relativeError    # 分配的相对误差
-            interval = i.flowTimeInterval
-            startTime = interval.startTime
-            endTime = interval.endTime
-            resultJson[f"{startTime}-{endTime}"].append({'junction': junction, 'turning': turning, 'inputVolume': inputVolume, 'realVolume': realVolume, 'relativerror': relativeError})
-    print(f"result: {resultJson}")
-
-
 ```
 
  **long createPedestrianComposition(String name, SWIGTYPE_p_QMapT_int_qreal_t mpCompositionRatio)**
@@ -24426,22 +24102,6 @@ netInterface.removePedestrianRectRegion(leftupArea1);
 [ in ] middlePoints: 一组中间必经点  
 [ out ] 行人路径对象
 
-
- **def createCrossWalkSignalLamp(psignalController: Tessng.ISignalController, name: str, crosswalkid: str, scenePos: QPointF, isPositive: bool) -> Tessng.ICrosswalkSignalLamp: ...**
-
-创建人行横道信号灯   
-
-参数: 
-[ in ]  psignalController: 信号机  
-[ in ] name: 名称  
-[ in ] crosswalkId: 人行横道ID  
-[ in ] scenePos: 位于人行横道内的场景坐标  
-[ in ] isPositive: 信号灯管控方向是否为正向  
-[ out ]人行横道信号灯对象  
-
-```python
-signalLamp1_positive = netiface.createCrossWalkSignalLamp(signalController, "南斑马线信号灯", s_crosswalk.getId() , QPointF(13, 22), True)
-```
 
  **ILink updateLink(_Link link, ArrayList<_Lane> lLane, ArrayList<Point> lPoint)**
 
@@ -25739,14 +25399,6 @@ public void afterLoadNet(){
 
 [ out ] lType: 用户定义的路段类型列表
 
- **def laneType(self, lType: typing.Sequence) -> bool: ...**
-
-车道类型
-
-参数: 
-
-[ out ] lType: 用户定义的车道类型列表
-
  **boolean linkBuildGLanes(ILink pILink)**
 
 创建车道
@@ -26411,7 +26063,7 @@ public boolean ref_reSetSpeed_unit(IVehicle pIVehicle, ObjReal ref_inOutSpeed, o
 
 [ out ] ref_keepOn: 是否放弃, 默认为True。赋值ref_keepOn.value为False, TESSNG则放弃汇入。
 
- **def afterOneStep(self) -> None: ...**
+ **void afterOneStep()**
 
 一个计算批次后的计算, 这个时候所有车辆均完成同一个批次的计算。通常在这个方法中获取所有车辆轨迹、检测器数据、进行必要的小计等。在这个方法中进行的计算基本不影响仿真结果的一致性, 但效率不高, 如果计算量大对仿真效率会有影响。
 
@@ -26453,22 +26105,6 @@ public void afterOneStep() {
 [ in ] pRoad: 暂不使用
 
 [ in、out ] ref_keepOn: 是否继续计算, False: TESSNG不再计算后续道路, True: 继续计算
-
- **def candidateLaneConnectors(self, pIVehicle: Tessng.IVehicle, lInLC: typing.Sequence) -> typing.List: ...**
-
-计算当车辆离开路段时后续可经过的“车道连接”, lInLC是已计算出的当前车道可达的所有“车道连接”, 用户可以从中筛选或重新计算。如果车辆有路径, 则忽略
-
-参数: 
-
-[ in ] pIVehicle 当前车辆
-
-[ in ] lInLC: TESS NG计算出的后续可达“车道连接”列表
-
-返回: 用户确定的后续可达“车道连接”列表
-
- **def candidateLaneConnector(self, pIVehicle: Tessng.IVehicle, lInLC: typing.Sequence) -> typing.List: ...**
-
-计算车辆后续“车道连接”, 此时车辆正跨出当前路段, 将驶到pCurrLaneConnector。此方法可以改变后续“车道连接”。如果返回的“车道连接”为空, TESSNG会忽略此方法的调用。如果返回的“车道连接”不在原有路径上, 或者此方法设置了新路径且新路径不经过返回的“车道连接”, TESSNG调用此方法后会将路径设为空。
 
  **void ref_beforeNextPoint(IVehicle pIVehicle, ObjBool ref_keepOn)**
 
@@ -26902,16 +26538,6 @@ public boolean ref_reSetAcce_unit(IVehicle pIVehicle, ObjReal ref_inOutAcce, obj
 参数: 
 
 [ in ]pIVehicle: 车辆对象。
-
- **def recoveredSnapshot(self) -> bool: ...**
-
-用快照恢复仿真场景, 分布式环境可用
-
- **def vehiRunInfo(self, pIVehicle: Tessng.IVehicle) -> str: ...**
-
-车辆运行信息。在仿真过程中如果某辆车被单选, 按ctrl+i 会弹出被单选车辆运行状态, 文本框中的“其它信息”就是当前方法返回的字符串, 开发者可以借此对实现的业务逻辑进行了解, 用户可以了解仿真过程中具体车辆的一些特殊信息。
-
-
 
 
 
