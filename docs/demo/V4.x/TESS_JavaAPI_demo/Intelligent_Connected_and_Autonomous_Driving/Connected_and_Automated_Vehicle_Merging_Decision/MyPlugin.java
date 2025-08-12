@@ -1,4 +1,4 @@
-package Intelligent_Connected_and_Autonomous_Driving.Connected_and_Automated_Vehicle_Merging_Decision;
+package TESS_Java_APIDemo.Intelligent_Connected_and_Autonomous_Driving.Connected_and_Automated_Vehicle_Merging_Decision;
 import com.jidatraffic.tessng.CustomerNet;
 import com.jidatraffic.tessng.CustomerSimulator;
 import com.jidatraffic.tessng.TessPlugin;

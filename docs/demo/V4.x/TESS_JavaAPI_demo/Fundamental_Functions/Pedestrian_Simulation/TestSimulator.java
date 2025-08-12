@@ -1,4 +1,4 @@
-package Fundamental_Functions.Pedestrian_Simulation;
+package TESS_Java_APIDemo.Fundamental_Functions.Pedestrian_Simulation;
 
 import com.jidatraffic.tessng.*;
 

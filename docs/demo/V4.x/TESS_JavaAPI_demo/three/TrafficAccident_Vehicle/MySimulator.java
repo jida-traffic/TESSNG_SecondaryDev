@@ -1,7 +1,6 @@
-package three.TrafficAccident_Vehicle;
+package TESS_Java_APIDemo.three.TrafficAccident_Vehicle;
 
 import com.jidatraffic.tessng.*;
-import three.TrafficAccident_Area.functions;
 
 import java.util.ArrayList;
 import java.util.List;

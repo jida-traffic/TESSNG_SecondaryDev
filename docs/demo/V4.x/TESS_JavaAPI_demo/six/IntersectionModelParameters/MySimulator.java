@@ -1,4 +1,4 @@
-package six.IntersectionModelParameters;
+package TESS_Java_APIDemo.six.IntersectionModelParameters;
 
 import com.google.gson.Gson;
 import com.jidatraffic.tessng.*;

@@ -1,4 +1,4 @@
-package Fundamental_Functions.Parking_Lot_Simulation;
+package TESS_Java_APIDemo.Fundamental_Functions.Parking_Lot_Simulation;
 
 import com.jidatraffic.tessng.*;
 

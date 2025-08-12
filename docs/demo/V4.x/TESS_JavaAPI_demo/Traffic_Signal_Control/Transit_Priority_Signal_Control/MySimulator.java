@@ -1,4 +1,4 @@
-package Traffic_Signal_Control.Transit_Priority_Signal_Control;
+package TESS_Java_APIDemo.Traffic_Signal_Control.Transit_Priority_Signal_Control;
 
 import com.jidatraffic.tessng.*;
 import java.util.*;

@@ -1,4 +1,4 @@
-package six.IntersectionModelParameters;
+package TESS_Java_APIDemo.six.IntersectionModelParameters;
 
 import java.io.*;
 import java.util.*;

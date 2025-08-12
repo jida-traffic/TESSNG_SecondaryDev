@@ -1,4 +1,4 @@
-package six.IntersectionModelParameters;
+package TESS_Java_APIDemo.six.IntersectionModelParameters;
 
 import com.jidatraffic.tessng.TessngFactory;
 
@@ -19,7 +19,8 @@ import io.jenetics.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.*;
 
-import static six.IntersectionModelParameters.resultanalysis.resultAnalysis;
+import static TESS_Java_APIDemo.six.IntersectionModelParameters.resultanalysis.resultAnalysis;
+
 
 public class main {
 

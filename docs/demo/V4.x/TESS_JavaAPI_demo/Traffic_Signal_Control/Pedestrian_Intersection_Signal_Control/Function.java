@@ -1,4 +1,4 @@
-package Traffic_Signal_Control.Pedestrian_Intersection_Signal_Control;
+package TESS_Java_APIDemo.Traffic_Signal_Control.Pedestrian_Intersection_Signal_Control;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

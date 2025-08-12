@@ -1,4 +1,4 @@
-package Traffic_Signal_Control.Arterial_Green_Wave_Signal_Control;
+package TESS_Java_APIDemo.Traffic_Signal_Control.Arterial_Green_Wave_Signal_Control;
 
 import com.jidatraffic.tessng.JCustomerNet;
 import com.jidatraffic.tessng.NetInterface;

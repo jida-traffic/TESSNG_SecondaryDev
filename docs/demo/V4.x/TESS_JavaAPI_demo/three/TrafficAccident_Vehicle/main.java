@@ -1,4 +1,4 @@
-package three.TrafficAccident_Vehicle;
+package TESS_Java_APIDemo.three.TrafficAccident_Vehicle;
 
 import com.jidatraffic.tessng.TessngFactory;
 
