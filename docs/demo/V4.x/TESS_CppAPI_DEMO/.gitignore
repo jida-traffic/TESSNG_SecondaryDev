@@ -8,5 +8,9 @@ x64/Debug/*
 x64/Release/*
 !x64/Debug/*.dll
 !x64/Release/*.dll
+!x64/Debug/*.exe
+!x64/Release/*.exe
+!x64/Debug/*.qm
+!x64/Release/*.qm
 
 README.md
