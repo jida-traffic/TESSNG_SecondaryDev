@@ -43,18 +43,18 @@ add_subdirectory(3.交通事故与施工改扩建/交通事故（创建事故区
 add_subdirectory(3.交通事故与施工改扩建/施工改扩建 RoadConstruction)
 
 # 4. 车道管控与车辆引导模块
-# add_subdirectory(4.车道管控与车辆引导/车辆路径诱导 VehicleRoutingGuidance)
-# add_subdirectory(4.车道管控与车辆引导/车辆速度引导 VehicleSpeedGuidance)
+add_subdirectory(4.车道管控与车辆引导/车辆路径诱导 VehicleRoutingGuidance)
+add_subdirectory(4.车道管控与车辆引导/车辆速度引导 VehicleSpeedGuidance)
 # add_subdirectory(4.车道管控与车辆引导/可变车道管控 VariableLaneControl)
 # add_subdirectory(4.车道管控与车辆引导/可变限速管控（基于强化学习） VariableSpeedControl)
-# add_subdirectory(4.车道管控与车辆引导/应急车道开放管控 EmergencyLaneControl)
-# add_subdirectory(4.车道管控与车辆引导/优先车道管控 PriorityLaneControl)
+add_subdirectory(4.车道管控与车辆引导/应急车道开放管控 EmergencyLaneControl)
+add_subdirectory(4.车道管控与车辆引导/优先车道管控 PriorityLaneControl)
 
 # 5. 智能网联与自动驾驶模块
-# add_subdirectory(5.智能网联与自动驾驶/智能网联车辆编队行驶 CVPlatooning)
-# add_subdirectory(5.智能网联与自动驾驶/智能网联车辆汇入决策 CVMergeDecision)
-# add_subdirectory(5.智能网联与自动驾驶/智能网联车辆事故避让 CVCollisionAvoidance)
-# add_subdirectory(5.智能网联与自动驾驶/自动驾驶仿真 AutonomousDriving)
+add_subdirectory(5.智能网联与自动驾驶/智能网联车辆编队行驶 CVPlatooning)
+add_subdirectory(5.智能网联与自动驾驶/智能网联车辆汇入决策 CVMergeDecision)
+add_subdirectory(5.智能网联与自动驾驶/智能网联车辆事故避让 CVCollisionAvoidance)
+add_subdirectory(5.智能网联与自动驾驶/自动驾驶仿真 AutonomousDriving)
 
 # 6. 模型参数标定模块
 # add_subdirectory(6.模型参数标定/交叉口模型参数标定 IntersectionCalibration)
