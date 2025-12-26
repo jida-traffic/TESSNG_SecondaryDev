@@ -10004,7 +10004,7 @@ for ped in allPedestrian:
     print(f"获取行人当前位置的高程, 单位: 米={ped.getElevation()}")
 ```
 
- **def getSpeed(self) -> float: ...**
+ **def getSpeed(self) -> Type.QVector2D: ...**
 
 获取行人当前速度, 单位: 米/秒
 
@@ -10088,7 +10088,7 @@ for ped in allPedestrian:
     print(f"获取行人欧拉角, 用于三维的信息展示和计算, 单位: 度={ped.getEuler()}")
 ```
 
- **def getSpeedEuler(self) -> Type.List: ...**
+ **def getSpeedEuler(self) -> Type.QVector2D: ...**
 
 获取行人速度欧拉角, 单位: 度
 
