@@ -36,7 +36,7 @@ function normalizeSignature(signature) {
 }
 
 function methodKey(signature) {
-  const match = signature.match(/([A-Za-z_][A-Za-z0-9_]*)\((.*)\)$/);
+  const match = signature.match(/([A-Za-z_][A-Za-z0-9_]*)\((.*)\)\s*(?:const\s*)?(?:override\s*)?(?:noexcept\s*)?$/);
   if (!match) {
     return signature;
   }
@@ -368,6 +368,13 @@ function buildInterfaceResult(target, section, directMethods, allMethods, docMet
 
 const headerFiles = collectHeaderFiles(HEADER_ROOT);
 const headerMap = new Map(headerFiles.map(filePath => [path.basename(filePath, ".h"), filePath]));
+for (const filePath of headerFiles) {
+  const rawText = fs.readFileSync(filePath, "utf8");
+  const classMatch = rawText.match(/\bclass\s+(?:\w+\s+)?(I[A-Za-z0-9_]+)\s*(?::[^{;]+)?\{/);
+  if (classMatch && !headerMap.has(classMatch[1])) {
+    headerMap.set(classMatch[1], filePath);
+  }
+}
 const parseCache = new Map();
 const allCache = new Map();
 const filteredTargets = TARGETS.filter(target => !languageFilter || target.language === languageFilter);
